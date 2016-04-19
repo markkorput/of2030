@@ -10,9 +10,9 @@
 #define player_hpp
 
 //#include <stdio.h>
-
+#include "ofMain.h"
 #include "CMSCollection.h"
-#include "effect.hpp"
+#include "effects.hpp"
 
 namespace of2030{
     
@@ -20,7 +20,7 @@ namespace of2030{
         
     public: // main interface methods
 
-        Player() : m_time(0.0f), m_bPlaying(false){}
+        Player();
         // ~Player(){}
 
         //void setup();
@@ -34,15 +34,21 @@ namespace of2030{
     protected: // helper methods
 
         void setPlaybackTime(float time);
+        void removeActiveEffectsEndingBefore(float time);
+
+    public: // events
+
+        ofEvent <effects::Effect> effectEndedEvent;
 
     public: // properties
 
-        // CMS::Collection<Effect> active_effects_collection;
+        vector<effects::Effect> active_effects;
 
     private: // attributes
         
         bool m_bPlaying;
         float m_time, m_startTime;
+        effects::Off m_offEffect; // if all effects end, at least this effect remains
     };
 }
 

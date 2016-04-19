@@ -11,7 +11,6 @@
 
 #include <stdio.h>
 #include "CMSCollection.h"
-#include "effect.hpp"
 
 namespace of2030{
   

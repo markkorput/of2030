@@ -10,6 +10,11 @@
 
 using namespace of2030;
 
+Player::Player() : m_time(0.0f), m_bPlaying(false){
+    // initialize with a single "OFF" effect in the queue
+    active_effects.push_back(m_offEffect);
+}
+
 void Player::update(){
     if(m_bPlaying){
         setPlaybackTime(ofGetElapsedTimef() - m_startTime);
@@ -34,7 +39,29 @@ void Player::stop(){
 
 void Player::setPlaybackTime(float time){
     // TODO; activate all effects that start between m_time and time
-    // TODO; de-activate all active effects that end between m_time and time
+    removeActiveEffectsEndingBefore(time);
     m_time = time;    
 }
 
+void Player::removeActiveEffectsEndingBefore(float time){
+    // loop over all active effects (it's important to iterate in reverse order,
+    // because during the iterations elements might be removed, which
+    // mixes up the index values when iterated in forward order).
+    for(int i=active_effects.size()-1; i>=0; i--){
+        // take the current effect
+        effects::Effect* effect = &active_effects[i];
+
+        // see if it has an end time that has been reached
+        if(effect->hasEndTime() && effect->endTime <= time){
+            // remove event from our active stack
+            active_effects.erase(active_effects.begin() + i);
+
+            // NOTE; this Player class does not get involed in the memory
+            // management surrounding the events; they must be allocated
+            // and freed from memory by the owner of this class
+
+            // trigger event
+            ofNotifyEvent(effectEndedEvent, *effect, this);
+        }
+    }
+}

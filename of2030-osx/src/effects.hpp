@@ -9,7 +9,8 @@
 #ifndef effect_hpp
 #define effect_hpp
 
-#include <stdio.h>
+//#include <stdio.h>
+#include "ofMain.h"
 #include "CMSModel.h"
 
 namespace of2030{ namespace effects {
@@ -21,17 +22,42 @@ namespace of2030{ namespace effects {
 
     #define NO_TIME (-1.0f)
 
+
+
     class Effect{
 
-    public:
-        Effect() : m_startTime(NO_TIME), m_type(OFF) {}
+    public: // methods
+
+        Effect() : startTime(NO_TIME), endTime(NO_TIME), type(OFF) {}
         // ~Effect(){}
 
-        bool hasTime(){ return m_startTime >= 0.0f; }
+        bool hasStartTime(){ return startTime >= 0.0f; }
+        bool hasEndTime(){ return endTime >= 0.0f; }
 
-    public:
-        float m_startTime, m_endTime;
-        EffectType m_type;
+    public: // properties
+
+        float startTime, endTime;
+        EffectType type;
+    };
+
+
+
+    class Off : public Effect{
+
+    public: // methods
+
+        Off(){ type = EffectType::OFF; }
+    };
+
+
+
+    class Color : public Effect{
+
+    public: // methods
+        Color() : color(ofColor::black){ type = EffectType::COLOR; }
+
+    public: // attributes
+        ofColor color;
     };
 
 }} // namespace of2030{ namespace effects {
