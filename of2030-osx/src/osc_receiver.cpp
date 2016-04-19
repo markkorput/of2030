@@ -10,24 +10,16 @@
 
 using namespace of2030;
 
-OscReceiver::OscReceiver(){
-    m_port = 2030;
-
-    m_interface = NULL;
-    m_bConnected = false;
-}
-
-OscReceiver::~OscReceiver(){
-    destroy();
-}
-
 void OscReceiver::configure(unsigned int port, Interface* interface){
     m_port = port;
-    
+
     if(interface)
         m_interface = interface;
 
-    m_bConnected = false;
+    if(m_bConnected){
+        // reconnect
+        connect();
+    }
 }
 
 void OscReceiver::setup(){

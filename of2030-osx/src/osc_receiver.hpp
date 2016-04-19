@@ -18,8 +18,8 @@ namespace of2030 {
     class OscReceiver {
         
     public:
-        OscReceiver();
-        ~OscReceiver();
+        OscReceiver() : m_port(2030), m_interface(NULL), m_bConnected(false){}
+        ~OscReceiver(){ destroy(); }
         void configure(unsigned int port=2030, Interface* interface=NULL);
         void setup();
         void update();
