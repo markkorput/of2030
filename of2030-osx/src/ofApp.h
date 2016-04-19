@@ -4,6 +4,8 @@
 
 #include "osc_receiver.hpp"
 #include "player.hpp"
+#include "effect_creator.hpp"
+#include "renderer.hpp"
 
 class ofApp : public ofBaseApp{
 	public:
@@ -33,5 +35,7 @@ class ofApp : public ofBaseApp{
 
     private:
         of2030::OscReceiver m_oscReceiver;
-        of2030::Player m_player;
+        of2030::Player *m_player;
+        of2030::Renderer m_renderer;
+        of2030::EffectCreator m_effectCreator;
 };

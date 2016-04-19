@@ -66,16 +66,16 @@ void Player::activateEffect(effects::Effect &effect){
 
 void Player::setPlaybackTime(float time){
     // TODO; activate all effects that start between m_time and time
-    vector<effects::Effect> effects = realtime_composition.getEffects();
+    vector<effects::Effect*> effects = realtime_composition.getEffects();
 
     for(int i=effects.size()-1; i>=0; i--){
-        effects::Effect effect = effects[i];
+        effects::Effect* effect = effects[i];
 
         // current effect just got active?
-        if((effect.hasStartTime() == false || effect.startTime < m_time) &&
-           (effect.hasEndTime() == false || effect.endTime > m_time) &&
-           !effectActive(effect)){
-            activateEffect(effect);
+        if((effect->hasStartTime() == false || effect->startTime < m_time) &&
+           (effect->hasEndTime() == false || effect->endTime > m_time) &&
+           !effectActive(*effect)){
+            activateEffect(*effect);
         }
     }
 

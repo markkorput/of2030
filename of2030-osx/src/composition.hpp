@@ -21,12 +21,12 @@ namespace of2030{
         // Composition(){}
         // ~Composition(){}
 
-        void add(effects::Effect &effect);
-        const vector<effects::Effect> &getEffects(){ return m_effects; }
+        void add(effects::Effect *effect);
+        const vector<effects::Effect*> &getEffects(){ return m_effects; }
 
     private: // attributes
 
-        vector<effects::Effect> m_effects;
+        vector<effects::Effect*> m_effects;
     };
 
 };

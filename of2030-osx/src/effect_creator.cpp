@@ -68,13 +68,20 @@ void EffectCreator::onNewEffectModel(CMS::Model &model){
     if(value != ""){
         pEffect->startTime = ofToFloat(value);
     }
-    
+
     value = model.get("end");
     if(value != ""){
         pEffect->endTime = ofToFloat(value);
+    } else {
+        value = model.get("duration");
+        if(value != ""){
+            pEffect->endTime = m_player->getTime() + ofToFloat(value);
+        }
     }
 
     // finally, add the effect instance to the realtime_composition of the player
-    m_player->realtime_composition.add(*pEffect);
+    m_player->realtime_composition.add(pEffect);
+//    ofLog() << type << "-type effect added to player's realtime composition";
+//    ofLog() << "number: " << pEffect->type;
 }
 
