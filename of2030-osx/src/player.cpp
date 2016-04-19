@@ -10,9 +10,19 @@
 
 using namespace of2030;
 
+Player* Player::singleton = NULL;
+
+Player* Player::instance(){
+    if (!singleton){   // Only allow one instance of class to be generated.
+        singleton = new Player();
+    }
+    return singleton;
+}
+
+
 Player::Player() : m_time(0.0f), m_bPlaying(false){
     // initialize with a single "OFF" effect in the queue
-    active_effects.push_back(m_offEffect);
+    active_effects.push_back(&m_offEffect);
 }
 
 void Player::update(){
@@ -37,8 +47,38 @@ void Player::stop(){
     m_bPlaying = false;
 }
 
+bool Player::effectActive(effects::Effect &effect){
+    // loop over all our active effects
+    for(int i=active_effects.size()-1; i>=0; i--){
+        effects::Effect* active_effect = active_effects[i];
+        // current active effect has the specified client-id?
+        if(active_effect->cid == effect.cid){
+            return true;
+        }
+    }
+    
+    return false;
+}
+
+void Player::activateEffect(effects::Effect &effect){
+    active_effects.push_back(&effect);
+}
+
 void Player::setPlaybackTime(float time){
     // TODO; activate all effects that start between m_time and time
+    vector<effects::Effect> effects = realtime_composition.getEffects();
+
+    for(int i=effects.size()-1; i>=0; i--){
+        effects::Effect effect = effects[i];
+
+        // current effect just got active?
+        if((effect.hasStartTime() == false || effect.startTime < m_time) &&
+           (effect.hasEndTime() == false || effect.endTime > m_time) &&
+           !effectActive(effect)){
+            activateEffect(effect);
+        }
+    }
+
     removeActiveEffectsEndingBefore(time);
     m_time = time;    
 }
@@ -49,7 +89,7 @@ void Player::removeActiveEffectsEndingBefore(float time){
     // mixes up the index values when iterated in forward order).
     for(int i=active_effects.size()-1; i>=0; i--){
         // take the current effect
-        effects::Effect* effect = &active_effects[i];
+        effects::Effect* effect = active_effects[i];
 
         // see if it has an end time that has been reached
         if(effect->hasEndTime() && effect->endTime <= time){

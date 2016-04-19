@@ -10,18 +10,23 @@
 #define composition_hpp
 
 #include <stdio.h>
-#include "CMSCollection.h"
+#include "effects.hpp"
 
 namespace of2030{
   
     class Composition{
       
-    public:
-        Composition(){}
-        ~Composition(){}
+    public: // methods
 
-    private:
-        // CMS::Collection<Effect> m_effects;
+        // Composition(){}
+        // ~Composition(){}
+
+        void add(effects::Effect &effect);
+        const vector<effects::Effect> &getEffects(){ return m_effects; }
+
+    private: // attributes
+
+        vector<effects::Effect> m_effects;
     };
 
 };

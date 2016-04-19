@@ -11,12 +11,21 @@
 
 //#include <stdio.h>
 #include "ofMain.h"
-#include "CMSCollection.h"
+#include "composition.hpp"
 #include "effects.hpp"
+
 
 namespace of2030{
     
     class Player {
+        
+    public: // singleton accessor method
+
+        static Player* instance();
+
+    private: // singleton static attribute
+
+        static Player* singleton;
         
     public: // main interface methods
 
@@ -30,6 +39,9 @@ namespace of2030{
 
         void start();
         void stop();
+        
+        bool effectActive(effects::Effect &effect);
+        void activateEffect(effects::Effect &effect);
 
     protected: // helper methods
 
@@ -42,7 +54,8 @@ namespace of2030{
 
     public: // properties
 
-        vector<effects::Effect> active_effects;
+        vector<effects::Effect*> active_effects;
+        Composition realtime_composition;
 
     private: // attributes
         
