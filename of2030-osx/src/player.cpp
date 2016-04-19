@@ -10,6 +10,16 @@
 
 using namespace of2030;
 
+Player* Player::singleton = NULL;
+
+Player* Player::instance(){
+    if (!singleton){   // Only allow one instance of class to be generated.
+        singleton = new Player();
+    }
+    return singleton;
+}
+
+
 Player::Player() : m_time(0.0f), m_bPlaying(false){
     // initialize with a single "OFF" effect in the queue
     active_effects.push_back(m_offEffect);
