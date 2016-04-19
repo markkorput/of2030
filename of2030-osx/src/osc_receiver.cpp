@@ -124,5 +124,8 @@ void OscReceiver::processEffectMessage(ofxOscMessage &m){
         }
         
         m_interface->effects_collection.add(effect);
+        return;
     }
+    
+    ofLog() << "Unknown /effect message: " << fxType;
 }
