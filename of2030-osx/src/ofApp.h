@@ -26,6 +26,9 @@ class ofApp : public ofBaseApp{
         // xml settings
         void loadSettings();
         void saveSettings();
+    
+        // callbacks
+        void onNewChangeModel(CMS::Model &model);
 
     private:
         of2030::OscReceiver m_oscReceiver;

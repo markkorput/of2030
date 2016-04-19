@@ -16,7 +16,8 @@
 namespace of2030 {
     
     class OscReceiver {
-        
+        const static int MAX_MESSAGES_PER_CYCLE = 10;
+
     public:
         OscReceiver() : m_port(2030), m_interface(NULL), m_bConnected(false){}
         ~OscReceiver(){ destroy(); }
