@@ -22,7 +22,7 @@ namespace of2030{
         ~Composition(){}
 
     private:
-        CMS::Collection<Effect> m_effects;
+        // CMS::Collection<Effect> m_effects;
     };
 
 };

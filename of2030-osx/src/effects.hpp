@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include "CMSModel.h"
 
-namespace of2030{
+namespace of2030{ namespace effects {
 
     enum EffectType{
         OFF = 0,
@@ -21,19 +21,19 @@ namespace of2030{
 
     #define NO_TIME (-1.0f)
 
-    class Effect : public CMS::Model{
+    class Effect{
 
     public:
-        Effect() : m_time(NO_TIME), m_type(OFF) {}
-        // Effect(float time, EffectType type) : m_time(time), m_type(type) {}
+        Effect() : m_startTime(NO_TIME), m_type(OFF) {}
         // ~Effect(){}
-        
-        bool hasTime(){ return m_time >= 0.0f; }
+
+        bool hasTime(){ return m_startTime >= 0.0f; }
 
     public:
-        float m_time;
+        float m_startTime, m_endTime;
         EffectType m_type;
     };
-}
+
+}} // namespace of2030{ namespace effects {
 
 #endif /* effect_hpp */

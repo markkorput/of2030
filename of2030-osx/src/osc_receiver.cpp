@@ -114,18 +114,42 @@ void OscReceiver::processEffectMessage(ofxOscMessage &m){
         return;
     }
 
-    std::string fxType = m.getArgAsString(0);
-    if(fxType == "OFF"){
-        Effect *effect = new Effect();
-        effect->m_type = EffectType::OFF;
-        
-        if(m.getNumArgs() > 1){
-            effect->m_time = m.getArgAsFloat(1);
-        }
-        
-        m_interface->effects_collection.add(effect);
+    if(m.getArgType(0) != OFXOSC_TYPE_STRING){
+        ofLogWarning() << "/effect didn't have string arg";
         return;
     }
+
+//    std::string fxType = m.getArgAsString(0);
+//    if(fxType == "OFF"){
+//        CMS::Model *effect_model = new CMS::Model();
+//        effect_model->m_type = EffectType::OFF;
+//
+//        if(m.getNumArgs() > 1){
+//            effect->m_startTime = m.getArgAsFloat(1);
+//        }
+//        
+//        m_interface->effects_collection.add(effect);
+//        return;
+//    }
+//    
+//    ofLog() << "Unknown /effect message: " << fxType;
+
+    // parse json
+    ofxJSONElement jsonEl;
+    jsonEl.parse(m.getArgAsString(0));
     
-    ofLog() << "Unknown /effect message: " << fxType;
+    // get all attributes as string (no support for nester structure for now)
+    map<string, string> data;
+    vector<string> attrs = jsonEl.getMemberNames();
+    
+    for(int i=attrs.size()-1; i>=0; i--){
+        string name = attrs[i];
+        data[name] = jsonEl[name].asString();
+    }
+    
+    // create change model with extracted data
+    CMS::Model* model = new CMS::Model();
+    model->set(data);
+    m_interface->effects_collection.add(model);
+    return;
 }

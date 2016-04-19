@@ -8,4 +8,4 @@
 
 #include "effect.hpp"
 
-using namespace of2030;
+using namespace of2030::effects;
