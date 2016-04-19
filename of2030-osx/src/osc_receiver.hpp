@@ -25,6 +25,8 @@ namespace of2030 {
         void update();
         void destroy();
 
+        unsigned int getPort(){ return m_port; };
+
     private:
         bool connect();
         void disconnect();
