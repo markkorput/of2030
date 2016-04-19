@@ -7,3 +7,5 @@
 //
 
 #include "effect.hpp"
+
+using namespace of2030;

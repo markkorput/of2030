@@ -32,13 +32,15 @@ namespace of2030 {
         bool connect();
         void disconnect();
 
+        void processChangeMessage(ofxOscMessage &m);
+        void processEffectMessage(ofxOscMessage &m);
+
     private:
         Interface* m_interface;
         ofxOscReceiver m_oscReceiver;
         bool m_bConnected;
         unsigned int m_port;
     };
-
 }
 
 #endif /* osc_receiver_hpp */

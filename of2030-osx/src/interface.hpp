@@ -13,6 +13,7 @@
 
 #include "CMSModel.h"
 #include "CMSCollection.h"
+#include "effect.hpp"
 
 namespace of2030 {
     
@@ -23,6 +24,7 @@ namespace of2030 {
  
     public:
         CMS::Collection<CMS::Model> changes_collection;
+        CMS::Collection<Effect> effects_collection;
 
     private:
         static Interface* singleton;
