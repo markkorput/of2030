@@ -39,6 +39,9 @@ namespace of2030{
 
         void start();
         void stop();
+        
+        bool effectActive(effects::Effect &effect);
+        void activateEffect(effects::Effect &effect);
 
     protected: // helper methods
 
@@ -51,7 +54,7 @@ namespace of2030{
 
     public: // properties
 
-        vector<effects::Effect> active_effects;
+        vector<effects::Effect*> active_effects;
         Composition realtime_composition;
 
     private: // attributes

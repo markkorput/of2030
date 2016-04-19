@@ -28,7 +28,7 @@ namespace of2030{ namespace effects {
 
     public: // methods
 
-        Effect() : startTime(NO_TIME), endTime(NO_TIME), type(OFF) {}
+        Effect();
         // ~Effect(){}
 
         bool hasStartTime(){ return startTime >= 0.0f; }
@@ -36,8 +36,11 @@ namespace of2030{ namespace effects {
 
     public: // properties
 
+        int cid;
         float startTime, endTime;
         EffectType type;
+
+        static int cidCounter;
     };
 
 

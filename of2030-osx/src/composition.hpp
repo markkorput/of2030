@@ -22,6 +22,7 @@ namespace of2030{
         // ~Composition(){}
 
         void add(effects::Effect &effect);
+        const vector<effects::Effect> &getEffects(){ return m_effects; }
 
     private: // attributes
 
