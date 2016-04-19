@@ -57,7 +57,7 @@ namespace of2030{ namespace effects {
     class Color : public Effect{
 
     public: // methods
-        Color() : color(ofColor::black){ type = EffectType::COLOR; }
+        Color();
 
     public: // attributes
         ofColor color;

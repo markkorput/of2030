@@ -40,6 +40,7 @@ namespace of2030{
         void start();
         void stop();
         
+        float getTime(){ return m_time; }
         bool effectActive(effects::Effect &effect);
         void activateEffect(effects::Effect &effect);
 

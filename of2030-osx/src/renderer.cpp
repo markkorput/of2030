@@ -18,6 +18,8 @@ Renderer::Renderer(){
 
 void Renderer::draw(){
     int size = player->active_effects.size();
+    ofLogVerbose() << "[Renderer] active effects: " << size;
+
     for(int i=0; i<size; i++){
         Effect* effect = player->active_effects[i];
         switch(effect->type){
@@ -30,7 +32,6 @@ void Renderer::draw(){
             default:
                 ofLogWarning() << "[Renderer] Unknown effect type: " << effect->type;
         }
-        
     }
 }
 
@@ -39,5 +40,6 @@ void Renderer::drawEffect(effects::Off &effect){
 }
 
 void Renderer::drawEffect(effects::Color &effect){
+    // ofLogVerbose() << "drawing COLOR-effect: " << effect.color;
     ofBackground(effect.color);
 }

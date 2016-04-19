@@ -46,13 +46,13 @@ void OscReceiver::update(){
         
         // "/change"-type message?
         if(m.getAddress() == "/change"){
-            ofLog() << "Got /change OSC Message";
+            ofLogVerbose() << "Got /change OSC Message";
             processChangeMessage(m);
             continue;
         }
 
         if(m.getAddress() == "/effect"){
-            ofLog() << "Got /effect OSC Message";
+            ofLogVerbose() << "Got /effect OSC Message";
             processEffectMessage(m);
             continue;
         }
@@ -146,10 +146,10 @@ void OscReceiver::processEffectMessage(ofxOscMessage &m){
         string name = attrs[i];
         data[name] = jsonEl[name].asString();
     }
-    
+
     // create change model with extracted data
     CMS::Model* model = new CMS::Model();
     model->set(data);
     m_interface->effects_collection.add(model);
-    return;
+    ofLogVerbose() << "effect model added to interface effects_collection";
 }
