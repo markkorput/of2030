@@ -16,10 +16,11 @@
 namespace of2030 {
     
     class OscReceiver {
-        
+        const static int MAX_MESSAGES_PER_CYCLE = 10;
+
     public:
-        OscReceiver();
-        ~OscReceiver();
+        OscReceiver() : m_port(2030), m_interface(NULL), m_bConnected(false){}
+        ~OscReceiver(){ destroy(); }
         void configure(unsigned int port=2030, Interface* interface=NULL);
         void setup();
         void update();
@@ -31,13 +32,15 @@ namespace of2030 {
         bool connect();
         void disconnect();
 
+        void processChangeMessage(ofxOscMessage &m);
+        void processEffectMessage(ofxOscMessage &m);
+
     private:
         Interface* m_interface;
         ofxOscReceiver m_oscReceiver;
         bool m_bConnected;
         unsigned int m_port;
     };
-
 }
 
 #endif /* osc_receiver_hpp */
