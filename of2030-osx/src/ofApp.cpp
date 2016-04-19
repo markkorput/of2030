@@ -1,6 +1,7 @@
 #include "ofApp.h"
 
 #include "ofxXmlSettings.h"
+#include "interface.hpp"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -8,6 +9,8 @@ void ofApp::setup(){
     
     m_oscReceiver.configure(2030);
     m_oscReceiver.setup();
+
+    ofAddListener(of2030::Interface::instance()->changes_collection.modelAddedEvent, this, &ofApp::onNewChangeModel);
 }
 
 //--------------------------------------------------------------
@@ -93,5 +96,13 @@ void ofApp::saveSettings(){
     ofxXmlSettings settings;
     settings.setValue("of2030:osc_port", (int)m_oscReceiver.getPort());
     settings.saveFile("settings.xml");
+}
+
+void ofApp::onNewChangeModel(CMS::Model &model){
+    ofLog() << "Got new change model with " << model.attributes().size() << " attributes";
+    
+    for(map<string,string>::iterator it = model.attributes().begin(); it != model.attributes().end(); ++it) {
+        ofLog() << " - " << it->first << ": " << it->second;
+    }
 }
 
