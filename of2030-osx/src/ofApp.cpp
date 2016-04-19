@@ -12,18 +12,19 @@ void ofApp::setup(){
 
     ofAddListener(of2030::Interface::instance()->changes_collection.modelAddedEvent, this, &ofApp::onNewChangeModel);
 
-    m_player.start();
+    m_player = of2030::Player::instance();
+    m_player->start();
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
     m_oscReceiver.update();
-    m_player.update();
+    m_player->update();
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-
+    m_renderer.draw();
 }
 
 //--------------------------------------------------------------

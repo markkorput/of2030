@@ -11,6 +11,7 @@
 		4D3B38F41CC66E16004C8994 /* ofxJSONElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D3B38EA1CC66E16004C8994 /* ofxJSONElement.cpp */; };
 		4D3B38F51CC66E16004C8994 /* jsoncpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D3B38F31CC66E16004C8994 /* jsoncpp.cpp */; };
 		4D7E54FD1CC6AD1D00DF588E /* effect_creator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D7E54FB1CC6AD1D00DF588E /* effect_creator.cpp */; };
+		4D7E55021CC6C71B00DF588E /* renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D7E55001CC6C71B00DF588E /* renderer.cpp */; };
 		4D9B296B1CC64190005D65E9 /* ofxOscBundle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D9B29441CC64190005D65E9 /* ofxOscBundle.cpp */; };
 		4D9B296C1CC64190005D65E9 /* ofxOscMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D9B29461CC64190005D65E9 /* ofxOscMessage.cpp */; };
 		4D9B296D1CC64190005D65E9 /* ofxOscParameterSync.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D9B29481CC64190005D65E9 /* ofxOscParameterSync.cpp */; };
@@ -77,6 +78,8 @@
 		4D3B38F31CC66E16004C8994 /* jsoncpp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = jsoncpp.cpp; sourceTree = "<group>"; };
 		4D7E54FB1CC6AD1D00DF588E /* effect_creator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = effect_creator.cpp; sourceTree = "<group>"; };
 		4D7E54FC1CC6AD1D00DF588E /* effect_creator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = effect_creator.hpp; sourceTree = "<group>"; };
+		4D7E55001CC6C71B00DF588E /* renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = renderer.cpp; sourceTree = "<group>"; };
+		4D7E55011CC6C71B00DF588E /* renderer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = renderer.hpp; sourceTree = "<group>"; };
 		4D9B29421CC64190005D65E9 /* ofxOsc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxOsc.h; sourceTree = "<group>"; };
 		4D9B29431CC64190005D65E9 /* ofxOscArg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxOscArg.h; sourceTree = "<group>"; };
 		4D9B29441CC64190005D65E9 /* ofxOscBundle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxOscBundle.cpp; sourceTree = "<group>"; };
@@ -324,6 +327,8 @@
 				4DE491001CC69C55003E7958 /* player.hpp */,
 				4D7E54FB1CC6AD1D00DF588E /* effect_creator.cpp */,
 				4D7E54FC1CC6AD1D00DF588E /* effect_creator.hpp */,
+				4D7E55001CC6C71B00DF588E /* renderer.cpp */,
+				4D7E55011CC6C71B00DF588E /* renderer.hpp */,
 			);
 			name = 2030;
 			sourceTree = "<group>";
@@ -537,6 +542,7 @@
 				4D9B296C1CC64190005D65E9 /* ofxOscMessage.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				4D9B299D1CC65D82005D65E9 /* tinyxmlerror.cpp in Sources */,
+				4D7E55021CC6C71B00DF588E /* renderer.cpp in Sources */,
 				4D9B297F1CC64F5D005D65E9 /* interface.cpp in Sources */,
 				4D9B299E1CC65D82005D65E9 /* tinyxmlparser.cpp in Sources */,
 				4D9B29911CC65268005D65E9 /* osc_receiver.cpp in Sources */,

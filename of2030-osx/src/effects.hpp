@@ -17,7 +17,7 @@ namespace of2030{ namespace effects {
 
     enum EffectType{
         OFF = 0,
-        COLOR = 1,
+        COLOR = 1
     };
 
     #define NO_TIME (-1.0f)
