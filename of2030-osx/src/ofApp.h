@@ -2,6 +2,8 @@
 
 #include "ofMain.h"
 
+#include "osc_receiver.hpp"
+
 class ofApp : public ofBaseApp{
 	public:
 		void setup();
@@ -19,4 +21,7 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
+
+    private:
+        of2030::OscReceiver m_oscReceiver;
 };
