@@ -34,25 +34,47 @@ void EffectCreator::setInterface(Interface *interface){
 // based on the information in the effect model, we'll create
 // an instane of the appropriate effect class
 void EffectCreator::onNewEffectModel(CMS::Model &model){
+    effects::Effect* pEffect;
     std::string type = model.get("type");
+    std::string value;
 
+    // create an instance of the appropriate effects class
+    // beased on the model's type attribute
+    // and populate type-specific attributes
+    // the assign the pEffect pointer to the created instance
     if(type == "OFF"){
-        effects::Off* effect = new effects::Off();
-        m_player->realtime_composition.add(*(effects::Effect*)effect);
-        return;
-    }
 
-    if(type == "COLOR"){
+        effects::Off* effect = new effects::Off();
+        pEffect = (effects::Effect*)effect;
+
+    } else if(type == "COLOR"){
+
         effects::Color* effect = new effects::Color();
         effect->color.set(ofColor(
             ofToChar(model.get("r", "0")),
             ofToChar(model.get("g", "0")),
             ofToChar(model.get("b", "0"))));
+        pEffect = (effects::Effect*)effect;
 
-        m_player->realtime_composition.add(*(effects::Effect*)effect);
-        return;
+    } else {
+
+        ofLogWarning() << "[EffectCreator] got unknown effect model type: " << type;
+        pEffect = new effects::Effect();
+
     }
 
-    ofLogWarning() << "[EffectCreator] got unknown effect model type: " << type;
+    // process some more (optional) general effect attributes
+    value = model.get("start");
+    if(value != ""){
+        pEffect->startTime = ofToFloat(value);
+    }
+    
+    value = model.get("end");
+    if(value != ""){
+        pEffect->endTime = ofToFloat(value);
+    }
+
+    // finally, add the effect instance to the realtime_composition of the player
+    m_player->realtime_composition.add(*pEffect);
 }
 
