@@ -1,18 +1,35 @@
 #include "ofApp.h"
 
+#include "ofxXmlSettings.h"
+#include "interface.hpp"
+
 //--------------------------------------------------------------
 void ofApp::setup(){
+    loadSettings();
+    
+    m_oscReceiver.configure(2030);
+    m_oscReceiver.setup();
 
+    ofAddListener(of2030::Interface::instance()->changes_collection.modelAddedEvent, this, &ofApp::onNewChangeModel);
+
+    m_player = of2030::Player::instance();
+    m_player->start();
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-
+    m_oscReceiver.update();
+    m_player->update();
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+    m_renderer.draw();
+}
 
+//--------------------------------------------------------------
+void ofApp::exit(ofEventArgs &args){
+    saveSettings();
 }
 
 //--------------------------------------------------------------
@@ -69,3 +86,27 @@ void ofApp::gotMessage(ofMessage msg){
 void ofApp::dragEvent(ofDragInfo dragInfo){ 
 
 }
+
+
+//--------------------------------------------------------------
+void ofApp::loadSettings(){
+    ofxXmlSettings settings;
+    settings.loadFile("settings.xml");
+    unsigned int port = settings.getValue("of2030:osc_port", 2030);
+    m_oscReceiver.configure(port);
+}
+
+void ofApp::saveSettings(){
+    ofxXmlSettings settings;
+    settings.setValue("of2030:osc_port", (int)m_oscReceiver.getPort());
+    settings.saveFile("settings.xml");
+}
+
+void ofApp::onNewChangeModel(CMS::Model &model){
+    ofLog() << "Got new change model with " << model.attributes().size() << " attributes";
+    
+    for(map<string,string>::iterator it = model.attributes().begin(); it != model.attributes().end(); ++it) {
+        ofLog() << " - " << it->first << ": " << it->second;
+    }
+}
+

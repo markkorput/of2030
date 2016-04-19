@@ -2,12 +2,18 @@
 
 #include "ofMain.h"
 
+#include "osc_receiver.hpp"
+#include "player.hpp"
+#include "effect_creator.hpp"
+#include "renderer.hpp"
+
 class ofApp : public ofBaseApp{
 	public:
 		void setup();
 		void update();
 		void draw();
-		
+        void exit(ofEventArgs &args);
+
 		void keyPressed(int key);
 		void keyReleased(int key);
 		void mouseMoved(int x, int y);
@@ -19,4 +25,17 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
+
+        // xml settings
+        void loadSettings();
+        void saveSettings();
+    
+        // callbacks
+        void onNewChangeModel(CMS::Model &model);
+
+    private:
+        of2030::OscReceiver m_oscReceiver;
+        of2030::Player *m_player;
+        of2030::Renderer m_renderer;
+        of2030::EffectCreator m_effectCreator;
 };
