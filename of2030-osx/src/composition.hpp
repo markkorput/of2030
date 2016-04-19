@@ -11,7 +11,6 @@
 
 #include <stdio.h>
 #include "CMSCollection.h"
-#include "effect.hpp"
 
 namespace of2030{
   
@@ -22,7 +21,7 @@ namespace of2030{
         ~Composition(){}
 
     private:
-        CMS::Collection<Effect> m_effects;
+        // CMS::Collection<Effect> m_effects;
     };
 
 };

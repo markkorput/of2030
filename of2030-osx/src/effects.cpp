@@ -6,6 +6,6 @@
 //
 //
 
-#include "effect.hpp"
+#include "effects.hpp"
 
-using namespace of2030;
+using namespace of2030::effects;
