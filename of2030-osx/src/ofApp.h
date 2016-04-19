@@ -3,6 +3,7 @@
 #include "ofMain.h"
 
 #include "osc_receiver.hpp"
+#include "player.hpp"
 
 class ofApp : public ofBaseApp{
 	public:
@@ -32,4 +33,5 @@ class ofApp : public ofBaseApp{
 
     private:
         of2030::OscReceiver m_oscReceiver;
+        of2030::Player m_player;
 };

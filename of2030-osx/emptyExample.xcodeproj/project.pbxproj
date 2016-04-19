@@ -309,7 +309,8 @@
 		4D9B297C1CC64F52005D65E9 /* 2030 */ = {
 			isa = PBXGroup;
 			children = (
-				4DE491021CC6A052003E7958 /* Effects */,
+				4D3B38E21CC66A95004C8994 /* effects.cpp */,
+				4D3B38E31CC66A95004C8994 /* effects.hpp */,
 				4D9B297D1CC64F5D005D65E9 /* interface.cpp */,
 				4D9B297E1CC64F5D005D65E9 /* interface.hpp */,
 				4D9B298F1CC65268005D65E9 /* osc_receiver.cpp */,
@@ -371,15 +372,6 @@
 			);
 			name = libs;
 			path = ../../../addons/ofxXmlSettings/libs;
-			sourceTree = "<group>";
-		};
-		4DE491021CC6A052003E7958 /* Effects */ = {
-			isa = PBXGroup;
-			children = (
-				4D3B38E21CC66A95004C8994 /* effects.cpp */,
-				4D3B38E31CC66A95004C8994 /* effects.hpp */,
-			);
-			name = Effects;
 			sourceTree = "<group>";
 		};
 		6948EE371B920CB800B5AC1A /* local_addons */ = {

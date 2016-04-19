@@ -11,11 +11,14 @@ void ofApp::setup(){
     m_oscReceiver.setup();
 
     ofAddListener(of2030::Interface::instance()->changes_collection.modelAddedEvent, this, &ofApp::onNewChangeModel);
+
+    m_player.start();
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
     m_oscReceiver.update();
+    m_player.update();
 }
 
 //--------------------------------------------------------------
