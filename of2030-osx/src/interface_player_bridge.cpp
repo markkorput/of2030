@@ -58,7 +58,6 @@ void InterfacePlayerBridge::registerInterfaceCallbacks(bool _register){
 void InterfacePlayerBridge::onEffect(effects::Effect &effect){
     // finally, add the effect instance to the realtime_composition of the player
     m_player->realtime_composition.add(&effect);
-    ofLog() << effect.type << "-type effect added to player's realtime composition";
-    //ofLog() << "number: " << effect.type;
+    //    ofLog() << effect.type << "-type effect added to player's realtime composition";
 }
 

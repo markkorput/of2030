@@ -112,7 +112,7 @@ void OscReceiver::processEffectMessage(ofxOscMessage &m){
 
     effects::Effect* effect = createEffectFromJsonString(m.getArgAsString(0));
     if(effect){
-        ofLog() << "[OscReceiver] Triggering interface's effectEvent";
+        // ofLog() << "[OscReceiver] Triggering interface's effectEvent";
         ofNotifyEvent(m_interface->effectEvent, *effect, m_interface);
         return;
     }
