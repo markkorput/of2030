@@ -5,6 +5,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    ofLogToFile("log.txt", true);
     loadSettings();
     
     m_oscReceiver.configure(2030);
@@ -103,7 +104,7 @@ void ofApp::saveSettings(){
 }
 
 void ofApp::onNewChangeModel(CMS::Model &model){
-    ofLog() << "Got new change model with " << model.attributes().size() << " attributes";
+    // ofLog() << "Got new change model with " << model.attributes().size() << " attributes";
     
     for(map<string,string>::iterator it = model.attributes().begin(); it != model.attributes().end(); ++it) {
         ofLog() << " - " << it->first << ": " << it->second;
