@@ -11,17 +11,18 @@
 
 //#include <stdio.h>
 #include "interface.hpp"
-#include "effects.hpp"
 #include "player.hpp"
+#include "effects.hpp"
+
 
 namespace of2030{
     
-    class EffectCreator{
+    class InterfacePlayerBridge{
     
     public: // methods
         
-        EffectCreator();
-        // ~EffectCreator();
+        InterfacePlayerBridge();
+        // ~InterfacePlayerBridge();
 
         void setInterface(Interface *interface);
 
