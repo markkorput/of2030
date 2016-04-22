@@ -22,18 +22,23 @@ namespace of2030{
     public: // methods
         
         InterfacePlayerBridge();
-        // ~InterfacePlayerBridge();
+        ~InterfacePlayerBridge();
 
         void setInterface(Interface *interface);
 
+        void start();
+        void stop();
+
     private: // callbacks
 
+        void registerInterfaceCallbacks(bool _register=true);
         void onEffect(effects::Effect &effect);
 
     private: // attributes
 
         Interface* m_interface;
         Player* m_player;
+        bool m_bStarted;
     };
 }
 

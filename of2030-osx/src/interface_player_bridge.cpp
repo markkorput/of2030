@@ -14,19 +14,43 @@ using namespace of2030;
 InterfacePlayerBridge::InterfacePlayerBridge(){
     setInterface(Interface::instance());
     m_player = Player::instance();
+    m_bStarted = false;
+}
+
+InterfacePlayerBridge::~InterfacePlayerBridge(){
+    if(m_bStarted)
+        stop();
 }
 
 void InterfacePlayerBridge::setInterface(Interface *interface){
-    if(m_interface){
-        // unsubscribe from new effect model events of previous interface
-        ofRemoveListener(m_interface->effectEvent, this, &InterfacePlayerBridge::onEffect);
+    if(m_bStarted && m_interface){
+        registerInterfaceCallbacks(false);
     }
 
     m_interface = interface;
 
-    if(m_interface){
+    if(m_bStarted && m_interface){
+        registerInterfaceCallbacks(true);
+    }
+}
+
+void InterfacePlayerBridge::start(){
+    registerInterfaceCallbacks(true);
+    m_bStarted = true;
+}
+
+void InterfacePlayerBridge::stop(){
+    registerInterfaceCallbacks(false);
+    m_bStarted = false;
+}
+
+void InterfacePlayerBridge::registerInterfaceCallbacks(bool _register){
+    if(_register){
         // subscribe to new effect model events of specified interface
         ofAddListener(m_interface->effectEvent, this, &InterfacePlayerBridge::onEffect);
+    } else {
+        // unsubscribe from new effect model events of previous interface
+        ofRemoveListener(m_interface->effectEvent, this, &InterfacePlayerBridge::onEffect);
     }
 }
 

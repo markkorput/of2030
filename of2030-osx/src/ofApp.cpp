@@ -7,7 +7,7 @@
 void ofApp::setup(){
     ofLogToFile("log.txt", true);
     loadSettings();
-    
+
     m_oscReceiver.configure(2030);
     m_oscReceiver.setup();
 
@@ -15,6 +15,10 @@ void ofApp::setup(){
 
     m_player = of2030::Player::instance();
     m_player->start();
+
+    // the InterfacePlayerBridge class auto-initializes with the
+    // interface and player singleton instances
+    m_interface_player_bridge.start();
 }
 
 //--------------------------------------------------------------
