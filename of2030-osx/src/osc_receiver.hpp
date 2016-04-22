@@ -9,9 +9,11 @@
 #ifndef osc_receiver_hpp
 #define osc_receiver_hpp
 
-#include <stdio.h>
+//#include <stdio.h>
 #include "ofxOsc.h"
+
 #include "interface.hpp"
+#include "effects.hpp"
 
 namespace of2030 {
     
@@ -28,14 +30,17 @@ namespace of2030 {
 
         unsigned int getPort(){ return m_port; };
 
-    private:
+    private: // methods
         bool connect();
         void disconnect();
 
         void processChangeMessage(ofxOscMessage &m);
         void processEffectMessage(ofxOscMessage &m);
 
-    private:
+        void getMapFromJsonString(const std::string &str, map<string, string> &map);
+        effects::Effect* createEffectFromJsonString(const std::string &json_string);
+        
+    private: // attributes
         Interface* m_interface;
         ofxOscReceiver m_oscReceiver;
         bool m_bConnected;

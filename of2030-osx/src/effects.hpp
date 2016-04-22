@@ -37,7 +37,7 @@ namespace of2030{ namespace effects {
     public: // properties
 
         int cid;
-        float startTime, endTime;
+        float startTime, endTime, duration;
         EffectType type;
 
         static int cidCounter;

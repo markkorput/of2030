@@ -11,6 +11,7 @@
 
 //#include <stdio.h>
 #include "interface.hpp"
+#include "effects.hpp"
 #include "player.hpp"
 
 namespace of2030{
@@ -26,7 +27,7 @@ namespace of2030{
 
     private: // callbacks
 
-        void onNewEffectModel(CMS::Model &model);
+        void onEffect(effects::Effect &effect);
 
     private: // attributes
 
