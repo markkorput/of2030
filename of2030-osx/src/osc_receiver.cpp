@@ -90,18 +90,9 @@ void OscReceiver::processChangeMessage(ofxOscMessage &m){
     }
 
     // parse json
-    ofxJSONElement jsonEl;
-    jsonEl.parse(m.getArgAsString(0));
-    
-    // get all attributes as string (no support for nester structure for now)
     map<string, string> data;
-    vector<string> attrs = jsonEl.getMemberNames();
-    
-    for(int i=attrs.size()-1; i>=0; i--){
-        string name = attrs[i];
-        data[name] = jsonEl[name].asString();
-    }
-    
+    getMapFromJsonString(m.getArgAsString(0), data);
+
     // create change model with extracted data
     CMS::Model* change_model = new CMS::Model();
     change_model->set(data);
@@ -119,37 +110,75 @@ void OscReceiver::processEffectMessage(ofxOscMessage &m){
         return;
     }
 
-//    std::string fxType = m.getArgAsString(0);
-//    if(fxType == "OFF"){
-//        CMS::Model *effect_model = new CMS::Model();
-//        effect_model->m_type = EffectType::OFF;
-//
-//        if(m.getNumArgs() > 1){
-//            effect->m_startTime = m.getArgAsFloat(1);
-//        }
-//        
-//        m_interface->effects_collection.add(effect);
-//        return;
-//    }
-//    
-//    ofLog() << "Unknown /effect message: " << fxType;
+    effects::Effect* effect = createEffectFromJsonString(m.getArgAsString(0));
+    if(effect){
+        // ofLog() << "[OscReceiver] Triggering interface's effectEvent";
+        ofNotifyEvent(m_interface->effectEvent, *effect, m_interface);
+        return;
+    }
+    
+    ofLogWarning() << "Could not create effect instance from OSC /effect message with data: " << m.getArgAsString(0);
+}
 
-    // parse json
+void OscReceiver::getMapFromJsonString(const std::string &str, map<string, string> &target){
     ofxJSONElement jsonEl;
-    jsonEl.parse(m.getArgAsString(0));
-    
+    jsonEl.parse(str);
+
     // get all attributes as string (no support for nester structure for now)
-    map<string, string> data;
     vector<string> attrs = jsonEl.getMemberNames();
-    
+
     for(int i=attrs.size()-1; i>=0; i--){
         string name = attrs[i];
-        data[name] = jsonEl[name].asString();
+        target[name] = jsonEl[name].asString();
+    }
+}
+
+effects::Effect* OscReceiver::createEffectFromJsonString(const std::string &json_string){
+    effects::Effect* pEffect;
+    std::string type, value;
+    
+    ofxJSONElement json;
+    json.parse(json_string);
+
+    if(json.isMember("type")){
+        type = json["type"].asString();
     }
 
-    // create change model with extracted data
-    CMS::Model* model = new CMS::Model();
-    model->set(data);
-    m_interface->effects_collection.add(model);
-    ofLogVerbose() << "effect model added to interface effects_collection";
+    // create an instance of the appropriate effects class
+    // beased on the model's type attribute
+    // and populate type-specific attributes
+    // the assign the pEffect pointer to the created instance
+    if(type == "OFF"){
+        
+        effects::Off* effect = new effects::Off();
+        pEffect = (effects::Effect*)effect;
+        
+    } else if(type == "COLOR"){
+        
+        effects::Color* effect = new effects::Color();
+        if(json.isMember("r") && json.isMember("g") && json.isMember("b")){
+            effect->color.set(ofColor(json["r"].asInt(),
+                                      json["g"].asInt(),
+                                      json["b"].asInt()));
+        }
+        pEffect = (effects::Effect*)effect;
+
+    } else {
+
+        ofLogWarning() << "[EffectCreator] got unknown effect model type: " << type;
+        pEffect = new effects::Effect();
+        
+    }
+
+    // process some more (optional) general effect attributes
+    if(json.isMember("start"))
+        pEffect->startTime = json["start"].asFloat();
+
+    if(json.isMember("end"))
+        pEffect->endTime = json["end"].asFloat();
+
+    if(json.isMember("duration"))
+        pEffect->duration = json["duration"].asFloat();
+
+    return pEffect;
 }

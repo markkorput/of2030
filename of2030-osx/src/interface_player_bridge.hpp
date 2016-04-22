@@ -12,26 +12,33 @@
 //#include <stdio.h>
 #include "interface.hpp"
 #include "player.hpp"
+#include "effects.hpp"
+
 
 namespace of2030{
     
-    class EffectCreator{
+    class InterfacePlayerBridge{
     
     public: // methods
         
-        EffectCreator();
-        // ~EffectCreator();
+        InterfacePlayerBridge();
+        ~InterfacePlayerBridge();
 
         void setInterface(Interface *interface);
 
+        void start();
+        void stop();
+
     private: // callbacks
 
-        void onNewEffectModel(CMS::Model &model);
+        void registerInterfaceCallbacks(bool _register=true);
+        void onEffect(effects::Effect &effect);
 
     private: // attributes
 
         Interface* m_interface;
         Player* m_player;
+        bool m_bStarted;
     };
 }
 

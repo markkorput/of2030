@@ -162,3 +162,4 @@ Desktop.ini
 /apps*/
 of2030-osx/bin/data/settings.xml
 of2030-raspi/bin/data/settings.xml
+*/bin/data/log.txt

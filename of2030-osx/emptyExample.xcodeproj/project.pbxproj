@@ -10,7 +10,7 @@
 		4D3B38E41CC66A95004C8994 /* effects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D3B38E21CC66A95004C8994 /* effects.cpp */; };
 		4D3B38F41CC66E16004C8994 /* ofxJSONElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D3B38EA1CC66E16004C8994 /* ofxJSONElement.cpp */; };
 		4D3B38F51CC66E16004C8994 /* jsoncpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D3B38F31CC66E16004C8994 /* jsoncpp.cpp */; };
-		4D7E54FD1CC6AD1D00DF588E /* effect_creator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D7E54FB1CC6AD1D00DF588E /* effect_creator.cpp */; };
+		4D7E54FD1CC6AD1D00DF588E /* interface_player_bridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D7E54FB1CC6AD1D00DF588E /* interface_player_bridge.cpp */; };
 		4D7E55021CC6C71B00DF588E /* renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D7E55001CC6C71B00DF588E /* renderer.cpp */; };
 		4D9B296B1CC64190005D65E9 /* ofxOscBundle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D9B29441CC64190005D65E9 /* ofxOscBundle.cpp */; };
 		4D9B296C1CC64190005D65E9 /* ofxOscMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D9B29461CC64190005D65E9 /* ofxOscMessage.cpp */; };
@@ -76,8 +76,8 @@
 		4D3B38F01CC66E16004C8994 /* json-forwards.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "json-forwards.h"; sourceTree = "<group>"; };
 		4D3B38F11CC66E16004C8994 /* json.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = json.h; sourceTree = "<group>"; };
 		4D3B38F31CC66E16004C8994 /* jsoncpp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = jsoncpp.cpp; sourceTree = "<group>"; };
-		4D7E54FB1CC6AD1D00DF588E /* effect_creator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = effect_creator.cpp; sourceTree = "<group>"; };
-		4D7E54FC1CC6AD1D00DF588E /* effect_creator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = effect_creator.hpp; sourceTree = "<group>"; };
+		4D7E54FB1CC6AD1D00DF588E /* interface_player_bridge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = interface_player_bridge.cpp; sourceTree = "<group>"; };
+		4D7E54FC1CC6AD1D00DF588E /* interface_player_bridge.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = interface_player_bridge.hpp; sourceTree = "<group>"; };
 		4D7E55001CC6C71B00DF588E /* renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = renderer.cpp; sourceTree = "<group>"; };
 		4D7E55011CC6C71B00DF588E /* renderer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = renderer.hpp; sourceTree = "<group>"; };
 		4D9B29421CC64190005D65E9 /* ofxOsc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxOsc.h; sourceTree = "<group>"; };
@@ -325,8 +325,8 @@
 				4D9B29A01CC6692A005D65E9 /* composition.hpp */,
 				4DE490FF1CC69C55003E7958 /* player.cpp */,
 				4DE491001CC69C55003E7958 /* player.hpp */,
-				4D7E54FB1CC6AD1D00DF588E /* effect_creator.cpp */,
-				4D7E54FC1CC6AD1D00DF588E /* effect_creator.hpp */,
+				4D7E54FB1CC6AD1D00DF588E /* interface_player_bridge.cpp */,
+				4D7E54FC1CC6AD1D00DF588E /* interface_player_bridge.hpp */,
 				4D7E55001CC6C71B00DF588E /* renderer.cpp */,
 				4D7E55011CC6C71B00DF588E /* renderer.hpp */,
 			);
@@ -548,7 +548,7 @@
 				4D9B29911CC65268005D65E9 /* osc_receiver.cpp in Sources */,
 				4D9B29751CC64190005D65E9 /* OscReceivedElements.cpp in Sources */,
 				4D9B296E1CC64190005D65E9 /* ofxOscReceiver.cpp in Sources */,
-				4D7E54FD1CC6AD1D00DF588E /* effect_creator.cpp in Sources */,
+				4D7E54FD1CC6AD1D00DF588E /* interface_player_bridge.cpp in Sources */,
 				4D9B29761CC64190005D65E9 /* OscTypes.cpp in Sources */,
 				4D9B296F1CC64190005D65E9 /* ofxOscSender.cpp in Sources */,
 				4D9B29731CC64190005D65E9 /* OscOutboundPacketStream.cpp in Sources */,
