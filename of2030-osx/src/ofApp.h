@@ -6,6 +6,7 @@
 #include "player.hpp"
 #include "interface_player_bridge.hpp"
 #include "renderer.hpp"
+#include "json_file_reader.hpp"
 #include "config_file.hpp"
 
 class ofApp : public ofBaseApp{
@@ -39,5 +40,6 @@ class ofApp : public ofBaseApp{
         of2030::Player *m_player;
         of2030::Renderer m_renderer;
         of2030::InterfacePlayerBridge m_interface_player_bridge;
-        of2030::ConfigFile m_config_file, m_client_cache_file;
+        of2030::JsonFileReader m_client_cache_file;
+        of2030::ConfigFile m_config_file;
 };

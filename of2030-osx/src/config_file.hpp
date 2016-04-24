@@ -9,27 +9,19 @@
 #ifndef config_file_hpp
 #define config_file_hpp
 
-#include "ofMain.h"
-#include "ofxJSONElement.h"
+#include "json_file_reader.hpp"
 
 namespace of2030{
 
-    class ConfigFile {
+    class ConfigFile : public JsonFileReader{
         
     public:
-        ConfigFile();
+        // ConfigFile();
         // ~ConfigFile();
-        
-        void setPath(string path);
-        void load();
-        string getValue(std::string valuePath);
-        
 
-    private: // atributes
+        int getClientCount();
 
-        bool m_bLoaded;
-        ofxJSONElement m_json;
-        string m_path;
+    private: // attributes
     };
 }
 
