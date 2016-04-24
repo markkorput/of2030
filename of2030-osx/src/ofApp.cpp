@@ -19,6 +19,9 @@ void ofApp::setup(){
     // the InterfacePlayerBridge class auto-initializes with the
     // interface and player singleton instances
     m_interface_player_bridge.start();
+
+    m_client_cache_file.setPath("client.cache.json");
+    ofLog() << "client id: " << m_client_cache_file.getValue("client_id");
 }
 
 //--------------------------------------------------------------
