@@ -19,10 +19,13 @@ namespace of2030{
         // ConfigFile();
         // ~ConfigFile();
 
+        void load();
         int getClientCount();
-        const vector<string> getClientIds();
+        string getClientId(int idx);
 
     private: // attributes
+        
+        vector<string> client_ids;
     };
 }
 

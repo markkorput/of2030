@@ -26,7 +26,8 @@ void MultiClient::setup(){
         int id = m_xml->multi_client_ids[i];
         
         ClientInfo *cinfo = new ClientInfo();
-        cinfo->copy(*ClientInfo::instance());
+        cinfo->setup();
+        // cinfo->copy(*ClientInfo::instance());
         cinfo->setClientId(m_xml->multi_client_ids[i]);
         m_client_infos.push_back(cinfo);
         

@@ -81,11 +81,11 @@ void Renderer::setupEffect(Cursor &effect){
 
 void Renderer::drawEffect(Cursor &effect){
     int idx = m_client_info->client_index;
-    int count = m_client_info->client_count;
+    int client_count = m_client_info->client_count;
     
     float duration = effect.getDuration();
     float effectTime = player->getTime() - effect.startTime;
-    float localDuration = duration / count;
+    float localDuration = duration / client_count;
     float localStart = localDuration * idx;
     
     if(effectTime < localStart)
