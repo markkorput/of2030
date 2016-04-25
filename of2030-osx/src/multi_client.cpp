@@ -57,9 +57,12 @@ void MultiClient::destroy(){
 void MultiClient::draw(){
     if(!enabled) return;
 
+    ofPushMatrix();
     for(int i=0; i<m_renderers.size(); i++){
         m_renderers[i]->draw();
+        ofTranslate(Renderer::WIDTH, 0);
     }
+    ofPopMatrix();
 
 }
 

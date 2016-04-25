@@ -48,6 +48,7 @@ namespace of2030 {
         
         Player *player;
         ClientInfo *m_client_info;
+        ofFbo* m_fbo;
     };
 }
 

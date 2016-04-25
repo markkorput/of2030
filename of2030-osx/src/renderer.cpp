@@ -12,7 +12,7 @@
 using namespace of2030;
 using namespace of2030::effects;
 
-Renderer::Renderer(){
+Renderer::Renderer() : m_fbo(NULL){
     player = Player::instance();
     m_client_info = ClientInfo::instance();
 }
@@ -23,14 +23,23 @@ Renderer::~Renderer(){
 
 void Renderer::setup(){
     registerRealtimeEffectCallback();
+    
+    m_fbo = new ofFbo();
+    m_fbo->allocate(WIDTH, HEIGHT);
 }
 
 void Renderer::destroy(){
     registerRealtimeEffectCallback(false);
+    if(m_fbo){
+        delete m_fbo;
+        m_fbo = NULL;
+    }
 }
 
 
 void Renderer::draw(){
+    m_fbo->begin();
+    
     int size = player->active_effects.size();
     ofLogVerbose() << "[Renderer] active effects: " << size;
 
@@ -50,6 +59,9 @@ void Renderer::draw(){
                 ofLogWarning() << "[Renderer] Unknown effect type: " << effect->type;
         }
     }
+
+    m_fbo->end();
+    m_fbo->draw(0,0);
 }
 
 void Renderer::drawEffect(Off &effect){
@@ -89,7 +101,7 @@ void Renderer::drawEffect(Cursor &effect){
     float localProgress = localEffectTime / localDuration;
     
     ofSetColor(255);
-    ofDrawRectangle(localProgress * ofGetWidth(), 0, 3, ofGetHeight());
+    ofDrawRectangle(localProgress * m_fbo->getWidth(), 0, 3, m_fbo->getHeight());
 }
 
 void Renderer::registerRealtimeEffectCallback(bool reg){
