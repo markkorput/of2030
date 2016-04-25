@@ -20,6 +20,7 @@ namespace of2030{
         // ~ConfigFile();
 
         int getClientCount();
+        const vector<string> getClientIds();
 
     private: // attributes
     };

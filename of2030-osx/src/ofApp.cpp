@@ -20,10 +20,10 @@ void ofApp::setup(){
     // interface and player singleton instances
     m_interface_player_bridge.start();
 
-    m_config_file.setPath("config.json");
-    m_client_cache_file.setPath("client.cache.json");
-    ofLog() << "client id: " << m_client_cache_file.getValue("client_id");
-    ofLog() << "client counnt: " << m_config_file.getClientCount();
+    m_clientInfo = of2030::ClientInfo::instance();
+    m_clientInfo->setup();
+    
+    m_renderer.setup();
 }
 
 //--------------------------------------------------------------

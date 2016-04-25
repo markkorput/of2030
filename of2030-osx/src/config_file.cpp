@@ -16,10 +16,15 @@ using namespace of2030;
 
 
 int ConfigFile::getClientCount(){
-    if(!m_bLoaded)
-        load();
+    if(!m_bLoaded) load();
 
     Json::Value val = m_json["py2030"]["clients"];
     vector<string> ids = val.getMemberNames();
     return ids.size();
+}
+
+const vector<string> ConfigFile::getClientIds(){
+    if(!m_bLoaded) load();
+    
+    return m_json["py2030"]["clients"].getMemberNames();
 }
