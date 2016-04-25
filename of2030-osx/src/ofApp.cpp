@@ -22,7 +22,6 @@ void ofApp::setup(){
     // interface and player singleton instances
     m_interface_player_bridge.start();
 
-
     m_multiClient.load(m_xmlSettings);
     m_multiClient.setup();
     
