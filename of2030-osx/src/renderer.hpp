@@ -18,6 +18,10 @@ namespace of2030 {
     
     class Renderer{
         
+    public:
+        const static int WIDTH = 768;
+        const static int HEIGHT = 576;
+        
     public: // methods
         Renderer();
         ~Renderer();
@@ -43,12 +47,8 @@ namespace of2030 {
     public: // properties
         
         Player *player;
-
-    private: // attributes
-
         ClientInfo *m_client_info;
-        
-        
+        ofFbo* m_fbo;
     };
 }
 

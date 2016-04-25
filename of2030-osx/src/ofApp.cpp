@@ -1,12 +1,14 @@
 #include "ofApp.h"
 
-#include "ofxXmlSettings.h"
 #include "interface.hpp"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofLogToFile("log.txt", true);
     loadSettings();
+
+    m_clientInfo = of2030::ClientInfo::instance();
+    m_clientInfo->setup();
 
     m_oscReceiver.configure(2030);
     m_oscReceiver.setup();
@@ -20,8 +22,9 @@ void ofApp::setup(){
     // interface and player singleton instances
     m_interface_player_bridge.start();
 
-    m_clientInfo = of2030::ClientInfo::instance();
-    m_clientInfo->setup();
+
+    m_multiClient.load(m_xmlSettings);
+    m_multiClient.setup();
     
     m_renderer.setup();
 }
@@ -34,12 +37,17 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    m_renderer.draw();
+
+    if(m_multiClient.enabled){
+        m_multiClient.draw();
+    } else {
+        m_renderer.draw();
+    }
 }
 
 //--------------------------------------------------------------
 void ofApp::exit(ofEventArgs &args){
-    saveSettings();
+    // saveSettings();
 }
 
 //--------------------------------------------------------------
@@ -100,16 +108,13 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
 
 //--------------------------------------------------------------
 void ofApp::loadSettings(){
-    ofxXmlSettings settings;
-    settings.loadFile("settings.xml");
-    unsigned int port = settings.getValue("of2030:osc_port", 2030);
-    m_oscReceiver.configure(port);
+    m_xmlSettings.load();
+    m_oscReceiver.configure(m_xmlSettings.osc_port);
 }
 
 void ofApp::saveSettings(){
-    ofxXmlSettings settings;
-    settings.setValue("of2030:osc_port", (int)m_oscReceiver.getPort());
-    settings.saveFile("settings.xml");
+    m_xmlSettings.osc_port = (int)m_oscReceiver.getPort();
+    m_xmlSettings.save();
 }
 
 void ofApp::onNewChangeModel(CMS::Model &model){

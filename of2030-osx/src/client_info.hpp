@@ -11,6 +11,7 @@
 
 #include "json_file_reader.hpp"
 #include "config_file.hpp"
+#include "xml_settings.hpp"
 
 namespace of2030{
     class ClientInfo {
@@ -25,10 +26,17 @@ namespace of2030{
         // ~ClientInfo();
 
         void setup();
+        void copy(ClientInfo &other);
+        void setClientId(int id);
         
+    protected:
+        
+        void updateClientIndex();
+
     public:
-        of2030::JsonFileReader m_client_cache_file;
-        of2030::ConfigFile m_config_file;
+        // of2030::JsonFileReader m_client_cache_file;
+        ConfigFile m_config_file;
+        XmlSettings m_xml_settings;
 
         int client_id, client_index, client_count;
     };
