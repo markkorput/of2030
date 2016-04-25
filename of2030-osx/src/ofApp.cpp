@@ -19,6 +19,11 @@ void ofApp::setup(){
     // the InterfacePlayerBridge class auto-initializes with the
     // interface and player singleton instances
     m_interface_player_bridge.start();
+
+    m_clientInfo = of2030::ClientInfo::instance();
+    m_clientInfo->setup();
+    
+    m_renderer.setup();
 }
 
 //--------------------------------------------------------------

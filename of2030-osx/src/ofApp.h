@@ -6,6 +6,7 @@
 #include "player.hpp"
 #include "interface_player_bridge.hpp"
 #include "renderer.hpp"
+#include "client_info.hpp"
 
 class ofApp : public ofBaseApp{
 	public:
@@ -38,4 +39,5 @@ class ofApp : public ofBaseApp{
         of2030::Player *m_player;
         of2030::Renderer m_renderer;
         of2030::InterfacePlayerBridge m_interface_player_bridge;
+        of2030::ClientInfo *m_clientInfo;
 };
