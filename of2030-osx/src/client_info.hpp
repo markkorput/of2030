@@ -25,7 +25,13 @@ namespace of2030{
         // ~ClientInfo();
 
         void setup();
+        void copy(ClientInfo &other);
+        void setClientId(int id);
         
+    protected:
+        
+        void updateClientIndex();
+
     public:
         of2030::JsonFileReader m_client_cache_file;
         of2030::ConfigFile m_config_file;

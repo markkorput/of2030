@@ -36,6 +36,7 @@
 		4DDF773F1CCD73B900CB936A /* config_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DDF773D1CCD73B900CB936A /* config_file.cpp */; };
 		4DDF77421CCD7AC000CB936A /* json_file_reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DDF77401CCD7AC000CB936A /* json_file_reader.cpp */; };
 		4DE274CA1CCE1D9300F2D470 /* xml_settings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DE274C81CCE1D9300F2D470 /* xml_settings.cpp */; };
+		4DE274CE1CCE242B00F2D470 /* multi_client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DE274CC1CCE242B00F2D470 /* multi_client.cpp */; };
 		4DE491011CC69C55003E7958 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DE490FF1CC69C55003E7958 /* player.cpp */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1D0A3A1BDC003C02F2 /* main.cpp */; };
@@ -140,6 +141,8 @@
 		4DDF77411CCD7AC000CB936A /* json_file_reader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = json_file_reader.hpp; sourceTree = "<group>"; };
 		4DE274C81CCE1D9300F2D470 /* xml_settings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = xml_settings.cpp; sourceTree = "<group>"; };
 		4DE274C91CCE1D9300F2D470 /* xml_settings.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = xml_settings.hpp; sourceTree = "<group>"; };
+		4DE274CC1CCE242B00F2D470 /* multi_client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = multi_client.cpp; sourceTree = "<group>"; };
+		4DE274CD1CCE242B00F2D470 /* multi_client.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = multi_client.hpp; sourceTree = "<group>"; };
 		4DE490FF1CC69C55003E7958 /* player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = player.cpp; sourceTree = "<group>"; };
 		4DE491001CC69C55003E7958 /* player.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = player.hpp; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -327,6 +330,7 @@
 		4D9B297C1CC64F52005D65E9 /* 2030 */ = {
 			isa = PBXGroup;
 			children = (
+				4DE274CB1CCE23FE00F2D470 /* test */,
 				4D3B38E21CC66A95004C8994 /* effects.cpp */,
 				4D3B38E31CC66A95004C8994 /* effects.hpp */,
 				4D9B297D1CC64F5D005D65E9 /* interface.cpp */,
@@ -402,6 +406,15 @@
 			);
 			name = libs;
 			path = ../../../addons/ofxXmlSettings/libs;
+			sourceTree = "<group>";
+		};
+		4DE274CB1CCE23FE00F2D470 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				4DE274CC1CCE242B00F2D470 /* multi_client.cpp */,
+				4DE274CD1CCE242B00F2D470 /* multi_client.hpp */,
+			);
+			name = test;
 			sourceTree = "<group>";
 		};
 		6948EE371B920CB800B5AC1A /* local_addons */ = {
@@ -579,6 +592,7 @@
 				4DDF773F1CCD73B900CB936A /* config_file.cpp in Sources */,
 				4D9B29721CC64190005D65E9 /* UdpSocket.cpp in Sources */,
 				4D3B38F41CC66E16004C8994 /* ofxJSONElement.cpp in Sources */,
+				4DE274CE1CCE242B00F2D470 /* multi_client.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				4D9B29741CC64190005D65E9 /* OscPrintReceivedElements.cpp in Sources */,
 				4D3B38E41CC66A95004C8994 /* effects.cpp in Sources */,

@@ -21,7 +21,7 @@ namespace of2030{
         
         std::string path;
         int osc_port;
-        int client_id;
+        vector<int> multi_client_ids;
     };
 }
 
