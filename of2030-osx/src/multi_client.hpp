@@ -18,7 +18,7 @@ namespace of2030{
     
     class MultiClient {
     public:
-        MultiClient() : enabled(false){};
+        MultiClient() : enabled(false), m_scaleFactor(0.5f){};
         ~MultiClient(){ destroy(); }
         
         void setup();
@@ -33,6 +33,7 @@ namespace of2030{
         XmlSettings *m_xml;
         vector<ClientInfo*> m_client_infos;
         vector<Renderer*> m_renderers;
+        float m_scaleFactor;
     };
 }
 

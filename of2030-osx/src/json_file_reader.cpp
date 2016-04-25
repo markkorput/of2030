@@ -25,7 +25,7 @@ void JsonFileReader::setPath(string path){
 void JsonFileReader::load(){
     ofFile file(ofToDataPath(m_path), ofFile::Mode::ReadOnly, false);
     ofBuffer buf = file.readToBuffer();;
-    ofLogVerbose() << "[JsonFileReader] Read file content: " << buf;
+    // ofLogVerbose() << "[JsonFileReader] Read file content: " << buf;
     m_json.parse(buf);
     m_bLoaded = true;
 }

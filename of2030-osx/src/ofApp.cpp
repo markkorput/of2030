@@ -37,7 +37,6 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-
     if(m_multiClient.enabled){
         m_multiClient.draw();
     } else {

@@ -32,8 +32,8 @@ void ClientInfo::setup(){
     // setClientId(ofToInt(m_client_cache_file.getValue("client_id")));
     setClientId(m_xml_settings.client_id);
 
-    ofLog() << "[ClientInfo.setup] client id: " << client_id;
-    ofLog() << "[ClientInfo.setup] client count: " << m_config_file.getClientCount();
+    ofLogVerbose() << "[ClientInfo.setup] client id: " << client_id;
+    ofLogVerbose() << "[ClientInfo.setup] client count: " << m_config_file.getClientCount();
 }
 
 void ClientInfo::copy(ClientInfo &other){

@@ -38,7 +38,8 @@ void MultiClient::setup(){
     }
     
     ofLog() << "[MultiClient] enabled, resizing window";
-    ofSetWindowShape(m_renderers.size()*Renderer::WIDTH, Renderer::HEIGHT);
+    ofSetWindowShape(m_renderers.size()*Renderer::WIDTH*m_scaleFactor, Renderer::HEIGHT*m_scaleFactor);
+    ofSetWindowPosition(10, 10);
 }
 
 void MultiClient::destroy(){
@@ -59,10 +60,11 @@ void MultiClient::draw(){
     if(!enabled) return;
 
     ofPushMatrix();
-    for(int i=0; i<m_renderers.size(); i++){
-        m_renderers[i]->draw();
-        ofTranslate(Renderer::WIDTH, 0);
-    }
+        ofScale(m_scaleFactor, m_scaleFactor);
+        for(int i=0; i<m_renderers.size(); i++){
+            m_renderers[i]->draw();
+            ofTranslate(Renderer::WIDTH, 0);
+        }
     ofPopMatrix();
 
 }
