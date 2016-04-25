@@ -7,6 +7,7 @@
 #include "interface_player_bridge.hpp"
 #include "renderer.hpp"
 #include "client_info.hpp"
+#include "xml_settings.hpp"
 
 class ofApp : public ofBaseApp{
 	public:
@@ -40,4 +41,6 @@ class ofApp : public ofBaseApp{
         of2030::Renderer m_renderer;
         of2030::InterfacePlayerBridge m_interface_player_bridge;
         of2030::ClientInfo *m_clientInfo;
+        of2030::XmlSettings m_xmlSettings;
+    
 };
