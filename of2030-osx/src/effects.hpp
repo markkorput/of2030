@@ -17,7 +17,8 @@ namespace of2030{ namespace effects {
 
     enum EffectType{
         OFF = 0,
-        COLOR = 1
+        COLOR = 1,
+        CURSOR = 2
     };
 
     #define NO_TIME (-1.0f)
@@ -33,6 +34,8 @@ namespace of2030{ namespace effects {
 
         bool hasStartTime(){ return startTime >= 0.0f; }
         bool hasEndTime(){ return endTime >= 0.0f; }
+        bool hasDuration(){ return duration >= 0.0f; }
+        float getDuration();
 
     public: // properties
 
@@ -61,6 +64,14 @@ namespace of2030{ namespace effects {
 
     public: // attributes
         ofColor color;
+    };
+
+
+    class Cursor : public Effect{
+   
+    public: // methods
+        Cursor();
+        
     };
 
 }} // namespace of2030{ namespace effects {

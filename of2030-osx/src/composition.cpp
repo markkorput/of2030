@@ -12,4 +12,5 @@ using namespace of2030;
 
 void Composition::add(effects::Effect *effect){
     m_effects.push_back(effect);
+    ofNotifyEvent(newEffectEvent, *effect, this);
 }

@@ -18,7 +18,23 @@ Effect::Effect() : startTime(NO_TIME), endTime(NO_TIME), type(EffectType::OFF) {
     cidCounter++;
 }
 
+float Effect::getDuration(){
+    if(hasDuration())
+        return duration;
+
+    if(hasStartTime() and hasEndTime())
+        return endTime - startTime;
+
+    return -1.0;
+}
+
 Color::Color(){
     type = EffectType::COLOR;
     color = ofColor::black;
+}
+
+
+Cursor::Cursor(){
+    type = EffectType::CURSOR;
+    duration = 3.0;
 }

@@ -12,6 +12,7 @@
 //#include <stdio.h>
 #include "player.hpp"
 #include "effects.hpp"
+#include "client_info.hpp"
 
 namespace of2030 {
     
@@ -19,14 +20,24 @@ namespace of2030 {
         
     public: // methods
         Renderer();
-        // ~Renderer(){}
+        ~Renderer();
 
-        // void setup();
+        void setup();
         // void update();
+        void destroy();
         void draw();
+    
+    protected:
+        
         void drawEffect(effects::Off &effect);
         void drawEffect(effects::Color &effect);
-        // void destroy();
+        void setupEffect(effects::Cursor &effect);
+        void drawEffect(effects::Cursor &effect);
+        
+    private: // callbacks
+        
+        void registerRealtimeEffectCallback(bool reg=true);
+        void onRealtimeEffect(effects::Effect &effect);
         
 
     public: // properties
@@ -35,6 +46,7 @@ namespace of2030 {
 
     private: // attributes
 
+        ClientInfo *m_client_info;
         
         
     };
