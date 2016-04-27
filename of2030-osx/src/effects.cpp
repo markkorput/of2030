@@ -75,8 +75,8 @@ Cursor::Cursor(){
 }
 
 void Cursor::draw(Context &context){
-    int idx = context.cinfo->client_index;
-    int client_count = context.cinfo->client_count;
+    int idx = context.client_index;
+    int client_count = context.client_count;
 
     float duration = getDuration();
     float effectTime = context.time - startTime;
@@ -84,14 +84,14 @@ void Cursor::draw(Context &context){
     float localStart = localDuration * idx;
 
     if(effectTime < localStart)
-    // nothing for us to do (yet)
-    return;
+        // nothing for us to do (yet)
+        return;
 
     float localEffectTime = effectTime - localStart;
 
     if(localEffectTime > localDuration)
-    // our part is done
-    return;
+        // our part is done
+        return;
 
     float localProgress = localEffectTime / localDuration;
 

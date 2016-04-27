@@ -11,15 +11,12 @@
 
 //#include <stdio.h>
 #include "ofMain.h"
-#include "client_info.hpp"
-#include "CMSModel.h"
-
 
 namespace of2030{ namespace effects {
 
     typedef struct {
         float time;
-        ClientInfo* cinfo;
+        int client_id, client_index, client_count;
         ofFbo* fbo;
     } Context;
 

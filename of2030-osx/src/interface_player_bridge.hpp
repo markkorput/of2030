@@ -24,10 +24,10 @@ namespace of2030{
         InterfacePlayerBridge();
         ~InterfacePlayerBridge();
 
-        void setInterface(Interface *interface);
-
         void start();
         void stop();
+
+        void setInterface(Interface *interface);
 
     private: // callbacks
 

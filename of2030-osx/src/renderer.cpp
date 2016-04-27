@@ -12,9 +12,10 @@
 using namespace of2030;
 using namespace of2030::effects;
 
-Renderer::Renderer() : fbo(NULL){
-    player = Player::instance();
-    client_info = ClientInfo::instance();
+Renderer::Renderer(){
+    fbo = NULL;
+    player = NULL;
+    client_info = NULL;
 }
 
 Renderer::~Renderer(){
@@ -22,10 +23,21 @@ Renderer::~Renderer(){
 }
 
 void Renderer::setup(){
-    registerRealtimeEffectCallback();
+    if(fbo == NULL)
+        fbo = new ofFbo();
     
-    fbo = new ofFbo();
-    fbo->allocate(WIDTH, HEIGHT);
+    if(!fbo->isAllocated())
+        fbo->allocate(WIDTH, HEIGHT);
+
+    if(!player){
+        player = Player::instance();
+    }
+    
+    if(!client_info){
+        client_info = ClientInfo::instance();
+    }
+
+    registerRealtimeEffectCallback();
 }
 
 void Renderer::destroy(){
@@ -45,7 +57,10 @@ void Renderer::draw(){
 
     Context context;
     context.time = player->getTime();
-    context.cinfo = client_info;
+    context.client_id = client_info->id;
+    context.client_index = client_info->index;
+    context.client_count = client_info->count;
+    
     context.fbo = fbo;
     
     for(int i=0; i<size; i++){
@@ -68,7 +83,9 @@ void Renderer::registerRealtimeEffectCallback(bool reg){
 void Renderer::onRealtimeEffect(Effect &effect){
     Context context;
     context.time = player->getTime();
-    context.cinfo = client_info;
+    context.client_id = client_info->id;
+    context.client_index = client_info->index;
+    context.client_count = client_info->count;
     context.fbo = fbo;
     effect.setup(context);
 }
