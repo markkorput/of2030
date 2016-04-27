@@ -27,7 +27,7 @@ namespace of2030{
 
         void setup();
         void copy(ClientInfo &other);
-        void setClientId(int id);
+        void setClientId(int cid);
         
     protected:
         
@@ -38,7 +38,7 @@ namespace of2030{
         ConfigFile m_config_file;
         XmlSettings m_xml_settings;
 
-        int client_id, client_index, client_count;
+        int id, index, count;
     };
 }
 #endif /* client_info_hpp */

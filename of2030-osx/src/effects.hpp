@@ -11,9 +11,14 @@
 
 //#include <stdio.h>
 #include "ofMain.h"
-#include "CMSModel.h"
 
 namespace of2030{ namespace effects {
+
+    typedef struct {
+        float time;
+        int client_id, client_index, client_count;
+        ofFbo* fbo;
+    } Context;
 
     enum EffectType{
         OFF = 0,
@@ -31,6 +36,9 @@ namespace of2030{ namespace effects {
 
         Effect();
         // ~Effect(){}
+
+        virtual void setup(Context &context);
+        virtual void draw(Context &context);
 
         bool hasStartTime(){ return startTime >= 0.0f; }
         bool hasEndTime(){ return endTime >= 0.0f; }
@@ -53,6 +61,8 @@ namespace of2030{ namespace effects {
     public: // methods
 
         Off(){ type = EffectType::OFF; }
+        virtual void setup(Context &context);
+        virtual void draw(Context &context);
     };
 
 
@@ -61,6 +71,8 @@ namespace of2030{ namespace effects {
 
     public: // methods
         Color();
+        virtual void setup(Context &context);
+        virtual void draw(Context &context);
 
     public: // attributes
         ofColor color;
@@ -71,6 +83,8 @@ namespace of2030{ namespace effects {
    
     public: // methods
         Cursor();
+        virtual void setup(Context &context);
+        virtual void draw(Context &context);
         
     };
 

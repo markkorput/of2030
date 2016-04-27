@@ -5,12 +5,13 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofLogToFile("log.txt", true);
-    loadSettings();
+
+    m_xmlSettings.load();
 
     m_clientInfo = of2030::ClientInfo::instance();
     m_clientInfo->setup();
 
-    m_oscReceiver.configure(2030);
+    m_oscReceiver.configure(m_xmlSettings.osc_port);
     m_oscReceiver.setup();
 
     ofAddListener(of2030::Interface::instance()->changes_collection.modelAddedEvent, this, &ofApp::onNewChangeModel);
@@ -21,7 +22,6 @@ void ofApp::setup(){
     // the InterfacePlayerBridge class auto-initializes with the
     // interface and player singleton instances
     m_interface_player_bridge.start();
-
 
     m_multiClient.load(m_xmlSettings);
     m_multiClient.setup();
@@ -46,7 +46,8 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::exit(ofEventArgs &args){
-    // saveSettings();
+//    m_xmlSettings.osc_port = (int)m_oscReceiver.getPort();
+//    m_xmlSettings.save();
 }
 
 //--------------------------------------------------------------
@@ -102,18 +103,6 @@ void ofApp::gotMessage(ofMessage msg){
 //--------------------------------------------------------------
 void ofApp::dragEvent(ofDragInfo dragInfo){ 
 
-}
-
-
-//--------------------------------------------------------------
-void ofApp::loadSettings(){
-    m_xmlSettings.load();
-    m_oscReceiver.configure(m_xmlSettings.osc_port);
-}
-
-void ofApp::saveSettings(){
-    m_xmlSettings.osc_port = (int)m_oscReceiver.getPort();
-    m_xmlSettings.save();
 }
 
 void ofApp::onNewChangeModel(CMS::Model &model){

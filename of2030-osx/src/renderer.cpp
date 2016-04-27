@@ -12,9 +12,10 @@
 using namespace of2030;
 using namespace of2030::effects;
 
-Renderer::Renderer() : m_fbo(NULL){
-    player = Player::instance();
-    m_client_info = ClientInfo::instance();
+Renderer::Renderer(){
+    fbo = NULL;
+    player = NULL;
+    client_info = NULL;
 }
 
 Renderer::~Renderer(){
@@ -22,86 +23,53 @@ Renderer::~Renderer(){
 }
 
 void Renderer::setup(){
-    registerRealtimeEffectCallback();
+    if(fbo == NULL)
+        fbo = new ofFbo();
     
-    m_fbo = new ofFbo();
-    m_fbo->allocate(WIDTH, HEIGHT);
+    if(!fbo->isAllocated())
+        fbo->allocate(WIDTH, HEIGHT);
+
+    if(!player){
+        player = Player::instance();
+    }
+    
+    if(!client_info){
+        client_info = ClientInfo::instance();
+    }
+
+    registerRealtimeEffectCallback();
 }
 
 void Renderer::destroy(){
     registerRealtimeEffectCallback(false);
-    if(m_fbo){
-        delete m_fbo;
-        m_fbo = NULL;
+    if(fbo){
+        delete fbo;
+        fbo = NULL;
     }
 }
 
 
 void Renderer::draw(){
-    m_fbo->begin();
+    fbo->begin();
     
     int size = player->active_effects.size();
     ofLogVerbose() << "[Renderer] active effects: " << size;
 
+    Context context;
+    context.time = player->getTime();
+    context.client_id = client_info->id;
+    context.client_index = client_info->index;
+    context.client_count = client_info->count;
+    
+    context.fbo = fbo;
+    
     for(int i=0; i<size; i++){
         Effect* effect = player->active_effects[i];
-        switch(effect->type){
-            case EffectType::OFF:
-                drawEffect(*(Off*)effect);
-                break;
-            case EffectType::COLOR:
-                drawEffect(*(Color*)effect);
-                break;
-            case EffectType::CURSOR:
-                drawEffect(*(Cursor*)effect);
-                break;
-            default:
-                ofLogWarning() << "[Renderer] Unknown effect type: " << effect->type;
-        }
+        effect->draw(context);
     }
 
-    m_fbo->end();
-    m_fbo->draw(0,0);
-}
-
-void Renderer::drawEffect(Off &effect){
-    ofBackground(0);
-}
-
-void Renderer::drawEffect(Color &effect){
-    // ofLogVerbose() << "drawing COLOR-effect: " << effect.color;
-    ofBackground(effect.color);
-}
-
-void Renderer::setupEffect(Cursor &effect){
-    if(!effect.hasStartTime()){
-        effect.startTime = player->getTime();
-    }
-}
-
-void Renderer::drawEffect(Cursor &effect){
-    int idx = m_client_info->client_index;
-    int client_count = m_client_info->client_count;
-    
-    float duration = effect.getDuration();
-    float effectTime = player->getTime() - effect.startTime;
-    float localDuration = duration / client_count;
-    float localStart = localDuration * idx;
-    
-    if(effectTime < localStart)
-        // nothing for us to do (yet)
-        return;
-
-    float localEffectTime = effectTime - localStart;
-
-    if(localEffectTime > localDuration)
-        // our part is done
-        return;
-
-    float localProgress = localEffectTime / localDuration;
-    
-    ofSetColor(255);
-    ofDrawRectangle(localProgress * m_fbo->getWidth(), 0, 3, m_fbo->getHeight());
+    fbo->end();
+    fbo->draw(0,0);
 }
 
 void Renderer::registerRealtimeEffectCallback(bool reg){
@@ -113,12 +81,11 @@ void Renderer::registerRealtimeEffectCallback(bool reg){
 }
 
 void Renderer::onRealtimeEffect(Effect &effect){
-    switch(effect.type){
-        case EffectType::CURSOR:
-            setupEffect(*((Cursor*)&effect));
-            break;
-        case EffectType::OFF:
-        case EffectType::COLOR:
-            ;
-    }
+    Context context;
+    context.time = player->getTime();
+    context.client_id = client_info->id;
+    context.client_index = client_info->index;
+    context.client_count = client_info->count;
+    context.fbo = fbo;
+    effect.setup(context);
 }

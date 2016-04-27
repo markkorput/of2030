@@ -32,7 +32,7 @@ void MultiClient::setup(){
         m_client_infos.push_back(cinfo);
         
         Renderer* renderer = new Renderer();
-        renderer->m_client_info = cinfo;
+        renderer->client_info = cinfo;
         renderer->setup();
         m_renderers.push_back(renderer);
     }

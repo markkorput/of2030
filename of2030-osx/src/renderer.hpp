@@ -30,14 +30,7 @@ namespace of2030 {
         // void update();
         void destroy();
         void draw();
-    
-    protected:
-        
-        void drawEffect(effects::Off &effect);
-        void drawEffect(effects::Color &effect);
-        void setupEffect(effects::Cursor &effect);
-        void drawEffect(effects::Cursor &effect);
-        
+            
     private: // callbacks
         
         void registerRealtimeEffectCallback(bool reg=true);
@@ -47,8 +40,8 @@ namespace of2030 {
     public: // properties
         
         Player *player;
-        ClientInfo *m_client_info;
-        ofFbo* m_fbo;
+        ClientInfo *client_info;
+        ofFbo* fbo;
     };
 }
 

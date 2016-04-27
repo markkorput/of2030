@@ -28,10 +28,6 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
-
-        // xml settings
-        void loadSettings();
-        void saveSettings();
     
         // callbacks
         void onNewChangeModel(CMS::Model &model);
