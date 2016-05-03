@@ -7,6 +7,7 @@
 //
 
 #include "effects.hpp"
+#include "video_manager.hpp"
 
 using namespace of2030::effects;
 
@@ -153,14 +154,12 @@ Vid::Vid(){
 
 void Vid::setup(Context &context){
     Effect::setup(context);
-    
-    ofLogWarning() << "TODO: make the effects::Vid::video_player static?";
-    video_player.load("vids/fingers.mov");
-    video_player.setLoopState(OF_LOOP_NORMAL);
-    video_player.play();
+    video_player = VideoManager::instance()->get("fingers.mov", true);
+    video_player->setLoopState(OF_LOOP_NORMAL);
+    video_player->play();
 }
 
 void Vid::draw(Context &context){
-    video_player.update();
-    video_player.draw(0,0);
+    video_player->update();
+    video_player->draw(0,0);
 }

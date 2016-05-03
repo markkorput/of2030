@@ -108,7 +108,7 @@ namespace of2030{ namespace effects {
         virtual void draw(Context &context);
         
     public: // attributes
-        ofVideoPlayer video_player;
+        ofVideoPlayer *video_player;
     };
 
 }} // namespace of2030{ namespace effects {
