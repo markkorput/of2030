@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D1BFD571CD8D9C000D5493C /* video_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D1BFD551CD8D9C000D5493C /* video_manager.cpp */; };
 		4D3B38E41CC66A95004C8994 /* effects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D3B38E21CC66A95004C8994 /* effects.cpp */; };
 		4D3B38F41CC66E16004C8994 /* ofxJSONElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D3B38EA1CC66E16004C8994 /* ofxJSONElement.cpp */; };
 		4D3B38F51CC66E16004C8994 /* jsoncpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D3B38F31CC66E16004C8994 /* jsoncpp.cpp */; };
@@ -73,6 +74,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4D1BFD551CD8D9C000D5493C /* video_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = video_manager.cpp; sourceTree = "<group>"; };
+		4D1BFD561CD8D9C000D5493C /* video_manager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = video_manager.hpp; sourceTree = "<group>"; };
 		4D3B38E21CC66A95004C8994 /* effects.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = effects.cpp; sourceTree = "<group>"; };
 		4D3B38E31CC66A95004C8994 /* effects.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = effects.hpp; sourceTree = "<group>"; };
 		4D3B38E91CC66E16004C8994 /* ofxJSON.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxJSON.h; sourceTree = "<group>"; };
@@ -353,6 +356,8 @@
 				4D6285A81CCD7D5500EA5D20 /* client_info.hpp */,
 				4DE274C81CCE1D9300F2D470 /* xml_settings.cpp */,
 				4DE274C91CCE1D9300F2D470 /* xml_settings.hpp */,
+				4D1BFD551CD8D9C000D5493C /* video_manager.cpp */,
+				4D1BFD561CD8D9C000D5493C /* video_manager.hpp */,
 			);
 			name = 2030;
 			sourceTree = "<group>";
@@ -576,6 +581,7 @@
 				4D9B296C1CC64190005D65E9 /* ofxOscMessage.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				4D6285A91CCD7D5500EA5D20 /* client_info.cpp in Sources */,
+				4D1BFD571CD8D9C000D5493C /* video_manager.cpp in Sources */,
 				4D9B299D1CC65D82005D65E9 /* tinyxmlerror.cpp in Sources */,
 				4D7E55021CC6C71B00DF588E /* renderer.cpp in Sources */,
 				4D9B297F1CC64F5D005D65E9 /* interface.cpp in Sources */,

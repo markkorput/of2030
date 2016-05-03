@@ -217,7 +217,12 @@ void OscReceiver::processMessageMessage(ofxOscMessage &m){
     if(messageType == "stars"){
         effects::Stars* effect = new effects::Stars();
         ofNotifyEvent(m_interface->effectEvent, (*(effects::Effect*)effect), m_interface);
-        // ofLog() << "stars effect";
+        return;
+    }
+    
+    if(messageType == "vid"){
+        effects::Vid* effect = new effects::Vid();
+        ofNotifyEvent(m_interface->effectEvent, (*(effects::Effect*)effect), m_interface);
         return;
     }
 
