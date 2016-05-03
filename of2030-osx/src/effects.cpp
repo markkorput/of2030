@@ -118,6 +118,8 @@ Stars::Stars(){
 void Stars::setup(Context &context){
     Effect::setup(context);
 
+    ofLogWarning() << "TODO: make the effects::Stars::shader static";
+
     #ifdef TARGET_OPENGLES
         shader.load("shaders_gles/Starfield01.vert","shaders_gles/Starfield01.frag");
     #else
@@ -140,4 +142,25 @@ void Stars::draw(Context &context){
     shader.setUniform1f("iThreshold", treshold);
     ofDrawRectangle(0, 0, context.fbo->getWidth(), context.fbo->getHeight());
     shader.end();
+}
+
+
+
+Vid::Vid(){
+    type = EffectType::VID;
+    duration = 3.0f;
+}
+
+void Vid::setup(Context &context){
+    Effect::setup(context);
+    
+    ofLogWarning() << "TODO: make the effects::Vid::video_player static?";
+    video_player.load("vids/fingers.mov");
+    video_player.setLoopState(OF_LOOP_NORMAL);
+    video_player.play();
+}
+
+void Vid::draw(Context &context){
+    video_player.update();
+    video_player.draw(0,0);
 }
