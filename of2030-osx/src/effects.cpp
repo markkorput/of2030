@@ -19,6 +19,13 @@ Effect::Effect() : startTime(NO_TIME), endTime(NO_TIME), type(EffectType::OFF) {
 }
 
 void Effect::setup(Context &context){
+    if(!hasStartTime()){
+        startTime = context.time;
+    }
+
+    if(hasDuration() && hasStartTime() && !hasEndTime()){
+        endTime = startTime + duration;
+    }
 }
 
 void Effect::draw(Context &context){
@@ -36,9 +43,9 @@ float Effect::getDuration(){
 }
 
 
-
-void Off::setup(Context &context){
-}
+//
+//void Off::setup(Context &context){
+//}
 
 
 void Off::draw(Context &context){
@@ -53,8 +60,8 @@ Color::Color(){
     color = ofColor::black;
 }
 
-void Color::setup(Context &context){
-}
+//void Color::setup(Context &context){
+//}
 
 void Color::draw(Context &context){
     ofBackground(color);
@@ -63,11 +70,12 @@ void Color::draw(Context &context){
 
 
 
-void Cursor::setup(Context &context){
-    if(!hasStartTime()){
-        startTime = context.time;
-    }
-}
+//void Cursor::setup(Context &context){
+//    Effect::Setup
+//    if(!hasStartTime()){
+//        startTime = context.time;
+//    }
+//}
 
 Cursor::Cursor(){
     type = EffectType::CURSOR;
@@ -103,6 +111,13 @@ void Cursor::draw(Context &context){
 }
 
 Stars::Stars(){
+    type = EffectType::STARS;
+    duration = 3.0;
+}
+
+void Stars::setup(Context &context){
+    Effect::setup(context);
+
     #ifdef TARGET_OPENGLES
         shader.load("shaders_gles/Starfield01.vert","shaders_gles/Starfield01.frag");
     #else
@@ -112,11 +127,6 @@ Stars::Stars(){
             shader.load("shaders/Starfield01.vert", "shaders/Starfield01.frag");
         }
     #endif
-}
-
-void Stars::setup(Context &context){
-    type = EffectType::STARS;
-    duration = 3.0;
 }
 
 void Stars::draw(Context &context){
