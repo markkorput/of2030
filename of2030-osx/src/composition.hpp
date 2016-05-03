@@ -9,7 +9,8 @@
 #ifndef composition_hpp
 #define composition_hpp
 
-#include <stdio.h>
+//#include <stdio.h>
+#include "ofMain.h"
 #include "effects.hpp"
 
 namespace of2030{
@@ -23,6 +24,9 @@ namespace of2030{
 
         void add(effects::Effect *effect);
         const vector<effects::Effect*> &getEffects(){ return m_effects; }
+
+    public: // events
+        ofEvent<effects::Effect> newEffectEvent;
 
     private: // attributes
 

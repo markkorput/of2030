@@ -13,33 +13,79 @@ using namespace of2030;
 using namespace of2030::effects;
 
 Renderer::Renderer(){
-    player = Player::instance();
+    fbo = NULL;
+    player = NULL;
+    client_info = NULL;
 }
 
-void Renderer::draw(){
-    int size = player->active_effects.size();
-    ofLogVerbose() << "[Renderer] active effects: " << size;
+Renderer::~Renderer(){
+    destroy();
+}
 
-    for(int i=0; i<size; i++){
-        Effect* effect = player->active_effects[i];
-        switch(effect->type){
-            case EffectType::OFF:
-                drawEffect(*(effects::Off*)effect);
-                break;
-            case EffectType::COLOR:
-                drawEffect(*(effects::Color*)effect);
-                break;
-            default:
-                ofLogWarning() << "[Renderer] Unknown effect type: " << effect->type;
-        }
+void Renderer::setup(){
+    if(fbo == NULL)
+        fbo = new ofFbo();
+    
+    if(!fbo->isAllocated())
+        fbo->allocate(WIDTH, HEIGHT);
+
+    if(!player){
+        player = Player::instance();
+    }
+    
+    if(!client_info){
+        client_info = ClientInfo::instance();
+    }
+
+    registerRealtimeEffectCallback();
+}
+
+void Renderer::destroy(){
+    registerRealtimeEffectCallback(false);
+    if(fbo){
+        delete fbo;
+        fbo = NULL;
     }
 }
 
-void Renderer::drawEffect(effects::Off &effect){
-    ofBackground(0);
+
+void Renderer::draw(){
+    fbo->begin();
+    
+    int size = player->active_effects.size();
+    // ofLog() << "[Renderer] active effects: " << size;
+
+    Context context;
+    context.time = player->getTime();
+    context.client_id = client_info->id;
+    context.client_index = client_info->index;
+    context.client_count = client_info->count;
+    
+    context.fbo = fbo;
+    
+    for(int i=0; i<size; i++){
+        Effect* effect = player->active_effects[i];
+        effect->draw(context);
+    }
+
+    fbo->end();
+    fbo->draw(0,0);
 }
 
-void Renderer::drawEffect(effects::Color &effect){
-    // ofLogVerbose() << "drawing COLOR-effect: " << effect.color;
-    ofBackground(effect.color);
+void Renderer::registerRealtimeEffectCallback(bool reg){
+    if(reg){
+        ofAddListener(player->realtime_composition.newEffectEvent, this, &Renderer::onRealtimeEffect);
+    } else {
+        ofRemoveListener(player->realtime_composition.newEffectEvent, this, &Renderer::onRealtimeEffect);
+    }
+}
+
+void Renderer::onRealtimeEffect(Effect &effect){
+    Context context;
+    context.time = player->getTime();
+    context.client_id = client_info->id;
+    context.client_index = client_info->index;
+    context.client_count = client_info->count;
+    context.fbo = fbo;
+    effect.setup(context);
 }

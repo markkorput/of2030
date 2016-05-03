@@ -12,31 +12,36 @@
 //#include <stdio.h>
 #include "player.hpp"
 #include "effects.hpp"
+#include "client_info.hpp"
 
 namespace of2030 {
     
     class Renderer{
         
+    public:
+        const static int WIDTH = 768;
+        const static int HEIGHT = 576;
+        
     public: // methods
         Renderer();
-        // ~Renderer(){}
+        ~Renderer();
 
-        // void setup();
+        void setup();
         // void update();
+        void destroy();
         void draw();
-        void drawEffect(effects::Off &effect);
-        void drawEffect(effects::Color &effect);
-        // void destroy();
+            
+    private: // callbacks
+        
+        void registerRealtimeEffectCallback(bool reg=true);
+        void onRealtimeEffect(effects::Effect &effect);
         
 
     public: // properties
         
         Player *player;
-
-    private: // attributes
-
-        
-        
+        ClientInfo *client_info;
+        ofFbo* fbo;
     };
 }
 

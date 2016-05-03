@@ -22,6 +22,16 @@ InterfacePlayerBridge::~InterfacePlayerBridge(){
         stop();
 }
 
+void InterfacePlayerBridge::start(){
+    registerInterfaceCallbacks(true);
+    m_bStarted = true;
+}
+
+void InterfacePlayerBridge::stop(){
+    registerInterfaceCallbacks(false);
+    m_bStarted = false;
+}
+
 void InterfacePlayerBridge::setInterface(Interface *interface){
     if(m_bStarted && m_interface){
         registerInterfaceCallbacks(false);
@@ -32,16 +42,6 @@ void InterfacePlayerBridge::setInterface(Interface *interface){
     if(m_bStarted && m_interface){
         registerInterfaceCallbacks(true);
     }
-}
-
-void InterfacePlayerBridge::start(){
-    registerInterfaceCallbacks(true);
-    m_bStarted = true;
-}
-
-void InterfacePlayerBridge::stop(){
-    registerInterfaceCallbacks(false);
-    m_bStarted = false;
 }
 
 void InterfacePlayerBridge::registerInterfaceCallbacks(bool _register){

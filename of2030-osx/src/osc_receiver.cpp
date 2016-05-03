@@ -57,7 +57,13 @@ void OscReceiver::update(){
             continue;
         }
 
-        ofLog() << "Got unknown OSC Message";
+        if(m.getAddress() == "/message"){
+            ofLogVerbose() << "Got /message OSC Message";
+            processMessageMessage(m);
+            continue;
+        }
+
+        ofLog() << "Got unknown OSC Message " << m.getAddress();
     }
 }
 
@@ -68,10 +74,16 @@ void OscReceiver::destroy(){
 }
 
 bool OscReceiver::connect(){
-    m_oscReceiver.setup(m_port);
-    m_bConnected = true;
-    ofLog() << "of2030::OscReceiver listening to port: " << m_port;
-    return true;
+    m_oscReceiver.enableReuse();
+
+    if(m_oscReceiver.setup(m_port)){
+        m_bConnected = true;
+        ofLog() << "of2030::OscReceiver listening to port: " << m_port;
+        return true;
+    }
+
+    ofLogWarning() << "OscReceiver could not start listening to port: " << m_port;
+    return false;
 }
 
 void OscReceiver::disconnect(){
@@ -181,4 +193,38 @@ effects::Effect* OscReceiver::createEffectFromJsonString(const std::string &json
         pEffect->duration = json["duration"].asFloat();
 
     return pEffect;
+}
+
+void OscReceiver::processMessageMessage(ofxOscMessage &m){
+    if(m.getNumArgs() < 1){
+        ofLogWarning() << "/message message didn't have any args";
+        return;
+    }
+    
+    if(m.getArgType(0) != OFXOSC_TYPE_STRING){
+        ofLogWarning() << "/effect didn't have string arg";
+        return;
+    }
+    
+    string messageType = m.getArgAsString(0);
+    
+    if(messageType == "cursor"){
+        effects::Cursor* cursor_effect = new effects::Cursor();
+        ofNotifyEvent(m_interface->effectEvent, (*(effects::Effect*)cursor_effect), m_interface);
+        return;
+    }
+    
+    if(messageType == "stars"){
+        effects::Stars* effect = new effects::Stars();
+        ofNotifyEvent(m_interface->effectEvent, (*(effects::Effect*)effect), m_interface);
+        return;
+    }
+    
+    if(messageType == "vid"){
+        effects::Vid* effect = new effects::Vid();
+        ofNotifyEvent(m_interface->effectEvent, (*(effects::Effect*)effect), m_interface);
+        return;
+    }
+
+    ofLogWarning() << "Unknown messageType" << messageType;
 }

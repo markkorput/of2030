@@ -6,6 +6,9 @@
 #include "player.hpp"
 #include "interface_player_bridge.hpp"
 #include "renderer.hpp"
+#include "client_info.hpp"
+#include "xml_settings.hpp"
+#include "multi_client.hpp"
 
 class ofApp : public ofBaseApp{
 	public:
@@ -13,7 +16,7 @@ class ofApp : public ofBaseApp{
 		void update();
 		void draw();
         void exit(ofEventArgs &args);
-
+    
 		void keyPressed(int key);
 		void keyReleased(int key);
 		void mouseMoved(int x, int y);
@@ -25,10 +28,6 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
-
-        // xml settings
-        void loadSettings();
-        void saveSettings();
     
         // callbacks
         void onNewChangeModel(CMS::Model &model);
@@ -38,4 +37,7 @@ class ofApp : public ofBaseApp{
         of2030::Player *m_player;
         of2030::Renderer m_renderer;
         of2030::InterfacePlayerBridge m_interface_player_bridge;
+        of2030::ClientInfo *m_clientInfo;
+        of2030::XmlSettings m_xmlSettings;
+        of2030::MultiClient m_multiClient;
 };
