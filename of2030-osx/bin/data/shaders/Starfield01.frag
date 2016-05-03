@@ -1,3 +1,6 @@
+uniform vec2 iPos;
+uniform float iThreshold;
+
 // License Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
 
 // The input, n, should have a magnitude in the approximate range [0, 100].
@@ -17,14 +20,12 @@ float Noise2d( in vec2 x )
 // void mainImage( out vec4 fragColor, in vec2 fragCoord ){
 void main(void)
 {
-		vec2 fragCoord = gl_FragCoord.xy;
-		vec2 iMouse = vec2(0.5, 0.5);
 		vec2 iResolution = vec2(100.0, 400.0);
 		// vec2 vSamplePos = vec2(0.0, 0.0);
 
     // Add a camera offset in "FragCoord-space".
-    vec2 vCameraOffset = iMouse.xy;
-    vec2 vSamplePos = ( fragCoord.xy + floor( vCameraOffset ) ) / iResolution.xy;
+    vec2 vCameraOffset = iPos.xy;
+    vec2 vSamplePos = ( gl_FragCoord.xy + floor( vCameraOffset ) ) / iResolution.xy;
 
     vec3 vColor  = vec3(0.0, 0.0, 0.0);
 
@@ -34,11 +35,11 @@ void main(void)
     // Stars
     // Note: Choose fThreshhold in the range [0.99, 0.9999].
     // Higher values (i.e., closer to one) yield a sparser starfield.
-    float fThreshhold = 0.97;
+    // float fThreshold = 0.97;
     float StarVal = Noise2d( vSamplePos );
-    if ( StarVal >= fThreshhold )
+    if ( StarVal >= iThreshold )
     {
-        StarVal = pow( (StarVal - fThreshhold)/(1.0 - fThreshhold), 6.0 );
+        StarVal = pow( (StarVal - iThreshold)/(1.0 - iThreshold), 6.0 );
 				vColor += vec3( StarVal );
     }
 
