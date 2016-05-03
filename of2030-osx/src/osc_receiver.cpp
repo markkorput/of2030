@@ -214,5 +214,12 @@ void OscReceiver::processMessageMessage(ofxOscMessage &m){
         return;
     }
     
+    if(messageType == "stars"){
+        effects::Stars* effect = new effects::Stars();
+        ofNotifyEvent(m_interface->effectEvent, (*(effects::Effect*)effect), m_interface);
+        // ofLog() << "stars effect";
+        return;
+    }
+
     ofLogWarning() << "Unknown messageType" << messageType;
 }

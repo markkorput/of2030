@@ -14,16 +14,22 @@ float Noise2d( in vec2 x )
     return fract( xhash + yhash );
 }
 
-void mainImage( out vec4 fragColor, in vec2 fragCoord )
+// void mainImage( out vec4 fragColor, in vec2 fragCoord ){
+void main(void)
 {
+		vec2 fragCoord = gl_FragCoord.xy;
+		vec2 iMouse = vec2(0.5, 0.5);
+		vec2 iResolution = vec2(100.0, 400.0);
+		// vec2 vSamplePos = vec2(0.0, 0.0);
+
     // Add a camera offset in "FragCoord-space".
     vec2 vCameraOffset = iMouse.xy;
     vec2 vSamplePos = ( fragCoord.xy + floor( vCameraOffset ) ) / iResolution.xy;
 
     vec3 vColor  = vec3(0.0, 0.0, 0.0);
 
-	// Sky Background Color
-	vColor += vec3( 0.1, 0.2, 0.4 ) * vSamplePos.y;
+		// Sky Background Color
+		vColor += vec3( 0.1, 0.2, 0.4 ) * vSamplePos.y;
 
     // Stars
     // Note: Choose fThreshhold in the range [0.99, 0.9999].
@@ -33,8 +39,10 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
     if ( StarVal >= fThreshhold )
     {
         StarVal = pow( (StarVal - fThreshhold)/(1.0 - fThreshhold), 6.0 );
-		vColor += vec3( StarVal );
+				vColor += vec3( StarVal );
     }
 
-	fragColor = vec4(vColor, 1.0);
+		//fragColor = vec4(vColor, 1.0);
+		gl_FragColor = vec4(vColor, 1.0);
+		// gl_FragColor = vec4(1.0, 1.0, 0.0, 1.0);
 }

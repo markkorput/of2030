@@ -53,7 +53,7 @@ void Renderer::draw(){
     fbo->begin();
     
     int size = player->active_effects.size();
-    ofLogVerbose() << "[Renderer] active effects: " << size;
+    // ofLogVerbose() << "[Renderer] active effects: " << size;
 
     Context context;
     context.time = player->getTime();
