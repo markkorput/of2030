@@ -1,0 +1,7 @@
+void main(void)
+{
+   // vec4 pos = gl_Vertex;
+   // vec4 pos = gl_ProjectionMatrix * gl_ModelViewMatrix * gl_Vertex;
+
+   gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex;
+}

@@ -85,7 +85,17 @@ namespace of2030{ namespace effects {
         Cursor();
         virtual void setup(Context &context);
         virtual void draw(Context &context);
-        
+    };
+    
+    
+    class Stars : public Effect{
+    public: // methods
+        Stars();
+        virtual void setup(Context &context);
+        virtual void draw(Context &context);
+    
+    public: // attributes
+        ofShader shader;
     };
 
 }} // namespace of2030{ namespace effects {

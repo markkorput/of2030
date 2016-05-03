@@ -100,6 +100,22 @@ void Cursor::draw(Context &context){
                     0,
                     3,
                     context.fbo->getHeight());
-    
-    
+}
+
+Stars::Stars(){
+    #ifdef TARGET_OPENGLES
+        shader.load("shaders_gles/Starfield01.vert","shaders_gles/Starfield01.frag");
+    #else
+        if(ofIsGLProgrammableRenderer()){
+            shader.load("shaders_gl3/Starfield01.vert", "shaders_gl3/Starfield01.frag");
+        }else{
+            shader.load("shaders/Starfield01.vert", "shaders/Starfield01.frag");
+        }
+    #endif
+}
+
+void Stars::setup(Context &context){
+}
+
+void Stars::draw(Context &context){
 }
