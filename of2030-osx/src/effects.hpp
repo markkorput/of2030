@@ -62,7 +62,7 @@ namespace of2030{ namespace effects {
     public: // methods
 
         Off(){ type = EffectType::OFF; }
-        virtual void setup(Context &context);
+        // virtual void setup(Context &context);
         virtual void draw(Context &context);
     };
 
@@ -72,7 +72,7 @@ namespace of2030{ namespace effects {
 
     public: // methods
         Color();
-        virtual void setup(Context &context);
+        // virtual void setup(Context &context);
         virtual void draw(Context &context);
 
     public: // attributes
@@ -84,7 +84,7 @@ namespace of2030{ namespace effects {
    
     public: // methods
         Cursor();
-        virtual void setup(Context &context);
+        // virtual void setup(Context &context);
         virtual void draw(Context &context);
     };
     
