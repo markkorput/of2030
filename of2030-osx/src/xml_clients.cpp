@@ -5,6 +5,10 @@ using namespace of2030;
 
 // two local methods
 
+void xmlLoadVec2f(ofxXmlSettings &xml, ofVec2f &vec2f){
+    vec2f = ofVec2f(xml.getValue("x", 0.0f), xml.getValue("y", 0.0f));
+}
+
 void xmlLoadVec3f(ofxXmlSettings &xml, ofVec3f &vec3f){
     vec3f = ofVec3f(xml.getValue("x", 0.0f), xml.getValue("y", 0.0f), xml.getValue("z", 0.0f));
 }
@@ -13,6 +17,10 @@ void xmlLoadClient(ofxXmlSettings &xml, XmlClient &client){
     client.id = xml.getValue("id", 1);
     if(xml.pushTag("screenpos")){
         xmlLoadVec3f(xml, client.screenpos);
+        xml.popTag();
+    }
+    if(xml.pushTag("screensize")){
+        xmlLoadVec2f(xml, client.screensize);
         xml.popTag();
     }
     if(xml.pushTag("screenrot")){
