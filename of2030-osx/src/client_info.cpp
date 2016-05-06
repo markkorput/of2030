@@ -46,10 +46,10 @@ void ClientInfo::setClientId(int cid){
     // updateClientIndex();
 }
 
-XmlClient* ClientInfo::getXmlClient(){
-    for(auto &xml_client: XmlClients::instance()->xml_clients){
-        if(xml_client->id == id){
-            return xml_client;
+ClientSetting* ClientInfo::getClient(){
+    for(auto &client: XmlClients::instance()->clients){
+        if(client->id == id){
+            return client;
         }
     }
 

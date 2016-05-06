@@ -17,6 +17,8 @@ namespace of2030{ namespace effects {
     typedef struct {
         float time;
         int client_id, client_index, client_count;
+
+        
         ofFbo* fbo;
     } Context;
 

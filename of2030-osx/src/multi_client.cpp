@@ -78,7 +78,7 @@ void MultiClient::draw(){
     
     
         for(auto &renderer: m_renderers){
-            XmlClient* c = renderer->client_info->getXmlClient();
+            ClientSetting* c = renderer->client_info->getClient();
             
             ofPushMatrix();
                 // ofScale(m_xml->multi_room_scale.x, m_xml->multi_room_scale.y, m_xml->multi_room_scale.z);
