@@ -60,7 +60,7 @@ void Renderer::draw(){
     context.client_id = client_info->id;
     context.client_index = client_info->index;
     context.client_count = client_info->count;
-    
+    context.client_setting = client_info->getClient();
     context.fbo = fbo;
     
     for(int i=0; i<size; i++){
@@ -86,6 +86,7 @@ void Renderer::onRealtimeEffect(Effect &effect){
     context.client_id = client_info->id;
     context.client_index = client_info->index;
     context.client_count = client_info->count;
+    context.client_setting = client_info->getClient();
     context.fbo = fbo;
     effect.setup(context);
 }
