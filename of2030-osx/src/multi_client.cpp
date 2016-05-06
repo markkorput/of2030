@@ -24,21 +24,23 @@ void MultiClient::setup(){
 
     for(int i=0; i<m_xml->multi_client_ids.size(); i++){
         int id = m_xml->multi_client_ids[i];
-        
+
+        // create client info instance
         ClientInfo *cinfo = new ClientInfo();
         cinfo->setup();
         // cinfo->copy(*ClientInfo::instance());
         cinfo->setClientId(m_xml->multi_client_ids[i]);
         m_client_infos.push_back(cinfo);
-        
+
+        // create renderer instance
         Renderer* renderer = new Renderer();
         renderer->client_info = cinfo;
         renderer->setup();
         m_renderers.push_back(renderer);
     }
-    
+
     ofLog() << "[MultiClient] enabled, resizing window";
-    ofSetWindowShape(m_renderers.size()*Renderer::WIDTH*m_scaleFactor, Renderer::HEIGHT*m_scaleFactor);
+    //ofSetWindowShape(m_renderers.size()*Renderer::WIDTH*m_scaleFactor, Renderer::HEIGHT*m_scaleFactor);
     ofSetWindowPosition(10, 10);
 }
 
@@ -50,7 +52,7 @@ void MultiClient::destroy(){
     for(int i=0; i<m_renderers.size(); i++){
         delete m_renderers[i];
     }
-    
+
     m_client_infos.clear();
     m_renderers.clear();
 }
@@ -59,14 +61,29 @@ void MultiClient::destroy(){
 void MultiClient::draw(){
     if(!enabled) return;
 
-    ofPushMatrix();
-        ofScale(m_scaleFactor, m_scaleFactor);
-        for(int i=0; i<m_renderers.size(); i++){
-            m_renderers[i]->draw();
-            ofTranslate(Renderer::WIDTH, 0);
-        }
-    ofPopMatrix();
+    ofClear(0);
+    cam.begin();
+    for(auto &renderer: m_renderers){
+        ofPushMatrix();
+        XmlClient* c = renderer->client_info->getXmlClient();
+        ofTranslate(c->screenpos * m_xml->multi_room_scale);
+        ofRotateX(c->screenrot.x);
+        ofRotateY(c->screenrot.y);
+        ofRotateZ(c->screenrot.z);
+        ofScale(m_xml->multi_screen_scale,m_xml->multi_screen_scale,m_xml->multi_screen_scale);
+        renderer->draw();
+        ofPopMatrix();
+    }
+    
 
+//        for(int i=0; i<m_renderers.size(); i++){
+//            m_renderers[i]->draw();
+//            ofTranslate(Renderer::WIDTH, 0);
+//        }
+    
+    cam.end();
+    
+    
 }
 
 ofPoint MultiClient::getTotalSize(){

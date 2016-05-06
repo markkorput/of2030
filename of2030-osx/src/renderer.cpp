@@ -51,7 +51,7 @@ void Renderer::destroy(){
 
 void Renderer::draw(){
     fbo->begin();
-    
+
     int size = player->active_effects.size();
     // ofLog() << "[Renderer] active effects: " << size;
 
@@ -67,7 +67,7 @@ void Renderer::draw(){
         Effect* effect = player->active_effects[i];
         effect->draw(context);
     }
-
+    
     fbo->end();
     fbo->draw(0,0);
 }

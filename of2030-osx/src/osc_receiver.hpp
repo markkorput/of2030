@@ -36,7 +36,8 @@ namespace of2030 {
 
         void processChangeMessage(ofxOscMessage &m);
         void processEffectMessage(ofxOscMessage &m);
-        void processMessageMessage(ofxOscMessage &m);
+        void processFxMessage(ofxOscMessage &m);
+        void processCtrlMessage(ofxOscMessage &m);
 
         void getMapFromJsonString(const std::string &str, map<string, string> &map);
         effects::Effect* createEffectFromJsonString(const std::string &json_string);

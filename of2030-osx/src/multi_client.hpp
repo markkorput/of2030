@@ -29,11 +29,13 @@ namespace of2030{
         ofPoint getTotalSize();
         
         bool enabled;
-        
+
         XmlSettings *m_xml;
         vector<ClientInfo*> m_client_infos;
         vector<Renderer*> m_renderers;
         float m_scaleFactor;
+
+        ofEasyCam cam;
     };
 }
 

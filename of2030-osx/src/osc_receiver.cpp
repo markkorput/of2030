@@ -46,20 +46,26 @@ void OscReceiver::update(){
         
         // "/change"-type message?
         if(m.getAddress() == "/change"){
-            ofLogVerbose() << "Got /change OSC Message";
+            //ofLogVerbose() << "Got /change OSC Message";
             processChangeMessage(m);
             continue;
         }
 
         if(m.getAddress() == "/effect"){
-            ofLogVerbose() << "Got /effect OSC Message";
+            //ofLogVerbose() << "Got /effect OSC Message";
             processEffectMessage(m);
             continue;
         }
 
-        if(m.getAddress() == "/message"){
-            ofLogVerbose() << "Got /message OSC Message";
-            processMessageMessage(m);
+        if(m.getAddress() == "/fx"){
+            //ofLogVerbose() << "Got /message OSC Message";
+            processFxMessage(m);
+            continue;
+        }
+
+        if(m.getAddress() == "/ctrl"){
+            //ofLogVerbose() << "Got /ctrl OSC Message";
+            processCtrlMessage(m);
             continue;
         }
 
@@ -195,19 +201,20 @@ effects::Effect* OscReceiver::createEffectFromJsonString(const std::string &json
     return pEffect;
 }
 
-void OscReceiver::processMessageMessage(ofxOscMessage &m){
+void OscReceiver::processFxMessage(ofxOscMessage &m){
     if(m.getNumArgs() < 1){
-        ofLogWarning() << "/message message didn't have any args";
+        ofLogWarning() << "/fx message didn't have any args";
         return;
     }
     
     if(m.getArgType(0) != OFXOSC_TYPE_STRING){
-        ofLogWarning() << "/effect didn't have string arg";
+        ofLogWarning() << "/fx didn't have string arg";
         return;
     }
     
     string messageType = m.getArgAsString(0);
-    
+    ofLogVerbose() << "[osc-in] /fx " << messageType;
+
     if(messageType == "cursor"){
         effects::Cursor* cursor_effect = new effects::Cursor();
         ofNotifyEvent(m_interface->effectEvent, (*(effects::Effect*)cursor_effect), m_interface);
@@ -232,5 +239,30 @@ void OscReceiver::processMessageMessage(ofxOscMessage &m){
         return;
     }
 
-    ofLogWarning() << "Unknown messageType" << messageType;
+    ofLogWarning() << "[osc-in] unknown messageType" << messageType;
+}
+
+void OscReceiver::processCtrlMessage(ofxOscMessage &m){
+    if(m.getNumArgs() < 1){
+        ofLogWarning() << "/ctrl message didn't have any args";
+        return;
+    }
+    
+    if(m.getArgType(0) != OFXOSC_TYPE_STRING){
+        ofLogWarning() << "/ctrl didn't have string arg";
+        return;
+    }
+    
+    string messageType = m.getArgAsString(0);
+    ofLogVerbose() << "[osc-in] /ctrl " << messageType;
+    
+    if(messageType == "reconfig_clients"){
+        string config_path = "";
+        if(m.getNumArgs() >= 2 and m.getArgType(1) == OFXOSC_TYPE_STRING)
+            config_path = m.getArgAsString(1);
+        ofNotifyEvent(m_interface->reconfigClientsEvent, config_path, m_interface);
+        return;
+    }
+
+    ofLogWarning() << "[osc-in] unknown messageType" << messageType;
 }
