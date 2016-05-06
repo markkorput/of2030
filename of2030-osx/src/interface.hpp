@@ -12,8 +12,6 @@
 //#include <stdio.h>
 #include "ofMain.h"
 #include "effects.hpp"
-#include "CMSModel.h"
-#include "CMSCollection.h"
 
 namespace of2030 {
     
@@ -21,10 +19,6 @@ namespace of2030 {
 
     public:
         static Interface* instance();
- 
-    public: // collection
-        CMS::Collection<CMS::Model> changes_collection;
-        // CMS::Collection<CMS::Model> effects_collection;
     
     public: // events
         ofEvent<effects::Effect> effectEvent;

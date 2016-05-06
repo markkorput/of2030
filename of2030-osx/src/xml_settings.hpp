@@ -10,6 +10,7 @@
 #define xml_settings_hpp
 
 #include "ofMain.h"
+#include "setting_types.h"
 
 namespace of2030{
     
@@ -20,7 +21,8 @@ namespace of2030{
         void save();
         
         std::string path;
-        int osc_port;
+        OscSetting osc_setting;
+
         int client_id;
         vector<int> multi_client_ids;
         float multi_screen_scale;

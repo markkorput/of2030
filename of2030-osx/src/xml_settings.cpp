@@ -15,9 +15,11 @@ using namespace of2030;
 void XmlSettings::load(){
     ofxXmlSettings xml;
     xml.loadFile(path);
-    osc_port = xml.getValue("of2030:osc_port", 2030);
-    client_id = xml.getValue("of2030:client_id", 1);
+    osc_setting.port = xml.getValue("of2030:osc:port", 2030);
+    osc_setting.effectAddress = xml.getValue("of2030:osc:addresses:effect", "/effect");
+    osc_setting.controlAddress = xml.getValue("of2030:osc:addresses:control", "/control");
 
+    client_id = xml.getValue("of2030:client_id", 1);
     multi_client_ids.clear();
     if(xml.pushTag("of2030")){
         if(xml.pushTag("multi")){
@@ -37,9 +39,13 @@ void XmlSettings::load(){
 
 void XmlSettings::save(){
     ofxXmlSettings xml;
-    xml.setValue("of2030:osc_port", osc_port);
+    xml.setValue("of2030:osc:port", osc_setting.port);
+    xml.setValue("of2030:osc:port", osc_setting.port);
+    xml.setValue("of2030:osc:addresses:effect", osc_setting.effectAddress);
+    xml.setValue("of2030:osc:addresses:control", osc_setting.controlAddress);
+
     xml.setValue("of2030:client_id", client_id);
-    
+
     if(multi_client_ids.size() > 0){
         if(xml.pushTag("of2030")){
             if(xml.pushTag("multi")){

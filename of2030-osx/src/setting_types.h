@@ -10,6 +10,11 @@
 #define client_setting_h
 
 namespace of2030{
+    
+    //
+    // Client
+    //
+
     typedef struct{
         int id;
         ofVec3f screenpos, screenrot;
@@ -19,6 +24,18 @@ namespace of2030{
         ofVec3f pano_rot;
     } ClientSetting;
 
+    //
+    // Osc
+    //
+    typedef struct {
+        int port;
+        string effectAddress; // /effect
+        string controlAddress; // /control
+    } OscSetting;
+
+    //
+    // Effect
+    //
     
     class EffectSetting{
     public: // attributes

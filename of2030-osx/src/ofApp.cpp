@@ -15,10 +15,8 @@ void ofApp::setup(){
     m_clientInfo = of2030::ClientInfo::instance();
     m_clientInfo->setup();
 
-    m_oscReceiver.configure(m_xmlSettings.osc_port);
+    m_oscReceiver.configure(m_xmlSettings.osc_setting);
     m_oscReceiver.setup();
-
-    ofAddListener(of2030::Interface::instance()->changes_collection.modelAddedEvent, this, &ofApp::onNewChangeModel);
 
     m_player = of2030::Player::instance();
     m_player->start();
@@ -54,8 +52,6 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::exit(ofEventArgs &args){
-//    m_xmlSettings.osc_port = (int)m_oscReceiver.getPort();
-//    m_xmlSettings.save();
 }
 
 //--------------------------------------------------------------
@@ -111,14 +107,6 @@ void ofApp::gotMessage(ofMessage msg){
 //--------------------------------------------------------------
 void ofApp::dragEvent(ofDragInfo dragInfo){ 
 
-}
-
-void ofApp::onNewChangeModel(CMS::Model &model){
-    // ofLog() << "Got new change model with " << model.attributes().size() << " attributes";
-    
-    for(map<string,string>::iterator it = model.attributes().begin(); it != model.attributes().end(); ++it) {
-        ofLog() << " - " << it->first << ": " << it->second;
-    }
 }
 
 void ofApp::onReconfigSettings(string &path){

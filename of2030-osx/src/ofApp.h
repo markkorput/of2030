@@ -31,7 +31,6 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
     
         // callbacks
-        void onNewChangeModel(CMS::Model &model);
         void onReconfigSettings(string &path);
         void onReconfigClients(string &path);
         void onReconfigEffects(string &path);

@@ -28,7 +28,6 @@
 		4D9B29751CC64190005D65E9 /* OscReceivedElements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D9B29671CC64190005D65E9 /* OscReceivedElements.cpp */; };
 		4D9B29761CC64190005D65E9 /* OscTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D9B29691CC64190005D65E9 /* OscTypes.cpp */; };
 		4D9B297F1CC64F5D005D65E9 /* interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D9B297D1CC64F5D005D65E9 /* interface.cpp */; };
-		4D9B298D1CC65084005D65E9 /* CMSModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D9B298B1CC65084005D65E9 /* CMSModel.cpp */; };
 		4D9B29911CC65268005D65E9 /* osc_receiver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D9B298F1CC65268005D65E9 /* osc_receiver.cpp */; };
 		4D9B299B1CC65D82005D65E9 /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D9B29941CC65D82005D65E9 /* ofxXmlSettings.cpp */; };
 		4D9B299C1CC65D82005D65E9 /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D9B29971CC65D82005D65E9 /* tinyxml.cpp */; };
@@ -129,10 +128,6 @@
 		4D9B296A1CC64190005D65E9 /* OscTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OscTypes.h; sourceTree = "<group>"; };
 		4D9B297D1CC64F5D005D65E9 /* interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = interface.cpp; sourceTree = "<group>"; };
 		4D9B297E1CC64F5D005D65E9 /* interface.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = interface.hpp; sourceTree = "<group>"; };
-		4D9B29891CC65084005D65E9 /* CMS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMS.h; sourceTree = "<group>"; };
-		4D9B298A1CC65084005D65E9 /* CMSCollection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMSCollection.h; sourceTree = "<group>"; };
-		4D9B298B1CC65084005D65E9 /* CMSModel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CMSModel.cpp; sourceTree = "<group>"; };
-		4D9B298C1CC65084005D65E9 /* CMSModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMSModel.h; sourceTree = "<group>"; };
 		4D9B298F1CC65268005D65E9 /* osc_receiver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = osc_receiver.cpp; sourceTree = "<group>"; };
 		4D9B29901CC65268005D65E9 /* osc_receiver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = osc_receiver.hpp; sourceTree = "<group>"; };
 		4D9B29941CC65D82005D65E9 /* ofxXmlSettings.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxXmlSettings.cpp; sourceTree = "<group>"; };
@@ -354,26 +349,6 @@
 			name = 2030;
 			sourceTree = "<group>";
 		};
-		4D9B29871CC65084005D65E9 /* ofxCMS */ = {
-			isa = PBXGroup;
-			children = (
-				4D9B29881CC65084005D65E9 /* src */,
-			);
-			name = ofxCMS;
-			sourceTree = "<group>";
-		};
-		4D9B29881CC65084005D65E9 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				4D9B29891CC65084005D65E9 /* CMS.h */,
-				4D9B298A1CC65084005D65E9 /* CMSCollection.h */,
-				4D9B298B1CC65084005D65E9 /* CMSModel.cpp */,
-				4D9B298C1CC65084005D65E9 /* CMSModel.h */,
-			);
-			name = src;
-			path = ../../../addons/ofxCMS/src;
-			sourceTree = "<group>";
-		};
 		4D9B29921CC65D82005D65E9 /* ofxXmlSettings */ = {
 			isa = PBXGroup;
 			children = (
@@ -481,7 +456,6 @@
 			isa = PBXGroup;
 			children = (
 				4D9B29401CC64190005D65E9 /* ofxOsc */,
-				4D9B29871CC65084005D65E9 /* ofxCMS */,
 				4D9B29921CC65D82005D65E9 /* ofxXmlSettings */,
 				4D3B38E71CC66E16004C8994 /* ofxJSON */,
 			);
@@ -622,7 +596,6 @@
 				4D9B29711CC64190005D65E9 /* NetworkingUtils.cpp in Sources */,
 				4D4C03A21CDCF45E009EEB63 /* xml_effects.cpp in Sources */,
 				4DE274CA1CCE1D9300F2D470 /* xml_settings.cpp in Sources */,
-				4D9B298D1CC65084005D65E9 /* CMSModel.cpp in Sources */,
 				4D9B299C1CC65D82005D65E9 /* tinyxml.cpp in Sources */,
 				4D9B29A11CC6692A005D65E9 /* composition.cpp in Sources */,
 				4D3B38F51CC66E16004C8994 /* jsoncpp.cpp in Sources */,
