@@ -19,21 +19,16 @@ ClientInfo* ClientInfo::instance(){
     return singleton;
 }
 
-ClientInfo::ClientInfo() : id(-1){
+ClientInfo::ClientInfo() : id(-1), count(1), index(0){
 }
 
 void ClientInfo::setup(){
-    m_config_file.setPath("config.json");
-    // m_client_cache_file.setPath("client.cache.json");
-    m_config_file.load();
     m_xml_settings.load();
 
-    count = m_config_file.getClientCount();
     // setClientId(ofToInt(m_client_cache_file.getValue("client_id")));
     setClientId(m_xml_settings.client_id);
 
     ofLogVerbose() << "[ClientInfo.setup] client id: " << id;
-    ofLogVerbose() << "[ClientInfo.setup] client count: " << m_config_file.getClientCount();
 }
 
 void ClientInfo::copy(ClientInfo &other){
@@ -44,17 +39,9 @@ void ClientInfo::copy(ClientInfo &other){
 
 void ClientInfo::setClientId(int cid){
     id = cid;
-    updateClientIndex();
+    // updateClientIndex();
 }
 
-void ClientInfo::updateClientIndex(){
-    int count = m_config_file.getClientCount();
-
-    index = 0;
-    for (int i=0; i<count; i++){
-        if(ofToInt(m_config_file.getClientId(i)) == id){
-            index = i;
-            return;
-        }
-    }
-}
+//void ClientInfo::updateClientIndex(){
+//    index = 0;
+//}
