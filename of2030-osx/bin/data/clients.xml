@@ -1,0 +1,19 @@
+<2030>
+  <clients>
+    <client>
+      <id>1</id>
+      <screenpos><x>-4.5</x><y>-8.25</y><z>0.0</z></screenpos>
+      <screenrot><x>0.0</x><y>-90.0</y><z>0.0</z></screenrot>
+    </client>
+    <client>
+      <id>2</id>
+      <screenpos><x>-4.5</x><y>0</y><z>0.0</z></screenpos>
+      <screenrot><x>0.0</x><y>-90.0</y><z>0.0</z></screenrot>
+    </client>
+    <client>
+      <id>3</id>
+      <screenpos><x>-4.5</x><y>8.25</y><z>0.0</z></screenpos>
+      <screenrot><x>0.0</x><y>-90.0</y><z>0.0</z></screenrot>
+    </client>
+  </clients>
+</2030>

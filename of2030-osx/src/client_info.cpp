@@ -24,6 +24,7 @@ ClientInfo::ClientInfo() : id(-1), count(1), index(0){
 
 void ClientInfo::setup(){
     m_xml_settings.load();
+    m_xml_clients.load();
 
     // setClientId(ofToInt(m_client_cache_file.getValue("client_id")));
     setClientId(m_xml_settings.client_id);
@@ -40,6 +41,16 @@ void ClientInfo::copy(ClientInfo &other){
 void ClientInfo::setClientId(int cid){
     id = cid;
     // updateClientIndex();
+}
+
+XmlClient* ClientInfo::getXmlClient(){
+    for(auto &xml_client: m_xml_clients.xml_clients){
+        if(xml_client->id == id){
+            return xml_client;
+        }
+    }
+    
+    return NULL;
 }
 
 //void ClientInfo::updateClientIndex(){
