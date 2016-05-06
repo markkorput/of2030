@@ -1,12 +1,3 @@
-
-//
-//  xml_settings.cpp
-//  emptyExample
-//
-//  Created by Mark van de Korput on 16-04-25.
-//
-//
-
 #include "xml_clients.hpp"
 #include "ofxXmlSettings.h"
 

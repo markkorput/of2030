@@ -1,19 +1,12 @@
-//
-//  xml_settings.hpp
-//  emptyExample
-//
-//  Created by Mark van de Korput on 16-04-25.
-//
-//
 
-#ifndef xml_settings_hpp
-#define xml_settings_hpp
+#ifndef xml_clients_hpp
+#define xml_clients_hpp
 
 #include "ofMain.h"
 
 namespace of2030{
     
-    typedef struct {
+    typedef struct{
         int id;
         ofVec3f screenpos, screenrot;
     } XmlClient;
@@ -33,4 +26,4 @@ namespace of2030{
     };
 }
 
-#endif /* xml_settings_hpp */
+#endif /* xml_clients_hpp */
