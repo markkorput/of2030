@@ -225,6 +225,12 @@ void OscReceiver::processMessageMessage(ofxOscMessage &m){
         ofNotifyEvent(m_interface->effectEvent, (*(effects::Effect*)effect), m_interface);
         return;
     }
+    
+    if(messageType == "worms"){
+        effects::Worms* effect = new effects::Worms();
+        ofNotifyEvent(m_interface->effectEvent, (*(effects::Effect*)effect), m_interface);
+        return;
+    }
 
     ofLogWarning() << "Unknown messageType" << messageType;
 }

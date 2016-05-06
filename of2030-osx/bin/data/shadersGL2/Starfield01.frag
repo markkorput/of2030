@@ -17,7 +17,6 @@ float Noise2d( in vec2 x )
     return fract( xhash + yhash );
 }
 
-// void mainImage( out vec4 fragColor, in vec2 fragCoord ){
 void main(void)
 {
 		vec2 iResolution = vec2(100.0, 400.0);
@@ -43,7 +42,5 @@ void main(void)
 				vColor += vec3( StarVal );
     }
 
-		//fragColor = vec4(vColor, 1.0);
 		gl_FragColor = vec4(vColor, 1.0);
-		// gl_FragColor = vec4(1.0, 1.0, 0.0, 1.0);
 }

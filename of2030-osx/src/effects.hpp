@@ -25,7 +25,8 @@ namespace of2030{ namespace effects {
         COLOR = 1,
         CURSOR = 2,
         STARS = 3,
-        VID = 4
+        VID = 4,
+        WORMS = 5
     };
 
     #define NO_TIME (-1.0f)
@@ -90,15 +91,31 @@ namespace of2030{ namespace effects {
     };
     
     
-    class Stars : public Effect{
+    class ShaderEffect : public Effect{
+    public:
+        //ShaderEffect();
+        virtual void setup(Context &context);
+        //virtual void draw(Context &context);
+    public:
+        string shaderName;
+        ofShader *shader;
+    };
+
+    class Stars : public ShaderEffect{
     public: // methods
         Stars();
-        virtual void setup(Context &context);
+        // virtual void setup(Context &context);
         virtual void draw(Context &context);
-    
-    public: // attributes
-        ofShader shader;
     };
+
+    
+    class Worms : public ShaderEffect{
+    public: // methods
+        Worms();
+        //virtual void setup(Context &context);
+        virtual void draw(Context &context);
+    };
+    
 
     
     class Vid : public Effect{
