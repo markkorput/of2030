@@ -122,11 +122,9 @@ void ShaderEffect::setup(Context &context){
     shader = ShaderManager::instance()->get(shaderName);
 }
 
-void ShaderEffect::draw(Context &context){
-    shader->begin();
-    ofDrawRectangle(0, 0, context.fbo->getWidth(), context.fbo->getHeight());
-    shader->end();
-};
+//void ShaderEffect::draw(Context &context){
+//
+//};
 
 
 Stars::Stars(){
@@ -143,9 +141,11 @@ void Stars::draw(Context &context){
     // ofLog() << "stars progress" << progress << ", time: " << context.time;
 
     ofSetColor(255);
-    shader->setUniform2f("iPos", ofVec2f(0.0f, progress));
-    shader->setUniform1f("iThreshold", treshold);
-    ShaderEffect::draw(context);
+    shader->begin();
+        shader->setUniform2f("iPos", ofVec2f(0.0f, progress));
+        shader->setUniform1f("iThreshold", treshold);
+        ofDrawRectangle(0, 0, context.fbo->getWidth(), context.fbo->getHeight());
+    shader->end();
 }
 
 
@@ -164,8 +164,10 @@ void Worms::draw(Context &context){
     ShaderEffect::draw(context);
 
     ofSetColor(255);
-    shader->setUniform1f("iTime", context.time);
-    ShaderEffect::draw(context);
+    shader->begin();
+        shader->setUniform1f("iTime", context.time);
+        ofDrawRectangle(0, 0, context.fbo->getWidth(), context.fbo->getHeight());
+    shader->end();
 }
 
 

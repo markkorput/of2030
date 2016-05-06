@@ -18,22 +18,21 @@ float worm(vec2 fragCoord, vec2 scroll, float tiltFactor){
 
 
     // hardness; 0.0 means all black, 1.0 means blurry edges, 10.0 means high-contrast edges
-	val *= 26.0;
- 	// increase; higher value means more white
+    val *= 26.0;
+    // increase; higher value means more white
     val += -25.0;
 
     return val;
 }
 
 void main(void){
-{
     // global scroll movement speed
-    vec2 scroll = vec2(2.0, -0.1) * iTime; //*6.0;
+    vec2 scroll = vec2(2.0, -0.1) * iTime;
     float tilt = 0.0;
 
-	float c = clamp(worm(gl_FragCoord, scroll, tilt), 0.0, 1.0);
-    c += clamp(worm(gl_FragCoord, scroll+vec2(5.0, 3.0), tilt+0.01), 0.0, 1.0);
-    c += clamp(worm(gl_FragCoord, scroll+vec2(50.0, 2.0), tilt+0.003), 0.0, 1.0);
+    float c = clamp(worm(gl_FragCoord.xy, scroll, tilt), 0.0, 1.0);
+    c += clamp(worm(gl_FragCoord.xy, scroll+vec2(5.0, 3.0), tilt+0.01), 0.0, 1.0);
+    c += clamp(worm(gl_FragCoord.xy, scroll+vec2(50.0, 2.0), tilt+0.003), 0.0, 1.0);
 
-  gl_FragColor = vec4(vec3(c), 1.0);
+    gl_FragColor = vec4(vec3(c), 1.0);
 }

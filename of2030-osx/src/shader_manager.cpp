@@ -71,13 +71,15 @@ void ShaderManager::destroy(){
   shaders.clear();
 }
 
-ofShader* ShaderManager::load(string name){
+ofShader* ShaderManager::load(string name, ofShader* pShader){
     // get shader path for the provided shader name
     string path = name_to_path(name);
     // allocate new shader object
-    ofShader *shader = new ofShader;
+    ofShader *shader = pShader;
+    if(shader == NULL) shader = new ofShader;
     // load vert and fragment shader source files
-    shader->load(path+".vert", path+".frag");
+    if(!shader->load(path+".vert", path+".frag"))
+        shader->unload();
     // store shader object for later reference
     shaders[name] = shader;
     // log activity
@@ -87,22 +89,20 @@ ofShader* ShaderManager::load(string name){
 }
 
 ofShader* ShaderManager::get(string name, bool load){
-    // try to find loaded shader
-    // string path = name_to_path(name);
-    // for(int i=players.size()-1; i>=0; i--){
-    //     if(players[i]->getMoviePath() == path){
-    //         return players[i];
-    //     }
-    // }
-
+    ofShader *pExisting = NULL;
+    
     // try to find already-loaded shader by name
     std::map<string, ofShader*>::iterator it = shaders.find(name);
-    if (it != shaders.end()) // found!
-      return it->second;
+    if (it != shaders.end()){ // found!
+        if(it->second->isLoaded())
+            return it->second;
+        // already allocated but failed to load previously
+        pExisting = it->second;
+    }
 
     // load new shader?
     if(load){
-        return this->load(name);
+        return this->load(name, pExisting);
     }
 
     // not found
