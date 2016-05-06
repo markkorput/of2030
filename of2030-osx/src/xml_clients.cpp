@@ -23,6 +23,17 @@ void xmlLoadClient(ofxXmlSettings &xml, XmlClient &client){
 
 // XmlClient implementation
 
+
+XmlClients* XmlClients::singleton = NULL;
+
+XmlClients* XmlClients::instance(){
+    if (!singleton){   // Only allow one instance of class to be generated.
+        singleton = new XmlClients();
+    }
+    return singleton;
+}
+
+
 void XmlClients::destroy(){
     for(auto &client: xml_clients)
         if(client)

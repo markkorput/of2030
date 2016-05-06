@@ -39,7 +39,6 @@ namespace of2030{
         // of2030::JsonFileReader m_client_cache_file;
         // ConfigFile m_config_file;
         XmlSettings m_xml_settings;
-        XmlClients m_xml_clients;
         XmlClient placeholderXmlClient;
 
         int id, index, count;

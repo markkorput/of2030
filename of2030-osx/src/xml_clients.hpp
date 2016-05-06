@@ -13,6 +13,10 @@ namespace of2030{
 
     
     class XmlClients{
+    public:
+        static XmlClients* instance();
+    private:
+        static XmlClients* singleton;
 
     public:
         XmlClients() : path("clients.xml"){};

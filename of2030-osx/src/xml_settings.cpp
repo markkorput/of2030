@@ -26,6 +26,10 @@ void XmlSettings::load(){
                 int id = xml.getValue("id", 0, i);
                 multi_client_ids.push_back(id);
             }
+            multi_screen_scale = xml.getValue("screen_scale", 1.0f);
+            multi_room_scale = ofVec3f(xml.getValue("room_scale_x", 1.0f),
+                                       xml.getValue("room_scale_y", 1.0f),
+                                       xml.getValue("room_scale_z", 1.0f));
         }
     }
 

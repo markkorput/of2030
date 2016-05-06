@@ -2,18 +2,43 @@
   <clients>
     <client>
       <id>1</id>
-      <screenpos><x>-4.5</x><y>-8.25</y><z>0.0</z></screenpos>
-      <screenrot><x>0.0</x><y>-90.0</y><z>0.0</z></screenrot>
+      <screenpos><x>0</x><y>0</y><z>0</z></screenpos>
+      <screenrot><x>0.0</x><y>90.0</y><z>0.0</z></screenrot>
     </client>
     <client>
       <id>2</id>
-      <screenpos><x>-4.5</x><y>0</y><z>0.0</z></screenpos>
-      <screenrot><x>0.0</x><y>-90.0</y><z>0.0</z></screenrot>
+      <screenpos><x>0</x><y>0.0</y><z>0.3</z></screenpos>
+      <screenrot><x>0.0</x><y>90.0</y><z>0.0</z></screenrot>
     </client>
     <client>
       <id>3</id>
-      <screenpos><x>-4.5</x><y>8.25</y><z>0.0</z></screenpos>
+      <screenpos><x>0</x><y>0.1</y><z>0.66</z></screenpos>
+      <screenrot><x>0.0</x><y>90.0</y><z>0.0</z></screenrot>
+    </client>
+    <client>
+      <id>4</id>
+      <screenpos><x>0.2</x><y>0</y><z>1.0</z></screenpos>
+      <screenrot><x>0.0</x><y>0.0</y><z>0.0</z></screenrot>
+    </client>
+    <client>
+      <id>5</id>
+      <screenpos><x>1</x><y>0.0</y><z>1.0</z></screenpos>
       <screenrot><x>0.0</x><y>-90.0</y><z>0.0</z></screenrot>
+    </client>
+    <client>
+      <id>6</id>
+      <screenpos><x>1</x><y>0</y><z>0.66</z></screenpos>
+      <screenrot><x>0.0</x><y>-90.0</y><z>0.0</z></screenrot>
+    </client>
+    <client>
+      <id>7</id>
+      <screenpos><x>1</x><y>0.0</y><z>0.3</z></screenpos>
+      <screenrot><x>0.0</x><y>-90.0</y><z>0.0</z></screenrot>
+    </client>
+    <client>
+      <id>8</id>
+      <screenpos><x>0.8</x><y>0.0</y><z>0</z></screenpos>
+      <screenrot><x>0.0</x><y>180.0</y><z>0.0</z></screenrot>
     </client>
   </clients>
 </of2030>

@@ -1,6 +1,7 @@
 #include "ofApp.h"
 
 #include "interface.hpp"
+#include "xml_clients.hpp"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -27,6 +28,8 @@ void ofApp::setup(){
     m_multiClient.setup();
     
     m_renderer.setup();
+    
+    ofAddListener(of2030::Interface::instance()->reconfigClientsEvent, this, &ofApp::onReconfigClients);
 }
 
 //--------------------------------------------------------------
@@ -113,3 +116,9 @@ void ofApp::onNewChangeModel(CMS::Model &model){
     }
 }
 
+void ofApp::onReconfigClients(string &path){
+    m_xmlSettings.load();
+    of2030::XmlClients* instance = of2030::XmlClients::instance();
+    if(path != "") instance->path = path;
+    instance->load();
+}

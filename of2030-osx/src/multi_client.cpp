@@ -66,10 +66,11 @@ void MultiClient::draw(){
     for(auto &renderer: m_renderers){
         ofPushMatrix();
         XmlClient* c = renderer->client_info->getXmlClient();
-        ofTranslate(c->screenpos);
+        ofTranslate(c->screenpos * m_xml->multi_room_scale);
         ofRotateX(c->screenrot.x);
         ofRotateY(c->screenrot.y);
         ofRotateZ(c->screenrot.z);
+        ofScale(m_xml->multi_screen_scale,m_xml->multi_screen_scale,m_xml->multi_screen_scale);
         renderer->draw();
         ofPopMatrix();
     }
@@ -81,6 +82,8 @@ void MultiClient::draw(){
 //        }
     
     cam.end();
+    
+    
 }
 
 ofPoint MultiClient::getTotalSize(){
