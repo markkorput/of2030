@@ -8,6 +8,7 @@
 
 #include "ofMain.h"
 #include "renderer.hpp"
+#include "xml_effects.hpp"
 
 using namespace of2030;
 using namespace of2030::effects;
@@ -56,15 +57,11 @@ void Renderer::draw(){
     // ofLog() << "[Renderer] active effects: " << size;
 
     Context context;
-    context.time = player->getTime();
-    context.client_id = client_info->id;
-    context.client_index = client_info->index;
-    context.client_count = client_info->count;
-    context.client_setting = client_info->getClient();
-    context.fbo = fbo;
+    fillContextClientInfo(context);
     
     for(int i=0; i<size; i++){
         Effect* effect = player->active_effects[i];
+        fillEffectSetting(*effect, context.effect_setting);
         effect->draw(context);
     }
     
@@ -82,11 +79,38 @@ void Renderer::registerRealtimeEffectCallback(bool reg){
 
 void Renderer::onRealtimeEffect(Effect &effect){
     Context context;
+    fillContext(context, effect);
+    effect.setup(context);
+}
+
+void Renderer::fillContext(effects::Context &context, Effect &effect){
+    fillContextClientInfo(context);
+    fillEffectSetting(effect, context.effect_setting);
+}
+
+void Renderer::fillContextClientInfo(effects::Context &context){
     context.time = player->getTime();
     context.client_id = client_info->id;
     context.client_index = client_info->index;
     context.client_count = client_info->count;
     context.client_setting = client_info->getClient();
     context.fbo = fbo;
-    effect.setup(context);
 }
+
+void Renderer::fillEffectSetting(effects::Effect &effect, EffectSetting &fxsetting){
+    XmlEffects *fxs = XmlEffects::instance();
+
+    EffectSetting *pSetting = fxs->getEffectSetting(effect.name, "");
+    if(pSetting) fxsetting.merge(*pSetting);
+    
+    pSetting = fxs->getEffectSetting(effect.name, player->song);
+    if(pSetting) fxsetting.merge(*pSetting);
+
+    pSetting = fxs->getEffectSetting(effect.name, "/"+player->song+"/"+player->clip);
+    if(pSetting) fxsetting.merge(*pSetting);
+}
+
+
+
+
+

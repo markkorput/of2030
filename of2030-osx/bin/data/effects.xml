@@ -1,15 +1,15 @@
 <of2030>
   <effects>
     <effect name="cursor" part="/fusion/fusion2">
-      <beam_width>30</beam_width>
+      <width>30</width>
     </effect>
     <effect name="cursor" part="/fusion">
       <iterations>2</iterations>
-      <beam_width>20</beam_width>
+      <width>20</width>
     </effect>
     <effect name="cursor">
       <iterations>1</iterations>
-      <beam_width>10</beam_width>
+      <width>10</width>
       <duration>3</duration>
     </effect>
   </effects>

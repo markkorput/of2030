@@ -21,6 +21,8 @@ namespace of2030{
 
         std::string path;
         vector<EffectSetting*> effect_settings;
+        
+        EffectSetting* getEffectSetting(string name, string part);
     };
 }
 

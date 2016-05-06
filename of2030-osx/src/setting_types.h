@@ -22,16 +22,37 @@ namespace of2030{
     
     class EffectSetting{
     public: // attributes
-        string effectName;
-        string partPath;
+        string name;
+        string part;
         map<string, string> data;
 
     public: // methods
+        void merge(EffectSetting &other){
+            map<string, string>::iterator it = data.begin();
+            while(it != data.end()){
+                this->data[it->first] = it->second;
+            }
+        }
+
         string getValue(string name, string defaultValue=""){
             std::map<string,string>::iterator it = data.find(name);
             if(it == data.end())
                 return defaultValue;
             return it->second;
+        }
+
+        int getValue(string name, int defaultValue){
+            std::map<string,string>::iterator it = data.find(name);
+            if(it != data.end())
+                ofToInt(it->second);
+            return defaultValue;
+        }
+        
+        float getValue(string name, float defaultValue){
+            std::map<string,string>::iterator it = data.find(name);
+            if(it != data.end())
+                ofToFloat(it->second);
+            return defaultValue;
         }
     };
 }

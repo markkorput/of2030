@@ -5,10 +5,14 @@ using namespace of2030;
 
 // local methods
 
-void xmlLoadEffect(TiXmlElement &xml_el, EffectSetting &fx, string name, string part){
-    
-    fx.effectName = name;
-    fx.partPath = part;
+void xmlLoadEffect(TiXmlElement &xml_el, EffectSetting &fx){
+
+    const char *pstr = xml_el.Attribute("name");
+    if(pstr)
+        fx.name = pstr;
+    pstr = xml_el.Attribute("part");
+    if(pstr)
+        fx.part = pstr;
     
     fx.data.clear();
     for(TiXmlElement* child = xml_el.FirstChildElement(); child != NULL; child = child->NextSiblingElement()){
@@ -39,8 +43,6 @@ void XmlEffects::destroy(){
 }
 
 
-
-
 void XmlEffects::load(){
     ofxXmlSettings xml;
     xml.loadFile(path);
@@ -54,7 +56,6 @@ void XmlEffects::load(){
             EffectSetting *fx;
             int loaded_count = effect_settings.size();
             int xml_count = 0;
-            string name,part;
             
             el = el->FirstChildElement("effect");
             while(el){
@@ -73,7 +74,7 @@ void XmlEffects::load(){
                 }
                 
                 // populate our client instance
-                xmlLoadEffect(*el, *fx, name, part);
+                xmlLoadEffect(*el, *fx);
 
                 xml_count++;
                 el = el->NextSiblingElement("effect");
@@ -88,4 +89,12 @@ void XmlEffects::load(){
             }
         }
     }
+}
+
+EffectSetting* XmlEffects::getEffectSetting(string name, string part){
+    for(auto & setting: effect_settings)
+        if(setting->name == name and setting->part == part)
+            return setting;
+
+    return NULL;
 }
