@@ -28,6 +28,7 @@ namespace of2030 {
     
     public: // events
         ofEvent<effects::Effect> effectEvent;
+        ofEvent<string> reconfigClientsEvent;
 
     private:
         static Interface* singleton;
