@@ -58,19 +58,32 @@ void OscReceiver::update(){
         m_oscReceiver.getNextMessage(m);
         message_count++;
 
-        if(m.getAddress() == osc_setting->addresses["effect"]){
+        string addr = m.getAddress();
+        if(addr == osc_setting->addresses["effect"]){
             //ofLogVerbose() << "Got /message OSC Message";
             if(processFxMessage(m))
                 continue;
         }
         
-        if(m.getAddress() == osc_setting->addresses["control"]){
+        if(addr == osc_setting->addresses["control"]){
             //ofLogVerbose() << "Got /ctrl OSC Message";
             if(processCtrlMessage(m))
                 continue;
         }
+        
+        if(addr == osc_setting->addresses["song"]){
+            string name = m.getArgAsString(0);
+            ofNotifyEvent(m_interface->songEvent, name, m_interface);
+            continue;
+        }
 
-        if(m.getAddress() == "/effect"){
+        if(addr == osc_setting->addresses["clip"]){
+            string name = m.getArgAsString(0);
+            ofNotifyEvent(m_interface->clipEvent, name, m_interface);
+            continue;
+        }
+
+        if(addr == "/effect"){
             //ofLogVerbose() << "Got /effect OSC Message";
             if(processJsonEffectMessage(m))
                 continue;
@@ -206,13 +219,13 @@ bool OscReceiver::processFxMessage(ofxOscMessage &m){
         ofNotifyEvent(m_interface->effectEvent, (*(effects::Effect*)cursor_effect), m_interface);
         return true;
     }
-    
+
     if(messageType == "stars"){
         effects::Stars* effect = new effects::Stars();
         ofNotifyEvent(m_interface->effectEvent, (*(effects::Effect*)effect), m_interface);
         return true;
     }
-    
+
     if(messageType == "vid"){
         effects::Vid* effect = new effects::Vid();
         ofNotifyEvent(m_interface->effectEvent, (*(effects::Effect*)effect), m_interface);

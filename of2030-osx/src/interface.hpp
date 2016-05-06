@@ -25,6 +25,8 @@ namespace of2030 {
         ofEvent<string> reconfigSettingsEvent;
         ofEvent<string> reconfigClientsEvent;
         ofEvent<string> reconfigEffectsEvent;
+        ofEvent<string> songEvent;
+        ofEvent<string> clipEvent;
 
     private:
         static Interface* singleton;
