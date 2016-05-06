@@ -11,6 +11,7 @@
 		4D3B38E41CC66A95004C8994 /* effects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D3B38E21CC66A95004C8994 /* effects.cpp */; };
 		4D3B38F41CC66E16004C8994 /* ofxJSONElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D3B38EA1CC66E16004C8994 /* ofxJSONElement.cpp */; };
 		4D3B38F51CC66E16004C8994 /* jsoncpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D3B38F31CC66E16004C8994 /* jsoncpp.cpp */; };
+		4D4C03A21CDCF45E009EEB63 /* xml_effects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D4C03A01CDCF45E009EEB63 /* xml_effects.cpp */; };
 		4D6285A91CCD7D5500EA5D20 /* client_info.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D6285A71CCD7D5500EA5D20 /* client_info.cpp */; };
 		4D7E54FD1CC6AD1D00DF588E /* interface_player_bridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D7E54FB1CC6AD1D00DF588E /* interface_player_bridge.cpp */; };
 		4D7E55021CC6C71B00DF588E /* renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D7E55001CC6C71B00DF588E /* renderer.cpp */; };
@@ -27,7 +28,6 @@
 		4D9B29751CC64190005D65E9 /* OscReceivedElements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D9B29671CC64190005D65E9 /* OscReceivedElements.cpp */; };
 		4D9B29761CC64190005D65E9 /* OscTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D9B29691CC64190005D65E9 /* OscTypes.cpp */; };
 		4D9B297F1CC64F5D005D65E9 /* interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D9B297D1CC64F5D005D65E9 /* interface.cpp */; };
-		4D9B298D1CC65084005D65E9 /* CMSModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D9B298B1CC65084005D65E9 /* CMSModel.cpp */; };
 		4D9B29911CC65268005D65E9 /* osc_receiver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D9B298F1CC65268005D65E9 /* osc_receiver.cpp */; };
 		4D9B299B1CC65D82005D65E9 /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D9B29941CC65D82005D65E9 /* ofxXmlSettings.cpp */; };
 		4D9B299C1CC65D82005D65E9 /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D9B29971CC65D82005D65E9 /* tinyxml.cpp */; };
@@ -39,6 +39,8 @@
 		4DE274CA1CCE1D9300F2D470 /* xml_settings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DE274C81CCE1D9300F2D470 /* xml_settings.cpp */; };
 		4DE274CE1CCE242B00F2D470 /* multi_client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DE274CC1CCE242B00F2D470 /* multi_client.cpp */; };
 		4DE491011CC69C55003E7958 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DE490FF1CC69C55003E7958 /* player.cpp */; };
+		4DF6EBE61CDCA5B300D37FB7 /* shader_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DF6EBE41CDCA5B300D37FB7 /* shader_manager.cpp */; };
+		4DF6EBEB1CDCB90100D37FB7 /* xml_clients.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DF6EBE91CDCB90100D37FB7 /* xml_clients.cpp */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1D0A3A1BDC003C02F2 /* main.cpp */; };
 		E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */; };
@@ -84,6 +86,8 @@
 		4D3B38F01CC66E16004C8994 /* json-forwards.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "json-forwards.h"; sourceTree = "<group>"; };
 		4D3B38F11CC66E16004C8994 /* json.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = json.h; sourceTree = "<group>"; };
 		4D3B38F31CC66E16004C8994 /* jsoncpp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = jsoncpp.cpp; sourceTree = "<group>"; };
+		4D4C03A01CDCF45E009EEB63 /* xml_effects.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = xml_effects.cpp; sourceTree = "<group>"; };
+		4D4C03A11CDCF45E009EEB63 /* xml_effects.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = xml_effects.hpp; sourceTree = "<group>"; };
 		4D6285A71CCD7D5500EA5D20 /* client_info.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = client_info.cpp; sourceTree = "<group>"; };
 		4D6285A81CCD7D5500EA5D20 /* client_info.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = client_info.hpp; sourceTree = "<group>"; };
 		4D7E54FB1CC6AD1D00DF588E /* interface_player_bridge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = interface_player_bridge.cpp; sourceTree = "<group>"; };
@@ -124,10 +128,6 @@
 		4D9B296A1CC64190005D65E9 /* OscTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OscTypes.h; sourceTree = "<group>"; };
 		4D9B297D1CC64F5D005D65E9 /* interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = interface.cpp; sourceTree = "<group>"; };
 		4D9B297E1CC64F5D005D65E9 /* interface.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = interface.hpp; sourceTree = "<group>"; };
-		4D9B29891CC65084005D65E9 /* CMS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMS.h; sourceTree = "<group>"; };
-		4D9B298A1CC65084005D65E9 /* CMSCollection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMSCollection.h; sourceTree = "<group>"; };
-		4D9B298B1CC65084005D65E9 /* CMSModel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CMSModel.cpp; sourceTree = "<group>"; };
-		4D9B298C1CC65084005D65E9 /* CMSModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMSModel.h; sourceTree = "<group>"; };
 		4D9B298F1CC65268005D65E9 /* osc_receiver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = osc_receiver.cpp; sourceTree = "<group>"; };
 		4D9B29901CC65268005D65E9 /* osc_receiver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = osc_receiver.hpp; sourceTree = "<group>"; };
 		4D9B29941CC65D82005D65E9 /* ofxXmlSettings.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxXmlSettings.cpp; sourceTree = "<group>"; };
@@ -148,6 +148,11 @@
 		4DE274CD1CCE242B00F2D470 /* multi_client.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = multi_client.hpp; sourceTree = "<group>"; };
 		4DE490FF1CC69C55003E7958 /* player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = player.cpp; sourceTree = "<group>"; };
 		4DE491001CC69C55003E7958 /* player.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = player.hpp; sourceTree = "<group>"; };
+		4DF6EBE41CDCA5B300D37FB7 /* shader_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = shader_manager.cpp; sourceTree = "<group>"; };
+		4DF6EBE51CDCA5B300D37FB7 /* shader_manager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = shader_manager.hpp; sourceTree = "<group>"; };
+		4DF6EBE91CDCB90100D37FB7 /* xml_clients.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = xml_clients.cpp; sourceTree = "<group>"; };
+		4DF6EBEA1CDCB90100D37FB7 /* xml_clients.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = xml_clients.hpp; sourceTree = "<group>"; };
+		4DF6EBF21CDCE64E00D37FB7 /* setting_types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = setting_types.h; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E4B69B5B0A3A1756003C02F2 /* emptyExampleDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = emptyExampleDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4B69E1D0A3A1BDC003C02F2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = src/main.cpp; sourceTree = SOURCE_ROOT; };
@@ -333,53 +338,15 @@
 		4D9B297C1CC64F52005D65E9 /* 2030 */ = {
 			isa = PBXGroup;
 			children = (
+				4DF6EBF21CDCE64E00D37FB7 /* setting_types.h */,
 				4DE274CB1CCE23FE00F2D470 /* test */,
-				4D3B38E21CC66A95004C8994 /* effects.cpp */,
-				4D3B38E31CC66A95004C8994 /* effects.hpp */,
-				4D9B297D1CC64F5D005D65E9 /* interface.cpp */,
-				4D9B297E1CC64F5D005D65E9 /* interface.hpp */,
-				4D9B298F1CC65268005D65E9 /* osc_receiver.cpp */,
-				4D9B29901CC65268005D65E9 /* osc_receiver.hpp */,
-				4D9B299F1CC6692A005D65E9 /* composition.cpp */,
-				4D9B29A01CC6692A005D65E9 /* composition.hpp */,
-				4DE490FF1CC69C55003E7958 /* player.cpp */,
-				4DE491001CC69C55003E7958 /* player.hpp */,
-				4D7E54FB1CC6AD1D00DF588E /* interface_player_bridge.cpp */,
-				4D7E54FC1CC6AD1D00DF588E /* interface_player_bridge.hpp */,
-				4D7E55001CC6C71B00DF588E /* renderer.cpp */,
-				4D7E55011CC6C71B00DF588E /* renderer.hpp */,
-				4DDF77401CCD7AC000CB936A /* json_file_reader.cpp */,
-				4DDF77411CCD7AC000CB936A /* json_file_reader.hpp */,
-				4DDF773D1CCD73B900CB936A /* config_file.cpp */,
-				4DDF773E1CCD73B900CB936A /* config_file.hpp */,
+				4DF6EBEE1CDCB95600D37FB7 /* io */,
+				4DF6EBED1CDCB93100D37FB7 /* communication */,
+				4DF6EBEF1CDCB97200D37FB7 /* visual */,
 				4D6285A71CCD7D5500EA5D20 /* client_info.cpp */,
 				4D6285A81CCD7D5500EA5D20 /* client_info.hpp */,
-				4DE274C81CCE1D9300F2D470 /* xml_settings.cpp */,
-				4DE274C91CCE1D9300F2D470 /* xml_settings.hpp */,
-				4D1BFD551CD8D9C000D5493C /* video_manager.cpp */,
-				4D1BFD561CD8D9C000D5493C /* video_manager.hpp */,
 			);
 			name = 2030;
-			sourceTree = "<group>";
-		};
-		4D9B29871CC65084005D65E9 /* ofxCMS */ = {
-			isa = PBXGroup;
-			children = (
-				4D9B29881CC65084005D65E9 /* src */,
-			);
-			name = ofxCMS;
-			sourceTree = "<group>";
-		};
-		4D9B29881CC65084005D65E9 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				4D9B29891CC65084005D65E9 /* CMS.h */,
-				4D9B298A1CC65084005D65E9 /* CMSCollection.h */,
-				4D9B298B1CC65084005D65E9 /* CMSModel.cpp */,
-				4D9B298C1CC65084005D65E9 /* CMSModel.h */,
-			);
-			name = src;
-			path = ../../../addons/ofxCMS/src;
 			sourceTree = "<group>";
 		};
 		4D9B29921CC65D82005D65E9 /* ofxXmlSettings */ = {
@@ -422,6 +389,62 @@
 			name = test;
 			sourceTree = "<group>";
 		};
+		4DF6EBEC1CDCB90800D37FB7 /* _archive */ = {
+			isa = PBXGroup;
+			children = (
+				4DDF773D1CCD73B900CB936A /* config_file.cpp */,
+				4DDF773E1CCD73B900CB936A /* config_file.hpp */,
+				4DDF77401CCD7AC000CB936A /* json_file_reader.cpp */,
+				4DDF77411CCD7AC000CB936A /* json_file_reader.hpp */,
+			);
+			name = _archive;
+			sourceTree = "<group>";
+		};
+		4DF6EBED1CDCB93100D37FB7 /* communication */ = {
+			isa = PBXGroup;
+			children = (
+				4D7E54FB1CC6AD1D00DF588E /* interface_player_bridge.cpp */,
+				4D7E54FC1CC6AD1D00DF588E /* interface_player_bridge.hpp */,
+				4D9B297D1CC64F5D005D65E9 /* interface.cpp */,
+				4D9B297E1CC64F5D005D65E9 /* interface.hpp */,
+				4D9B298F1CC65268005D65E9 /* osc_receiver.cpp */,
+				4D9B29901CC65268005D65E9 /* osc_receiver.hpp */,
+			);
+			name = communication;
+			sourceTree = "<group>";
+		};
+		4DF6EBEE1CDCB95600D37FB7 /* io */ = {
+			isa = PBXGroup;
+			children = (
+				4D4C03A01CDCF45E009EEB63 /* xml_effects.cpp */,
+				4D4C03A11CDCF45E009EEB63 /* xml_effects.hpp */,
+				4DF6EBE91CDCB90100D37FB7 /* xml_clients.cpp */,
+				4DF6EBEA1CDCB90100D37FB7 /* xml_clients.hpp */,
+				4DE274C81CCE1D9300F2D470 /* xml_settings.cpp */,
+				4DE274C91CCE1D9300F2D470 /* xml_settings.hpp */,
+			);
+			name = io;
+			sourceTree = "<group>";
+		};
+		4DF6EBEF1CDCB97200D37FB7 /* visual */ = {
+			isa = PBXGroup;
+			children = (
+				4DF6EBE41CDCA5B300D37FB7 /* shader_manager.cpp */,
+				4DF6EBE51CDCA5B300D37FB7 /* shader_manager.hpp */,
+				4D3B38E21CC66A95004C8994 /* effects.cpp */,
+				4D3B38E31CC66A95004C8994 /* effects.hpp */,
+				4D9B299F1CC6692A005D65E9 /* composition.cpp */,
+				4D9B29A01CC6692A005D65E9 /* composition.hpp */,
+				4DE490FF1CC69C55003E7958 /* player.cpp */,
+				4DE491001CC69C55003E7958 /* player.hpp */,
+				4D7E55001CC6C71B00DF588E /* renderer.cpp */,
+				4D7E55011CC6C71B00DF588E /* renderer.hpp */,
+				4D1BFD551CD8D9C000D5493C /* video_manager.cpp */,
+				4D1BFD561CD8D9C000D5493C /* video_manager.hpp */,
+			);
+			name = visual;
+			sourceTree = "<group>";
+		};
 		6948EE371B920CB800B5AC1A /* local_addons */ = {
 			isa = PBXGroup;
 			children = (
@@ -433,7 +456,6 @@
 			isa = PBXGroup;
 			children = (
 				4D9B29401CC64190005D65E9 /* ofxOsc */,
-				4D9B29871CC65084005D65E9 /* ofxCMS */,
 				4D9B29921CC65D82005D65E9 /* ofxXmlSettings */,
 				4D3B38E71CC66E16004C8994 /* ofxJSON */,
 			);
@@ -464,6 +486,7 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				4DF6EBEC1CDCB90800D37FB7 /* _archive */,
 				4D9B297C1CC64F52005D65E9 /* 2030 */,
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
@@ -509,7 +532,7 @@
 		E4B69B4C0A3A1720003C02F2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0730;
 			};
 			buildConfigurationList = E4B69B4D0A3A1720003C02F2 /* Build configuration list for PBXProject "emptyExample" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -568,15 +591,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DF6EBE61CDCA5B300D37FB7 /* shader_manager.cpp in Sources */,
 				4D9B299B1CC65D82005D65E9 /* ofxXmlSettings.cpp in Sources */,
 				4D9B29711CC64190005D65E9 /* NetworkingUtils.cpp in Sources */,
+				4D4C03A21CDCF45E009EEB63 /* xml_effects.cpp in Sources */,
 				4DE274CA1CCE1D9300F2D470 /* xml_settings.cpp in Sources */,
-				4D9B298D1CC65084005D65E9 /* CMSModel.cpp in Sources */,
 				4D9B299C1CC65D82005D65E9 /* tinyxml.cpp in Sources */,
 				4D9B29A11CC6692A005D65E9 /* composition.cpp in Sources */,
 				4D3B38F51CC66E16004C8994 /* jsoncpp.cpp in Sources */,
 				4D9B296B1CC64190005D65E9 /* ofxOscBundle.cpp in Sources */,
 				4D9B296D1CC64190005D65E9 /* ofxOscParameterSync.cpp in Sources */,
+				4DF6EBEB1CDCB90100D37FB7 /* xml_clients.cpp in Sources */,
 				4DE491011CC69C55003E7958 /* player.cpp in Sources */,
 				4D9B296C1CC64190005D65E9 /* ofxOscMessage.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
@@ -623,6 +648,7 @@
 				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/bin/";
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_AUTO_VECTORIZATION = YES;
 				GCC_ENABLE_SSE3_EXTENSIONS = YES;
 				GCC_ENABLE_SUPPLEMENTAL_SSE3_INSTRUCTIONS = YES;
@@ -713,6 +739,7 @@
 				INFOPLIST_FILE = "openFrameworks-Info.plist";
 				INSTALL_PATH = /Applications;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = cc.openFrameworks.ofapp;
 				PRODUCT_NAME = "$(TARGET_NAME)Debug";
 				USER_HEADER_SEARCH_PATHS = ../../../addons/ofxJSON/libs/jsoncpp/include/;
 				WRAPPER_EXTENSION = app;
@@ -749,6 +776,7 @@
 				INFOPLIST_FILE = "openFrameworks-Info.plist";
 				INSTALL_PATH = /Applications;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = cc.openFrameworks.ofapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = ../../../addons/ofxJSON/libs/jsoncpp/include/;
 				WRAPPER_EXTENSION = app;

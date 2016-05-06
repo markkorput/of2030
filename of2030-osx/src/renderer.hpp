@@ -13,6 +13,7 @@
 #include "player.hpp"
 #include "effects.hpp"
 #include "client_info.hpp"
+#include "setting_types.h"
 
 namespace of2030 {
     
@@ -35,7 +36,9 @@ namespace of2030 {
         
         void registerRealtimeEffectCallback(bool reg=true);
         void onRealtimeEffect(effects::Effect &effect);
-        
+        void fillContext(effects::Context &context, effects::Effect &effect);
+        void fillContextClientInfo(effects::Context &context);
+        void fillEffectSetting(effects::Effect &effect, EffectSetting &fxsetting);
 
     public: // properties
         

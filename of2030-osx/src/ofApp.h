@@ -10,6 +10,7 @@
 #include "xml_settings.hpp"
 #include "multi_client.hpp"
 
+
 class ofApp : public ofBaseApp{
 	public:
 		void setup();
@@ -30,7 +31,9 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
     
         // callbacks
-        void onNewChangeModel(CMS::Model &model);
+        void onReconfigSettings(string &path);
+        void onReconfigClients(string &path);
+        void onReconfigEffects(string &path);
 
     private:
         of2030::OscReceiver m_oscReceiver;
@@ -40,4 +43,5 @@ class ofApp : public ofBaseApp{
         of2030::ClientInfo *m_clientInfo;
         of2030::XmlSettings m_xmlSettings;
         of2030::MultiClient m_multiClient;
+    
 };

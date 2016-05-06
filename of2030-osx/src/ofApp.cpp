@@ -1,20 +1,24 @@
 #include "ofApp.h"
 
 #include "interface.hpp"
+#include "xml_clients.hpp"
+#include "xml_effects.hpp"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofLogToFile("log.txt", true);
 
     m_xmlSettings.load();
+    ofSetLogLevel(m_xmlSettings.log_level);
+
+    of2030::XmlClients::instance()->load();
+    of2030::XmlEffects::instance()->load();
 
     m_clientInfo = of2030::ClientInfo::instance();
     m_clientInfo->setup();
 
-    m_oscReceiver.configure(m_xmlSettings.osc_port);
+    m_oscReceiver.configure(m_xmlSettings.osc_setting);
     m_oscReceiver.setup();
-
-    ofAddListener(of2030::Interface::instance()->changes_collection.modelAddedEvent, this, &ofApp::onNewChangeModel);
 
     m_player = of2030::Player::instance();
     m_player->start();
@@ -27,6 +31,10 @@ void ofApp::setup(){
     m_multiClient.setup();
     
     m_renderer.setup();
+    
+    ofAddListener(of2030::Interface::instance()->reconfigSettingsEvent, this, &ofApp::onReconfigSettings);
+    ofAddListener(of2030::Interface::instance()->reconfigClientsEvent, this, &ofApp::onReconfigClients);
+    ofAddListener(of2030::Interface::instance()->reconfigEffectsEvent, this, &ofApp::onReconfigEffects);
 }
 
 //--------------------------------------------------------------
@@ -46,8 +54,6 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::exit(ofEventArgs &args){
-//    m_xmlSettings.osc_port = (int)m_oscReceiver.getPort();
-//    m_xmlSettings.save();
 }
 
 //--------------------------------------------------------------
@@ -105,11 +111,23 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
 
 }
 
-void ofApp::onNewChangeModel(CMS::Model &model){
-    // ofLog() << "Got new change model with " << model.attributes().size() << " attributes";
-    
-    for(map<string,string>::iterator it = model.attributes().begin(); it != model.attributes().end(); ++it) {
-        ofLog() << " - " << it->first << ": " << it->second;
-    }
+void ofApp::onReconfigSettings(string &path){
+    m_xmlSettings.load();
+    ofSetLogLevel(m_xmlSettings.log_level);
+    m_oscReceiver.configure(m_xmlSettings.osc_setting);
+    m_multiClient.load(m_xmlSettings);
 }
 
+void ofApp::onReconfigClients(string &path){
+    of2030::XmlEffects::instance()->load();
+    of2030::XmlClients* instance = of2030::XmlClients::instance();
+    if(path != "") instance->path = path;
+    instance->load();
+}
+
+
+void ofApp::onReconfigEffects(string &path){
+    of2030::XmlEffects* inst = of2030::XmlEffects::instance();
+    if(path != "") inst->path = path;
+    inst->load();
+}

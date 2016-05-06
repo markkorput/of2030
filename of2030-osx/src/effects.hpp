@@ -11,12 +11,15 @@
 
 //#include <stdio.h>
 #include "ofMain.h"
+#include "setting_types.h"
 
 namespace of2030{ namespace effects {
 
     typedef struct {
         float time;
         int client_id, client_index, client_count;
+        ClientSetting *client_setting;
+        EffectSetting effect_setting;
         ofFbo* fbo;
     } Context;
 
@@ -25,12 +28,11 @@ namespace of2030{ namespace effects {
         COLOR = 1,
         CURSOR = 2,
         STARS = 3,
-        VID = 4
+        VID = 4,
+        WORMS = 5
     };
 
     #define NO_TIME (-1.0f)
-
-
 
     class Effect{
 
@@ -45,6 +47,7 @@ namespace of2030{ namespace effects {
         bool hasStartTime(){ return startTime >= 0.0f; }
         bool hasEndTime(){ return endTime >= 0.0f; }
         bool hasDuration(){ return duration >= 0.0f; }
+
         float getDuration();
 
     public: // properties
@@ -52,17 +55,26 @@ namespace of2030{ namespace effects {
         int cid;
         float startTime, endTime, duration;
         EffectType type;
+        string name;
 
         static int cidCounter;
     };
 
+    class EffectLogic{
+    public:
+        EffectLogic(Effect *_effect, Context *_context) : effect(_effect), context(_context){}
+        float getEffectTime();
+    
+        Context *context;
+        Effect *effect;
+    };
 
 
     class Off : public Effect{
 
     public: // methods
 
-        Off(){ type = EffectType::OFF; }
+        Off(){ type = EffectType::OFF; name = "off"; }
         // virtual void setup(Context &context);
         virtual void draw(Context &context);
     };
@@ -75,11 +87,13 @@ namespace of2030{ namespace effects {
         Color();
         // virtual void setup(Context &context);
         virtual void draw(Context &context);
-
+        
+        float getGlobalDuration();
+        float getIterations();
+        
     public: // attributes
         ofColor color;
     };
-
 
     class Cursor : public Effect{
    
@@ -88,17 +102,45 @@ namespace of2030{ namespace effects {
         // virtual void setup(Context &context);
         virtual void draw(Context &context);
     };
+
+    class CursorLogic : public EffectLogic{
+    public:
+        CursorLogic(Effect *_effect, Context *_context) : EffectLogic(_effect, _context){}
+        inline float getGlobalDuration();
+        inline float getIterations();
+        inline float getIterationDuration();
+        inline int getCurrentIteration();
+        inline float getIterationTime();
+        inline float getIterationProgress();
+        inline float getLocalProgress();
+    };
+
     
-    
-    class Stars : public Effect{
+    class ShaderEffect : public Effect{
+    public:
+        //ShaderEffect();
+        virtual void setup(Context &context);
+        //virtual void draw(Context &context);
+    public:
+        string shaderName;
+        ofShader *shader;
+    };
+
+    class Stars : public ShaderEffect{
     public: // methods
         Stars();
-        virtual void setup(Context &context);
+        // virtual void setup(Context &context);
         virtual void draw(Context &context);
-    
-    public: // attributes
-        ofShader shader;
     };
+
+    
+    class Worms : public ShaderEffect{
+    public: // methods
+        Worms();
+        //virtual void setup(Context &context);
+        virtual void draw(Context &context);
+    };
+    
 
     
     class Vid : public Effect{
