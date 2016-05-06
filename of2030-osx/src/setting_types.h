@@ -44,8 +44,7 @@ namespace of2030{
 
     public: // methods
         void merge(EffectSetting &other){
-            map<string, string>::iterator it = data.begin();
-            while(it != data.end()){
+            for(map<string, string>::iterator it = other.data.begin(); it != other.data.end(); ++it){
                 this->data[it->first] = it->second;
             }
         }
@@ -60,15 +59,15 @@ namespace of2030{
         int getValue(string name, int defaultValue){
             std::map<string,string>::iterator it = data.find(name);
             if(it != data.end())
-                ofToInt(it->second);
-            return defaultValue;
+                return defaultValue;
+            return ofToInt(it->second);
         }
         
         float getValue(string name, float defaultValue){
             std::map<string,string>::iterator it = data.find(name);
-            if(it != data.end())
-                ofToFloat(it->second);
-            return defaultValue;
+            if(it == data.end())
+                return defaultValue;
+            return ofToFloat(it->second);
         }
     };
 }

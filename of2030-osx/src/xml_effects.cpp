@@ -17,7 +17,7 @@ void xmlLoadEffect(TiXmlElement &xml_el, EffectSetting &fx){
     fx.data.clear();
     for(TiXmlElement* child = xml_el.FirstChildElement(); child != NULL; child = child->NextSiblingElement()){
         fx.data[child->ValueStr()] = child->ToElement()->GetText();
-        ofLog() << "got value: " << child->ValueStr() << "/" << child->ToElement()->GetText();
+        ofLogVerbose() << "[XmlEffect] got value: " << child->ValueStr() << "/" << child->ToElement()->GetText();
     }
 }
 
@@ -92,9 +92,13 @@ void XmlEffects::load(){
 }
 
 EffectSetting* XmlEffects::getEffectSetting(string name, string part){
-    for(auto & setting: effect_settings)
-        if(setting->name == name and setting->part == part)
+    for(int i=effect_settings.size()-1; i>=0; i--){
+        EffectSetting* setting = effect_settings[i];
+
+        if(setting->name == name && setting->part == part){
             return setting;
+        }
+    }
 
     return NULL;
 }

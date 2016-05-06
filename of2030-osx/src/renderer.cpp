@@ -101,13 +101,19 @@ void Renderer::fillEffectSetting(effects::Effect &effect, EffectSetting &fxsetti
     XmlEffects *fxs = XmlEffects::instance();
 
     EffectSetting *pSetting = fxs->getEffectSetting(effect.name, "");
-    if(pSetting) fxsetting.merge(*pSetting);
-    
-    pSetting = fxs->getEffectSetting(effect.name, player->song);
-    if(pSetting) fxsetting.merge(*pSetting);
+    if(pSetting)
+        fxsetting.merge(*pSetting);
+    else if(pSetting = fxs->getEffectSetting(effect.name, "/"))
+        fxsetting.merge(*pSetting);
+
+    pSetting = fxs->getEffectSetting(effect.name, "/"+player->song);
+    if(pSetting)
+        fxsetting.merge(*pSetting);
 
     pSetting = fxs->getEffectSetting(effect.name, "/"+player->song+"/"+player->clip);
-    if(pSetting) fxsetting.merge(*pSetting);
+    if(pSetting){
+        fxsetting.merge(*pSetting);
+    }
 }
 
 

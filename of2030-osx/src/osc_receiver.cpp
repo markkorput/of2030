@@ -73,12 +73,14 @@ void OscReceiver::update(){
         
         if(addr == osc_setting->addresses["song"]){
             string name = m.getArgAsString(0);
+            ofLogVerbose() << "[osc-in] song: " << name;
             ofNotifyEvent(m_interface->songEvent, name, m_interface);
             continue;
         }
 
         if(addr == osc_setting->addresses["clip"]){
             string name = m.getArgAsString(0);
+            ofLogVerbose() << "[osc-in] clip: " << name;
             ofNotifyEvent(m_interface->clipEvent, name, m_interface);
             continue;
         }
@@ -259,13 +261,15 @@ bool OscReceiver::processCtrlMessage(ofxOscMessage &m){
     if(messageType == "reconfig_clients"){
         string config_path = "";
         if(m.getNumArgs() >= 2 and m.getArgType(1) == OFXOSC_TYPE_STRING)
-            config_path = m.getArgAsString(1);
+        config_path = m.getArgAsString(1);
+        ofLogVerbose() << "reconfig_clients";
         ofNotifyEvent(m_interface->reconfigClientsEvent, config_path, m_interface);
         return true;
     }
 
     if(messageType == "reconfig_settings"){
         string path="";
+        ofLog() << "reconfig_settings";
         ofNotifyEvent(m_interface->reconfigSettingsEvent, path, m_interface);
         return true;
     }
@@ -273,7 +277,8 @@ bool OscReceiver::processCtrlMessage(ofxOscMessage &m){
     if(messageType == "reconfig_effects"){
         string config_path = "";
         if(m.getNumArgs() >= 2 and m.getArgType(1) == OFXOSC_TYPE_STRING)
-            config_path = m.getArgAsString(1);
+        config_path = m.getArgAsString(1);
+        ofLogVerbose() << "reconfig_effects";
         ofNotifyEvent(m_interface->reconfigEffectsEvent, config_path, m_interface);
         return true;
     }

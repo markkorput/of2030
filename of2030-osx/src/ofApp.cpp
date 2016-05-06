@@ -9,6 +9,8 @@ void ofApp::setup(){
     ofLogToFile("log.txt", true);
 
     m_xmlSettings.load();
+    ofSetLogLevel(m_xmlSettings.log_level);
+
     of2030::XmlClients::instance()->load();
     of2030::XmlEffects::instance()->load();
 
@@ -111,6 +113,7 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
 
 void ofApp::onReconfigSettings(string &path){
     m_xmlSettings.load();
+    ofSetLogLevel(m_xmlSettings.log_level);
     m_oscReceiver.configure(m_xmlSettings.osc_setting);
     m_multiClient.load(m_xmlSettings);
 }

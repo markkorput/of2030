@@ -46,6 +46,17 @@ void loadOsc(TiXmlDocument &doc, OscSetting &osc_setting){
 void XmlSettings::load(){
     ofxXmlSettings xml;
     xml.loadFile(path);
+
+    log_level_name = xml.getValue("of2030:app:log_level", "");
+    map<string, ofLogLevel> log_level_map = {
+        {"verbose", OF_LOG_VERBOSE},
+        {"notice", OF_LOG_NOTICE},
+        {"silent", OF_LOG_SILENT},
+        {"warning", OF_LOG_WARNING},
+        {"", OF_LOG_NOTICE}
+    };
+    log_level = log_level_map[log_level_name];
+
     osc_setting.port = xml.getValue("of2030:osc:port", 2030);
     
     loadOsc(xml.doc, osc_setting);
