@@ -34,6 +34,8 @@ namespace of2030{
         vector<ClientInfo*> m_client_infos;
         vector<Renderer*> m_renderers;
         float m_scaleFactor;
+
+        ofEasyCam cam;
     };
 }
 

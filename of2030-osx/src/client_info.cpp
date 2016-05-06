@@ -20,6 +20,7 @@ ClientInfo* ClientInfo::instance(){
 }
 
 ClientInfo::ClientInfo() : id(-1), count(1), index(0){
+    placeholderXmlClient.id = id;
 }
 
 void ClientInfo::setup(){
@@ -40,6 +41,7 @@ void ClientInfo::copy(ClientInfo &other){
 
 void ClientInfo::setClientId(int cid){
     id = cid;
+    placeholderXmlClient.id = cid;
     // updateClientIndex();
 }
 
@@ -49,8 +51,8 @@ XmlClient* ClientInfo::getXmlClient(){
             return xml_client;
         }
     }
-    
-    return NULL;
+
+    return &placeholderXmlClient;
 }
 
 //void ClientInfo::updateClientIndex(){

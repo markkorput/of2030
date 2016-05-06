@@ -40,6 +40,7 @@ namespace of2030{
         // ConfigFile m_config_file;
         XmlSettings m_xml_settings;
         XmlClients m_xml_clients;
+        XmlClient placeholderXmlClient;
 
         int id, index, count;
     };

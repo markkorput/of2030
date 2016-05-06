@@ -35,7 +35,7 @@ void XmlClients::load(){
     ofxXmlSettings xml;
     xml.loadFile(path);
 
-    if(xml.pushTag("2030")){
+    if(xml.pushTag("of2030")){
         if(xml.pushTag("clients")){
 
             XmlClient *c;
