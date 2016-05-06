@@ -11,7 +11,7 @@
 
 //#include <stdio.h>
 #include "ofMain.h"
-#include "client_setting.h"
+#include "setting_types.h"
 
 namespace of2030{ namespace effects {
 
@@ -19,6 +19,7 @@ namespace of2030{ namespace effects {
         float time;
         int client_id, client_index, client_count;
         ClientSetting *client_setting;
+        EffectSetting effect_setting;
         ofFbo* fbo;
     } Context;
 
@@ -54,6 +55,7 @@ namespace of2030{ namespace effects {
         int cid;
         float startTime, endTime, duration;
         EffectType type;
+        string name;
 
         static int cidCounter;
     };
@@ -72,7 +74,7 @@ namespace of2030{ namespace effects {
 
     public: // methods
 
-        Off(){ type = EffectType::OFF; }
+        Off(){ type = EffectType::OFF; name = "off"; }
         // virtual void setup(Context &context);
         virtual void draw(Context &context);
     };

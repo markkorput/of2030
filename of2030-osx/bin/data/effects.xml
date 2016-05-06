@@ -1,0 +1,16 @@
+<of2030>
+  <effects>
+    <effect name="cursor" part="/fusion/fusion2">
+      <width>100</width>
+    </effect>
+    <effect name="cursor" part="/fusion">
+      <iterations>2</iterations>
+      <width>10</width>
+    </effect>
+    <effect name="cursor">
+      <iterations>1</iterations>
+      <width>10</width>
+      <duration>3</duration>
+    </effect>
+  </effects>
+</of2030>

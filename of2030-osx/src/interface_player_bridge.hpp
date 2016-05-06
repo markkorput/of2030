@@ -33,6 +33,8 @@ namespace of2030{
 
         void registerInterfaceCallbacks(bool _register=true);
         void onEffect(effects::Effect &effect);
+        void onSong(string &name);
+        void onClip(string &name);
 
     private: // attributes
 

@@ -19,6 +19,7 @@ Effect::Effect() : startTime(NO_TIME), endTime(NO_TIME), type(EffectType::OFF) {
     cid = cidCounter;
     cidCounter++;
     duration = 3.0;
+    name = "effect";
 }
 
 void Effect::setup(Context &context){
@@ -65,6 +66,7 @@ void Off::draw(Context &context){
 Color::Color(){
     type = EffectType::COLOR;
     color = ofColor::black;
+    name = "color";
 }
 
 //void Color::setup(Context &context){
@@ -86,6 +88,7 @@ void Color::draw(Context &context){
 
 Cursor::Cursor(){
     type = EffectType::CURSOR;
+    name = "cursor";
 }
 
 void Cursor::draw(Context &context){
@@ -94,7 +97,7 @@ void Cursor::draw(Context &context){
     ofSetColor(255);
     ofDrawRectangle(logic.getLocalProgress() * context.fbo->getWidth(),
                     0,
-                    3,
+                    context.effect_setting.getValue("width", 10.0f),
                     context.fbo->getHeight());
 }
 
@@ -128,6 +131,7 @@ void ShaderEffect::setup(Context &context){
 Stars::Stars(){
     type = EffectType::STARS;
     shaderName = "Starfield01";
+    name = "stars";
 }
 
 //void Stars::setup(Context &context){
@@ -151,6 +155,7 @@ void Stars::draw(Context &context){
 Worms::Worms(){
     type = EffectType::WORMS;
     shaderName = "worms";
+    name = "worms";
 }
 
 //void Worms::setup(Context &context){
@@ -177,6 +182,7 @@ void Worms::draw(Context &context){
 
 Vid::Vid(){
     type = EffectType::WORMS;
+    name = "vid";
 }
 
 void Vid::setup(Context &context){

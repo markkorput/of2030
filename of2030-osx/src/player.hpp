@@ -57,6 +57,7 @@ namespace of2030{
 
         vector<effects::Effect*> active_effects;
         Composition realtime_composition;
+        string song, clip;
 
     private: // attributes
         
