@@ -8,6 +8,7 @@
 
 #include "effects.hpp"
 #include "video_manager.hpp"
+#include "shader_manager.hpp"
 
 using namespace of2030::effects;
 
@@ -17,6 +18,7 @@ Effect::Effect() : startTime(NO_TIME), endTime(NO_TIME), type(EffectType::OFF) {
     // every effect instance gets a unique cid (client-side-id)
     cid = cidCounter;
     cidCounter++;
+    duration = 3.0;
 }
 
 void Effect::setup(Context &context){
@@ -80,7 +82,6 @@ void Color::draw(Context &context){
 
 Cursor::Cursor(){
     type = EffectType::CURSOR;
-    duration = 3.0;
 }
 
 void Cursor::draw(Context &context){
@@ -111,26 +112,30 @@ void Cursor::draw(Context &context){
                     context.fbo->getHeight());
 }
 
+
+// ==============
+// Shader Effects
+// ==============
+
+void ShaderEffect::setup(Context &context){
+    Effect::setup(context);
+    shader = ShaderManager::instance()->get(shaderName);
+}
+
+void ShaderEffect::draw(Context &context){
+    shader->begin();
+    ofDrawRectangle(0, 0, context.fbo->getWidth(), context.fbo->getHeight());
+    shader->end();
+};
+
+
 Stars::Stars(){
     type = EffectType::STARS;
-    duration = 3.0;
+    shaderName = "Starfield01";
 }
 
-void Stars::setup(Context &context){
-    Effect::setup(context);
-
-    ofLogWarning() << "TODO: make the effects::Stars::shader static";
-
-    #ifdef TARGET_OPENGLES
-        shader.load("shaders_gles/Starfield01.vert","shaders_gles/Starfield01.frag");
-    #else
-        if(ofIsGLProgrammableRenderer()){
-            shader.load("shaders_gl3/Starfield01.vert", "shaders_gl3/Starfield01.frag");
-        }else{
-            shader.load("shaders/Starfield01.vert", "shaders/Starfield01.frag");
-        }
-    #endif
-}
+//void Stars::setup(Context &context){
+//}
 
 void Stars::draw(Context &context){
     float progress = ofMap(context.time, startTime, endTime, 250.0f, -50.0f);
@@ -138,18 +143,40 @@ void Stars::draw(Context &context){
     // ofLog() << "stars progress" << progress << ", time: " << context.time;
 
     ofSetColor(255);
-    shader.begin();
-    shader.setUniform2f("iPos", ofVec2f(0.0f, progress));
-    shader.setUniform1f("iThreshold", treshold);
-    ofDrawRectangle(0, 0, context.fbo->getWidth(), context.fbo->getHeight());
-    shader.end();
+    shader->setUniform2f("iPos", ofVec2f(0.0f, progress));
+    shader->setUniform1f("iThreshold", treshold);
+    ShaderEffect::draw(context);
 }
 
 
 
+Worms::Worms(){
+    type = EffectType::WORMS;
+    shaderName = "worms";
+}
+
+//void Worms::setup(Context &context){
+//    ShaderEffect::setup(context);
+//}
+
+void Worms::draw(Context &context){
+    ofSetColor(255);
+    ShaderEffect::draw(context);
+
+    ofSetColor(255);
+    shader->setUniform1f("iTime", context.time);
+    ShaderEffect::draw(context);
+}
+
+
+// ============
+// Video Effect
+// ============
+
+
+
 Vid::Vid(){
-    type = EffectType::VID;
-    duration = 3.0f;
+    type = EffectType::WORMS;
 }
 
 void Vid::setup(Context &context){
