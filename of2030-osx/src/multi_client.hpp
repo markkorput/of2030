@@ -18,24 +18,27 @@ namespace of2030{
     
     class MultiClient {
     public:
-        MultiClient() : enabled(false), m_scaleFactor(0.5f){};
+        MultiClient() : enabled(false), bSetup(false) {};
         ~MultiClient(){ destroy(); }
         
         void setup();
         void destroy();
         void load(XmlSettings &xml);
         void draw();
-        
-        ofPoint getTotalSize();
+    
+    public: // attributes
         
         bool enabled;
 
         XmlSettings *m_xml;
         vector<ClientInfo*> m_client_infos;
         vector<Renderer*> m_renderers;
-        float m_scaleFactor;
 
         ofEasyCam cam;
+    
+    private: // attributes
+        
+        bool bSetup;
     };
 }
 

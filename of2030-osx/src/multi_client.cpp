@@ -12,11 +12,12 @@
 using namespace of2030;
 
 void MultiClient::load(XmlSettings &xml){
+    bool wasSetup = bSetup;
+    destroy();
     m_xml = &xml;
-    enabled = false;
-    if(m_xml->multi_client_ids.size() > 0){
-        enabled = true;
-    }
+    enabled = m_xml->multi_client_ids.size() > 0;
+    if(wasSetup)
+        setup();
 }
 
 void MultiClient::setup(){
@@ -42,6 +43,7 @@ void MultiClient::setup(){
     ofLog() << "[MultiClient] enabled, resizing window";
     //ofSetWindowShape(m_renderers.size()*Renderer::WIDTH*m_scaleFactor, Renderer::HEIGHT*m_scaleFactor);
     ofSetWindowPosition(10, 10);
+    bSetup = true;
 }
 
 void MultiClient::destroy(){
@@ -55,6 +57,7 @@ void MultiClient::destroy(){
 
     m_client_infos.clear();
     m_renderers.clear();
+    bSetup = false;
 }
 
 
@@ -96,7 +99,4 @@ void MultiClient::draw(){
 
     ofPopMatrix();
     cam.end();
-}
-
-ofPoint MultiClient::getTotalSize(){
 }

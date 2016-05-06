@@ -111,6 +111,8 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
 
 void ofApp::onReconfigSettings(string &path){
     m_xmlSettings.load();
+    m_oscReceiver.configure(m_xmlSettings.osc_setting);
+    m_multiClient.load(m_xmlSettings);
 }
 
 void ofApp::onReconfigClients(string &path){
