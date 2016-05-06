@@ -40,7 +40,8 @@ namespace of2030 {
     private: // attributes
         Interface* m_interface;
         ofxOscReceiver m_oscReceiver;
-        OscSetting osc_setting;
+        OscSetting *osc_setting;
+        OscSetting default_setting;
         bool m_bConnected;
         const static int MAX_MESSAGES_PER_CYCLE = 10;
     };

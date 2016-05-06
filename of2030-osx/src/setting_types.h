@@ -29,8 +29,7 @@ namespace of2030{
     //
     typedef struct {
         int port;
-        string effectAddress; // /effect
-        string controlAddress; // /control
+        map<string, string> addresses;
     } OscSetting;
 
     //

@@ -12,12 +12,43 @@
 
 using namespace of2030;
 
+
+//
+// local methods
+//
+
+void loadOsc(TiXmlDocument &doc, OscSetting &osc_setting){
+    TiXmlElement *el = doc.FirstChildElement("of2030");
+    if(!el) return;
+    
+    el = el->FirstChildElement("osc");
+    if(!el) return;
+    
+    el = el->FirstChildElement("addresses");
+    if(!el) return;
+    
+    TiXmlElement* child = el->FirstChildElement();
+    string name, val;
+    
+    while(child){
+        name = child->ValueStr();
+        val = child->GetText();
+        osc_setting.addresses[name] = val;
+        ofLogVerbose() << "[XmlSettings::loadOsc got: " << name << ":" << val;
+        child = child->NextSiblingElement();
+    }
+}
+
+//
+// XmlSettings
+//
+
 void XmlSettings::load(){
     ofxXmlSettings xml;
     xml.loadFile(path);
     osc_setting.port = xml.getValue("of2030:osc:port", 2030);
-    osc_setting.effectAddress = xml.getValue("of2030:osc:addresses:effect", "/effect");
-    osc_setting.controlAddress = xml.getValue("of2030:osc:addresses:control", "/control");
+    
+    loadOsc(xml.doc, osc_setting);
 
     client_id = xml.getValue("of2030:client_id", 1);
     multi_client_ids.clear();
@@ -41,8 +72,6 @@ void XmlSettings::save(){
     ofxXmlSettings xml;
     xml.setValue("of2030:osc:port", osc_setting.port);
     xml.setValue("of2030:osc:port", osc_setting.port);
-    xml.setValue("of2030:osc:addresses:effect", osc_setting.effectAddress);
-    xml.setValue("of2030:osc:addresses:control", osc_setting.controlAddress);
 
     xml.setValue("of2030:client_id", client_id);
 

@@ -26,7 +26,7 @@ namespace of2030{
         int client_id;
         vector<int> multi_client_ids;
         float multi_screen_scale;
-        ofVec3f multi_room_scale;
+        ofVec3f multi_room_scale;        
     };
 }
 

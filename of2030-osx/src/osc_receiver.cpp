@@ -13,13 +13,12 @@
 using namespace of2030;
 
 OscReceiver::OscReceiver() : m_interface(NULL), m_bConnected(false){
-    osc_setting.port = 2030;
-    osc_setting.controlAddress = "/control";
-    osc_setting.effectAddress = "/effect";
+    default_setting.port = 2030;
+    osc_setting = &default_setting;
 }
 
 void OscReceiver::configure(unsigned int port, Interface* interface){
-    osc_setting.port = port;
+    osc_setting->port = port;
 
     if(interface)
         m_interface = interface;
@@ -31,7 +30,7 @@ void OscReceiver::configure(unsigned int port, Interface* interface){
 }
 
 void OscReceiver::configure(OscSetting &_osc_setting){
-    this->osc_setting = _osc_setting;
+    this->osc_setting = &_osc_setting;
     
     if(m_bConnected){
         // reconnect
@@ -59,13 +58,13 @@ void OscReceiver::update(){
         m_oscReceiver.getNextMessage(m);
         message_count++;
 
-        if(m.getAddress() == osc_setting.effectAddress){
+        if(m.getAddress() == osc_setting->addresses["effect"]){
             //ofLogVerbose() << "Got /message OSC Message";
             if(processFxMessage(m))
                 continue;
         }
         
-        if(m.getAddress() == osc_setting.controlAddress){
+        if(m.getAddress() == osc_setting->addresses["control"]){
             //ofLogVerbose() << "Got /ctrl OSC Message";
             if(processCtrlMessage(m))
                 continue;
@@ -90,13 +89,13 @@ void OscReceiver::destroy(){
 bool OscReceiver::connect(){
     m_oscReceiver.enableReuse();
 
-    if(m_oscReceiver.setup(osc_setting.port)){
+    if(m_oscReceiver.setup(osc_setting->port)){
         m_bConnected = true;
-        ofLog() << "of2030::OscReceiver listening to port: " << osc_setting.port;
+        ofLog() << "of2030::OscReceiver listening to port: " << osc_setting->port;
         return true;
     }
 
-    ofLogWarning() << "OscReceiver could not start listening to port: " << osc_setting.port;
+    ofLogWarning() << "OscReceiver could not start listening to port: " << osc_setting->port;
     return false;
 }
 
@@ -226,7 +225,7 @@ bool OscReceiver::processFxMessage(ofxOscMessage &m){
         return true;
     }
 
-    ofLogWarning() << "[osc-in] unknown messageType" << messageType;
+    ofLogWarning() << "[osc-in] unknown messageType: " << messageType;
     return false;
 }
 
@@ -266,6 +265,6 @@ bool OscReceiver::processCtrlMessage(ofxOscMessage &m){
         return true;
     }
 
-    ofLogWarning() << "[osc-in] unknown messageType" << messageType;
+    ofLogWarning() << "[osc-in] unknown messageType: " << messageType;
     return false;
 }
