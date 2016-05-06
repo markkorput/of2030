@@ -32,7 +32,9 @@ class ofApp : public ofBaseApp{
     
         // callbacks
         void onNewChangeModel(CMS::Model &model);
+        void onReconfigSettings(string &path);
         void onReconfigClients(string &path);
+        void onReconfigEffects(string &path);
 
     private:
         of2030::OscReceiver m_oscReceiver;

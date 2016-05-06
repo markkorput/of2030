@@ -8,7 +8,6 @@
 
 #include "client_info.hpp"
 
-
 using namespace of2030;
 
 ClientInfo* ClientInfo::singleton = NULL;
@@ -26,7 +25,6 @@ ClientInfo::ClientInfo() : id(-1), count(1), index(0){
 
 void ClientInfo::setup(){
     m_xml_settings.load();
-    XmlClients::instance()->load();
 
     // setClientId(ofToInt(m_client_cache_file.getValue("client_id")));
     setClientId(m_xml_settings.client_id);

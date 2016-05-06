@@ -2,12 +2,15 @@
 
 #include "interface.hpp"
 #include "xml_clients.hpp"
+#include "xml_effects.hpp"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofLogToFile("log.txt", true);
 
     m_xmlSettings.load();
+    of2030::XmlClients::instance()->load();
+    of2030::XmlEffects::instance()->load();
 
     m_clientInfo = of2030::ClientInfo::instance();
     m_clientInfo->setup();
@@ -29,7 +32,9 @@ void ofApp::setup(){
     
     m_renderer.setup();
     
+    ofAddListener(of2030::Interface::instance()->reconfigSettingsEvent, this, &ofApp::onReconfigSettings);
     ofAddListener(of2030::Interface::instance()->reconfigClientsEvent, this, &ofApp::onReconfigClients);
+    ofAddListener(of2030::Interface::instance()->reconfigEffectsEvent, this, &ofApp::onReconfigEffects);
 }
 
 //--------------------------------------------------------------
@@ -116,9 +121,20 @@ void ofApp::onNewChangeModel(CMS::Model &model){
     }
 }
 
-void ofApp::onReconfigClients(string &path){
+void ofApp::onReconfigSettings(string &path){
     m_xmlSettings.load();
+}
+
+void ofApp::onReconfigClients(string &path){
+    of2030::XmlEffects::instance()->load();
     of2030::XmlClients* instance = of2030::XmlClients::instance();
     if(path != "") instance->path = path;
     instance->load();
+}
+
+
+void ofApp::onReconfigEffects(string &path){
+    of2030::XmlEffects* inst = of2030::XmlEffects::instance();
+    if(path != "") inst->path = path;
+    inst->load();
 }

@@ -264,5 +264,18 @@ void OscReceiver::processCtrlMessage(ofxOscMessage &m){
         return;
     }
 
+    if(messageType == "reconfig_settings"){
+        string path="";
+        ofNotifyEvent(m_interface->reconfigSettingsEvent, path, m_interface);
+        return;
+    }
+
+    if(messageType == "reconfig_effects"){
+        string config_path = "";
+        if(m.getNumArgs() >= 2 and m.getArgType(1) == OFXOSC_TYPE_STRING)
+            config_path = m.getArgAsString(1);
+        ofNotifyEvent(m_interface->reconfigEffectsEvent, config_path, m_interface);
+        return;
+    }
     ofLogWarning() << "[osc-in] unknown messageType" << messageType;
 }

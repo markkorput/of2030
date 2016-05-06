@@ -3,7 +3,7 @@
 #define xml_clients_hpp
 
 #include "ofMain.h"
-#include "client_setting.h"
+#include "setting_types.h"
 
 namespace of2030{
     

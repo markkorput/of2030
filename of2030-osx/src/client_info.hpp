@@ -13,7 +13,7 @@
 // #include "config_file.hpp"
 #include "xml_settings.hpp"
 #include "xml_clients.hpp"
-#include "client_setting.h"
+#include "setting_types.h"
 
 namespace of2030{
     class ClientInfo {

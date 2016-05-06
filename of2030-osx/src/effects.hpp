@@ -11,7 +11,7 @@
 
 //#include <stdio.h>
 #include "ofMain.h"
-#include "client_setting.h"
+#include "setting_types.h"
 
 namespace of2030{ namespace effects {
 
