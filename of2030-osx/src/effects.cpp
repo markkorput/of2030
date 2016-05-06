@@ -45,6 +45,10 @@ float Effect::getDuration(){
     return -1.0;
 }
 
+float EffectLogic::getEffectTime(){
+    return context->time - effect->startTime;
+}
+
 
 //
 //void Off::setup(Context &context){
@@ -85,33 +89,27 @@ Cursor::Cursor(){
 }
 
 void Cursor::draw(Context &context){
-    int idx = context.client_index;
-    int client_count = context.client_count;
-
-    float duration = getDuration();
-    float effectTime = context.time - startTime;
-    float localDuration = duration / client_count;
-    float localStart = localDuration * idx;
-
-    if(effectTime < localStart)
-        // nothing for us to do (yet)
-        return;
-
-    float localEffectTime = effectTime - localStart;
-
-    if(localEffectTime > localDuration)
-        // our part is done
-        return;
-
-    float localProgress = localEffectTime / localDuration;
-
+    CursorLogic logic((Effect*)this, &context);
+    
     ofSetColor(255);
-    ofDrawRectangle(localProgress * context.fbo->getWidth(),
+    ofDrawRectangle(logic.getLocalProgress() * context.fbo->getWidth(),
                     0,
                     3,
                     context.fbo->getHeight());
 }
 
+float CursorLogic::getGlobalDuration(){     return effect->endTime - effect->startTime; }
+float CursorLogic::getIterations(){         return 1.0; } // not supported yet
+float CursorLogic::getIterationDuration(){  return getGlobalDuration() / getIterations(); } // not supported yet
+int CursorLogic::getCurrentIteration(){     return floor(getEffectTime() / getIterationDuration()); }
+float CursorLogic::getIterationTime(){      return getEffectTime() - getCurrentIteration() * getIterationDuration(); }
+float CursorLogic::getIterationProgress(){  return getIterationTime() / getIterationDuration(); }
+float CursorLogic::getLocalProgress(){
+    return ofMap(getIterationProgress(),
+                 context->client_setting->pano_start,
+                 context->client_setting->pano_end,
+                 0.0, 1.0);
+}
 
 // ==============
 // Shader Effects

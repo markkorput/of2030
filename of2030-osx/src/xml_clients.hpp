@@ -3,14 +3,9 @@
 #define xml_clients_hpp
 
 #include "ofMain.h"
+#include "client_setting.h"
 
 namespace of2030{
-    
-    typedef struct{
-        int id;
-        ofVec3f screenpos, screenrot;
-    } XmlClient;
-
     
     class XmlClients{
     public:
@@ -26,7 +21,7 @@ namespace of2030{
         //void save();
 
         std::string path;
-        vector<XmlClient*> xml_clients;
+        vector<ClientSetting*> clients;
     };
 }
 

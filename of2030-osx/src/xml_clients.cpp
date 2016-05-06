@@ -5,23 +5,42 @@ using namespace of2030;
 
 // two local methods
 
+void xmlLoadVec2f(ofxXmlSettings &xml, ofVec2f &vec2f){
+    vec2f = ofVec2f(xml.getValue("x", 0.0f), xml.getValue("y", 0.0f));
+}
+
 void xmlLoadVec3f(ofxXmlSettings &xml, ofVec3f &vec3f){
     vec3f = ofVec3f(xml.getValue("x", 0.0f), xml.getValue("y", 0.0f), xml.getValue("z", 0.0f));
 }
 
-void xmlLoadClient(ofxXmlSettings &xml, XmlClient &client){
+void xmlLoadClient(ofxXmlSettings &xml, ClientSetting &client){
     client.id = xml.getValue("id", 1);
     if(xml.pushTag("screenpos")){
         xmlLoadVec3f(xml, client.screenpos);
+        xml.popTag();
+    }
+    if(xml.pushTag("screensize")){
+        xmlLoadVec2f(xml, client.screensize);
         xml.popTag();
     }
     if(xml.pushTag("screenrot")){
         xmlLoadVec3f(xml, client.screenrot);
         xml.popTag();
     }
+    
+    if(xml.pushTag("pano")){
+        client.pano_start = xml.getValue("start", 0.0);
+        client.pano_end = xml.getValue("end", 1.0);
+
+        if(xml.pushTag("rot")){
+            xmlLoadVec3f(xml, client.pano_rot);
+            xml.popTag();
+        }
+        xml.popTag();
+    }
 }
 
-// XmlClient implementation
+// XmlClients implementation
 
 
 XmlClients* XmlClients::singleton = NULL;
@@ -35,11 +54,11 @@ XmlClients* XmlClients::instance(){
 
 
 void XmlClients::destroy(){
-    for(auto &client: xml_clients)
+    for(auto &client: clients)
         if(client)
             delete client;
 
-    xml_clients.clear();
+    clients.clear();
 }
 
 void XmlClients::load(){
@@ -49,8 +68,8 @@ void XmlClients::load(){
     if(xml.pushTag("of2030")){
         if(xml.pushTag("clients")){
 
-            XmlClient *c;
-            int loaded_client_count = xml_clients.size();
+            ClientSetting *c;
+            int loaded_client_count = clients.size();
             int xml_count = xml.getNumTags("client");
             
             // looop over each client node in the xml
@@ -60,14 +79,14 @@ void XmlClients::load(){
                     // allocate new instance or use previsouly allocated?
                     if(i >= loaded_client_count){
                         // new instance
-                        c = new XmlClient();
+                        c = new ClientSetting();
                         // add to list
-                        xml_clients.push_back(c);
+                        clients.push_back(c);
                         // increase our loaded count
                         loaded_client_count++;
                     } else {
                         // grab existing
-                        c = xml_clients[i];
+                        c = clients[i];
                     }
                     
                     // populate our client instance
@@ -77,11 +96,11 @@ void XmlClients::load(){
                 }
             }
             
-            // remove any too-many xml_clients
+            // remove any too-many clients
             while(loaded_client_count > xml_count){
-                c = xml_clients.back();
+                c = clients.back();
                 delete c;
-                xml_clients.pop_back();
+                clients.pop_back();
                 loaded_client_count--;
             }
 

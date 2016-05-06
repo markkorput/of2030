@@ -63,27 +63,39 @@ void MultiClient::draw(){
 
     ofClear(0);
     cam.begin();
-    for(auto &renderer: m_renderers){
+    
+    ofPushMatrix();
+        ofScale(m_xml->multi_room_scale.x, m_xml->multi_room_scale.y, m_xml->multi_room_scale.z);
+    
+        // draw floor
         ofPushMatrix();
-        XmlClient* c = renderer->client_info->getXmlClient();
-        ofTranslate(c->screenpos * m_xml->multi_room_scale);
-        ofRotateX(c->screenrot.x);
-        ofRotateY(c->screenrot.y);
-        ofRotateZ(c->screenrot.z);
-        ofScale(m_xml->multi_screen_scale,m_xml->multi_screen_scale,m_xml->multi_screen_scale);
-        renderer->draw();
+        ofRotateX(90.0f);
+        ofPushStyle();
+            ofSetColor(30, 30, 30);
+            ofDrawRectangle(0.0f, 0.0f, 1.0f, 1.0f);
+        ofPopStyle();
         ofPopMatrix();
-    }
+    
+    
+        for(auto &renderer: m_renderers){
+            ClientSetting* c = renderer->client_info->getClient();
+            
+            ofPushMatrix();
+                // ofScale(m_xml->multi_room_scale.x, m_xml->multi_room_scale.y, m_xml->multi_room_scale.z);
+                ofTranslate(c->screenpos);
+                ofRotateX(c->screenrot.x);
+                ofRotateY(c->screenrot.y);
+                ofRotateZ(c->screenrot.z);
+                ofScale(1/renderer->fbo->getWidth(), 1/renderer->fbo->getHeight(), 1.0f);
+                ofScale(c->screensize.x, c->screensize.y, 1.0f);
+                // ofScale(m_xml->multi_screen_scale,m_xml->multi_screen_scale,m_xml->multi_screen_scale);
+                renderer->draw();
+            ofPopMatrix();
+        }
     
 
-//        for(int i=0; i<m_renderers.size(); i++){
-//            m_renderers[i]->draw();
-//            ofTranslate(Renderer::WIDTH, 0);
-//        }
-    
+    ofPopMatrix();
     cam.end();
-    
-    
 }
 
 ofPoint MultiClient::getTotalSize(){
