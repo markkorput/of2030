@@ -127,8 +127,14 @@ void ShaderEffect::draw(Context &context){
     
     ofSetColor(255);
     shader->begin();
-        shader->setUniform1f("iTime", context.time);
+        // shader->setUniform1f("iTime", context.time);
+        shader->setUniform2f("iResolution", ofVec2f(context.fbo->getWidth(), context.fbo->getHeight()));
         shader->setUniform1f("iProgress", logic.getGlobalProgress());
+        shader->setUniform1f("iDuration", logic.getGlobalDuration());
+        shader->setUniform1f("iIterations", context.effect_setting.getValue("iterations", 1.0f));
+        shader->setUniform1f("iLocalPanoStart", context.client_setting->pano_start);
+        shader->setUniform1f("iLocalPanoEnd", context.client_setting->pano_end);
+        shader->setUniform1f("iVolume", context.effect_setting.getValue("width", 1.0f));
         ofDrawRectangle(0, 0, context.fbo->getWidth(), context.fbo->getHeight());
     shader->end();
 }

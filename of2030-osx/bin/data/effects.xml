@@ -4,7 +4,7 @@
       <width>100</width>
     </effect>
     <effect name="shader-cursor" part="/fusion/fusion1">
-      <iterations>0.25</iterations>
+      <iterations>3</iterations>
       <width>10</width>
     </effect>
     <effect name="shader-cursor" part="/fusion">
