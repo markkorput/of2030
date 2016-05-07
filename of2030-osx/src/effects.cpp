@@ -51,10 +51,9 @@ void Effect::setType(EffectType effect_type){
 }
 
 
-float EffectLogic::getEffectTime(){
-    return context->time - effect->startTime;
-}
-
+float EffectLogic::getGlobalTime(){ return context->time - effect->startTime; }
+float EffectLogic::getGlobalDuration(){ return effect->endTime - effect->startTime; }
+float EffectLogic::getGlobalProgress(){ return getGlobalTime() / getGlobalDuration(); }
 
 
 Off::Off(){
@@ -93,11 +92,10 @@ void Cursor::draw(Context &context){
                     context.fbo->getHeight());
 }
 
-float CursorLogic::getGlobalDuration(){     return effect->endTime - effect->startTime; }
 float CursorLogic::getIterations(){         return context->effect_setting.getValue("iterations", 1.0f); } // not supported yet
 float CursorLogic::getIterationDuration(){  return getGlobalDuration() / getIterations(); } // not supported yet
-int CursorLogic::getCurrentIteration(){     return floor(getEffectTime() / getIterationDuration()); }
-float CursorLogic::getIterationTime(){      return getEffectTime() - getCurrentIteration() * getIterationDuration(); }
+int CursorLogic::getCurrentIteration(){     return floor(getGlobalTime() / getIterationDuration()); }
+float CursorLogic::getIterationTime(){      return getGlobalTime() - getCurrentIteration() * getIterationDuration(); }
 float CursorLogic::getIterationProgress(){  return getIterationTime() / getIterationDuration(); }
 float CursorLogic::getLocalProgress(){
     return ofMap(getIterationProgress(),
@@ -125,11 +123,12 @@ void ShaderEffect::setup(Context &context){
 void ShaderEffect::draw(Context &context){
     if(!shader->isLoaded()) return;
 
+    EffectLogic logic((Effect*)this, &context);
+    
     ofSetColor(255);
     shader->begin();
-        // shader->setUniform2f("iPos", ofVec2f(0.0f, 0.0f)); // ofVec2f(0.0f, progress));
-        // shader->setUniform1f("iThreshold", 0.999f); // treshold);
         shader->setUniform1f("iTime", context.time);
+        shader->setUniform1f("iProgress", logic.getGlobalProgress());
         ofDrawRectangle(0, 0, context.fbo->getWidth(), context.fbo->getHeight());
     shader->end();
 }
@@ -137,23 +136,6 @@ void ShaderEffect::draw(Context &context){
 void ShaderEffect::setShader(string _name){
     shaderName = _name;
     name = "shader-" + _name;
-}
-
-Stars::Stars(){
-    setType(EffectType::STARS);
-}
-
-void Stars::draw(Context &context){
-    float progress = ofMap(context.time, startTime, endTime, 250.0f, -50.0f);
-    float treshold = ofMap(context.time, startTime, endTime, 0.99999f, 0.96f);
-    // ofLog() << "stars progress" << progress << ", time: " << context.time;
-
-    ofSetColor(255);
-    shader->begin();
-        shader->setUniform2f("iPos", ofVec2f(0.0f, progress));
-        shader->setUniform1f("iThreshold", treshold);
-        ofDrawRectangle(0, 0, context.fbo->getWidth(), context.fbo->getHeight());
-    shader->end();
 }
 
 
