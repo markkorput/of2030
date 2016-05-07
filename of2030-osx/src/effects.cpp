@@ -94,7 +94,7 @@ void Cursor::draw(Context &context){
 }
 
 float CursorLogic::getGlobalDuration(){     return effect->endTime - effect->startTime; }
-float CursorLogic::getIterations(){         return 1.0; } // not supported yet
+float CursorLogic::getIterations(){         return context->effect_setting.getValue("iterations", 1.0f); } // not supported yet
 float CursorLogic::getIterationDuration(){  return getGlobalDuration() / getIterations(); } // not supported yet
 int CursorLogic::getCurrentIteration(){     return floor(getEffectTime() / getIterationDuration()); }
 float CursorLogic::getIterationTime(){      return getEffectTime() - getCurrentIteration() * getIterationDuration(); }
@@ -110,13 +110,33 @@ float CursorLogic::getLocalProgress(){
 // Shader Effects
 // ==============
 
-// empty shaderName, means the ShaderEffect will use its name attribute as shader name
-ShaderEffect::ShaderEffect() : shaderName(""){
+ShaderEffect::ShaderEffect(){
+    setType(EffectType::SHADER);
+    // empty shaderName, means the ShaderEffect
+    // will use its name attribute as shader name
+    shaderName = "";
 }
 
 void ShaderEffect::setup(Context &context){
     Effect::setup(context);
     shader = ShaderManager::instance()->get(shaderName == "" ? name : shaderName);
+}
+
+void ShaderEffect::draw(Context &context){
+    if(!shader->isLoaded()) return;
+
+    ofSetColor(255);
+    shader->begin();
+        // shader->setUniform2f("iPos", ofVec2f(0.0f, 0.0f)); // ofVec2f(0.0f, progress));
+        // shader->setUniform1f("iThreshold", 0.999f); // treshold);
+        shader->setUniform1f("iTime", context.time);
+        ofDrawRectangle(0, 0, context.fbo->getWidth(), context.fbo->getHeight());
+    shader->end();
+}
+
+void ShaderEffect::setShader(string _name){
+    shaderName = _name;
+    name = "shader-" + _name;
 }
 
 Stars::Stars(){
@@ -132,22 +152,6 @@ void Stars::draw(Context &context){
     shader->begin();
         shader->setUniform2f("iPos", ofVec2f(0.0f, progress));
         shader->setUniform1f("iThreshold", treshold);
-        ofDrawRectangle(0, 0, context.fbo->getWidth(), context.fbo->getHeight());
-    shader->end();
-}
-
-
-Worms::Worms(){
-    setType(EffectType::WORMS);
-}
-
-void Worms::draw(Context &context){
-    ofSetColor(255);
-    ShaderEffect::draw(context);
-
-    ofSetColor(255);
-    shader->begin();
-        shader->setUniform1f("iTime", context.time);
         ofDrawRectangle(0, 0, context.fbo->getWidth(), context.fbo->getHeight());
     shader->end();
 }

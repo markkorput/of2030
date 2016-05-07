@@ -26,10 +26,10 @@ namespace of2030{ namespace effects {
     enum EffectType{
         OFF = 0,
         COLOR = 1,
-        CURSOR = 2,
-        STARS = 3,
-        VID = 4,
-        WORMS = 5
+        VID = 2,
+        SHADER = 3,
+        CURSOR = 4,
+        STARS = 5
     };
     
     static map<EffectType, string> EFFECT_NAMES = {
@@ -38,7 +38,7 @@ namespace of2030{ namespace effects {
         {CURSOR, "cursor"},
         {STARS, "stars"},
         {VID, "vid"},
-        {WORMS, "worms"}
+        {SHADER, "shader"}
     };
 
     #define NO_TIME (-1.0f)
@@ -132,7 +132,8 @@ namespace of2030{ namespace effects {
     public:
         ShaderEffect();
         virtual void setup(Context &context);
-        //virtual void draw(Context &context);
+        virtual void draw(Context &context);
+        void setShader(string _name);
     public:
         string shaderName;
         ofShader *shader;
@@ -145,12 +146,6 @@ namespace of2030{ namespace effects {
         virtual void draw(Context &context);
     };
 
-    class Worms : public ShaderEffect{
-    public: // methods
-        Worms();
-        //virtual void setup(Context &context);
-        virtual void draw(Context &context);
-    };
 
     class Vid : public Effect{
     public: // methods
