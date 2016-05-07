@@ -148,6 +148,7 @@
 		4DE274CD1CCE242B00F2D470 /* multi_client.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = multi_client.hpp; sourceTree = "<group>"; };
 		4DE490FF1CC69C55003E7958 /* player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = player.cpp; sourceTree = "<group>"; };
 		4DE491001CC69C55003E7958 /* player.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = player.hpp; sourceTree = "<group>"; };
+		4DED65371CDE269F00AEAE12 /* shared2030.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shared2030.h; sourceTree = "<group>"; };
 		4DF6EBE41CDCA5B300D37FB7 /* shader_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = shader_manager.cpp; sourceTree = "<group>"; };
 		4DF6EBE51CDCA5B300D37FB7 /* shader_manager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = shader_manager.hpp; sourceTree = "<group>"; };
 		4DF6EBE91CDCB90100D37FB7 /* xml_clients.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = xml_clients.cpp; sourceTree = "<group>"; };
@@ -338,6 +339,7 @@
 		4D9B297C1CC64F52005D65E9 /* 2030 */ = {
 			isa = PBXGroup;
 			children = (
+				4DED65371CDE269F00AEAE12 /* shared2030.h */,
 				4DF6EBF21CDCE64E00D37FB7 /* setting_types.h */,
 				4DE274CB1CCE23FE00F2D470 /* test */,
 				4DF6EBEE1CDCB95600D37FB7 /* io */,

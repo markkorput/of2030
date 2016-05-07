@@ -27,8 +27,10 @@ void ofApp::setup(){
     // interface and player singleton instances
     m_interface_player_bridge.start();
 
+#ifdef __MULTI_CLIENT_ENABLED__
     m_multiClient.load(m_xmlSettings);
     m_multiClient.setup();
+#endif
     
     m_renderer.setup();
     
@@ -45,11 +47,16 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+#ifdef __MULTI_CLIENT_ENABLED__
     if(m_multiClient.enabled){
         m_multiClient.draw();
     } else {
         m_renderer.draw();
     }
+#else
+    m_renderer.draw();
+#endif
+
 }
 
 //--------------------------------------------------------------
@@ -115,7 +122,9 @@ void ofApp::onReconfigSettings(string &path){
     m_xmlSettings.load();
     ofSetLogLevel(m_xmlSettings.log_level);
     m_oscReceiver.configure(m_xmlSettings.osc_setting);
+#ifdef __MULTI_CLIENT_ENABLED__
     m_multiClient.load(m_xmlSettings);
+#endif
 }
 
 void ofApp::onReconfigClients(string &path){
