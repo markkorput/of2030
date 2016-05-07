@@ -121,7 +121,6 @@ void ShaderEffect::setup(Context &context){
 
 Stars::Stars(){
     setType(EffectType::STARS);
-    shaderName = "Starfield01";
 }
 
 void Stars::draw(Context &context){
