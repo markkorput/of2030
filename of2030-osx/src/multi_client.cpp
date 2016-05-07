@@ -66,10 +66,10 @@ void MultiClient::draw(){
 
     ofClear(0);
     cam.begin();
-    
+
     ofPushMatrix();
         ofScale(m_xml->multi_room_scale.x, m_xml->multi_room_scale.y, m_xml->multi_room_scale.z);
-    
+
         // draw floor
         ofPushMatrix();
         ofRotateX(90.0f);
@@ -78,24 +78,22 @@ void MultiClient::draw(){
             ofDrawRectangle(0.0f, 0.0f, 1.0f, 1.0f);
         ofPopStyle();
         ofPopMatrix();
-    
-    
+
+
         for(auto &renderer: m_renderers){
             ClientSetting* c = renderer->client_info->getClient();
-            
+
             ofPushMatrix();
-                // ofScale(m_xml->multi_room_scale.x, m_xml->multi_room_scale.y, m_xml->multi_room_scale.z);
                 ofTranslate(c->screenpos);
                 ofRotateX(c->screenrot.x);
                 ofRotateY(c->screenrot.y);
                 ofRotateZ(c->screenrot.z);
                 ofScale(1/renderer->fbo->getWidth(), 1/renderer->fbo->getHeight(), 1.0f);
                 ofScale(c->screensize.x, c->screensize.y, 1.0f);
-                // ofScale(m_xml->multi_screen_scale,m_xml->multi_screen_scale,m_xml->multi_screen_scale);
                 renderer->draw();
             ofPopMatrix();
         }
-    
+
 
     ofPopMatrix();
     cam.end();

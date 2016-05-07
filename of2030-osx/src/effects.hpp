@@ -31,6 +31,15 @@ namespace of2030{ namespace effects {
         VID = 4,
         WORMS = 5
     };
+    
+    static map<EffectType, string> EFFECT_NAMES = {
+        {OFF, "off"},
+        {COLOR, "color"},
+        {CURSOR, "cursor"},
+        {STARS, "stars"},
+        {VID, "vid"},
+        {WORMS, "worms"}
+    };
 
     #define NO_TIME (-1.0f)
 
@@ -50,6 +59,10 @@ namespace of2030{ namespace effects {
 
         float getDuration();
 
+    protected: // methods
+        
+        void setType(EffectType effect_type);
+
     public: // properties
 
         int cid;
@@ -64,7 +77,7 @@ namespace of2030{ namespace effects {
     public:
         EffectLogic(Effect *_effect, Context *_context) : effect(_effect), context(_context){}
         float getEffectTime();
-    
+
         Context *context;
         Effect *effect;
     };
@@ -73,8 +86,7 @@ namespace of2030{ namespace effects {
     class Off : public Effect{
 
     public: // methods
-
-        Off(){ type = EffectType::OFF; name = "off"; }
+        Off();
         // virtual void setup(Context &context);
         virtual void draw(Context &context);
     };
@@ -87,16 +99,16 @@ namespace of2030{ namespace effects {
         Color();
         // virtual void setup(Context &context);
         virtual void draw(Context &context);
-        
+
         float getGlobalDuration();
         float getIterations();
-        
+
     public: // attributes
         ofColor color;
     };
 
     class Cursor : public Effect{
-   
+
     public: // methods
         Cursor();
         // virtual void setup(Context &context);
@@ -115,10 +127,10 @@ namespace of2030{ namespace effects {
         inline float getLocalProgress();
     };
 
-    
+
     class ShaderEffect : public Effect{
     public:
-        //ShaderEffect();
+        ShaderEffect();
         virtual void setup(Context &context);
         //virtual void draw(Context &context);
     public:
@@ -133,22 +145,19 @@ namespace of2030{ namespace effects {
         virtual void draw(Context &context);
     };
 
-    
     class Worms : public ShaderEffect{
     public: // methods
         Worms();
         //virtual void setup(Context &context);
         virtual void draw(Context &context);
     };
-    
 
-    
     class Vid : public Effect{
     public: // methods
         Vid();
         virtual void setup(Context &context);
         virtual void draw(Context &context);
-        
+
     public: // attributes
         ofVideoPlayer *video_player;
     };

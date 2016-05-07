@@ -14,12 +14,11 @@ using namespace of2030::effects;
 
 int Effect::cidCounter = 0;
 
-Effect::Effect() : startTime(NO_TIME), endTime(NO_TIME), type(EffectType::OFF) {
+Effect::Effect() : startTime(NO_TIME), endTime(NO_TIME) {
     // every effect instance gets a unique cid (client-side-id)
     cid = cidCounter;
     cidCounter++;
     duration = 3.0;
-    name = "effect";
 }
 
 void Effect::setup(Context &context){
@@ -46,15 +45,21 @@ float Effect::getDuration(){
     return -1.0;
 }
 
+void Effect::setType(EffectType effect_type){
+    type = effect_type;
+    name = EFFECT_NAMES[effect_type];
+}
+
+
 float EffectLogic::getEffectTime(){
     return context->time - effect->startTime;
 }
 
 
-//
-//void Off::setup(Context &context){
-//}
 
+Off::Off(){
+    setType(EffectType::OFF);
+}
 
 void Off::draw(Context &context){
     ofBackground(0);
@@ -64,36 +69,23 @@ void Off::draw(Context &context){
 
 
 Color::Color(){
-    type = EffectType::COLOR;
+    setType(EffectType::COLOR);
     color = ofColor::black;
-    name = "color";
 }
 
-//void Color::setup(Context &context){
-//}
 
 void Color::draw(Context &context){
     ofBackground(color);
 }
 
 
-
-
-//void Cursor::setup(Context &context){
-//    Effect::Setup
-//    if(!hasStartTime()){
-//        startTime = context.time;
-//    }
-//}
-
 Cursor::Cursor(){
-    type = EffectType::CURSOR;
-    name = "cursor";
+    setType(EffectType::CURSOR);
 }
 
 void Cursor::draw(Context &context){
     CursorLogic logic((Effect*)this, &context);
-    
+
     ofSetColor(255);
     ofDrawRectangle(logic.getLocalProgress() * context.fbo->getWidth(),
                     0,
@@ -118,24 +110,19 @@ float CursorLogic::getLocalProgress(){
 // Shader Effects
 // ==============
 
+// empty shaderName, means the ShaderEffect will use its name attribute as shader name
+ShaderEffect::ShaderEffect() : shaderName(""){
+}
+
 void ShaderEffect::setup(Context &context){
     Effect::setup(context);
-    shader = ShaderManager::instance()->get(shaderName);
+    shader = ShaderManager::instance()->get(shaderName == "" ? name : shaderName);
 }
-
-//void ShaderEffect::draw(Context &context){
-//
-//};
-
 
 Stars::Stars(){
-    type = EffectType::STARS;
+    setType(EffectType::STARS);
     shaderName = "Starfield01";
-    name = "stars";
 }
-
-//void Stars::setup(Context &context){
-//}
 
 void Stars::draw(Context &context){
     float progress = ofMap(context.time, startTime, endTime, 250.0f, -50.0f);
@@ -151,16 +138,9 @@ void Stars::draw(Context &context){
 }
 
 
-
 Worms::Worms(){
-    type = EffectType::WORMS;
-    shaderName = "worms";
-    name = "worms";
+    setType(EffectType::WORMS);
 }
-
-//void Worms::setup(Context &context){
-//    ShaderEffect::setup(context);
-//}
 
 void Worms::draw(Context &context){
     ofSetColor(255);
@@ -179,10 +159,8 @@ void Worms::draw(Context &context){
 // ============
 
 
-
 Vid::Vid(){
-    type = EffectType::WORMS;
-    name = "vid";
+    setType(EffectType::VID);
 }
 
 void Vid::setup(Context &context){

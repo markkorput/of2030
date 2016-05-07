@@ -59,12 +59,11 @@ void Renderer::draw(){
     Context context;
     fillContextClientInfo(context);
     
-    for(int i=0; i<size; i++){
-        Effect* effect = player->active_effects[i];
+    for(auto & effect: player->active_effects){
         fillEffectSetting(*effect, context.effect_setting);
         effect->draw(context);
     }
-    
+
     fbo->end();
     fbo->draw(0,0);
 }
