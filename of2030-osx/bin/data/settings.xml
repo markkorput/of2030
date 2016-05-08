@@ -21,15 +21,15 @@
   <room_size_y>2.0</room_size_y>
   <room_size_z>16.5</room_size_z>
   <multi>
-    <debug>true</debug>
+    <debug>false</debug>
     <id>rpi1</id>
     <id>rpi2</id>
     <id>rpi3</id>
-    <!-- <id>4</id> -->
+    <id>rpi4</id>
     <id>rpi5</id>
     <id>rpi6</id>
     <id>rpi7</id>
-    <!-- <id>8</id> -->
+    <id>rpi8</id>
     <scale>100.0</scale>
     <translate_x>0.0</translate_x>
     <translate_y>0.0</translate_y>

@@ -90,6 +90,7 @@ void MultiClient::draw(){
 void MultiClient::drawFloor(){
     ofPushStyle();
     ofPushMatrix();
+    ofTranslate(0.0f, xml_settings->room_size.y*-0.5, 0.0f);
     ofRotateX(90.0f);
     ofSetColor(30, 30, 30);
     ofDrawRectangle(xml_settings->room_size.x*-0.5f,
@@ -125,13 +126,19 @@ void MultiClient::drawDebug(){
         ofPushMatrix();
             ofTranslate(screen_cam.getPosition());
             ofVec3f rot = screen_cam.getOrientationEuler();
-
             ofRotateX(rot.x);
             ofRotateY(rot.y);
             ofRotateZ(rot.z);
         
-            ofTranslate(0.0f, 0.0f, -4.5f);
-            ofDrawRectangle(0.0f, 0.0f, 1.0f, 1.0f);
+            ofTranslate(0.0f, 0.0f, -4.52f);
+
+            float wheight = screen_setting->getValue("world_height", 2.0f) * 1.1;
+            float wwidth = screen_setting->getValue("world_width", 2.67f) * 1.1;
+
+            ofDrawRectangle(-0.5f*wwidth,
+                            -0.5f*wheight,
+                            wwidth,
+                            wheight);
         ofPopMatrix();
     }
     ofPopStyle();
@@ -139,25 +146,48 @@ void MultiClient::drawDebug(){
 }
 
 void MultiClient::drawScreens(){
-    // ofScale(xml_settings->multi_room_scale.x, xml_settings->multi_room_scale.y, xml_settings->multi_room_scale.z);
-    
-//    XmlConfigs* screens = XmlConfigs::screens();
-    
+    XmlConfigs* screens = XmlConfigs::screens();
 
-//    for(auto &renderer: m_renderers){
-//        // ClientSetting* c = renderer->client_info->getClientSetting();
-//
-//        //            ofPushMatrix();
-//        //                ofTranslate(c->screenpos);
-//        //                ofRotateX(c->screenrot.x);
-//        //                ofRotateY(c->screenrot.y);
-//        //                ofRotateZ(c->screenrot.z);
-//        //                ofScale(1/renderer->fbo->getWidth(), 1/renderer->fbo->getHeight(), 1.0f);
-//        //                ofScale(c->screensize.x, c->screensize.y, 1.0f);
-//
-//        //            ofPopMatrix();
-//        renderer->draw();
-//    }
+    ofCamera screen_cam;
+    XmlItemSetting* screen_setting;
 
+    for(auto &renderer: m_renderers){
+        screen_setting = screens->getItem(renderer->client_info->id);
+
+        if(screen_setting == NULL){
+            ofLogWarning() << "not screen setting found for screen ID: " << renderer->client_info->id;
+            continue;
+        }
+
+        screen_cam.setPosition(screen_setting->getValue("cam_pos_x", 0.0f),
+                               screen_setting->getValue("cam_pos_y", 0.0f),
+                               screen_setting->getValue("cam_pos_z", 0.0f));
+        screen_cam.lookAt(ofVec3f(screen_setting->getValue("cam_look_at_x", 0.0f),
+                                  screen_setting->getValue("cam_look_at_y", 0.0f),
+                                  screen_setting->getValue("cam_look_at_z", 1.0f)));
+
+        float wwidth = screen_setting->getValue("world_width", 2.67f);
+        float wheight = screen_setting->getValue("world_height", 2.0f);
+        
+        float pixwidth = screen_setting->getValue("pixel_width", 768);
+        float pixheight = screen_setting->getValue("pixel_width", 576);
+
+        ofPushMatrix();
+            // move to screen's camera position
+            ofTranslate(screen_cam.getPosition());
+            // rotate according to cameras orientation
+            ofVec3f rot = screen_cam.getOrientationEuler();
+            ofRotateX(rot.x);
+            ofRotateY(rot.y);
+            ofRotateZ(rot.z);
+            // translate 4.5 "meters" forward, we're gonna assume that's where the projection ends up
+            ofTranslate(wwidth*-0.5f, wheight*-0.5f, -4.5f);
+            // scale from pixel size to world size (renderer draws its fbo simply at screen size, because normally
+            // it's drawing fullscreen)
+            ofScale(wwidth / pixwidth, wheight / pixheight, 1.0f);
+            // NOW we can finally draw the screen
+            renderer->draw();
+        ofPopMatrix();
+    }
 }
 #endif // #ifdef __MULTI_CLIENT_ENABLED__
