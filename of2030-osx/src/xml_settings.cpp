@@ -74,6 +74,8 @@ void XmlSettings::load(bool reload){
     loadOsc(xml.doc, osc_setting);
 
     client_id = xml.getValue("of2030:client_id", "0");
+
+#ifdef __MULTI_CLIENT_ENABLED__
     multi_client_ids.clear();
     if(xml.pushTag("of2030")){
         if(xml.pushTag("multi")){
@@ -87,25 +89,27 @@ void XmlSettings::load(bool reload){
                                        xml.getValue("room_scale_z", 1.0f));
         }
     }
-    
+#endif // __MULTI_CLIENT_ENABLED__
+
     loaded = true;
 }
 
-void XmlSettings::save(){
-    ofxXmlSettings xml;
-    xml.setValue("of2030:osc:port", osc_setting.port);
-    xml.setValue("of2030:osc:port", osc_setting.port);
-
-    xml.setValue("of2030:client_id", client_id);
-
-    if(multi_client_ids.size() > 0){
-        if(xml.pushTag("of2030")){
-            if(xml.pushTag("multi")){
-                for(int i=0; i<multi_client_ids.size(); i++){
-                    xml.setValue("id", multi_client_ids[i], i);
-                }
-            }
-        }
-    }
-    xml.saveFile(path);
-}
+//void XmlSettings::save(){
+//    ofxXmlSettings xml;
+//    xml.setValue("of2030:osc:port", osc_setting.port);
+//    xml.setValue("of2030:osc:port", osc_setting.port);
+//    xml.setValue("of2030:client_id", client_id);
+//
+//#ifdef __MULTI_CLIENT_ENABLED__
+//    if(multi_client_ids.size() > 0){
+//        if(xml.pushTag("of2030")){
+//            if(xml.pushTag("multi")){
+//                for(int i=0; i<multi_client_ids.size(); i++){
+//                    xml.setValue("id", multi_client_ids[i], i);
+//                }
+//            }
+//        }
+//    }
+//#endif // __MULTI_CLIENT_ENABLED__
+//    xml.saveFile(path);
+//}

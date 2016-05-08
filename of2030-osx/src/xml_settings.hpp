@@ -11,6 +11,7 @@
 
 #include "ofMain.h"
 #include "setting_types.h"
+#include "shared2030.h"
 
 namespace of2030{
 
@@ -23,15 +24,17 @@ namespace of2030{
     public:
         XmlSettings() : path("settings.xml"), log_level(OF_LOG_NOTICE){};
         void load(bool reload=false);
-        void save();
+        // void save();
 
         std::string path;
         OscSetting osc_setting;
 
         bool loaded;
         string client_id;
+#ifdef __MULTI_CLIENT_ENABLED__
         vector<string> multi_client_ids;
         ofVec3f multi_room_scale;
+#endif
 
         string log_level_name;
         ofLogLevel log_level;

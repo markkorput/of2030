@@ -21,6 +21,11 @@
 namespace of2030{
     
     class MultiClient {
+    public:
+        static MultiClient* instance();
+    private:
+        static MultiClient* singleton;
+
     private:
         static XmlSettings* xml_settings;
 

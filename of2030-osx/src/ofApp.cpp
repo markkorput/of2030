@@ -1,7 +1,16 @@
 #include "ofApp.h"
 
+#include "shared2030.h"
+
+#ifdef __MULTI_CLIENT_ENABLED__
+    #include "multi_client.hpp"
+#endif
+
+
+
 #include "interface.hpp"
 #include "xml_clients.hpp"
+#include "xml_screens.hpp"
 #include "xml_effects.hpp"
 #include "xml_triggers.hpp"
 #include "shader_manager.hpp"
@@ -32,7 +41,7 @@ void ofApp::setup(){
     m_interface_player_bridge.start();
 
 #ifdef __MULTI_CLIENT_ENABLED__
-    m_multiClient.setup();
+    of2030::MultiClient::instance()->setup();
 #endif
     
     m_renderer.setup();
@@ -49,8 +58,8 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
 #ifdef __MULTI_CLIENT_ENABLED__
-    if(m_multiClient.enabled){
-        m_multiClient.draw();
+    if(of2030::MultiClient::instance()->enabled){
+        of2030::MultiClient::instance()->draw();
     } else {
         m_renderer.draw();
     }
@@ -133,12 +142,20 @@ void ofApp::onControl(string &type){
         return;
     }
 
+    if(type == CTRL_RELOAD_SCREENS){
+        of2030::XmlScreens::instance()->load();
+#ifdef __MULTI_CLIENT_ENABLED__
+        of2030::MultiClient::instance()->setup();
+#endif
+        return;
+    }
+
     if(type == CTRL_RELOAD_SETTINGS){
         of2030::XmlSettings::instance()->load(true);
         ofSetLogLevel(of2030::XmlSettings::instance()->log_level);
         m_oscReceiver.configure(of2030::XmlSettings::instance()->osc_setting);
 #ifdef __MULTI_CLIENT_ENABLED__
-        m_multiClient.setup();
+        of2030::MultiClient::instance()->setup();
 #endif
         return;
     }

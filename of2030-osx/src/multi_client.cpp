@@ -14,6 +14,17 @@ using namespace of2030;
 
 XmlSettings* MultiClient::xml_settings = NULL;
 
+
+MultiClient* MultiClient::singleton = NULL;
+
+MultiClient* MultiClient::instance(){
+    if (!singleton){
+        singleton = new MultiClient();
+    }
+    return singleton;
+}
+
+
 void MultiClient::setup(){
     destroy();
 

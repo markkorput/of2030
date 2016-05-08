@@ -15,6 +15,7 @@
 #endif
 
 #define CTRL_RELOAD_CLIENTS "reload_clients"
+#define CTRL_RELOAD_SCREENS "reload_screens"
 #define CTRL_RELOAD_SETTINGS "reload_settings"
 #define CTRL_RELOAD_EFFECTS "reload_effects"
 #define CTRL_RELOAD_SHADERS "reload_shaders"
