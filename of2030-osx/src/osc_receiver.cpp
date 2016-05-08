@@ -59,17 +59,33 @@ void OscReceiver::update(){
         message_count++;
 
         string addr = m.getAddress();
+        string param, sub;
         ofLogVerbose() << "[osc-in] " << addr;
 
         if(addr == osc_setting->addresses["shader"]){
-            string shader_name = m.getArgAsString(0);
-            ofNotifyEvent(m_interface->shaderEffectEvent, shader_name, m_interface);
+            param = m.getArgAsString(0);
+            ofNotifyEvent(m_interface->shaderEffectEvent, param, m_interface);
             continue;
         }
 
+        sub = osc_setting->addresses["shader"];
+        if(addr.substr(0, sub.size()) == sub){
+            param = addr.substr(sub.size());
+            ofNotifyEvent(m_interface->shaderEffectEvent, param, m_interface);
+            continue;
+        }
+
+
         if(addr == osc_setting->addresses["effect"]){
-            string messageType = m.getArgAsString(0);
-            ofNotifyEvent(m_interface->effectEvent, messageType, m_interface);
+            param = m.getArgAsString(0);
+            ofNotifyEvent(m_interface->effectEvent, param, m_interface);
+            continue;
+        }
+
+        sub = osc_setting->addresses["effect"];
+        if(addr.substr(0, sub.size()) == sub){
+            param = addr.substr(sub.size());
+            ofNotifyEvent(m_interface->effectEvent, param, m_interface);
             continue;
         }
 
@@ -79,18 +95,19 @@ void OscReceiver::update(){
         }
 
         if(addr == osc_setting->addresses["song"]){
-            string name = m.getArgAsString(0);
-            ofLogVerbose() << "[osc-in] song: " << name;
-            ofNotifyEvent(m_interface->songEvent, name, m_interface);
+            param = m.getArgAsString(0);
+            ofLogVerbose() << "[osc-in] song: " << param;
+            ofNotifyEvent(m_interface->songEvent, param, m_interface);
             continue;
         }
 
         if(addr == osc_setting->addresses["clip"]){
-            string name = m.getArgAsString(0);
-            ofLogVerbose() << "[osc-in] clip: " << name;
-            ofNotifyEvent(m_interface->clipEvent, name, m_interface);
+            param = m.getArgAsString(0);
+            ofLogVerbose() << "[osc-in] clip: " << param;
+            ofNotifyEvent(m_interface->clipEvent, param, m_interface);
             continue;
         }
+
 
 //        if(addr == "/effect"){
 //            //ofLogVerbose() << "Got /effect OSC Message";
