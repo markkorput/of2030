@@ -11,6 +11,7 @@
 
 //#include <stdio.h>
 #include "ofMain.h"
+#include "setting_types.h"
 
 namespace of2030 {
     
@@ -23,6 +24,7 @@ namespace of2030 {
         ofEvent<string> triggerEvent;
         ofEvent<string> effectEvent;
         ofEvent<string> shaderEffectEvent;
+        ofEvent<EffectConfig> effectConfigEvent;
         ofEvent<string> reconfigSettingsEvent;
         ofEvent<string> reconfigClientsEvent;
         ofEvent<string> reconfigEffectsEvent;
