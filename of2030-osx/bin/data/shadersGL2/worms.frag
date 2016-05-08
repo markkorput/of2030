@@ -1,4 +1,5 @@
 uniform float iProgress;
+uniform float iGain;
 
 float worm(vec2 fragCoord, vec2 scroll, float tiltFactor){
     // sine-wave based baseline (causing the horizontal waviness)
@@ -20,7 +21,7 @@ float worm(vec2 fragCoord, vec2 scroll, float tiltFactor){
     // hardness; 0.0 means all black, 1.0 means blurry edges, 10.0 means high-contrast edges
     val *= 26.0;
     // increase; higher value means more white
-    val += -25.0;
+    val += -25.0 + iGain * 5.0;
 
     return val;
 }

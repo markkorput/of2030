@@ -4,7 +4,7 @@
 // uniform float iIterations;
 // uniform float iLocalPanoStart;
 // uniform float iLocalPanoEnd;
-// uniform float iVolume;
+// uniform float iGain;
 
 void main(void){
     gl_FragColor = vec4(0.0);
