@@ -32,6 +32,7 @@ namespace of2030{
     private: // callbacks
 
         void registerInterfaceCallbacks(bool _register=true);
+        void onTrigger(string &trigger);
         void onEffect(string &effect);
         void onShaderEffect(string &shader);
         void onSong(string &name);

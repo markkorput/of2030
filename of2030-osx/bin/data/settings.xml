@@ -5,6 +5,7 @@
   <osc>
     <port>2031</port>
     <addresses>
+      <trigger>/t</effect>
       <effect>/fx</effect>
       <shader>/fx/shader</shader>
       <control>/ctrl</control>

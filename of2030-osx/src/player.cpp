@@ -20,7 +20,7 @@ Player* Player::instance(){
 }
 
 
-Player::Player() : m_time(0.0f), m_bPlaying(false), song("fusion"), clip("fusion2"){
+Player::Player() : m_time(0.0f), m_bPlaying(false), song("default"), clip("default"){
     // initialize with a single "OFF" effect in the queue
     active_effects.push_back(&m_offEffect);
 }

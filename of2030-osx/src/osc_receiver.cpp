@@ -49,21 +49,27 @@ void OscReceiver::setup(){
 }
 
 void OscReceiver::update(){
+    ofxOscMessage m;
+    string addr,param,sub;
     int message_count = 0;
 
     // check for waiting messages
     while(m_oscReceiver.hasWaitingMessages() && message_count < MAX_MESSAGES_PER_CYCLE){
         // get the next message
-        ofxOscMessage m;
         m_oscReceiver.getNextMessage(m);
         message_count++;
 
-        string addr = m.getAddress();
-        string param, sub;
-        ofLogVerbose() << "[osc-in] " << addr;
+        addr = m.getAddress();
+        param = m.getArgAsString(0);
+
+        ofLogVerbose() << "[osc-in] " << addr << " with " << param;
+
+        if(addr == osc_setting->addresses["trigger"]){
+            ofNotifyEvent(m_interface->triggerEvent, param, m_interface);
+            continue;
+        }
 
         if(addr == osc_setting->addresses["shader"]){
-            param = m.getArgAsString(0);
             ofNotifyEvent(m_interface->shaderEffectEvent, param, m_interface);
             continue;
         }
@@ -77,7 +83,6 @@ void OscReceiver::update(){
 
 
         if(addr == osc_setting->addresses["effect"]){
-            param = m.getArgAsString(0);
             ofNotifyEvent(m_interface->effectEvent, param, m_interface);
             continue;
         }
@@ -95,25 +100,16 @@ void OscReceiver::update(){
         }
 
         if(addr == osc_setting->addresses["song"]){
-            param = m.getArgAsString(0);
             ofLogVerbose() << "[osc-in] song: " << param;
             ofNotifyEvent(m_interface->songEvent, param, m_interface);
             continue;
         }
 
         if(addr == osc_setting->addresses["clip"]){
-            param = m.getArgAsString(0);
             ofLogVerbose() << "[osc-in] clip: " << param;
             ofNotifyEvent(m_interface->clipEvent, param, m_interface);
             continue;
         }
-
-
-//        if(addr == "/effect"){
-//            //ofLogVerbose() << "Got /effect OSC Message";
-//            if(processJsonEffectMessage(m))
-//                continue;
-//        }
 
         ofLog() << "Unable to process OSC Message " << m.getAddress();
     }

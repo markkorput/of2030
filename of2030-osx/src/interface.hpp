@@ -20,6 +20,7 @@ namespace of2030 {
         static Interface* instance();
     
     public: // events
+        ofEvent<string> triggerEvent;
         ofEvent<string> effectEvent;
         ofEvent<string> shaderEffectEvent;
         ofEvent<string> reconfigSettingsEvent;
