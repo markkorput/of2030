@@ -36,7 +36,7 @@ namespace of2030{
     // EffectConfig
     //
     typedef struct {
-        string config_path;
+        string setting_name;
         string param_name;
         string param_value;
     } EffectConfig;

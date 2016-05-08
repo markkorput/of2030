@@ -53,7 +53,7 @@ void XmlEffects::load(){
             EffectSetting *fx;
             int loaded_count = effect_settings.size();
             int xml_count = 0;
-            
+
             el = el->FirstChildElement("effect");
             while(el){
 
@@ -99,3 +99,21 @@ EffectSetting* XmlEffects::getEffectSetting(string name){
 
     return NULL;
 }
+
+void XmlEffects::setEffectSettingParam(string settingName, string paramName, string value){
+    // find existing setting
+    EffectSetting *pSetting = getEffectSetting(settingName);
+
+    if(!pSetting){
+        // create setting
+        pSetting = new EffectSetting();
+        pSetting->name = settingName;
+        // add to our list
+        effect_settings.push_back(pSetting);
+    }
+
+    pSetting->data[paramName] = value;
+}
+
+
+

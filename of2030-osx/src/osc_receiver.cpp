@@ -84,7 +84,7 @@ void OscReceiver::update(){
             }
 
             EffectConfig cfg;
-            cfg.config_path = sub.substr(0, pos);
+            cfg.setting_name = sub.substr(0, pos);
             cfg.param_name = sub.substr(pos+1);
             cfg.param_value = param;
 
