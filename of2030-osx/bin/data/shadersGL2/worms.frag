@@ -1,4 +1,4 @@
-uniform float iTime;
+uniform float iProgress;
 
 float worm(vec2 fragCoord, vec2 scroll, float tiltFactor){
     // sine-wave based baseline (causing the horizontal waviness)
@@ -27,7 +27,7 @@ float worm(vec2 fragCoord, vec2 scroll, float tiltFactor){
 
 void main(void){
     // global scroll movement speed
-    vec2 scroll = vec2(2.0, -0.1) * iTime;
+    vec2 scroll = vec2(20, -1.0) * iProgress;
     float tilt = 0.0;
 
     float c = clamp(worm(gl_FragCoord.xy, scroll, tilt), 0.0, 1.0);

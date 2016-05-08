@@ -20,16 +20,16 @@ using namespace of2030;
 void loadOsc(TiXmlDocument &doc, OscSetting &osc_setting){
     TiXmlElement *el = doc.FirstChildElement("of2030");
     if(!el) return;
-    
+
     el = el->FirstChildElement("osc");
     if(!el) return;
-    
+
     el = el->FirstChildElement("addresses");
     if(!el) return;
-    
+
     TiXmlElement* child = el->FirstChildElement();
     string name, val;
-    
+
     while(child){
         name = child->ValueStr();
         val = child->GetText();
@@ -58,7 +58,7 @@ void XmlSettings::load(){
     log_level = log_level_map[log_level_name];
 
     osc_setting.port = xml.getValue("of2030:osc:port", 2030);
-    
+
     loadOsc(xml.doc, osc_setting);
 
     client_id = xml.getValue("of2030:client_id", 1);
@@ -70,7 +70,6 @@ void XmlSettings::load(){
                 int id = xml.getValue("id", 0, i);
                 multi_client_ids.push_back(id);
             }
-            multi_screen_scale = xml.getValue("screen_scale", 1.0f);
             multi_room_scale = ofVec3f(xml.getValue("room_scale_x", 1.0f),
                                        xml.getValue("room_scale_y", 1.0f),
                                        xml.getValue("room_scale_z", 1.0f));

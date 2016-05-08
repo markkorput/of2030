@@ -9,8 +9,6 @@
 #ifndef client_info_hpp
 #define client_info_hpp
 
-// #include "json_file_reader.hpp"
-// #include "config_file.hpp"
 #include "xml_settings.hpp"
 #include "xml_clients.hpp"
 #include "setting_types.h"
