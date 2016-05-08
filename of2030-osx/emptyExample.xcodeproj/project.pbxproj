@@ -34,8 +34,6 @@
 		4D9B299D1CC65D82005D65E9 /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D9B29991CC65D82005D65E9 /* tinyxmlerror.cpp */; };
 		4D9B299E1CC65D82005D65E9 /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D9B299A1CC65D82005D65E9 /* tinyxmlparser.cpp */; };
 		4D9B29A11CC6692A005D65E9 /* composition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D9B299F1CC6692A005D65E9 /* composition.cpp */; };
-		4DDF773F1CCD73B900CB936A /* config_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DDF773D1CCD73B900CB936A /* config_file.cpp */; };
-		4DDF77421CCD7AC000CB936A /* json_file_reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DDF77401CCD7AC000CB936A /* json_file_reader.cpp */; };
 		4DE274CA1CCE1D9300F2D470 /* xml_settings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DE274C81CCE1D9300F2D470 /* xml_settings.cpp */; };
 		4DE274CE1CCE242B00F2D470 /* multi_client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DE274CC1CCE242B00F2D470 /* multi_client.cpp */; };
 		4DE491011CC69C55003E7958 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DE490FF1CC69C55003E7958 /* player.cpp */; };
@@ -138,10 +136,6 @@
 		4D9B299A1CC65D82005D65E9 /* tinyxmlparser.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxmlparser.cpp; sourceTree = "<group>"; };
 		4D9B299F1CC6692A005D65E9 /* composition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = composition.cpp; sourceTree = "<group>"; };
 		4D9B29A01CC6692A005D65E9 /* composition.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = composition.hpp; sourceTree = "<group>"; };
-		4DDF773D1CCD73B900CB936A /* config_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = config_file.cpp; sourceTree = "<group>"; };
-		4DDF773E1CCD73B900CB936A /* config_file.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = config_file.hpp; sourceTree = "<group>"; };
-		4DDF77401CCD7AC000CB936A /* json_file_reader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json_file_reader.cpp; sourceTree = "<group>"; };
-		4DDF77411CCD7AC000CB936A /* json_file_reader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = json_file_reader.hpp; sourceTree = "<group>"; };
 		4DE274C81CCE1D9300F2D470 /* xml_settings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = xml_settings.cpp; sourceTree = "<group>"; };
 		4DE274C91CCE1D9300F2D470 /* xml_settings.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = xml_settings.hpp; sourceTree = "<group>"; };
 		4DE274CC1CCE242B00F2D470 /* multi_client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = multi_client.cpp; sourceTree = "<group>"; };
@@ -391,17 +385,6 @@
 			name = test;
 			sourceTree = "<group>";
 		};
-		4DF6EBEC1CDCB90800D37FB7 /* _archive */ = {
-			isa = PBXGroup;
-			children = (
-				4DDF773D1CCD73B900CB936A /* config_file.cpp */,
-				4DDF773E1CCD73B900CB936A /* config_file.hpp */,
-				4DDF77401CCD7AC000CB936A /* json_file_reader.cpp */,
-				4DDF77411CCD7AC000CB936A /* json_file_reader.hpp */,
-			);
-			name = _archive;
-			sourceTree = "<group>";
-		};
 		4DF6EBED1CDCB93100D37FB7 /* communication */ = {
 			isa = PBXGroup;
 			children = (
@@ -488,7 +471,6 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				4DF6EBEC1CDCB90800D37FB7 /* _archive */,
 				4D9B297C1CC64F52005D65E9 /* 2030 */,
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
@@ -618,11 +600,9 @@
 				4D9B296E1CC64190005D65E9 /* ofxOscReceiver.cpp in Sources */,
 				4D7E54FD1CC6AD1D00DF588E /* interface_player_bridge.cpp in Sources */,
 				4D9B29761CC64190005D65E9 /* OscTypes.cpp in Sources */,
-				4DDF77421CCD7AC000CB936A /* json_file_reader.cpp in Sources */,
 				4D9B296F1CC64190005D65E9 /* ofxOscSender.cpp in Sources */,
 				4D9B29731CC64190005D65E9 /* OscOutboundPacketStream.cpp in Sources */,
 				4D9B29701CC64190005D65E9 /* IpEndpointName.cpp in Sources */,
-				4DDF773F1CCD73B900CB936A /* config_file.cpp in Sources */,
 				4D9B29721CC64190005D65E9 /* UdpSocket.cpp in Sources */,
 				4D3B38F41CC66E16004C8994 /* ofxJSONElement.cpp in Sources */,
 				4DE274CE1CCE242B00F2D470 /* multi_client.cpp in Sources */,

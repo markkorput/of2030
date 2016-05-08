@@ -10,9 +10,14 @@
 #define multi_client_hpp
 
 //#include <stdio.h>
+#include "shared2030.h"
+
+#ifdef __MULTI_CLIENT_ENABLED__
+
 #include "xml_settings.hpp"
 #include "renderer.hpp"
 #include "client_info.hpp"
+
 
 namespace of2030{
     
@@ -42,4 +47,5 @@ namespace of2030{
     };
 }
 
-#endif /* multi_client_hpp */
+#endif // #ifdef __MULTI_CLIENT_ENABLED__
+#endif // multi_client_hpp

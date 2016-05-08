@@ -11,6 +11,7 @@
 
 #ifdef __APPLE__
     #define __MULTI_CLIENT_ENABLED__ (true)
+    #define __BOOL_OSC_SETUP__ (true)
 #endif
 
 #endif /* shared2030_h */
