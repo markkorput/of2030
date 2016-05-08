@@ -16,6 +16,11 @@ namespace of2030{
 
     class XmlSettings{
     public:
+        static XmlSettings* instance();
+    private:
+        static XmlSettings* singleton;
+
+    public:
         XmlSettings() : path("settings.xml"), log_level(OF_LOG_NOTICE){};
         void load();
         void save();

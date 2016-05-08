@@ -5,13 +5,15 @@
 #include "xml_effects.hpp"
 #include "xml_triggers.hpp"
 #include "shader_manager.hpp"
+#include "xml_settings.hpp"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofLogToFile("log.txt", true);
+    ofSetWindowPosition(0, 0);
 
-    m_xmlSettings.load();
-    ofSetLogLevel(m_xmlSettings.log_level);
+    of2030::XmlSettings::instance()->load();
+    ofSetLogLevel(of2030::XmlSettings::instance()->log_level);
 
     of2030::XmlClients::instance()->load();
     of2030::XmlEffects::instance()->load();
@@ -19,7 +21,7 @@ void ofApp::setup(){
     m_clientInfo = of2030::ClientInfo::instance();
     m_clientInfo->setup();
 
-    m_oscReceiver.configure(m_xmlSettings.osc_setting);
+    m_oscReceiver.configure(of2030::XmlSettings::instance()->osc_setting);
     m_oscReceiver.setup();
 
     m_player = of2030::Player::instance();
@@ -30,7 +32,6 @@ void ofApp::setup(){
     m_interface_player_bridge.start();
 
 #ifdef __MULTI_CLIENT_ENABLED__
-    m_multiClient.load(m_xmlSettings);
     m_multiClient.setup();
 #endif
     
@@ -133,11 +134,11 @@ void ofApp::onControl(string &type){
     }
 
     if(type == CTRL_RELOAD_SETTINGS){
-        m_xmlSettings.load();
-        ofSetLogLevel(m_xmlSettings.log_level);
-        m_oscReceiver.configure(m_xmlSettings.osc_setting);
+        of2030::XmlSettings::instance()->load();
+        ofSetLogLevel(of2030::XmlSettings::instance()->log_level);
+        m_oscReceiver.configure(of2030::XmlSettings::instance()->osc_setting);
 #ifdef __MULTI_CLIENT_ENABLED__
-        m_multiClient.load(m_xmlSettings);
+        m_multiClient.setup();
 #endif
         return;
     }

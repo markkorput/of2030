@@ -7,7 +7,6 @@
 #include "interface_player_bridge.hpp"
 #include "renderer.hpp"
 #include "client_info.hpp"
-#include "xml_settings.hpp"
 
 #ifdef __MULTI_CLIENT_ENABLED__
     #include "multi_client.hpp"
@@ -44,7 +43,6 @@ class ofApp : public ofBaseApp{
         of2030::Renderer m_renderer;
         of2030::InterfacePlayerBridge m_interface_player_bridge;
         of2030::ClientInfo *m_clientInfo;
-        of2030::XmlSettings m_xmlSettings;
     
 #ifdef __MULTI_CLIENT_ENABLED__
         of2030::MultiClient m_multiClient;

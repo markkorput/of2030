@@ -12,26 +12,25 @@
 
 using namespace of2030;
 
-void MultiClient::load(XmlSettings &xml){
-    bool wasSetup = bSetup;
-    destroy();
-    m_xml = &xml;
-    enabled = m_xml->multi_client_ids.size() > 0;
-    if(wasSetup)
-        setup();
-}
+XmlSettings* MultiClient::xml_settings = NULL;
 
 void MultiClient::setup(){
+    destroy();
+
+    xml_settings = XmlSettings::instance();
+    enabled = xml_settings->multi_client_ids.size() > 0;
+
+    // done
     if(!enabled) return;
 
-    for(int i=0; i<m_xml->multi_client_ids.size(); i++){
-        int id = m_xml->multi_client_ids[i];
+    for(int i=0; i<xml_settings->multi_client_ids.size(); i++){
+        int id = xml_settings->multi_client_ids[i];
 
         // create client info instance
         ClientInfo *cinfo = new ClientInfo();
         cinfo->setup();
         // cinfo->copy(*ClientInfo::instance());
-        cinfo->setClientId(m_xml->multi_client_ids[i]);
+        cinfo->setClientId(xml_settings->multi_client_ids[i]);
         m_client_infos.push_back(cinfo);
 
         // create renderer instance
@@ -41,10 +40,7 @@ void MultiClient::setup(){
         m_renderers.push_back(renderer);
     }
 
-    ofLog() << "[MultiClient] enabled, resizing window";
-    //ofSetWindowShape(m_renderers.size()*Renderer::WIDTH*m_scaleFactor, Renderer::HEIGHT*m_scaleFactor);
-    ofSetWindowPosition(10, 10);
-    bSetup = true;
+    ofLog() << "[MultiClient] enabled";
 }
 
 void MultiClient::destroy(){
@@ -58,18 +54,15 @@ void MultiClient::destroy(){
 
     m_client_infos.clear();
     m_renderers.clear();
-    bSetup = false;
 }
 
 
 void MultiClient::draw(){
-    if(!enabled) return;
-
     ofClear(0);
     cam.begin();
 
     ofPushMatrix();
-        ofScale(m_xml->multi_room_scale.x, m_xml->multi_room_scale.y, m_xml->multi_room_scale.z);
+        ofScale(xml_settings->multi_room_scale.x, xml_settings->multi_room_scale.y, xml_settings->multi_room_scale.z);
 
         // draw floor
         ofPushMatrix();

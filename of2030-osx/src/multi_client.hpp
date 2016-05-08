@@ -14,36 +14,32 @@
 
 #ifdef __MULTI_CLIENT_ENABLED__
 
-#include "xml_settings.hpp"
 #include "renderer.hpp"
 #include "client_info.hpp"
-
+#include "xml_settings.hpp"
 
 namespace of2030{
     
     class MultiClient {
+    private:
+        static XmlSettings* xml_settings;
+
     public:
-        MultiClient() : enabled(false), bSetup(false) {};
+        MultiClient() : enabled(false) {};
         ~MultiClient(){ destroy(); }
-        
+
         void setup();
         void destroy();
-        void load(XmlSettings &xml);
         void draw();
     
     public: // attributes
         
         bool enabled;
 
-        XmlSettings *m_xml;
         vector<ClientInfo*> m_client_infos;
         vector<Renderer*> m_renderers;
 
         ofEasyCam cam;
-    
-    private: // attributes
-        
-        bool bSetup;
     };
 }
 

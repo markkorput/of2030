@@ -43,6 +43,16 @@ void loadOsc(TiXmlDocument &doc, OscSetting &osc_setting){
 // XmlSettings
 //
 
+XmlSettings* XmlSettings::singleton = NULL;
+
+XmlSettings* XmlSettings::instance(){
+    if (!singleton){   // Only allow one instance of class to be generated.
+        singleton = new XmlSettings();
+    }
+    return singleton;
+}
+
+
 void XmlSettings::load(){
     ofxXmlSettings xml;
     xml.loadFile(path);
