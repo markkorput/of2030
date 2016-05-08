@@ -59,50 +59,61 @@ void OscReceiver::update(){
         message_count++;
 
         string addr = m.getAddress();
-        if(addr == osc_setting->addresses["shader"]){
-            string shader_name = m.getArgAsString(0);
-            if(shader_name == ""){
-                ofLogWarning() << "[osc-in] got " << osc_setting->addresses["shader"] << " message without shader name param";
-                continue;
-            }
+        string param, sub;
+        ofLogVerbose() << "[osc-in] " << addr;
 
-            effects::ShaderEffect* fx = new effects::ShaderEffect();
-            fx->setShader(shader_name);
-            ofNotifyEvent(m_interface->effectEvent, (*(effects::Effect*)fx), m_interface);
+        if(addr == osc_setting->addresses["shader"]){
+            param = m.getArgAsString(0);
+            ofNotifyEvent(m_interface->shaderEffectEvent, param, m_interface);
             continue;
         }
 
+        sub = osc_setting->addresses["shader"];
+        if(addr.substr(0, sub.size()) == sub){
+            param = addr.substr(sub.size());
+            ofNotifyEvent(m_interface->shaderEffectEvent, param, m_interface);
+            continue;
+        }
+
+
         if(addr == osc_setting->addresses["effect"]){
-            //ofLogVerbose() << "Got /message OSC Message";
-            if(processFxMessage(m))
-                continue;
+            param = m.getArgAsString(0);
+            ofNotifyEvent(m_interface->effectEvent, param, m_interface);
+            continue;
+        }
+
+        sub = osc_setting->addresses["effect"];
+        if(addr.substr(0, sub.size()) == sub){
+            param = addr.substr(sub.size());
+            ofNotifyEvent(m_interface->effectEvent, param, m_interface);
+            continue;
         }
 
         if(addr == osc_setting->addresses["control"]){
-            //ofLogVerbose() << "Got /ctrl OSC Message";
             if(processCtrlMessage(m))
                 continue;
         }
 
         if(addr == osc_setting->addresses["song"]){
-            string name = m.getArgAsString(0);
-            ofLogVerbose() << "[osc-in] song: " << name;
-            ofNotifyEvent(m_interface->songEvent, name, m_interface);
+            param = m.getArgAsString(0);
+            ofLogVerbose() << "[osc-in] song: " << param;
+            ofNotifyEvent(m_interface->songEvent, param, m_interface);
             continue;
         }
 
         if(addr == osc_setting->addresses["clip"]){
-            string name = m.getArgAsString(0);
-            ofLogVerbose() << "[osc-in] clip: " << name;
-            ofNotifyEvent(m_interface->clipEvent, name, m_interface);
+            param = m.getArgAsString(0);
+            ofLogVerbose() << "[osc-in] clip: " << param;
+            ofNotifyEvent(m_interface->clipEvent, param, m_interface);
             continue;
         }
 
-        if(addr == "/effect"){
-            //ofLogVerbose() << "Got /effect OSC Message";
-            if(processJsonEffectMessage(m))
-                continue;
-        }
+
+//        if(addr == "/effect"){
+//            //ofLogVerbose() << "Got /effect OSC Message";
+//            if(processJsonEffectMessage(m))
+//                continue;
+//        }
 
         ofLog() << "Unable to process OSC Message " << m.getAddress();
     }
@@ -139,119 +150,90 @@ void OscReceiver::disconnect(){
     m_bConnected = false;
 }
 
-bool OscReceiver::processJsonEffectMessage(ofxOscMessage &m){
-    if(m.getNumArgs() < 1){
-        ofLogWarning() << "/effect message didn't have any args";
-        return false;
-    }
+//bool OscReceiver::processJsonEffectMessage(ofxOscMessage &m){
+//    if(m.getNumArgs() < 1){
+//        ofLogWarning() << "/effect message didn't have any args";
+//        return false;
+//    }
+//
+//    if(m.getArgType(0) != OFXOSC_TYPE_STRING){
+//        ofLogWarning() << "/effect didn't have string arg";
+//        return false;
+//    }
+//
+//    effects::Effect* effect = createEffectFromJsonString(m.getArgAsString(0));
+//    if(!effect){
+//        ofLogWarning() << "Could not create effect instance from OSC /effect message with data: " << m.getArgAsString(0);
+//        return false;
+//    }
+//
+//    // ofLog() << "[OscReceiver] Triggering interface's effectEvent";
+//    ofNotifyEvent(m_interface->effectEvent, *effect, m_interface);
+//    return true;
+//}
 
-    if(m.getArgType(0) != OFXOSC_TYPE_STRING){
-        ofLogWarning() << "/effect didn't have string arg";
-        return false;
-    }
+//void OscReceiver::getMapFromJsonString(const std::string &str, map<string, string> &target){
+//    ofxJSONElement jsonEl;
+//    jsonEl.parse(str);
+//
+//    // get all attributes as string (no support for nester structure for now)
+//    vector<string> attrs = jsonEl.getMemberNames();
+//
+//    for(int i=attrs.size()-1; i>=0; i--){
+//        string name = attrs[i];
+//        target[name] = jsonEl[name].asString();
+//    }
+//}
 
-    effects::Effect* effect = createEffectFromJsonString(m.getArgAsString(0));
-    if(!effect){
-        ofLogWarning() << "Could not create effect instance from OSC /effect message with data: " << m.getArgAsString(0);
-        return false;
-    }
+//effects::Effect* OscReceiver::createEffectFromJsonString(const std::string &json_string){
+//    effects::Effect* pEffect;
+//    std::string type, value;
+//
+//    ofxJSONElement json;
+//    if(!json.parse(json_string))
+//        return NULL;
+//
+//    if(json.isMember("type"))
+//        type = json["type"].asString();
+//
+//    // create an instance of the appropriate effects class
+//    // beased on the model's type attribute
+//    // and populate type-specific attributes
+//    // the assign the pEffect pointer to the created instance
+//    if(type == "OFF"){
+//
+//        effects::Off* effect = new effects::Off();
+//        pEffect = (effects::Effect*)effect;
+//
+//    } else if(type == "COLOR"){
+//
+//        effects::Color* effect = new effects::Color();
+//        if(json.isMember("r") && json.isMember("g") && json.isMember("b")){
+//            effect->color.set(ofColor(json["r"].asInt(),
+//                                      json["g"].asInt(),
+//                                      json["b"].asInt()));
+//        }
+//        pEffect = (effects::Effect*)effect;
+//
+//    } else {
+//
+//        ofLogWarning() << "[EffectCreator] got unknown effect model type: " << type;
+//        pEffect = new effects::Effect();
+//    }
+//
+//    // process some more (optional) general effect attributes
+//    if(json.isMember("start"))
+//        pEffect->startTime = json["start"].asFloat();
+//
+//    if(json.isMember("end"))
+//        pEffect->endTime = json["end"].asFloat();
+//
+//    if(json.isMember("duration"))
+//        pEffect->duration = json["duration"].asFloat();
+//
+//    return pEffect;
+//}
 
-    // ofLog() << "[OscReceiver] Triggering interface's effectEvent";
-    ofNotifyEvent(m_interface->effectEvent, *effect, m_interface);
-    return true;
-}
-
-void OscReceiver::getMapFromJsonString(const std::string &str, map<string, string> &target){
-    ofxJSONElement jsonEl;
-    jsonEl.parse(str);
-
-    // get all attributes as string (no support for nester structure for now)
-    vector<string> attrs = jsonEl.getMemberNames();
-
-    for(int i=attrs.size()-1; i>=0; i--){
-        string name = attrs[i];
-        target[name] = jsonEl[name].asString();
-    }
-}
-
-effects::Effect* OscReceiver::createEffectFromJsonString(const std::string &json_string){
-    effects::Effect* pEffect;
-    std::string type, value;
-
-    ofxJSONElement json;
-    if(!json.parse(json_string))
-        return NULL;
-
-    if(json.isMember("type"))
-        type = json["type"].asString();
-
-    // create an instance of the appropriate effects class
-    // beased on the model's type attribute
-    // and populate type-specific attributes
-    // the assign the pEffect pointer to the created instance
-    if(type == "OFF"){
-
-        effects::Off* effect = new effects::Off();
-        pEffect = (effects::Effect*)effect;
-
-    } else if(type == "COLOR"){
-
-        effects::Color* effect = new effects::Color();
-        if(json.isMember("r") && json.isMember("g") && json.isMember("b")){
-            effect->color.set(ofColor(json["r"].asInt(),
-                                      json["g"].asInt(),
-                                      json["b"].asInt()));
-        }
-        pEffect = (effects::Effect*)effect;
-
-    } else {
-
-        ofLogWarning() << "[EffectCreator] got unknown effect model type: " << type;
-        pEffect = new effects::Effect();
-    }
-
-    // process some more (optional) general effect attributes
-    if(json.isMember("start"))
-        pEffect->startTime = json["start"].asFloat();
-
-    if(json.isMember("end"))
-        pEffect->endTime = json["end"].asFloat();
-
-    if(json.isMember("duration"))
-        pEffect->duration = json["duration"].asFloat();
-
-    return pEffect;
-}
-
-bool OscReceiver::processFxMessage(ofxOscMessage &m){
-    if(m.getNumArgs() < 1){
-        ofLogWarning() << "/fx message didn't have any args";
-        return true;
-    }
-
-    if(m.getArgType(0) != OFXOSC_TYPE_STRING){
-        ofLogWarning() << "/fx didn't have string arg";
-        return true;
-    }
-
-    string messageType = m.getArgAsString(0);
-    ofLogVerbose() << "[osc-in] /fx " << messageType;
-
-    if(messageType == "cursor"){
-        effects::Cursor* cursor_effect = new effects::Cursor();
-        ofNotifyEvent(m_interface->effectEvent, (*(effects::Effect*)cursor_effect), m_interface);
-        return true;
-    }
-
-    if(messageType == "vid"){
-        effects::Vid* effect = new effects::Vid();
-        ofNotifyEvent(m_interface->effectEvent, (*(effects::Effect*)effect), m_interface);
-        return true;
-    }
-
-    ofLogWarning() << "[osc-in] unknown messageType: " << messageType;
-    return false;
-}
 
 bool OscReceiver::processCtrlMessage(ofxOscMessage &m){
     if(m.getNumArgs() < 1){

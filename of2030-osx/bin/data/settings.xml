@@ -3,7 +3,7 @@
     <log_level>notice</log_level>
   </app>
   <osc>
-    <port>2029</port>
+    <port>2031</port>
     <addresses>
       <effect>/fx</effect>
       <shader>/fx/shader</shader>

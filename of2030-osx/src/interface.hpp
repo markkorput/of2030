@@ -11,7 +11,6 @@
 
 //#include <stdio.h>
 #include "ofMain.h"
-#include "effects.hpp"
 
 namespace of2030 {
     
@@ -21,7 +20,8 @@ namespace of2030 {
         static Interface* instance();
     
     public: // events
-        ofEvent<effects::Effect> effectEvent;
+        ofEvent<string> effectEvent;
+        ofEvent<string> shaderEffectEvent;
         ofEvent<string> reconfigSettingsEvent;
         ofEvent<string> reconfigClientsEvent;
         ofEvent<string> reconfigEffectsEvent;
