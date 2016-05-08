@@ -24,11 +24,10 @@ namespace of2030{
         // ~ClientInfo();
 
         void setup();
-        void copy(ClientInfo &other);
         void setClientId(string cid);
 
-        int index, count;
         string id;
+        // todo; load XmlConfigs into this class statically
     };
 }
 #endif /* client_info_hpp */

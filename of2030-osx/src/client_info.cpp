@@ -20,7 +20,7 @@ ClientInfo* ClientInfo::instance(){
     return singleton;
 }
 
-ClientInfo::ClientInfo() : id(""), count(1), index(0){
+ClientInfo::ClientInfo() : id(""){
 }
 
 void ClientInfo::setup(){
@@ -30,12 +30,6 @@ void ClientInfo::setup(){
     setClientId(xml_settings->client_id);
 
     ofLogVerbose() << "[ClientInfo.setup] client id: " << id;
-}
-
-void ClientInfo::copy(ClientInfo &other){
-    count = other.count;
-    id = other.id;
-    index = other.index;
 }
 
 void ClientInfo::setClientId(string cid){
