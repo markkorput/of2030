@@ -21,19 +21,30 @@ void xmlLoadEffect(TiXmlElement &xml_el, XmlItemSetting &fx){
 
 // XmlEffects implementation
 
-const string XmlEffects::path = "effects.xml";
-const string XmlEffects::rootNodeName = "effects";
-const string XmlEffects::itemNodeName = "effect";
 
-XmlEffects* XmlEffects::singleton = NULL;
+XmlEffects* XmlEffects::_instance = NULL;
+XmlEffects* XmlEffects::_screens_instance = NULL;
 
 XmlEffects* XmlEffects::instance(){
-    if (!singleton){   // Only allow one instance of class to be generated.
-        singleton = new XmlEffects();
+    if (!_instance){
+        _instance = new XmlEffects();
     }
-    return singleton;
+    return _instance;
 }
 
+XmlEffects* XmlEffects::screens(){
+    if (!_screens_instance){
+        _screens_instance = new XmlEffects();
+        _screens_instance->path = "screens.xml";
+        _screens_instance->rootNodeName = "screens";
+        _screens_instance->itemNodeName = "screen";
+    }
+    return _screens_instance;
+}
+
+
+XmlEffects::XmlEffects() : path("effects.xml"), rootNodeName("effects"), itemNodeName("effect"){
+}
 
 void XmlEffects::destroy(){
     for(auto &fx_setting: settings)

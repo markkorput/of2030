@@ -8,18 +8,15 @@
 namespace of2030{
     
     class XmlEffects{
-    private:
-        const static string path;
-        const static string rootNodeName;
-        const static string itemNodeName;
-
     public:
         static XmlEffects* instance();
+        static XmlEffects* screens();
     private:
-        static XmlEffects* singleton;
+        static XmlEffects* _screens_instance;
+        static XmlEffects* _instance;
 
     public:
-        // XmlEffects();
+        XmlEffects();
         ~XmlEffects(){ destroy(); }
         void destroy();
         void load();
@@ -29,6 +26,10 @@ namespace of2030{
 
     private:
         vector<XmlItemSetting*> settings;
+
+        string path;
+        string rootNodeName;
+        string itemNodeName;
     };
 }
 

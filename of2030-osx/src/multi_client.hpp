@@ -36,6 +36,11 @@ namespace of2030{
         void setup();
         void destroy();
         void draw();
+
+    private:
+        void drawFloor();
+        void drawDebug();
+        void drawScreens();
     
     public: // attributes
         

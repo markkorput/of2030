@@ -31,9 +31,13 @@ namespace of2030{
 
         bool loaded;
         string client_id;
+        ofVec3f room_size;
+        
 #ifdef __MULTI_CLIENT_ENABLED__
         vector<string> multi_client_ids;
-        ofVec3f multi_room_scale;
+        bool multi_debug;
+        float multi_scale;
+        ofVec3f multi_translate;
 #endif
 
         string log_level_name;

@@ -9,8 +9,7 @@
 
 
 #include "interface.hpp"
-#include "xml_screens.hpp"
-#include "xml_effects.hpp"
+#include "xml_configs.hpp"
 #include "xml_triggers.hpp"
 #include "shader_manager.hpp"
 #include "xml_settings.hpp"
@@ -24,8 +23,8 @@ void ofApp::setup(){
     ofSetLogLevel(of2030::XmlSettings::instance()->log_level);
 
     // of2030::XmlClients::instance()->load();
-    of2030::XmlEffects::instance()->load();
-    of2030::XmlScreens::instance()->load();
+    of2030::XmlConfigs::instance()->load();
+    of2030::XmlConfigs::screens()->load();
 
     m_clientInfo = of2030::ClientInfo::instance();
     m_clientInfo->setup();
@@ -138,12 +137,12 @@ void ofApp::onControl(string &type){
 
     if(type == CTRL_RELOAD_EFFECTS){
         of2030::XmlTriggers::instance()->load();
-        of2030::XmlEffects::instance()->load();
+        of2030::XmlConfigs::instance()->load();
         return;
     }
 
     if(type == CTRL_RELOAD_SCREENS){
-        of2030::XmlScreens::instance()->load();
+        of2030::XmlConfigs::screens()->load();
 #ifdef __MULTI_CLIENT_ENABLED__
         of2030::MultiClient::instance()->setup();
 #endif

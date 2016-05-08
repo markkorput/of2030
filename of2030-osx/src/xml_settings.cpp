@@ -74,6 +74,9 @@ void XmlSettings::load(bool reload){
     loadOsc(xml.doc, osc_setting);
 
     client_id = xml.getValue("of2030:client_id", "0");
+    room_size = ofVec3f(xml.getValue("of2030:room_size_x", 1.0f),
+                       xml.getValue("of2030:room_size_y", 1.0f),
+                       xml.getValue("of2030:room_size_z", 1.0f));
 
 #ifdef __MULTI_CLIENT_ENABLED__
     multi_client_ids.clear();
@@ -84,9 +87,11 @@ void XmlSettings::load(bool reload){
                 string id = xml.getValue("id", "0", i);
                 multi_client_ids.push_back(id);
             }
-            multi_room_scale = ofVec3f(xml.getValue("room_scale_x", 1.0f),
-                                       xml.getValue("room_scale_y", 1.0f),
-                                       xml.getValue("room_scale_z", 1.0f));
+            multi_debug = xml.getValue("debug", "false") == "true";
+            multi_scale = xml.getValue("scale", 1.0f);
+            multi_translate = ofVec3f(xml.getValue("translate_x", 0.0f),
+                                      xml.getValue("translate_y", 0.0f),
+                                      xml.getValue("translate_z", 0.0f));
         }
     }
 #endif // __MULTI_CLIENT_ENABLED__

@@ -9,7 +9,7 @@
 #include "interface_player_bridge.hpp"
 #include "effects.hpp"
 #include "xml_triggers.hpp"
-#include "xml_effects.hpp"
+#include "xml_configs.hpp"
 
 using namespace of2030;
 
@@ -113,7 +113,7 @@ void InterfacePlayerBridge::onShaderEffect(string &shader){
 }
 
 void InterfacePlayerBridge::onEffectConfig(EffectConfig &cfg){
-    XmlEffects::instance()->setItemParam(cfg.setting_name, cfg.param_name, cfg.param_value);
+    XmlConfigs::instance()->setItemParam(cfg.setting_name, cfg.param_name, cfg.param_value);
 }
 
 void InterfacePlayerBridge::onSong(string &name){

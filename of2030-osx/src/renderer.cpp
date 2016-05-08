@@ -8,8 +8,7 @@
 
 #include "ofMain.h"
 #include "renderer.hpp"
-#include "xml_effects.hpp"
-#include "xml_screens.hpp"
+#include "xml_configs.hpp"
 
 using namespace of2030;
 using namespace of2030::effects;
@@ -96,7 +95,7 @@ void Renderer::fillContextClientInfo(effects::Context &context){
 }
 
 void Renderer::fillEffectSetting(effects::Effect &effect, XmlItemSetting &fxsetting){
-    XmlEffects *fxs = XmlEffects::instance();
+    XmlConfigs *fxs = XmlConfigs::instance();
 
     string query = effect.name;
     XmlItemSetting *pSetting = fxs->getItem(query);
@@ -120,7 +119,7 @@ void Renderer::fillEffectSetting(effects::Effect &effect, XmlItemSetting &fxsett
 }
 
 void Renderer::fillScreenSetting(effects::Effect &effect, XmlItemSetting &setting){
-    XmlScreens* screens = XmlScreens::instance();
+    XmlConfigs* screens = XmlConfigs::screens();
 
     XmlItemSetting *pSetting = screens->getItem(client_info->id);
     if(pSetting)
