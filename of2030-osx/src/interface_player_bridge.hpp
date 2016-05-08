@@ -32,9 +32,13 @@ namespace of2030{
     private: // callbacks
 
         void registerInterfaceCallbacks(bool _register=true);
-        void onEffect(effects::Effect &effect);
+        void onEffect(string &effect);
+        void onShaderEffect(string &shader);
         void onSong(string &name);
         void onClip(string &name);
+
+    private: // helpers methods
+        effects::Effect* createEffect(string &name);
 
     private: // attributes
 
