@@ -33,10 +33,3 @@ void XmlTriggers::load(){
         trigger_effects[triggerName] = effectName;
     }
 }
-
-string &XmlTriggers::getEffectName(string triggerName){
-    std::map<string,string>::iterator it = trigger_effects.find(triggerName);
-    if(it == trigger_effects.end())
-        return triggerName;
-    return it->second;
-}

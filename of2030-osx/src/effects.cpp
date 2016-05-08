@@ -14,7 +14,7 @@ using namespace of2030::effects;
 
 int Effect::cidCounter = 0;
 
-Effect::Effect() : startTime(NO_TIME), endTime(NO_TIME) {
+Effect::Effect() : startTime(NO_TIME), endTime(NO_TIME), trigger("") {
     // every effect instance gets a unique cid (client-side-id)
     cid = cidCounter;
     cidCounter++;
