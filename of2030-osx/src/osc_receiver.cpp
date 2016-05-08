@@ -31,7 +31,7 @@ void OscReceiver::configure(unsigned int port, Interface* interface){
 
 void OscReceiver::configure(OscSetting &_osc_setting){
     this->osc_setting = &_osc_setting;
-    
+
     if(m_bConnected){
         // reconnect
         connect();
@@ -71,19 +71,19 @@ void OscReceiver::update(){
             ofNotifyEvent(m_interface->effectEvent, (*(effects::Effect*)fx), m_interface);
             continue;
         }
-        
+
         if(addr == osc_setting->addresses["effect"]){
             //ofLogVerbose() << "Got /message OSC Message";
             if(processFxMessage(m))
                 continue;
         }
-        
+
         if(addr == osc_setting->addresses["control"]){
             //ofLogVerbose() << "Got /ctrl OSC Message";
             if(processCtrlMessage(m))
                 continue;
         }
-        
+
         if(addr == osc_setting->addresses["song"]){
             string name = m.getArgAsString(0);
             ofLogVerbose() << "[osc-in] song: " << name;
@@ -115,8 +115,9 @@ void OscReceiver::destroy(){
 }
 
 bool OscReceiver::connect(){
-    m_oscReceiver.enableReuse();
+    // m_oscReceiver.enableReuse();
 
+#ifdef __BOOL_OSC_SETUP__
     if(m_oscReceiver.setup(osc_setting->port)){
         m_bConnected = true;
         ofLog() << "of2030::OscReceiver listening to port: " << osc_setting->port;
@@ -125,6 +126,13 @@ bool OscReceiver::connect(){
 
     ofLogWarning() << "OscReceiver could not start listening to port: " << osc_setting->port;
     return false;
+#else
+    m_oscReceiver.setup(osc_setting->port);
+    m_bConnected = true;
+    ofLog() << "of2030::OscReceiver listening to port: " << osc_setting->port;
+    return true;
+#endif // __BOOL_OSC_SETUP__
+
 }
 
 void OscReceiver::disconnect(){
@@ -147,7 +155,7 @@ bool OscReceiver::processJsonEffectMessage(ofxOscMessage &m){
         ofLogWarning() << "Could not create effect instance from OSC /effect message with data: " << m.getArgAsString(0);
         return false;
     }
-    
+
     // ofLog() << "[OscReceiver] Triggering interface's effectEvent";
     ofNotifyEvent(m_interface->effectEvent, *effect, m_interface);
     return true;
@@ -169,7 +177,7 @@ void OscReceiver::getMapFromJsonString(const std::string &str, map<string, strin
 effects::Effect* OscReceiver::createEffectFromJsonString(const std::string &json_string){
     effects::Effect* pEffect;
     std::string type, value;
-    
+
     ofxJSONElement json;
     if(!json.parse(json_string))
         return NULL;
@@ -182,12 +190,12 @@ effects::Effect* OscReceiver::createEffectFromJsonString(const std::string &json
     // and populate type-specific attributes
     // the assign the pEffect pointer to the created instance
     if(type == "OFF"){
-        
+
         effects::Off* effect = new effects::Off();
         pEffect = (effects::Effect*)effect;
-        
+
     } else if(type == "COLOR"){
-        
+
         effects::Color* effect = new effects::Color();
         if(json.isMember("r") && json.isMember("g") && json.isMember("b")){
             effect->color.set(ofColor(json["r"].asInt(),
@@ -220,12 +228,12 @@ bool OscReceiver::processFxMessage(ofxOscMessage &m){
         ofLogWarning() << "/fx message didn't have any args";
         return true;
     }
-    
+
     if(m.getArgType(0) != OFXOSC_TYPE_STRING){
         ofLogWarning() << "/fx didn't have string arg";
         return true;
     }
-    
+
     string messageType = m.getArgAsString(0);
     ofLogVerbose() << "[osc-in] /fx " << messageType;
 
@@ -250,15 +258,15 @@ bool OscReceiver::processCtrlMessage(ofxOscMessage &m){
         ofLogWarning() << "/ctrl message didn't have any args";
         return false;
     }
-    
+
     if(m.getArgType(0) != OFXOSC_TYPE_STRING){
         ofLogWarning() << "/ctrl didn't have string arg";
         return false;
     }
-    
+
     string messageType = m.getArgAsString(0);
     ofLogVerbose() << "[osc-in] /ctrl " << messageType;
-    
+
     if(messageType == "reconfig_clients"){
         string config_path = "";
         if(m.getNumArgs() >= 2 and m.getArgType(1) == OFXOSC_TYPE_STRING)
