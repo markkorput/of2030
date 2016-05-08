@@ -89,10 +89,7 @@ void Renderer::fillContext(effects::Context &context, Effect &effect){
 
 void Renderer::fillContextClientInfo(effects::Context &context){
     context.time = player->getTime();
-    context.client_id = client_info->id;
-    context.client_index = client_info->index;
-    context.client_count = client_info->count;
-    context.client_setting = client_info->getClient();
+    context.client_setting = client_info->getClientSetting();
     context.fbo = fbo;
 }
 

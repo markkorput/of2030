@@ -134,7 +134,7 @@ void ofApp::onControl(string &type){
     }
 
     if(type == CTRL_RELOAD_SETTINGS){
-        of2030::XmlSettings::instance()->load();
+        of2030::XmlSettings::instance()->load(true);
         ofSetLogLevel(of2030::XmlSettings::instance()->log_level);
         m_oscReceiver.configure(of2030::XmlSettings::instance()->osc_setting);
 #ifdef __MULTI_CLIENT_ENABLED__

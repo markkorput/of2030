@@ -22,14 +22,15 @@ namespace of2030{
 
     public:
         XmlSettings() : path("settings.xml"), log_level(OF_LOG_NOTICE){};
-        void load();
+        void load(bool reload=false);
         void save();
 
         std::string path;
         OscSetting osc_setting;
 
-        int client_id;
-        vector<int> multi_client_ids;
+        bool loaded;
+        string client_id;
+        vector<string> multi_client_ids;
         ofVec3f multi_room_scale;
 
         string log_level_name;

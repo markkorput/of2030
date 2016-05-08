@@ -14,7 +14,7 @@ void xmlLoadVec3f(ofxXmlSettings &xml, ofVec3f &vec3f){
 }
 
 void xmlLoadClient(ofxXmlSettings &xml, ClientSetting &client){
-    client.id = xml.getValue("id", 1);
+    client.id = xml.getValue("id", "0");
     if(xml.pushTag("screenpos")){
         xmlLoadVec3f(xml, client.screenpos);
         xml.popTag();

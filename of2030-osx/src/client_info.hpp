@@ -9,7 +9,6 @@
 #ifndef client_info_hpp
 #define client_info_hpp
 
-#include "xml_settings.hpp"
 #include "xml_clients.hpp"
 #include "setting_types.h"
 
@@ -27,20 +26,18 @@ namespace of2030{
 
         void setup();
         void copy(ClientInfo &other);
-        void setClientId(int cid);
-        ClientSetting* getClient();
-        
-    protected:
-        
-        // void updateClientIndex();
+        void setClientId(string cid);
+        inline ClientSetting* getClientSetting(){ return client_setting; }
 
-    public:
-        // of2030::JsonFileReader m_client_cache_file;
-        // ConfigFile m_config_file;
-        XmlSettings m_xml_settings;
+    private:
+        ClientSetting* findClientSetting();
+
+    private:
         ClientSetting placeholderXmlClient;
+        ClientSetting* client_setting;
 
-        int id, index, count;
+        int index, count;
+        string id;
     };
 }
 #endif /* client_info_hpp */

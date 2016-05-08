@@ -24,7 +24,7 @@ void MultiClient::setup(){
     if(!enabled) return;
 
     for(int i=0; i<xml_settings->multi_client_ids.size(); i++){
-        int id = xml_settings->multi_client_ids[i];
+        string id = xml_settings->multi_client_ids[i];
 
         // create client info instance
         ClientInfo *cinfo = new ClientInfo();
@@ -75,7 +75,7 @@ void MultiClient::draw(){
 
 
         for(auto &renderer: m_renderers){
-            ClientSetting* c = renderer->client_info->getClient();
+            ClientSetting* c = renderer->client_info->getClientSetting();
 
             ofPushMatrix();
                 ofTranslate(c->screenpos);

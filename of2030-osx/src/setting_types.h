@@ -16,7 +16,7 @@ namespace of2030{
     //
 
     typedef struct{
-        int id;
+        string id;
         ofVec3f screenpos, screenrot;
         ofVec2f screensize;
         
