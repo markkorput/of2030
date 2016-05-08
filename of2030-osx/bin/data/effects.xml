@@ -21,9 +21,18 @@
       <duration>3.0</duration>
     </effect>
 
+
+    <effect name="shader-cursor_test">
+      <gain>10.0</gain>
+    </effect>
+
+
     <effect name="shader-worms">
       <duration>3.0</duration>
       <gain>0.1</gain>
+      <pos_x>0.0</pos_x>
+      <pos_y>0.0</pos_y>
+      <pos_z>0.0</pos_z>
     </effect>
   </effects>
 </of2030>

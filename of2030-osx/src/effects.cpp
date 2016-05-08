@@ -125,9 +125,15 @@ void ShaderEffect::draw(Context &context){
     if(!shader->isLoaded()) return;
 
     EffectLogic logic((Effect*)this, &context);
-    
+
+    ofPoint pos = ofPoint(context.effect_setting.getValue("pos_x", 0.0f),
+                        context.effect_setting.getValue("pos_x", 0.0f),
+                        context.effect_setting.getValue("pos_x", 0.0f));
+
     ofSetColor(255);
     shader->begin();
+        shader->setUniform3f("iPos", pos);
+
         // shader->setUniform1f("iTime", context.time);
         shader->setUniform2f("iResolution", ofVec2f(context.fbo->getWidth(), context.fbo->getHeight()));
         shader->setUniform1f("iProgress", logic.getGlobalProgress());
