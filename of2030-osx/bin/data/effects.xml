@@ -5,15 +5,15 @@
     <effect name="shader-spotlight.fusion.fusion2.spotlight_max"
     -->
     <effect name="shader-cursor.fusion.fusion2">
-      <gain>100</gain>
+      <!-- <gain>100</gain> -->
     </effect>
     <effect name="shader-cursor.fusion.fusion1">
       <iterations>3</iterations>
-      <gain>10</gain>
+      <!-- <gain>10</gain> -->
     </effect>
     <effect name="shader-cursor.fusion">
       <iterations>2</iterations>
-      <gain>10</gain>
+      <!-- <gain>10</gain> -->
     </effect>
     <effect name="shader-cursor">
       <iterations>1</iterations>

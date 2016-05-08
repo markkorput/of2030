@@ -61,7 +61,7 @@ void OscReceiver::update(){
         message_count++;
 
         addr = m.getAddress();
-        if(m.getNumArgs() > 0 && m.getArgType(0) == OFXOSC_TYPE_STRING)
+        if(m.getNumArgs() > 0)
             param = m.getArgAsString(0);
         else
             param = "";
