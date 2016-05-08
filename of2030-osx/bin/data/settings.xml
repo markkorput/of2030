@@ -1,0 +1,31 @@
+<of2030>
+  <app>
+    <log_level>notice</log_level>
+  </app>
+  <osc>
+    <port>2029</port>
+    <addresses>
+      <effect>/fx</effect>
+      <shader>/fx/shader</shader>
+      <control>/ctrl</control>
+      <song>/song</song>
+      <clip>/clip</clip>
+    </addresses>
+  </osc>
+  <screen_width>768</screen_width>
+  <screen_height>576</screen_height>
+  <client_id>1</client_id>
+  <multi>
+    <id>1</id>
+    <id>2</id>
+    <id>3</id>
+    <id>4</id>
+    <id>5</id>
+    <id>6</id>
+    <id>7</id>
+    <id>8</id>
+    <room_scale_x>900</room_scale_x>
+    <room_scale_y>200</room_scale_y>
+    <room_scale_z>1650.0</room_scale_z>
+  </multi>
+</of2030>
