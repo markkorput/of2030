@@ -60,11 +60,33 @@ void OscReceiver::update(){
         message_count++;
 
         addr = m.getAddress();
-        param = m.getArgAsString(0);
+        if(m.getNumArgs() > 0 && m.getArgType(0) == OFXOSC_TYPE_STRING)
+            param = m.getArgAsString(0);
+        else
+            param = "";
 
         ofLogVerbose() << "[osc-in] " << addr << " with " << param;
 
+        if(addr == osc_setting->addresses["song"]){
+            ofLogVerbose() << "[osc-in] song: " << param;
+            ofNotifyEvent(m_interface->songEvent, param, m_interface);
+            continue;
+        }
+        
+        if(addr == osc_setting->addresses["clip"]){
+            ofLogVerbose() << "[osc-in] clip: " << param;
+            ofNotifyEvent(m_interface->clipEvent, param, m_interface);
+            continue;
+        }
+
         if(addr == osc_setting->addresses["trigger"]){
+            ofNotifyEvent(m_interface->triggerEvent, param, m_interface);
+            continue;
+        }
+
+        sub = osc_setting->addresses["trigger"] + "/";
+        if(addr.substr(0, sub.size()) == sub){
+            param = addr.substr(sub.size());
             ofNotifyEvent(m_interface->triggerEvent, param, m_interface);
             continue;
         }
@@ -74,7 +96,7 @@ void OscReceiver::update(){
             continue;
         }
 
-        sub = osc_setting->addresses["shader"];
+        sub = osc_setting->addresses["shader"] + "/";
         if(addr.substr(0, sub.size()) == sub){
             param = addr.substr(sub.size());
             ofNotifyEvent(m_interface->shaderEffectEvent, param, m_interface);
@@ -87,9 +109,9 @@ void OscReceiver::update(){
             continue;
         }
 
-        sub = osc_setting->addresses["effect"];
+        sub = osc_setting->addresses["effect"] + "/";
         if(addr.substr(0, sub.size()) == sub){
-            param = addr.substr(sub.size());
+            param = addr.substr(sub.size()+1);
             ofNotifyEvent(m_interface->effectEvent, param, m_interface);
             continue;
         }
@@ -97,18 +119,6 @@ void OscReceiver::update(){
         if(addr == osc_setting->addresses["control"]){
             if(processCtrlMessage(m))
                 continue;
-        }
-
-        if(addr == osc_setting->addresses["song"]){
-            ofLogVerbose() << "[osc-in] song: " << param;
-            ofNotifyEvent(m_interface->songEvent, param, m_interface);
-            continue;
-        }
-
-        if(addr == osc_setting->addresses["clip"]){
-            ofLogVerbose() << "[osc-in] clip: " << param;
-            ofNotifyEvent(m_interface->clipEvent, param, m_interface);
-            continue;
         }
 
         ofLog() << "Unable to process OSC Message " << m.getAddress();

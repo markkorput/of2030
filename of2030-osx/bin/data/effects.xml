@@ -1,17 +1,21 @@
 <of2030>
   <effects>
-    <effect name="shader-cursor" part="/fusion/fusion2">
+    <!--
+    <effect name="/<effect_name>[/<song>][/<clip>][/<trigger>]"
+    <effect name="/shader-spotlight/fusion/fusion2/spotlight_max"
+    -->
+    <effect name="shader-cursor/fusion/fusion2">
       <width>100</width>
     </effect>
-    <effect name="shader-cursor" part="/fusion/fusion1">
+    <effect name="shader-cursor/fusion/fusion1">
       <iterations>3</iterations>
       <width>10</width>
     </effect>
-    <effect name="shader-cursor" part="/fusion">
+    <effect name="/shader-cursor/fusion">
       <iterations>2</iterations>
       <width>10</width>
     </effect>
-    <effect name="shader-cursor">
+    <effect name="/shader-cursor">
       <iterations>1</iterations>
       <width>10</width>
       <duration>3</duration>
