@@ -84,6 +84,10 @@ void InterfacePlayerBridge::onTrigger(string &trigger){
 
     // non-shader effect
     effects::Effect* fx = createEffect(effectName);
+    if(!fx){
+        ofLogError() << "Could not create effect for trigger: " << trigger;
+        return;
+    }
     fx->trigger = trigger;
     // add to players realtime comp
     m_player->realtime_composition.add(fx);

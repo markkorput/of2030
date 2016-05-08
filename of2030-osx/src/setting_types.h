@@ -39,7 +39,6 @@ namespace of2030{
     class EffectSetting{
     public: // attributes
         string name;
-        string part;
         map<string, string> data;
 
     public: // methods

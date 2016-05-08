@@ -10,9 +10,6 @@ void xmlLoadEffect(TiXmlElement &xml_el, EffectSetting &fx){
     const char *pstr = xml_el.Attribute("name");
     if(pstr)
         fx.name = pstr;
-    pstr = xml_el.Attribute("part");
-    if(pstr)
-        fx.part = pstr;
     
     fx.data.clear();
     for(TiXmlElement* child = xml_el.FirstChildElement(); child != NULL; child = child->NextSiblingElement()){
@@ -91,11 +88,11 @@ void XmlEffects::load(){
     }
 }
 
-EffectSetting* XmlEffects::getEffectSetting(string name, string part){
+EffectSetting* XmlEffects::getEffectSetting(string name){
     for(int i=effect_settings.size()-1; i>=0; i--){
         EffectSetting* setting = effect_settings[i];
 
-        if(setting->name == name && setting->part == part){
+        if(setting->name == name){
             return setting;
         }
     }
