@@ -9,6 +9,7 @@ namespace of2030{
     
     class XmlEffects{
     private:
+        const static string path;
         const static string rootNodeName;
         const static string itemNodeName;
 
@@ -18,7 +19,7 @@ namespace of2030{
         static XmlEffects* singleton;
 
     public:
-        XmlEffects() : path("effects.xml"){};
+        // XmlEffects();
         ~XmlEffects(){ destroy(); }
         void destroy();
         void load();
@@ -27,7 +28,6 @@ namespace of2030{
         void setItemParam(string settingName, string paramName, string value);
 
     private:
-        std::string path;
         vector<XmlItemSetting*> settings;
     };
 }

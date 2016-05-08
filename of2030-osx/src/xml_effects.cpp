@@ -21,6 +21,7 @@ void xmlLoadEffect(TiXmlElement &xml_el, XmlItemSetting &fx){
 
 // XmlEffects implementation
 
+const string XmlEffects::path = "effects.xml";
 const string XmlEffects::rootNodeName = "effects";
 const string XmlEffects::itemNodeName = "effect";
 
