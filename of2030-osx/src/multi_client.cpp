@@ -8,6 +8,7 @@
 
 
 #include "multi_client.hpp"
+#ifdef __MULTI_CLIENT_ENABLED__
 
 using namespace of2030;
 
@@ -98,3 +99,5 @@ void MultiClient::draw(){
     ofPopMatrix();
     cam.end();
 }
+
+#endif // #ifdef __MULTI_CLIENT_ENABLED__
