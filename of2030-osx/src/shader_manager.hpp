@@ -31,7 +31,8 @@ namespace of2030 {
 
     protected:
         string name_to_path(string name);
-
+        string name_to_path_type(string name, string type);
+        
     private: // attributes
         static ShaderManager* singleton;
         map<string, ofShader*> shaders;
