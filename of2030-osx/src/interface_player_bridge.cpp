@@ -9,6 +9,7 @@
 #include "interface_player_bridge.hpp"
 #include "effects.hpp"
 #include "xml_triggers.hpp"
+#include "xml_effects.hpp"
 
 using namespace of2030;
 
@@ -51,6 +52,7 @@ void InterfacePlayerBridge::registerInterfaceCallbacks(bool _register){
         ofAddListener(m_interface->triggerEvent, this, &InterfacePlayerBridge::onTrigger);
         ofAddListener(m_interface->effectEvent, this, &InterfacePlayerBridge::onEffect);
         ofAddListener(m_interface->shaderEffectEvent, this, &InterfacePlayerBridge::onShaderEffect);
+        ofAddListener(m_interface->effectConfigEvent, this, &InterfacePlayerBridge::onEffectConfig);
         ofAddListener(m_interface->songEvent, this, &InterfacePlayerBridge::onSong);
         ofAddListener(m_interface->clipEvent, this, &InterfacePlayerBridge::onClip);
     } else {
@@ -58,6 +60,7 @@ void InterfacePlayerBridge::registerInterfaceCallbacks(bool _register){
         ofRemoveListener(m_interface->triggerEvent, this, &InterfacePlayerBridge::onTrigger);
         ofRemoveListener(m_interface->effectEvent, this, &InterfacePlayerBridge::onEffect);
         ofRemoveListener(m_interface->shaderEffectEvent, this, &InterfacePlayerBridge::onShaderEffect);
+        ofRemoveListener(m_interface->effectConfigEvent, this, &InterfacePlayerBridge::onEffectConfig);
         ofRemoveListener(m_interface->songEvent, this, &InterfacePlayerBridge::onSong);
         ofRemoveListener(m_interface->clipEvent, this, &InterfacePlayerBridge::onClip);
     }
@@ -107,6 +110,10 @@ void InterfacePlayerBridge::onShaderEffect(string &shader){
     fx->setShader(shader);
     // add to players realtime comp
     m_player->realtime_composition.add((effects::Effect*)fx);
+}
+
+void InterfacePlayerBridge::onEffectConfig(EffectConfig &cfg){
+    XmlEffects::instance()->setEffectSettingParam(cfg.setting_name, cfg.param_name, cfg.param_value);
 }
 
 void InterfacePlayerBridge::onSong(string &name){

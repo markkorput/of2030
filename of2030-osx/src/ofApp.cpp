@@ -138,7 +138,5 @@ void ofApp::onReconfigClients(string &path){
 
 void ofApp::onReconfigEffects(string &path){
     of2030::XmlTriggers::instance()->load();
-    of2030::XmlEffects* inst = of2030::XmlEffects::instance();
-    if(path != "") inst->path = path;
-    inst->load();
+    of2030::XmlEffects::instance()->load();
 }

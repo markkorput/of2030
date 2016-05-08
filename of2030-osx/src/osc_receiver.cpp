@@ -9,6 +9,7 @@
 #include "ofMain.h"
 #include "osc_receiver.hpp"
 #include "ofxJSONElement.h"
+#include "setting_types.h"
 
 using namespace of2030;
 
@@ -60,12 +61,36 @@ void OscReceiver::update(){
         message_count++;
 
         addr = m.getAddress();
-        if(m.getNumArgs() > 0 && m.getArgType(0) == OFXOSC_TYPE_STRING)
+        if(m.getNumArgs() > 0)
             param = m.getArgAsString(0);
         else
             param = "";
 
         ofLogVerbose() << "[osc-in] " << addr << " with " << param;
+
+        sub = osc_setting->addresses["effect_config"] + "/";
+        if(addr.substr(0, sub.size()) == sub){
+            sub = addr.substr(sub.size());
+            std::size_t pos = sub.find("/");
+
+            if (pos==std::string::npos){
+                ofLogError() << "could not get effect-path and param name from osc address";
+                return;
+            }
+
+            if(m.getNumArgs() < 1){
+                ofLogError() << "param value missing from OSC message";
+                return;
+            }
+
+            EffectConfig cfg;
+            cfg.setting_name = sub.substr(0, pos);
+            cfg.param_name = sub.substr(pos+1);
+            cfg.param_value = param;
+
+            ofNotifyEvent(m_interface->effectConfigEvent, cfg, m_interface);
+            continue;
+        }
 
         if(addr == osc_setting->addresses["song"]){
             ofLogVerbose() << "[osc-in] song: " << param;

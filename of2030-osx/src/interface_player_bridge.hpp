@@ -13,7 +13,7 @@
 #include "interface.hpp"
 #include "player.hpp"
 #include "effects.hpp"
-
+#include "setting_types.h"
 
 namespace of2030{
     
@@ -35,6 +35,7 @@ namespace of2030{
         void onTrigger(string &trigger);
         void onEffect(string &effect);
         void onShaderEffect(string &shader);
+        void onEffectConfig(EffectConfig &cfg);
         void onSong(string &name);
         void onClip(string &name);
 
