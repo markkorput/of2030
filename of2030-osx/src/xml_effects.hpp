@@ -19,10 +19,12 @@ namespace of2030{
         void destroy();
         void load();
 
+        EffectSetting* getEffectSetting(string name);
+        void setEffectSettingParam(string settingName, string paramName, string value);
+
+    private:
         std::string path;
         vector<EffectSetting*> effect_settings;
-        
-        EffectSetting* getEffectSetting(string name, string part);
     };
 }
 

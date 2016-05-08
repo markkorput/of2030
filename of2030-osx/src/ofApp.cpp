@@ -3,6 +3,7 @@
 #include "interface.hpp"
 #include "xml_clients.hpp"
 #include "xml_effects.hpp"
+#include "xml_triggers.hpp"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -136,7 +137,6 @@ void ofApp::onReconfigClients(string &path){
 
 
 void ofApp::onReconfigEffects(string &path){
-    of2030::XmlEffects* inst = of2030::XmlEffects::instance();
-    if(path != "") inst->path = path;
-    inst->load();
+    of2030::XmlTriggers::instance()->load();
+    of2030::XmlEffects::instance()->load();
 }

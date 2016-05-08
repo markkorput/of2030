@@ -73,17 +73,19 @@ void ShaderManager::destroy(){
 
 ofShader* ShaderManager::load(string name, ofShader* pShader){
     // get shader path for the provided shader name
-    string path = name_to_path(name);
+    string vert_path = name_to_path_type(name, "vert");
+    string frag_path = name_to_path_type(name, "frag");
+
     // allocate new shader object
     ofShader *shader = pShader;
     if(shader == NULL) shader = new ofShader;
     // load vert and fragment shader source files
-    if(!shader->load(path+".vert", path+".frag"))
+    if(!shader->load(vert_path, frag_path))
         shader->unload();
     // store shader object for later reference
     shaders[name] = shader;
     // log activity
-    ofLogNotice(__func__) << "shaders loaded: " << path;
+    ofLogNotice() << "shaders loaded: " << vert_path << "/" << frag_path;
     // return the ofShader pointer
     return shader;
 }
@@ -109,6 +111,12 @@ ofShader* ShaderManager::get(string name, bool load){
     return NULL;
 }
 
-string ShaderManager::name_to_path(string video_name){
-    return folder_path + video_name;
+string ShaderManager::name_to_path(string name){
+    return folder_path + name;
+}
+
+string ShaderManager::name_to_path_type(string name, string type){
+    if(ofFile::doesFileExist(name_to_path(name)+"."+type))
+        return name_to_path(name)+"."+type;
+    return folder_path + "_default." + type;
 }

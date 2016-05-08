@@ -68,6 +68,7 @@ namespace of2030{ namespace effects {
         float startTime, endTime, duration;
         EffectType type;
         string name;
+        string trigger;
 
         static int cidCounter;
     };

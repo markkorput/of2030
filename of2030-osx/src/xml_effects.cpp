@@ -10,9 +10,6 @@ void xmlLoadEffect(TiXmlElement &xml_el, EffectSetting &fx){
     const char *pstr = xml_el.Attribute("name");
     if(pstr)
         fx.name = pstr;
-    pstr = xml_el.Attribute("part");
-    if(pstr)
-        fx.part = pstr;
     
     fx.data.clear();
     for(TiXmlElement* child = xml_el.FirstChildElement(); child != NULL; child = child->NextSiblingElement()){
@@ -56,7 +53,7 @@ void XmlEffects::load(){
             EffectSetting *fx;
             int loaded_count = effect_settings.size();
             int xml_count = 0;
-            
+
             el = el->FirstChildElement("effect");
             while(el){
 
@@ -91,14 +88,32 @@ void XmlEffects::load(){
     }
 }
 
-EffectSetting* XmlEffects::getEffectSetting(string name, string part){
+EffectSetting* XmlEffects::getEffectSetting(string name){
     for(int i=effect_settings.size()-1; i>=0; i--){
         EffectSetting* setting = effect_settings[i];
 
-        if(setting->name == name && setting->part == part){
+        if(setting->name == name){
             return setting;
         }
     }
 
     return NULL;
 }
+
+void XmlEffects::setEffectSettingParam(string settingName, string paramName, string value){
+    // find existing setting
+    EffectSetting *pSetting = getEffectSetting(settingName);
+
+    if(!pSetting){
+        // create setting
+        pSetting = new EffectSetting();
+        pSetting->name = settingName;
+        // add to our list
+        effect_settings.push_back(pSetting);
+    }
+
+    pSetting->data[paramName] = value;
+}
+
+
+

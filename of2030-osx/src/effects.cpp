@@ -14,17 +14,18 @@ using namespace of2030::effects;
 
 int Effect::cidCounter = 0;
 
-Effect::Effect() : startTime(NO_TIME), endTime(NO_TIME) {
+Effect::Effect() : startTime(NO_TIME), endTime(NO_TIME), duration(NO_TIME), trigger("") {
     // every effect instance gets a unique cid (client-side-id)
     cid = cidCounter;
     cidCounter++;
-    duration = 3.0;
 }
 
 void Effect::setup(Context &context){
     if(!hasStartTime()){
         startTime = context.time;
     }
+
+    duration = context.effect_setting.getValue("duration", 3.0f);
 
     if(hasDuration() && hasStartTime() && !hasEndTime()){
         endTime = startTime + duration;
@@ -134,7 +135,7 @@ void ShaderEffect::draw(Context &context){
         shader->setUniform1f("iIterations", context.effect_setting.getValue("iterations", 1.0f));
         shader->setUniform1f("iLocalPanoStart", context.client_setting->pano_start);
         shader->setUniform1f("iLocalPanoEnd", context.client_setting->pano_end);
-        shader->setUniform1f("iVolume", context.effect_setting.getValue("width", 1.0f));
+        shader->setUniform1f("iGain", context.effect_setting.getValue("gain", 1.0f));
         ofDrawRectangle(0, 0, context.fbo->getWidth(), context.fbo->getHeight());
     shader->end();
 }

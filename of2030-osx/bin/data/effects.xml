@@ -1,20 +1,29 @@
 <of2030>
   <effects>
-    <effect name="shader-cursor" part="/fusion/fusion2">
-      <width>100</width>
+    <!--
+    <effect name="<effect_name>[.<song>][.<clip>][.<trigger>]"
+    <effect name="shader-spotlight.fusion.fusion2.spotlight_max"
+    -->
+    <effect name="shader-cursor.fusion.fusion2">
+      <!-- <gain>100</gain> -->
     </effect>
-    <effect name="shader-cursor" part="/fusion/fusion1">
+    <effect name="shader-cursor.fusion.fusion1">
       <iterations>3</iterations>
-      <width>10</width>
+      <!-- <gain>10</gain> -->
     </effect>
-    <effect name="shader-cursor" part="/fusion">
+    <effect name="shader-cursor.fusion">
       <iterations>2</iterations>
-      <width>10</width>
+      <!-- <gain>10</gain> -->
     </effect>
     <effect name="shader-cursor">
       <iterations>1</iterations>
-      <width>10</width>
-      <duration>3</duration>
+      <gain>10</gain>
+      <duration>3.0</duration>
+    </effect>
+
+    <effect name="shader-worms">
+      <duration>3.0</duration>
+      <gain>0.1</gain>
     </effect>
   </effects>
 </of2030>

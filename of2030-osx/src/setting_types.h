@@ -33,13 +33,21 @@ namespace of2030{
     } OscSetting;
 
     //
+    // EffectConfig
+    //
+    typedef struct {
+        string setting_name;
+        string param_name;
+        string param_value;
+    } EffectConfig;
+
+    //
     // Effect
     //
     
     class EffectSetting{
     public: // attributes
         string name;
-        string part;
         map<string, string> data;
 
     public: // methods

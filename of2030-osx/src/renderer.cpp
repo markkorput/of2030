@@ -99,20 +99,25 @@ void Renderer::fillContextClientInfo(effects::Context &context){
 void Renderer::fillEffectSetting(effects::Effect &effect, EffectSetting &fxsetting){
     XmlEffects *fxs = XmlEffects::instance();
 
-    EffectSetting *pSetting = fxs->getEffectSetting(effect.name, "");
-    if(pSetting)
-        fxsetting.merge(*pSetting);
-    else if(pSetting = fxs->getEffectSetting(effect.name, "/"))
-        fxsetting.merge(*pSetting);
-
-    pSetting = fxs->getEffectSetting(effect.name, "/"+player->song);
+    string query = effect.name;
+    EffectSetting *pSetting = fxs->getEffectSetting(query);
     if(pSetting)
         fxsetting.merge(*pSetting);
 
-    pSetting = fxs->getEffectSetting(effect.name, "/"+player->song+"/"+player->clip);
-    if(pSetting){
+    query += "." + player->song;
+    pSetting = fxs->getEffectSetting(query);
+    if(pSetting)
         fxsetting.merge(*pSetting);
-    }
+
+    query += "" + player->clip;
+    pSetting = fxs->getEffectSetting(query);
+    if(pSetting)
+        fxsetting.merge(*pSetting);
+
+    query += "." + effect.trigger;
+    pSetting = fxs->getEffectSetting(query);
+    if(pSetting)
+        fxsetting.merge(*pSetting);
 }
 
 
