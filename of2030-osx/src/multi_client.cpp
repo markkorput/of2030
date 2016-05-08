@@ -13,8 +13,6 @@
 using namespace of2030;
 
 XmlSettings* MultiClient::xml_settings = NULL;
-
-
 MultiClient* MultiClient::singleton = NULL;
 
 MultiClient* MultiClient::instance(){
@@ -86,17 +84,17 @@ void MultiClient::draw(){
 
 
         for(auto &renderer: m_renderers){
-            ClientSetting* c = renderer->client_info->getClientSetting();
+            // ClientSetting* c = renderer->client_info->getClientSetting();
 
-            ofPushMatrix();
-                ofTranslate(c->screenpos);
-                ofRotateX(c->screenrot.x);
-                ofRotateY(c->screenrot.y);
-                ofRotateZ(c->screenrot.z);
-                ofScale(1/renderer->fbo->getWidth(), 1/renderer->fbo->getHeight(), 1.0f);
-                ofScale(c->screensize.x, c->screensize.y, 1.0f);
+//            ofPushMatrix();
+//                ofTranslate(c->screenpos);
+//                ofRotateX(c->screenrot.x);
+//                ofRotateY(c->screenrot.y);
+//                ofRotateZ(c->screenrot.z);
+//                ofScale(1/renderer->fbo->getWidth(), 1/renderer->fbo->getHeight(), 1.0f);
+//                ofScale(c->screensize.x, c->screensize.y, 1.0f);
                 renderer->draw();
-            ofPopMatrix();
+//            ofPopMatrix();
         }
 
 

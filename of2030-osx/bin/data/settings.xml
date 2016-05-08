@@ -18,14 +18,14 @@
   <screen_height>576</screen_height>
   <client_id>01</client_id>
   <multi>
-    <id>1</id>
-    <id>2</id>
-    <id>3</id>
-    <id>4</id>
+    <id>rpi1</id>
+    <id>rpi2</id>
+    <id>rpi3</id>
+    <!-- <id>4</id>
     <id>5</id>
     <id>6</id>
     <id>7</id>
-    <id>8</id>
+    <id>8</id> -->
     <room_scale_x>900</room_scale_x>
     <room_scale_y>200</room_scale_y>
     <room_scale_z>1650.0</room_scale_z>

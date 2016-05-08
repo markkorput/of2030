@@ -21,8 +21,6 @@ ClientInfo* ClientInfo::instance(){
 }
 
 ClientInfo::ClientInfo() : id(""), count(1), index(0){
-    placeholderXmlClient.id = id;
-    client_setting = &placeholderXmlClient;
 }
 
 void ClientInfo::setup(){
@@ -42,21 +40,4 @@ void ClientInfo::copy(ClientInfo &other){
 
 void ClientInfo::setClientId(string cid){
     id = cid;
-    placeholderXmlClient.id = cid;
-    ClientSetting *tmp = findClientSetting();
-    client_setting = tmp ? tmp : &placeholderXmlClient;
 }
-
-ClientSetting* ClientInfo::findClientSetting(){
-    for(auto &client: XmlClients::instance()->clients){
-        if(client->id == id){
-            return client;
-        }
-    }
-
-    return NULL;
-}
-
-//void ClientInfo::updateClientIndex(){
-//    index = 0;
-//}

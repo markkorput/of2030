@@ -9,20 +9,9 @@
 #ifndef client_setting_h
 #define client_setting_h
 
-namespace of2030{
-    
-    //
-    // Client
-    //
+#include "ofMain.h"
 
-    typedef struct{
-        string id;
-        ofVec3f screenpos, screenrot;
-        ofVec2f screensize;
-        
-        float pano_start, pano_end;
-        ofVec3f pano_rot;
-    } ClientSetting;
+namespace of2030{
 
     //
     // Osc

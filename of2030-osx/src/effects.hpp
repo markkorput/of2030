@@ -17,8 +17,8 @@ namespace of2030{ namespace effects {
 
     typedef struct {
         float time;
-        ClientSetting *client_setting;
         XmlItemSetting effect_setting;
+        XmlItemSetting screen_setting;
         ofFbo* fbo;
     } Context;
 

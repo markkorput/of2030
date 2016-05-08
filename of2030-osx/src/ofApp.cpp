@@ -9,7 +9,6 @@
 
 
 #include "interface.hpp"
-#include "xml_clients.hpp"
 #include "xml_screens.hpp"
 #include "xml_effects.hpp"
 #include "xml_triggers.hpp"
@@ -24,7 +23,7 @@ void ofApp::setup(){
     of2030::XmlSettings::instance()->load();
     ofSetLogLevel(of2030::XmlSettings::instance()->log_level);
 
-    of2030::XmlClients::instance()->load();
+    // of2030::XmlClients::instance()->load();
     of2030::XmlEffects::instance()->load();
 
     m_clientInfo = of2030::ClientInfo::instance();
@@ -161,7 +160,8 @@ void ofApp::onControl(string &type){
     }
 
     if(type == CTRL_RELOAD_CLIENTS){
-        of2030::XmlClients::instance()->load();
+        ofLogWarning() << "reload clients is deprecated";
+        // of2030::XmlClients::instance()->load();
         return;
     }
 }

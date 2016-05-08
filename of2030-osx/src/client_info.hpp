@@ -9,7 +9,6 @@
 #ifndef client_info_hpp
 #define client_info_hpp
 
-#include "xml_clients.hpp"
 #include "setting_types.h"
 
 namespace of2030{
@@ -27,14 +26,6 @@ namespace of2030{
         void setup();
         void copy(ClientInfo &other);
         void setClientId(string cid);
-        inline ClientSetting* getClientSetting(){ return client_setting; }
-
-    private:
-        ClientSetting* findClientSetting();
-
-    private:
-        ClientSetting placeholderXmlClient;
-        ClientSetting* client_setting;
 
         int index, count;
         string id;
