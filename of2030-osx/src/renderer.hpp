@@ -39,6 +39,7 @@ namespace of2030 {
         void fillContext(effects::Context &context, effects::Effect &effect);
         void fillContextClientInfo(effects::Context &context);
         void fillEffectSetting(effects::Effect &effect, XmlItemSetting &fxsetting);
+        void fillScreenSetting(effects::Effect &effect, XmlItemSetting &setting);
 
     public: // properties
         

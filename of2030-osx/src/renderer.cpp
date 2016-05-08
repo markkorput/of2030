@@ -9,6 +9,7 @@
 #include "ofMain.h"
 #include "renderer.hpp"
 #include "xml_effects.hpp"
+#include "xml_screens.hpp"
 
 using namespace of2030;
 using namespace of2030::effects;
@@ -61,6 +62,7 @@ void Renderer::draw(){
     
     for(auto & effect: player->active_effects){
         fillEffectSetting(*effect, context.effect_setting);
+        fillScreenSetting(*effect, context.screen_setting);
         effect->draw(context);
     }
 
@@ -85,6 +87,7 @@ void Renderer::onRealtimeEffect(Effect &effect){
 void Renderer::fillContext(effects::Context &context, Effect &effect){
     fillContextClientInfo(context);
     fillEffectSetting(effect, context.effect_setting);
+    fillScreenSetting(effect, context.screen_setting);
 }
 
 void Renderer::fillContextClientInfo(effects::Context &context){
@@ -116,7 +119,11 @@ void Renderer::fillEffectSetting(effects::Effect &effect, XmlItemSetting &fxsett
         fxsetting.merge(*pSetting);
 }
 
+void Renderer::fillScreenSetting(effects::Effect &effect, XmlItemSetting &setting){
+    XmlScreens* screens = XmlScreens::instance();
 
-
-
+    XmlItemSetting *pSetting = screens->getItem(client_info->id);
+    if(pSetting)
+        setting.merge(*pSetting);
+}
 

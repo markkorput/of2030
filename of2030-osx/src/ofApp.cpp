@@ -25,6 +25,7 @@ void ofApp::setup(){
 
     // of2030::XmlClients::instance()->load();
     of2030::XmlEffects::instance()->load();
+    of2030::XmlScreens::instance()->load();
 
     m_clientInfo = of2030::ClientInfo::instance();
     m_clientInfo->setup();
