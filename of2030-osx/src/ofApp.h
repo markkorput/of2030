@@ -36,9 +36,7 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
     
         // callbacks
-        void onReconfigSettings(string &path);
-        void onReconfigClients(string &path);
-        void onReconfigEffects(string &path);
+        void onControl(string &type);
 
     private:
         of2030::OscReceiver m_oscReceiver;

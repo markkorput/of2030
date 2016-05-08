@@ -4,6 +4,7 @@
 #include "xml_clients.hpp"
 #include "xml_effects.hpp"
 #include "xml_triggers.hpp"
+#include "shader_manager.hpp"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -35,9 +36,7 @@ void ofApp::setup(){
     
     m_renderer.setup();
     
-    ofAddListener(of2030::Interface::instance()->reconfigSettingsEvent, this, &ofApp::onReconfigSettings);
-    ofAddListener(of2030::Interface::instance()->reconfigClientsEvent, this, &ofApp::onReconfigClients);
-    ofAddListener(of2030::Interface::instance()->reconfigEffectsEvent, this, &ofApp::onReconfigEffects);
+    ofAddListener(of2030::Interface::instance()->controlEvent, this, &ofApp::onControl);
 }
 
 //--------------------------------------------------------------
@@ -119,24 +118,32 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
 
 }
 
-void ofApp::onReconfigSettings(string &path){
-    m_xmlSettings.load();
-    ofSetLogLevel(m_xmlSettings.log_level);
-    m_oscReceiver.configure(m_xmlSettings.osc_setting);
+
+void ofApp::onControl(string &type){
+
+    if(type == CTRL_RELOAD_SHADERS){
+        of2030::ShaderManager::instance()->clear();
+        return;
+    }
+
+    if(type == CTRL_RELOAD_EFFECTS){
+        of2030::XmlTriggers::instance()->load();
+        of2030::XmlEffects::instance()->load();
+        return;
+    }
+
+    if(type == CTRL_RELOAD_SETTINGS){
+        m_xmlSettings.load();
+        ofSetLogLevel(m_xmlSettings.log_level);
+        m_oscReceiver.configure(m_xmlSettings.osc_setting);
 #ifdef __MULTI_CLIENT_ENABLED__
-    m_multiClient.load(m_xmlSettings);
+        m_multiClient.load(m_xmlSettings);
 #endif
-}
+        return;
+    }
 
-void ofApp::onReconfigClients(string &path){
-    of2030::XmlEffects::instance()->load();
-    of2030::XmlClients* instance = of2030::XmlClients::instance();
-    if(path != "") instance->path = path;
-    instance->load();
-}
-
-
-void ofApp::onReconfigEffects(string &path){
-    of2030::XmlTriggers::instance()->load();
-    of2030::XmlEffects::instance()->load();
+    if(type == CTRL_RELOAD_CLIENTS){
+        of2030::XmlClients::instance()->load();
+        return;
+    }
 }

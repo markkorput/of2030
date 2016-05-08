@@ -25,6 +25,7 @@ namespace of2030 {
         //void setup();
         //void update();
         void destroy();
+        void clear();
 
         ofShader* load(string name, ofShader* pShader=NULL);
         ofShader* get(string name, bool load=true);
