@@ -38,7 +38,7 @@ namespace of2030 {
         void onRealtimeEffect(effects::Effect &effect);
         void fillContext(effects::Context &context, effects::Effect &effect);
         void fillContextClientInfo(effects::Context &context);
-        void fillEffectSetting(effects::Effect &effect, EffectSetting &fxsetting);
+        void fillEffectSetting(effects::Effect &effect, XmlItemSetting &fxsetting);
 
     public: // properties
         

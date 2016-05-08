@@ -113,7 +113,7 @@ void InterfacePlayerBridge::onShaderEffect(string &shader){
 }
 
 void InterfacePlayerBridge::onEffectConfig(EffectConfig &cfg){
-    XmlEffects::instance()->setEffectSettingParam(cfg.setting_name, cfg.param_name, cfg.param_value);
+    XmlEffects::instance()->setItemParam(cfg.setting_name, cfg.param_name, cfg.param_value);
 }
 
 void InterfacePlayerBridge::onSong(string &name){

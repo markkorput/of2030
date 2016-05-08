@@ -8,6 +8,10 @@
 namespace of2030{
     
     class XmlEffects{
+    private:
+        const static string rootNodeName;
+        const static string itemNodeName;
+
     public:
         static XmlEffects* instance();
     private:
@@ -19,12 +23,12 @@ namespace of2030{
         void destroy();
         void load();
 
-        EffectSetting* getEffectSetting(string name);
-        void setEffectSettingParam(string settingName, string paramName, string value);
+        XmlItemSetting* getItem(string name);
+        void setItemParam(string settingName, string paramName, string value);
 
     private:
         std::string path;
-        vector<EffectSetting*> effect_settings;
+        vector<XmlItemSetting*> settings;
     };
 }
 

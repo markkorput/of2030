@@ -45,13 +45,13 @@ namespace of2030{
     // Effect
     //
     
-    class EffectSetting{
+    class XmlItemSetting{
     public: // attributes
         string name;
         map<string, string> data;
 
     public: // methods
-        void merge(EffectSetting &other){
+        void merge(XmlItemSetting &other){
             for(map<string, string>::iterator it = other.data.begin(); it != other.data.end(); ++it){
                 this->data[it->first] = it->second;
             }
