@@ -7,6 +7,7 @@
 //
 
 #include "client_info.hpp"
+#include "xml_settings.hpp"
 
 using namespace of2030;
 
@@ -19,15 +20,14 @@ ClientInfo* ClientInfo::instance(){
     return singleton;
 }
 
-ClientInfo::ClientInfo() : id(-1), count(1), index(0){
-    placeholderXmlClient.id = id;
+ClientInfo::ClientInfo() : id(""), count(1), index(0){
 }
 
 void ClientInfo::setup(){
-    m_xml_settings.load();
+    XmlSettings* xml_settings = XmlSettings::instance();
 
     // setClientId(ofToInt(m_client_cache_file.getValue("client_id")));
-    setClientId(m_xml_settings.client_id);
+    setClientId(xml_settings->client_id);
 
     ofLogVerbose() << "[ClientInfo.setup] client id: " << id;
 }
@@ -38,22 +38,6 @@ void ClientInfo::copy(ClientInfo &other){
     index = other.index;
 }
 
-void ClientInfo::setClientId(int cid){
+void ClientInfo::setClientId(string cid){
     id = cid;
-    placeholderXmlClient.id = cid;
-    // updateClientIndex();
 }
-
-ClientSetting* ClientInfo::getClient(){
-    for(auto &client: XmlClients::instance()->clients){
-        if(client->id == id){
-            return client;
-        }
-    }
-
-    return &placeholderXmlClient;
-}
-
-//void ClientInfo::updateClientIndex(){
-//    index = 0;
-//}

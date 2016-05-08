@@ -100,8 +100,8 @@ float CursorLogic::getIterationTime(){      return getGlobalTime() - getCurrentI
 float CursorLogic::getIterationProgress(){  return getIterationTime() / getIterationDuration(); }
 float CursorLogic::getLocalProgress(){
     return ofMap(getIterationProgress(),
-                 context->client_setting->pano_start,
-                 context->client_setting->pano_end,
+                 context->screen_setting.getValue("pano_start", 0.0f),
+                 context->screen_setting.getValue("pano_end", 0.0f),
                  0.0, 1.0);
 }
 
@@ -139,8 +139,8 @@ void ShaderEffect::draw(Context &context){
         shader->setUniform1f("iProgress", logic.getGlobalProgress());
         shader->setUniform1f("iDuration", logic.getGlobalDuration());
         shader->setUniform1f("iIterations", context.effect_setting.getValue("iterations", 1.0f));
-        shader->setUniform1f("iLocalPanoStart", context.client_setting->pano_start);
-        shader->setUniform1f("iLocalPanoEnd", context.client_setting->pano_end);
+        shader->setUniform1f("iLocalPanoStart", context.screen_setting.getValue("pano_start", 0.0f));
+        shader->setUniform1f("iLocalPanoEnd", context.screen_setting.getValue("pano_end", 0.0f));
         shader->setUniform1f("iGain", context.effect_setting.getValue("gain", 1.0f));
         ofDrawRectangle(0, 0, context.fbo->getWidth(), context.fbo->getHeight());
     shader->end();

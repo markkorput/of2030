@@ -11,21 +11,34 @@
 
 #include "ofMain.h"
 #include "setting_types.h"
+#include "shared2030.h"
 
 namespace of2030{
 
     class XmlSettings{
     public:
+        static XmlSettings* instance();
+    private:
+        static XmlSettings* singleton;
+
+    public:
         XmlSettings() : path("settings.xml"), log_level(OF_LOG_NOTICE){};
-        void load();
-        void save();
+        void load(bool reload=false);
+        // void save();
 
         std::string path;
         OscSetting osc_setting;
 
-        int client_id;
-        vector<int> multi_client_ids;
-        ofVec3f multi_room_scale;
+        bool loaded;
+        string client_id;
+        ofVec3f room_size;
+        
+#ifdef __MULTI_CLIENT_ENABLED__
+        vector<string> multi_client_ids;
+        bool multi_debug;
+        float multi_scale;
+        ofVec3f multi_translate;
+#endif
 
         string log_level_name;
         ofLogLevel log_level;
