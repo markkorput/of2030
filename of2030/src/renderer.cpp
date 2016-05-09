@@ -46,6 +46,8 @@ void Renderer::destroy(){
 }
 
 void Renderer::draw(){
+    ofClear(0);
+
     fbo->begin();
 
     int size = player->active_effects.size();
@@ -53,7 +55,7 @@ void Renderer::draw(){
 
     Context context;
     fillContextClientInfo(context);
-    
+
     for(auto & effect: player->active_effects){
         fillEffectSetting(*effect, context.effect_setting);
         fillScreenSetting(*effect, context.screen_setting);
@@ -121,4 +123,3 @@ void Renderer::fillScreenSetting(effects::Effect &effect, XmlItemSetting &settin
     if(pSetting)
         setting.merge(*pSetting);
 }
-

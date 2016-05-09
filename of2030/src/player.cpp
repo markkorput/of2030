@@ -19,10 +19,7 @@ Player* Player::instance(){
     return singleton;
 }
 
-
 Player::Player() : m_time(0.0f), m_bPlaying(false), song("default"), clip("default"){
-    // initialize with a single "OFF" effect in the queue
-    active_effects.push_back(&m_offEffect);
 }
 
 void Player::update(){
@@ -56,7 +53,7 @@ bool Player::effectActive(effects::Effect &effect){
             return true;
         }
     }
-    
+
     return false;
 }
 
@@ -80,7 +77,7 @@ void Player::setPlaybackTime(float time){
     }
 
     removeActiveEffectsEndingBefore(time);
-    m_time = time;    
+    m_time = time;
 }
 
 void Player::removeActiveEffectsEndingBefore(float time){

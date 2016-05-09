@@ -26,6 +26,7 @@ InterfacePlayerBridge::~InterfacePlayerBridge(){
 }
 
 void InterfacePlayerBridge::setup(){
+    ofLogVerbose() << "InterfacePlayerBridge::setup";
     if(!m_interface)
         m_interface = Interface::instance();
 
@@ -45,6 +46,7 @@ void InterfacePlayerBridge::destroy(){
 }
 
 void InterfacePlayerBridge::registerInterfaceCallbacks(bool _register){
+    ofLogVerbose() << "InterfacePlayerBridge::setup with: " << _register;
     if(_register){
         // subscribe to events
         ofAddListener(m_interface->triggerEvent, this, &InterfacePlayerBridge::onTrigger);

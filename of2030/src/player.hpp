@@ -16,9 +16,9 @@
 
 
 namespace of2030{
-    
+
     class Player {
-        
+
     public: // singleton accessor method
 
         static Player* instance();
@@ -26,7 +26,7 @@ namespace of2030{
     private: // singleton static attribute
 
         static Player* singleton;
-        
+
     public: // main interface methods
 
         Player();
@@ -39,7 +39,7 @@ namespace of2030{
 
         void start();
         void stop();
-        
+
         float getTime(){ return m_time; }
         bool effectActive(effects::Effect &effect);
         void activateEffect(effects::Effect &effect);
@@ -60,10 +60,9 @@ namespace of2030{
         string song, clip;
 
     private: // attributes
-        
+
         bool m_bPlaying;
         float m_time, m_startTime;
-        effects::Off m_offEffect; // if all effects end, at least this effect remains
     };
 }
 

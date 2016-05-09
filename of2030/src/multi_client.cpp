@@ -40,7 +40,7 @@ void MultiClient::setup(){
         renderer->setClientId(xml_settings->multi_client_ids[i]);
         renderer->setup();
     }
-    
+
     // remove existing renderers that are no longer needed
     for(int i=xml_settings->multi_client_ids.size(); i<existing_renderers_count; i++){
         renderer = m_renderers.back();
@@ -65,10 +65,10 @@ void MultiClient::draw(){
     ofPushMatrix();
         ofScale(xml_settings->multi_scale, xml_settings->multi_scale, xml_settings->multi_scale);
         ofTranslate(xml_settings->multi_translate);
-    
+
 
         drawFloor();
-    
+
         if(xml_settings->multi_debug)
             drawDebug();
 
@@ -97,7 +97,7 @@ void MultiClient::drawDebug(){
 
     ofPushStyle();
     ofSetColor(200, 0, 0);
-    
+
     ofCamera screen_cam;
     XmlItemSetting* screen_setting;
 
@@ -120,7 +120,7 @@ void MultiClient::drawDebug(){
             ofRotateX(rot.x);
             ofRotateY(rot.y);
             ofRotateZ(rot.z);
-        
+
             ofTranslate(0.0f, 0.0f, -0.2f);
 
             float wheight = screen_setting->getValue("world_height", 2.0f) * 1.1;
@@ -133,7 +133,7 @@ void MultiClient::drawDebug(){
         ofPopMatrix();
     }
     ofPopStyle();
-    
+
 }
 
 void MultiClient::drawScreens(){
@@ -159,7 +159,7 @@ void MultiClient::drawScreens(){
 
         float wwidth = screen_setting->getValue("world_width", 2.67f);
         float wheight = screen_setting->getValue("world_height", 2.0f);
-        
+
         float pixwidth = screen_setting->getValue("pixel_width", 768);
         float pixheight = screen_setting->getValue("pixel_width", 576);
 
