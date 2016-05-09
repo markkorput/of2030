@@ -4,6 +4,9 @@
     <effect name="<effect_name>[.<song>][.<clip>][.<trigger>]"
     <effect name="shader-spotlight.fusion.fusion2.spotlight_max"
     -->
+
+
+    <!-- shader cursor -->
     <effect name="shader-cursor.fusion.fusion2">
       <!-- <gain>100</gain> -->
     </effect>

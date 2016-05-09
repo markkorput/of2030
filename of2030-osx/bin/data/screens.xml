@@ -15,6 +15,8 @@
       <pixel_height>576</pixel_height>
       <world_width>3.1</world_width>
       <world_height>2</world_height>
+      <pano_start>0.0</pano_start>
+      <pano_end>0.1</pano_end>
     </screen>
 
     <screen name="rpi2">
@@ -28,6 +30,8 @@
       <pixel_height>576</pixel_height>
       <world_width>3.1</world_width>
       <world_height>2</world_height>
+      <pano_start>0.1</pano_start>
+      <pano_end>0.2</pano_end>
     </screen>
 
     <screen name="rpi3">
@@ -41,6 +45,8 @@
       <pixel_height>576</pixel_height>
       <world_width>3.1</world_width>
       <world_height>2</world_height>
+      <pano_start>0.2</pano_start>
+      <pano_end>0.3</pano_end>
     </screen>
 
     <screen name="rpi4">
@@ -54,6 +60,8 @@
       <pixel_height>576</pixel_height>
       <world_width>3.1</world_width>
       <world_height>2</world_height>
+      <pano_start>0.3</pano_start>
+      <pano_end>0.4</pano_end>
     </screen>
 
     <screen name="rpi5">
@@ -67,6 +75,8 @@
       <pixel_height>576</pixel_height>
       <world_width>3.1</world_width>
       <world_height>2</world_height>
+      <pano_start>0.4</pano_start>
+      <pano_end>0.5</pano_end>
     </screen>
 
     <screen name="rpi6">
@@ -80,6 +90,8 @@
       <pixel_height>576</pixel_height>
       <world_width>3.1</world_width>
       <world_height>2</world_height>
+      <pano_start>0.5</pano_start>
+      <pano_end>0.6</pano_end>
     </screen>
 
     <screen name="rpi7">
@@ -93,6 +105,8 @@
       <pixel_height>576</pixel_height>
       <world_width>3.1</world_width>
       <world_height>2</world_height>
+      <pano_start>0.6</pano_start>
+      <pano_end>0.7</pano_end>
     </screen>
 
     <screen name="rpi8">
@@ -106,6 +120,8 @@
       <pixel_height>576</pixel_height>
       <world_width>3.1</world_width>
       <world_height>2</world_height>
+      <pano_start>0.7</pano_start>
+      <pano_end>1.0</pano_end>
     </screen>
 
   </screens>
