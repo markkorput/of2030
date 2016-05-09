@@ -13,6 +13,8 @@
 
 using namespace of2030;
 
+SINGLETON_CLASS_IMPLEMENTATION_CODE(InterfacePlayerBridge)
+
 InterfacePlayerBridge::InterfacePlayerBridge(){
     setInterface(Interface::instance());
     m_player = Player::instance();
@@ -21,15 +23,15 @@ InterfacePlayerBridge::InterfacePlayerBridge(){
 
 InterfacePlayerBridge::~InterfacePlayerBridge(){
     if(m_bStarted)
-        stop();
+        destroy();
 }
 
-void InterfacePlayerBridge::start(){
+void InterfacePlayerBridge::setup(){
     registerInterfaceCallbacks(true);
     m_bStarted = true;
 }
 
-void InterfacePlayerBridge::stop(){
+void InterfacePlayerBridge::destroy(){
     registerInterfaceCallbacks(false);
     m_bStarted = false;
 }

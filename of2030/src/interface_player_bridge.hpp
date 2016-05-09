@@ -10,6 +10,7 @@
 #define effect_creator_hpp
 
 //#include <stdio.h>
+#include "shared2030.h"
 #include "interface.hpp"
 #include "player.hpp"
 #include "effects.hpp"
@@ -18,14 +19,15 @@
 namespace of2030{
     
     class InterfacePlayerBridge{
+        SINGLETON_CLASS_HEADER_CODE(InterfacePlayerBridge)
     
     public: // methods
         
         InterfacePlayerBridge();
         ~InterfacePlayerBridge();
 
-        void start();
-        void stop();
+        void setup();
+        void destroy();
 
         void setInterface(Interface *interface);
 

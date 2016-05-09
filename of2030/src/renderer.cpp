@@ -13,6 +13,8 @@
 using namespace of2030;
 using namespace of2030::effects;
 
+SINGLETON_CLASS_IMPLEMENTATION_CODE(Renderer)
+
 Renderer::Renderer(){
     fbo = NULL;
     player = NULL;

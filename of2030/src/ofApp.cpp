@@ -6,13 +6,16 @@
     #include "multi_client.hpp"
 #endif
 
-
-
+#include "client_info.hpp"
 #include "interface.hpp"
+#include "osc_receiver.hpp"
 #include "xml_configs.hpp"
 #include "xml_triggers.hpp"
 #include "shader_manager.hpp"
 #include "xml_settings.hpp"
+#include "player.hpp"
+#include "renderer.hpp"
+#include "interface_player_bridge.hpp"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -26,32 +29,31 @@ void ofApp::setup(){
     of2030::XmlConfigs::instance()->load();
     of2030::XmlConfigs::screens()->load();
 
-    m_clientInfo = of2030::ClientInfo::instance();
-    m_clientInfo->setup();
+    of2030::ClientInfo::instance()->setup();
 
-    m_oscReceiver.configure(of2030::XmlSettings::instance()->osc_setting);
-    m_oscReceiver.setup();
+    of2030::OscReceiver::instance()->configure(of2030::XmlSettings::instance()->osc_setting);
+    of2030::OscReceiver::instance()->setup();
 
-    m_player = of2030::Player::instance();
-    m_player->start();
+    of2030::Player::instance()->start();
 
     // the InterfacePlayerBridge class auto-initializes with the
     // interface and player singleton instances
-    m_interface_player_bridge.start();
+    of2030::InterfacePlayerBridge::instance()->setup();
+
+    of2030::Renderer::instance()->setup();
 
 #ifdef __MULTI_CLIENT_ENABLED__
     of2030::MultiClient::instance()->setup();
 #endif
     
-    m_renderer.setup();
     
     ofAddListener(of2030::Interface::instance()->controlEvent, this, &ofApp::onControl);
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    m_oscReceiver.update();
-    m_player->update();
+    of2030::OscReceiver::instance()->update();
+    of2030::Player::instance()->update();
 }
 
 //--------------------------------------------------------------
@@ -60,10 +62,10 @@ void ofApp::draw(){
     if(of2030::MultiClient::instance()->enabled){
         of2030::MultiClient::instance()->draw();
     } else {
-        m_renderer.draw();
+        of2030::Renderer::instance()->draw();
     }
 #else
-    m_renderer.draw();
+    of2030::Renderer::instance()->draw();
 #endif
 
 }
@@ -152,7 +154,7 @@ void ofApp::onControl(string &type){
     if(type == CTRL_RELOAD_SETTINGS){
         of2030::XmlSettings::instance()->load(true);
         ofSetLogLevel(of2030::XmlSettings::instance()->log_level);
-        m_oscReceiver.configure(of2030::XmlSettings::instance()->osc_setting);
+        of2030::OscReceiver::instance()->configure(of2030::XmlSettings::instance()->osc_setting);
 #ifdef __MULTI_CLIENT_ENABLED__
         of2030::MultiClient::instance()->setup();
 #endif

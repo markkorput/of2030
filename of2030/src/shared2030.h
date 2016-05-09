@@ -20,4 +20,19 @@
 #define CTRL_RELOAD_EFFECTS "reload_effects"
 #define CTRL_RELOAD_SHADERS "reload_shaders"
 
+// singleton conveniece macros
+#define SINGLETON_CLASS_HEADER_CODE(x) \
+    public: \
+    static x* instance();\
+    private:\
+    static x* singleton;
+
+#define SINGLETON_CLASS_IMPLEMENTATION_CODE(x) \
+    x* x::singleton = NULL;\
+    x* x::instance(){\
+        if(!singleton)\
+            singleton = new x();\
+        return singleton;\
+    }
+
 #endif /* shared2030_h */

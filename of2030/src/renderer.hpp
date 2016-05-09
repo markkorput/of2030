@@ -9,7 +9,7 @@
 #ifndef renderer_hpp
 #define renderer_hpp
 
-//#include <stdio.h>
+#include "shared2030.h"
 #include "player.hpp"
 #include "effects.hpp"
 #include "client_info.hpp"
@@ -18,7 +18,8 @@
 namespace of2030 {
     
     class Renderer{
-        
+        SINGLETON_CLASS_HEADER_CODE(Renderer)
+
     public:
         const static int WIDTH = 768;
         const static int HEIGHT = 576;
