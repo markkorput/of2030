@@ -6,7 +6,6 @@
     #include "multi_client.hpp"
 #endif
 
-#include "client_info.hpp"
 #include "interface.hpp"
 #include "osc_receiver.hpp"
 #include "xml_configs.hpp"
@@ -20,34 +19,38 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofLogToFile("log.txt", true);
-    ofSetWindowPosition(0, 0);
 
+    // load settings xml
     of2030::XmlSettings::instance()->load();
+    // apply log-level setting
     ofSetLogLevel(of2030::XmlSettings::instance()->log_level);
 
-    // of2030::XmlClients::instance()->load();
-    of2030::XmlConfigs::instance()->load();
+    // load effects xml
+    of2030::XmlEffects::instance()->load();
+    // load screens xml
     of2030::XmlConfigs::screens()->load();
 
-    of2030::ClientInfo::instance()->setup();
-
-    of2030::OscReceiver::instance()->configure(of2030::XmlSettings::instance()->osc_setting);
-    of2030::OscReceiver::instance()->setup();
-
+    // load and start player
     of2030::Player::instance()->start();
 
-    // the InterfacePlayerBridge class auto-initializes with the
-    // interface and player singleton instances
+    // This bridge updates the player with new effects, songnames and clipnames
+    // when events on the interface are triggered
+    // it auto-initializes with the interface and player singleton instances
     of2030::InterfacePlayerBridge::instance()->setup();
 
+    // Load renderer
+    of2030::Renderer::instance()->client_id = of2030::XmlSettings::instance()->client_id;
     of2030::Renderer::instance()->setup();
 
 #ifdef __MULTI_CLIENT_ENABLED__
     of2030::MultiClient::instance()->setup();
 #endif
-    
-    
+
     ofAddListener(of2030::Interface::instance()->controlEvent, this, &ofApp::onControl);
+
+    // load & start OscReceiver; let the messages come!
+    of2030::OscReceiver::instance()->configure(of2030::XmlSettings::instance()->osc_setting);
+    of2030::OscReceiver::instance()->setup();
 }
 
 //--------------------------------------------------------------

@@ -12,8 +12,6 @@
 #include "shared2030.h"
 #include "player.hpp"
 #include "effects.hpp"
-#include "client_info.hpp"
-#include "setting_types.h"
 
 namespace of2030 {
     
@@ -45,7 +43,7 @@ namespace of2030 {
     public: // properties
         
         Player *player;
-        ClientInfo *client_info;
+        string client_id;
         ofFbo* fbo;
     };
 }

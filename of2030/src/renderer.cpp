@@ -15,10 +15,7 @@ using namespace of2030::effects;
 
 SINGLETON_CLASS_IMPLEMENTATION_CODE(Renderer)
 
-Renderer::Renderer(){
-    fbo = NULL;
-    player = NULL;
-    client_info = NULL;
+Renderer::Renderer() : fbo(NULL), player(NULL), client_id(""){
 }
 
 Renderer::~Renderer(){
@@ -28,17 +25,16 @@ Renderer::~Renderer(){
 void Renderer::setup(){
     if(fbo == NULL)
         fbo = new ofFbo();
-    
-    if(!fbo->isAllocated())
-        fbo->allocate(WIDTH, HEIGHT);
 
-    if(!player){
+    if(!fbo->isAllocated()){
+        if(client_id == "")
+            fbo->allocate(WIDTH, HEIGHT);
+        else
+            fbo->allocate(WIDTH, HEIGHT);
+    }
+
+    if(!player)
         player = Player::instance();
-    }
-    
-    if(!client_info){
-        client_info = ClientInfo::instance();
-    }
 
     registerRealtimeEffectCallback();
 }
@@ -121,9 +117,8 @@ void Renderer::fillEffectSetting(effects::Effect &effect, XmlItemSetting &fxsett
 }
 
 void Renderer::fillScreenSetting(effects::Effect &effect, XmlItemSetting &setting){
-    XmlConfigs* screens = XmlConfigs::screens();
+    XmlItemSetting *pSetting = XmlConfigs::screens()->getItem(client_id);
 
-    XmlItemSetting *pSetting = screens->getItem(client_info->id);
     if(pSetting)
         setting.merge(*pSetting);
 }
