@@ -5,7 +5,7 @@ using namespace of2030;
 
 // local methods
 
-void xmlLoadEffect(TiXmlElement &xml_el, EffectSetting &fx){
+void xmlLoadEffect(TiXmlElement &xml_el, XmlItemSetting &fx){
 
     const char *pstr = xml_el.Attribute("name");
     if(pstr)
@@ -21,22 +21,37 @@ void xmlLoadEffect(TiXmlElement &xml_el, EffectSetting &fx){
 
 // XmlEffects implementation
 
-XmlEffects* XmlEffects::singleton = NULL;
+
+XmlEffects* XmlEffects::_instance = NULL;
+XmlEffects* XmlEffects::_screens_instance = NULL;
 
 XmlEffects* XmlEffects::instance(){
-    if (!singleton){   // Only allow one instance of class to be generated.
-        singleton = new XmlEffects();
+    if (!_instance){
+        _instance = new XmlEffects();
     }
-    return singleton;
+    return _instance;
+}
+
+XmlEffects* XmlEffects::screens(){
+    if (!_screens_instance){
+        _screens_instance = new XmlEffects();
+        _screens_instance->path = "screens.xml";
+        _screens_instance->rootNodeName = "screens";
+        _screens_instance->itemNodeName = "screen";
+    }
+    return _screens_instance;
 }
 
 
+XmlEffects::XmlEffects() : path("effects.xml"), rootNodeName("effects"), itemNodeName("effect"){
+}
+
 void XmlEffects::destroy(){
-    for(auto &fx_setting: effect_settings)
+    for(auto &fx_setting: settings)
         if(fx_setting)
             delete fx_setting;
 
-    effect_settings.clear();
+    settings.clear();
 }
 
 
@@ -47,50 +62,50 @@ void XmlEffects::load(){
     TiXmlDocument *doc = &xml.doc;
     TiXmlElement *el = doc->FirstChildElement("of2030");
     if(el){
-        el = el->FirstChildElement("effects");
+        el = el->FirstChildElement(rootNodeName);
         if(el){
 
-            EffectSetting *fx;
-            int loaded_count = effect_settings.size();
+            XmlItemSetting *fx;
+            int loaded_count = settings.size();
             int xml_count = 0;
 
-            el = el->FirstChildElement("effect");
+            el = el->FirstChildElement(itemNodeName);
             while(el){
 
                 // allocate new instance or use previsouly allocated?
                 if(xml_count >= loaded_count){
                     // new instance
-                    fx = new EffectSetting();
+                    fx = new XmlItemSetting();
                     // add to list
-                    effect_settings.push_back(fx);
+                    settings.push_back(fx);
                     // increase our loaded count
                     loaded_count++;
                 } else {
                     // grab existing
-                    fx = effect_settings[xml_count];
+                    fx = settings[xml_count];
                 }
                 
                 // populate our client instance
                 xmlLoadEffect(*el, *fx);
 
                 xml_count++;
-                el = el->NextSiblingElement("effect");
+                el = el->NextSiblingElement(itemNodeName);
             }
 
             // remove any too-many instances
             while(loaded_count > xml_count){
-                fx = effect_settings.back();
+                fx = settings.back();
                 delete fx;
-                effect_settings.pop_back();
+                settings.pop_back();
                 loaded_count--;
             }
         }
     }
 }
 
-EffectSetting* XmlEffects::getEffectSetting(string name){
-    for(int i=effect_settings.size()-1; i>=0; i--){
-        EffectSetting* setting = effect_settings[i];
+XmlItemSetting* XmlEffects::getItem(string name){
+    for(int i=settings.size()-1; i>=0; i--){
+        XmlItemSetting* setting = settings[i];
 
         if(setting->name == name){
             return setting;
@@ -100,16 +115,16 @@ EffectSetting* XmlEffects::getEffectSetting(string name){
     return NULL;
 }
 
-void XmlEffects::setEffectSettingParam(string settingName, string paramName, string value){
+void XmlEffects::setItemParam(string settingName, string paramName, string value){
     // find existing setting
-    EffectSetting *pSetting = getEffectSetting(settingName);
+    XmlItemSetting *pSetting = getItem(settingName);
 
     if(!pSetting){
         // create setting
-        pSetting = new EffectSetting();
+        pSetting = new XmlItemSetting();
         pSetting->name = settingName;
         // add to our list
-        effect_settings.push_back(pSetting);
+        settings.push_back(pSetting);
     }
 
     pSetting->data[paramName] = value;

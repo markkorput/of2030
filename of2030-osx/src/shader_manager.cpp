@@ -60,15 +60,19 @@ ShaderManager::~ShaderManager(){
 // }
 
 void ShaderManager::destroy(){
-  // loop over all loaded shader and remove them from memory
-  for (auto& it: shaders) {
-    // unload (not necessary?)
-    // it.second->unload()
-    delete it.second;
-  }
+    clear();
+}
 
-  // clear our internal map of loaded shaders
-  shaders.clear();
+void ShaderManager::clear(){
+    // loop over all loaded shader and remove them from memory
+    for (auto& it: shaders) {
+        // unload (not necessary?)
+        // it.second->unload()
+        delete it.second;
+    }
+    
+    // clear our internal map of loaded shaders
+    shaders.clear();
 }
 
 ofShader* ShaderManager::load(string name, ofShader* pShader){

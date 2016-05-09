@@ -29,12 +29,6 @@ namespace of2030 {
     private: // methods
         bool connect();
         void disconnect();
-
-//        bool processJsonEffectMessage(ofxOscMessage &m);
-//        void getMapFromJsonString(const std::string &str, map<string, string> &map);
-//        effects::Effect* createEffectFromJsonString(const std::string &json_string);
-
-        bool processCtrlMessage(ofxOscMessage &m);
         
     private: // attributes
         Interface* m_interface;

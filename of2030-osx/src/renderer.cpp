@@ -8,7 +8,7 @@
 
 #include "ofMain.h"
 #include "renderer.hpp"
-#include "xml_effects.hpp"
+#include "xml_configs.hpp"
 
 using namespace of2030;
 using namespace of2030::effects;
@@ -61,6 +61,7 @@ void Renderer::draw(){
     
     for(auto & effect: player->active_effects){
         fillEffectSetting(*effect, context.effect_setting);
+        fillScreenSetting(*effect, context.screen_setting);
         effect->draw(context);
     }
 
@@ -85,42 +86,43 @@ void Renderer::onRealtimeEffect(Effect &effect){
 void Renderer::fillContext(effects::Context &context, Effect &effect){
     fillContextClientInfo(context);
     fillEffectSetting(effect, context.effect_setting);
+    fillScreenSetting(effect, context.screen_setting);
 }
 
 void Renderer::fillContextClientInfo(effects::Context &context){
     context.time = player->getTime();
-    context.client_id = client_info->id;
-    context.client_index = client_info->index;
-    context.client_count = client_info->count;
-    context.client_setting = client_info->getClient();
     context.fbo = fbo;
 }
 
-void Renderer::fillEffectSetting(effects::Effect &effect, EffectSetting &fxsetting){
-    XmlEffects *fxs = XmlEffects::instance();
+void Renderer::fillEffectSetting(effects::Effect &effect, XmlItemSetting &fxsetting){
+    XmlConfigs *fxs = XmlConfigs::instance();
 
     string query = effect.name;
-    EffectSetting *pSetting = fxs->getEffectSetting(query);
+    XmlItemSetting *pSetting = fxs->getItem(query);
     if(pSetting)
         fxsetting.merge(*pSetting);
 
     query += "." + player->song;
-    pSetting = fxs->getEffectSetting(query);
+    pSetting = fxs->getItem(query);
     if(pSetting)
         fxsetting.merge(*pSetting);
 
     query += "" + player->clip;
-    pSetting = fxs->getEffectSetting(query);
+    pSetting = fxs->getItem(query);
     if(pSetting)
         fxsetting.merge(*pSetting);
 
     query += "." + effect.trigger;
-    pSetting = fxs->getEffectSetting(query);
+    pSetting = fxs->getItem(query);
     if(pSetting)
         fxsetting.merge(*pSetting);
 }
 
+void Renderer::fillScreenSetting(effects::Effect &effect, XmlItemSetting &setting){
+    XmlConfigs* screens = XmlConfigs::screens();
 
-
-
+    XmlItemSetting *pSetting = screens->getItem(client_info->id);
+    if(pSetting)
+        setting.merge(*pSetting);
+}
 

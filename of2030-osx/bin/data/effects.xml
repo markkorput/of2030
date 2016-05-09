@@ -4,6 +4,9 @@
     <effect name="<effect_name>[.<song>][.<clip>][.<trigger>]"
     <effect name="shader-spotlight.fusion.fusion2.spotlight_max"
     -->
+
+
+    <!-- shader cursor -->
     <effect name="shader-cursor.fusion.fusion2">
       <!-- <gain>100</gain> -->
     </effect>
@@ -21,9 +24,19 @@
       <duration>3.0</duration>
     </effect>
 
+
+    <effect name="shader-cursor_test">
+      <gain>10.0</gain>
+      <duration>10.0</duration>
+    </effect>
+
+
     <effect name="shader-worms">
       <duration>3.0</duration>
       <gain>0.1</gain>
+      <pos_x>0.0</pos_x>
+      <pos_y>0.0</pos_y>
+      <pos_z>0.0</pos_z>
     </effect>
   </effects>
 </of2030>

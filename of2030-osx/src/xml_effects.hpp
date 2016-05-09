@@ -10,21 +10,26 @@ namespace of2030{
     class XmlEffects{
     public:
         static XmlEffects* instance();
+        static XmlEffects* screens();
     private:
-        static XmlEffects* singleton;
+        static XmlEffects* _screens_instance;
+        static XmlEffects* _instance;
 
     public:
-        XmlEffects() : path("effects.xml"){};
+        XmlEffects();
         ~XmlEffects(){ destroy(); }
         void destroy();
         void load();
 
-        EffectSetting* getEffectSetting(string name);
-        void setEffectSettingParam(string settingName, string paramName, string value);
+        XmlItemSetting* getItem(string name);
+        void setItemParam(string settingName, string paramName, string value);
 
     private:
-        std::string path;
-        vector<EffectSetting*> effect_settings;
+        vector<XmlItemSetting*> settings;
+
+        string path;
+        string rootNodeName;
+        string itemNodeName;
     };
 }
 

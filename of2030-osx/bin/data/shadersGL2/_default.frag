@@ -1,3 +1,4 @@
+// uniform vec3 iPos;
 // uniform vec2 iResolution;
 // uniform float iProgress;
 // uniform float iDuration;

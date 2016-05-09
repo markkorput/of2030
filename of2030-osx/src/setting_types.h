@@ -9,20 +9,9 @@
 #ifndef client_setting_h
 #define client_setting_h
 
-namespace of2030{
-    
-    //
-    // Client
-    //
+#include "ofMain.h"
 
-    typedef struct{
-        int id;
-        ofVec3f screenpos, screenrot;
-        ofVec2f screensize;
-        
-        float pano_start, pano_end;
-        ofVec3f pano_rot;
-    } ClientSetting;
+namespace of2030{
 
     //
     // Osc
@@ -45,13 +34,13 @@ namespace of2030{
     // Effect
     //
     
-    class EffectSetting{
+    class XmlItemSetting{
     public: // attributes
         string name;
         map<string, string> data;
 
     public: // methods
-        void merge(EffectSetting &other){
+        void merge(XmlItemSetting &other){
             for(map<string, string>::iterator it = other.data.begin(); it != other.data.end(); ++it){
                 this->data[it->first] = it->second;
             }

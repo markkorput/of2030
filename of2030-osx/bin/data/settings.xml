@@ -16,18 +16,23 @@
   </osc>
   <screen_width>768</screen_width>
   <screen_height>576</screen_height>
-  <client_id>1</client_id>
+  <client_id>01</client_id>
+  <room_size_x>9.0</room_size_x>
+  <room_size_y>2.0</room_size_y>
+  <room_size_z>16.5</room_size_z>
   <multi>
-    <id>1</id>
-    <id>2</id>
-    <id>3</id>
-    <id>4</id>
-    <id>5</id>
-    <id>6</id>
-    <id>7</id>
-    <id>8</id>
-    <room_scale_x>900</room_scale_x>
-    <room_scale_y>200</room_scale_y>
-    <room_scale_z>1650.0</room_scale_z>
+    <debug>false</debug>
+    <id>rpi1</id>
+    <id>rpi2</id>
+    <id>rpi3</id>
+    <id>rpi4</id>
+    <id>rpi5</id>
+    <id>rpi6</id>
+    <id>rpi7</id>
+    <id>rpi8</id>
+    <scale>100.0</scale>
+    <translate_x>0.0</translate_x>
+    <translate_y>0.0</translate_y>
+    <translate_z>0.0</translate_z>
   </multi>
 </of2030>

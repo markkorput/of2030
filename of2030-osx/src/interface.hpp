@@ -25,9 +25,7 @@ namespace of2030 {
         ofEvent<string> effectEvent;
         ofEvent<string> shaderEffectEvent;
         ofEvent<EffectConfig> effectConfigEvent;
-        ofEvent<string> reconfigSettingsEvent;
-        ofEvent<string> reconfigClientsEvent;
-        ofEvent<string> reconfigEffectsEvent;
+        ofEvent<string> controlEvent;
         ofEvent<string> songEvent;
         ofEvent<string> clipEvent;
 
