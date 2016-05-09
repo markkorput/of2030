@@ -42,7 +42,7 @@ namespace of2030{
         void onClip(string &name);
 
     private: // helpers methods
-        effects::Effect* createEffect(string &name);
+        effects::Effect* createEffect(const string &name);
 
     private: // attributes
 

@@ -70,7 +70,7 @@ void InterfacePlayerBridge::registerInterfaceCallbacks(bool _register){
 
 void InterfacePlayerBridge::onTrigger(string &trigger){
     // get effect to be triggerd by this trigger name
-    string effectName = XmlTriggers::instance()->getEffectName(trigger);
+    const string effectName = XmlTriggers::instance()->getEffectName(trigger);
 
     // shader effect trigger?
     string sub = "shader-";
@@ -126,7 +126,7 @@ void InterfacePlayerBridge::onClip(string &name){
     m_player->clip = name;
 }
 
-effects::Effect* InterfacePlayerBridge::createEffect(string &name){
+effects::Effect* InterfacePlayerBridge::createEffect(const string &name){
     if(name == "cursor")
         return (effects::Effect*) new effects::Cursor();
 

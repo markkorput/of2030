@@ -1,6 +1,8 @@
 #include "xml_triggers.hpp"
 #include "ofxXmlSettings.h"
 
+#include <regex>
+
 using namespace of2030;
 
 // XmlTriggers implementation
@@ -32,4 +34,17 @@ void XmlTriggers::load(){
         effectName = xml.getValue("trigger", "", i);
         trigger_effects[triggerName] = effectName;
     }
+}
+
+string XmlTriggers::getEffectName(const string &triggerName){
+    // find and configured effect for this trigger
+    std::map<string,string>::iterator it = trigger_effects.find(triggerName);
+    // found it! return the configured effect to be triggered
+    if(it != trigger_effects.end())
+        return it->second;
+
+    // matches on any digits at then end of the string
+    std::regex expression("(\\d+)$");
+    // return the trigger name itself without any trailing digits
+    return std::regex_replace (triggerName, expression,"");
 }

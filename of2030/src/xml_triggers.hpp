@@ -19,12 +19,7 @@ namespace of2030{
         // void destroy();
         void load();
 
-        inline string getEffectName(string &triggerName){
-            std::map<string,string>::iterator it = trigger_effects.find(triggerName);
-            if(it == trigger_effects.end())
-                return triggerName;
-            return it->second;
-        }
+        string getEffectName(const string &triggerName);
 
     private:
         std::string path;
