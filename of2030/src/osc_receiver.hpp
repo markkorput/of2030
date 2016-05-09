@@ -22,11 +22,11 @@ namespace of2030 {
     public:
         OscReceiver();
         ~OscReceiver(){ destroy(); }
-        void configure(unsigned int port=2030, Interface* interface=NULL);
         void configure(OscSetting &_osc_setting);
         void setup();
         void update();
         void destroy();
+        inline bool isConnected(){ return bConnected; }
 
     private: // methods
         bool connect();
@@ -37,7 +37,7 @@ namespace of2030 {
         ofxOscReceiver m_oscReceiver;
         OscSetting *osc_setting;
         OscSetting default_setting;
-        bool m_bConnected;
+        bool bConnected;
         const static int MAX_MESSAGES_PER_CYCLE = 10;
     };
 }

@@ -15,29 +15,20 @@ using namespace of2030;
 
 SINGLETON_CLASS_IMPLEMENTATION_CODE(OscReceiver)
 
-OscReceiver::OscReceiver() : m_interface(NULL), m_bConnected(false){
+OscReceiver::OscReceiver() : m_interface(NULL), bConnected(false){
     default_setting.port = 2030;
     osc_setting = &default_setting;
-}
-
-void OscReceiver::configure(unsigned int port, Interface* interface){
-    osc_setting->port = port;
-
-    if(interface)
-        m_interface = interface;
-
-    if(m_bConnected){
-        // reconnect
-        connect();
-    }
 }
 
 void OscReceiver::configure(OscSetting &_osc_setting){
     this->osc_setting = &_osc_setting;
 
-    if(m_bConnected){
-        // reconnect
-        connect();
+    if(bConnected){
+        if(_osc_setting.port == 0){
+            disconnect();
+        } else { // reconnect
+            connect();
+        }
     }
 }
 
@@ -46,7 +37,7 @@ void OscReceiver::setup(){
         m_interface = Interface::instance();
     }
 
-    if(!m_bConnected){
+    if(!bConnected && osc_setting->port != 0){
         connect();
     }
 }
@@ -153,7 +144,7 @@ void OscReceiver::update(){
 }
 
 void OscReceiver::destroy(){
-    if(m_bConnected){
+    if(bConnected){
         disconnect();
     }
 }
@@ -163,7 +154,7 @@ bool OscReceiver::connect(){
 
 #ifdef __BOOL_OSC_SETUP__
     if(m_oscReceiver.setup(osc_setting->port)){
-        m_bConnected = true;
+        bConnected = true;
         ofLog() << "of2030::OscReceiver listening to port: " << osc_setting->port;
         return true;
     }
@@ -172,7 +163,7 @@ bool OscReceiver::connect(){
     return false;
 #else
     m_oscReceiver.setup(osc_setting->port);
-    m_bConnected = true;
+    bConnected = true;
     ofLog() << "of2030::OscReceiver listening to port: " << osc_setting->port;
     return true;
 #endif // __BOOL_OSC_SETUP__
@@ -180,6 +171,7 @@ bool OscReceiver::connect(){
 }
 
 void OscReceiver::disconnect(){
-    m_bConnected = false;
+    // (private method) m_oscReceiver.shutdown();
+    bConnected = false;
 }
 
