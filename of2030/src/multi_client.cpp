@@ -18,23 +18,33 @@ XmlSettings* MultiClient::xml_settings = NULL;
 
 
 void MultiClient::setup(){
-    int renderer_instance_count = m_renderers.size();
-
     xml_settings = XmlSettings::instance();
     enabled = xml_settings->multi_client_ids.size() > 0;
 
     // done?
     if(!enabled) return;
 
+    int existing_renderers_count = m_renderers.size();
+    Renderer* renderer;
 
     for(int i=0; i<xml_settings->multi_client_ids.size(); i++){
-        string id = xml_settings->multi_client_ids[i];
 
-        // create renderer instance
-        Renderer* renderer = new Renderer();
-        renderer->client_id = xml_settings->multi_client_ids[i];
+        if(i < existing_renderers_count){
+            // recycle existing instances
+            renderer = m_renderers[i];
+        } else {
+            renderer = new Renderer();
+            m_renderers.push_back(renderer);
+        }
+
+        renderer->setClientId(xml_settings->multi_client_ids[i]);
         renderer->setup();
-        m_renderers.push_back(renderer);
+    }
+    
+    // remove existing renderers that are no longer needed
+    for(int i=xml_settings->multi_client_ids.size(); i<existing_renderers_count; i++){
+        renderer = m_renderers.back();
+        delete renderer;
     }
 
     ofLog() << "[MultiClient] enabled";
@@ -92,9 +102,9 @@ void MultiClient::drawDebug(){
     XmlItemSetting* screen_setting;
 
     for(auto &renderer: m_renderers){
-        screen_setting = screens->getItem(renderer->client_id);
+        screen_setting = screens->getItem(renderer->clientId());
         if(screen_setting == NULL){
-            ofLogWarning() << "not screen setting found for screen ID: " << renderer->client_id;
+            ofLogWarning() << "not screen setting found for screen ID: " << renderer->clientId();
             continue;
         }
         screen_cam.setPosition(screen_setting->getValue("cam_pos_x", 0.0f),
@@ -133,10 +143,10 @@ void MultiClient::drawScreens(){
     XmlItemSetting* screen_setting;
 
     for(auto &renderer: m_renderers){
-        screen_setting = screens->getItem(renderer->client_id);
+        screen_setting = screens->getItem(renderer->clientId());
 
         if(screen_setting == NULL){
-            ofLogWarning() << "not screen setting found for screen ID: " << renderer->client_id;
+            ofLogWarning() << "not screen setting found for screen ID: " << renderer->clientId();
             continue;
         }
 

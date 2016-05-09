@@ -38,12 +38,19 @@ void ofApp::setup(){
     // it auto-initializes with the interface and player singleton instances
     of2030::InterfacePlayerBridge::instance()->setup();
 
-    // Load renderer
-    of2030::Renderer::instance()->client_id = of2030::XmlSettings::instance()->client_id;
-    of2030::Renderer::instance()->setup();
 
 #ifdef __MULTI_CLIENT_ENABLED__
     of2030::MultiClient::instance()->setup();
+
+    // only load singleton renderer when not in multi-mode
+    if(!of2030::MultiClient::instance()->enabled){
+        // Load renderer
+        of2030::Renderer::instance()->setClientId(of2030::XmlSettings::instance()->client_id);
+        of2030::Renderer::instance()->setup();
+    }
+#else
+    of2030::Renderer::instance()->client_id = of2030::XmlSettings::instance()->client_id;
+    of2030::Renderer::instance()->setup();
 #endif
 
     ofAddListener(of2030::Interface::instance()->controlEvent, this, &ofApp::onControl);

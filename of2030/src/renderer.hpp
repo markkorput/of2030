@@ -30,6 +30,9 @@ namespace of2030 {
         // void update();
         void destroy();
         void draw();
+        
+        inline void setClientId(const string &id){ client_id = id; }
+        inline const string &clientId(){ return client_id; }
             
     private: // callbacks
         
@@ -40,11 +43,13 @@ namespace of2030 {
         void fillEffectSetting(effects::Effect &effect, XmlItemSetting &fxsetting);
         void fillScreenSetting(effects::Effect &effect, XmlItemSetting &setting);
 
-    public: // properties
+    private: // properties
         
         Player *player;
         string client_id;
         ofFbo* fbo;
+        ofFbo defaultFbo;
+        bool bCallbacksRegistered;
     };
 }
 

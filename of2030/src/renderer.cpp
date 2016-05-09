@@ -15,7 +15,7 @@ using namespace of2030::effects;
 
 SINGLETON_CLASS_IMPLEMENTATION_CODE(Renderer)
 
-Renderer::Renderer() : fbo(NULL), player(NULL), client_id(""){
+Renderer::Renderer() : fbo(NULL), player(NULL), client_id(""), bCallbacksRegistered(false){
 }
 
 Renderer::~Renderer(){
@@ -24,7 +24,7 @@ Renderer::~Renderer(){
 
 void Renderer::setup(){
     if(fbo == NULL)
-        fbo = new ofFbo();
+        fbo = &defaultFbo;
 
     if(!fbo->isAllocated()){
         if(client_id == "")
@@ -36,17 +36,14 @@ void Renderer::setup(){
     if(!player)
         player = Player::instance();
 
-    registerRealtimeEffectCallback();
+    if(!bCallbacksRegistered)
+        registerRealtimeEffectCallback();
 }
 
 void Renderer::destroy(){
-    registerRealtimeEffectCallback(false);
-    if(fbo){
-        delete fbo;
-        fbo = NULL;
-    }
+    if(bCallbacksRegistered)
+        registerRealtimeEffectCallback(false);
 }
-
 
 void Renderer::draw(){
     fbo->begin();
@@ -73,6 +70,8 @@ void Renderer::registerRealtimeEffectCallback(bool reg){
     } else {
         ofRemoveListener(player->realtime_composition.newEffectEvent, this, &Renderer::onRealtimeEffect);
     }
+
+    bCallbacksRegistered = reg;
 }
 
 void Renderer::onRealtimeEffect(Effect &effect){
