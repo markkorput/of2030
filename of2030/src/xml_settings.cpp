@@ -69,7 +69,7 @@ void XmlSettings::load(bool reload){
     };
     log_level = log_level_map[log_level_name];
 
-    osc_setting.port = xml.getValue("of2030:osc:port", 2030);
+    osc_setting.port = xml.getValue("of2030:osc:port", 0);
 
     loadOsc(xml.doc, osc_setting);
 

@@ -3,7 +3,7 @@
     <log_level>notice</log_level>
   </app>
   <osc>
-    <port>2031</port>
+    <port>2031</port><!-- 0 (zero) means disabled -->
     <addresses>
       <trigger>/t</trigger>
       <effect>/fx</effect>
