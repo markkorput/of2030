@@ -18,37 +18,51 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    ofSetLogLevel(OF_LOG_VERBOSE);
+
+    ofLogVerbose() << "Redirect logging to log.txt";
     ofLogToFile("log.txt", true);
 
     // load settings xml
+    ofLogVerbose() << "Loading settings.xml";
     of2030::XmlSettings::instance()->load();
+
     // apply log-level setting
+    ofLogVerbose() << "Set log level based on setting: " << of2030::XmlSettings::instance()->log_level_name;
     ofSetLogLevel(of2030::XmlSettings::instance()->log_level);
 
     // load effects xml
+    ofLogVerbose() << "Loading effects.xml";
     of2030::XmlEffects::instance()->load();
+
     // load screens xml
+    ofLogVerbose() << "Loading screens.xml";
     of2030::XmlConfigs::screens()->load();
 
     // load and start player
+    ofLogVerbose() << "Starting player";
     of2030::Player::instance()->start();
 
     // This bridge updates the player with new effects, songnames and clipnames
     // when events on the interface are triggered
     // it auto-initializes with the interface and player singleton instances
+    ofLogVerbose() << "Setting up InterfacePlayerBridge";
     of2030::InterfacePlayerBridge::instance()->setup();
 
 
 #ifdef __MULTI_CLIENT_ENABLED__
+    ofLogVerbose() << "Setting up MultiClient";
     of2030::MultiClient::instance()->setup();
 
     // only load singleton renderer when not in multi-mode
     if(!of2030::MultiClient::instance()->enabled){
         // Load renderer
+        ofLogNotice() << "MultiClient not enabled, setting up singleton renderer";
         of2030::Renderer::instance()->setClientId(of2030::XmlSettings::instance()->client_id);
         of2030::Renderer::instance()->setup();
     }
 #else
+    ofLogVerbose() << "Setting up Renderer";
     of2030::Renderer::instance()->setClientId(of2030::XmlSettings::instance()->client_id);
     of2030::Renderer::instance()->setup();
 #endif
@@ -56,6 +70,7 @@ void ofApp::setup(){
     ofAddListener(of2030::Interface::instance()->controlEvent, this, &ofApp::onControl);
 
     // load & start OscReceiver; let the messages come!
+    ofLogVerbose() << "Starting OscReceiver";
     of2030::OscReceiver::instance()->configure(of2030::XmlSettings::instance()->osc_setting);
     of2030::OscReceiver::instance()->setup();
 }
@@ -135,7 +150,7 @@ void ofApp::gotMessage(ofMessage msg){
 }
 
 //--------------------------------------------------------------
-void ofApp::dragEvent(ofDragInfo dragInfo){ 
+void ofApp::dragEvent(ofDragInfo dragInfo){
 
 }
 

@@ -17,7 +17,7 @@ using namespace of2030;
 // local methods
 //
 
-void loadOsc(TiXmlDocument &doc, OscSetting &osc_setting){
+void loadOscAddresses(TiXmlDocument &doc, OscSetting &osc_setting){
     TiXmlElement *el = doc.FirstChildElement("of2030");
     if(!el) return;
 
@@ -34,7 +34,7 @@ void loadOsc(TiXmlDocument &doc, OscSetting &osc_setting){
         name = child->ValueStr();
         val = child->GetText();
         osc_setting.addresses[name] = val;
-        ofLogVerbose() << "[XmlSettings::loadOsc got: " << name << ":" << val;
+        ofLogVerbose() << "XmlSettings::loadOsc found OSC-address: " << name << ":" << val;
         child = child->NextSiblingElement();
     }
 }
@@ -54,24 +54,25 @@ XmlSettings* XmlSettings::instance(){
 
 
 void XmlSettings::load(bool reload){
+    ofLogVerbose() << "XmlSettings::load";
+
     if(loaded && !reload) return;
 
     ofxXmlSettings xml;
     xml.loadFile(path);
 
+
     log_level_name = xml.getValue("of2030:app:log_level", "");
-    map<string, ofLogLevel> log_level_map = {
-        {"verbose", OF_LOG_VERBOSE},
-        {"notice", OF_LOG_NOTICE},
-        {"silent", OF_LOG_SILENT},
-        {"warning", OF_LOG_WARNING},
-        {"", OF_LOG_NOTICE}
-    };
-    log_level = log_level_map[log_level_name];
+    if(log_level_name == "verbose") log_level = OF_LOG_VERBOSE;
+    else if(log_level_name == "silent") log_level = OF_LOG_SILENT;
+    else if(log_level_name == "warning") log_level = OF_LOG_WARNING;
+    else log_level = OF_LOG_NOTICE; // if(log_level_name == "notice")
+    ofLogVerbose() << "log_level: " << log_level_name;
 
     osc_setting.port = xml.getValue("of2030:osc:port", 0);
+    ofLogVerbose() << "OSC port: " << osc_setting.port;
 
-    loadOsc(xml.doc, osc_setting);
+    loadOscAddresses(xml.doc, osc_setting);
 
     client_id = xml.getValue("of2030:client_id", "0");
     room_size = ofVec3f(xml.getValue("of2030:room_size_x", 1.0f),
