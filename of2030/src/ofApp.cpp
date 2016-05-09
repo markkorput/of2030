@@ -49,7 +49,7 @@ void ofApp::setup(){
         of2030::Renderer::instance()->setup();
     }
 #else
-    of2030::Renderer::instance()->client_id = of2030::XmlSettings::instance()->client_id;
+    of2030::Renderer::instance()->setClientId(of2030::XmlSettings::instance()->client_id);
     of2030::Renderer::instance()->setup();
 #endif
 

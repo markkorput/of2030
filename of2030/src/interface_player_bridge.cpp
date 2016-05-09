@@ -16,36 +16,32 @@ using namespace of2030;
 SINGLETON_CLASS_IMPLEMENTATION_CODE(InterfacePlayerBridge)
 
 InterfacePlayerBridge::InterfacePlayerBridge(){
-    setInterface(Interface::instance());
-    m_player = Player::instance();
+    m_interface = NULL;
+    m_player = NULL;
     m_bStarted = false;
 }
 
 InterfacePlayerBridge::~InterfacePlayerBridge(){
-    if(m_bStarted)
-        destroy();
+    destroy();
 }
 
 void InterfacePlayerBridge::setup(){
-    registerInterfaceCallbacks(true);
+    if(!m_interface)
+        m_interface = Interface::instance();
+
+    if(!m_player)
+        m_player = Player::instance();
+
+    if(!m_bStarted)
+        registerInterfaceCallbacks(true);
+
     m_bStarted = true;
 }
 
 void InterfacePlayerBridge::destroy(){
-    registerInterfaceCallbacks(false);
-    m_bStarted = false;
-}
-
-void InterfacePlayerBridge::setInterface(Interface *interface){
-    if(m_bStarted && m_interface){
+    if(m_bStarted)
         registerInterfaceCallbacks(false);
-    }
-
-    m_interface = interface;
-
-    if(m_bStarted && m_interface){
-        registerInterfaceCallbacks(true);
-    }
+    m_bStarted = false;
 }
 
 void InterfacePlayerBridge::registerInterfaceCallbacks(bool _register){

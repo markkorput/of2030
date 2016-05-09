@@ -29,8 +29,6 @@ namespace of2030{
         void setup();
         void destroy();
 
-        void setInterface(Interface *interface);
-
     private: // callbacks
 
         void registerInterfaceCallbacks(bool _register=true);
