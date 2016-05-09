@@ -130,7 +130,7 @@ void MultiClient::drawDebug(){
             ofRotateY(rot.y);
             ofRotateZ(rot.z);
         
-            ofTranslate(0.0f, 0.0f, -4.52f);
+            ofTranslate(0.0f, 0.0f, -0.2f);
 
             float wheight = screen_setting->getValue("world_height", 2.0f) * 1.1;
             float wwidth = screen_setting->getValue("world_width", 2.67f) * 1.1;
@@ -181,7 +181,7 @@ void MultiClient::drawScreens(){
             ofRotateY(rot.y);
             ofRotateZ(rot.z);
             // translate 4.5 "meters" forward, we're gonna assume that's where the projection ends up
-            ofTranslate(wwidth*-0.5f, wheight*-0.5f, -4.5f);
+            ofTranslate(wwidth*-0.5f, wheight*-0.5f, 0.0f);
             // scale from pixel size to world size (renderer draws its fbo simply at screen size, because normally
             // it's drawing fullscreen)
             ofScale(wwidth / pixwidth, wheight / pixheight, 1.0f);

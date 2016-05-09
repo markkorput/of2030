@@ -127,13 +127,20 @@ void ShaderEffect::draw(Context &context){
     EffectLogic logic((Effect*)this, &context);
 
     ofPoint pos = ofPoint(context.effect_setting.getValue("pos_x", 0.0f),
-                        context.effect_setting.getValue("pos_x", 0.0f),
-                        context.effect_setting.getValue("pos_x", 0.0f));
-
-    ofSetColor(255);
+                        context.effect_setting.getValue("pos_y", 0.0f),
+                        context.effect_setting.getValue("pos_z", 0.0f));
+//    ofCamera cam;
+//    cam.setPosition(context.screen_setting.getValue("cam_pos_x", 0.0f),
+//                    context.screen_setting.getValue("cam_pos_y", 0.0f),
+//                    context.screen_setting.getValue("cam_pos_z", 0.0f));
+//    cam.lookAt(ofVec3f(context.screen_setting.getValue("cam_look_at_x", 0.0f),
+//                       context.screen_setting.getValue("cam_look_at_y", 0.0f),
+//                       context.screen_setting.getValue("cam_look_at_z", 4.5f)));
     shader->begin();
+        //shader->setUniformMatrix4f("iScreenCamMatrix", cam.getModelViewMatrix());
+        shader->setUniform2f("iScreenWorldSize", ofVec2f(context.screen_setting.getValue("world_width", 2.67f), context.screen_setting.getValue("world_height", 2.0f)));
         shader->setUniform3f("iPos", pos);
-
+    
         // shader->setUniform1f("iTime", context.time);
         shader->setUniform2f("iResolution", ofVec2f(context.fbo->getWidth(), context.fbo->getHeight()));
         shader->setUniform1f("iProgress", logic.getGlobalProgress());
@@ -142,6 +149,7 @@ void ShaderEffect::draw(Context &context){
         shader->setUniform1f("iLocalPanoStart", context.screen_setting.getValue("pano_start", 0.0f));
         shader->setUniform1f("iLocalPanoEnd", context.screen_setting.getValue("pano_end", 0.0f));
         shader->setUniform1f("iGain", context.effect_setting.getValue("gain", 1.0f));
+        ofSetColor(255);
         ofDrawRectangle(0, 0, context.fbo->getWidth(), context.fbo->getHeight());
     shader->end();
 }

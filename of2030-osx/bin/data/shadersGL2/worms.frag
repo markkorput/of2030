@@ -1,5 +1,13 @@
-uniform float iProgress;
+uniform vec3 iPos;
+// uniform vec2 iResolution;
+// uniform float iProgress;
+// uniform float iDuration;
+// uniform float iIterations;
+// uniform float iLocalPanoStart;
+// uniform float iLocalPanoEnd;
 uniform float iGain;
+
+
 
 float worm(vec2 fragCoord, vec2 scroll, float tiltFactor){
     // sine-wave based baseline (causing the horizontal waviness)
@@ -28,12 +36,12 @@ float worm(vec2 fragCoord, vec2 scroll, float tiltFactor){
 
 void main(void){
     // global scroll movement speed
-    vec2 scroll = vec2(20, -1.0) * iProgress;
+    vec2 scroll = iPos.xy;
     float tilt = 0.0;
 
     float c = clamp(worm(gl_FragCoord.xy, scroll, tilt), 0.0, 1.0);
     c += clamp(worm(gl_FragCoord.xy, scroll+vec2(5.0, 3.0), tilt+0.01), 0.0, 1.0);
     c += clamp(worm(gl_FragCoord.xy, scroll+vec2(50.0, 2.0), tilt+0.003), 0.0, 1.0);
 
-    gl_FragColor = vec4(vec3(c), 1.0);
+    gl_FragColor = vec4(vec3(1.0), c);
 }

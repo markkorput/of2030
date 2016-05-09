@@ -22,10 +22,11 @@ void main(void){
     // if(abs(gl_FragCoord.x - f*iResolution.x) < iGain){
     //   alpha = 1.0;
     // }
-    float alpha = 0.0;
-    if(abs(gl_FragCoord.x / iResolution.x) < iGain){
-       alpha = 1.0;
-    }
+    // float alpha = 0.0;
+    // if(abs(gl_FragCoord.x / iResolution.x) < iGain){
+    //    alpha = 1.0;
+    // }
 
-    gl_FragColor = vec4(vec3(1.0), alpha);
+    //gl_FragColor = vec4(vec3(1.0), alpha);
+    gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
 }

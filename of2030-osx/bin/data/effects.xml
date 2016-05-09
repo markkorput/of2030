@@ -24,6 +24,7 @@
 
     <effect name="shader-cursor_test">
       <gain>10.0</gain>
+      <duration>10.0</duration>
     </effect>
 
 
