@@ -14,7 +14,7 @@ using namespace of2030::effects;
 
 int Effect::cidCounter = 0;
 
-Effect::Effect() : startTime(NO_TIME), endTime(NO_TIME), duration(NO_TIME), trigger("") {
+Effect::Effect() : name("default"), startTime(NO_TIME), endTime(NO_TIME), duration(NO_TIME), trigger("") {
     // every effect instance gets a unique cid (client-side-id)
     cid = cidCounter;
     cidCounter++;
@@ -30,10 +30,87 @@ void Effect::setup(Context &context){
     if(hasDuration() && hasStartTime() && !hasEndTime()){
         endTime = startTime + duration;
     }
+    
+    // load any shaders based on comma-seperated "shaders" effect setting
+    string shader_names = context.effect_setting.getValue("shaders", "");
+    string shader_name;
+    std::size_t pos;
+    bool done = false;
+
+    while(!done){
+        // find next "comma"
+        pos = shader_names.find(",");
+        
+        // not found? use the whole (rest) of the shader_names value
+        if(pos == std::string::npos){
+            shader_name = shader_names;
+            done = true;
+        } else {
+            // get next part
+            shader_name = shader_names.substr(0, pos);
+            // remove this part from the shader_names string, preparing it for next iteration
+            shader_names = shader_names.substr(pos+1);
+        }
+
+        // try to get the shader with the name we just found
+        ofShader *pShader = ShaderManager::instance()->get(shader_name);
+        if(pShader)
+            // add it to our list
+            shaders.push_back(pShader);
+    }
 }
 
 void Effect::draw(Context &context){
-    // ofBackground(effect.color);
+    EffectLogic logic((Effect*)this, &context);
+
+    // gather some data we'll be putting as uniforms in our shaders
+    ofPoint pos = ofPoint(context.effect_setting.getValue("pos_x", 0.0f),
+                          context.effect_setting.getValue("pos_y", 0.0f),
+                          context.effect_setting.getValue("pos_z", 0.0f));
+
+    ofVec2f screenWorldSize(context.screen_setting.getValue("world_width", 2.67f),
+                            context.screen_setting.getValue("world_height", 2.0f));
+
+    ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
+    float progress = logic.getGlobalProgress();
+    float duration = logic.getGlobalDuration();
+    float iterations = context.effect_setting.getValue("iterations", 1.0f);
+    float localPanoStart = context.screen_setting.getValue("pano_start", 0.0f);
+    float localPanoEnd = context.screen_setting.getValue("pano_end", 0.0f);
+    float gain = context.effect_setting.getValue("gain", 1.0f);
+    
+    //    ofCamera cam;
+    //    cam.setPosition(context.screen_setting.getValue("cam_pos_x", 0.0f),
+    //                    context.screen_setting.getValue("cam_pos_y", 0.0f),
+    //                    context.screen_setting.getValue("cam_pos_z", 0.0f));
+    //    cam.lookAt(ofVec3f(context.screen_setting.getValue("cam_look_at_x", 0.0f),
+    //                       context.screen_setting.getValue("cam_look_at_y", 0.0f),
+    //                       context.screen_setting.getValue("cam_look_at_z", 4.5f)));
+
+    // activate & populate shaders
+    for(auto & shader: shaders){
+        shader->begin();
+        //shader->setUniformMatrix4f("iScreenCamMatrix", cam.getModelViewMatrix());
+        shader->setUniform3f("iPos", pos);
+        shader->setUniform2f("iScreenWorldSize", screenWorldSize);
+        // shader->setUniform1f("iTime", context.time);
+        shader->setUniform2f("iResolution", resolution);
+        shader->setUniform1f("iProgress", progress);
+        shader->setUniform1f("iDuration", duration);
+        shader->setUniform1f("iIterations", iterations);
+        shader->setUniform1f("iLocalPanoStart", localPanoStart);
+        shader->setUniform1f("iLocalPanoEnd", localPanoEnd);
+        shader->setUniform1f("iGain", gain);
+    }
+    
+    // draw
+    ofSetColor(255);
+    ofDrawRectangle(0, 0, resolution.x, resolution.y);
+
+    // de-activate shaders
+    for(auto & shader: shaders){
+        shader->end();
+    }
 }
 
 float Effect::getDuration(){
@@ -51,11 +128,13 @@ void Effect::setType(EffectType effect_type){
     name = EFFECT_NAMES[effect_type];
 }
 
+// === === === === === === === === ===
 
 float EffectLogic::getGlobalTime(){ return context->time - effect->startTime; }
 float EffectLogic::getGlobalDuration(){ return effect->endTime - effect->startTime; }
 float EffectLogic::getGlobalProgress(){ return getGlobalTime() / getGlobalDuration(); }
 
+// === === === === === === === === ===
 
 Off::Off(){
     setType(EffectType::OFF);
@@ -65,8 +144,7 @@ void Off::draw(Context &context){
     ofBackground(0);
 }
 
-
-
+// === === === === === === === === ===
 
 Color::Color(){
     setType(EffectType::COLOR);
@@ -78,36 +156,7 @@ void Color::draw(Context &context){
     ofBackground(color);
 }
 
-
-Cursor::Cursor(){
-    setType(EffectType::CURSOR);
-}
-
-void Cursor::draw(Context &context){
-    CursorLogic logic((Effect*)this, &context);
-
-    ofSetColor(255);
-    ofDrawRectangle(logic.getLocalProgress() * context.fbo->getWidth(),
-                    0,
-                    context.effect_setting.getValue("width", 10.0f),
-                    context.fbo->getHeight());
-}
-
-float CursorLogic::getIterations(){         return context->effect_setting.getValue("iterations", 1.0f); } // not supported yet
-float CursorLogic::getIterationDuration(){  return getGlobalDuration() / getIterations(); } // not supported yet
-int CursorLogic::getCurrentIteration(){     return floor(getGlobalTime() / getIterationDuration()); }
-float CursorLogic::getIterationTime(){      return getGlobalTime() - getCurrentIteration() * getIterationDuration(); }
-float CursorLogic::getIterationProgress(){  return getIterationTime() / getIterationDuration(); }
-float CursorLogic::getLocalProgress(){
-    return ofMap(getIterationProgress(),
-                 context->screen_setting.getValue("pano_start", 0.0f),
-                 context->screen_setting.getValue("pano_end", 0.0f),
-                 0.0, 1.0);
-}
-
-// ==============
-// Shader Effects
-// ==============
+// === === === === === === === === ===
 
 ShaderEffect::ShaderEffect(){
     setType(EffectType::SHADER);
@@ -116,7 +165,7 @@ ShaderEffect::ShaderEffect(){
     shaderName = "";
 }
 
-void ShaderEffect::setup(Context &context){
+void ShaderEffect::setup(Context &context)  {
     Effect::setup(context);
     shader = ShaderManager::instance()->get(shaderName == "" ? name : shaderName);
 }
@@ -160,9 +209,7 @@ void ShaderEffect::setShader(string _name){
 }
 
 
-// ============
-// Video Effect
-// ============
+// === === === === === === === === ===
 
 
 Vid::Vid(){

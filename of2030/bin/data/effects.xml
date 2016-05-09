@@ -3,40 +3,25 @@
     <!--
     <effect name="<effect_name>[.<song>][.<clip>][.<trigger>]"
     <effect name="shader-spotlight.fusion.fusion2.spotlight_max"
+    Effect configs are loaded in the following order (every newly loaded config
+    adds to/overwrites earlier configs, so later configs have higher priority):
+    - <effect_name>
+    - <effect_name>.<song_name>
+    - <effect_name>.<song_name>.<clip_name>
+    - <effect_name>.<trigger_name>
+    - <effect_name>.<song_name>.<clip_name>.<trigger_name>
     -->
 
+    <effect name="worms">
+      <shaders>worms</shaders>
+    </effect>
 
-    <!-- shader cursor -->
-    <effect name="shader-cursor.fusion.fusion2">
-      <!-- <gain>100</gain> -->
-    </effect>
-    <effect name="shader-cursor.fusion.fusion1">
-      <iterations>3</iterations>
-      <!-- <gain>10</gain> -->
-    </effect>
-    <effect name="shader-cursor.fusion">
-      <iterations>2</iterations>
-      <!-- <gain>10</gain> -->
-    </effect>
-    <effect name="shader-cursor">
-      <iterations>1</iterations>
-      <gain>10</gain>
+    <effect name="cursor">
+      <shaders>cursor</shaders>
       <duration>3.0</duration>
+      <iterations>1.4</iterations>
+      <gain>100.0</gain>
     </effect>
 
-
-    <effect name="shader-cursor_test">
-      <gain>10.0</gain>
-      <duration>10.0</duration>
-    </effect>
-
-
-    <effect name="shader-worms">
-      <duration>3.0</duration>
-      <gain>0.1</gain>
-      <pos_x>0.0</pos_x>
-      <pos_y>0.0</pos_y>
-      <pos_z>0.0</pos_z>
-    </effect>
   </effects>
 </of2030>

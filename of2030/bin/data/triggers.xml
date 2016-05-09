@@ -4,5 +4,6 @@
     <trigger name="<trigger_name>"><effect_name></trigger>
     <trigger name="spotlight_max">spotlight</trigger>
     -->
+    <!-- <trigger name="worms">default</trigger> -->
   </triggers>
 </of2030>

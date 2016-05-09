@@ -46,7 +46,7 @@ void InterfacePlayerBridge::destroy(){
 }
 
 void InterfacePlayerBridge::registerInterfaceCallbacks(bool _register){
-    ofLogVerbose() << "InterfacePlayerBridge::setup with: " << _register;
+    ofLogVerbose() << "InterfacePlayerBridge::registerInterfaceCallbacks with: " << _register;
     if(_register){
         // subscribe to events
         ofAddListener(m_interface->triggerEvent, this, &InterfacePlayerBridge::onTrigger);
@@ -125,11 +125,11 @@ void InterfacePlayerBridge::onClip(string &name){
 }
 
 effects::Effect* InterfacePlayerBridge::createEffect(const string &name){
-    if(name == "cursor")
-        return (effects::Effect*) new effects::Cursor();
-
     if(name == "vid")
         return (effects::Effect*) new effects::Vid();
 
-    return NULL;
+    // default type; use the name as effect name
+    effects::Effect* pEffect = new effects::Effect();
+    pEffect->name = name;
+    return pEffect;
 }

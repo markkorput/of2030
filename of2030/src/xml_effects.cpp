@@ -6,12 +6,13 @@ using namespace of2030;
 // local methods
 
 void xmlLoadEffect(TiXmlElement &xml_el, XmlItemSetting &fx){
-
+    // try to get the effect config's name from the "name" attribute
     const char *pstr = xml_el.Attribute("name");
     if(pstr)
         fx.name = pstr;
-    
-    fx.data.clear();
+
+    // loop over each child node, the child node's name become the param key
+    // the child node's content becomes the param value
     for(TiXmlElement* child = xml_el.FirstChildElement(); child != NULL; child = child->NextSiblingElement()){
         fx.data[child->ValueStr()] = child->ToElement()->GetText();
         ofLogVerbose() << "[XmlEffect] got value: " << child->ValueStr() << "/" << child->ToElement()->GetText();
@@ -83,6 +84,7 @@ void XmlEffects::load(){
                 } else {
                     // grab existing
                     fx = settings[xml_count];
+                    fx->data.clear();
                 }
                 
                 // populate our client instance
