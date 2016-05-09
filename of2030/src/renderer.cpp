@@ -13,10 +13,9 @@
 using namespace of2030;
 using namespace of2030::effects;
 
-Renderer::Renderer(){
-    fbo = NULL;
-    player = NULL;
-    client_info = NULL;
+SINGLETON_CLASS_IMPLEMENTATION_CODE(Renderer)
+
+Renderer::Renderer() : fbo(NULL), player(NULL), client_id(""), bCallbacksRegistered(false){
 }
 
 Renderer::~Renderer(){
@@ -25,30 +24,26 @@ Renderer::~Renderer(){
 
 void Renderer::setup(){
     if(fbo == NULL)
-        fbo = new ofFbo();
-    
-    if(!fbo->isAllocated())
-        fbo->allocate(WIDTH, HEIGHT);
+        fbo = &defaultFbo;
 
-    if(!player){
+    if(!fbo->isAllocated()){
+        if(client_id == "")
+            fbo->allocate(WIDTH, HEIGHT);
+        else
+            fbo->allocate(WIDTH, HEIGHT);
+    }
+
+    if(!player)
         player = Player::instance();
-    }
-    
-    if(!client_info){
-        client_info = ClientInfo::instance();
-    }
 
-    registerRealtimeEffectCallback();
+    if(!bCallbacksRegistered)
+        registerRealtimeEffectCallback();
 }
 
 void Renderer::destroy(){
-    registerRealtimeEffectCallback(false);
-    if(fbo){
-        delete fbo;
-        fbo = NULL;
-    }
+    if(bCallbacksRegistered)
+        registerRealtimeEffectCallback(false);
 }
-
 
 void Renderer::draw(){
     fbo->begin();
@@ -75,6 +70,8 @@ void Renderer::registerRealtimeEffectCallback(bool reg){
     } else {
         ofRemoveListener(player->realtime_composition.newEffectEvent, this, &Renderer::onRealtimeEffect);
     }
+
+    bCallbacksRegistered = reg;
 }
 
 void Renderer::onRealtimeEffect(Effect &effect){
@@ -119,9 +116,8 @@ void Renderer::fillEffectSetting(effects::Effect &effect, XmlItemSetting &fxsett
 }
 
 void Renderer::fillScreenSetting(effects::Effect &effect, XmlItemSetting &setting){
-    XmlConfigs* screens = XmlConfigs::screens();
+    XmlItemSetting *pSetting = XmlConfigs::screens()->getItem(client_id);
 
-    XmlItemSetting *pSetting = screens->getItem(client_info->id);
     if(pSetting)
         setting.merge(*pSetting);
 }

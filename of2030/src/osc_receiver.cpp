@@ -13,6 +13,8 @@
 
 using namespace of2030;
 
+SINGLETON_CLASS_IMPLEMENTATION_CODE(OscReceiver)
+
 OscReceiver::OscReceiver() : m_interface(NULL), m_bConnected(false){
     default_setting.port = 2030;
     osc_setting = &default_setting;

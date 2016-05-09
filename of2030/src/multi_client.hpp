@@ -15,16 +15,12 @@
 #ifdef __MULTI_CLIENT_ENABLED__
 
 #include "renderer.hpp"
-#include "client_info.hpp"
 #include "xml_settings.hpp"
 
 namespace of2030{
     
     class MultiClient {
-    public:
-        static MultiClient* instance();
-    private:
-        static MultiClient* singleton;
+        SINGLETON_CLASS_HEADER_CODE(MultiClient)
 
     private:
         static XmlSettings* xml_settings;
@@ -46,7 +42,6 @@ namespace of2030{
         
         bool enabled;
 
-        vector<ClientInfo*> m_client_infos;
         vector<Renderer*> m_renderers;
 
         ofEasyCam cam;

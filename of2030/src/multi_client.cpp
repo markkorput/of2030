@@ -6,7 +6,6 @@
 //
 //
 
-
 #include "multi_client.hpp"
 #ifdef __MULTI_CLIENT_ENABLED__
 
@@ -14,56 +13,48 @@
 
 using namespace of2030;
 
+SINGLETON_CLASS_IMPLEMENTATION_CODE(MultiClient)
 XmlSettings* MultiClient::xml_settings = NULL;
-MultiClient* MultiClient::singleton = NULL;
-
-MultiClient* MultiClient::instance(){
-    if (!singleton){
-        singleton = new MultiClient();
-    }
-    return singleton;
-}
 
 
 void MultiClient::setup(){
-    destroy();
-
     xml_settings = XmlSettings::instance();
     enabled = xml_settings->multi_client_ids.size() > 0;
 
-    // done
+    // done?
     if(!enabled) return;
 
+    int existing_renderers_count = m_renderers.size();
+    Renderer* renderer;
+
     for(int i=0; i<xml_settings->multi_client_ids.size(); i++){
-        string id = xml_settings->multi_client_ids[i];
 
-        // create client info instance
-        ClientInfo *cinfo = new ClientInfo();
-        cinfo->setup();
-        // cinfo->copy(*ClientInfo::instance());
-        cinfo->setClientId(xml_settings->multi_client_ids[i]);
-        m_client_infos.push_back(cinfo);
+        if(i < existing_renderers_count){
+            // recycle existing instances
+            renderer = m_renderers[i];
+        } else {
+            renderer = new Renderer();
+            m_renderers.push_back(renderer);
+        }
 
-        // create renderer instance
-        Renderer* renderer = new Renderer();
-        renderer->client_info = cinfo;
+        renderer->setClientId(xml_settings->multi_client_ids[i]);
         renderer->setup();
-        m_renderers.push_back(renderer);
+    }
+    
+    // remove existing renderers that are no longer needed
+    for(int i=xml_settings->multi_client_ids.size(); i<existing_renderers_count; i++){
+        renderer = m_renderers.back();
+        delete renderer;
     }
 
     ofLog() << "[MultiClient] enabled";
 }
 
 void MultiClient::destroy(){
-    for(int i=0; i<m_client_infos.size(); i++){
-        delete m_client_infos[i];
-    }
-
     for(int i=0; i<m_renderers.size(); i++){
         delete m_renderers[i];
     }
 
-    m_client_infos.clear();
     m_renderers.clear();
 }
 
@@ -111,9 +102,9 @@ void MultiClient::drawDebug(){
     XmlItemSetting* screen_setting;
 
     for(auto &renderer: m_renderers){
-        screen_setting = screens->getItem(renderer->client_info->id);
+        screen_setting = screens->getItem(renderer->clientId());
         if(screen_setting == NULL){
-            ofLogWarning() << "not screen setting found for screen ID: " << renderer->client_info->id;
+            ofLogWarning() << "not screen setting found for screen ID: " << renderer->clientId();
             continue;
         }
         screen_cam.setPosition(screen_setting->getValue("cam_pos_x", 0.0f),
@@ -152,10 +143,10 @@ void MultiClient::drawScreens(){
     XmlItemSetting* screen_setting;
 
     for(auto &renderer: m_renderers){
-        screen_setting = screens->getItem(renderer->client_info->id);
+        screen_setting = screens->getItem(renderer->clientId());
 
         if(screen_setting == NULL){
-            ofLogWarning() << "not screen setting found for screen ID: " << renderer->client_info->id;
+            ofLogWarning() << "not screen setting found for screen ID: " << renderer->clientId();
             continue;
         }
 

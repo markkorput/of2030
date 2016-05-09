@@ -9,6 +9,7 @@
 #ifndef osc_receiver_hpp
 #define osc_receiver_hpp
 
+#include "shared2030.h"
 #include "ofxOsc.h"
 #include "interface.hpp"
 #include "effects.hpp"
@@ -16,6 +17,7 @@
 namespace of2030 {
     
     class OscReceiver {
+        SINGLETON_CLASS_HEADER_CODE(OscReceiver)
 
     public:
         OscReceiver();
