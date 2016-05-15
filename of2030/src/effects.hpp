@@ -64,13 +64,13 @@ namespace of2030{ namespace effects {
 
     public: // properties
 
-        int cid;
+        // int cid;
         float startTime, endTime, duration;
         EffectType type;
         string name;
         string trigger;
         ofShader *shader;
-        static int cidCounter;
+        // static int cidCounter;
     };
 
     // === === === === === === === === ===

@@ -46,10 +46,10 @@ void Player::stop(){
 
 bool Player::effectActive(effects::Effect &effect){
     // loop over all our active effects
-    for(int i=active_effects.size()-1; i>=0; i--){
-        effects::Effect* active_effect = active_effects[i];
+    for(auto & _effect: active_effects){
         // current active effect has the specified client-id?
-        if(active_effect->cid == effect.cid){
+        //if(active_effect->cid == effect.cid){
+        if(_effect == &effect){
             return true;
         }
     }
@@ -65,9 +65,7 @@ void Player::setPlaybackTime(float time){
     // TODO; activate all effects that start between m_time and time
     vector<effects::Effect*> effects = realtime_composition.getEffects();
 
-    for(int i=effects.size()-1; i>=0; i--){
-        effects::Effect* effect = effects[i];
-
+    for(auto & effect: effects){
         // current effect just got active?
         if((effect->hasStartTime() == false || effect->startTime < m_time) &&
            (effect->hasEndTime() == false || effect->endTime > m_time) &&
