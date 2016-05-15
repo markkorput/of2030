@@ -72,7 +72,7 @@ void InterfacePlayerBridge::onTrigger(string &trigger){
     const string effectName = XmlTriggers::instance()->getEffectName(trigger);
 
     // non-shader effect
-    effects::Effect* fx = EffectManager::instance()->get(effectName);
+    effects::Effect* fx = EfficientEffectManager::instance()->get(effectName);
     if(!fx){
         ofLogError() << "Could not create effect for trigger: " << trigger;
         return;
@@ -80,15 +80,15 @@ void InterfacePlayerBridge::onTrigger(string &trigger){
 
     fx->trigger = trigger;
     // add to players realtime comp
-    m_player->realtime_composition.add(fx);
+    m_player->realtime_composition.add(*fx);
 }
 
 // callback to process new effect events from the interface
 void InterfacePlayerBridge::onEffect(string &name){
     // create effect
-    effects::Effect* fx = EffectManager::instance()->get(name);
+    effects::Effect* fx = EfficientEffectManager::instance()->get(name);
     // add to players realtime comp
-    m_player->realtime_composition.add(fx);
+    m_player->realtime_composition.add(*fx);
 }
 
 void InterfacePlayerBridge::onEffectConfig(EffectConfig &cfg){
@@ -104,5 +104,5 @@ void InterfacePlayerBridge::onClip(string &name){
 }
 
 void InterfacePlayerBridge::onEffectEnded(effects::Effect &effect){
-    EffectManager::instance()->finish(&effect);
+    EfficientEffectManager::instance()->finish(&effect);
 }

@@ -25,21 +25,18 @@ namespace of2030{ namespace effects {
 
     
     enum EffectType{
-        OFF = 0,
-        COLOR = 1,
-        VID = 2,
-        SHADER = 3,
-        CURSOR = 4
+        DEFAULT = 0,
+        OFF = 1,
+        COLOR = 2,
+        VID = 3
     };
     
     static map<EffectType, string> EFFECT_NAMES = {
+        {DEFAULT, "default"},
         {OFF, "off"},
         {COLOR, "color"},
-        {CURSOR, "cursor"},
-        {VID, "vid"},
-        {SHADER, "shader"}
+        {VID, "vid"}
     };
-
     
     
     #define NO_TIME (-1.0f)

@@ -14,7 +14,9 @@ using namespace of2030::effects;
 
 int Effect::cidCounter = 0;
 
-Effect::Effect() : name("default"), startTime(NO_TIME), endTime(NO_TIME), duration(NO_TIME), trigger(""), shader(NULL) {
+Effect::Effect() : startTime(NO_TIME), endTime(NO_TIME), duration(NO_TIME), trigger(""), shader(NULL) {
+    setType(DEFAULT);
+
     // every effect instance gets a unique cid (client-side-id)
     cid = cidCounter;
     cidCounter++;

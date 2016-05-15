@@ -21,13 +21,25 @@ namespace of2030{
         ~EffectManager();
         
         effects::Effect* get(string typ);
+        void add(effects::Effect* effect);
+        effects::Effect* findByType(effects::EffectType typ);
+        bool remove(effects::Effect* effect);
+
+    protected:
+        effects::EffectType typeStringToType(string typ);
+        effects::Effect* createEffect(string typ);
+        void deleteEffect(effects::Effect* effect);
+
+        vector<effects::Effect*> effects;
+    };
+
+    class EfficientEffectManager : public EffectManager{
+        SINGLETON_CLASS_HEADER_CODE(EfficientEffectManager)
+    public:
+        effects::Effect* get(string typ);
         void finish(effects::Effect* effect);
-
-    private:
-        effects::Effect* create(string typ);
-        void remove(effects::Effect* effect);
-
-        vector<effects::Effect*> active_effects; //, idle_effects;
+    protected:
+        EffectManager idle_manager;
     };
 }
 
