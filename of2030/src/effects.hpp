@@ -46,16 +46,17 @@ namespace of2030{ namespace effects {
     public: // methods
 
         Effect();
+        void reset();
         // ~Effect(){}
 
         virtual void setup(Context &context);
         virtual void draw(Context &context);
 
-        bool hasStartTime(){ return startTime >= 0.0f; }
-        bool hasEndTime(){ return endTime >= 0.0f; }
-        bool hasDuration(){ return duration >= 0.0f; }
+        inline bool hasStartTime() const { return startTime >= 0.0f; }
+        inline bool hasEndTime() const { return endTime >= 0.0f; }
+        inline bool hasDuration() const { return duration >= 0.0f; }
 
-        float getDuration();
+        float getDuration() const;
         
 
     protected: // methods

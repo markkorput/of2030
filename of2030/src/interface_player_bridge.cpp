@@ -80,7 +80,7 @@ void InterfacePlayerBridge::onTrigger(string &trigger){
 
     fx->trigger = trigger;
     // add to players realtime comp
-    m_player->effect_manager.add(fx);
+    m_player->addEffect(*fx);
 
     ofLogVerbose() << "effects in player's manager: " << m_player->effect_manager.getCount();
 }
@@ -90,7 +90,7 @@ void InterfacePlayerBridge::onEffect(string &name){
     // create effect
     effects::Effect* fx = EfficientEffectManager::instance()->get(name);
     // add to players realtime comp
-    m_player->effect_manager.add(fx);
+    m_player->addEffect(*fx);
 }
 
 void InterfacePlayerBridge::onEffectConfig(EffectConfig &cfg){
@@ -98,11 +98,11 @@ void InterfacePlayerBridge::onEffectConfig(EffectConfig &cfg){
 }
 
 void InterfacePlayerBridge::onSong(string &name){
-    m_player->song = name;
+    m_player->setSong(name);
 }
 
 void InterfacePlayerBridge::onClip(string &name){
-    m_player->clip = name;
+    m_player->setClip(name);
 }
 
 void InterfacePlayerBridge::onEffectEnded(effects::Effect &effect){

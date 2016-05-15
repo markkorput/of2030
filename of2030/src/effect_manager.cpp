@@ -129,13 +129,15 @@ effects::Effect* EfficientEffectManager::get(string typ){
 
     // found one, remove it from idle manager
     idle_manager.remove(pEffect);
-    // add to our own list
-    add(pEffect);
-
+    // reset its time values (and some other attributes)
+    pEffect->reset();
     // update name if necessary
     if(pEffect->type == effects::EffectType::DEFAULT){
         pEffect->name = typ;
     }
+
+    // add to our own list
+    add(pEffect);
 
     // done
     return pEffect;

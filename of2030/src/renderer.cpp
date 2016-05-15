@@ -46,16 +46,14 @@ void Renderer::destroy(){
 }
 
 void Renderer::draw(){
-    fbo->begin();
-    ofBackground(0);
-
-    int size = player->active_effects.size();
-    // ofLog() << "[Renderer] active effects: " << size;
-
     Context context;
     fillContextClientInfo(context);
 
-    for(auto & effect: player->active_effects){
+    fbo->begin();
+    ofBackground(0);
+
+    vector<effects::Effect*> effects = player->getActiveEffects();
+    for(auto & effect: effects){
         fillEffectSetting(*effect, context.effect_setting);
         fillScreenSetting(*effect, context.screen_setting);
         effect->draw(context);
@@ -104,13 +102,13 @@ void Renderer::fillEffectSetting(effects::Effect &effect, XmlItemSetting &fxsett
         fxsetting.merge(*pSetting);
 
     // song specific effect config
-    query += "." + player->song;
+    query += "." + player->getSong();
     pSetting = fxs->getItem(query);
     if(pSetting)
         fxsetting.merge(*pSetting);
 
     // song/clip specific effect config
-    query += "" + player->clip;
+    query += "" + player->getClip();
     pSetting = fxs->getItem(query);
     if(pSetting)
         fxsetting.merge(*pSetting);

@@ -14,12 +14,21 @@ using namespace of2030::effects;
 
 // int Effect::cidCounter = 0;
 
-Effect::Effect() : startTime(NO_TIME), endTime(NO_TIME), duration(NO_TIME), trigger(""), shader(NULL) {
+Effect::Effect(){
+    reset();
     setType(DEFAULT);
 
     // every effect instance gets a unique cid (client-side-id)
     // cid = cidCounter;
     // cidCounter++;
+}
+
+void Effect::reset(){
+    startTime = NO_TIME;
+    endTime = NO_TIME;
+    duration = NO_TIME;
+    trigger = "";
+    shader = NULL;
 }
 
 void Effect::setup(Context &context){
@@ -100,7 +109,7 @@ void Effect::draw(Context &context){
     shader->end();
 }
 
-float Effect::getDuration(){
+float Effect::getDuration() const {
     if(hasDuration())
         return duration;
 

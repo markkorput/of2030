@@ -39,22 +39,29 @@ namespace of2030{
         void start();
         void stop();
 
+        void addEffect(effects::Effect &effect);
+        inline const vector<effects::Effect*> &getActiveEffects(){ return active_effects_manager.getEffects(); }
+        inline const string &getSong(){ return song; }
+        inline const string &getClip(){ return clip; }
+        inline void setSong(const string &newSong){ song = newSong; }
+        inline void setClip(const string &newClip){ clip = newClip; }
+
         float getTime(){ return m_time; }
-        bool effectActive(effects::Effect &effect);
-        void activateEffect(effects::Effect &effect);
 
     protected: // helper methods
 
         void setPlaybackTime(float time);
-        void removeActiveEffectsEndingBefore(float time);
+        inline bool effectStarted(const effects::Effect &effect);
+        inline bool effectEnded(const effects::Effect &effect);
 
     public: // properties
 
-        vector<effects::Effect*> active_effects;
         EffectManager effect_manager;
-        string song, clip;
 
     private: // attributes
+
+        string song, clip;
+        EffectManager active_effects_manager, pending_effects_manager;
 
         bool m_bPlaying;
         float m_time, m_startTime;
