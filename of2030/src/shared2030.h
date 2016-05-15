@@ -24,6 +24,7 @@
 #define SINGLETON_CLASS_HEADER_CODE(x) \
     public: \
     static x* instance();\
+    static void delete_instance(); \
     private:\
     static x* singleton;
 
@@ -33,6 +34,13 @@
         if(!singleton)\
             singleton = new x();\
         return singleton;\
+    }\
+    void x::delete_instance(){\
+        if(singleton){\
+            delete singleton;\
+            singleton = NULL;\
+        }\
     }
+
 
 #endif /* shared2030_h */
