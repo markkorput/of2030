@@ -48,10 +48,6 @@ namespace of2030{
         void setPlaybackTime(float time);
         void removeActiveEffectsEndingBefore(float time);
 
-    public: // events
-
-        ofEvent <effects::Effect> effectEndedEvent;
-
     public: // properties
 
         vector<effects::Effect*> active_effects;

@@ -95,9 +95,8 @@ void Player::removeActiveEffectsEndingBefore(float time){
             // management surrounding the events; they must be allocated
             // and freed from memory by the owner of this class
 
-            // trigger event
-            ofLogVerbose() << "Player::effectEndedEvent";
-            ofNotifyEvent(effectEndedEvent, *effect, this);
+            // remove it from our effect manager
+            effect_manager.remove(effect);
         }
     }
 }

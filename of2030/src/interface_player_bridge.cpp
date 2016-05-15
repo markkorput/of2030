@@ -55,7 +55,7 @@ void InterfacePlayerBridge::registerCallbacks(bool _register){
         ofAddListener(m_interface->effectConfigEvent, this, &InterfacePlayerBridge::onEffectConfig);
         ofAddListener(m_interface->songEvent, this, &InterfacePlayerBridge::onSong);
         ofAddListener(m_interface->clipEvent, this, &InterfacePlayerBridge::onClip);
-        ofAddListener(m_player->effectEndedEvent, this, &InterfacePlayerBridge::onEffectEnded);
+        ofAddListener(m_player->effect_manager.effectRemovedEvent, this, &InterfacePlayerBridge::onEffectEnded);
     } else {
         // unsubscribe from events
         ofRemoveListener(m_interface->triggerEvent, this, &InterfacePlayerBridge::onTrigger);
@@ -63,7 +63,7 @@ void InterfacePlayerBridge::registerCallbacks(bool _register){
         ofRemoveListener(m_interface->effectConfigEvent, this, &InterfacePlayerBridge::onEffectConfig);
         ofRemoveListener(m_interface->songEvent, this, &InterfacePlayerBridge::onSong);
         ofRemoveListener(m_interface->clipEvent, this, &InterfacePlayerBridge::onClip);
-        ofRemoveListener(m_player->effectEndedEvent, this, &InterfacePlayerBridge::onEffectEnded);
+        ofRemoveListener(m_player->effect_manager.effectRemovedEvent, this, &InterfacePlayerBridge::onEffectEnded);
     }
 }
 
@@ -82,7 +82,7 @@ void InterfacePlayerBridge::onTrigger(string &trigger){
     // add to players realtime comp
     m_player->effect_manager.add(fx);
 
-    ofLogVerbose() << "effect count in player's realtime comp: " << m_player->effect_manager.getCount();
+    ofLogVerbose() << "effects in player's manager: " << m_player->effect_manager.getCount();
 }
 
 // callback to process new effect events from the interface
