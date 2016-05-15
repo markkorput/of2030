@@ -19,6 +19,8 @@
 
     <effect name="worms">
       <shader>worms</shader>
+      <pano_start>0.162</pano_start>
+      <pano_end>0.324</pano_end>
     </effect>
 
     <effect name="cursor">

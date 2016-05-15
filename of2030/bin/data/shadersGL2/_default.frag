@@ -3,8 +3,10 @@
 // uniform float iProgress;
 // uniform float iDuration;
 // uniform float iIterations;
-// uniform float iLocalPanoStart;
-// uniform float iLocalPanoEnd;
+// uniform float iScreenPanoStart;
+// uniform float iScreenPanoEnd;
+// uniform float iEffectPanoStart;
+// uniform float iEffectPanoEnd;
 // uniform float iGain;
 
 // varying vec2 texCoordVarying;

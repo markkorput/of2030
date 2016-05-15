@@ -73,10 +73,12 @@ void Effect::draw(Context &context){
     float progress = logic.getGlobalProgress();
     float duration = logic.getGlobalDuration();
     float iterations = context.effect_setting.getValue("iterations", 1.0f);
-    float localPanoStart = context.screen_setting.getValue("pano_start", 0.0f);
-    float localPanoEnd = context.screen_setting.getValue("pano_end", 0.0f);
+    float screenPanoStart = context.screen_setting.getValue("pano_start", 0.0f);
+    float screenPanoEnd = context.screen_setting.getValue("pano_end", 0.0f);
     float gain = context.effect_setting.getValue("gain", 1.0f);
-    
+    float effectPanoStart = context.effect_setting.getValue("pano_start", 0.0f);
+    float effectPanoEnd = context.effect_setting.getValue("pano_end", 1.0f);
+
     //    ofCamera cam;
     //    cam.setPosition(context.screen_setting.getValue("cam_pos_x", 0.0f),
     //                    context.screen_setting.getValue("cam_pos_y", 0.0f),
@@ -97,9 +99,12 @@ void Effect::draw(Context &context){
     shader->setUniform1f("iProgress", progress);
     shader->setUniform1f("iDuration", duration);
     shader->setUniform1f("iIterations", iterations);
-    shader->setUniform1f("iLocalPanoStart", localPanoStart);
-    shader->setUniform1f("iLocalPanoEnd", localPanoEnd);
+    shader->setUniform1f("iScreenPanoStart", screenPanoStart);
+    shader->setUniform1f("iScreenPanoEnd", screenPanoEnd);
+    shader->setUniform1f("iEffectPanoStart", effectPanoStart);
+    shader->setUniform1f("iEffectPanoEnd", effectPanoEnd);
     shader->setUniform1f("iGain", gain);
+    
 
     // draw
     ofSetColor(255);

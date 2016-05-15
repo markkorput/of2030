@@ -1,13 +1,10 @@
 uniform vec3 iPos;
-// uniform vec2 iResolution;
-// uniform float iProgress;
-// uniform float iDuration;
-// uniform float iIterations;
-// uniform float iLocalPanoStart;
-// uniform float iLocalPanoEnd;
 uniform float iGain;
-
-
+uniform vec2 iResolution;
+uniform float iScreenPanoStart;
+uniform float iScreenPanoEnd;
+uniform float iEffectPanoStart;
+uniform float iEffectPanoEnd;
 
 float worm(vec2 fragCoord, vec2 scroll, float tiltFactor){
     // sine-wave based baseline (causing the horizontal waviness)
@@ -39,9 +36,20 @@ void main(void){
     vec2 scroll = iPos.xy;
     float tilt = 0.0;
 
-    float c = clamp(worm(gl_FragCoord.xy, scroll, tilt), 0.0, 1.0);
-    c += clamp(worm(gl_FragCoord.xy, scroll+vec2(5.0, 3.0), tilt+0.01), 0.0, 1.0);
-    c += clamp(worm(gl_FragCoord.xy, scroll+vec2(50.0, 2.0), tilt+0.003), 0.0, 1.0);
+    float pixPerPano = iResolution.x / (iScreenPanoEnd - iScreenPanoStart);
+    float startX = (iEffectPanoStart - iScreenPanoStart) * pixPerPano;
+    float endX = (iEffectPanoEnd - iScreenPanoStart) * pixPerPano;
+
+    float c = 0.0;
+
+    if(gl_FragCoord.x >= startX && gl_FragCoord.x <= endX){
+      // worm 1
+      c += clamp(worm(gl_FragCoord.xy, scroll, tilt), 0.0, 1.0);
+      // worm 2
+      c += clamp(worm(gl_FragCoord.xy, scroll+vec2(5.0, 3.0), tilt+0.01), 0.0, 1.0);
+      // worm 3
+      c += clamp(worm(gl_FragCoord.xy, scroll+vec2(50.0, 2.0), tilt+0.003), 0.0, 1.0);
+    }
 
     gl_FragColor = vec4(vec3(1.0), c);
 }
