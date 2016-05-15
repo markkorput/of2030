@@ -44,61 +44,57 @@ void Player::stop(){
     m_bPlaying = false;
 }
 
-bool Player::effectActive(effects::Effect &effect){
-    // loop over all our active effects
-    for(int i=active_effects.size()-1; i>=0; i--){
-        effects::Effect* active_effect = active_effects[i];
-        // current active effect has the specified client-id?
-        if(active_effect->cid == effect.cid){
-            return true;
-        }
+void Player::addEffect(effects::Effect &effect){
+    // this triggers renderer to call setup on the effect (and providing
+    // it with the necessary data)
+    ofLogVerbose() << "Player::addEffect";
+    effect_manager.add(&effect);
+
+    // dead on arrival?
+    if(effectEnded(effect)){
+        // this triggers cleanups
+        effect_manager.remove(&effect);
+        return;
     }
 
-    return false;
-}
-
-void Player::activateEffect(effects::Effect &effect){
-    active_effects.push_back(&effect);
+    // put it in the right "folder"
+    if(effectStarted(effect)){
+        active_effects_manager.add(&effect);
+    } else {
+        pending_effects_manager.add(&effect);
+    }
 }
 
 void Player::setPlaybackTime(float time){
-    // TODO; activate all effects that start between m_time and time
-    vector<effects::Effect*> effects = realtime_composition.getEffects();
+    m_time = time;
 
-    for(int i=effects.size()-1; i>=0; i--){
-        effects::Effect* effect = effects[i];
-
-        // current effect just got active?
-        if((effect->hasStartTime() == false || effect->startTime < m_time) &&
-           (effect->hasEndTime() == false || effect->endTime > m_time) &&
-           !effectActive(*effect)){
-            activateEffect(*effect);
+    // First, remove active effects that have ended
+    const vector<effects::Effect*> *effects = &active_effects_manager.getEffects();
+    
+    for(auto effect: (*effects)){
+        if(effectEnded(*effect)){
+            // remove from active list
+            active_effects_manager.remove(effect);
+            // remove altogether
+            effect_manager.remove(effect);
         }
     }
 
-    removeActiveEffectsEndingBefore(time);
-    m_time = time;
+    // Second, activate pending effects that have started
+    effects = &pending_effects_manager.getEffects();
+
+    for(auto effect: (*effects)){
+        if(effectStarted(*effect)){
+            pending_effects_manager.remove(effect);
+            active_effects_manager.add(effect);
+        }
+    }
 }
 
-void Player::removeActiveEffectsEndingBefore(float time){
-    // loop over all active effects (it's important to iterate in reverse order,
-    // because during the iterations elements might be removed, which
-    // mixes up the index values when iterated in forward order).
-    for(int i=active_effects.size()-1; i>=0; i--){
-        // take the current effect
-        effects::Effect* effect = active_effects[i];
+inline bool Player::effectStarted(const effects::Effect &effect){
+    return !effect.hasStartTime() || effect.startTime <= m_time;
+}
 
-        // see if it has an end time that has been reached
-        if(effect->hasEndTime() && effect->endTime <= time){
-            // remove event from our active stack
-            active_effects.erase(active_effects.begin() + i);
-
-            // NOTE; this Player class does not get involed in the memory
-            // management surrounding the events; they must be allocated
-            // and freed from memory by the owner of this class
-
-            // trigger event
-            ofNotifyEvent(effectEndedEvent, *effect, this);
-        }
-    }
+inline bool Player::effectEnded(const effects::Effect &effect){
+    return effect.hasEndTime() && effect.endTime <= m_time;
 }

@@ -46,16 +46,14 @@ void Renderer::destroy(){
 }
 
 void Renderer::draw(){
-    fbo->begin();
-    ofBackground(0);
-
-    int size = player->active_effects.size();
-    // ofLog() << "[Renderer] active effects: " << size;
-
     Context context;
     fillContextClientInfo(context);
 
-    for(auto & effect: player->active_effects){
+    fbo->begin();
+    ofBackground(0);
+
+    vector<effects::Effect*> effects = player->getActiveEffects();
+    for(auto & effect: effects){
         fillEffectSetting(*effect, context.effect_setting);
         fillScreenSetting(*effect, context.screen_setting);
         effect->draw(context);
@@ -69,15 +67,15 @@ void Renderer::draw(){
 
 void Renderer::registerRealtimeEffectCallback(bool reg){
     if(reg){
-        ofAddListener(player->realtime_composition.newEffectEvent, this, &Renderer::onRealtimeEffect);
+        ofAddListener(player->effect_manager.effectAddedEvent, this, &Renderer::onEffectAdded);
     } else {
-        ofRemoveListener(player->realtime_composition.newEffectEvent, this, &Renderer::onRealtimeEffect);
+        ofRemoveListener(player->effect_manager.effectAddedEvent, this, &Renderer::onEffectAdded);
     }
 
     bCallbacksRegistered = reg;
 }
 
-void Renderer::onRealtimeEffect(Effect &effect){
+void Renderer::onEffectAdded(Effect &effect){
     Context context;
     fillContext(context, effect);
     effect.setup(context);
@@ -104,13 +102,13 @@ void Renderer::fillEffectSetting(effects::Effect &effect, XmlItemSetting &fxsett
         fxsetting.merge(*pSetting);
 
     // song specific effect config
-    query += "." + player->song;
+    query += "." + player->getSong();
     pSetting = fxs->getItem(query);
     if(pSetting)
         fxsetting.merge(*pSetting);
 
     // song/clip specific effect config
-    query += "" + player->clip;
+    query += "" + player->getClip();
     pSetting = fxs->getItem(query);
     if(pSetting)
         fxsetting.merge(*pSetting);

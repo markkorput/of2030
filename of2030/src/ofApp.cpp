@@ -15,6 +15,7 @@
 #include "player.hpp"
 #include "renderer.hpp"
 #include "interface_player_bridge.hpp"
+#include "effect_manager.hpp"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -102,6 +103,8 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::exit(ofEventArgs &args){
+    // TODO; call delete_instance for all singleton instance implementations
+    of2030::EfficientEffectManager::delete_instance();
 }
 
 //--------------------------------------------------------------
