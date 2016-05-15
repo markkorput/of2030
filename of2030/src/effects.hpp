@@ -15,6 +15,7 @@
 
 namespace of2030{ namespace effects {
 
+    
     typedef struct {
         float time;
         XmlItemSetting effect_setting;
@@ -22,6 +23,7 @@ namespace of2030{ namespace effects {
         ofFbo* fbo;
     } Context;
 
+    
     enum EffectType{
         OFF = 0,
         COLOR = 1,
@@ -38,6 +40,8 @@ namespace of2030{ namespace effects {
         {SHADER, "shader"}
     };
 
+    
+    
     #define NO_TIME (-1.0f)
 
     class Effect{
@@ -68,9 +72,11 @@ namespace of2030{ namespace effects {
         EffectType type;
         string name;
         string trigger;
-
+        ofShader *shader;
         static int cidCounter;
     };
+
+    // === === === === === === === === ===
 
     class EffectLogic{
     public:
@@ -83,6 +89,7 @@ namespace of2030{ namespace effects {
         Effect *effect;
     };
 
+    // === === === === === === === === ===
 
     class Off : public Effect{
 
@@ -92,7 +99,7 @@ namespace of2030{ namespace effects {
         virtual void draw(Context &context);
     };
 
-
+    // === === === === === === === === ===
 
     class Color : public Effect{
 
@@ -108,36 +115,7 @@ namespace of2030{ namespace effects {
         ofColor color;
     };
 
-    class Cursor : public Effect{
-
-    public: // methods
-        Cursor();
-        // virtual void setup(Context &context);
-        virtual void draw(Context &context);
-    };
-
-    class CursorLogic : public EffectLogic{
-    public:
-        CursorLogic(Effect *_effect, Context *_context) : EffectLogic(_effect, _context){}
-        inline float getIterations();
-        inline float getIterationDuration();
-        inline int getCurrentIteration();
-        inline float getIterationTime();
-        inline float getIterationProgress();
-        inline float getLocalProgress();
-    };
-
-
-    class ShaderEffect : public Effect{
-    public:
-        ShaderEffect();
-        virtual void setup(Context &context);
-        virtual void draw(Context &context);
-        void setShader(string _name);
-    public:
-        string shaderName;
-        ofShader *shader;
-    };
+    // === === === === === === === === ===
 
     class Vid : public Effect{
     public: // methods

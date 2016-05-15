@@ -61,11 +61,11 @@ void MultiClient::destroy(){
 
 void MultiClient::draw(){
     ofClear(0);
+
     cam.begin();
     ofPushMatrix();
         ofScale(xml_settings->multi_scale, xml_settings->multi_scale, xml_settings->multi_scale);
         ofTranslate(xml_settings->multi_translate);
-
 
         drawFloor();
 
@@ -79,7 +79,6 @@ void MultiClient::draw(){
 }
 
 void MultiClient::drawFloor(){
-    ofPushStyle();
     ofPushMatrix();
     ofTranslate(0.0f, xml_settings->room_size.y*-0.5, 0.0f);
     ofRotateX(90.0f);
@@ -89,7 +88,6 @@ void MultiClient::drawFloor(){
                     xml_settings->room_size.x,
                     xml_settings->room_size.z);
     ofPopMatrix();
-    ofPopStyle();
 }
 
 void MultiClient::drawDebug(){

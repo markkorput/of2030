@@ -46,12 +46,11 @@ void InterfacePlayerBridge::destroy(){
 }
 
 void InterfacePlayerBridge::registerInterfaceCallbacks(bool _register){
-    ofLogVerbose() << "InterfacePlayerBridge::setup with: " << _register;
+    ofLogVerbose() << "InterfacePlayerBridge::registerInterfaceCallbacks with: " << _register;
     if(_register){
         // subscribe to events
         ofAddListener(m_interface->triggerEvent, this, &InterfacePlayerBridge::onTrigger);
         ofAddListener(m_interface->effectEvent, this, &InterfacePlayerBridge::onEffect);
-        ofAddListener(m_interface->shaderEffectEvent, this, &InterfacePlayerBridge::onShaderEffect);
         ofAddListener(m_interface->effectConfigEvent, this, &InterfacePlayerBridge::onEffectConfig);
         ofAddListener(m_interface->songEvent, this, &InterfacePlayerBridge::onSong);
         ofAddListener(m_interface->clipEvent, this, &InterfacePlayerBridge::onClip);
@@ -59,7 +58,6 @@ void InterfacePlayerBridge::registerInterfaceCallbacks(bool _register){
         // unsubscribe from events
         ofRemoveListener(m_interface->triggerEvent, this, &InterfacePlayerBridge::onTrigger);
         ofRemoveListener(m_interface->effectEvent, this, &InterfacePlayerBridge::onEffect);
-        ofRemoveListener(m_interface->shaderEffectEvent, this, &InterfacePlayerBridge::onShaderEffect);
         ofRemoveListener(m_interface->effectConfigEvent, this, &InterfacePlayerBridge::onEffectConfig);
         ofRemoveListener(m_interface->songEvent, this, &InterfacePlayerBridge::onSong);
         ofRemoveListener(m_interface->clipEvent, this, &InterfacePlayerBridge::onClip);
@@ -69,21 +67,6 @@ void InterfacePlayerBridge::registerInterfaceCallbacks(bool _register){
 void InterfacePlayerBridge::onTrigger(string &trigger){
     // get effect to be triggerd by this trigger name
     const string effectName = XmlTriggers::instance()->getEffectName(trigger);
-
-    // shader effect trigger?
-    string sub = "shader-";
-
-    if(effectName.substr(0, sub.size()) == sub){
-        // get shader name
-        sub = effectName.substr(sub.size());
-        // create effect
-        effects::ShaderEffect* fx = new effects::ShaderEffect();
-        fx->setShader(sub);
-        fx->trigger = trigger;
-        // add to players realtime comp
-        m_player->realtime_composition.add((effects::Effect*)fx);
-        return;
-    }
 
     // non-shader effect
     effects::Effect* fx = createEffect(effectName);
@@ -104,14 +87,6 @@ void InterfacePlayerBridge::onEffect(string &name){
     m_player->realtime_composition.add(fx);
 }
 
-void InterfacePlayerBridge::onShaderEffect(string &shader){
-    // create effect
-    effects::ShaderEffect* fx = new effects::ShaderEffect();
-    fx->setShader(shader);
-    // add to players realtime comp
-    m_player->realtime_composition.add((effects::Effect*)fx);
-}
-
 void InterfacePlayerBridge::onEffectConfig(EffectConfig &cfg){
     XmlConfigs::instance()->setItemParam(cfg.setting_name, cfg.param_name, cfg.param_value);
 }
@@ -125,11 +100,11 @@ void InterfacePlayerBridge::onClip(string &name){
 }
 
 effects::Effect* InterfacePlayerBridge::createEffect(const string &name){
-    if(name == "cursor")
-        return (effects::Effect*) new effects::Cursor();
-
     if(name == "vid")
         return (effects::Effect*) new effects::Vid();
 
-    return NULL;
+    // default type; use the name as effect name
+    effects::Effect* pEffect = new effects::Effect();
+    pEffect->name = name;
+    return pEffect;
 }

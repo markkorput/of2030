@@ -39,6 +39,10 @@ void ofApp::setup(){
     ofLogVerbose() << "Loading screens.xml";
     of2030::XmlConfigs::screens()->load();
 
+    // load triggers xml
+    ofLogVerbose() << "Loading triggers.xml";
+    of2030::XmlTriggers::instance()->load();
+    
     // load and start player
     ofLogVerbose() << "Starting player";
     of2030::Player::instance()->start();
@@ -73,6 +77,8 @@ void ofApp::setup(){
     ofLogVerbose() << "Starting OscReceiver";
     of2030::OscReceiver::instance()->configure(of2030::XmlSettings::instance()->osc_setting);
     of2030::OscReceiver::instance()->setup();
+
+    ofClear(0);
 }
 
 //--------------------------------------------------------------
@@ -92,7 +98,6 @@ void ofApp::draw(){
 #else
     of2030::Renderer::instance()->draw();
 #endif
-
 }
 
 //--------------------------------------------------------------
