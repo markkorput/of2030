@@ -80,7 +80,9 @@ void InterfacePlayerBridge::onTrigger(string &trigger){
 
     fx->trigger = trigger;
     // add to players realtime comp
-    m_player->realtime_composition.add(*fx);
+    m_player->effect_manager.add(fx);
+
+    ofLogVerbose() << "effect count in player's realtime comp: " << m_player->effect_manager.getCount();
 }
 
 // callback to process new effect events from the interface
@@ -88,7 +90,7 @@ void InterfacePlayerBridge::onEffect(string &name){
     // create effect
     effects::Effect* fx = EfficientEffectManager::instance()->get(name);
     // add to players realtime comp
-    m_player->realtime_composition.add(*fx);
+    m_player->effect_manager.add(fx);
 }
 
 void InterfacePlayerBridge::onEffectConfig(EffectConfig &cfg){

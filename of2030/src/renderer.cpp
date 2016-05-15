@@ -69,15 +69,15 @@ void Renderer::draw(){
 
 void Renderer::registerRealtimeEffectCallback(bool reg){
     if(reg){
-        ofAddListener(player->realtime_composition.newEffectEvent, this, &Renderer::onRealtimeEffect);
+        ofAddListener(player->effect_manager.effectAddedEvent, this, &Renderer::onEffectAdded);
     } else {
-        ofRemoveListener(player->realtime_composition.newEffectEvent, this, &Renderer::onRealtimeEffect);
+        ofRemoveListener(player->effect_manager.effectAddedEvent, this, &Renderer::onEffectAdded);
     }
 
     bCallbacksRegistered = reg;
 }
 
-void Renderer::onRealtimeEffect(Effect &effect){
+void Renderer::onEffectAdded(Effect &effect){
     Context context;
     fillContext(context, effect);
     effect.setup(context);

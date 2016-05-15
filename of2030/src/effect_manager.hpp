@@ -12,33 +12,45 @@
 #include "shared2030.h"
 #include "effects.hpp"
 
+#include "ofMain.h"
+
+
 namespace of2030{
     class EffectManager{
-        SINGLETON_CLASS_HEADER_CODE(EffectManager)
 
-    public:
-//        EffectManager(){}
+    public: // methods
         ~EffectManager();
-        
-        effects::Effect* get(string typ);
+
         void add(effects::Effect* effect);
-        effects::Effect* findByType(effects::EffectType typ);
         bool remove(effects::Effect* effect);
 
-    protected:
+        effects::Effect* get(string typ);
+        effects::Effect* findByType(effects::EffectType typ);
+        inline int getCount(){ return effects.size(); }
+        inline const vector<effects::Effect*> &getEffects(){ return effects; }
+
+    public: // events
+        ofEvent<effects::Effect> effectAddedEvent;
+        ofEvent<effects::Effect> effectRemovedEvent;
+        
+    protected: // methods
         effects::EffectType typeStringToType(string typ);
         effects::Effect* createEffect(string typ);
         void deleteEffect(effects::Effect* effect);
 
+    protected: // attributes
         vector<effects::Effect*> effects;
     };
 
+
     class EfficientEffectManager : public EffectManager{
         SINGLETON_CLASS_HEADER_CODE(EfficientEffectManager)
-    public:
+    
+    public: // methods
         effects::Effect* get(string typ);
         void finish(effects::Effect* effect);
-    protected:
+    
+    protected: // attributes
         EffectManager idle_manager;
     };
 }

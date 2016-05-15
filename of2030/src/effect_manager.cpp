@@ -10,8 +10,6 @@
 
 using namespace of2030;
 
-SINGLETON_CLASS_IMPLEMENTATION_CODE(EffectManager)
-
 EffectManager::~EffectManager(){
     for(auto & effect: effects){
         deleteEffect(effect);
@@ -45,6 +43,7 @@ effects::Effect* EffectManager::findByType(effects::EffectType typ){
 
 void EffectManager::add(effects::Effect* effect){
     effects.push_back(effect);
+    ofNotifyEvent(effectAddedEvent, *effect, this);
 }
 
 effects::EffectType EffectManager::typeStringToType(string typ){
@@ -55,6 +54,8 @@ effects::EffectType EffectManager::typeStringToType(string typ){
 }
 
 effects::Effect* EffectManager::createEffect(string typ){
+    ofLogVerbose() << "EffectManager::createEffect with: " << typ;
+
     effects::Effect* pEffect;
     
     if(typ == "vid"){
@@ -75,6 +76,8 @@ bool EffectManager::remove(effects::Effect* effect){
         if(effects[i] == effect){
             // remove from list
             effects.erase(effects.begin()+i);
+            // notify
+            ofNotifyEvent(effectRemovedEvent, *effect, this);
             // done
             return true;
         }
@@ -86,6 +89,8 @@ bool EffectManager::remove(effects::Effect* effect){
 }
 
 void EffectManager::deleteEffect(effects::Effect* effect){
+    ofLogVerbose() << "EffectManager::deleteEffect";
+
     // figure out effect type and delete from memory
     if(effect->type == effects::EffectType::VID){
         // turn into Vid effect pointer before deleting, to delete appropriate class type
@@ -137,11 +142,15 @@ effects::Effect* EfficientEffectManager::get(string typ){
 }
 
 void EfficientEffectManager::finish(effects::Effect* effect){
+    ofLogVerbose() << "EfficientEffectManager::finish";
+
     // remove from our "active list"
     if(remove(effect)){
         // if remove suceeded (meaning the specified effect was found)
         // add it to our idle_manager, so we can recycle this instance later
+        ofLogVerbose() << "idle_manager count before: " << idle_manager.getCount();
         idle_manager.add(effect);
+        ofLogVerbose() << "idle_manager count: " << idle_manager.getCount();
     }
 }
 

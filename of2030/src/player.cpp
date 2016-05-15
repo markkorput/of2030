@@ -63,7 +63,7 @@ void Player::activateEffect(effects::Effect &effect){
 
 void Player::setPlaybackTime(float time){
     // TODO; activate all effects that start between m_time and time
-    vector<effects::Effect*> effects = realtime_composition.getEffects();
+    const vector<effects::Effect*> effects = effect_manager.getEffects();
 
     for(auto & effect: effects){
         // current effect just got active?
@@ -96,6 +96,7 @@ void Player::removeActiveEffectsEndingBefore(float time){
             // and freed from memory by the owner of this class
 
             // trigger event
+            ofLogVerbose() << "Player::effectEndedEvent";
             ofNotifyEvent(effectEndedEvent, *effect, this);
         }
     }

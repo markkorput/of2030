@@ -31,8 +31,10 @@
 #define SINGLETON_CLASS_IMPLEMENTATION_CODE(x) \
     x* x::singleton = NULL;\
     x* x::instance(){\
-        if(!singleton)\
+        if(!singleton){\
+            ofLogVerbose() << "Creating singleton of class " << #x;\
             singleton = new x();\
+        }\
         return singleton;\
     }\
     void x::delete_instance(){\

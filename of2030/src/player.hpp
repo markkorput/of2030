@@ -11,9 +11,8 @@
 
 //#include <stdio.h>
 #include "ofMain.h"
-#include "composition.hpp"
 #include "effects.hpp"
-
+#include "effect_manager.hpp"
 
 namespace of2030{
 
@@ -56,7 +55,7 @@ namespace of2030{
     public: // properties
 
         vector<effects::Effect*> active_effects;
-        Composition realtime_composition;
+        EffectManager effect_manager;
         string song, clip;
 
     private: // attributes
