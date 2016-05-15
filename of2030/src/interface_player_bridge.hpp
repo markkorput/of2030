@@ -34,7 +34,6 @@ namespace of2030{
         void registerInterfaceCallbacks(bool _register=true);
         void onTrigger(string &trigger);
         void onEffect(string &effect);
-        void onShaderEffect(string &shader);
         void onEffectConfig(EffectConfig &cfg);
         void onSong(string &name);
         void onClip(string &name);

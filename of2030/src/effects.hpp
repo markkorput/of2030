@@ -72,8 +72,7 @@ namespace of2030{ namespace effects {
         EffectType type;
         string name;
         string trigger;
-        vector<ofShader*> shaders;
-
+        ofShader *shader;
         static int cidCounter;
     };
 
@@ -114,19 +113,6 @@ namespace of2030{ namespace effects {
 
     public: // attributes
         ofColor color;
-    };
-
-    // === === === === === === === === ===
-
-    class ShaderEffect : public Effect{
-    public:
-        ShaderEffect();
-        virtual void setup(Context &context);
-        virtual void draw(Context &context);
-        void setShader(string _name);
-    public:
-        string shaderName;
-        ofShader *shader;
     };
 
     // === === === === === === === === ===

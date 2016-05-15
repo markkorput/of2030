@@ -12,12 +12,17 @@
     - <effect_name>.<song_name>.<clip_name>.<trigger_name>
     -->
 
+    <effect name="test">
+      <shader>worms</shader>
+      <gain>0.5</gain>
+    </effect>
+
     <effect name="worms">
-      <shaders>worms</shaders>
+      <shader>worms</shader>
     </effect>
 
     <effect name="cursor">
-      <shaders>cursor</shaders>
+      <shader>cursor</shader>
       <duration>3.0</duration>
       <iterations>1.4</iterations>
       <gain>100.0</gain>

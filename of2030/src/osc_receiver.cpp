@@ -109,19 +109,6 @@ void OscReceiver::update(){
             continue;
         }
 
-        if(addr == osc_setting->addresses["shader"]){
-            ofNotifyEvent(m_interface->shaderEffectEvent, param, m_interface);
-            continue;
-        }
-
-        sub = osc_setting->addresses["shader"] + "/";
-        if(addr.substr(0, sub.size()) == sub){
-            param = addr.substr(sub.size());
-            ofNotifyEvent(m_interface->shaderEffectEvent, param, m_interface);
-            continue;
-        }
-
-
         if(addr == osc_setting->addresses["effect"]){
             ofNotifyEvent(m_interface->effectEvent, param, m_interface);
             continue;

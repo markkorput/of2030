@@ -7,7 +7,6 @@
     <addresses>
       <trigger>/t</trigger>
       <effect>/fx</effect>
-      <shader>/fx/shader</shader>
       <control>/ctrl</control>
       <song>/song</song>
       <clip>/clip</clip>
