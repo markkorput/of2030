@@ -46,6 +46,13 @@ namespace of2030{
             }
         }
 
+        bool hasValue(string name){
+            std::map<string,string>::iterator it = data.find(name);
+            if(it == data.end())
+                return false;
+            return true;
+        }
+
         string getValue(string name, string defaultValue=""){
             std::map<string,string>::iterator it = data.find(name);
             if(it == data.end())
