@@ -22,6 +22,7 @@ namespace of2030 {
     
     public: // events
         ofEvent<string> triggerEvent;
+        ofEvent<string> stopTriggerEvent;
         ofEvent<string> effectEvent;
         ofEvent<EffectConfig> effectConfigEvent;
         ofEvent<string> controlEvent;
