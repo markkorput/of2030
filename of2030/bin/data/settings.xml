@@ -13,6 +13,7 @@
       <song>/song</song>
       <clip>/clip</clip>
       <effect_config>/cfg</effect_config>
+      <screen_config>/scr</screen_config>
     </addresses>
   </osc>
   <screen_width>768</screen_width>
