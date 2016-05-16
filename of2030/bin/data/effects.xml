@@ -20,16 +20,9 @@
 
     <effect name="worms.worms1">
       <shader>worms</shader>
-      <duration>210</duration>
+      <duration>250</duration>
       <pano_start>0.162</pano_start>
       <pano_end>0.324</pano_end>
-    </effect>
-
-    <effect name="worms.worms2">
-      <shader>worms</shader>
-      <duration>210</duration>
-      <pano_start>0.5</pano_start>
-      <pano_end>0.662</pano_end>
     </effect>
 
     <!-- STELLAR -->
@@ -67,7 +60,7 @@
       <shader>spot</shader>
       <duration>100.0</duration>
       <gain>1.0</gain>
-      <quarter_on>2</quarter_on>
+      <quarter_on>1</quarter_on>
     </effect>
 
 

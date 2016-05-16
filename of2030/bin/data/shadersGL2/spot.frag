@@ -28,19 +28,19 @@ void main(void){
   }
 
   // quarters off
-  if(iQuarterOff == 1 && (gl_FragCoord.x > iSpotPos.x && gl_FragCoord.y < iSpotPos.y)){
+  if(iQuarterOff == 1 && gl_FragCoord.x > iSpotPos.x && gl_FragCoord.y < iSpotPos.y){
     intensity = 0.0;
   }
 
-  if(iQuarterOff == 2 && (gl_FragCoord.x > iSpotPos.x && gl_FragCoord.y > iSpotPos.y)){
+  if(iQuarterOff == 2 && gl_FragCoord.x > iSpotPos.x && gl_FragCoord.y > iSpotPos.y){
     intensity = 0.0;
   }
 
-  if(iQuarterOff == 3 && (gl_FragCoord.x < iSpotPos.x && gl_FragCoord.y > iSpotPos.y)){
+  if(iQuarterOff == 3 && gl_FragCoord.x < iSpotPos.x && gl_FragCoord.y > iSpotPos.y){
     intensity = 0.0;
   }
 
-  if(iQuarterOff == 4 && (gl_FragCoord.x < iSpotPos.x && gl_FragCoord.y < iSpotPos.y)){
+  if(iQuarterOff == 4 && gl_FragCoord.x < iSpotPos.x && gl_FragCoord.y < iSpotPos.y){
     intensity = 0.0;
   }
 
