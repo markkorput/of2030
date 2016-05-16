@@ -1,24 +1,48 @@
-uniform vec3 iPos;
-uniform vec2 iResolution;
-// uniform float iProgress;
-// uniform float iDuration;
-// uniform float iIterations;
-// uniform vec2 iScreenWorldSize;
-uniform float iScreenPanoStart;
-uniform float iScreenPanoEnd;
-// uniform float iEffectPanoStart;
-// uniform float iEffectPanoEnd;
-uniform float iGain;
 
-// varying vec2 texCoordVarying;
+uniform vec2 iSpotPos;
+uniform vec2 iSpotSize;
+uniform float iGain;
+uniform int iQuarterOn;
+uniform int iQuarterOff;
 
 void main(void){
-  float pixPerPano = iResolution.x / (iScreenPanoEnd - iScreenPanoStart);
+  float intensityX = 1.0 - clamp(abs(gl_FragCoord.x - iSpotPos.x) / iSpotSize.x, 0.0, 1.0);
+  float intensityY = 1.0 - clamp(abs(gl_FragCoord.y - iSpotPos.y) / iSpotSize.y, 0.0, 1.0);
+  float intensity = intensityX*intensityY*iGain;
 
-  vec2 pixPos = (iPos.xy - vec2(iScreenPanoStart, 0.0)) * pixPerPano;
-  float gainDist = min(iResolution.x, iResolution.y) * 0.5 * iGain;
-  float curPixDist = length(gl_FragCoord.xy - pixPos);
-  float alpha = 1.0 - curPixDist / gainDist;
+  // quarters on
+  if(iQuarterOn == 1 && (gl_FragCoord.x < iSpotPos.x || gl_FragCoord.y > iSpotPos.y)){
+    intensity = 0.0;
+  }
 
-  gl_FragColor = vec4(vec3(1.0), alpha);
+  if(iQuarterOn == 2 && (gl_FragCoord.x < iSpotPos.x || gl_FragCoord.y < iSpotPos.y)){
+    intensity = 0.0;
+  }
+
+  if(iQuarterOn == 3 && (gl_FragCoord.x > iSpotPos.x || gl_FragCoord.y < iSpotPos.y)){
+    intensity = 0.0;
+  }
+
+  if(iQuarterOn == 4 && (gl_FragCoord.x > iSpotPos.x || gl_FragCoord.y > iSpotPos.y)){
+    intensity = 0.0;
+  }
+
+  // quarters off
+  if(iQuarterOff == 1 && (gl_FragCoord.x > iSpotPos.x && gl_FragCoord.y < iSpotPos.y)){
+    intensity = 0.0;
+  }
+
+  if(iQuarterOff == 2 && (gl_FragCoord.x > iSpotPos.x && gl_FragCoord.y > iSpotPos.y)){
+    intensity = 0.0;
+  }
+
+  if(iQuarterOff == 3 && (gl_FragCoord.x < iSpotPos.x && gl_FragCoord.y > iSpotPos.y)){
+    intensity = 0.0;
+  }
+
+  if(iQuarterOff == 4 && (gl_FragCoord.x < iSpotPos.x && gl_FragCoord.y < iSpotPos.y)){
+    intensity = 0.0;
+  }
+
+  gl_FragColor = vec4(vec3(1.0), intensity);
 }
