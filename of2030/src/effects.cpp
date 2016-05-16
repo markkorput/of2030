@@ -96,6 +96,11 @@ void Effect::draw(Context &context){
              context.effect_setting.getValue("pos_z", 0.0f));
     shader->setUniform3f("iPos", v3f);
 
+    v3f.set(context.effect_setting.getValue("size_x", 0.0f),
+            context.effect_setting.getValue("size_y", 0.0f),
+            context.effect_setting.getValue("size_z", 0.0f));
+    shader->setUniform3f("iSize", v3f);
+
     v2f.set(context.screen_setting.getValue("world_width", 2.67f),
             context.screen_setting.getValue("world_height", 2.0f));
     shader->setUniform2f("iScreenWorldSize", v2f);
@@ -228,7 +233,7 @@ void Spot::draw(Context &context){
     shader->setUniform2f("iSpotPos", spotPos);
     shader->setUniform2f("iSpotSize", spotSize);
     shader->setUniform1f("iGain", context.effect_setting.getValue("gain", 1.0f));
-    
+
     
     // quarter; 1 means top right, 2 means bottom right, 3 bottom left, 4 means top left, zero means none
     int q = std::floor(context.effect_setting.getValue("quarter_on", 0.0f));

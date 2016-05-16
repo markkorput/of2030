@@ -1,4 +1,5 @@
 uniform vec3 iPos;
+uniform vec3 iSize;
 uniform float iGain;
 uniform vec2 iResolution;
 uniform float iScreenPanoStart;
@@ -27,7 +28,7 @@ float worm(vec2 pos){ //}, float tiltFactor){
     // hardness; 0.0 means all black, 1.0 means blurry edges, 10.0 means high-contrast edges
     val *= factor; // TODO make a uniform param for this
     // increase; higher value means more white
-    val += iGain  - factor;
+    val += iGain - factor;
 
     return val;
 }
@@ -48,9 +49,9 @@ void main(void){
       // worm 1
       c += clamp(worm(iPos.xy + fragWorldPos), 0.0, 1.0);
       // worm 2
-      //c += clamp(worm(gl_FragCoord.xy, iPos.xy+vec2(5.0, 3.0), tilt+0.01), 0.0, 1.0);
+      c += clamp(worm(iPos.xy + fragWorldPos + iSize.xy), 0.0, 1.0);
       // worm 3
-      //c += clamp(worm(gl_FragCoord.xy, iPos.xy+vec2(50.0, 2.0), tilt+0.003), 0.0, 1.0);
+      c += clamp(worm(iPos.xy + fragWorldPos - iSize.xy), 0.0, 1.0);
     }
 
     gl_FragColor = vec4(vec3(1.0), c);

@@ -23,6 +23,9 @@
       <duration>250</duration>
       <pano_start>0.162</pano_start>
       <pano_end>0.324</pano_end>
+      <gain>0.65</gain>
+      <size_x>68.0</size_x>
+      <size_y>1.0</size_y>
     </effect>
 
     <!-- STELLAR -->
@@ -39,17 +42,17 @@
     <effect name="worms.worms11">
       <shader>worms</shader>
       <duration>5.0</duration>
-      <gain>1.0</gain>
+      <gain>0.65</gain>
       <pano_start>0.162</pano_start>
       <pano_end>0.162</pano_end>
-      <pos_x>10.3</pos_x>
+      <pos_x>62.3</pos_x>
       <pos_y>0.3</pos_y>
     </effect>
 
     <effect name="worms.worms12">
       <shader>worms</shader>
       <duration>5.0</duration>
-      <gain>1.0</gain>
+      <gain>0.65</gain>
       <pano_start>0.162</pano_start>
       <pano_end>0.162</pano_end>
       <pos_x>10.3</pos_x>
