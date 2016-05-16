@@ -105,6 +105,7 @@ void Renderer::fillContext(effects::Context &context, Effect &effect){
 void Renderer::fillContextClientInfo(effects::Context &context){
     context.time = player->getTime();
     context.fbo = fbo;
+    context.fbo2 = fbo2;
 }
 
 void Renderer::fillEffectSetting(effects::Effect &effect, XmlItemSetting &fxsetting){

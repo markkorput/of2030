@@ -21,6 +21,7 @@ namespace of2030{ namespace effects {
         XmlItemSetting effect_setting;
         XmlItemSetting screen_setting;
         ofFbo* fbo;
+        ofFbo* fbo2;
     } Context;
 
     
