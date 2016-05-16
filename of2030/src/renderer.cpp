@@ -15,7 +15,7 @@ using namespace of2030::effects;
 
 SINGLETON_CLASS_IMPLEMENTATION_CODE(Renderer)
 
-Renderer::Renderer() : fbo(NULL), player(NULL), client_id(""), bCallbacksRegistered(false){
+Renderer::Renderer() : fbo(NULL), fbo2(NULL), player(NULL), client_id(""), bCallbacksRegistered(false){
 }
 
 Renderer::~Renderer(){
@@ -29,8 +29,23 @@ void Renderer::setup(){
     if(!fbo->isAllocated()){
         if(client_id == "")
             fbo->allocate(WIDTH, HEIGHT);
-        else
-            fbo->allocate(WIDTH, HEIGHT);
+        else {
+            //fbo->allocate(WIDTH, HEIGHT);
+            XmlItemSetting* pItem = XmlConfigs::screens()->getItem(client_id);
+            if(pItem){
+                fbo->allocate(pItem->getValue("pixel_width", WIDTH), pItem->getValue("pixel_height", HEIGHT));
+            } else {
+                fbo->allocate(WIDTH, HEIGHT);
+            }
+        }
+        
+    }
+
+    if(fbo2 == NULL)
+        fbo2 = &defaultFbo2;
+    
+    if(!fbo2->isAllocated()){
+        fbo2->allocate(fbo->getWidth(), fbo->getHeight());
     }
 
     if(!player)

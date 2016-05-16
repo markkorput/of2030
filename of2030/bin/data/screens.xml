@@ -26,6 +26,16 @@
       <spot_y>0.5</spot_y>
       <spot_w>0.1</spot_w>
       <spot_h>0.25</spot_h>
+
+      <!-- voice bar -->
+      <voice_x1>0.2</voice_x1>
+      <voice_y1>0.2</voice_y1>
+      <voice_x2>0.8</voice_x2>
+      <voice_y2>0.2</voice_y2>
+      <voice_x3>0.8</voice_x3>
+      <voice_y3>0.3</voice_y3>
+      <voice_x4>0.15</voice_x4>
+      <voice_y4>0.28</voice_y4>
     </screen>
 
     <!-- <screen name="rpi2">

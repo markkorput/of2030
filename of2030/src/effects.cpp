@@ -248,3 +248,30 @@ void Spot::draw(Context &context){
     shader->end();
 }
 
+
+// === === === === === === === === ===
+
+Voice::Voice(){
+    setType(EffectType::VOICE);
+}
+
+void Voice::draw(Context &context){
+    // screen must be voice-enabled
+    if(!(context.screen_setting.hasValue("voice_x1") &&
+         context.screen_setting.hasValue("voice_y1"))){
+        return;
+    }
+
+    ofVec2f coords[4];
+    coords[0].set(context.screen_setting.hasValue("voice_x1"), context.screen_setting.hasValue("voice_y1"));
+    coords[1].set(context.screen_setting.hasValue("voice_x2"), context.screen_setting.hasValue("voice_y2"));
+    coords[2].set(context.screen_setting.hasValue("voice_x3"), context.screen_setting.hasValue("voice_y3"));
+    coords[3].set(context.screen_setting.hasValue("voice_x4"), context.screen_setting.hasValue("voice_y4"));
+
+    
+}
+
+
+
+
+
