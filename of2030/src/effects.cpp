@@ -29,7 +29,6 @@ void Effect::reset(){
     duration = NO_TIME;
     trigger = "";
     shader = NULL;
-    panoPos = 0.0f;
 }
 
 void Effect::setup(Context &context){
@@ -84,13 +83,13 @@ void Effect::draw(Context &context){
     float effectPanoStart = context.effect_setting.getValue("pano_start", 0.0f);
     float effectPanoEnd = context.effect_setting.getValue("pano_end", 1.0f);
 
-    if(context.effect_setting.hasValue("auto_pano_shift")){
-        float newVal = effectPanoEnd + context.effect_setting.getValue("auto_pano_shift", 0.0f) * logic.getGlobalTime();
-        if(context.effect_setting.hasValue("auto_pano_shift_end")){
-            newVal = std::min(newVal, context.effect_setting.getValue("auto_pano_shift_end", 0.0f));
-        }
-        effectPanoEnd = newVal;
-    }
+//    if(context.effect_setting.hasValue("auto_pano_shift")){
+//        float newVal = effectPanoEnd + context.effect_setting.getValue("auto_pano_shift", 0.0f) * logic.getGlobalTime();
+//        if(context.effect_setting.hasValue("auto_pano_shift_end")){
+//            newVal = std::min(newVal, context.effect_setting.getValue("auto_pano_shift_end", 0.0f));
+//        }
+//        effectPanoEnd = newVal;
+//    }
 
     //    ofCamera cam;
     ofVec3f camWorldPos(context.screen_setting.getValue("cam_pos_x", 0.0f),
@@ -191,3 +190,16 @@ void Vid::draw(Context &context){
     video_player->update();
     video_player->draw(0,0);
 }
+
+// === === === === === === === === ===
+
+Tunnel::Tunnel(){
+    setType(EffectType::TUNNEL);
+}
+
+// virtual void setup(Context &context);
+void Tunnel::draw(Context &context){
+    float tunnelStart = context.screen_setting.getValue("tunnel_start", 0.0f);
+    float tunnelEnd = context.screen_setting.getValue("tunnel_end", 1.0f);
+}
+
