@@ -65,11 +65,14 @@ void Effect::draw(Context &context){
     ofPoint pos = ofPoint(context.effect_setting.getValue("pos_x", 0.0f),
                           context.effect_setting.getValue("pos_y", 0.0f),
                           context.effect_setting.getValue("pos_z", 0.0f));
-    
+//    ofVec3f vel = ofVec3f(context.effect_setting.getValue("vel_x", 0.0f),
+//                          context.effect_setting.getValue("vel_y", 0.0f),
+//                          context.effect_setting.getValue("vel_z", 0.0f));
+
     ofVec2f screenWorldSize(context.screen_setting.getValue("world_width", 2.67f),
                             context.screen_setting.getValue("world_height", 2.0f));
     
-    
+
     float progress = logic.getGlobalProgress();
     float duration = logic.getGlobalDuration();
     float iterations = context.effect_setting.getValue("iterations", 1.0f);

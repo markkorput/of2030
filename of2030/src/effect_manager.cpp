@@ -88,6 +88,12 @@ bool EffectManager::remove(effects::Effect* effect){
     return false;
 }
 
+void EffectManager::clear(){
+    for(auto effect: effects){
+        remove(effect);
+    }
+}
+
 void EffectManager::deleteEffect(effects::Effect* effect){
     ofLogVerbose() << "EffectManager::deleteEffect";
 

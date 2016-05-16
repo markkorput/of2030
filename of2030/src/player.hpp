@@ -40,6 +40,8 @@ namespace of2030{
         void stop();
 
         void addEffect(effects::Effect &effect);
+        void clearEffects();
+
         inline const vector<effects::Effect*> &getActiveEffects(){ return active_effects_manager.getEffects(); }
         inline const string &getSong(){ return song; }
         inline const string &getClip(){ return clip; }

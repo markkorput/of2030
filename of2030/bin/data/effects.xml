@@ -13,18 +13,45 @@
     -->
 
     <!-- inloop -->
+    <effect name="worms">
+      <gain>0.0</gain>
+      <duration>30.0</duration>
+    </effect>
+
     <effect name="worms.worms1">
       <shader>worms</shader>
+      <duration>210</duration>
       <pano_start>0.162</pano_start>
       <pano_end>0.324</pano_end>
     </effect>
 
     <effect name="worms.worms2">
       <shader>worms</shader>
+      <duration>210</duration>
       <pano_start>0.5</pano_start>
       <pano_end>0.662</pano_end>
     </effect>
 
+    <!-- STELLAR -->
+    <effect name="worms.worms11">
+      <shader>worms</shader>
+      <duration>5.0</duration>
+      <gain>1.0</gain>
+      <pano_start>0.162</pano_start>
+      <pano_end>0.324</pano_end>
+      <pos_x>10.3</pos_x>
+      <pos_y>0.3</pos_y>
+    </effect>
+
+    <effect name="worms.worms12">
+      <shader>worms</shader>
+      <duration>5.0</duration>
+      <gain>1.0</gain>
+      <pano_start>0.162</pano_start>
+      <pano_end>0.324</pano_end>
+      <pos_x>10.3</pos_x>
+      <pos_y>0.8</pos_y>
+    </effect>
 
     <!-- debug -->
     <effect name="test">

@@ -166,17 +166,21 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
 void ofApp::onControl(string &type){
 
     if(type == CTRL_RELOAD_SHADERS){
+        ofLog() << "reloading shader";
+        of2030::Player::instance()->clearEffects();
         of2030::ShaderManager::instance()->clear();
         return;
     }
 
     if(type == CTRL_RELOAD_EFFECTS){
+        ofLog() << "reloading effects";
         of2030::XmlTriggers::instance()->load();
         of2030::XmlConfigs::instance()->load();
         return;
     }
 
     if(type == CTRL_RELOAD_SCREENS){
+        ofLog() << "reloading screens";
         of2030::XmlConfigs::screens()->load();
 #ifdef __MULTI_CLIENT_ENABLED__
         of2030::MultiClient::instance()->setup();
@@ -185,6 +189,7 @@ void ofApp::onControl(string &type){
     }
 
     if(type == CTRL_RELOAD_SETTINGS){
+        ofLog() << "reloading settings";
         of2030::XmlSettings::instance()->load(true);
         ofSetLogLevel(of2030::XmlSettings::instance()->log_level);
         of2030::OscReceiver::instance()->configure(of2030::XmlSettings::instance()->osc_setting);
