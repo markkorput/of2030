@@ -72,6 +72,8 @@ namespace of2030{ namespace effects {
         string trigger;
         ofShader *shader;
         // static int cidCounter;
+        
+        float panoPos;
     };
 
     // === === === === === === === === ===
