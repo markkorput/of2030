@@ -25,6 +25,7 @@ namespace of2030 {
         ofEvent<string> stopTriggerEvent;
         ofEvent<string> effectEvent;
         ofEvent<EffectConfig> effectConfigEvent;
+        ofEvent<EffectConfig> screenConfigEvent;
         ofEvent<string> controlEvent;
         ofEvent<string> songEvent;
         ofEvent<string> clipEvent;

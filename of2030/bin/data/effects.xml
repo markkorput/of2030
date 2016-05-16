@@ -33,6 +33,16 @@
     </effect>
 
     <!-- STELLAR -->
+    <effect name="spot.spot1">
+      <shader>spot</shader>
+      <duration>100.0</duration>
+      <gain>0.5</gain>
+      <pos_x>0.25</pos_x>
+      <pos_y>0.01</pos_y>
+      <!-- <quarter_on>0</quarter_on> -->
+      <quarter_off>0</quarter_off>
+    </effect>
+
     <effect name="worms.worms11">
       <shader>worms</shader>
       <duration>5.0</duration>
@@ -52,6 +62,16 @@
       <pos_x>10.3</pos_x>
       <pos_y>0.8</pos_y>
     </effect>
+
+    <effect name="spot.spot2">
+      <shader>spot</shader>
+      <duration>100.0</duration>
+      <gain>1.0</gain>
+      <quarter_on>2</quarter_on>
+    </effect>
+
+
+
 
     <!-- debug -->
     <effect name="test">

@@ -17,6 +17,15 @@
       <world_height>2</world_height>
       <pano_start>0.0</pano_start>
       <pano_end>0.324</pano_end>
+
+      <tunnel_start>0.0</tunnel_start>
+      <tunnel_end>1.0</tunnel_end>
+
+      <!-- spot (center, width, height) -->
+      <spot_x>0.6</spot_x>
+      <spot_y>0.5</spot_y>
+      <spot_w>0.1</spot_w>
+      <spot_h>0.25</spot_h>
     </screen>
 
     <!-- <screen name="rpi2">

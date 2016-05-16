@@ -28,17 +28,20 @@ namespace of2030{ namespace effects {
         DEFAULT = 0,
         OFF = 1,
         COLOR = 2,
-        VID = 3
+        VID = 3,
+        TUNNEL = 4,
+        SPOT = 5
     };
     
     static map<EffectType, string> EFFECT_NAMES = {
         {DEFAULT, "default"},
         {OFF, "off"},
         {COLOR, "color"},
-        {VID, "vid"}
+        {VID, "vid"},
+        {TUNNEL, "tunnel"},
+        {SPOT, "spot"}
     };
-    
-    
+
     #define NO_TIME (-1.0f)
 
     class Effect{
@@ -72,8 +75,6 @@ namespace of2030{ namespace effects {
         string trigger;
         ofShader *shader;
         // static int cidCounter;
-        
-        float panoPos;
     };
 
     // === === === === === === === === ===
@@ -125,6 +126,24 @@ namespace of2030{ namespace effects {
 
     public: // attributes
         ofVideoPlayer *video_player;
+    };
+
+    // === === === === === === === === ===
+    
+    class Tunnel : public Effect{
+    public: // methods
+        Tunnel();
+        // virtual void setup(Context &context);
+        virtual void draw(Context &context);
+    };
+
+    // === === === === === === === === ===
+    
+    class Spot : public Effect{
+    public: // methods
+        Spot();
+        // virtual void setup(Context &context);
+        virtual void draw(Context &context);
     };
 
 }} // namespace of2030{ namespace effects {
