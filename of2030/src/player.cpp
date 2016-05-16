@@ -65,6 +65,12 @@ void Player::addEffect(effects::Effect &effect){
     }
 }
 
+void Player::clearEffects(){
+    effect_manager.clear();
+    pending_effects_manager.clear();
+    active_effects_manager.clear();
+}
+
 void Player::setPlaybackTime(float time){
     m_time = time;
 

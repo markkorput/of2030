@@ -23,6 +23,7 @@ namespace of2030{
 
         void add(effects::Effect* effect);
         bool remove(effects::Effect* effect);
+        void clear();
 
         effects::Effect* get(string typ);
         effects::Effect* findByType(effects::EffectType typ);

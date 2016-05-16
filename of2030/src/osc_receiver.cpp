@@ -116,12 +116,19 @@ void OscReceiver::update(){
 
         sub = osc_setting->addresses["effect"] + "/";
         if(addr.substr(0, sub.size()) == sub){
-            param = addr.substr(sub.size()+1);
+            param = addr.substr(sub.size());
             ofNotifyEvent(m_interface->effectEvent, param, m_interface);
             continue;
         }
 
         if(addr == osc_setting->addresses["control"]){
+            ofNotifyEvent(m_interface->controlEvent, param, m_interface);
+            continue;
+        }
+
+        sub = osc_setting->addresses["control"] + "/";
+        if(addr.substr(0, sub.size()) == sub){
+            param = addr.substr(sub.size());
             ofNotifyEvent(m_interface->controlEvent, param, m_interface);
             continue;
         }
