@@ -53,7 +53,7 @@ void Renderer::draw(){
     ofBackground(0);
 
     vector<effects::Effect*> effects = player->getActiveEffects();
-    for(auto & effect: effects){
+    for(auto effect: effects){
         fillEffectSetting(*effect, context.effect_setting);
         fillScreenSetting(*effect, context.screen_setting);
         effect->draw(context);
