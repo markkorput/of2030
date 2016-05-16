@@ -61,27 +61,10 @@ void Effect::draw(Context &context){
 
     EffectLogic logic((Effect*)this, &context);
     
-    // gather some data we'll be putting as uniforms in our shaders
-    ofPoint pos = ofPoint(context.effect_setting.getValue("pos_x", 0.0f),
-                          context.effect_setting.getValue("pos_y", 0.0f),
-                          context.effect_setting.getValue("pos_z", 0.0f));
+
 //    ofVec3f vel = ofVec3f(context.effect_setting.getValue("vel_x", 0.0f),
 //                          context.effect_setting.getValue("vel_y", 0.0f),
 //                          context.effect_setting.getValue("vel_z", 0.0f));
-
-    ofVec2f screenWorldSize(context.screen_setting.getValue("world_width", 2.67f),
-                            context.screen_setting.getValue("world_height", 2.0f));
-    
-
-    float progress = logic.getGlobalProgress();
-    float duration = logic.getGlobalDuration();
-    float iterations = context.effect_setting.getValue("iterations", 1.0f);
-    float screenPanoStart = context.screen_setting.getValue("pano_start", 0.0f);
-    float screenPanoEnd = context.screen_setting.getValue("pano_end", 0.0f);
-    float gain = context.effect_setting.getValue("gain", 1.0f);
-
-    float effectPanoStart = context.effect_setting.getValue("pano_start", 0.0f);
-    float effectPanoEnd = context.effect_setting.getValue("pano_end", 1.0f);
 
 //    if(context.effect_setting.hasValue("auto_pano_shift")){
 //        float newVal = effectPanoEnd + context.effect_setting.getValue("auto_pano_shift", 0.0f) * logic.getGlobalTime();
@@ -92,34 +75,39 @@ void Effect::draw(Context &context){
 //    }
 
     //    ofCamera cam;
-    ofVec3f camWorldPos(context.screen_setting.getValue("cam_pos_x", 0.0f),
-                        context.screen_setting.getValue("cam_pos_y", 0.0f),
-                        context.screen_setting.getValue("cam_pos_z", 0.0f));
+//    ofVec3f camWorldPos(context.screen_setting.getValue("cam_pos_x", 0.0f),
+//                        context.screen_setting.getValue("cam_pos_y", 0.0f),
+//                        context.screen_setting.getValue("cam_pos_z", 0.0f));
 
     //    cam.lookAt(ofVec3f(context.screen_setting.getValue("cam_look_at_x", 0.0f),
     //                       context.screen_setting.getValue("cam_look_at_y", 0.0f),
     //                       context.screen_setting.getValue("cam_look_at_z", 4.5f)));
 
+    ofVec2f v2f;
+    ofVec3f v3f;
     // activate shader
     shader->begin();
 
     // populate shader
-    //shader->setUniformMatrix4f("iScreenCamMatrix", cam.getModelViewMatrix());
-    shader->setUniform3f("iPos", pos);
-    shader->setUniform3f("iCamWorldPos", pos);
-    shader->setUniform2f("iScreenWorldSize", screenWorldSize);
-    // shader->setUniform1f("iTime", context.time);
     shader->setUniform2f("iResolution", resolution);
-    shader->setUniform1f("iProgress", progress);
-    shader->setUniform1f("iDuration", duration);
-    shader->setUniform1f("iIterations", iterations);
-    shader->setUniform1f("iScreenPanoStart", screenPanoStart);
-    shader->setUniform1f("iScreenPanoEnd", screenPanoEnd);
-    shader->setUniform1f("iEffectPanoStart", effectPanoStart);
-    shader->setUniform1f("iEffectPanoEnd", effectPanoEnd);
-    shader->setUniform1f("iGain", gain);
-    
-    
+
+    v3f.set(context.effect_setting.getValue("pos_x", 0.0f),
+             context.effect_setting.getValue("pos_y", 0.0f),
+             context.effect_setting.getValue("pos_z", 0.0f));
+    shader->setUniform3f("iPos", v3f);
+
+    v2f.set(context.screen_setting.getValue("world_width", 2.67f),
+            context.screen_setting.getValue("world_height", 2.0f));
+    shader->setUniform2f("iScreenWorldSize", v2f);
+
+    shader->setUniform1f("iProgress", logic.getGlobalProgress());
+    shader->setUniform1f("iDuration", logic.getGlobalDuration());
+    shader->setUniform1f("iIterations", context.effect_setting.getValue("iterations", 1.0f));
+    shader->setUniform1f("iScreenPanoStart", context.screen_setting.getValue("pano_start", 0.0f));
+    shader->setUniform1f("iScreenPanoEnd", context.screen_setting.getValue("pano_end", 0.0f));
+    shader->setUniform1f("iEffectPanoStart", context.effect_setting.getValue("pano_start", 0.0f));
+    shader->setUniform1f("iEffectPanoEnd", context.effect_setting.getValue("pano_end", 1.0f));
+    shader->setUniform1f("iGain", context.effect_setting.getValue("gain", 1.0f));
 
     // draw
     ofSetColor(255);
