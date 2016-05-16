@@ -70,6 +70,15 @@ void InterfacePlayerBridge::registerCallbacks(bool _register){
 }
 
 void InterfacePlayerBridge::onTrigger(string &trigger){
+    // first check if there's already an effect with this trigger active,
+    // if so; abort
+    const vector<effects::Effect*> *effects = &m_player->getActiveEffects();
+    for(auto effect: (*effects)){
+        if(effect->trigger == trigger){
+            return;
+        }
+    }
+
     // get effect to be triggerd by this trigger name
     const string effectName = XmlTriggers::instance()->getEffectName(trigger);
 

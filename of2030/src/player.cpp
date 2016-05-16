@@ -47,7 +47,7 @@ void Player::stop(){
 void Player::addEffect(effects::Effect &effect){
     // this triggers renderer to call setup on the effect (and providing
     // it with the necessary data)
-    ofLogWarning() << "Player::addEffect with trigger" << effect.trigger;
+    ofLog() << "Player::addEffect with trigger " << effect.trigger;
     effect_manager.add(&effect);
 
     // dead on arrival?
@@ -66,14 +66,14 @@ void Player::addEffect(effects::Effect &effect){
 }
 
 void Player::stopEffectByTrigger(string &trigger){
-    ofLogVerbose() << "Player::stopEffectByTrigger";
-    ofLogWarning() << "Player::stopEffectByTrigger with " << trigger;
+    // ofLogVerbose() << "Player::stopEffectByTrigger";
+    ofLog() << "Player::stopEffectByTrigger with " << trigger;
     const vector<effects::Effect*> *effects = &active_effects_manager.getEffects();
 
-    ofLogWarning() << "Player::stopEffectByTrigger active effects: " << effects->size();
+    // ofLogWarning() << "Player::stopEffectByTrigger active effects: " << effects->size();
     for(auto effect: (*effects)){
         if(effect->trigger == trigger){
-            ofLogWarning() << "an active";
+            // ofLogWarning() << "an active";
             active_effects_manager.remove(effect);
             effect_manager.remove(effect);
         }
@@ -82,7 +82,7 @@ void Player::stopEffectByTrigger(string &trigger){
     effects = &pending_effects_manager.getEffects();
     for(auto effect: (*effects)){
         if(effect->trigger == trigger){
-            ofLogWarning() << "a pending";
+            //  ofLogWarning() << "a pending";
             pending_effects_manager.remove(effect);
             effect_manager.remove(effect);
         }
