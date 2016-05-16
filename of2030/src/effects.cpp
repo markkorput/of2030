@@ -191,3 +191,38 @@ void Tunnel::draw(Context &context){
     float tunnelEnd = context.screen_setting.getValue("tunnel_end", 1.0f);
 }
 
+// === === === === === === === === ===
+
+Spot::Spot(){
+    setType(EffectType::SPOT);
+}
+
+// virtual void setup(Context &context);
+void Spot::draw(Context &context){
+    // screen must be spot-enabled
+    if(!(context.screen_setting.hasValue("spot_x") &&
+         context.screen_setting.hasValue("spot_y") &&
+         context.screen_setting.hasValue("spot_w") &&
+         context.screen_setting.hasValue("spot_h"))){
+        return;
+    }
+
+    ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
+
+    ofVec2f spotPos = ofVec2f(context.screen_setting.getValue("spot_x", 0.0f),
+                              context.screen_setting.getValue("spot_y", 0.0f)) * resolution;
+    ofVec2f spotSize = ofVec2f(context.screen_setting.getValue("spot_w", 1.0f),
+                               context.screen_setting.getValue("spot_h", 1.0f)) * resolution;
+
+//    spotPos = spotPos - spotSize * 0.5;
+
+//    if(!shader){
+        // draw iwthout shader stuff
+        ofSetColor(255);
+        // ofDrawRectangle(0, 0, resolution.x, resolution.y);
+        ofDrawEllipse(spotPos.x, spotPos.y, spotSize.x, spotSize.y);
+//        return;
+//    }
+    
+}
+

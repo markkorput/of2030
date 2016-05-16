@@ -29,7 +29,8 @@ namespace of2030{ namespace effects {
         OFF = 1,
         COLOR = 2,
         VID = 3,
-        TUNNEL = 4
+        TUNNEL = 4,
+        SPOT = 5
     };
     
     static map<EffectType, string> EFFECT_NAMES = {
@@ -37,10 +38,10 @@ namespace of2030{ namespace effects {
         {OFF, "off"},
         {COLOR, "color"},
         {VID, "vid"},
-        {TUNNEL, "tunnel"}
+        {TUNNEL, "tunnel"},
+        {SPOT, "spot"}
     };
-    
-    
+
     #define NO_TIME (-1.0f)
 
     class Effect{
@@ -132,6 +133,15 @@ namespace of2030{ namespace effects {
     class Tunnel : public Effect{
     public: // methods
         Tunnel();
+        // virtual void setup(Context &context);
+        virtual void draw(Context &context);
+    };
+
+    // === === === === === === === === ===
+    
+    class Spot : public Effect{
+    public: // methods
+        Spot();
         // virtual void setup(Context &context);
         virtual void draw(Context &context);
     };

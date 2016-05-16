@@ -60,7 +60,9 @@ effects::Effect* EffectManager::createEffect(string typ){
     
     if(typ == "vid"){
         pEffect = (effects::Effect*) new effects::Vid();
-    } else {
+    } else if(typ == "spot"){
+        pEffect = (effects::Effect*) new effects::Spot();
+    }else {
         // default type, just set name to whatever was specified
         pEffect = new effects::Effect();
         pEffect->name = typ;

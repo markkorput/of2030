@@ -34,7 +34,7 @@
 
     <!-- STELLAR -->
     <effect name="spot.spot1">
-      <shader>spot</shader>
+      <!-- <shader>spot</shader> -->
       <gain>0.2</gain>
       <pos_x>0.25</pos_x>
       <pos_y>0.01</pos_y>
