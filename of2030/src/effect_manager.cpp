@@ -11,7 +11,7 @@
 using namespace of2030;
 
 EffectManager::~EffectManager(){
-    for(auto & effect: effects){
+    for(auto effect: effects){
         deleteEffect(effect);
     }
 
