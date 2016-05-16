@@ -8,6 +8,7 @@
 namespace of2030{
     
     class XmlEffects{
+
     public:
         static XmlEffects* instance();
         static XmlEffects* screens();
@@ -15,19 +16,24 @@ namespace of2030{
         static XmlEffects* _screens_instance;
         static XmlEffects* _instance;
 
-    public:
+    public: // methods
         XmlEffects();
         ~XmlEffects(){ destroy(); }
         void destroy();
         void load();
 
+        bool isLoaded(){ return settings.size() > 0; }
+
+    public: // getters/setters
         XmlItemSetting* getItem(string name);
         void setItemParam(string settingName, string paramName, string value);
+        void setNameFilter(const string &filter);
 
-    private:
+    private: // attributes
         vector<XmlItemSetting*> settings;
 
         string path;
+        string nameFilter;
         string rootNodeName;
         string itemNodeName;
     };
