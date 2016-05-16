@@ -47,7 +47,7 @@ void Player::stop(){
 void Player::addEffect(effects::Effect &effect){
     // this triggers renderer to call setup on the effect (and providing
     // it with the necessary data)
-    ofLogVerbose() << "Player::addEffect";
+    ofLog() << "Player::addEffect with trigger " << effect.trigger;
     effect_manager.add(&effect);
 
     // dead on arrival?
@@ -65,6 +65,30 @@ void Player::addEffect(effects::Effect &effect){
     }
 }
 
+void Player::stopEffectByTrigger(string &trigger){
+    // ofLogVerbose() << "Player::stopEffectByTrigger";
+    ofLog() << "Player::stopEffectByTrigger with " << trigger;
+    const vector<effects::Effect*> *effects = &active_effects_manager.getEffects();
+
+    // ofLogWarning() << "Player::stopEffectByTrigger active effects: " << effects->size();
+    for(auto effect: (*effects)){
+        if(effect->trigger == trigger){
+            // ofLogWarning() << "an active";
+            active_effects_manager.remove(effect);
+            effect_manager.remove(effect);
+        }
+    }
+
+    effects = &pending_effects_manager.getEffects();
+    for(auto effect: (*effects)){
+        if(effect->trigger == trigger){
+            //  ofLogWarning() << "a pending";
+            pending_effects_manager.remove(effect);
+            effect_manager.remove(effect);
+        }
+    }
+}
+
 void Player::clearEffects(){
     effect_manager.clear();
     pending_effects_manager.clear();
@@ -75,9 +99,7 @@ void Player::setPlaybackTime(float time){
     m_time = time;
 
     // First, remove active effects that have ended
-    const vector<effects::Effect*> *effects = &active_effects_manager.getEffects();
-    
-    for(auto effect: (*effects)){
+    for(auto effect: active_effects_manager.getEffects()){
         if(effectEnded(*effect)){
             // remove from active list
             active_effects_manager.remove(effect);
@@ -87,9 +109,7 @@ void Player::setPlaybackTime(float time){
     }
 
     // Second, activate pending effects that have started
-    effects = &pending_effects_manager.getEffects();
-
-    for(auto effect: (*effects)){
+    for(auto effect: pending_effects_manager.getEffects()){
         if(effectStarted(*effect)){
             pending_effects_manager.remove(effect);
             active_effects_manager.add(effect);

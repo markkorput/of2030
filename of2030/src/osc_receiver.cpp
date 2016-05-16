@@ -109,6 +109,18 @@ void OscReceiver::update(){
             continue;
         }
 
+        if(addr == osc_setting->addresses["stop"]){
+            ofNotifyEvent(m_interface->stopTriggerEvent, param, m_interface);
+            continue;
+        }
+    
+        sub = osc_setting->addresses["stop"] + "/";
+        if(addr.substr(0, sub.size()) == sub){
+            param = addr.substr(sub.size());
+            ofNotifyEvent(m_interface->stopTriggerEvent, param, m_interface);
+            continue;
+        }
+
         if(addr == osc_setting->addresses["effect"]){
             ofNotifyEvent(m_interface->effectEvent, param, m_interface);
             continue;

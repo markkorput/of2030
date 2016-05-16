@@ -40,6 +40,7 @@ namespace of2030{
         void stop();
 
         void addEffect(effects::Effect &effect);
+        void stopEffectByTrigger(string &trigger);
         void clearEffects();
 
         inline const vector<effects::Effect*> &getActiveEffects(){ return active_effects_manager.getEffects(); }

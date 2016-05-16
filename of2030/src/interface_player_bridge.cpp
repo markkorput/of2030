@@ -51,6 +51,7 @@ void InterfacePlayerBridge::registerCallbacks(bool _register){
     if(_register){
         // subscribe to events
         ofAddListener(m_interface->triggerEvent, this, &InterfacePlayerBridge::onTrigger);
+        ofAddListener(m_interface->stopTriggerEvent, this, &InterfacePlayerBridge::onStopTrigger);
         ofAddListener(m_interface->effectEvent, this, &InterfacePlayerBridge::onEffect);
         ofAddListener(m_interface->effectConfigEvent, this, &InterfacePlayerBridge::onEffectConfig);
         ofAddListener(m_interface->songEvent, this, &InterfacePlayerBridge::onSong);
@@ -59,6 +60,7 @@ void InterfacePlayerBridge::registerCallbacks(bool _register){
     } else {
         // unsubscribe from events
         ofRemoveListener(m_interface->triggerEvent, this, &InterfacePlayerBridge::onTrigger);
+        ofRemoveListener(m_interface->stopTriggerEvent, this, &InterfacePlayerBridge::onStopTrigger);
         ofRemoveListener(m_interface->effectEvent, this, &InterfacePlayerBridge::onEffect);
         ofRemoveListener(m_interface->effectConfigEvent, this, &InterfacePlayerBridge::onEffectConfig);
         ofRemoveListener(m_interface->songEvent, this, &InterfacePlayerBridge::onSong);
@@ -68,6 +70,15 @@ void InterfacePlayerBridge::registerCallbacks(bool _register){
 }
 
 void InterfacePlayerBridge::onTrigger(string &trigger){
+    // first check if there's already an effect with this trigger active,
+    // if so; abort
+    const vector<effects::Effect*> *effects = &m_player->getActiveEffects();
+    for(auto effect: (*effects)){
+        if(effect->trigger == trigger){
+            return;
+        }
+    }
+
     // get effect to be triggerd by this trigger name
     const string effectName = XmlTriggers::instance()->getEffectName(trigger);
 
@@ -83,6 +94,10 @@ void InterfacePlayerBridge::onTrigger(string &trigger){
     m_player->addEffect(*fx);
 
     ofLogVerbose() << "effects in player's manager: " << m_player->effect_manager.getCount();
+}
+
+void InterfacePlayerBridge::onStopTrigger(string &trigger){
+    m_player->stopEffectByTrigger(trigger);
 }
 
 // callback to process new effect events from the interface

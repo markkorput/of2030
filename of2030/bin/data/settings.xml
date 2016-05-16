@@ -6,6 +6,7 @@
     <port>2031</port><!-- 0 (zero) means disabled -->
     <addresses>
       <trigger>/t</trigger>
+      <stop>/s</stop>
       <effect>/fx</effect>
       <control>/ctrl</control>
       <song>/song</song>
