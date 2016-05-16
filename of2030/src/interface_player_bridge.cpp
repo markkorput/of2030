@@ -54,6 +54,7 @@ void InterfacePlayerBridge::registerCallbacks(bool _register){
         ofAddListener(m_interface->stopTriggerEvent, this, &InterfacePlayerBridge::onStopTrigger);
         ofAddListener(m_interface->effectEvent, this, &InterfacePlayerBridge::onEffect);
         ofAddListener(m_interface->effectConfigEvent, this, &InterfacePlayerBridge::onEffectConfig);
+        ofAddListener(m_interface->screenConfigEvent, this, &InterfacePlayerBridge::onScreenConfig);
         ofAddListener(m_interface->songEvent, this, &InterfacePlayerBridge::onSong);
         ofAddListener(m_interface->clipEvent, this, &InterfacePlayerBridge::onClip);
         ofAddListener(m_player->effect_manager.effectRemovedEvent, this, &InterfacePlayerBridge::onEffectEnded);
@@ -63,6 +64,7 @@ void InterfacePlayerBridge::registerCallbacks(bool _register){
         ofRemoveListener(m_interface->stopTriggerEvent, this, &InterfacePlayerBridge::onStopTrigger);
         ofRemoveListener(m_interface->effectEvent, this, &InterfacePlayerBridge::onEffect);
         ofRemoveListener(m_interface->effectConfigEvent, this, &InterfacePlayerBridge::onEffectConfig);
+        ofRemoveListener(m_interface->screenConfigEvent, this, &InterfacePlayerBridge::onScreenConfig);
         ofRemoveListener(m_interface->songEvent, this, &InterfacePlayerBridge::onSong);
         ofRemoveListener(m_interface->clipEvent, this, &InterfacePlayerBridge::onClip);
         ofRemoveListener(m_player->effect_manager.effectRemovedEvent, this, &InterfacePlayerBridge::onEffectEnded);
@@ -110,6 +112,10 @@ void InterfacePlayerBridge::onEffect(string &name){
 
 void InterfacePlayerBridge::onEffectConfig(EffectConfig &cfg){
     XmlConfigs::instance()->setItemParam(cfg.setting_name, cfg.param_name, cfg.param_value);
+}
+
+void InterfacePlayerBridge::onScreenConfig(EffectConfig &cfg){
+    XmlConfigs::screens()->setItemParam(cfg.setting_name, cfg.param_name, cfg.param_value);
 }
 
 void InterfacePlayerBridge::onSong(string &name){

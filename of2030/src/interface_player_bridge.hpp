@@ -36,6 +36,7 @@ namespace of2030{
         void onStopTrigger(string &trigger);
         void onEffect(string &effect);
         void onEffectConfig(EffectConfig &cfg);
+        void onScreenConfig(EffectConfig &cfg);
         void onSong(string &name);
         void onClip(string &name);
         void onEffectEnded(effects::Effect &effect);

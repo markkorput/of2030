@@ -125,6 +125,11 @@ XmlItemSetting* XmlEffects::getItem(string name){
 }
 
 void XmlEffects::setItemParam(string settingName, string paramName, string value){
+    if(nameFilter != "" && settingName != nameFilter){
+        // not relevant to us
+        return;
+    }
+
     // find existing setting
     XmlItemSetting *pSetting = getItem(settingName);
 
