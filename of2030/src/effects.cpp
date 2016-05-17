@@ -255,6 +255,12 @@ Voice::Voice(){
     setType(EffectType::VOICE);
 }
 
+void Voice::setup(Context &context){
+    Effect::setup(context);
+    if(shader == NULL){
+        shader = ShaderManager::instance()->get("voice");
+    }
+}
 void Voice::draw(Context &context){
     // screen must be voice-enabled
     if(!(context.screen_setting.hasValue("voice_x1") &&
@@ -276,13 +282,25 @@ void Voice::draw(Context &context){
     ofSetColor(255);
     ofDrawTriangle(coords[0].x, coords[0].y, coords[1].x, coords[1].y, coords[2].x, coords[2].y);
     ofDrawTriangle(coords[0].x, coords[0].y, coords[2].x, coords[2].y, coords[3].x, coords[3].y);
-    ofSetColor(255,0,0);
-    ofDrawTriangle(0,0, 100, 100, 0, 100);
     context.fbo2->end();
     
+    EffectLogic logic(this, &context);
+
     // draw
+    shader->begin();
+    shader->setUniformTexture("iVoiceMask", context.fbo2->getTexture(), 1);
+
+    float prog = logic.getGlobalProgress();
+    float w = context.fbo->getWidth() * prog;
+
     ofSetColor(255);
-    context.fbo2->draw(0,0);
+    
+    ofDrawRectangle((context.fbo->getWidth()-w)*0.5,
+                    0.0f,
+                    w,
+                    context.fbo->getHeight());
+    shader->end();
+    
 }
 
 

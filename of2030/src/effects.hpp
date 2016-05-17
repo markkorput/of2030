@@ -154,7 +154,7 @@ namespace of2030{ namespace effects {
     class Voice : public Effect{
     public: // methods
         Voice();
-        // virtual void setup(Context &context);
+        virtual void setup(Context &context);
         virtual void draw(Context &context);
     };
 
