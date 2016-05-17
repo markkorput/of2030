@@ -96,6 +96,11 @@ void Effect::draw(Context &context){
              context.effect_setting.getValue("pos_z", 0.0f));
     shader->setUniform3f("iPos", v3f);
 
+    v3f.set(context.effect_setting.getValue("size_x", 0.0f),
+            context.effect_setting.getValue("size_y", 0.0f),
+            context.effect_setting.getValue("size_z", 0.0f));
+    shader->setUniform3f("iSize", v3f);
+
     v2f.set(context.screen_setting.getValue("world_width", 2.67f),
             context.screen_setting.getValue("world_height", 2.0f));
     shader->setUniform2f("iScreenWorldSize", v2f);
@@ -228,7 +233,7 @@ void Spot::draw(Context &context){
     shader->setUniform2f("iSpotPos", spotPos);
     shader->setUniform2f("iSpotSize", spotSize);
     shader->setUniform1f("iGain", context.effect_setting.getValue("gain", 1.0f));
-    
+
     
     // quarter; 1 means top right, 2 means bottom right, 3 bottom left, 4 means top left, zero means none
     int q = std::floor(context.effect_setting.getValue("quarter_on", 0.0f));
@@ -242,4 +247,63 @@ void Spot::draw(Context &context){
 
     shader->end();
 }
+
+
+// === === === === === === === === ===
+
+Voice::Voice(){
+    setType(EffectType::VOICE);
+}
+
+void Voice::setup(Context &context){
+    Effect::setup(context);
+    if(shader == NULL){
+        shader = ShaderManager::instance()->get("voice");
+    }
+}
+void Voice::draw(Context &context){
+    // screen must be voice-enabled
+    if(!(context.screen_setting.hasValue("voice_x1") &&
+         context.screen_setting.hasValue("voice_y1"))){
+        return;
+    }
+
+    ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
+
+    ofVec2f coords[4];
+    coords[0] = ofVec2f(context.screen_setting.getValue("voice_x1", 0.0f), context.screen_setting.getValue("voice_y1", 0.0f)) * resolution;
+    coords[1] = ofVec2f(context.screen_setting.getValue("voice_x2", 1.0f), context.screen_setting.getValue("voice_y2", 0.1f)) * resolution;
+    coords[2] = ofVec2f(context.screen_setting.getValue("voice_x3", 1.0f), context.screen_setting.getValue("voice_y3", 0.1f)) * resolution;
+    coords[3] = ofVec2f(context.screen_setting.getValue("voice_x4", 0.0f), context.screen_setting.getValue("voice_y4", 0.0f)) * resolution;
+
+    // create mask
+    context.fbo2->begin();
+    ofBackground(0);
+    ofSetColor(255);
+    ofDrawTriangle(coords[0].x, coords[0].y, coords[1].x, coords[1].y, coords[2].x, coords[2].y);
+    ofDrawTriangle(coords[0].x, coords[0].y, coords[2].x, coords[2].y, coords[3].x, coords[3].y);
+    context.fbo2->end();
+    
+    EffectLogic logic(this, &context);
+
+    // draw
+    shader->begin();
+    shader->setUniformTexture("iVoiceMask", context.fbo2->getTexture(), 1);
+
+    float prog = logic.getGlobalProgress();
+    float w = context.fbo->getWidth() * prog;
+
+    ofSetColor(255);
+    
+    ofDrawRectangle((context.fbo->getWidth()-w)*0.5,
+                    0.0f,
+                    w,
+                    context.fbo->getHeight());
+    shader->end();
+    
+}
+
+
+
+
 

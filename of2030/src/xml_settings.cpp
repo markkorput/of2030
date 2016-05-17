@@ -34,7 +34,7 @@ void loadOscAddresses(TiXmlDocument &doc, OscSetting &osc_setting){
         name = child->ValueStr();
         val = child->GetText();
         osc_setting.addresses[name] = val;
-        ofLogVerbose() << "XmlSettings::loadOsc found OSC-address: " << name << ":" << val;
+        // ofLogVerbose() << "XmlSettings::loadOsc found OSC-address: " << name << ":" << val;
         child = child->NextSiblingElement();
     }
 }

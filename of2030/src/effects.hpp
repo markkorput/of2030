@@ -21,6 +21,7 @@ namespace of2030{ namespace effects {
         XmlItemSetting effect_setting;
         XmlItemSetting screen_setting;
         ofFbo* fbo;
+        ofFbo* fbo2;
     } Context;
 
     
@@ -30,7 +31,8 @@ namespace of2030{ namespace effects {
         COLOR = 2,
         VID = 3,
         TUNNEL = 4,
-        SPOT = 5
+        SPOT = 5,
+        VOICE = 6
     };
     
     static map<EffectType, string> EFFECT_NAMES = {
@@ -39,7 +41,8 @@ namespace of2030{ namespace effects {
         {COLOR, "color"},
         {VID, "vid"},
         {TUNNEL, "tunnel"},
-        {SPOT, "spot"}
+        {SPOT, "spot"},
+        {VOICE, "voice"}
     };
 
     #define NO_TIME (-1.0f)
@@ -143,6 +146,15 @@ namespace of2030{ namespace effects {
     public: // methods
         Spot();
         // virtual void setup(Context &context);
+        virtual void draw(Context &context);
+    };
+
+    // === === === === === === === === ===
+    
+    class Voice : public Effect{
+    public: // methods
+        Voice();
+        virtual void setup(Context &context);
         virtual void draw(Context &context);
     };
 
