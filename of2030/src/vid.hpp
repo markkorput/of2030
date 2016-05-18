@@ -21,6 +21,8 @@ public: // methods
     
 public: // attributes
     ofVideoPlayer *video_player;
+    ofMesh mesh;
+    ofTexture vidtex;
 };
 
 }}

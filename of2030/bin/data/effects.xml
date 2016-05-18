@@ -74,6 +74,7 @@
     <!-- full pano video test -->
     <effect name="vid.vid1">
       <video_file>PanoCalib-01.mov</video_file>
+      <loop>1</loop>
     </effect>
 
     <effect name="test">

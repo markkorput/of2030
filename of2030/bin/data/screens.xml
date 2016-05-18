@@ -36,6 +36,15 @@
       <voice_y3>0.775</voice_y3>
       <voice_x4>0.375</voice_x4>
       <voice_y4>0.625</voice_y4>
+
+      <pano_tex_x1>0.0</pano_tex_x1>
+      <pano_tex_y1>0.0</pano_tex_y1>
+      <pano_tex_x2>0.32</pano_tex_x2>
+      <pano_tex_y2>0.0</pano_tex_y2>
+      <pano_tex_x3>0.32</pano_tex_x3>
+      <pano_tex_y3>1.0</pano_tex_y3>
+      <pano_tex_x4>0.0</pano_tex_x4>
+      <pano_tex_y4>1.0</pano_tex_y4>
     </screen>
 
     <!-- <screen name="rpi2">
