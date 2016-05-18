@@ -17,12 +17,13 @@ Vid::Vid(){
 
 void Vid::setup(Context &context){
     Effect::setup(context);
-    video_player = VideoManager::instance()->get("fingers.mov", true);
+    video_player = VideoManager::instance()->get(context.effect_setting.getValue("video_file", "fingers.mov"), true);
     video_player->setLoopState(OF_LOOP_NORMAL);
     video_player->play();
 }
 
 void Vid::draw(Context &context){
     video_player->update();
+    ofSetColor(255);
     video_player->draw(0,0);
 }
