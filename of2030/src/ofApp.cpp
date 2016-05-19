@@ -16,6 +16,7 @@
 #include "renderer.hpp"
 #include "interface_player_bridge.hpp"
 #include "effect_manager.hpp"
+#include "video_manager.hpp"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -90,6 +91,7 @@ void ofApp::setup(){
 void ofApp::update(){
     of2030::OscReceiver::instance()->update();
     of2030::Player::instance()->update();
+    of2030::VideoManager::instance()->update();
 }
 
 //--------------------------------------------------------------
@@ -109,6 +111,7 @@ void ofApp::draw(){
 void ofApp::exit(ofEventArgs &args){
     // TODO; call delete_instance for all singleton instance implementations
     of2030::EfficientEffectManager::delete_instance();
+    of2030::VideoManager::delete_instance();
 }
 
 //--------------------------------------------------------------

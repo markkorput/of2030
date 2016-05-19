@@ -10,27 +10,27 @@
 #define video_manager_hpp
 
 #include "ofMain.h"
+#include "shared2030.h"
 
 namespace of2030 {
     class VideoManager {
 
+        SINGLETON_CLASS_HEADER_CODE(VideoManager)
+
     public: // methods/interface
-        
-        static VideoManager* instance();
         VideoManager();
         ~VideoManager();
 
-        void setup();
+        //void setup();
         void update();
 
         ofVideoPlayer* load(string video_name);
         ofVideoPlayer* get(string video_name, bool load=true);
     
-    protected:
+    protected: // helper methods
         string video_name_to_path(string video_name);
     
     private: // attributes
-        static VideoManager* singleton;
         vector<ofVideoPlayer*> players;
     };
 }

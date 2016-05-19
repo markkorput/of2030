@@ -48,8 +48,8 @@ void EffectManager::add(effects::Effect* effect){
 
 effects::EffectType EffectManager::typeStringToType(string typ){
     if(typ == "vid") return effects::EffectType::VID;
-    if(typ == "off") return effects::EffectType::OFF;
-    if(typ == "color") return effects::EffectType::COLOR;
+    if(typ == "voice") return effects::EffectType::VOICE;
+    if(typ == "spot") return effects::EffectType::SPOT;
     return effects::EffectType::DEFAULT;
 }
 
@@ -57,7 +57,7 @@ effects::Effect* EffectManager::createEffect(string typ){
     ofLogVerbose() << "EffectManager::createEffect with: " << typ;
 
     effects::Effect* pEffect;
-    
+
     if(typ == "vid"){
         pEffect = (effects::Effect*) new effects::Vid();
     } else if(typ == "spot"){
@@ -107,9 +107,14 @@ void EffectManager::deleteEffect(effects::Effect* effect){
         delete (effects::Vid*) effect;
         return;
     }
+
+    if(effect->type == effects::EffectType::SPOT){
+        delete (effects::Spot*) effect;
+        return;
+    }
     
-    if(effect->type == effects::EffectType::COLOR){
-        delete (effects::Color*) effect;
+    if(effect->type == effects::EffectType::VOICE){
+        delete (effects::Voice*) effect;
         return;
     }
 

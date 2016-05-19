@@ -10,33 +10,28 @@
 
 using namespace of2030;
 
-VideoManager* VideoManager::singleton = NULL;
-
-VideoManager* VideoManager::instance(){
-    if (!singleton){   // Only allow one instance of class to be generated.
-        singleton = new VideoManager();
-    }
-    return singleton;
-}
+SINGLETON_CLASS_IMPLEMENTATION_CODE(VideoManager)
 
 VideoManager::VideoManager(){
 
 }
 
 VideoManager::~VideoManager(){
-    while(!players.empty()){
-        ofVideoPlayer* player = players[-1];
-        players.pop_back();
+    for(auto player: players){
         delete player;
     }
+
+    players.clear();
 }
 
-void VideoManager::setup(){
-    
-}
+//void VideoManager::setup(){
+//    
+//}
 
 void VideoManager::update(){
-    
+    for(auto player: players){
+        player->update();
+    }
 }
 
 ofVideoPlayer* VideoManager::load(string video_name){

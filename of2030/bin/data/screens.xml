@@ -36,6 +36,16 @@
       <voice_y3>0.775</voice_y3>
       <voice_x4>0.375</voice_x4>
       <voice_y4>0.625</voice_y4>
+
+      <!-- pano texture is used for textures (images/video) that map over the entire surrounding wall -->
+      <pano_tex1pos_x>0.0</pano_tex1pos_x>
+      <pano_tex1pos_y>0.0</pano_tex1pos_y>
+      <pano_tex2pos_x>0.32</pano_tex2pos_x>
+      <pano_tex2pos_y>0.0</pano_tex2pos_y>
+      <pano_tex3pos_x>0.32</pano_tex3pos_x>
+      <pano_tex3pos_y>1.0</pano_tex3pos_y>
+      <pano_tex4pos_x>0.0</pano_tex4pos_x>
+      <pano_tex4pos_y>1.0</pano_tex4pos_y>
     </screen>
 
     <!-- <screen name="rpi2">
@@ -81,6 +91,15 @@
       <world_height>2.0</world_height>
       <pano_start>0.324</pano_start>
       <pano_end>0.5</pano_end>
+
+      <pano_tex1pos_x>0.32</pano_tex1pos_x>
+      <pano_tex1pos_y>0.0</pano_tex1pos_y>
+      <pano_tex2pos_x>0.5</pano_tex2pos_x>
+      <pano_tex2pos_y>0.0</pano_tex2pos_y>
+      <pano_tex3pos_x>0.5</pano_tex3pos_x>
+      <pano_tex3pos_y>1.0</pano_tex3pos_y>
+      <pano_tex4pos_x>0.32</pano_tex4pos_x>
+      <pano_tex4pos_y>1.0</pano_tex4pos_y>
     </screen>
 
     <screen name="rpi5">
@@ -96,6 +115,15 @@
       <world_height>2.0</world_height>
       <pano_start>0.5</pano_start>
       <pano_end>0.824</pano_end>
+
+      <pano_tex1pos_x>0.5</pano_tex1pos_x>
+      <pano_tex1pos_y>0.0</pano_tex1pos_y>
+      <pano_tex2pos_x>0.82</pano_tex2pos_x>
+      <pano_tex2pos_y>0.0</pano_tex2pos_y>
+      <pano_tex3pos_x>0.82</pano_tex3pos_x>
+      <pano_tex3pos_y>1.0</pano_tex3pos_y>
+      <pano_tex4pos_x>0.5</pano_tex4pos_x>
+      <pano_tex4pos_y>1.0</pano_tex4pos_y>
     </screen>
 
     <!-- <screen name="rpi6">
@@ -141,6 +169,15 @@
       <world_height>2.0</world_height>
       <pano_start>0.824</pano_start>
       <pano_end>1.0</pano_end>
+
+      <pano_tex1pos_x>0.82</pano_tex1pos_x>
+      <pano_tex1pos_y>0.0</pano_tex1pos_y>
+      <pano_tex2pos_x>1.0</pano_tex2pos_x>
+      <pano_tex2pos_y>0.0</pano_tex2pos_y>
+      <pano_tex3pos_x>1.0</pano_tex3pos_x>
+      <pano_tex3pos_y>1.0</pano_tex3pos_y>
+      <pano_tex4pos_x>0.82</pano_tex4pos_x>
+      <pano_tex4pos_y>1.0</pano_tex4pos_y>
     </screen>
 
   </screens>

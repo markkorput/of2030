@@ -99,6 +99,19 @@ void OscReceiver::update(){
                 ofLogError() << "param value missing from OSC message";
                 return;
             }
+            
+            // 2 params and screen config param-name end with pos?
+            // then treat as two _x and _y params
+            if(m.getNumArgs() == 2 && sub.substr(sub.size()-3) == "pos"){
+                EffectConfig cfg;
+                cfg.setting_name = sub.substr(0, pos);
+                cfg.param_name = sub.substr(pos+1) + "_x";
+                cfg.param_value = param;
+                ofNotifyEvent(m_interface->screenConfigEvent, cfg, m_interface);
+                cfg.param_name = sub.substr(pos+1) + "_y";
+                cfg.param_value = m.getArgAsString(1);
+                ofNotifyEvent(m_interface->screenConfigEvent, cfg, m_interface);
+            }
 
             EffectConfig cfg;
             cfg.setting_name = sub.substr(0, pos);
