@@ -95,7 +95,7 @@ void InterfacePlayerBridge::onTrigger(string &trigger){
     // add to players realtime comp
     m_player->addEffect(*fx);
 
-    ofLogVerbose() << "effects in player's manager: " << m_player->effect_manager.getCount();
+    // ofLogVerbose() << "effects in player's manager: " << m_player->effect_manager.getCount();
 }
 
 void InterfacePlayerBridge::onStopTrigger(string &trigger){

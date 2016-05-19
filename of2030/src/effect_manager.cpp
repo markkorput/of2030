@@ -159,15 +159,15 @@ effects::Effect* EfficientEffectManager::get(string typ){
 }
 
 void EfficientEffectManager::finish(effects::Effect* effect){
-    ofLogVerbose() << "EfficientEffectManager::finish";
+    // ofLogVerbose() << "EfficientEffectManager::finish";
 
     // remove from our "active list"
     if(remove(effect)){
         // if remove suceeded (meaning the specified effect was found)
         // add it to our idle_manager, so we can recycle this instance later
-        ofLogVerbose() << "idle_manager count before: " << idle_manager.getCount();
+        // ofLogVerbose() << "idle_manager count before: " << idle_manager.getCount();
         idle_manager.add(effect);
-        ofLogVerbose() << "idle_manager count: " << idle_manager.getCount();
+        ofLogVerbose() << "[EfficientEffectManager] idle effects count: " << idle_manager.getCount();
     }
 }
 
