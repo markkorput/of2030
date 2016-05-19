@@ -20,7 +20,7 @@ namespace of2030{
         XmlEffects();
         ~XmlEffects(){ destroy(); }
         void destroy();
-        void load();
+        void load(bool reload=false);
 
         bool isLoaded(){ return settings.size() > 0; }
 
@@ -32,6 +32,7 @@ namespace of2030{
     private: // attributes
         vector<XmlItemSetting*> settings;
 
+        bool bLoaded;
         string path;
         string nameFilter;
         string rootNodeName;

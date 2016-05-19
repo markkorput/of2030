@@ -44,7 +44,7 @@ XmlEffects* XmlEffects::screens(){
 }
 
 
-XmlEffects::XmlEffects() : path("effects.xml"), rootNodeName("effects"), itemNodeName("effect"), nameFilter(""){
+XmlEffects::XmlEffects() : path("effects.xml"), rootNodeName("effects"), itemNodeName("effect"), nameFilter(""), bLoaded(false){
 }
 
 void XmlEffects::destroy(){
@@ -56,7 +56,10 @@ void XmlEffects::destroy(){
 }
 
 
-void XmlEffects::load(){
+void XmlEffects::load(bool reload){
+    if(bLoaded and !reload)
+        return;
+
     ofxXmlSettings xml;
     xml.loadFile(path);
 
@@ -110,6 +113,8 @@ void XmlEffects::load(){
         settings.pop_back();
         loaded_count--;
     }
+    
+    bLoaded=true;
 }
 
 XmlItemSetting* XmlEffects::getItem(string name){
@@ -145,14 +150,17 @@ void XmlEffects::setItemParam(string settingName, string paramName, string value
 }
 
 void XmlEffects::setNameFilter(const string &filter){
-    // filter changing?
-    bool reload = filter != nameFilter;
+    if(filter == nameFilter){
+        // no change
+        return;
+    }
+
     // update filter
     nameFilter = filter;
     // reload if necessary
-    if(reload){
+    if(bLoaded){
         ofLog() << "XmlEffects::setNameFilter - reloading";
-        load();
+        load(true);
     }
 }
 
