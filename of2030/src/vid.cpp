@@ -28,65 +28,35 @@ void Vid::setup(Context &context){
     }
 
     video_player->play();
-    
-    //Set up vertices
-    mesh.addVertex(ofPoint(0.0f, 0.0f)); // top left
-    mesh.addTexCoord(ofPoint(context.screen_setting.getValue("pano_tex_x1", 0.0f),
-                             context.screen_setting.getValue("pano_tex_y1", 0.0f)));
-    mesh.addColor(ofColor(255, 255, 255));
+}
 
-    mesh.addVertex(ofPoint(context.fbo->getWidth(), 0.0f)); // top right
-    mesh.addTexCoord(ofPoint(context.screen_setting.getValue("pano_tex_x2", 1.0f),
-                             context.screen_setting.getValue("pano_tex_y2", 0.0f)));
-    mesh.addColor(ofColor(255, 255, 255));
+void Vid::draw(Context &context){
+    // set up mesh with vertices and tex coords
+    ofMesh mesh;
+    mesh.addVertex(ofPoint(0.0f, context.fbo->getHeight())); // top left
+    mesh.addVertex(ofPoint(context.fbo->getWidth(), context.fbo->getHeight())); // top right
+    mesh.addVertex(ofPoint(context.fbo->getWidth(), 0.0f)); // bottom right
+    mesh.addVertex(ofPoint(0.0f, 0.0f)); // bottom left
+
     
-    mesh.addVertex(ofPoint(context.fbo->getWidth(), context.fbo->getHeight())); // bottom right
-    mesh.addTexCoord(ofPoint(context.screen_setting.getValue("pano_tex_x3", 1.0f),
-                             context.screen_setting.getValue("pano_tex_y3", 1.0f)));
-    mesh.addColor(ofColor(255, 255, 255));
+    mesh.addTexCoord(ofPoint(context.screen_setting.getValue("pano_tex_x1", 0.0f) * video_player->getWidth(),
+                             context.screen_setting.getValue("pano_tex_y1", 0.0f) * video_player->getHeight()));
     
-    mesh.addVertex(ofPoint(0.0f, context.fbo->getHeight())); // bottom left
-    mesh.addTexCoord(ofPoint(context.screen_setting.getValue("pano_tex_x4", 0.0f),
-                             context.screen_setting.getValue("pano_tex_y4", 1.0f)));
-    mesh.addColor(ofColor(255, 255, 255));
+    mesh.addTexCoord(ofPoint(context.screen_setting.getValue("pano_tex_x2", 1.0f) * video_player->getWidth(),
+                             context.screen_setting.getValue("pano_tex_y2", 0.0f) * video_player->getHeight()));
+    
+    mesh.addTexCoord(ofPoint(context.screen_setting.getValue("pano_tex_x3", 1.0f) * video_player->getWidth(),
+                             context.screen_setting.getValue("pano_tex_y3", 1.0f) * video_player->getHeight()));
+    
+    mesh.addTexCoord(ofPoint(context.screen_setting.getValue("pano_tex_x4", 0.0f) * video_player->getWidth(),
+                             context.screen_setting.getValue("pano_tex_y4", 1.0f) * video_player->getHeight()));
 
     mesh.addTriangle(0, 1, 2);
     mesh.addTriangle(0, 2, 3);
     
-    vidtex.allocate(video_player->getWidth(), video_player->getHeight(), GL_RGBA);
-}
-
-void Vid::draw(Context &context){
-    
-    //    video_player->draw(0,0);
-    vidtex.bind();
-    ofClear(255,255,255, 0);
-    video_player->draw(0,0);
-//    ofEnableArbTex();
-    vidtex.unbind();
-
-    // bind vidtex
-    vidtex.bind();
-    glMatrixMode(GL_TEXTURE);
-    glPushMatrix();
-    glLoadIdentity();
-    ofTextureData texData = vidtex.getTextureData();
-    if(texData.textureTarget == GL_TEXTURE_RECTANGLE_ARB) {
-        glScalef(vidtex.getWidth(), vidtex.getHeight(), 1.0f);
-    } else {
-        glScalef(vidtex.getWidth() / texData.tex_w, vidtex.getHeight() / texData.tex_h, 1.0f);
-    }
-    glMatrixMode(GL_MODELVIEW);
-
-    //video_player->bind();
+    // bind video texture
+    video_player->bind();
     ofSetColor(255);
-//    ofDrawRectangle(0.0, 0.0, context.fbo->getWidth(), context.fbo->getHeight());
     mesh.draw();
-    //video_player->unbind();
-    
-    // unbind
-    vidtex.unbind();
-    glMatrixMode(GL_TEXTURE);
-    glPopMatrix();
-    glMatrixMode(GL_MODELVIEW);
+    video_player->unbind();
 }
