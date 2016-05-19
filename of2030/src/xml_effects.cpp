@@ -81,28 +81,27 @@ void XmlEffects::load(bool reload){
 
     el = el->FirstChildElement(itemNodeName);
     while(el){
+        // only consider configs with the right name if a nameFilter is specified
+        if(nameFilter == "" || el->Attribute("name") == nameFilter){
+            // allocate new instance or use previsouly allocated?
+            if(xml_count >= loaded_count){
+                // new instance
+                fx = new XmlItemSetting();
+                // add to list
+                settings.push_back(fx);
+                // increase our loaded count
+                loaded_count++;
+            } else {
+                // grab existing
+                fx = settings[xml_count];
+                fx->data.clear();
+            }
 
-        if(nameFilter != "" && el->Attribute("name") != nameFilter)
-            continue;
-
-        // allocate new instance or use previsouly allocated?
-        if(xml_count >= loaded_count){
-            // new instance
-            fx = new XmlItemSetting();
-            // add to list
-            settings.push_back(fx);
-            // increase our loaded count
-            loaded_count++;
-        } else {
-            // grab existing
-            fx = settings[xml_count];
-            fx->data.clear();
+            // populate our client instance
+            xmlLoadEffect(*el, *fx);
+            xml_count++;
         }
 
-        // populate our client instance
-        xmlLoadEffect(*el, *fx);
-
-        xml_count++;
         el = el->NextSiblingElement(itemNodeName);
     }
 
@@ -150,7 +149,8 @@ void XmlEffects::setItemParam(string settingName, string paramName, string value
 }
 
 void XmlEffects::setNameFilter(const string &filter){
-    ofLogVerbose("XmlConfigs::setNameFilter");
+    ofLogVerbose() << "XmlConfigs::setNameFilter: " << filter;
+
     if(filter == nameFilter){
         // no change
         return;
