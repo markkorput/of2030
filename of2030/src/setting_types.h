@@ -73,6 +73,12 @@ namespace of2030{
                 return defaultValue;
             return ofToFloat(it->second);
         }
+        
+        ofVec2f getPos(string name, const ofVec2f &defaultPos){
+            ofVec2f result;
+            result.set(getValue(name+"_x", defaultPos.x),getValue(name+"_y", defaultPos.y));
+            return result;
+        }
     };
 }
 
