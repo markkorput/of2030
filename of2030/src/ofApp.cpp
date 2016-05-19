@@ -41,12 +41,13 @@ void ofApp::setup(){
     ofLogVerbose() << "Loading screens.xml";
 
 #ifdef __MULTI_CLIENT_ENABLED__
-    // skip setNameFilter; we'll need all screen configurations
+    of2030::XmlConfigs::screens()->load();
 #else
     // our screens.xml loader only needs to load the configuration for our own screen
     of2030::XmlConfigs::screens()->setNameFilter(of2030::XmlSettings::instance()->client_id);
-#endif
     of2030::XmlConfigs::screens()->load();
+#endif
+    
 
     // load triggers xml
     ofLogVerbose() << "Loading triggers.xml";

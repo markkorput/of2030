@@ -150,6 +150,7 @@ void XmlEffects::setItemParam(string settingName, string paramName, string value
 }
 
 void XmlEffects::setNameFilter(const string &filter){
+    ofLogVerbose("XmlConfigs::setNameFilter");
     if(filter == nameFilter){
         // no change
         return;

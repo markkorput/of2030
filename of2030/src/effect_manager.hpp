@@ -28,6 +28,7 @@ namespace of2030{
         effects::Effect* get(string typ);
         effects::Effect* findByType(effects::EffectType typ);
         inline int getCount(){ return effects.size(); }
+        inline int getCountByType(effects::EffectType typ);
         inline const vector<effects::Effect*> &getEffects(){ return effects; }
 
     public: // events
@@ -46,7 +47,7 @@ namespace of2030{
 
     class EfficientEffectManager : public EffectManager{
         SINGLETON_CLASS_HEADER_CODE(EfficientEffectManager)
-    
+
     public: // methods
         effects::Effect* get(string typ);
         void finish(effects::Effect* effect);
