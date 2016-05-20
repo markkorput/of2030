@@ -34,7 +34,7 @@ void loadOscAddresses(TiXmlDocument &doc, OscSetting &osc_setting){
         name = child->ValueStr();
         val = child->GetText();
         osc_setting.addresses[name] = val;
-        ofLogVerbose() << "XmlSettings::loadOsc found OSC-address: " << name << ":" << val;
+        // ofLogVerbose() << "XmlSettings::loadOsc found OSC-address: " << name << ":" << val;
         child = child->NextSiblingElement();
     }
 }
@@ -74,7 +74,7 @@ void XmlSettings::load(bool reload){
 
     loadOscAddresses(xml.doc, osc_setting);
 
-    client_id = xml.getValue("of2030:client_id", "0");
+    client_id = xml.getValue("of2030:client_id", "rpi1");
     room_size = ofVec3f(xml.getValue("of2030:room_size_x", 1.0f),
                        xml.getValue("of2030:room_size_y", 1.0f),
                        xml.getValue("of2030:room_size_z", 1.0f));

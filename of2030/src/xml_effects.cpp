@@ -6,14 +6,15 @@ using namespace of2030;
 // local methods
 
 void xmlLoadEffect(TiXmlElement &xml_el, XmlItemSetting &fx){
-
+    // try to get the effect config's name from the "name" attribute
     const char *pstr = xml_el.Attribute("name");
     if(pstr)
         fx.name = pstr;
-    
-    fx.data.clear();
+
+    // loop over each child node, the child node's name become the param key
+    // the child node's content becomes the param value
     for(TiXmlElement* child = xml_el.FirstChildElement(); child != NULL; child = child->NextSiblingElement()){
-        fx.data[child->ValueStr()] = child->ToElement()->GetText();
+        fx.data[child->ValueStr()] = child->GetText();
         ofLogVerbose() << "[XmlEffect] got value: " << child->ValueStr() << "/" << child->ToElement()->GetText();
     }
 }
@@ -43,7 +44,7 @@ XmlEffects* XmlEffects::screens(){
 }
 
 
-XmlEffects::XmlEffects() : path("effects.xml"), rootNodeName("effects"), itemNodeName("effect"){
+XmlEffects::XmlEffects() : path("effects.xml"), rootNodeName("effects"), itemNodeName("effect"), nameFilter(""), bLoaded(false){
 }
 
 void XmlEffects::destroy(){
@@ -55,52 +56,64 @@ void XmlEffects::destroy(){
 }
 
 
-void XmlEffects::load(){
+void XmlEffects::load(bool reload){
+    if(bLoaded and !reload)
+        return;
+
     ofxXmlSettings xml;
     xml.loadFile(path);
 
     TiXmlDocument *doc = &xml.doc;
+    
+    // require root node
     TiXmlElement *el = doc->FirstChildElement("of2030");
-    if(el){
-        el = el->FirstChildElement(rootNodeName);
-        if(el){
+    if(!el)
+        return;
+    
+    // require xml root node
+    el = el->FirstChildElement(rootNodeName);
+    if(!el)
+        return;
 
-            XmlItemSetting *fx;
-            int loaded_count = settings.size();
-            int xml_count = 0;
+    XmlItemSetting *fx;
+    int loaded_count = settings.size();
+    int xml_count = 0;
 
-            el = el->FirstChildElement(itemNodeName);
-            while(el){
-
-                // allocate new instance or use previsouly allocated?
-                if(xml_count >= loaded_count){
-                    // new instance
-                    fx = new XmlItemSetting();
-                    // add to list
-                    settings.push_back(fx);
-                    // increase our loaded count
-                    loaded_count++;
-                } else {
-                    // grab existing
-                    fx = settings[xml_count];
-                }
-                
-                // populate our client instance
-                xmlLoadEffect(*el, *fx);
-
-                xml_count++;
-                el = el->NextSiblingElement(itemNodeName);
+    el = el->FirstChildElement(itemNodeName);
+    while(el){
+        // only consider configs with the right name if a nameFilter is specified
+        if(nameFilter == "" || el->Attribute("name") == nameFilter){
+            // allocate new instance or use previsouly allocated?
+            if(xml_count >= loaded_count){
+                // new instance
+                fx = new XmlItemSetting();
+                // add to list
+                settings.push_back(fx);
+                // increase our loaded count
+                loaded_count++;
+            } else {
+                // grab existing
+                fx = settings[xml_count];
+                fx->data.clear();
             }
 
-            // remove any too-many instances
-            while(loaded_count > xml_count){
-                fx = settings.back();
-                delete fx;
-                settings.pop_back();
-                loaded_count--;
-            }
+            // populate our client instance
+            xmlLoadEffect(*el, *fx);
+            xml_count++;
         }
+
+        el = el->NextSiblingElement(itemNodeName);
     }
+
+    // remove any too-many instances
+    while(loaded_count > xml_count){
+        fx = settings.back();
+        delete fx;
+        settings.pop_back();
+        loaded_count--;
+    }
+    
+    bLoaded=true;
 }
 
 XmlItemSetting* XmlEffects::getItem(string name){
@@ -116,6 +129,11 @@ XmlItemSetting* XmlEffects::getItem(string name){
 }
 
 void XmlEffects::setItemParam(string settingName, string paramName, string value){
+    if(nameFilter != "" && settingName != nameFilter){
+        // not relevant to us
+        return;
+    }
+
     // find existing setting
     XmlItemSetting *pSetting = getItem(settingName);
 
@@ -130,5 +148,21 @@ void XmlEffects::setItemParam(string settingName, string paramName, string value
     pSetting->data[paramName] = value;
 }
 
+void XmlEffects::setNameFilter(const string &filter){
+    ofLogVerbose() << "XmlConfigs::setNameFilter: " << filter;
+
+    if(filter == nameFilter){
+        // no change
+        return;
+    }
+
+    // update filter
+    nameFilter = filter;
+    // reload if necessary
+    if(bLoaded){
+        ofLog() << "XmlEffects::setNameFilter - reloading";
+        load(true);
+    }
+}
 
 

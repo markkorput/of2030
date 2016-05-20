@@ -37,7 +37,7 @@ namespace of2030 {
     private: // callbacks
         
         void registerRealtimeEffectCallback(bool reg=true);
-        void onRealtimeEffect(effects::Effect &effect);
+        void onEffectAdded(effects::Effect &effect);
         void fillContext(effects::Context &context, effects::Effect &effect);
         void fillContextClientInfo(effects::Context &context);
         void fillEffectSetting(effects::Effect &effect, XmlItemSetting &fxsetting);
@@ -47,8 +47,8 @@ namespace of2030 {
         
         Player *player;
         string client_id;
-        ofFbo* fbo;
-        ofFbo defaultFbo;
+        ofFbo *fbo, *fbo2;
+        ofFbo defaultFbo, defaultFbo2;
         bool bCallbacksRegistered;
     };
 }

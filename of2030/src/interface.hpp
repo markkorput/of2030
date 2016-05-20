@@ -22,9 +22,10 @@ namespace of2030 {
     
     public: // events
         ofEvent<string> triggerEvent;
+        ofEvent<string> stopTriggerEvent;
         ofEvent<string> effectEvent;
-        ofEvent<string> shaderEffectEvent;
         ofEvent<EffectConfig> effectConfigEvent;
+        ofEvent<EffectConfig> screenConfigEvent;
         ofEvent<string> controlEvent;
         ofEvent<string> songEvent;
         ofEvent<string> clipEvent;

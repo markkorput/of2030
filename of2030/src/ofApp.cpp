@@ -15,6 +15,8 @@
 #include "player.hpp"
 #include "renderer.hpp"
 #include "interface_player_bridge.hpp"
+#include "effect_manager.hpp"
+#include "video_manager.hpp"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -37,7 +39,16 @@ void ofApp::setup(){
 
     // load screens xml
     ofLogVerbose() << "Loading screens.xml";
+
+#ifndef __MULTI_CLIENT_ENABLED__
+    // our screens.xml loader only needs to load the configuration for our own screen
+    of2030::XmlConfigs::screens()->setNameFilter(of2030::XmlSettings::instance()->client_id);
+#endif
     of2030::XmlConfigs::screens()->load();
+
+    // load triggers xml
+    ofLogVerbose() << "Loading triggers.xml";
+    of2030::XmlTriggers::instance()->load();
 
     // load and start player
     ofLogVerbose() << "Starting player";
@@ -73,12 +84,15 @@ void ofApp::setup(){
     ofLogVerbose() << "Starting OscReceiver";
     of2030::OscReceiver::instance()->configure(of2030::XmlSettings::instance()->osc_setting);
     of2030::OscReceiver::instance()->setup();
+
+    ofClear(0);
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
     of2030::OscReceiver::instance()->update();
     of2030::Player::instance()->update();
+    of2030::VideoManager::instance()->update();
 }
 
 //--------------------------------------------------------------
@@ -92,11 +106,13 @@ void ofApp::draw(){
 #else
     of2030::Renderer::instance()->draw();
 #endif
-
 }
 
 //--------------------------------------------------------------
 void ofApp::exit(ofEventArgs &args){
+    // TODO; call delete_instance for all singleton instance implementations
+    of2030::EfficientEffectManager::delete_instance();
+    of2030::VideoManager::delete_instance();
 }
 
 //--------------------------------------------------------------
@@ -158,17 +174,21 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
 void ofApp::onControl(string &type){
 
     if(type == CTRL_RELOAD_SHADERS){
+        ofLog() << "reloading shader";
+        of2030::Player::instance()->clearEffects();
         of2030::ShaderManager::instance()->clear();
         return;
     }
 
     if(type == CTRL_RELOAD_EFFECTS){
+        ofLog() << "reloading effects";
         of2030::XmlTriggers::instance()->load();
         of2030::XmlConfigs::instance()->load();
         return;
     }
 
     if(type == CTRL_RELOAD_SCREENS){
+        ofLog() << "reloading screens";
         of2030::XmlConfigs::screens()->load();
 #ifdef __MULTI_CLIENT_ENABLED__
         of2030::MultiClient::instance()->setup();
@@ -177,6 +197,7 @@ void ofApp::onControl(string &type){
     }
 
     if(type == CTRL_RELOAD_SETTINGS){
+        ofLog() << "reloading settings";
         of2030::XmlSettings::instance()->load(true);
         ofSetLogLevel(of2030::XmlSettings::instance()->log_level);
         of2030::OscReceiver::instance()->configure(of2030::XmlSettings::instance()->osc_setting);

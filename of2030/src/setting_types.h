@@ -46,6 +46,13 @@ namespace of2030{
             }
         }
 
+        bool hasValue(string name){
+            std::map<string,string>::iterator it = data.find(name);
+            if(it == data.end())
+                return false;
+            return true;
+        }
+
         string getValue(string name, string defaultValue=""){
             std::map<string,string>::iterator it = data.find(name);
             if(it == data.end())
@@ -65,6 +72,12 @@ namespace of2030{
             if(it == data.end())
                 return defaultValue;
             return ofToFloat(it->second);
+        }
+        
+        ofVec2f getPos(string name, const ofVec2f &defaultPos){
+            ofVec2f result;
+            result.set(getValue(name+"_x", defaultPos.x),getValue(name+"_y", defaultPos.y));
+            return result;
         }
     };
 }

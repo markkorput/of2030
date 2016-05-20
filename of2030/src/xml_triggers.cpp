@@ -23,12 +23,12 @@ void XmlTriggers::load(){
     trigger_effects.clear();
 
     // any trigger data in xml?
-    if(!xml.pushTag("of2030:triggers"))
+    if(!xml.pushTag("of2030") || !xml.pushTag("triggers"))
         // nope, abort
         return;
 
     string triggerName, effectName;
-    
+
     for(int i=xml.getNumTags("trigger")-1; i >= 0; i--){
         triggerName = xml.getAttribute("trigger", "name", "", i);
         effectName = xml.getValue("trigger", "", i);

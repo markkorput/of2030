@@ -85,6 +85,43 @@ void OscReceiver::update(){
             continue;
         }
 
+        sub = osc_setting->addresses["screen_config"] + "/";
+        if(addr.substr(0, sub.size()) == sub){
+            sub = addr.substr(sub.size());
+            std::size_t pos = sub.find("/");
+
+            if (pos==std::string::npos){
+                ofLogError() << "could not get screen-name and param name from osc address";
+                return;
+            }
+
+            if(m.getNumArgs() < 1){
+                ofLogError() << "param value missing from OSC message";
+                return;
+            }
+            
+            // 2 params and screen config param-name end with pos?
+            // then treat as two _x and _y params
+            if(m.getNumArgs() == 2 && sub.substr(sub.size()-3) == "pos"){
+                EffectConfig cfg;
+                cfg.setting_name = sub.substr(0, pos);
+                cfg.param_name = sub.substr(pos+1) + "_x";
+                cfg.param_value = param;
+                ofNotifyEvent(m_interface->screenConfigEvent, cfg, m_interface);
+                cfg.param_name = sub.substr(pos+1) + "_y";
+                cfg.param_value = m.getArgAsString(1);
+                ofNotifyEvent(m_interface->screenConfigEvent, cfg, m_interface);
+            }
+
+            EffectConfig cfg;
+            cfg.setting_name = sub.substr(0, pos);
+            cfg.param_name = sub.substr(pos+1);
+            cfg.param_value = param;
+            
+            ofNotifyEvent(m_interface->screenConfigEvent, cfg, m_interface);
+            continue;
+        }
+
         if(addr == osc_setting->addresses["song"]){
             ofLogVerbose() << "[osc-in] song: " << param;
             ofNotifyEvent(m_interface->songEvent, param, m_interface);
@@ -109,18 +146,17 @@ void OscReceiver::update(){
             continue;
         }
 
-        if(addr == osc_setting->addresses["shader"]){
-            ofNotifyEvent(m_interface->shaderEffectEvent, param, m_interface);
+        if(addr == osc_setting->addresses["stop"]){
+            ofNotifyEvent(m_interface->stopTriggerEvent, param, m_interface);
             continue;
         }
-
-        sub = osc_setting->addresses["shader"] + "/";
+    
+        sub = osc_setting->addresses["stop"] + "/";
         if(addr.substr(0, sub.size()) == sub){
             param = addr.substr(sub.size());
-            ofNotifyEvent(m_interface->shaderEffectEvent, param, m_interface);
+            ofNotifyEvent(m_interface->stopTriggerEvent, param, m_interface);
             continue;
         }
-
 
         if(addr == osc_setting->addresses["effect"]){
             ofNotifyEvent(m_interface->effectEvent, param, m_interface);
@@ -129,12 +165,19 @@ void OscReceiver::update(){
 
         sub = osc_setting->addresses["effect"] + "/";
         if(addr.substr(0, sub.size()) == sub){
-            param = addr.substr(sub.size()+1);
+            param = addr.substr(sub.size());
             ofNotifyEvent(m_interface->effectEvent, param, m_interface);
             continue;
         }
 
         if(addr == osc_setting->addresses["control"]){
+            ofNotifyEvent(m_interface->controlEvent, param, m_interface);
+            continue;
+        }
+
+        sub = osc_setting->addresses["control"] + "/";
+        if(addr.substr(0, sub.size()) == sub){
+            param = addr.substr(sub.size());
             ofNotifyEvent(m_interface->controlEvent, param, m_interface);
             continue;
         }
