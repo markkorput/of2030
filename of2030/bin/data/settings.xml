@@ -1,7 +1,7 @@
 <of2030>
-  <client_id>rpi1</client_id>
   <app>
     <log_level>notice</log_level>
+    <log_alive_interval>10.0</log_alive_interval>
   </app>
   <osc>
     <port>2031</port><!-- 0 (zero) means disabled -->
@@ -16,8 +16,7 @@
       <screen_config>/scr</screen_config>
     </addresses>
   </osc>
-  <screen_width>768</screen_width>
-  <screen_height>576</screen_height>
+
   <room_size_x>9.0</room_size_x>
   <room_size_y>2.0</room_size_y>
   <room_size_z>16.5</room_size_z>

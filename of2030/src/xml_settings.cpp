@@ -59,27 +59,40 @@ void XmlSettings::load(bool reload){
     if(loaded && !reload) return;
 
     ofxXmlSettings xml;
-    xml.loadFile(path);
 
+    // load client id from separate file?
+    if(client_id_path != ""){
+        xml.loadFile(client_id_path);
+        client_id = xml.getValue("of2030:client_id", "rpi1");
+        xml.loadFile(path);
+    } else {
+        // load client id from main settings file
+        xml.loadFile(path);
+        client_id = xml.getValue("of2030:client_id", "rpi1");
+    }
+    
+    ofLog() << "client id: " << client_id;
 
+    // logging
     log_level_name = xml.getValue("of2030:app:log_level", "");
     if(log_level_name == "verbose") log_level = OF_LOG_VERBOSE;
     else if(log_level_name == "silent") log_level = OF_LOG_SILENT;
     else if(log_level_name == "warning") log_level = OF_LOG_WARNING;
     else log_level = OF_LOG_NOTICE; // if(log_level_name == "notice")
     ofLogVerbose() << "log_level: " << log_level_name;
+    log_alive_interval = xml.getValue("of2030:app:log_alive_interval", 100.0f);
 
+    // osc
     osc_setting.port = xml.getValue("of2030:osc:port", 0);
     ofLogVerbose() << "OSC port: " << osc_setting.port;
 
     loadOscAddresses(xml.doc, osc_setting);
 
-    client_id = xml.getValue("of2030:client_id", "rpi1");
-    room_size = ofVec3f(xml.getValue("of2030:room_size_x", 1.0f),
-                       xml.getValue("of2030:room_size_y", 1.0f),
-                       xml.getValue("of2030:room_size_z", 1.0f));
-
 #ifdef __MULTI_CLIENT_ENABLED__
+    room_size = ofVec3f(xml.getValue("of2030:room_size_x", 1.0f),
+                        xml.getValue("of2030:room_size_y", 1.0f),
+                        xml.getValue("of2030:room_size_z", 1.0f));
+
     multi_client_ids.clear();
     if(xml.pushTag("of2030")){
         if(xml.pushTag("multi")){
