@@ -23,7 +23,7 @@ namespace of2030{
 
     public: // methods
         XmlSettings() : path("settings.xml"), client_id_path("client_id.xml"), log_level(OF_LOG_NOTICE){};
-        void load(bool reload=false);
+        bool load(bool reload=false);
         // void save();
 
     public: // properties

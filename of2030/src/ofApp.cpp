@@ -28,7 +28,10 @@ void ofApp::setup(){
 
     // load settings xml
     ofLogVerbose() << "Loading settings.xml";
-    of2030::XmlSettings::instance()->load();
+    if(!of2030::XmlSettings::instance()->load()){
+        ofLogError() << "Could not load settings.xml, aborting";
+        std::exit(1);
+    }
 
     // apply log-level setting
     ofLogVerbose() << "Set log level based on setting: " << of2030::XmlSettings::instance()->log_level_name;

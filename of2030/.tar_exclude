@@ -1,0 +1,7 @@
+obj
+openFrameworks-Info.plist
+Project.xcconfig
+emptyExample.xcodeproj
+.DS_Store
+bin/*.app
+.git

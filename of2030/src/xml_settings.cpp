@@ -53,10 +53,10 @@ XmlSettings* XmlSettings::instance(){
 }
 
 
-void XmlSettings::load(bool reload){
+bool XmlSettings::load(bool reload){
     ofLogVerbose() << "XmlSettings::load";
 
-    if(loaded && !reload) return;
+    if(loaded && !reload) return false;
 
     ofxXmlSettings xml;
 
@@ -64,10 +64,14 @@ void XmlSettings::load(bool reload){
     if(client_id_path != ""){
         xml.loadFile(client_id_path);
         client_id = xml.getValue("of2030:client_id", "rpi1");
-        xml.loadFile(path);
+        if(!xml.loadFile(path)){
+            return false;
+        }
     } else {
         // load client id from main settings file
-        xml.loadFile(path);
+        if(!xml.loadFile(path)){
+            return false;
+        }
         client_id = xml.getValue("of2030:client_id", "rpi1");
     }
     
@@ -111,6 +115,7 @@ void XmlSettings::load(bool reload){
 #endif // __MULTI_CLIENT_ENABLED__
 
     loaded = true;
+    return true;
 }
 
 //void XmlSettings::save(){
