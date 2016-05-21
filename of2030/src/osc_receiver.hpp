@@ -27,6 +27,7 @@ namespace of2030 {
         void update();
         void destroy();
         inline bool isConnected(){ return bConnected; }
+        void processMessage(ofxOscMessage &m);
 
     private: // methods
         bool connect();

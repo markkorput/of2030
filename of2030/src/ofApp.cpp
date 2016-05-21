@@ -17,6 +17,7 @@
 #include "interface_player_bridge.hpp"
 #include "effect_manager.hpp"
 #include "video_manager.hpp"
+#include "osc_playback_manager.hpp"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -85,11 +86,13 @@ void ofApp::setup(){
     of2030::OscReceiver::instance()->configure(of2030::XmlSettings::instance()->osc_setting);
     of2030::OscReceiver::instance()->setup();
 
+    of2030::OscPlaybackManager::instance()->start("clock_spot.csv");
     ofClear(0);
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
+    of2030::OscPlaybackManager::instance()->update();
     of2030::OscReceiver::instance()->update();
     of2030::Player::instance()->update();
     of2030::VideoManager::instance()->update();
