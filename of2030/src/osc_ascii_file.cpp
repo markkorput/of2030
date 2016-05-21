@@ -8,8 +8,6 @@
 
 #include "osc_ascii_file.hpp"
 
-using namespace of2030;
-
 OscAsciiFile::OscAsciiFile() : file(NULL){
     // last_line.message.setRemoteEndpoint("127.0.0.1", 2031);
 }
@@ -26,7 +24,7 @@ void OscAsciiFile::load(string path){
     file = new std::ifstream(path);
 }
 
-const OscAsciiLine* OscAsciiFile::next_line(){
+OscAsciiLine* OscAsciiFile::next_line(){
     if(!file){
         ofLogWarning() << "[OscAsciiFile::next_line] file == NULL";
         return NULL;

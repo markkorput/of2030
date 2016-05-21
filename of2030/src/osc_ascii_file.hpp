@@ -12,27 +12,23 @@
 #include <stdio.h>
 #include "ofxOsc.h"
 
-namespace of2030{
-    typedef struct {
-        float timestamp;
-        ofxOscMessage message;
-    } OscAsciiLine;
+typedef struct {
+    float timestamp;
+    ofxOscMessage message;
+} OscAsciiLine;
 
-    class OscAsciiFile {
-    public: // methods
-        OscAsciiFile();
-        ~OscAsciiFile(){ destroy(); }
-        void destroy();
+class OscAsciiFile {
+public: // methods
+    OscAsciiFile();
+    ~OscAsciiFile(){ destroy(); }
+    void destroy();
 
-        void load(string path);
-        // void setLoop(bool _loop){ loop = _loop; }
-        const OscAsciiLine* next_line();
+    void load(string path);
+    OscAsciiLine* next_line();
 
-    private: //attributes
-        // bool loop;
-        OscAsciiLine last_line;
-        std::ifstream *file;
-    };
+private: //attributes
+    OscAsciiLine last_line;
+    std::ifstream *file;
+};
 
-}
 #endif /* osc_ascii_file_hpp */

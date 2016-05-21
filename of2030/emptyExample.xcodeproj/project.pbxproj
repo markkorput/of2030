@@ -19,6 +19,8 @@
 		4D5E5EB41CE8B97A00D5D33D /* effect_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D5E5EB21CE8B97A00D5D33D /* effect_manager.cpp */; };
 		4D66030C1CDF6CE70061035D /* xml_triggers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D66030A1CDF6CE70061035D /* xml_triggers.cpp */; };
 		4D7CFBE51CEFD0A2006E706C /* osc_ascii_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D7CFBE31CEFD0A2006E706C /* osc_ascii_file.cpp */; };
+		4D7CFBE81CEFDB3F006E706C /* osc_ascii_file_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D7CFBE61CEFDB3F006E706C /* osc_ascii_file_manager.cpp */; };
+		4D7CFBEB1CEFDC0D006E706C /* osc_playback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D7CFBE91CEFDC0D006E706C /* osc_playback.cpp */; };
 		4D7E54FD1CC6AD1D00DF588E /* interface_player_bridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D7E54FB1CC6AD1D00DF588E /* interface_player_bridge.cpp */; };
 		4D7E55021CC6C71B00DF588E /* renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D7E55001CC6C71B00DF588E /* renderer.cpp */; };
 		4D9B296B1CC64190005D65E9 /* ofxOscBundle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D9B29441CC64190005D65E9 /* ofxOscBundle.cpp */; };
@@ -105,6 +107,10 @@
 		4D66030B1CDF6CE70061035D /* xml_triggers.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = xml_triggers.hpp; sourceTree = "<group>"; };
 		4D7CFBE31CEFD0A2006E706C /* osc_ascii_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = osc_ascii_file.cpp; sourceTree = "<group>"; };
 		4D7CFBE41CEFD0A2006E706C /* osc_ascii_file.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = osc_ascii_file.hpp; sourceTree = "<group>"; };
+		4D7CFBE61CEFDB3F006E706C /* osc_ascii_file_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = osc_ascii_file_manager.cpp; sourceTree = "<group>"; };
+		4D7CFBE71CEFDB3F006E706C /* osc_ascii_file_manager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = osc_ascii_file_manager.hpp; sourceTree = "<group>"; };
+		4D7CFBE91CEFDC0D006E706C /* osc_playback.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = osc_playback.cpp; sourceTree = "<group>"; };
+		4D7CFBEA1CEFDC0D006E706C /* osc_playback.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = osc_playback.hpp; sourceTree = "<group>"; };
 		4D7E54FB1CC6AD1D00DF588E /* interface_player_bridge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = interface_player_bridge.cpp; sourceTree = "<group>"; };
 		4D7E54FC1CC6AD1D00DF588E /* interface_player_bridge.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = interface_player_bridge.hpp; sourceTree = "<group>"; };
 		4D7E55001CC6C71B00DF588E /* renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = renderer.cpp; sourceTree = "<group>"; };
@@ -421,6 +427,10 @@
 				4D9B297E1CC64F5D005D65E9 /* interface.hpp */,
 				4D9B298F1CC65268005D65E9 /* osc_receiver.cpp */,
 				4D9B29901CC65268005D65E9 /* osc_receiver.hpp */,
+				4D7CFBE61CEFDB3F006E706C /* osc_ascii_file_manager.cpp */,
+				4D7CFBE71CEFDB3F006E706C /* osc_ascii_file_manager.hpp */,
+				4D7CFBE91CEFDC0D006E706C /* osc_playback.cpp */,
+				4D7CFBEA1CEFDC0D006E706C /* osc_playback.hpp */,
 			);
 			name = communication;
 			sourceTree = "<group>";
@@ -611,6 +621,7 @@
 				4D4C03A21CDCF45E009EEB63 /* xml_effects.cpp in Sources */,
 				4DE274CA1CCE1D9300F2D470 /* xml_settings.cpp in Sources */,
 				4D9B299C1CC65D82005D65E9 /* tinyxml.cpp in Sources */,
+				4D7CFBE81CEFDB3F006E706C /* osc_ascii_file_manager.cpp in Sources */,
 				4D3F90D61CED1C4A00E6C0E1 /* voice.cpp in Sources */,
 				4D3B38F51CC66E16004C8994 /* jsoncpp.cpp in Sources */,
 				4D9B296B1CC64190005D65E9 /* ofxOscBundle.cpp in Sources */,
@@ -624,6 +635,7 @@
 				4D5E5EB41CE8B97A00D5D33D /* effect_manager.cpp in Sources */,
 				4D7E55021CC6C71B00DF588E /* renderer.cpp in Sources */,
 				4D9B297F1CC64F5D005D65E9 /* interface.cpp in Sources */,
+				4D7CFBEB1CEFDC0D006E706C /* osc_playback.cpp in Sources */,
 				4D9B299E1CC65D82005D65E9 /* tinyxmlparser.cpp in Sources */,
 				4D9B29911CC65268005D65E9 /* osc_receiver.cpp in Sources */,
 				4D9B29751CC64190005D65E9 /* OscReceivedElements.cpp in Sources */,
