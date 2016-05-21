@@ -59,7 +59,19 @@ void XmlSettings::load(bool reload){
     if(loaded && !reload) return;
 
     ofxXmlSettings xml;
-    xml.loadFile(path);
+
+    // load client id from separate file?
+    if(client_id_path != ""){
+        xml.loadFile(client_id_path);
+        client_id = xml.getValue("of2030:client_id", "rpi1");
+        xml.loadFile(path);
+    } else {
+        // load client id from main settings file
+        xml.loadFile(path);
+        client_id = xml.getValue("of2030:client_id", "rpi1");
+    }
+    
+    ofLog() << "client id: " << client_id;
 
     // logging
     log_level_name = xml.getValue("of2030:app:log_level", "");
@@ -75,7 +87,6 @@ void XmlSettings::load(bool reload){
     ofLogVerbose() << "OSC port: " << osc_setting.port;
 
     loadOscAddresses(xml.doc, osc_setting);
-    client_id = xml.getValue("of2030:client_id", "rpi1");
 
 #ifdef __MULTI_CLIENT_ENABLED__
     room_size = ofVec3f(xml.getValue("of2030:room_size_x", 1.0f),
