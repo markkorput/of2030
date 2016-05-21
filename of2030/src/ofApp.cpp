@@ -86,7 +86,11 @@ void ofApp::setup(){
     of2030::OscReceiver::instance()->configure(of2030::XmlSettings::instance()->osc_setting);
     of2030::OscReceiver::instance()->setup();
 
-    of2030::OscPlaybackManager::instance()->start("clock_spot.csv");
+    // for debugging; start the clock preset
+    // of2030::OscPlaybackManager::instance()->start("clock_spot.csv");
+
+    // using the player's time as main timing mechanism
+    next_log_alive_time = of2030::Player::instance()->getTime();
     ofClear(0);
 }
 
@@ -96,6 +100,13 @@ void ofApp::update(){
     of2030::OscReceiver::instance()->update();
     of2030::Player::instance()->update();
     of2030::VideoManager::instance()->update();
+
+    // time for a new log message to indicate aliveness
+    float t = of2030::Player::instance()->getTime();
+    if(t >= next_log_alive_time){
+        ofLog() << "alive time (s): " << t;
+        next_log_alive_time = t + of2030::XmlSettings::instance()->log_alive_interval;
+    }
 }
 
 //--------------------------------------------------------------
@@ -116,6 +127,7 @@ void ofApp::exit(ofEventArgs &args){
     // TODO; call delete_instance for all singleton instance implementations
     of2030::EfficientEffectManager::delete_instance();
     of2030::VideoManager::delete_instance();
+    ofLog() << "shutting down...\n";
 }
 
 //--------------------------------------------------------------

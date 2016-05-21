@@ -21,27 +21,30 @@ namespace of2030{
     private:
         static XmlSettings* singleton;
 
-    public:
+    public: // methods
         XmlSettings() : path("settings.xml"), log_level(OF_LOG_NOTICE){};
         void load(bool reload=false);
         // void save();
 
-        std::string path;
-        OscSetting osc_setting;
-
-        bool loaded;
+    public: // properties
         string client_id;
-        ofVec3f room_size;
-        
+        OscSetting osc_setting;
+        // logging
+        string log_level_name;
+        ofLogLevel log_level;
+        float log_alive_interval;
+
 #ifdef __MULTI_CLIENT_ENABLED__
+        ofVec3f room_size;
         vector<string> multi_client_ids;
         bool multi_debug;
         float multi_scale;
         ofVec3f multi_translate;
 #endif
 
-        string log_level_name;
-        ofLogLevel log_level;
+    private: // attributes
+        bool loaded;
+        std::string path;
     };
 }
 

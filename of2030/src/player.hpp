@@ -49,7 +49,7 @@ namespace of2030{
         inline void setSong(const string &newSong){ song = newSong; }
         inline void setClip(const string &newClip){ clip = newClip; }
 
-        float getTime(){ return m_time; }
+        inline float getTime(){ return m_time; }
 
     protected: // helper methods
 

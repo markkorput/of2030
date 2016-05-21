@@ -21,6 +21,9 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
     
-        // callbacks
+    private: // callbacks
         void onControl(string &type);
+
+    private: // attributes
+        float next_log_alive_time;
 };
