@@ -59,6 +59,35 @@
       <pano_coord3_y>1.0</pano_coord3_y>
       <pano_coord4_x>0.0</pano_coord4_x>
       <pano_coord4_y>1.0</pano_coord4_y>
+
+      <!-- roof -->
+      <roof_coord1_x>0.0</roof_coord1_x>
+      <roof_coord1_y>0.0</roof_coord1_y>
+      <roof_coord2_x>0.32</roof_coord2_x>
+      <roof_coord2_y>0.0</roof_coord2_y>
+      <roof_coord3_x>0.32</roof_coord3_x>
+      <roof_coord3_y>1.0</roof_coord3_y>
+      <roof_coord4_x>0.0</roof_coord4_x>
+      <roof_coord4_y>1.0</roof_coord4_y>
+      <!-- wall -->
+      <wall_coord1_x>0.0</wall_coord1_x>
+      <wall_coord1_y>0.0</wall_coord1_y>
+      <wall_coord2_x>0.32</wall_coord2_x>
+      <wall_coord2_y>0.0</wall_coord2_y>
+      <wall_coord3_x>0.32</wall_coord3_x>
+      <wall_coord3_y>1.0</wall_coord3_y>
+      <wall_coord4_x>0.0</wall_coord4_x>
+      <wall_coord4_y>1.0</wall_coord4_y>
+
+      <block1_coord1_x>0.0</block1_coord1_x>
+      <block1_coord1_y>0.0</block1_coord1_y>
+      <block1_coord2_x>0.32</block1_coord2_x>
+      <block1_coord2_y>0.0</block1_coord2_y>
+      <block1_coord3_x>0.32</block1_coord3_x>
+      <block1_coord3_y>1.0</block1_coord3_y>
+      <block1_coord4_x>0.0</block1_coord4_x>
+      <block1_coord4_y>1.0</block1_coord4_y>
+
     </screen>
 
     <!-- <screen name="rpi2">
