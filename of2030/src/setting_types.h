@@ -79,6 +79,12 @@ namespace of2030{
             result.set(getValue(name+"_x", defaultPos.x),getValue(name+"_y", defaultPos.y));
             return result;
         }
+
+        ofVec3f getValue(string name, const ofVec3f &defaultValue){
+            return ofVec3f(getValue(name+"_x", defaultValue.x),
+                           getValue(name+"_y", defaultValue.y),
+                           getValue(name+"_z", defaultValue.z));
+        }
     };
 }
 
