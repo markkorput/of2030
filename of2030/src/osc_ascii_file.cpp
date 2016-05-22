@@ -8,32 +8,34 @@
 
 #include "osc_ascii_file.hpp"
 
-OscAsciiFile::OscAsciiFile() : file(NULL){
-    // last_line.message.setRemoteEndpoint("127.0.0.1", 2031);
+OscAsciiFile::OscAsciiFile(){
 }
 
 void OscAsciiFile::destroy(){
-    if(file)
-        delete file;
+    if(infile.is_open())
+        infile.close();
+
+    if(outfile.is_open())
+        outfile.close();
 }
 
 void OscAsciiFile::load(string path){
-    if(file)
-        delete file;
+    if(infile.is_open())
+        infile.close();
 
-    file = new std::ifstream(path);
+    infile.open(path);
 }
 
 OscAsciiLine* OscAsciiFile::next_line(){
-    if(!file){
-        ofLogWarning() << "[OscAsciiFile::next_line] file == NULL";
+    if(!infile.is_open()){
+        ofLogWarning() << "[OscAsciiFile::next_line] infile not loaded";
         return NULL;
     }
 
     string line, column, value;
 
     // read line from file
-    while(std::getline(*file, line)){
+    while(std::getline(infile, line)){
         std::stringstream linestream(line);
 
         // read timestamp from line
@@ -65,7 +67,8 @@ OscAsciiLine* OscAsciiFile::next_line(){
             }
             
             if(column != "s"){
-                ofLogWarning() << "OscAsciiFile only support f (float), i (int) and s (string) args, treating as string -- was:", column;
+                ofLogWarning() << "OscAsciiFile only support f (float), i (int) and s (string) args, treating as string";
+                ofLogWarning() << "got line: " << line;
             }
             
             msg->addStringArg(value);
@@ -75,5 +78,54 @@ OscAsciiLine* OscAsciiFile::next_line(){
         return &last_line;
     }
 
+    // done
+    infile.close();
     return NULL;
 }
+
+void OscAsciiFile::start_writing(string path){
+    if(outfile.is_open()){
+        stop_writing();
+    }
+
+    outfile.open(path);
+    start_time = ofGetElapsedTimef();
+    first_message_time = 0.0f;
+}
+
+void OscAsciiFile::stop_writing(){
+    outfile.close();
+}
+
+void OscAsciiFile::write_line(ofxOscMessage &msg){
+    float t = ofGetElapsedTimef();
+
+    if(first_message_time < start_time){
+        first_message_time = t;
+        t = 0.0;
+    } else {
+        t -= first_message_time;
+    }
+
+    write_line(msg, t);
+}
+
+void OscAsciiFile::write_line(const ofxOscMessage &msg, float timestamp){
+    string value;
+    char typ;
+
+    // write timestamp and message address
+    outfile << timestamp << ',' << msg.getAddress();
+
+    // write args (type and value)
+    for(int i=0; i<msg.getNumArgs(); i++){
+        typ = msg.getArgType(i);
+        value = msg.getArgAsString(i);
+        outfile << ',' << typ << ',' << value;
+    }
+
+    // finalise this line
+    outfile << '\n';
+    // ofLog() << "OscAsciiFile::write_line";
+}
+

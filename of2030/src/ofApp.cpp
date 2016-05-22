@@ -18,6 +18,8 @@
 #include "effect_manager.hpp"
 #include "video_manager.hpp"
 #include "osc_playback_manager.hpp"
+#include "osc_recorder.hpp""
+
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -90,7 +92,8 @@ void ofApp::setup(){
     of2030::OscReceiver::instance()->setup();
 
     // for debugging; start the clock preset
-    // of2030::OscPlaybackManager::instance()->start("clock_spot.csv");
+    of2030::OscPlaybackManager::instance()->start("_rec.csv");
+    of2030::OscPlaybackManager::instance()->start("_clock_spot.csv");
 
     // using the player's time as main timing mechanism
     next_log_alive_time = of2030::Player::instance()->getTime();
@@ -127,15 +130,19 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::exit(ofEventArgs &args){
+    ofLog() << "shutting down...\n";
+
     // TODO; call delete_instance for all singleton instance implementations
     of2030::EfficientEffectManager::delete_instance();
     of2030::VideoManager::delete_instance();
-    ofLog() << "shutting down...\n";
+    of2030::OscRecorder::delete_instance();
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-
+    if(key == 'r'){
+        of2030::OscRecorder::instance()->toggle_record();
+    }
 }
 
 //--------------------------------------------------------------

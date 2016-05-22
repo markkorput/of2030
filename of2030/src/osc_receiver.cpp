@@ -50,6 +50,7 @@ void OscReceiver::update(){
     while(m_oscReceiver.hasWaitingMessages() && message_count < MAX_MESSAGES_PER_CYCLE){
         // get the next message
         m_oscReceiver.getNextMessage(m);
+        ofNotifyEvent(newMessageEvent, m, this);
         message_count++;
         processMessage(m);
     }
