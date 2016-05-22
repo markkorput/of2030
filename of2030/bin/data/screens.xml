@@ -5,29 +5,31 @@
     <screen name="rpi2"><param1>value1</param1></screen>
     -->
     <screen name="rpi1">
+      <!-- resolution -->
       <pixel_width>768</pixel_width>
       <pixel_height>576</pixel_height>
+      <!-- size of (projected) image in meters -->
       <world_width>16.5</world_width>
       <world_height>2</world_height>
-
+      <!-- real-world-position of the center of the screen in meters -->
       <pos_x>-4.5</pos_x>
       <pos_y>0.0</pos_y>
       <pos_z>0.0</pos_z>
+      <!-- orientation of the screen -->
       <cam_look_at_x>-9.0</cam_look_at_x>
       <cam_look_at_y>0.0</cam_look_at_y>
       <cam_look_at_z>0.0</cam_look_at_z>
-
+      <!-- the area of the panoram that this screen shows -->
       <pano_start>0.0</pano_start>
       <pano_end>0.324</pano_end>
+      <!-- the area of the tunnel that this screen shows -->
       <tunnel_start>0.0</tunnel_start>
       <tunnel_end>1.0</tunnel_end>
-
       <!-- spot (center position, width, height in screen factors) -->
       <spot_x>0.6</spot_x>
       <spot_y>0.5</spot_y>
       <spot_w>0.1</spot_w>
       <spot_h>0.25</spot_h>
-
       <!-- voice bar -->
       <voice_coord1_x>0.381</voice_coord1_x>
       <voice_coord1_y>0.7</voice_coord1_y>
@@ -37,16 +39,15 @@
       <voice_coord3_y>0.775</voice_coord3_y>
       <voice_coord4_x>0.375</voice_coord4_x>
       <voice_coord4_y>0.625</voice_coord4_y>
-
       <!-- pano texture is used for textures (images/video) that map over the entire surrounding wall -->
-      <pano_tex1pos_x>0.0</pano_tex1pos_x>
-      <pano_tex1pos_y>0.0</pano_tex1pos_y>
-      <pano_tex2pos_x>0.32</pano_tex2pos_x>
-      <pano_tex2pos_y>0.0</pano_tex2pos_y>
-      <pano_tex3pos_x>0.32</pano_tex3pos_x>
-      <pano_tex3pos_y>1.0</pano_tex3pos_y>
-      <pano_tex4pos_x>0.0</pano_tex4pos_x>
-      <pano_tex4pos_y>1.0</pano_tex4pos_y>
+      <pano_coord1_x>0.0</pano_coord1_x>
+      <pano_coord1_y>0.0</pano_coord1_y>
+      <pano_coord2_x>0.32</pano_coord2_x>
+      <pano_coord2_y>0.0</pano_coord2_y>
+      <pano_coord3_x>0.32</pano_coord3_x>
+      <pano_coord3_y>1.0</pano_coord3_y>
+      <pano_coord4_x>0.0</pano_coord4_x>
+      <pano_coord4_y>1.0</pano_coord4_y>
     </screen>
 
     <!-- <screen name="rpi2">
@@ -93,14 +94,14 @@
       <pano_start>0.324</pano_start>
       <pano_end>0.5</pano_end>
 
-      <pano_tex1pos_x>0.32</pano_tex1pos_x>
-      <pano_tex1pos_y>0.0</pano_tex1pos_y>
-      <pano_tex2pos_x>0.5</pano_tex2pos_x>
-      <pano_tex2pos_y>0.0</pano_tex2pos_y>
-      <pano_tex3pos_x>0.5</pano_tex3pos_x>
-      <pano_tex3pos_y>1.0</pano_tex3pos_y>
-      <pano_tex4pos_x>0.32</pano_tex4pos_x>
-      <pano_tex4pos_y>1.0</pano_tex4pos_y>
+      <pano_coord1_x>0.32</pano_coord1_x>
+      <pano_coord1_y>0.0</pano_coord1_y>
+      <pano_coord2_x>0.5</pano_coord2_x>
+      <pano_coord2_y>0.0</pano_coord2_y>
+      <pano_coord3_x>0.5</pano_coord3_x>
+      <pano_coord3_y>1.0</pano_coord3_y>
+      <pano_coord4_x>0.32</pano_coord4_x>
+      <pano_coord4_y>1.0</pano_coord4_y>
     </screen>
 
     <screen name="rpi5">
@@ -117,14 +118,14 @@
       <pano_start>0.5</pano_start>
       <pano_end>0.824</pano_end>
 
-      <pano_tex1pos_x>0.5</pano_tex1pos_x>
-      <pano_tex1pos_y>0.0</pano_tex1pos_y>
-      <pano_tex2pos_x>0.82</pano_tex2pos_x>
-      <pano_tex2pos_y>0.0</pano_tex2pos_y>
-      <pano_tex3pos_x>0.82</pano_tex3pos_x>
-      <pano_tex3pos_y>1.0</pano_tex3pos_y>
-      <pano_tex4pos_x>0.5</pano_tex4pos_x>
-      <pano_tex4pos_y>1.0</pano_tex4pos_y>
+      <pano_coord1_x>0.5</pano_coord1_x>
+      <pano_coord1_y>0.0</pano_coord1_y>
+      <pano_coord2_x>0.82</pano_coord2_x>
+      <pano_coord2_y>0.0</pano_coord2_y>
+      <pano_coord3_x>0.82</pano_coord3_x>
+      <pano_coord3_y>1.0</pano_coord3_y>
+      <pano_coord4_x>0.5</pano_coord4_x>
+      <pano_coord4_y>1.0</pano_coord4_y>
     </screen>
 
     <!-- <screen name="rpi6">
@@ -171,14 +172,14 @@
       <pano_start>0.824</pano_start>
       <pano_end>1.0</pano_end>
 
-      <pano_tex1pos_x>0.82</pano_tex1pos_x>
-      <pano_tex1pos_y>0.0</pano_tex1pos_y>
-      <pano_tex2pos_x>1.0</pano_tex2pos_x>
-      <pano_tex2pos_y>0.0</pano_tex2pos_y>
-      <pano_tex3pos_x>1.0</pano_tex3pos_x>
-      <pano_tex3pos_y>1.0</pano_tex3pos_y>
-      <pano_tex4pos_x>0.82</pano_tex4pos_x>
-      <pano_tex4pos_y>1.0</pano_tex4pos_y>
+      <pano_coord1_x>0.82</pano_coord1_x>
+      <pano_coord1_y>0.0</pano_coord1_y>
+      <pano_coord2_x>1.0</pano_coord2_x>
+      <pano_coord2_y>0.0</pano_coord2_y>
+      <pano_coord3_x>1.0</pano_coord3_x>
+      <pano_coord3_y>1.0</pano_coord3_y>
+      <pano_coord4_x>0.82</pano_coord4_x>
+      <pano_coord4_y>1.0</pano_coord4_y>
     </screen>
 
   </screens>
