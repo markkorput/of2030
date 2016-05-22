@@ -29,14 +29,14 @@
       <spot_h>0.25</spot_h>
 
       <!-- voice bar -->
-      <voice_x1>0.381</voice_x1>
-      <voice_y1>0.7</voice_y1>
-      <voice_x2>0.725</voice_x2>
-      <voice_y2>0.85</voice_y2>
-      <voice_x3>0.725</voice_x3>
-      <voice_y3>0.775</voice_y3>
-      <voice_x4>0.375</voice_x4>
-      <voice_y4>0.625</voice_y4>
+      <voice_coord1_x>0.381</voice_coord1_x>
+      <voice_coord1_y>0.7</voice_coord1_y>
+      <voice_coord2_x>0.725</voice_coord2_x>
+      <voice_coord2_y>0.85</voice_coord2_y>
+      <voice_coord3_x>0.725</voice_coord3_x>
+      <voice_coord3_y>0.775</voice_coord3_y>
+      <voice_coord4_x>0.375</voice_coord4_x>
+      <voice_coord4_y>0.625</voice_coord4_y>
 
       <!-- pano texture is used for textures (images/video) that map over the entire surrounding wall -->
       <pano_tex1pos_x>0.0</pano_tex1pos_x>
