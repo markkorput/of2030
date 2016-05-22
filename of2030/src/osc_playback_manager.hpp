@@ -21,7 +21,7 @@ namespace of2030{
     public:
         ~OscPlaybackManager(){ clear(); }
 
-        void start(string recording_path);
+        void start(string name);
         void update();
         
         void clear();
@@ -30,6 +30,7 @@ namespace of2030{
         bool remove(OscPlayback *playback);
     
     private:
+        string nameToPath(const string &name);
         void onMessage(ofxOscMessage &message);
     
     private:

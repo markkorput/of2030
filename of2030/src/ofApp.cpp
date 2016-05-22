@@ -210,7 +210,11 @@ void ofApp::gotMessage(ofMessage msg){
 
 //--------------------------------------------------------------
 void ofApp::dragEvent(ofDragInfo dragInfo){
-
+#ifdef __DRAGNDROP__
+    for(auto file: dragInfo.files){
+        of2030::OscPlaybackManager::instance()->start(file);
+    }
+#endif // __DRAGNDROP__
 }
 
 
