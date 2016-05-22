@@ -50,6 +50,7 @@ namespace of2030 {
         ofFbo *fbo, *fbo2;
         ofFbo defaultFbo, defaultFbo2;
         bool bCallbacksRegistered;
+        float screenWidth, screenHeight;
     };
 }
 
