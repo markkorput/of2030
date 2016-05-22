@@ -26,9 +26,9 @@ void ofApp::setup(){
     ofLogVerbose() << "Redirect logging to log.txt";
     ofLogToFile("log.txt", true);
 
-//#ifdef __SET_DATA_ROOT_PATH__
-//    ofSetDataPathRoot("data/");
-//#endif
+#ifdef __SET_DATA_ROOT_PATH__
+    ofSetDataPathRoot("data/");
+#endif
 
     // load settings xml
     ofLogVerbose() << "Loading settings.xml";
