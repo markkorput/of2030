@@ -15,6 +15,7 @@
     #define __BOOL_OSC_SETUP__
 #else
 //    #define __SET_DATA_ROOT_PATH__
+    #define __HIDE_CURSOR__
 #endif
 
 #define CTRL_RELOAD_CLIENTS "reload_clients"

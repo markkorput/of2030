@@ -26,6 +26,10 @@ void ofApp::setup(){
     ofLogVerbose() << "Redirect logging to log.txt";
     ofLogToFile("log.txt", true);
 
+#ifdef __HIDE_CURSOR__
+    ofHideCursor();
+#endif
+
 #ifdef __SET_DATA_ROOT_PATH__
     ofSetDataPathRoot("data/");
 #endif
