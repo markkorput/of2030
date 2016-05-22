@@ -40,10 +40,10 @@ void Vid::draw(Context &context){
 
     ofVec2f vidSize = ofVec2f(video_player->getWidth(), video_player->getHeight());
 
-    mesh.addTexCoord(ofPoint(context.screen_setting.getPos("pano_tex1pos", ofVec2f(0.0f, 0.0f)) * vidSize));
-    mesh.addTexCoord(ofPoint(context.screen_setting.getPos("pano_tex2pos", ofVec2f(0.0f, 0.0f)) * vidSize));
-    mesh.addTexCoord(ofPoint(context.screen_setting.getPos("pano_tex3pos", ofVec2f(0.0f, 0.0f)) * vidSize));
-    mesh.addTexCoord(ofPoint(context.screen_setting.getPos("pano_tex4pos", ofVec2f(0.0f, 0.0f)) * vidSize));
+    mesh.addTexCoord(ofPoint(context.screen_setting.getValue("pano_coord1", ofVec2f(0.0f, 0.0f)) * vidSize));
+    mesh.addTexCoord(ofPoint(context.screen_setting.getValue("pano_coord2", ofVec2f(0.0f, 0.0f)) * vidSize));
+    mesh.addTexCoord(ofPoint(context.screen_setting.getValue("pano_coord3", ofVec2f(0.0f, 0.0f)) * vidSize));
+    mesh.addTexCoord(ofPoint(context.screen_setting.getValue("pano_coord4", ofVec2f(0.0f, 0.0f)) * vidSize));
 
     mesh.addTriangle(0, 1, 2);
     mesh.addTriangle(0, 2, 3);

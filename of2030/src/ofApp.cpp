@@ -26,6 +26,10 @@ void ofApp::setup(){
     ofLogVerbose() << "Redirect logging to log.txt";
     ofLogToFile("log.txt", true);
 
+#ifdef __HIDE_CURSOR__
+    ofHideCursor();
+#endif
+
 #ifdef __SET_DATA_ROOT_PATH__
     ofSetDataPathRoot("data/");
 #endif
@@ -206,7 +210,11 @@ void ofApp::gotMessage(ofMessage msg){
 
 //--------------------------------------------------------------
 void ofApp::dragEvent(ofDragInfo dragInfo){
-
+#ifdef __DRAGNDROP__
+    for(auto file: dragInfo.files){
+        of2030::OscPlaybackManager::instance()->start(file);
+    }
+#endif // __DRAGNDROP__
 }
 
 

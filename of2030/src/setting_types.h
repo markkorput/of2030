@@ -62,7 +62,7 @@ namespace of2030{
 
         int getValue(string name, int defaultValue){
             std::map<string,string>::iterator it = data.find(name);
-            if(it != data.end())
+            if(it == data.end())
                 return defaultValue;
             return ofToInt(it->second);
         }
@@ -73,11 +73,10 @@ namespace of2030{
                 return defaultValue;
             return ofToFloat(it->second);
         }
-        
-        ofVec2f getPos(string name, const ofVec2f &defaultPos){
-            ofVec2f result;
-            result.set(getValue(name+"_x", defaultPos.x),getValue(name+"_y", defaultPos.y));
-            return result;
+
+        ofVec2f getValue(string name, const ofVec2f &defaultValue){
+            return ofVec2f(getValue(name+"_x", defaultValue.x),
+                           getValue(name+"_y", defaultValue.x));
         }
 
         ofVec3f getValue(string name, const ofVec3f &defaultValue){

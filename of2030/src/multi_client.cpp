@@ -105,9 +105,9 @@ void MultiClient::drawDebug(){
             ofLogWarning() << "not screen setting found for screen ID: " << renderer->clientId();
             continue;
         }
-        screen_cam.setPosition(screen_setting->getValue("cam_pos_x", 0.0f),
-                               screen_setting->getValue("cam_pos_y", 0.0f),
-                               screen_setting->getValue("cam_pos_z", 0.0f));
+        screen_cam.setPosition(screen_setting->getValue("pos_x", 0.0f),
+                               screen_setting->getValue("pos_y", 0.0f),
+                               screen_setting->getValue("pos_z", 0.0f));
         screen_cam.lookAt(ofVec3f(screen_setting->getValue("cam_look_at_x", 0.0f),
                                   screen_setting->getValue("cam_look_at_y", 0.0f),
                                   screen_setting->getValue("cam_look_at_z", 1.0f)));
@@ -148,9 +148,9 @@ void MultiClient::drawScreens(){
             continue;
         }
 
-        screen_cam.setPosition(screen_setting->getValue("cam_pos_x", 0.0f),
-                               screen_setting->getValue("cam_pos_y", 0.0f),
-                               screen_setting->getValue("cam_pos_z", 0.0f));
+        screen_cam.setPosition(screen_setting->getValue("pos_x", 0.0f),
+                               screen_setting->getValue("pos_y", 0.0f),
+                               screen_setting->getValue("pos_z", 0.0f));
         screen_cam.lookAt(ofVec3f(screen_setting->getValue("cam_look_at_x", 0.0f),
                                   screen_setting->getValue("cam_look_at_y", 0.0f),
                                   screen_setting->getValue("cam_look_at_z", 1.0f)));

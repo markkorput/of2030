@@ -16,21 +16,18 @@ Spot::Spot(){
 
 // virtual void setup(Context &context);
 void Spot::draw(Context &context){
-    // screen must be spot-enabled
-    if(!(context.screen_setting.hasValue("spot_x") &&
-         context.screen_setting.hasValue("spot_y") &&
-         context.screen_setting.hasValue("spot_w") &&
-         context.screen_setting.hasValue("spot_h"))){
-        return;
-    }
-    
+    int spotNumber = context.effect_setting.getValue("number", (int)1);
+    string prefix = "spot" + ofToString(spotNumber);
+
+//    // screen must be spot-enabled
+//    if(!(context.screen_setting.hasValue("spot"+ofToString(spotNumber)+"_x"))
+//       return;
+
     ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
     
-    ofVec2f spotPos = ofVec2f(context.screen_setting.getValue("spot_x", 0.0f),
-                              context.screen_setting.getValue("spot_y", 0.0f)) * resolution;
-    ofVec2f spotSize = ofVec2f(context.screen_setting.getValue("spot_w", 1.0f),
-                               context.screen_setting.getValue("spot_h", 1.0f)) * resolution;
-    
+    ofVec2f spotPos = context.screen_setting.getValue(prefix, ofVec2f(-10.0f)) * resolution;
+    ofVec2f spotSize = context.screen_setting.getValue(prefix+"size", ofVec2f(0.0f)) * resolution;
+
     if(!shader){
         // draw without shader stuff
         ofSetColor(255);

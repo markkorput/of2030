@@ -24,19 +24,17 @@ void Voice::setup(Context &context){
 }
 void Voice::draw(Context &context){
     // screen must be voice-enabled
-    if(!(context.screen_setting.hasValue("voice_x1") &&
-         context.screen_setting.hasValue("voice_y1"))){
+    if(!context.screen_setting.hasValue("voice_coord1_x"))
         return;
-    }
     
     ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
     
     ofVec2f coords[4];
-    coords[0] = ofVec2f(context.screen_setting.getValue("voice_x1", 0.0f), context.screen_setting.getValue("voice_y1", 0.0f)) * resolution;
-    coords[1] = ofVec2f(context.screen_setting.getValue("voice_x2", 1.0f), context.screen_setting.getValue("voice_y2", 0.1f)) * resolution;
-    coords[2] = ofVec2f(context.screen_setting.getValue("voice_x3", 1.0f), context.screen_setting.getValue("voice_y3", 0.1f)) * resolution;
-    coords[3] = ofVec2f(context.screen_setting.getValue("voice_x4", 0.0f), context.screen_setting.getValue("voice_y4", 0.0f)) * resolution;
-    
+    coords[0] = context.screen_setting.getValue("voice_coord1", ofVec2f(0.1f, 0.1f));
+    coords[1] = context.screen_setting.getValue("voice_coord2", ofVec2f(0.9f, 0.1f));
+    coords[2] = context.screen_setting.getValue("voice_coord3", ofVec2f(0.9f, 0.3f));
+    coords[3] = context.screen_setting.getValue("voice_coord4", ofVec2f(0.1f, 0.3f));
+
     // create mask
     context.fbo2->begin();
     ofBackground(0);

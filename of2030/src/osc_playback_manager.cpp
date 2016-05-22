@@ -14,15 +14,24 @@ using namespace of2030;
 SINGLETON_CLASS_IMPLEMENTATION_CODE(OscPlaybackManager)
 
 
-void OscPlaybackManager::start(string recording_path){
+void OscPlaybackManager::start(string name){
     // load file
     OscAsciiFile* file = new OscAsciiFile();
-    file->load(ofToDataPath("osc/"+recording_path));
+    file->load(nameToPath(name));
     // start playback
     OscPlayback* playback = new OscPlayback(*file);
     playback->start();
     // save it
     add(*playback);
+}
+
+string OscPlaybackManager::nameToPath(const string &name){
+    string p = ofToDataPath("osc/"+name);
+    if(ofFile::doesFileExist(p))
+        return p;
+
+    if(ofFile::doesFileExist(name))
+        return name;
 }
 
 void OscPlaybackManager::update(){
