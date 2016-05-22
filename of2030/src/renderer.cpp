@@ -16,6 +16,8 @@ using namespace of2030::effects;
 SINGLETON_CLASS_IMPLEMENTATION_CODE(Renderer)
 
 Renderer::Renderer() : fbo(NULL), fbo2(NULL), player(NULL), client_id(""), bCallbacksRegistered(false){
+    screenWidth = ofGetWidth();
+    screenHeight = ofGetHeight();
 }
 
 Renderer::~Renderer(){
@@ -77,7 +79,7 @@ void Renderer::draw(){
     fbo->end();
 
     ofSetColor(255);
-    fbo->draw(0,0);
+    fbo->draw(0,0, screenWidth, screenHeight);
 }
 
 void Renderer::registerRealtimeEffectCallback(bool reg){

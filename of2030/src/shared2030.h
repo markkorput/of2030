@@ -14,7 +14,7 @@
     #define __OSC_RECORDER_ENABLED__
     #define __BOOL_OSC_SETUP__
 #else
-    #define __SET_DATA_ROOT_PATH__
+//    #define __SET_DATA_ROOT_PATH__
 #endif
 
 #define CTRL_RELOAD_CLIENTS "reload_clients"

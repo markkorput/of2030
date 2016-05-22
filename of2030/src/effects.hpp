@@ -13,5 +13,6 @@
 #include "vid.hpp"
 #include "spot.hpp"
 #include "voice.hpp"
+#include "pos.hpp"
 
 #endif /* effects_h */
