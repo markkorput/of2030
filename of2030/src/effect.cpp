@@ -74,9 +74,9 @@ void Effect::draw(Context &context){
 //    }
 
     //    ofCamera cam;
-//    ofVec3f camWorldPos(context.screen_setting.getValue("cam_pos_x", 0.0f),
-//                        context.screen_setting.getValue("cam_pos_y", 0.0f),
-//                        context.screen_setting.getValue("cam_pos_z", 0.0f));
+//    ofVec3f camWorldPos(context.screen_setting.getValue("pos_x", 0.0f),
+//                        context.screen_setting.getValue("pos_y", 0.0f),
+//                        context.screen_setting.getValue("pos_z", 0.0f));
 
     //    cam.lookAt(ofVec3f(context.screen_setting.getValue("cam_look_at_x", 0.0f),
     //                       context.screen_setting.getValue("cam_look_at_y", 0.0f),

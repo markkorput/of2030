@@ -5,9 +5,9 @@
     <screen name="rpi2"><param1>value1</param1></screen>
     -->
     <screen name="rpi1">
-      <cam_pos_x>-4.5</cam_pos_x>
-      <cam_pos_y>0.0</cam_pos_y>
-      <cam_pos_z>0.0</cam_pos_z>
+      <pos_x>-4.5</pos_x>
+      <pos_y>0.0</pos_y>
+      <pos_z>0.0</pos_z>
       <cam_look_at_x>-9.0</cam_look_at_x>
       <cam_look_at_y>0.0</cam_look_at_y>
       <cam_look_at_z>0.0</cam_look_at_z>
@@ -49,9 +49,9 @@
     </screen>
 
     <!-- <screen name="rpi2">
-      <cam_pos_x>-4.5</cam_pos_x>
-      <cam_pos_y>0.0</cam_pos_y>
-      <cam_pos_z>0.0</cam_pos_z>
+      <pos_x>-4.5</pos_x>
+      <pos_y>0.0</pos_y>
+      <pos_z>0.0</pos_z>
       <cam_look_at_x>-9.0</cam_look_at_x>
       <cam_look_at_y>0.0</cam_look_at_y>
       <cam_look_at_z>0.0</cam_look_at_z>
@@ -64,9 +64,9 @@
     </screen>
 
     <screen name="rpi3">
-      <cam_pos_x>-4.5</cam_pos_x>
-      <cam_pos_y>0.0</cam_pos_y>
-      <cam_pos_z>-4.13</cam_pos_z>
+      <pos_x>-4.5</pos_x>
+      <pos_y>0.0</pos_y>
+      <pos_z>-4.13</pos_z>
       <cam_look_at_x>-9.0</cam_look_at_x>
       <cam_look_at_y>0.0</cam_look_at_y>
       <cam_look_at_z>-4.13</cam_look_at_z>
@@ -79,9 +79,9 @@
     </screen> -->
 
     <screen name="rpi4">
-      <cam_pos_x>0.0</cam_pos_x>
-      <cam_pos_y>0.0</cam_pos_y>
-      <cam_pos_z>-8.25</cam_pos_z>
+      <pos_x>0.0</pos_x>
+      <pos_y>0.0</pos_y>
+      <pos_z>-8.25</pos_z>
       <cam_look_at_x>0.0</cam_look_at_x>
       <cam_look_at_y>0.0</cam_look_at_y>
       <cam_look_at_z>-12.75</cam_look_at_z>
@@ -103,9 +103,9 @@
     </screen>
 
     <screen name="rpi5">
-      <cam_pos_x>4.5</cam_pos_x>
-      <cam_pos_y>0.0</cam_pos_y>
-      <cam_pos_z>0.0</cam_pos_z>
+      <pos_x>4.5</pos_x>
+      <pos_y>0.0</pos_y>
+      <pos_z>0.0</pos_z>
       <cam_look_at_x>9.0</cam_look_at_x>
       <cam_look_at_y>0.0</cam_look_at_y>
       <cam_look_at_z>0.0</cam_look_at_z>
@@ -127,9 +127,9 @@
     </screen>
 
     <!-- <screen name="rpi6">
-      <cam_pos_x>4.5</cam_pos_x>
-      <cam_pos_y>0.0</cam_pos_y>
-      <cam_pos_z>0.0</cam_pos_z>
+      <pos_x>4.5</pos_x>
+      <pos_y>0.0</pos_y>
+      <pos_z>0.0</pos_z>
       <cam_look_at_x>9.0</cam_look_at_x>
       <cam_look_at_y>0.0</cam_look_at_y>
       <cam_look_at_z>0.0</cam_look_at_z>
@@ -142,9 +142,9 @@
     </screen>
 
     <screen name="rpi7">
-      <cam_pos_x>4.5</cam_pos_x>
-      <cam_pos_y>0.0</cam_pos_y>
-      <cam_pos_z>4.13</cam_pos_z>
+      <pos_x>4.5</pos_x>
+      <pos_y>0.0</pos_y>
+      <pos_z>4.13</pos_z>
       <cam_look_at_x>9.0</cam_look_at_x>
       <cam_look_at_y>0.0</cam_look_at_y>
       <cam_look_at_z>4.13</cam_look_at_z>
@@ -157,9 +157,9 @@
     </screen> -->
 
     <screen name="rpi8">
-      <cam_pos_x>0.0</cam_pos_x>
-      <cam_pos_y>0.0</cam_pos_y>
-      <cam_pos_z>8.25</cam_pos_z>
+      <pos_x>0.0</pos_x>
+      <pos_y>0.0</pos_y>
+      <pos_z>8.25</pos_z>
       <cam_look_at_x>0.0</cam_look_at_x>
       <cam_look_at_y>0.0</cam_look_at_y>
       <cam_look_at_z>12.75</cam_look_at_z>
