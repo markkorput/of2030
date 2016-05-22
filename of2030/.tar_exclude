@@ -4,4 +4,5 @@ Project.xcconfig
 emptyExample.xcodeproj
 .DS_Store
 bin/*.app
+bin/data/log.txt
 .git

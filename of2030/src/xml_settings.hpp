@@ -22,7 +22,7 @@ namespace of2030{
         static XmlSettings* singleton;
 
     public: // methods
-        XmlSettings() : path("settings.xml"), client_id_path("client_id.xml"), log_level(OF_LOG_NOTICE){};
+        XmlSettings() : loaded(false), path("settings.xml"), client_id_path("client_id.xml"), log_level(OF_LOG_NOTICE){};
         bool load(bool reload=false);
         // void save();
 

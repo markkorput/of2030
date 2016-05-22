@@ -61,14 +61,15 @@ bool XmlSettings::load(bool reload){
     ofxXmlSettings xml;
 
     // load client id from separate file?
-    if(client_id_path != ""){
-        xml.loadFile(client_id_path);
+    if(client_id_path != "" && xml.loadFile(client_id_path)){
         client_id = xml.getValue("of2030:client_id", "rpi1");
+        ofLog() << "Trying to load settings.xml from: " << ofToDataPath(path, true);
         if(!xml.loadFile(path)){
             return false;
         }
     } else {
         // load client id from main settings file
+        ofLog() << "Trying to load settings.xml from: " << ofToDataPath(path, true);
         if(!xml.loadFile(path)){
             return false;
         }

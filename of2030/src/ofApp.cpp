@@ -18,20 +18,22 @@
 #include "effect_manager.hpp"
 #include "video_manager.hpp"
 #include "osc_playback_manager.hpp"
-#include "osc_recorder.hpp""
-
+#include "osc_recorder.hpp"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofSetLogLevel(OF_LOG_VERBOSE);
-
     ofLogVerbose() << "Redirect logging to log.txt";
     ofLogToFile("log.txt", true);
+
+//#ifdef __SET_DATA_ROOT_PATH__
+//    ofSetDataPathRoot("data/");
+//#endif
 
     // load settings xml
     ofLogVerbose() << "Loading settings.xml";
     if(!of2030::XmlSettings::instance()->load()){
-        ofLogError() << "Could not load settings.xml, aborting";
+        ofLogError() << "Could not load settings.xml";
         std::exit(1);
     }
 
