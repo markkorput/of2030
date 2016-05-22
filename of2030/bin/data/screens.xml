@@ -5,23 +5,24 @@
     <screen name="rpi2"><param1>value1</param1></screen>
     -->
     <screen name="rpi1">
+      <pixel_width>768</pixel_width>
+      <pixel_height>576</pixel_height>
+      <world_width>16.5</world_width>
+      <world_height>2</world_height>
+
       <pos_x>-4.5</pos_x>
       <pos_y>0.0</pos_y>
       <pos_z>0.0</pos_z>
       <cam_look_at_x>-9.0</cam_look_at_x>
       <cam_look_at_y>0.0</cam_look_at_y>
       <cam_look_at_z>0.0</cam_look_at_z>
-      <pixel_width>768</pixel_width>
-      <pixel_height>576</pixel_height>
-      <world_width>16.5</world_width>
-      <world_height>2</world_height>
+
       <pano_start>0.0</pano_start>
       <pano_end>0.324</pano_end>
-
       <tunnel_start>0.0</tunnel_start>
       <tunnel_end>1.0</tunnel_end>
 
-      <!-- spot (center, width, height) -->
+      <!-- spot (center position, width, height in screen factors) -->
       <spot_x>0.6</spot_x>
       <spot_y>0.5</spot_y>
       <spot_w>0.1</spot_w>

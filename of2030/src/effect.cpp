@@ -59,28 +59,6 @@ void Effect::draw(Context &context){
     }
 
     EffectLogic logic((Effect*)this, &context);
-    
-
-//    ofVec3f vel = ofVec3f(context.effect_setting.getValue("vel_x", 0.0f),
-//                          context.effect_setting.getValue("vel_y", 0.0f),
-//                          context.effect_setting.getValue("vel_z", 0.0f));
-
-//    if(context.effect_setting.hasValue("auto_pano_shift")){
-//        float newVal = effectPanoEnd + context.effect_setting.getValue("auto_pano_shift", 0.0f) * logic.getGlobalTime();
-//        if(context.effect_setting.hasValue("auto_pano_shift_end")){
-//            newVal = std::min(newVal, context.effect_setting.getValue("auto_pano_shift_end", 0.0f));
-//        }
-//        effectPanoEnd = newVal;
-//    }
-
-    //    ofCamera cam;
-//    ofVec3f camWorldPos(context.screen_setting.getValue("pos_x", 0.0f),
-//                        context.screen_setting.getValue("pos_y", 0.0f),
-//                        context.screen_setting.getValue("pos_z", 0.0f));
-
-    //    cam.lookAt(ofVec3f(context.screen_setting.getValue("cam_look_at_x", 0.0f),
-    //                       context.screen_setting.getValue("cam_look_at_y", 0.0f),
-    //                       context.screen_setting.getValue("cam_look_at_z", 4.5f)));
 
     ofVec2f v2f;
     ofVec3f v3f;
