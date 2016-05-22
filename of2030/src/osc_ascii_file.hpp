@@ -23,12 +23,23 @@ public: // methods
     ~OscAsciiFile(){ destroy(); }
     void destroy();
 
+    // reading
     void load(string path);
     OscAsciiLine* next_line();
 
-private: //attributes
+    // writing
+    void start_writing(string path);
+    void stop_writing();
+    void write_line(ofxOscMessage &msg);
+    void write_line(const ofxOscMessage &msg, float timestamp);
+
+private: // reading attributes
     OscAsciiLine last_line;
-    std::ifstream *file;
+    std::ifstream infile;
+
+private: // writing attributes
+    float start_time, first_message_time;
+    std::ofstream outfile;
 };
 
 #endif /* osc_ascii_file_hpp */

@@ -10,8 +10,9 @@
 #define shared2030_h
 
 #ifdef __APPLE__
-    #define __MULTI_CLIENT_ENABLED__ (true)
-    #define __BOOL_OSC_SETUP__ (true)
+    #define __MULTI_CLIENT_ENABLED__
+    #define __OSC_RECORDER_ENABLED__
+    #define __BOOL_OSC_SETUP__
 #endif
 
 #define CTRL_RELOAD_CLIENTS "reload_clients"

@@ -19,15 +19,20 @@ namespace of2030 {
     class OscReceiver {
         SINGLETON_CLASS_HEADER_CODE(OscReceiver)
 
-    public:
+    public: // methods
         OscReceiver();
         ~OscReceiver(){ destroy(); }
+
         void configure(OscSetting &_osc_setting);
         void setup();
         void update();
         void destroy();
+
         inline bool isConnected(){ return bConnected; }
         void processMessage(ofxOscMessage &m);
+
+    public: //events
+        ofEvent<ofxOscMessage> newMessageEvent;
 
     private: // methods
         bool connect();
