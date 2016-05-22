@@ -91,9 +91,9 @@ void ofApp::setup(){
     of2030::OscReceiver::instance()->configure(of2030::XmlSettings::instance()->osc_setting);
     of2030::OscReceiver::instance()->setup();
 
-    // for debugging; start the clock preset
-    of2030::OscPlaybackManager::instance()->start("_rec.csv");
-    of2030::OscPlaybackManager::instance()->start("_clock_spot.csv");
+    // for debugging; start recorded osc sequence
+    // of2030::OscPlaybackManager::instance()->start("_rec.csv");
+    // of2030::OscPlaybackManager::instance()->start("_clock_spot.csv");
 
     // using the player's time as main timing mechanism
     next_log_alive_time = of2030::Player::instance()->getTime();
@@ -126,6 +126,13 @@ void ofApp::draw(){
 #else
     of2030::Renderer::instance()->draw();
 #endif
+
+#ifdef __OSC_RECORDER_ENABLED__
+    if(of2030::OscRecorder::instance()->is_recording()){
+        ofSetColor(255, 0, 0);
+        ofDrawRectangle(0,0, 10, 10);
+    }
+#endif
 }
 
 //--------------------------------------------------------------
@@ -135,14 +142,19 @@ void ofApp::exit(ofEventArgs &args){
     // TODO; call delete_instance for all singleton instance implementations
     of2030::EfficientEffectManager::delete_instance();
     of2030::VideoManager::delete_instance();
+
+#ifdef __OSC_RECORDER_ENABLED__
     of2030::OscRecorder::delete_instance();
+#endif
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
+#ifdef __OSC_RECORDER_ENABLED__
     if(key == 'r'){
         of2030::OscRecorder::instance()->toggle_record();
     }
+#endif
 }
 
 //--------------------------------------------------------------

@@ -1,7 +1,7 @@
 <of2030>
   <app>
     <log_level>notice</log_level>
-    <log_alive_interval>10.0</log_alive_interval>
+    <log_alive_interval>15.0</log_alive_interval>
   </app>
   <osc>
     <port>2031</port><!-- 0 (zero) means disabled -->

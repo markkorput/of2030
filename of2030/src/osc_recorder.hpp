@@ -6,10 +6,13 @@
 //
 //
 
+#include "shared2030.h"
+
+#ifdef __OSC_RECORDER_ENABLED__ // to speed op raspi compile
+
 #ifndef osc_recorder_hpp
 #define osc_recorder_hpp
 
-#include "shared2030.h"
 #include "osc_ascii_file.hpp"
 
 namespace of2030{
@@ -25,6 +28,8 @@ namespace of2030{
         void start_recording();
         void stop_recording();
 
+        inline bool is_recording(){ return bRecording; }
+
     private:
         void registerCallbacks(bool _register=true);
 
@@ -35,3 +40,5 @@ namespace of2030{
 }
 
 #endif /* osc_recorder_hpp */
+
+#endif

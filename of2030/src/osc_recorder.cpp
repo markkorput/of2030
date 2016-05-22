@@ -7,6 +7,9 @@
 //
 
 #include "osc_recorder.hpp"
+
+#ifdef __OSC_RECORDER_ENABLED__
+
 #include "osc_receiver.hpp"
 #include "ofxOsc.h"
 #include <time.h>
@@ -54,3 +57,5 @@ void OscRecorder::registerCallbacks(bool _register){
         ofRemoveListener(OscReceiver::instance()->newMessageEvent, &file, &OscAsciiFile::write_line);
     }
 }
+
+#endif // __OSC_RECORDER_ENABLED__
