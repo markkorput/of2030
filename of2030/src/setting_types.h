@@ -62,7 +62,7 @@ namespace of2030{
 
         int getValue(string name, int defaultValue){
             std::map<string,string>::iterator it = data.find(name);
-            if(it != data.end())
+            if(it == data.end())
                 return defaultValue;
             return ofToInt(it->second);
         }
