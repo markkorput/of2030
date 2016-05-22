@@ -25,8 +25,8 @@ void Spot::draw(Context &context){
 
     ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
     
-    ofVec2f spotPos = context.screen_setting.getValue(prefix, ofVec2f(-10.0f));
-    ofVec2f spotSize = context.screen_setting.getValue(prefix+"size", ofVec2f(0.0f));
+    ofVec2f spotPos = context.screen_setting.getValue(prefix, ofVec2f(-10.0f)) * resolution;
+    ofVec2f spotSize = context.screen_setting.getValue(prefix+"size", ofVec2f(0.0f)) * resolution;
 
     if(!shader){
         // draw without shader stuff
