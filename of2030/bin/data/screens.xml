@@ -5,7 +5,7 @@
       <pixel_width>768</pixel_width>
       <pixel_height>576</pixel_height>
       <!-- size of (projected) image in meters -->
-      <world_width>2.0</world_width>
+      <world_width>2.67</world_width>
       <world_height>1.5</world_height>
       <!-- real-world-position of the center of the screen in meters -->
       <pos_x>2.0</pos_x>
@@ -91,7 +91,7 @@
       <pixel_width>768</pixel_width>
       <pixel_height>576</pixel_height>
       <!-- size of (projected) image in meters -->
-      <world_width>2.0</world_width>
+      <world_width>2.67</world_width>
       <world_height>1.5</world_height>
       <!-- real-world-position of the center of the screen in meters -->
       <pos_x>2.0</pos_x>
@@ -119,7 +119,7 @@
       <pixel_width>768</pixel_width>
       <pixel_height>576</pixel_height>
       <!-- size of (projected) image in meters -->
-      <world_width>2.0</world_width>
+      <world_width>2.67</world_width>
       <world_height>1.5</world_height>
       <!-- real-world-position of the center of the screen in meters -->
       <pos_x>2.0</pos_x>
@@ -147,7 +147,7 @@
       <pixel_width>768</pixel_width>
       <pixel_height>576</pixel_height>
       <!-- size of (projected) image in meters -->
-      <world_width>2.0</world_width>
+      <world_width>2.67</world_width>
       <world_height>1.5</world_height>
       <!-- real-world-position of the center of the screen in meters -->
       <pos_x>-2.0</pos_x>
@@ -175,7 +175,7 @@
       <pixel_width>768</pixel_width>
       <pixel_height>576</pixel_height>
       <!-- size of (projected) image in meters -->
-      <world_width>2.0</world_width>
+      <world_width>2.67</world_width>
       <world_height>1.5</world_height>
       <!-- real-world-position of the center of the screen in meters -->
       <pos_x>-2.0</pos_x>
@@ -203,7 +203,7 @@
       <pixel_width>768</pixel_width>
       <pixel_height>576</pixel_height>
       <!-- size of (projected) image in meters -->
-      <world_width>2.0</world_width>
+      <world_width>2.67</world_width>
       <world_height>1.5</world_height>
       <!-- real-world-position of the center of the screen in meters -->
       <pos_x>-2.0</pos_x>
