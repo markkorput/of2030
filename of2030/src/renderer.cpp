@@ -67,7 +67,8 @@ void Renderer::draw(){
     fillContextClientInfo(context);
 
     fbo->begin();
-    ofBackground(0);
+//    ofBackground(0);
+    ofClear(0.0f,0.0f,0.0f,0.0f);
 
     vector<effects::Effect*> effects = player->getActiveEffects();
     for(auto effect: effects){

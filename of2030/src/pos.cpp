@@ -18,8 +18,8 @@ Pos::Pos(){
 //}
 
 void Pos::draw(Context &context){
-    ofVec3f lightpos = context.effect_setting.getValue("lightpos", ofVec3f(0.0f, 0.0f, 0.0f));
-    float lightsize = context.effect_setting.getValue("lightsize", 0.0f);
+    ofVec3f lightpos = context.effect_setting.getValue("pos", ofVec3f(0.0f, 0.0f, 0.0f));
+    float lightsize = context.effect_setting.getValue("size", 0.0f);
     ofVec3f mypos = context.screen_setting.getValue("pos", ofVec3f(0.0f, 0.0f, 0.0f));
     float onDistance = context.effect_setting.getValue("on_distance", 3.0f);
     float offDistance = context.effect_setting.getValue("off_distance", 9.0f);

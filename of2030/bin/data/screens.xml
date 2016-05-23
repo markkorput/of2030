@@ -13,7 +13,7 @@
       <pos_z>2.5</pos_z>
       <!-- orientation of the screen -->
       <cam_look_at_x>4.0</cam_look_at_x>
-      <cam_look_at_y>2.0</cam_look_at_y>
+      <cam_look_at_y>0.0</cam_look_at_y>
       <cam_look_at_z>2.5</cam_look_at_z>
       <!-- the area of the panoram that this screen shows -->
       <pano_start>0.7</pano_start>
@@ -99,7 +99,7 @@
       <pos_z>0.0</pos_z>
       <!-- orientation of the screen -->
       <cam_look_at_x>4.0</cam_look_at_x>
-      <cam_look_at_y>2.0</cam_look_at_y>
+      <cam_look_at_y>0.0</cam_look_at_y>
       <cam_look_at_z>0.0</cam_look_at_z>
       <!-- the area of the panoram that this screen shows -->
       <pano_start>0.75</pano_start>
@@ -127,7 +127,7 @@
       <pos_z>-2.5</pos_z>
       <!-- orientation of the screen -->
       <cam_look_at_x>4.0</cam_look_at_x>
-      <cam_look_at_y>2.0</cam_look_at_y>
+      <cam_look_at_y>0.0</cam_look_at_y>
       <cam_look_at_z>-2.5</cam_look_at_z>
       <!-- the area of the panoram that this screen shows -->
       <pano_start>0.53</pano_start>
@@ -155,7 +155,7 @@
       <pos_z>-2.5</pos_z>
       <!-- orientation of the screen -->
       <cam_look_at_x>-4.0</cam_look_at_x>
-      <cam_look_at_y>2.0</cam_look_at_y>
+      <cam_look_at_y>0.0</cam_look_at_y>
       <cam_look_at_z>-2.5</cam_look_at_z>
       <!-- the area of the panoram that this screen shows -->
       <pano_start>0.2</pano_start>
@@ -183,7 +183,7 @@
       <pos_z>0.0</pos_z>
       <!-- orientation of the screen -->
       <cam_look_at_x>-4.0</cam_look_at_x>
-      <cam_look_at_y>2.0</cam_look_at_y>
+      <cam_look_at_y>0.0</cam_look_at_y>
       <cam_look_at_z>0.0</cam_look_at_z>
       <!-- the area of the panoram that this screen shows -->
       <pano_start>0.11</pano_start>
@@ -211,7 +211,7 @@
       <pos_z>2.5</pos_z>
       <!-- orientation of the screen -->
       <cam_look_at_x>-4.0</cam_look_at_x>
-      <cam_look_at_y>2.0</cam_look_at_y>
+      <cam_look_at_y>0.0</cam_look_at_y>
       <cam_look_at_z>2.5</cam_look_at_z>
       <!-- the area of the panoram that this screen shows -->
       <pano_start>0.03</pano_start>

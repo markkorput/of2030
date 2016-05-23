@@ -67,28 +67,29 @@ void Effect::draw(Context &context){
 
     // populate shader
     shader->setUniform2f("iResolution", resolution);
-
-    v3f.set(context.effect_setting.getValue("pos_x", 0.0f),
-             context.effect_setting.getValue("pos_y", 0.0f),
-             context.effect_setting.getValue("pos_z", 0.0f));
-    shader->setUniform3f("iPos", v3f);
-
-    v3f.set(context.effect_setting.getValue("size_x", 0.0f),
-            context.effect_setting.getValue("size_y", 0.0f),
-            context.effect_setting.getValue("size_z", 0.0f));
-    shader->setUniform3f("iSize", v3f);
+    shader->setUniform3f("iPos", context.effect_setting.getValue("pos", ofVec3f(0.0f)));
+    shader->setUniform3f("iSize", context.effect_setting.getValue("size", ofVec3f(0.0f)));
 
     v2f.set(context.screen_setting.getValue("world_width", 2.67f),
             context.screen_setting.getValue("world_height", 2.0f));
     shader->setUniform2f("iScreenWorldSize", v2f);
+    shader->setUniform3f("iScreenPos", context.screen_setting.getValue("pos", ofVec3f(0.0f)));
 
     shader->setUniform1f("iProgress", logic.getGlobalProgress());
     shader->setUniform1f("iDuration", logic.getGlobalDuration());
     shader->setUniform1f("iIterations", context.effect_setting.getValue("iterations", 1.0f));
+
     shader->setUniform1f("iScreenPanoStart", context.screen_setting.getValue("pano_start", 0.0f));
-    shader->setUniform1f("iScreenPanoEnd", context.screen_setting.getValue("pano_end", 0.0f));
+    shader->setUniform1f("iScreenPanoEnd", context.screen_setting.getValue("pano_end", 1.0f));
     shader->setUniform1f("iEffectPanoStart", context.effect_setting.getValue("pano_start", 0.0f));
     shader->setUniform1f("iEffectPanoEnd", context.effect_setting.getValue("pano_end", 1.0f));
+
+    shader->setUniform1f("iScreenTunnelStart", context.screen_setting.getValue("tunnel_start", 0.0f));
+    shader->setUniform1f("iScreenTunnelEnd", context.screen_setting.getValue("tunnel_end", 1.0f));
+    shader->setUniform1f("iEffectTunnelStart", context.effect_setting.getValue("tunnel_start", 0.0f));
+    shader->setUniform1f("iEffectTunnelEnd", context.effect_setting.getValue("tunnel_end", 1.0f));
+
+    
     shader->setUniform1f("iGain", context.effect_setting.getValue("gain", 1.0f));
 
     // draw
