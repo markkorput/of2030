@@ -132,6 +132,11 @@ void Renderer::fillEffectSetting(effects::Effect &effect, XmlItemSetting &fxsett
         fxsetting.merge(*pSetting);
 
     // trigger-specific config (has priority over song/clip-specific configs)
+    pSetting = fxs->getItem(effect.trigger);
+    if(pSetting)
+        fxsetting.merge(*pSetting);
+
+    // effect/trigger-specific config (has priority over song/clip-specific configs)
     pSetting = fxs->getItem(effect.name+"."+effect.trigger);
     if(pSetting)
         fxsetting.merge(*pSetting);
