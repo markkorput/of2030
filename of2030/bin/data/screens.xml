@@ -9,7 +9,7 @@
       <world_height>1.5</world_height>
       <!-- real-world-position of the center of the screen in meters -->
       <pos_x>2.0</pos_x>
-      <pos_y>2.0</pos_y>
+      <pos_y>0.0</pos_y>
       <pos_z>2.5</pos_z>
       <!-- orientation of the screen -->
       <cam_look_at_x>4.0</cam_look_at_x>
@@ -95,7 +95,7 @@
       <world_height>1.5</world_height>
       <!-- real-world-position of the center of the screen in meters -->
       <pos_x>2.0</pos_x>
-      <pos_y>2.0</pos_y>
+      <pos_y>0.0</pos_y>
       <pos_z>0.0</pos_z>
       <!-- orientation of the screen -->
       <cam_look_at_x>4.0</cam_look_at_x>
@@ -123,7 +123,7 @@
       <world_height>1.5</world_height>
       <!-- real-world-position of the center of the screen in meters -->
       <pos_x>2.0</pos_x>
-      <pos_y>2.0</pos_y>
+      <pos_y>0.0</pos_y>
       <pos_z>-2.5</pos_z>
       <!-- orientation of the screen -->
       <cam_look_at_x>4.0</cam_look_at_x>
@@ -151,7 +151,7 @@
       <world_height>1.5</world_height>
       <!-- real-world-position of the center of the screen in meters -->
       <pos_x>-2.0</pos_x>
-      <pos_y>2.0</pos_y>
+      <pos_y>0.0</pos_y>
       <pos_z>-2.5</pos_z>
       <!-- orientation of the screen -->
       <cam_look_at_x>-4.0</cam_look_at_x>
@@ -179,7 +179,7 @@
       <world_height>1.5</world_height>
       <!-- real-world-position of the center of the screen in meters -->
       <pos_x>-2.0</pos_x>
-      <pos_y>2.0</pos_y>
+      <pos_y>0.0</pos_y>
       <pos_z>0.0</pos_z>
       <!-- orientation of the screen -->
       <cam_look_at_x>-4.0</cam_look_at_x>
@@ -207,7 +207,7 @@
       <world_height>1.5</world_height>
       <!-- real-world-position of the center of the screen in meters -->
       <pos_x>-2.0</pos_x>
-      <pos_y>2.0</pos_y>
+      <pos_y>0.0</pos_y>
       <pos_z>2.5</pos_z>
       <!-- orientation of the screen -->
       <cam_look_at_x>-4.0</cam_look_at_x>
