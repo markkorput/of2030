@@ -1,6 +1,10 @@
 <of2030>
   <effects>
     <!-- inloop -->
+    <effect name="cursor">
+      <shader>cursor</shader>
+    </effect>
+
     <effect name="worms1">
       <shader>worms</shader>
       <pano_start>0.0</pano_start>

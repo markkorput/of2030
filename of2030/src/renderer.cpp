@@ -79,6 +79,7 @@ void Renderer::draw(){
 
     fbo->end();
 
+    ofBackground(0);
     ofSetColor(255);
     fbo->draw(0,0, screenWidth, screenHeight);
 }
