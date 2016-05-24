@@ -43,8 +43,6 @@
 		4D9B299E1CC65D82005D65E9 /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D9B299A1CC65D82005D65E9 /* tinyxmlparser.cpp */; };
 		4D9DF2781CF1BB9A0083BE56 /* osc_recorder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D9DF2761CF1BB9A0083BE56 /* osc_recorder.cpp */; };
 		4D9DF27D1CF1FAAF0083BE56 /* pos.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D9DF27B1CF1FAAF0083BE56 /* pos.cpp */; };
-		4DAE72F11CF45CFD00834A77 /* roof.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DAE72EF1CF45CFD00834A77 /* roof.cpp */; };
-		4DAE72F41CF45D5100834A77 /* map_effect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DAE72F21CF45D5100834A77 /* map_effect.cpp */; };
 		4DE274CA1CCE1D9300F2D470 /* xml_settings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DE274C81CCE1D9300F2D470 /* xml_settings.cpp */; };
 		4DE274CE1CCE242B00F2D470 /* multi_client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DE274CC1CCE242B00F2D470 /* multi_client.cpp */; };
 		4DE491011CC69C55003E7958 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DE490FF1CC69C55003E7958 /* player.cpp */; };
@@ -165,10 +163,6 @@
 		4D9DF2771CF1BB9A0083BE56 /* osc_recorder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = osc_recorder.hpp; sourceTree = "<group>"; };
 		4D9DF27B1CF1FAAF0083BE56 /* pos.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pos.cpp; sourceTree = "<group>"; };
 		4D9DF27C1CF1FAAF0083BE56 /* pos.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = pos.hpp; sourceTree = "<group>"; };
-		4DAE72EF1CF45CFD00834A77 /* roof.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = roof.cpp; sourceTree = "<group>"; };
-		4DAE72F01CF45CFD00834A77 /* roof.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = roof.hpp; sourceTree = "<group>"; };
-		4DAE72F21CF45D5100834A77 /* map_effect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = map_effect.cpp; sourceTree = "<group>"; };
-		4DAE72F31CF45D5100834A77 /* map_effect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = map_effect.hpp; sourceTree = "<group>"; };
 		4DE274C81CCE1D9300F2D470 /* xml_settings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = xml_settings.cpp; sourceTree = "<group>"; };
 		4DE274C91CCE1D9300F2D470 /* xml_settings.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = xml_settings.hpp; sourceTree = "<group>"; };
 		4DE274CC1CCE242B00F2D470 /* multi_client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = multi_client.cpp; sourceTree = "<group>"; };
@@ -278,10 +272,6 @@
 				4D3F90D51CED1C4A00E6C0E1 /* voice.hpp */,
 				4D9DF27B1CF1FAAF0083BE56 /* pos.cpp */,
 				4D9DF27C1CF1FAAF0083BE56 /* pos.hpp */,
-				4DAE72EF1CF45CFD00834A77 /* roof.cpp */,
-				4DAE72F01CF45CFD00834A77 /* roof.hpp */,
-				4DAE72F21CF45D5100834A77 /* map_effect.cpp */,
-				4DAE72F31CF45D5100834A77 /* map_effect.hpp */,
 			);
 			name = effects;
 			sourceTree = "<group>";
@@ -636,7 +626,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DF6EBE61CDCA5B300D37FB7 /* shader_manager.cpp in Sources */,
-				4DAE72F41CF45D5100834A77 /* map_effect.cpp in Sources */,
 				4D9B299B1CC65D82005D65E9 /* ofxXmlSettings.cpp in Sources */,
 				4D9B29711CC64190005D65E9 /* NetworkingUtils.cpp in Sources */,
 				4D4C03A21CDCF45E009EEB63 /* xml_effects.cpp in Sources */,
@@ -671,7 +660,6 @@
 				4D9B29701CC64190005D65E9 /* IpEndpointName.cpp in Sources */,
 				4D9B29721CC64190005D65E9 /* UdpSocket.cpp in Sources */,
 				4D3B38F41CC66E16004C8994 /* ofxJSONElement.cpp in Sources */,
-				4DAE72F11CF45CFD00834A77 /* roof.cpp in Sources */,
 				4D66030C1CDF6CE70061035D /* xml_triggers.cpp in Sources */,
 				4DE274CE1CCE242B00F2D470 /* multi_client.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,

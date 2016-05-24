@@ -15,5 +15,10 @@
       <size_x>68.0</size_x>
       <size_y>1.0</size_y>
     </effect>
+
+    <!-- roof -->
+    <effect name="roof">
+      <mask_coords_name>roof_coord</mask_coords_name>
+    </effect>
   </effects>
 </of2030>

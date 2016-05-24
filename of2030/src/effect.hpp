@@ -69,6 +69,7 @@ namespace of2030{ namespace effects {
     protected: // methods
         
         void setType(EffectType effect_type);
+        void drawMask(Context &context, const string &coordsName);
 
     public: // properties
 
