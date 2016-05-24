@@ -20,5 +20,10 @@
     <effect name="roof">
       <mask_coords_name>roof_coord</mask_coords_name>
     </effect>
+
+    <!-- voice -->
+    <effect name="voice">
+      <mask_coords_name>voice_coord</mask_coords_name>
+    </effect>
   </effects>
 </of2030>

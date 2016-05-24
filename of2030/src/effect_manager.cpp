@@ -48,10 +48,8 @@ void EffectManager::add(effects::Effect* effect){
 
 effects::EffectType EffectManager::typeStringToType(string typ){
     if(typ == "vid") return effects::EffectType::VID;
-    if(typ == "voice") return effects::EffectType::VOICE;
     if(typ == "spot") return effects::EffectType::SPOT;
     if(typ == "pos") return effects::EffectType::POS;
-//    if(typ == "roof") return effects::EffectType::ROOF;
     return effects::EffectType::DEFAULT;
 }
 
@@ -64,12 +62,8 @@ effects::Effect* EffectManager::createEffect(string typ){
         pEffect = (effects::Effect*) new effects::Vid();
     } else if(typ == "spot"){
         pEffect = (effects::Effect*) new effects::Spot();
-    } else if(typ == "voice"){
-        pEffect = (effects::Effect*) new effects::Voice();
     } else if(typ == "pos"){
         pEffect = (effects::Effect*) new effects::Pos();
-//    } else if(typ == "roof"){
-//        pEffect = (effects::Effect*) new effects::Roof();
     }else {
         // default type, just set name to whatever was specified
         pEffect = new effects::Effect();
@@ -90,7 +84,6 @@ void EffectManager::deleteEffect(effects::Effect* effect){
     
     IF_TYP_DEL(VID, Vid)
     IF_TYP_DEL(SPOT, Spot)
-    IF_TYP_DEL(VOICE, Voice)
     IF_TYP_DEL(POS, Pos)
 //    // figure out effect type and delete from memory
 //    if(effect->type == effects::EffectType::VID){
