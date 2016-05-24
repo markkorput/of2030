@@ -52,19 +52,20 @@ void Effect::draw(Context &context){
     ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
 
     EffectLogic logic((Effect*)this, &context);
-
-    ofVec2f v2f;
-    ofVec3f v3f;
     
     // draw content to fbo3
     context.fbo3->begin();
     ofClear(0.0f, 0.0f, 0.0f, 0.0f);
     ofColor clr = context.effect_setting.getValue("color", ofColor(255));
-    ofSetColor(clr);
+
 
     if(!shader){
         // draw without shader stuff
+        ofSetColor(clr);
         ofDrawRectangle(0, 0, resolution.x, resolution.y);
+        // tunnel 'mask'
+        ofSetColor(0);
+        drawTunnelMask(context);
     } else {
         // activate shader
         shader->begin();
@@ -73,10 +74,8 @@ void Effect::draw(Context &context){
         shader->setUniform2f("iResolution", resolution);
         shader->setUniform3f("iPos", context.effect_setting.getValue("pos", ofVec3f(0.0f)));
         shader->setUniform3f("iSize", context.effect_setting.getValue("size", ofVec3f(0.0f)));
-
-        v2f.set(context.screen_setting.getValue("world_width", 2.67f),
-                context.screen_setting.getValue("world_height", 2.0f));
-        shader->setUniform2f("iScreenWorldSize", v2f);
+        shader->setUniform2f("iScreenWorldSize", ofVec2f(context.screen_setting.getValue("world_width", 2.67f),
+                                                         context.screen_setting.getValue("world_height", 2.0f)));
         shader->setUniform3f("iScreenPos", context.screen_setting.getValue("pos", ofVec3f(0.0f)));
 
         shader->setUniform1f("iProgress", logic.getGlobalProgress());
@@ -96,8 +95,11 @@ void Effect::draw(Context &context){
         shader->setUniform1f("iGain", context.effect_setting.getValue("gain", 1.0f));
 
         // draw
+        ofSetColor(clr);
         ofDrawRectangle(0.0f, 0.0f, resolution.x, resolution.y);
-
+        // tunnel 'mask'
+        ofSetColor(0);
+        drawTunnelMask(context);
         // deactivate shader
         shader->end();
     }
@@ -153,6 +155,21 @@ void Effect::drawMask(Context &context, const string &coordsName){
     ofDrawTriangle(coords[0].x, coords[0].y, coords[2].x, coords[2].y, coords[3].x, coords[3].y);
 }
 
+void Effect::drawTunnelMask(Context &context){
+    ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
+    
+    float scrTunnelStart = context.screen_setting.getValue("tunnel_start", 0.0f);
+    float scrTunnelEnd = context.screen_setting.getValue("tunnel_end", 1.0f);
+    float fxTunnelStart = context.effect_setting.getValue("tunnel_start", 0.0f);
+    float fxTunnelEnd = context.effect_setting.getValue("tunnel_end", 1.0f);
+    float pixPerTunnel = resolution.x / (scrTunnelEnd-scrTunnelStart);
+
+    float minX = (fxTunnelStart-scrTunnelStart)*pixPerTunnel;
+    float maxX = (fxTunnelEnd-scrTunnelStart)*pixPerTunnel;
+
+    ofDrawRectangle(0.0, 0.0, minX, resolution.y);
+    ofDrawRectangle(maxX, 0.0, resolution.x, resolution.y);
+}
 
 // === === === === === === === === ===
 
