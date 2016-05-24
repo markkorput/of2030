@@ -35,26 +35,25 @@ void MapEffect::draw(Context &context){
 
     // create mask
     context.fbo2->begin();
-    ofBackground(0);
+    ofClear(0.0f, 0.0f, 0.0f, 0.0f);
+//    ofBackground(0);
     ofSetColor(255);
     ofDrawTriangle(coords[0].x, coords[0].y, coords[1].x, coords[1].y, coords[2].x, coords[2].y);
     ofDrawTriangle(coords[0].x, coords[0].y, coords[2].x, coords[2].y, coords[3].x, coords[3].y);
     context.fbo2->end();
-    
-    EffectLogic logic(this, &context);
 
-    // draw
+    // create 'content'
+    context.fbo3->begin();
+        ofClear(0.0f, 0.0f, 0.0f, 0.0f);
+        ofColor clr = context.effect_setting.getValue("color", ofColor(255));
+        ofSetColor(clr);
+        ofDrawRectangle(0.0f, 0.0f, resolution.x, resolution.y);
+    context.fbo3->end();
 
+    // draw content masked
     maskShader->begin();
-    maskShader->setUniformTexture("iMask", context.fbo2->getTexture(), 1);
-
-    ofFloatColor clr = context.effect_setting.getValue("color", ofFloatColor(255));
-    float clrparts[4] = {clr.r, clr.g, clr.b, clr.a};
-    ofSetColor(clr);
-    
-    maskShader->setUniform4fv("iColor", clrparts);
-    ofDrawRectangle(0.0f, 0.0f, resolution.x, resolution.y);
+        maskShader->setUniformTexture("iMask", context.fbo2->getTexture(), 2);
+        ofSetColor(255);
+        context.fbo3->draw(0.0, 0.0, resolution.x, resolution.y);
     maskShader->end();
-
-    context.fbo2->draw(0.0f, 0.0f);
 }
