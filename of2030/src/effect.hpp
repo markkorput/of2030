@@ -31,7 +31,8 @@ namespace of2030{ namespace effects {
         TUNNEL = 4,
         SPOT = 5,
         VOICE = 6,
-        POS = 7
+        POS = 7,
+        ROOF = 8
     };
     
     static map<EffectType, string> EFFECT_NAMES = {
@@ -40,7 +41,8 @@ namespace of2030{ namespace effects {
         {TUNNEL, "tunnel"},
         {SPOT, "spot"},
         {VOICE, "voice"},
-        {POS, "pos"}
+        {POS, "pos"},
+        {ROOF, "roof"}
     };
 
     #define NO_TIME (-1.0f)

@@ -16,8 +16,8 @@ namespace of2030 { namespace effects {
     class Roof : public MapEffect{
     public: // methods
         Roof();
-        //virtual void setup(Context &context);
-        //virtual void draw(Context &context);
+        virtual void setup(Context &context);
+        virtual void draw(Context &context);
     };
     
 }}

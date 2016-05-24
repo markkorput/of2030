@@ -51,6 +51,7 @@ effects::EffectType EffectManager::typeStringToType(string typ){
     if(typ == "voice") return effects::EffectType::VOICE;
     if(typ == "spot") return effects::EffectType::SPOT;
     if(typ == "pos") return effects::EffectType::POS;
+    if(typ == "roof") return effects::EffectType::ROOF;
     return effects::EffectType::DEFAULT;
 }
 
@@ -67,6 +68,8 @@ effects::Effect* EffectManager::createEffect(string typ){
         pEffect = (effects::Effect*) new effects::Voice();
     } else if(typ == "pos"){
         pEffect = (effects::Effect*) new effects::Pos();
+    } else if(typ == "roof"){
+        pEffect = (effects::Effect*) new effects::Roof();
     }else {
         // default type, just set name to whatever was specified
         pEffect = new effects::Effect();

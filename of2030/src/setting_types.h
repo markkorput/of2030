@@ -88,7 +88,8 @@ namespace of2030{
         ofColor getValue(const string &name, const ofColor &defaultValue){
             return ofColor(getValue(name+"_r", defaultValue.r),
                            getValue(name+"_g", defaultValue.g),
-                           getValue(name+"_b", defaultValue.b));
+                           getValue(name+"_b", defaultValue.b),
+                           getValue(name+"_a", defaultValue.a));
 
         }
     };

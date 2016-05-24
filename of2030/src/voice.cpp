@@ -30,10 +30,10 @@ void Voice::draw(Context &context){
     ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
     
     ofVec2f coords[4];
-    coords[0] = context.screen_setting.getValue("voice_coord1", ofVec2f(0.1f, 0.1f));
-    coords[1] = context.screen_setting.getValue("voice_coord2", ofVec2f(0.9f, 0.1f));
-    coords[2] = context.screen_setting.getValue("voice_coord3", ofVec2f(0.9f, 0.3f));
-    coords[3] = context.screen_setting.getValue("voice_coord4", ofVec2f(0.1f, 0.3f));
+    coords[0] = context.screen_setting.getValue("voice_coord1", ofVec2f(0.1f, 0.1f)) * resolution;
+    coords[1] = context.screen_setting.getValue("voice_coord2", ofVec2f(0.9f, 0.1f)) * resolution;
+    coords[2] = context.screen_setting.getValue("voice_coord3", ofVec2f(0.9f, 0.3f)) * resolution;
+    coords[3] = context.screen_setting.getValue("voice_coord4", ofVec2f(0.1f, 0.3f)) * resolution;
 
     // create mask
     context.fbo2->begin();

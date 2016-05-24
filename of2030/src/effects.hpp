@@ -14,5 +14,6 @@
 #include "spot.hpp"
 #include "voice.hpp"
 #include "pos.hpp"
+#include "roof.hpp"
 
 #endif /* effects_h */
