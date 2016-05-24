@@ -67,7 +67,6 @@ void Renderer::draw(){
     fillContextClientInfo(context);
 
     fbo->begin();
-//    ofBackground(0);
     ofClear(0.0f,0.0f,0.0f,0.0f);
 
     vector<effects::Effect*> effects = player->getActiveEffects();
@@ -79,7 +78,6 @@ void Renderer::draw(){
 
     fbo->end();
 
-    ofBackground(0);
     ofSetColor(255);
     fbo->draw(0,0, screenWidth, screenHeight);
 }

@@ -123,6 +123,8 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+    ofBackground(0);
+
 #ifdef __MULTI_CLIENT_ENABLED__
     if(of2030::MultiClient::instance()->enabled){
         of2030::MultiClient::instance()->draw();
