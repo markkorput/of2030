@@ -53,4 +53,7 @@ void Vid::draw(Context &context){
     ofSetColor(255);
     mesh.draw();
     video_player->unbind();
+    
+    ofSetColor(0);
+    drawTunnelMask(context);
 }

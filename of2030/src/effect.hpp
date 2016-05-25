@@ -22,6 +22,7 @@ namespace of2030{ namespace effects {
         XmlItemSetting screen_setting;
         ofFbo* fbo;
         ofFbo* fbo2;
+        ofFbo* fbo3;
     } Context;
 
     
@@ -31,7 +32,8 @@ namespace of2030{ namespace effects {
         TUNNEL = 4,
         SPOT = 5,
         VOICE = 6,
-        POS = 7
+        POS = 7,
+        ROOF = 8
     };
     
     static map<EffectType, string> EFFECT_NAMES = {
@@ -40,7 +42,8 @@ namespace of2030{ namespace effects {
         {TUNNEL, "tunnel"},
         {SPOT, "spot"},
         {VOICE, "voice"},
-        {POS, "pos"}
+        {POS, "pos"},
+        {ROOF, "roof"}
     };
 
     #define NO_TIME (-1.0f)
@@ -66,6 +69,11 @@ namespace of2030{ namespace effects {
     protected: // methods
         
         void setType(EffectType effect_type);
+        void drawContent(Context &context);
+        void drawMask(Context &context, const string &coordsName, const ofVec2f &resolution);
+        void drawTunnelMask(Context &context);
+        void drawPanoMask(Context &context);
+        void drawVideo(Context &context, const string &video);
 
     public: // properties
 

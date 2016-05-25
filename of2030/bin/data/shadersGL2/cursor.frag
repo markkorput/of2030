@@ -1,3 +1,4 @@
+uniform vec3 iPos;
 uniform vec2 iResolution;
 uniform float iProgress;
 uniform float iDuration;
@@ -16,6 +17,8 @@ void main(void){
     f = f / iterationDuration;
     // localProgress
     f = (f - iScreenPanoStart) / (iScreenPanoEnd - iScreenPanoStart);
+
+    // float pixPerPano = iResolution.x / (iScreenPanoEnd - iScreenPanoStart);
 
     float alpha = 0.0;
     if(abs(gl_FragCoord.x - f*iResolution.x) < iGain){
