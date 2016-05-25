@@ -159,6 +159,10 @@ void OscReceiver::processMessage(ofxOscMessage &m){
     }
     
     if(addr == osc_setting->addresses["stop"]){
+        if(m.getNumArgs() == 1 and m.getArgType(0) == ofxOscArgType::OFXOSC_TYPE_FLOAT){
+            param = "";
+        }
+
         ofNotifyEvent(m_interface->stopTriggerEvent, param, m_interface);
         return;
     }

@@ -78,7 +78,8 @@ void Player::stopEffectByTrigger(string &trigger){
 
     // ofLogWarning() << "Player::stopEffectByTrigger active effects: " << effects->size();
     for(auto effect: (*effects)){
-        if(effect->trigger == trigger){
+        // if the pecified trigger string is empty; stop all effects
+        if(effect->trigger == trigger || trigger == ""){
             // ofLogWarning() << "an active";
             active_effects_manager.remove(effect);
             effect_manager.remove(effect);
