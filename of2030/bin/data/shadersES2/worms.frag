@@ -1,27 +1,20 @@
 precision highp float;
-
 uniform vec3 iPos;
 uniform vec3 iSize;
 uniform float iGain;
 uniform vec2 iResolution;
-uniform vec2 iScreenWorldSize;
-uniform vec3 iScreenPos;
 uniform float iScreenPanoStart;
 uniform float iScreenPanoEnd;
 uniform float iEffectPanoStart;
 uniform float iEffectPanoEnd;
-uniform float iScreenTunnelStart;
-uniform float iScreenTunnelEnd;
-uniform float iEffectTunnelStart;
-uniform float iEffectTunnelEnd;
-
+uniform vec2 iScreenWorldSize;
 
 float worm(vec2 pos){ //}, float tiltFactor){
     // sine-wave based baseline (causing the horizontal waviness)
-    float xLine = sin(pos.x*0.1*iSize.x)*0.1;
+    float xLine = sin(pos.x*0.1)*0.1;
     // add nother wave for some more randomness
-    xLine += sin(pos.x+0.13*iSize.x)*0.21;
-    xLine += sin(pos.x+1.521*iSize.x)*0.31;
+    xLine += sin(pos.x+0.13)*0.21;
+    xLine += sin(pos.x+1.521)*0.31;
     // tilt
     //xLine += pos.x*tiltFactor;
 
@@ -46,19 +39,10 @@ void main(void){
     //float tilt = 0.0;
 
     float pixPerPano = iResolution.x / (iScreenPanoEnd - iScreenPanoStart);
-    float pixPerTunnel = iResolution.x / (iScreenTunnelEnd - iScreenTunnelStart);
-    float tunnelPerPix = (iScreenTunnelEnd - iScreenTunnelStart) / iResolution.x;
+    float startX = (iEffectPanoStart - iScreenPanoStart) * pixPerPano;
+    float endX = (iEffectPanoEnd - iScreenPanoStart) * pixPerPano;
 
-
-    float panoStartX = (iEffectPanoStart - iScreenPanoStart) * pixPerPano;
-    float tunnelStartX = (iEffectTunnelStart - iScreenTunnelStart) * pixPerTunnel;
-    float startX = max(panoStartX, tunnelStartX);
-
-    float tunnelEndX = (iEffectTunnelEnd - iScreenTunnelStart) * pixPerTunnel;
-    float panoEndX = (iEffectPanoEnd - iScreenPanoStart) * pixPerPano;
-    float endX = min(panoEndX, tunnelEndX);
-
-    vec2 fragWorldPos = iScreenTunnelStart + gl_FragCoord.xy * tunnelPerPix;
+    vec2 fragWorldPos = gl_FragCoord.xy / iResolution * iScreenWorldSize;
 
     float c = 0.0;
 
@@ -66,9 +50,9 @@ void main(void){
       // worm 1
       c += clamp(worm(iPos.xy + fragWorldPos), 0.0, 1.0);
       // worm 2
-      c += clamp(worm(iPos.xy + fragWorldPos + vec2(iSize.y)), 0.0, 1.0);
+      c += clamp(worm(iPos.xy + fragWorldPos + iSize.xy), 0.0, 1.0);
       // worm 3
-      c += clamp(worm(iPos.xy + fragWorldPos - vec2(iSize.y)), 0.0, 1.0);
+      c += clamp(worm(iPos.xy + fragWorldPos - iSize.xy), 0.0, 1.0);
     }
 
     gl_FragColor = vec4(vec3(1.0), c);

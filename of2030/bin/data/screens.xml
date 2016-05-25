@@ -57,14 +57,14 @@
       <pano_coord4_y>1.0</pano_coord4_y> -->
 
       <!-- roof -->
-      <!-- <roof_coord1_x>0.0</roof_coord1_x>
+      <roof_coord1_x>0.0</roof_coord1_x>
       <roof_coord1_y>0.0</roof_coord1_y>
       <roof_coord2_x>0.32</roof_coord2_x>
       <roof_coord2_y>0.0</roof_coord2_y>
       <roof_coord3_x>0.32</roof_coord3_x>
       <roof_coord3_y>1.0</roof_coord3_y>
       <roof_coord4_x>0.0</roof_coord4_x>
-      <roof_coord4_y>1.0</roof_coord4_y> -->
+      <roof_coord4_y>1.0</roof_coord4_y>
       <!-- wall -->
       <!-- <wall_coord1_x>0.0</wall_coord1_x>
       <wall_coord1_y>0.0</wall_coord1_y>
@@ -112,6 +112,16 @@
       <spot2_y>0.5</spot2_y>
       <spot2size_x>0.3</spot2size_x>
       <spot2size_y>0.4</spot2size_y>
+
+      <!-- roof -->
+      <roof_coord1_x>0.0</roof_coord1_x>
+      <roof_coord1_y>0.0</roof_coord1_y>
+      <roof_coord2_x>1.0</roof_coord2_x>
+      <roof_coord2_y>0.0</roof_coord2_y>
+      <roof_coord3_x>1.0</roof_coord3_x>
+      <roof_coord3_y>0.5</roof_coord3_y>
+      <roof_coord4_x>0.0</roof_coord4_x>
+      <roof_coord4_y>0.5</roof_coord4_y>
     </screen>
 
     <screen name="rpi5">
@@ -140,6 +150,16 @@
       <spot3_y>0.5</spot3_y>
       <spot3size_x>0.3</spot3size_x>
       <spot3size_y>0.4</spot3size_y>
+
+      <!-- roof -->
+      <roof_coord1_x>0.0</roof_coord1_x>
+      <roof_coord1_y>0.0</roof_coord1_y>
+      <roof_coord2_x>0.32</roof_coord2_x>
+      <roof_coord2_y>0.0</roof_coord2_y>
+      <roof_coord3_x>0.32</roof_coord3_x>
+      <roof_coord3_y>1.0</roof_coord3_y>
+      <roof_coord4_x>0.0</roof_coord4_x>
+      <roof_coord4_y>1.0</roof_coord4_y>
     </screen>
 
     <screen name="rpi7">
@@ -161,13 +181,23 @@
       <pano_start>0.2</pano_start>
       <pano_end>0.34</pano_end>
       <!-- the area of the tunnel that this screen shows -->
-      <tunnel_start>0.66</tunnel_start>
-      <tunnel_end>0.80</tunnel_end>
+      <tunnel_start>0.80</tunnel_start>
+      <tunnel_end>0.66</tunnel_end>
       <!-- spot (center position, width, height in screen factors) -->
       <spot3_x>0.5</spot3_x>
       <spot3_y>0.5</spot3_y>
       <spot3size_x>0.3</spot3size_x>
       <spot3size_y>0.4</spot3size_y>
+
+      <!-- roof -->
+      <roof_coord1_x>0.0</roof_coord1_x>
+      <roof_coord1_y>0.0</roof_coord1_y>
+      <roof_coord2_x>0.32</roof_coord2_x>
+      <roof_coord2_y>0.0</roof_coord2_y>
+      <roof_coord3_x>0.32</roof_coord3_x>
+      <roof_coord3_y>1.0</roof_coord3_y>
+      <roof_coord4_x>0.0</roof_coord4_x>
+      <roof_coord4_y>1.0</roof_coord4_y>
     </screen>
 
     <screen name="rpi8">
@@ -189,13 +219,23 @@
       <pano_start>0.11</pano_start>
       <pano_end>0.25</pano_end>
       <!-- the area of the tunnel that this screen shows -->
-      <tunnel_start>0.43</tunnel_start>
-      <tunnel_end>0.57</tunnel_end>
+      <tunnel_start>0.57</tunnel_start>
+      <tunnel_end>0.43</tunnel_end>
       <!-- spot (center position, width, height in screen factors) -->
       <spot2_x>0.5</spot2_x>
       <spot2_y>0.5</spot2_y>
       <spot2size_x>0.3</spot2size_x>
       <spot2size_y>0.4</spot2size_y>
+
+      <!-- roof -->
+      <roof_coord1_x>0.0</roof_coord1_x>
+      <roof_coord1_y>0.0</roof_coord1_y>
+      <roof_coord2_x>0.32</roof_coord2_x>
+      <roof_coord2_y>0.0</roof_coord2_y>
+      <roof_coord3_x>0.32</roof_coord3_x>
+      <roof_coord3_y>1.0</roof_coord3_y>
+      <roof_coord4_x>0.0</roof_coord4_x>
+      <roof_coord4_y>1.0</roof_coord4_y>
     </screen>
 
     <screen name="rpi10">
@@ -217,13 +257,23 @@
       <pano_start>0.03</pano_start>
       <pano_end>0.17</pano_end>
       <!-- the area of the tunnel that this screen shows -->
-      <tunnel_start>0.2</tunnel_start>
-      <tunnel_end>0.34</tunnel_end>
+      <tunnel_start>0.34</tunnel_start>
+      <tunnel_end>0.2</tunnel_end>
       <!-- spot (center position, width, height in screen factors) -->
       <spot1_x>0.5</spot1_x>
       <spot1_y>0.5</spot1_y>
       <spot1size_x>0.3</spot1size_x>
       <spot1size_y>0.4</spot1size_y>
+
+      <!-- roof -->
+      <roof_coord1_x>0.0</roof_coord1_x>
+      <roof_coord1_y>0.0</roof_coord1_y>
+      <roof_coord2_x>0.32</roof_coord2_x>
+      <roof_coord2_y>0.0</roof_coord2_y>
+      <roof_coord3_x>0.32</roof_coord3_x>
+      <roof_coord3_y>1.0</roof_coord3_y>
+      <roof_coord4_x>0.0</roof_coord4_x>
+      <roof_coord4_y>1.0</roof_coord4_y>
     </screen>
   </screens>
 </of2030>

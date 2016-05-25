@@ -1,5 +1,21 @@
 <of2030>
   <effects>
+    <effect name="spot1">
+      <number>1</number>
+      <shader>spot</shader>
+    </effect>
+
+    <effect name="spot2">
+      <number>2</number>
+      <shader>spot</shader>
+    </effect>
+
+    <effect name="spot3">
+      <number>3</number>
+      <shader>spot</shader>
+    </effect>
+
+
     <!-- inloop -->
     <effect name="cursor">
       <shader>cursor</shader>
@@ -14,6 +30,38 @@
       <gain>0.65</gain>
       <size_x>68.0</size_x>
       <size_y>1.0</size_y>
+    </effect>
+
+    <!-- roof -->
+    <effect name="roof">
+      <mask_coords_name>roof_coord</mask_coords_name>
+    </effect>
+
+    <!-- voice -->
+    <effect name="voice">
+      <mask_coords_name>voice_coord</mask_coords_name>
+    </effect>
+
+    <!-- vid -->
+    <effect name="vid1">
+      <!-- <video>PanoCalib-01.mov</video> -->
+      <!-- <video>fingers.mov</video> -->
+      <video>Marcheren_1_BW.mov</video>
+    </effect>
+
+    <effect name="vid2">
+      <video>PanoCalib-01.mov</video>
+      <is_pano>1.0</is_pano>
+      <!-- <video>fingers.mov</video> -->
+      <!-- <video>Marcheren_1_BW.mov</video> -->
+    </effect>
+
+    <!-- overlay -->
+    <effect name="overlay">
+      <color_r>255.0</color_r>
+      <color_g>255.0</color_g>
+      <color_b>255.0</color_b>
+      <color_a>0.0</color_a>
     </effect>
   </effects>
 </of2030>

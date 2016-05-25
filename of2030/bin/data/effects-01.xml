@@ -49,7 +49,7 @@
 
     <!-- full pano video test -->
     <!-- <effect name="vid1">
-      <video_file>PanoCalib-01.mov</video_file>
+      <video>PanoCalib-01.mov</video>
       <loop>1</loop>
     </effect>
 

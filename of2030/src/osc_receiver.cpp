@@ -8,7 +8,6 @@
 
 #include "ofMain.h"
 #include "osc_receiver.hpp"
-#include "ofxJSONElement.h"
 #include "setting_types.h"
 
 using namespace of2030;
