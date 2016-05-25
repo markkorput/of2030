@@ -181,8 +181,8 @@
       <pano_start>0.2</pano_start>
       <pano_end>0.34</pano_end>
       <!-- the area of the tunnel that this screen shows -->
-      <tunnel_start>0.66</tunnel_start>
-      <tunnel_end>0.80</tunnel_end>
+      <tunnel_start>0.80</tunnel_start>
+      <tunnel_end>0.66</tunnel_end>
       <!-- spot (center position, width, height in screen factors) -->
       <spot3_x>0.5</spot3_x>
       <spot3_y>0.5</spot3_y>
@@ -219,8 +219,8 @@
       <pano_start>0.11</pano_start>
       <pano_end>0.25</pano_end>
       <!-- the area of the tunnel that this screen shows -->
-      <tunnel_start>0.43</tunnel_start>
-      <tunnel_end>0.57</tunnel_end>
+      <tunnel_start>0.57</tunnel_start>
+      <tunnel_end>0.43</tunnel_end>
       <!-- spot (center position, width, height in screen factors) -->
       <spot2_x>0.5</spot2_x>
       <spot2_y>0.5</spot2_y>
@@ -257,8 +257,8 @@
       <pano_start>0.03</pano_start>
       <pano_end>0.17</pano_end>
       <!-- the area of the tunnel that this screen shows -->
-      <tunnel_start>0.2</tunnel_start>
-      <tunnel_end>0.34</tunnel_end>
+      <tunnel_start>0.34</tunnel_start>
+      <tunnel_end>0.2</tunnel_end>
       <!-- spot (center position, width, height in screen factors) -->
       <spot1_x>0.5</spot1_x>
       <spot1_y>0.5</spot1_y>

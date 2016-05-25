@@ -39,5 +39,13 @@
       <!-- <video>fingers.mov</video> -->
       <!-- <video>Marcheren_1_BW.mov</video> -->
     </effect>
+
+    <!-- overlay -->
+    <effect name="overlay">
+      <color_r>255.0</color_r>
+      <color_g>255.0</color_g>
+      <color_b>255.0</color_b>
+      <color_a>0.0</color_a>
+    </effect>
   </effects>
 </of2030>

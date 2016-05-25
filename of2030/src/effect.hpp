@@ -72,6 +72,7 @@ namespace of2030{ namespace effects {
         void drawContent(Context &context);
         void drawMask(Context &context, const string &coordsName, const ofVec2f &resolution);
         void drawTunnelMask(Context &context);
+        void drawPanoMask(Context &context);
         void drawVideo(Context &context, const string &video);
 
     public: // properties

@@ -68,7 +68,7 @@ void Effect::setup(Context &context){
 
 void Effect::draw(Context &context){
     ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
-    
+
     // draw content to fbo3
     context.fbo3->begin();
         ofClear(0.0f, 0.0f, 0.0f, 0.0f);
@@ -78,6 +78,7 @@ void Effect::draw(Context &context){
         // tunnel 'mask'
         ofSetColor(0);
         drawTunnelMask(context);
+        drawPanoMask(context);
     context.fbo3->end();
 
     // draw alpha mask (if no mask specfied, this will give a full white frame)
@@ -172,13 +173,52 @@ void Effect::drawTunnelMask(Context &context){
     float scrTunnelEnd = context.screen_setting.getValue("tunnel_end", 1.0f);
     float fxTunnelStart = context.effect_setting.getValue("tunnel_start", 0.0f);
     float fxTunnelEnd = context.effect_setting.getValue("tunnel_end", 1.0f);
-    float pixPerTunnel = resolution.x / (scrTunnelEnd-scrTunnelStart);
+    float pixPerTunnel = resolution.x / std::abs(scrTunnelEnd-scrTunnelStart);
+
+//    if(scrTunnelStart > scrTunnelEnd){
+//        // swap
+//        float tmp = fxTunnelStart;
+//        fxTunnelStart = fxTunnelEnd;
+//        fxTunnelEnd = tmp;
+//    }
+//
+//    float x = (fxTunnelStart-scrTunnelStart)*pixPerTunnel;
+//    ofDrawRectangle(0.0, 0.0, x, resolution.y);
+//
+//    x = (fxTunnelEnd-scrTunnelStart)*pixPerTunnel;
+//    ofDrawRectangle(x, 0.0, resolution.x-x, resolution.y);
+
+    if(scrTunnelStart > scrTunnelEnd){
+        // swap
+        float tmp = fxTunnelStart;
+        fxTunnelStart = fxTunnelEnd;
+        fxTunnelEnd = tmp;
+    }
+
+    float x = ofMap(fxTunnelStart, scrTunnelStart, scrTunnelEnd, 0.0, resolution.x);
+//    float x = (fxTunnelStart-scrTunnelStart)*pixPerTunnel;
+    ofDrawRectangle(0.0, 0.0, x, resolution.y);
+    x = ofMap(fxTunnelEnd, scrTunnelStart, scrTunnelEnd, 0.0, resolution.x);
+//    x = (fxTunnelEnd-scrTunnelStart)*pixPerTunnel;
     
-    float minX = (fxTunnelStart-scrTunnelStart)*pixPerTunnel;
-    float maxX = (fxTunnelEnd-scrTunnelStart)*pixPerTunnel;
+    ofDrawRectangle(x, 0.0, resolution.x-x, resolution.y);
+}
+
+void Effect::drawPanoMask(Context &context){
+    ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
     
+    float scrStart = context.screen_setting.getValue("pano_start", 0.0f);
+    float scrEnd = context.screen_setting.getValue("pano_end", 1.0f);
+    float fxStart = context.effect_setting.getValue("pano_start", 0.0f);
+    float fxEnd = context.effect_setting.getValue("pano_end", 1.0f);
+    float pixPerUnit = resolution.x / (scrEnd-scrStart);
+    
+//    float minX = ofMap(fxStart, scrStart, scrEnd, 0.0, resolution.x);
+    float minX = (fxStart-scrStart)*pixPerUnit;
+    float maxX = (fxEnd-scrStart)*pixPerUnit;
+
     ofDrawRectangle(0.0, 0.0, minX, resolution.y);
-    ofDrawRectangle(maxX, 0.0, resolution.x, resolution.y);
+    ofDrawRectangle(maxX, 0.0, resolution.x-maxX, resolution.y);
 }
 
 void Effect::drawVideo(Context &context, const string &video){

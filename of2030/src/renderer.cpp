@@ -9,6 +9,7 @@
 #include "ofMain.h"
 #include "renderer.hpp"
 #include "xml_configs.hpp"
+#include "effect_manager.hpp"
 
 using namespace of2030;
 using namespace of2030::effects;
@@ -18,6 +19,9 @@ SINGLETON_CLASS_IMPLEMENTATION_CODE(Renderer)
 Renderer::Renderer() : fbo(NULL), fbo2(NULL), fbo3(NULL), player(NULL), client_id(""), bCallbacksRegistered(false){
     screenWidth = ofGetWidth();
     screenHeight = ofGetHeight();
+
+    // runs effect's setup
+    overlayEffect = EfficientEffectManager::instance()->get("overlay");
 }
 
 Renderer::~Renderer(){
@@ -76,12 +80,15 @@ void Renderer::draw(){
     fbo->begin();
     ofClear(0.0f,0.0f,0.0f,0.0f);
 
+    fillScreenSetting(context.screen_setting);
     vector<effects::Effect*> effects = player->getActiveEffects();
     for(auto effect: effects){
         fillEffectSetting(*effect, context.effect_setting);
-        fillScreenSetting(*effect, context.screen_setting);
         effect->draw(context);
     }
+    
+    fillEffectSetting(*overlayEffect, context.effect_setting);
+    overlayEffect->draw(context);
 
     fbo->end();
 
@@ -107,8 +114,8 @@ void Renderer::onEffectAdded(Effect &effect){
 
 void Renderer::fillContext(effects::Context &context, Effect &effect){
     fillContextClientInfo(context);
+    fillScreenSetting(context.screen_setting);
     fillEffectSetting(effect, context.effect_setting);
-    fillScreenSetting(effect, context.screen_setting);
 }
 
 void Renderer::fillContextClientInfo(effects::Context &context){
@@ -156,7 +163,7 @@ void Renderer::fillEffectSetting(effects::Effect &effect, XmlItemSetting &fxsett
         fxsetting.merge(*pSetting);
 }
 
-void Renderer::fillScreenSetting(effects::Effect &effect, XmlItemSetting &setting){
+void Renderer::fillScreenSetting(XmlItemSetting &setting){
     XmlItemSetting *pSetting = XmlConfigs::screens()->getItem(client_id);
 
     if(pSetting)
