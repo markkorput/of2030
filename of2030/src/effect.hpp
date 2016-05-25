@@ -69,7 +69,8 @@ namespace of2030{ namespace effects {
     protected: // methods
         
         void setType(EffectType effect_type);
-        void drawMask(Context &context, const string &coordsName);
+        void drawContent(Context &context);
+        void drawMask(Context &context, const string &coordsName, const ofVec2f &resolution);
         void drawTunnelMask(Context &context);
         void drawVideo(Context &context, const string &video);
 

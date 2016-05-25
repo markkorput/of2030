@@ -32,6 +32,8 @@ void Effect::reset(){
 }
 
 void Effect::setup(Context &context){
+    string val;
+
     if(!hasStartTime()){
         startTime = context.time;
     }
@@ -43,42 +45,76 @@ void Effect::setup(Context &context){
     }
     
     // load any shaders based on comma-seperated "shaders" effect setting
-    string shader_name = context.effect_setting.getValue("shader", "");
-    if(shader_name != ""){
-        this->shader = ShaderManager::instance()->get(shader_name);
+    val = context.effect_setting.getValue("shader", "");
+    if(val != ""){
+        this->shader = ShaderManager::instance()->get(val);
     }
+
+    // load/start/configure video if specified
+    val = context.effect_setting.getValue("video", "");
+    if(val != ""){
+        // load video (get video player instance from the VideoManager)
+        ofVideoPlayer* video_player = VideoManager::instance()->get(val, true);
+
+        if(context.effect_setting.getValue("loop", "0") == "1"){
+            // TODO; this player might currently be used by other effects?
+            video_player->setLoopState(OF_LOOP_NORMAL);
+        }
+        
+        video_player->play();
+    }
+
 }
 
 void Effect::draw(Context &context){
     ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
-
-    EffectLogic logic((Effect*)this, &context);
     
     // draw content to fbo3
     context.fbo3->begin();
-    ofClear(0.0f, 0.0f, 0.0f, 0.0f);
-    ofColor clr = context.effect_setting.getValue("color", ofColor(255));
+        ofClear(0.0f, 0.0f, 0.0f, 0.0f);
+        ofColor clr = context.effect_setting.getValue("color", ofColor(255));
+        ofSetColor(clr);
+        drawContent(context);
+        // tunnel 'mask'
+        ofSetColor(0);
+        drawTunnelMask(context);
+    context.fbo3->end();
 
+    // draw alpha mask (if no mask specfied, this will give a full white frame)
+    context.fbo2->begin();
+        ofClear(0.0f, 0.0f, 0.0f, 0.0f);
+        ofSetColor(255);
+        drawMask(context, context.effect_setting.getValue("mask_coords_name", ""), resolution);
+    context.fbo2->end();
 
+    // apply alpha mask through mask shader
+    ofShader* maskShader = ShaderManager::instance()->get("mask");
+    maskShader->begin();
+        // pass mask texture to shader
+        maskShader->setUniformTexture("iMask", context.fbo2->getTexture(), 2);
+        // draw content from fbo3 (masked)
+        ofSetColor(255);
+        context.fbo3->draw(0.0f, 0.0f, resolution.x, resolution.y);
+    maskShader->end();
+}
+
+void Effect::drawContent(Context &context){
+    EffectLogic logic((Effect*)this, &context);
+    ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
+    
     if(!shader){
         // draw without shader stuff
         string vid = context.effect_setting.getValue("video", "");
         if(vid == ""){
-            ofSetColor(clr);
             ofDrawRectangle(0, 0, resolution.x, resolution.y);
         } else {
-            ofSetColor(0,255,0);
-            ofDrawRectangle(0, 0, resolution.x, resolution.y);
             ofSetColor(255);
             drawVideo(context, vid);
         }
-        // tunnel 'mask'
-        ofSetColor(0);
-        drawTunnelMask(context);
     } else {
         // activate shader
         shader->begin();
-
+        
         // populate shader
         shader->setUniform2f("iResolution", resolution);
         shader->setUniform3f("iPos", context.effect_setting.getValue("pos", ofVec3f(0.0f)));
@@ -86,82 +122,38 @@ void Effect::draw(Context &context){
         shader->setUniform2f("iScreenWorldSize", ofVec2f(context.screen_setting.getValue("world_width", 2.67f),
                                                          context.screen_setting.getValue("world_height", 2.0f)));
         shader->setUniform3f("iScreenPos", context.screen_setting.getValue("pos", ofVec3f(0.0f)));
-
+        
         shader->setUniform1f("iProgress", logic.getGlobalProgress());
         shader->setUniform1f("iDuration", logic.getGlobalDuration());
         shader->setUniform1f("iIterations", context.effect_setting.getValue("iterations", 1.0f));
-
+        
         shader->setUniform1f("iScreenPanoStart", context.screen_setting.getValue("pano_start", 0.0f));
         shader->setUniform1f("iScreenPanoEnd", context.screen_setting.getValue("pano_end", 1.0f));
         shader->setUniform1f("iEffectPanoStart", context.effect_setting.getValue("pano_start", 0.0f));
         shader->setUniform1f("iEffectPanoEnd", context.effect_setting.getValue("pano_end", 1.0f));
-
+        
         shader->setUniform1f("iScreenTunnelStart", context.screen_setting.getValue("tunnel_start", 0.0f));
         shader->setUniform1f("iScreenTunnelEnd", context.screen_setting.getValue("tunnel_end", 1.0f));
         shader->setUniform1f("iEffectTunnelStart", context.effect_setting.getValue("tunnel_start", 0.0f));
         shader->setUniform1f("iEffectTunnelEnd", context.effect_setting.getValue("tunnel_end", 1.0f));
-
+        
         shader->setUniform1f("iGain", context.effect_setting.getValue("gain", 1.0f));
-
+        
         // draw
         
         string vid = context.effect_setting.getValue("video", "");
         if(vid == ""){
-            ofSetColor(clr);
             ofDrawRectangle(0, 0, resolution.x, resolution.y);
         } else {
-            ofSetColor(0,255,0);
-            ofDrawRectangle(0, 0, resolution.x, resolution.y);
-            ofSetColor(255);
             drawVideo(context, vid);
         }
-        // tunnel 'mask'
-        ofSetColor(0);
-        drawTunnelMask(context);
+        
         // deactivate shader
         shader->end();
     }
-    context.fbo3->end();
-
-    
-    // draw mask (if no mask specfied, this will give a full white frame)
-    context.fbo2->begin();
-        ofClear(0.0f, 0.0f, 0.0f, 0.0f);
-        drawMask(context, context.effect_setting.getValue("mask_coords_name", ""));
-    context.fbo2->end();
-
-    
-    ofShader* maskShader = ShaderManager::instance()->get("mask");
-    
-    // enable mask shader
-    maskShader->begin();
-        // pass mask texture to shader
-        maskShader->setUniformTexture("iMask", context.fbo2->getTexture(), 2);
-        // draw content (masked)
-        ofSetColor(255);
-        context.fbo3->draw(0.0, 0.0, resolution.x, resolution.y);
-    maskShader->end();
 }
 
-float Effect::getDuration() const {
-    if(hasDuration())
-        return duration;
-
-    if(hasStartTime() and hasEndTime())
-        return endTime - startTime;
-
-    return -1.0;
-}
-
-void Effect::setType(EffectType effect_type){
-    type = effect_type;
-    name = EFFECT_NAMES[effect_type];
-}
-
-void Effect::drawMask(Context &context, const string &coordsName){
-    ofSetColor(255);
-    ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
-    
+void Effect::drawMask(Context &context, const string &coordsName, const ofVec2f &resolution){
     ofVec2f coords[4];
     coords[0] = context.screen_setting.getValue(coordsName+"1", ofVec2f(0.0f, 1.0f)) * resolution;
     coords[1] = context.screen_setting.getValue(coordsName+"2", ofVec2f(1.0f, 1.0f)) * resolution;
@@ -181,10 +173,10 @@ void Effect::drawTunnelMask(Context &context){
     float fxTunnelStart = context.effect_setting.getValue("tunnel_start", 0.0f);
     float fxTunnelEnd = context.effect_setting.getValue("tunnel_end", 1.0f);
     float pixPerTunnel = resolution.x / (scrTunnelEnd-scrTunnelStart);
-
+    
     float minX = (fxTunnelStart-scrTunnelStart)*pixPerTunnel;
     float maxX = (fxTunnelEnd-scrTunnelStart)*pixPerTunnel;
-
+    
     ofDrawRectangle(0.0, 0.0, minX, resolution.y);
     ofDrawRectangle(maxX, 0.0, resolution.x, resolution.y);
 }
@@ -192,33 +184,49 @@ void Effect::drawTunnelMask(Context &context){
 void Effect::drawVideo(Context &context, const string &video){
     ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
     ofVideoPlayer *video_player = of2030::VideoManager::instance()->get(video, true);
+    
+    // set up mesh with vertices and tex coords
+    ofMesh mesh;
+    mesh.addVertex(ofPoint(0.0f, context.fbo->getHeight())); // top left
+    mesh.addVertex(ofPoint(context.fbo->getWidth(), context.fbo->getHeight())); // top right
+    mesh.addVertex(ofPoint(context.fbo->getWidth(), 0.0f)); // bottom right
+    mesh.addVertex(ofPoint(0.0f, 0.0f)); // bottom left
 
-//    // set up mesh with vertices and tex coords
-//    ofMesh mesh;
-//    mesh.addVertex(ofPoint(0.0f, context.fbo->getHeight())); // top left
-//    mesh.addVertex(ofPoint(context.fbo->getWidth(), context.fbo->getHeight())); // top right
-//    mesh.addVertex(ofPoint(context.fbo->getWidth(), 0.0f)); // bottom right
-//    mesh.addVertex(ofPoint(0.0f, 0.0f)); // bottom left
-//    
-//    ofVec2f vidSize = ofVec2f(video_player->getWidth(), video_player->getHeight());
-//
-//    mesh.addTexCoord(ofPoint(context.screen_setting.getValue("pano_coord1", ofVec2f(0.0f, 1.0f)) * vidSize));
-//    mesh.addTexCoord(ofPoint(context.screen_setting.getValue("pano_coord2", ofVec2f(1.0f, 1.0f)) * vidSize));
-//    mesh.addTexCoord(ofPoint(context.screen_setting.getValue("pano_coord3", ofVec2f(1.0f, 0.0f)) * vidSize));
-//    mesh.addTexCoord(ofPoint(context.screen_setting.getValue("pano_coord4", ofVec2f(0.0f, 0.0f)) * vidSize));
-//    
-//    mesh.addTriangle(0, 1, 2);
-//    mesh.addTriangle(0, 2, 3);
-//
-//    // bind video texture
-//    video_player->bind();
-//    ofSetColor(255);
-//    mesh.draw();
-//    video_player->unbind();
-    video_player->draw(0,0, resolution.x, resolution.y);
+    // specify which part of the video texture to show (default values specify the full frame)
+    ofVec2f vidSize = ofVec2f(video_player->getWidth(), video_player->getHeight());
+    mesh.addTexCoord(ofPoint(context.screen_setting.getValue("pano_coord1", ofVec2f(0.0f, 0.0f)) * vidSize));
+    mesh.addTexCoord(ofPoint(context.screen_setting.getValue("pano_coord2", ofVec2f(1.0f, 0.0f)) * vidSize));
+    mesh.addTexCoord(ofPoint(context.screen_setting.getValue("pano_coord3", ofVec2f(1.0f, 1.0f)) * vidSize));
+    mesh.addTexCoord(ofPoint(context.screen_setting.getValue("pano_coord4", ofVec2f(0.0f, 1.0f)) * vidSize));
+
+    mesh.addTriangle(0, 1, 2);
+    mesh.addTriangle(0, 2, 3);
+
+    // bind video texture
+    video_player->bind();
+    ofSetColor(255);
+    mesh.draw();
+    video_player->unbind();
 }
 
+float Effect::getDuration() const {
+    if(hasDuration())
+        return duration;
+
+    if(hasStartTime() and hasEndTime())
+        return endTime - startTime;
+
+    return -1.0;
+}
+
+void Effect::setType(EffectType effect_type){
+    type = effect_type;
+    name = EFFECT_NAMES[effect_type];
+}
+
+
 // === === === === === === === === ===
+
 
 Tunnel::Tunnel(){
     setType(EffectType::TUNNEL);
