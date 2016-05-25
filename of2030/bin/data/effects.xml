@@ -18,7 +18,7 @@
 
     <!-- inloop -->
     <effect name="cursor">
-      <shader>cursor</shader>
+      <pattern>cursor</pattern>
     </effect>
 
     <effect name="worms1">

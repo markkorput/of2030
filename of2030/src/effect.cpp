@@ -98,20 +98,15 @@ void Effect::draw(Context &context){
     maskShader->end();
 }
 
+void Effect::update(float dt){
+    //
+}
+
 void Effect::drawContent(Context &context){
     EffectLogic logic((Effect*)this, &context);
     ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
     
-    if(!shader){
-        // draw without shader stuff
-        string vid = context.effect_setting.getValue("video", "");
-        if(vid == ""){
-            ofDrawRectangle(0, 0, resolution.x, resolution.y);
-        } else {
-            ofSetColor(255);
-            drawVideo(context, vid);
-        }
-    } else {
+    if(shader){
         // activate shader
         shader->begin();
 
@@ -119,13 +114,16 @@ void Effect::drawContent(Context &context){
         shader->setUniform2f("iResolution", resolution);
         shader->setUniform3f("iPos", context.effect_setting.getValue("pos", ofVec3f(0.0f)));
         shader->setUniform3f("iSize", context.effect_setting.getValue("size", ofVec3f(0.0f)));
+        shader->setUniform1f("iProgress", logic.getGlobalProgress());
+        shader->setUniform1f("iDuration", logic.getGlobalDuration());
+        shader->setUniform1f("iIterations", context.effect_setting.getValue("iterations", 1.0f));
+
+        
+        
         shader->setUniform2f("iScreenWorldSize", ofVec2f(context.screen_setting.getValue("world_width", 2.67f),
                                                          context.screen_setting.getValue("world_height", 2.0f)));
         shader->setUniform3f("iScreenPos", context.screen_setting.getValue("pos", ofVec3f(0.0f)));
 
-        shader->setUniform1f("iProgress", logic.getGlobalProgress());
-        shader->setUniform1f("iDuration", logic.getGlobalDuration());
-        shader->setUniform1f("iIterations", context.effect_setting.getValue("iterations", 1.0f));
         
         shader->setUniform1f("iScreenPanoStart", context.screen_setting.getValue("pano_start", 0.0f));
         shader->setUniform1f("iScreenPanoEnd", context.screen_setting.getValue("pano_end", 1.0f));
@@ -138,18 +136,43 @@ void Effect::drawContent(Context &context){
         shader->setUniform1f("iEffectTunnelEnd", context.effect_setting.getValue("tunnel_end", 1.0f));
         
         shader->setUniform1f("iGain", context.effect_setting.getValue("gain", 1.0f));
-        
-        // draw
-        
-        string vid = context.effect_setting.getValue("video", "");
-        if(vid == ""){
-            ofDrawRectangle(0, 0, resolution.x, resolution.y);
-        } else {
-            drawVideo(context, vid);
-        }
-        
+    }
+
+    // draw
+    
+    string vid = context.effect_setting.getValue("video", "");
+    string pattern = context.effect_setting.getValue("pattern", "");
+    if(vid != ""){
+        drawVideo(context, vid);
+    } else if(pattern != ""){
+        drawPattern(context, pattern);
+    } else {
+        ofDrawRectangle(0, 0, resolution.x, resolution.y);
+    }
+    
+    if(shader){
         // deactivate shader
         shader->end();
+    }
+}
+
+void Effect::drawPattern(Context &context, const string &patternName){
+    EffectLogic logic((Effect*)this, &context);
+    float resolutionx = context.fbo->getWidth();
+    float resolutiony = context.fbo->getHeight();
+
+    if(patternName == "cursor"){
+        float iterationDuration = logic.getGlobalDuration() / context.effect_setting.getValue("iterations", 1.0f);
+        // effectTime
+        float f = (logic.getGlobalProgress()*logic.getGlobalDuration());
+        // iterationTime
+        f = f - floor(f / iterationDuration) * iterationDuration;
+        // iterationProgress (pano position)
+        f = f / iterationDuration;
+        float x = ofMap(f, context.screen_setting.getValue("pano_start", 0.0f), context.screen_setting.getValue("pano_end", 1.0f), 0.0, resolutionx);
+
+        float gain = context.effect_setting.getValue("gain", 1.0f);
+        ofDrawRectangle(x-gain*0.5, 0.0f, gain, resolutiony);
     }
 }
 
