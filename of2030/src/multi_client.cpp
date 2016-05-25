@@ -71,8 +71,8 @@ void MultiClient::draw(){
 
         drawFloor();
 
-        if(xml_settings->multi_debug)
-            drawDebug();
+//        if(xml_settings->multi_debug)
+//            drawDebug();
 
         drawScreens();
 
@@ -92,54 +92,53 @@ void MultiClient::drawFloor(){
     ofPopMatrix();
 }
 
-void MultiClient::drawDebug(){
-    XmlConfigs* screens = XmlConfigs::screens();
-
-    ofPushStyle();
-    ofSetColor(200, 0, 0);
-
-    ofCamera screen_cam;
-    XmlItemSetting* screen_setting;
-
-    for(auto &renderer: m_renderers){
-        screen_setting = screens->getItem(renderer->clientId());
-        if(screen_setting == NULL){
-            ofLogWarning() << "not screen setting found for screen ID: " << renderer->clientId();
-            continue;
-        }
-        screen_cam.setPosition(screen_setting->getValue("pos_x", 0.0f),
-                               screen_setting->getValue("pos_y", 0.0f),
-                               screen_setting->getValue("pos_z", 0.0f));
-        screen_cam.lookAt(ofVec3f(screen_setting->getValue("cam_look_at_x", 0.0f),
-                                  screen_setting->getValue("cam_look_at_y", 0.0f),
-                                  screen_setting->getValue("cam_look_at_z", 1.0f)));
-
-        ofPushMatrix();
-            ofTranslate(screen_cam.getPosition());
-            ofVec3f rot = screen_cam.getOrientationEuler();
-            ofRotateX(rot.x);
-            ofRotateY(rot.y);
-            ofRotateZ(rot.z);
-
-            ofTranslate(0.0f, 0.0f, -0.2f);
-
-            float wheight = screen_setting->getValue("world_height", 2.0f) * 1.1;
-            float wwidth = screen_setting->getValue("world_width", 2.67f) * 1.1;
-
-            ofDrawRectangle(-0.5f*wwidth,
-                            -0.5f*wheight,
-                            wwidth,
-                            wheight);
-        ofPopMatrix();
-    }
-    ofPopStyle();
-
-}
+//void MultiClient::drawDebug(){
+//    XmlConfigs* screens = XmlConfigs::screens();
+//
+//    ofPushStyle();
+//    ofSetColor(200, 0, 0);
+//
+//    ofCamera screen_cam;
+//    XmlItemSetting* screen_setting;
+//
+//    for(auto &renderer: m_renderers){
+//        screen_setting = screens->getItem(renderer->clientId());
+//        if(screen_setting == NULL){
+//            ofLogWarning() << "not screen setting found for screen ID: " << renderer->clientId();
+//            continue;
+//        }
+//        screen_cam.setPosition(screen_setting->getValue("pos_x", 0.0f),
+//                               screen_setting->getValue("pos_y", 0.0f),
+//                               screen_setting->getValue("pos_z", 0.0f));
+//        screen_cam.lookAt(ofVec3f(screen_setting->getValue("cam_look_at_x", 0.0f),
+//                                  screen_setting->getValue("cam_look_at_y", 0.0f),
+//                                  screen_setting->getValue("cam_look_at_z", 1.0f)));
+//
+//        ofPushMatrix();
+//            ofTranslate(screen_cam.getPosition());
+//            ofVec3f rot = screen_cam.getOrientationEuler();
+//            ofRotateX(rot.x);
+//            ofRotateY(rot.y);
+//            ofRotateZ(rot.z);
+//
+//            ofTranslate(0.0f, 0.0f, -0.2f);
+//
+//            float wheight = screen_setting->getValue("world_height", 2.0f) * 1.1;
+//            float wwidth = screen_setting->getValue("world_width", 2.67f) * 1.1;
+//
+//            ofDrawRectangle(-0.5f*wwidth,
+//                            -0.5f*wheight,
+//                            wwidth,
+//                            wheight);
+//        ofPopMatrix();
+//    }
+//    ofPopStyle();
+//
+//}
 
 void MultiClient::drawScreens(){
     XmlConfigs* screens = XmlConfigs::screens();
 
-    ofCamera screen_cam;
     XmlItemSetting* screen_setting;
 
     for(auto &renderer: m_renderers){
@@ -150,12 +149,8 @@ void MultiClient::drawScreens(){
             continue;
         }
 
-        screen_cam.setPosition(screen_setting->getValue("pos_x", 0.0f),
-                               screen_setting->getValue("pos_y", 0.0f),
-                               screen_setting->getValue("pos_z", 0.0f));
-        screen_cam.lookAt(ofVec3f(screen_setting->getValue("cam_look_at_x", 0.0f),
-                                  screen_setting->getValue("cam_look_at_y", 0.0f),
-                                  screen_setting->getValue("cam_look_at_z", 1.0f)));
+        ofVec3f scrpos = screen_setting->getValue("pos", ofVec3f(0.0));
+        ofVec3f scrrot = screen_setting->getValue("rot", ofVec3f(0.0));
 
         float wwidth = screen_setting->getValue("world_width", 2.67f);
         float wheight = screen_setting->getValue("world_height", 2.0f);
@@ -165,12 +160,11 @@ void MultiClient::drawScreens(){
 
         ofPushMatrix();
             // move to screen's camera position
-            ofTranslate(screen_cam.getPosition());
+            ofTranslate(scrpos);
             // rotate according to cameras orientation
-            ofVec3f rot = screen_cam.getOrientationEuler();
-            ofRotateX(rot.x);
-            ofRotateY(rot.y);
-            ofRotateZ(rot.z);
+            ofRotateX(scrrot.x);
+            ofRotateY(scrrot.y);
+            ofRotateZ(scrrot.z);
             // translate 4.5 "meters" forward, we're gonna assume that's where the projection ends up
             ofTranslate(wwidth*-0.5f, wheight*-0.5f, 0.0f);
             // scale from pixel size to world size (renderer draws its fbo simply at screen size, because normally

@@ -12,9 +12,9 @@
       <pos_y>0.0</pos_y>
       <pos_z>2.5</pos_z>
       <!-- orientation of the screen -->
-      <cam_look_at_x>4.0</cam_look_at_x>
-      <cam_look_at_y>0.0</cam_look_at_y>
-      <cam_look_at_z>2.5</cam_look_at_z>
+      <rot_x>180.0</rot_x>
+      <rot_y>90.0</rot_y>
+      <rot_z>0.0</rot_z>
       <!-- the area of the panoram that this screen shows -->
       <pano_start>0.7</pano_start>
       <pano_end>0.85</pano_end>
@@ -98,9 +98,9 @@
       <pos_y>0.0</pos_y>
       <pos_z>0.0</pos_z>
       <!-- orientation of the screen -->
-      <cam_look_at_x>4.0</cam_look_at_x>
-      <cam_look_at_y>0.0</cam_look_at_y>
-      <cam_look_at_z>0.0</cam_look_at_z>
+      <rot_x>180.0</rot_x>
+      <rot_y>90.0</rot_y>
+      <rot_z>0.0</rot_z>
       <!-- the area of the panoram that this screen shows -->
       <pano_start>0.75</pano_start>
       <pano_end>0.9</pano_end>
@@ -136,9 +136,9 @@
       <pos_y>0.0</pos_y>
       <pos_z>-2.5</pos_z>
       <!-- orientation of the screen -->
-      <cam_look_at_x>4.0</cam_look_at_x>
-      <cam_look_at_y>0.0</cam_look_at_y>
-      <cam_look_at_z>-2.5</cam_look_at_z>
+      <rot_x>180.0</rot_x>
+      <rot_y>90.0</rot_y>
+      <rot_z>0.0</rot_z>
       <!-- the area of the panoram that this screen shows -->
       <pano_start>0.53</pano_start>
       <pano_end>0.67</pano_end>
@@ -174,9 +174,9 @@
       <pos_y>0.0</pos_y>
       <pos_z>-2.5</pos_z>
       <!-- orientation of the screen -->
-      <cam_look_at_x>-4.0</cam_look_at_x>
-      <cam_look_at_y>0.0</cam_look_at_y>
-      <cam_look_at_z>-2.5</cam_look_at_z>
+      <rot_x>180.0</rot_x>
+      <rot_y>270.0</rot_y>
+      <rot_z>0.0</rot_z>
       <!-- the area of the panoram that this screen shows -->
       <pano_start>0.2</pano_start>
       <pano_end>0.34</pano_end>
@@ -212,9 +212,9 @@
       <pos_y>0.0</pos_y>
       <pos_z>0.0</pos_z>
       <!-- orientation of the screen -->
-      <cam_look_at_x>-4.0</cam_look_at_x>
-      <cam_look_at_y>0.0</cam_look_at_y>
-      <cam_look_at_z>0.0</cam_look_at_z>
+      <rot_x>180.0</rot_x>
+      <rot_y>270.0</rot_y>
+      <rot_z>0.0</rot_z>
       <!-- the area of the panoram that this screen shows -->
       <pano_start>0.11</pano_start>
       <pano_end>0.25</pano_end>
@@ -250,9 +250,9 @@
       <pos_y>0.0</pos_y>
       <pos_z>2.5</pos_z>
       <!-- orientation of the screen -->
-      <cam_look_at_x>-4.0</cam_look_at_x>
-      <cam_look_at_y>0.0</cam_look_at_y>
-      <cam_look_at_z>2.5</cam_look_at_z>
+      <rot_x>180.0</rot_x>
+      <rot_y>270.0</rot_y>
+      <rot_z>0.0</rot_z>
       <!-- the area of the panoram that this screen shows -->
       <pano_start>0.03</pano_start>
       <pano_end>0.17</pano_end>
