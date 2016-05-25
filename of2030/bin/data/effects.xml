@@ -21,6 +21,7 @@
       <pattern>cursor</pattern>
       <!-- real world meter -->
       <gain>0.1</gain>
+      <pano_velocity>0.5</pano_velocity>
     </effect>
 
     <effect name="worms1">

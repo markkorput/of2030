@@ -63,6 +63,9 @@ void Effect::setup(Context &context){
         
         video_player->play();
     }
+    
+    pano_pos = context.effect_setting.getValue("pano_pos", 0.0f);
+    pano_velocity = context.effect_setting.getValue("pano_velocity", 0.0f);
 }
 
 void Effect::draw(Context &context){
@@ -99,7 +102,7 @@ void Effect::draw(Context &context){
 }
 
 void Effect::update(float dt){
-    //
+    pano_pos += pano_velocity * dt;
 }
 
 void Effect::drawContent(Context &context){
@@ -162,16 +165,13 @@ void Effect::drawPattern(Context &context, const string &patternName){
     float resolutiony = context.fbo->getHeight();
 
     if(patternName == "cursor"){
-        float iterationDuration = logic.getGlobalDuration() / context.effect_setting.getValue("iterations", 1.0f);
-        // effectTime
-        float f = (logic.getGlobalProgress()*logic.getGlobalDuration());
-        // iterationTime
-        f = f - floor(f / iterationDuration) * iterationDuration;
-        // iterationProgress (pano position)
-        f = f / iterationDuration;
-        float x = ofMap(f, context.screen_setting.getValue("pano_start", 0.0f), context.screen_setting.getValue("pano_end", 1.0f), 0.0, resolutionx);
+        float p = context.screen_setting.getValue("pano_pos", pano_pos);
+        float x = ofMap(p - floor(p),
+                            context.screen_setting.getValue("pano_start", 0.0f),
+                            context.screen_setting.getValue("pano_end", 1.0f),
+                            0.0,
+                            resolutionx);
 
-        
         float gain = context.effect_setting.getValue("gain", 1.0f) * resolutionx / context.screen_setting.getValue("world_width", 2.67f);
         ofDrawRectangle(x-gain*0.5, 0.0f, gain, resolutiony);
     }
