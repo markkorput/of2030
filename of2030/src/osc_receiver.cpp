@@ -71,7 +71,7 @@ void OscReceiver::processMessage(ofxOscMessage &m){
         param = "";
     
     ofLogVerbose() << "[osc-in] " << addr << " with " << param;
-    
+
     sub = osc_setting->addresses["effect_config"] + "/";
     if(addr.substr(0, sub.size()) == sub){
         sub = addr.substr(sub.size());
@@ -81,70 +81,38 @@ void OscReceiver::processMessage(ofxOscMessage &m){
             ofLogError() << "could not get effect-path and param name from osc address";
             return;
         }
-        
+
         if(m.getNumArgs() < 1){
             ofLogError() << "param value missing from OSC message";
             return;
         }
-        
+
         EffectConfig cfg;
         cfg.setting_name = sub.substr(0, pos);
         cfg.param_name = sub.substr(pos+1);
         cfg.param_value = param;
-        
+
         ofNotifyEvent(m_interface->effectConfigEvent, cfg, m_interface);
         return;
     }
-    
-    sub = osc_setting->addresses["screen_config"] + "/";
+
+    if(addr == osc_setting->addresses["playback"]){
+        ofNotifyEvent(m_interface->playbackEvent, param, m_interface);
+        return;
+    }
+
+    sub = osc_setting->addresses["playback"] + "/";
     if(addr.substr(0, sub.size()) == sub){
-        sub = addr.substr(sub.size());
-        std::size_t pos = sub.find("/");
-        
-        if (pos==std::string::npos){
-            ofLogError() << "could not get screen-name and param name from osc address";
+        if(m.getNumArgs() == 1 and m.getArgType(0) == ofxOscArgType::OFXOSC_TYPE_FLOAT and m.getArgAsFloat(0) == 0.0f){
+            // ignore this message; touch osc sends two message on for touch down, one for touch up, this is a touch up
             return;
         }
-        
-        if(m.getNumArgs() < 1){
-            ofLogError() << "param value missing from OSC message";
-            return;
-        }
-        
-        // 2 params and screen config param-name end with pos?
-        // then treat as two _x and _y params
-        if(m.getNumArgs() == 2 && sub.substr(sub.size()-3) == "pos"){
-            EffectConfig cfg;
-            cfg.setting_name = sub.substr(0, pos);
-            cfg.param_name = sub.substr(pos+1) + "_x";
-            cfg.param_value = param;
-            ofNotifyEvent(m_interface->screenConfigEvent, cfg, m_interface);
-            cfg.param_name = sub.substr(pos+1) + "_y";
-            cfg.param_value = m.getArgAsString(1);
-            ofNotifyEvent(m_interface->screenConfigEvent, cfg, m_interface);
-        }
-        
-        EffectConfig cfg;
-        cfg.setting_name = sub.substr(0, pos);
-        cfg.param_name = sub.substr(pos+1);
-        cfg.param_value = param;
-        
-        ofNotifyEvent(m_interface->screenConfigEvent, cfg, m_interface);
+
+        param = addr.substr(sub.size());
+        ofNotifyEvent(m_interface->playbackEvent, param, m_interface);
         return;
     }
-    
-    if(addr == osc_setting->addresses["song"]){
-        ofLogVerbose() << "[osc-in] song: " << param;
-        ofNotifyEvent(m_interface->songEvent, param, m_interface);
-        return;
-    }
-    
-    if(addr == osc_setting->addresses["clip"]){
-        ofLogVerbose() << "[osc-in] clip: " << param;
-        ofNotifyEvent(m_interface->clipEvent, param, m_interface);
-        return;
-    }
-    
+
     if(addr == osc_setting->addresses["trigger"]){
         ofNotifyEvent(m_interface->triggerEvent, param, m_interface);
         return;
@@ -152,6 +120,11 @@ void OscReceiver::processMessage(ofxOscMessage &m){
     
     sub = osc_setting->addresses["trigger"] + "/";
     if(addr.substr(0, sub.size()) == sub){
+        if(m.getNumArgs() == 1 and m.getArgType(0) == ofxOscArgType::OFXOSC_TYPE_FLOAT and m.getArgAsFloat(0) == 0.0f){
+            // ignore this message; touch osc sends two message on for touch down, one for touch up, this is a touch up
+            return;
+        }
+
         param = addr.substr(sub.size());
         ofNotifyEvent(m_interface->triggerEvent, param, m_interface);
         return;
@@ -164,8 +137,25 @@ void OscReceiver::processMessage(ofxOscMessage &m){
     
     sub = osc_setting->addresses["stop"] + "/";
     if(addr.substr(0, sub.size()) == sub){
+        if(m.getNumArgs() == 1 and m.getArgType(0) == ofxOscArgType::OFXOSC_TYPE_FLOAT and m.getArgAsFloat(0) == 0.0f){
+            // ignore this message; touch osc sends two message on for touch down, one for touch up, this is a touch up
+            return;
+        }
+
         param = addr.substr(sub.size());
         ofNotifyEvent(m_interface->stopTriggerEvent, param, m_interface);
+        return;
+    }
+    
+    if(addr == osc_setting->addresses["song"]){
+        ofLogVerbose() << "[osc-in] song: " << param;
+        ofNotifyEvent(m_interface->songEvent, param, m_interface);
+        return;
+    }
+    
+    if(addr == osc_setting->addresses["clip"]){
+        ofLogVerbose() << "[osc-in] clip: " << param;
+        ofNotifyEvent(m_interface->clipEvent, param, m_interface);
         return;
     }
     
@@ -190,6 +180,59 @@ void OscReceiver::processMessage(ofxOscMessage &m){
     if(addr.substr(0, sub.size()) == sub){
         param = addr.substr(sub.size());
         ofNotifyEvent(m_interface->controlEvent, param, m_interface);
+        return;
+    }
+
+    
+    sub = osc_setting->addresses["screen_config"] + "/";
+    if(addr.substr(0, sub.size()) == sub){
+        sub = addr.substr(sub.size());
+        std::size_t pos = sub.find("/");
+        
+        if (pos==std::string::npos){
+            ofLogError() << "could not get screen-name and param name from osc address";
+            return;
+        }
+        
+        if(m.getNumArgs() < 1){
+            ofLogError() << "param value missing from OSC message";
+            return;
+        }
+        
+        EffectConfig cfg;
+        
+        // 2 params and screen config param-name end with pos?
+        // then treat as two _x and _y params
+        if(m.getNumArgs() == 2 && sub.substr(sub.size()-3) == "pos"){
+            cfg.setting_name = sub.substr(0, pos);
+            cfg.param_name = sub.substr(pos+1) + "_x";
+            cfg.param_value = param;
+            ofNotifyEvent(m_interface->screenConfigEvent, cfg, m_interface);
+            cfg.param_name = sub.substr(pos+1) + "_y";
+            cfg.param_value = m.getArgAsString(1);
+            ofNotifyEvent(m_interface->screenConfigEvent, cfg, m_interface);
+        }
+        
+        // 2 params and screen config param-name end with pos?
+        // then treat as two _x and _y params
+        if(m.getNumArgs() == 3 && sub.substr(sub.size()-3) == "pos"){
+            cfg.setting_name = sub.substr(0, pos);
+            cfg.param_name = sub.substr(pos+1) + "_x";
+            cfg.param_value = param;
+            ofNotifyEvent(m_interface->screenConfigEvent, cfg, m_interface);
+            cfg.param_name = sub.substr(pos+1) + "_y";
+            cfg.param_value = m.getArgAsString(1);
+            ofNotifyEvent(m_interface->screenConfigEvent, cfg, m_interface);
+            cfg.param_name = sub.substr(pos+1) + "_z";
+            cfg.param_value = m.getArgAsString(2);
+            ofNotifyEvent(m_interface->screenConfigEvent, cfg, m_interface);
+        }
+        
+        cfg.setting_name = sub.substr(0, pos);
+        cfg.param_name = sub.substr(pos+1);
+        cfg.param_value = param;
+        
+        ofNotifyEvent(m_interface->screenConfigEvent, cfg, m_interface);
         return;
     }
     

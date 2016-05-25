@@ -23,6 +23,7 @@ class ofApp : public ofBaseApp{
     
     private: // callbacks
         void onControl(string &type);
+        void onPlayback(string &type);
 
     private: // attributes
         float next_log_alive_time;

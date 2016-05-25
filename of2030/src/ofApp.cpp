@@ -91,15 +91,16 @@ void ofApp::setup(){
 #endif
 
     ofAddListener(of2030::Interface::instance()->controlEvent, this, &ofApp::onControl);
-
+    ofAddListener(of2030::Interface::instance()->playbackEvent, this, &ofApp::onPlayback);
+    
     // load & start OscReceiver; let the messages come!
     ofLogVerbose() << "Starting OscReceiver";
     of2030::OscReceiver::instance()->configure(of2030::XmlSettings::instance()->osc_setting);
     of2030::OscReceiver::instance()->setup();
 
     // for debugging; start recorded osc sequence
-    // of2030::OscPlaybackManager::instance()->start("_rec.csv");
-    // of2030::OscPlaybackManager::instance()->start("_clock_spot.csv");
+    // of2030::OscPlaybackManager::instance()->start("_rec");
+    // of2030::OscPlaybackManager::instance()->start("clock_spot");
 
     // using the player's time as main timing mechanism
     next_log_alive_time = of2030::Player::instance()->getTime();
@@ -261,4 +262,8 @@ void ofApp::onControl(string &type){
         // of2030::XmlClients::instance()->load();
         return;
     }
+}
+
+void ofApp::onPlayback(string &name){
+    of2030::OscPlaybackManager::instance()->start(name);
 }

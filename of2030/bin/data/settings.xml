@@ -9,6 +9,7 @@
       <trigger>/t</trigger>
       <stop>/s</stop>
       <effect>/fx</effect>
+      <playback>/p</playback>
       <control>/ctrl</control>
       <song>/song</song>
       <clip>/clip</clip>

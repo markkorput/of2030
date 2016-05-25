@@ -26,7 +26,11 @@ void OscPlaybackManager::start(string name){
 }
 
 string OscPlaybackManager::nameToPath(const string &name){
-    string p = ofToDataPath("osc/"+name);
+    string p = ofToDataPath("osc/"+name+".csv");
+    if(ofFile::doesFileExist(p))
+        return p;
+
+    p = ofToDataPath("osc/"+name);
     if(ofFile::doesFileExist(p))
         return p;
 
