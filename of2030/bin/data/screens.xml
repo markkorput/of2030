@@ -16,8 +16,8 @@
       <rot_y>90.0</rot_y>
       <rot_z>0.0</rot_z>
       <!-- the area of the panoram that this screen shows -->
-      <pano_start>0.7</pano_start>
-      <pano_end>0.85</pano_end>
+      <pano_start>0.82</pano_start>
+      <pano_end>0.9</pano_end>
       <!-- the area of the tunnel that this screen shows -->
       <tunnel_start>0.34</tunnel_start>
       <tunnel_end>0.2</tunnel_end>
@@ -102,8 +102,8 @@
       <rot_y>90.0</rot_y>
       <rot_z>0.0</rot_z>
       <!-- the area of the panoram that this screen shows -->
-      <pano_start>0.75</pano_start>
-      <pano_end>0.9</pano_end>
+      <pano_start>0.72</pano_start>
+      <pano_end>0.84</pano_end>
       <!-- the area of the tunnel that this screen shows -->
       <tunnel_start>0.57</tunnel_start>
       <tunnel_end>0.43</tunnel_end>
@@ -178,8 +178,8 @@
       <rot_y>270.0</rot_y>
       <rot_z>0.0</rot_z>
       <!-- the area of the panoram that this screen shows -->
-      <pano_start>0.2</pano_start>
-      <pano_end>0.34</pano_end>
+      <pano_start>0.23</pano_start>
+      <pano_end>0.38</pano_end>
       <!-- the area of the tunnel that this screen shows -->
       <tunnel_start>0.66</tunnel_start>
       <tunnel_end>0.80</tunnel_end>
@@ -216,8 +216,8 @@
       <rot_y>270.0</rot_y>
       <rot_z>0.0</rot_z>
       <!-- the area of the panoram that this screen shows -->
-      <pano_start>0.11</pano_start>
-      <pano_end>0.25</pano_end>
+      <pano_start>0.14</pano_start>
+      <pano_end>0.27</pano_end>
       <!-- the area of the tunnel that this screen shows -->
       <tunnel_start>0.43</tunnel_start>
       <tunnel_end>0.57</tunnel_end>
@@ -254,8 +254,8 @@
       <rot_y>270.0</rot_y>
       <rot_z>0.0</rot_z>
       <!-- the area of the panoram that this screen shows -->
-      <pano_start>0.03</pano_start>
-      <pano_end>0.17</pano_end>
+      <pano_start>0.02</pano_start>
+      <pano_end>0.15</pano_end>
       <!-- the area of the tunnel that this screen shows -->
       <tunnel_start>0.2</tunnel_start>
       <tunnel_end>0.34</tunnel_end>

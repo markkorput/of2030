@@ -78,10 +78,6 @@ void Effect::draw(Context &context){
         ofSetColor(0);
         drawTunnelMask(context);
         drawPanoMask(context);
-
-        // DEBUG
-        ofSetColor(0, 0, 255);
-        ofDrawRectangle(0,0, 100, 100);
     context.fbo3->end();
 
     // draw alpha mask (if no mask specfied, this will give a full white frame)
@@ -196,11 +192,9 @@ void Effect::drawPanoMask(Context &context){
     float scrEnd = context.screen_setting.getValue("pano_end", 1.0f);
     float fxStart = context.effect_setting.getValue("pano_start", 0.0f);
     float fxEnd = context.effect_setting.getValue("pano_end", 1.0f);
-    float pixPerUnit = resolution.x / (scrEnd-scrStart);
     
-//    float minX = ofMap(fxStart, scrStart, scrEnd, 0.0, resolution.x);
-    float minX = (fxStart-scrStart)*pixPerUnit;
-    float maxX = (fxEnd-scrStart)*pixPerUnit;
+    float minX = ofMap(fxStart, scrStart, scrEnd, 0.0, resolution.x);
+    float maxX = ofMap(fxEnd, scrStart, scrEnd, 0.0, resolution.x);
 
     ofDrawRectangle(0.0, 0.0, minX, resolution.y);
     ofDrawRectangle(maxX, 0.0, resolution.x-maxX, resolution.y);
