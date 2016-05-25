@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		4D1BFD571CD8D9C000D5493C /* video_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D1BFD551CD8D9C000D5493C /* video_manager.cpp */; };
 		4D3B38E41CC66A95004C8994 /* effect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D3B38E21CC66A95004C8994 /* effect.cpp */; };
-		4D3B38F41CC66E16004C8994 /* ofxJSONElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D3B38EA1CC66E16004C8994 /* ofxJSONElement.cpp */; };
-		4D3B38F51CC66E16004C8994 /* jsoncpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D3B38F31CC66E16004C8994 /* jsoncpp.cpp */; };
 		4D3F90CF1CED1AA600E6C0E1 /* vid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D3F90CD1CED1AA600E6C0E1 /* vid.cpp */; };
 		4D3F90D31CED1C4000E6C0E1 /* spot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D3F90D11CED1C4000E6C0E1 /* spot.cpp */; };
 		4D4A32BB1CDFE8D100304FE9 /* xml_configs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D4A32B91CDFE8D100304FE9 /* xml_configs.cpp */; };
@@ -85,12 +83,6 @@
 		4D1BFD561CD8D9C000D5493C /* video_manager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = video_manager.hpp; sourceTree = "<group>"; };
 		4D3B38E21CC66A95004C8994 /* effect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = effect.cpp; sourceTree = "<group>"; };
 		4D3B38E31CC66A95004C8994 /* effect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = effect.hpp; sourceTree = "<group>"; };
-		4D3B38E91CC66E16004C8994 /* ofxJSON.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxJSON.h; sourceTree = "<group>"; };
-		4D3B38EA1CC66E16004C8994 /* ofxJSONElement.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxJSONElement.cpp; sourceTree = "<group>"; };
-		4D3B38EB1CC66E16004C8994 /* ofxJSONElement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxJSONElement.h; sourceTree = "<group>"; };
-		4D3B38F01CC66E16004C8994 /* json-forwards.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "json-forwards.h"; sourceTree = "<group>"; };
-		4D3B38F11CC66E16004C8994 /* json.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = json.h; sourceTree = "<group>"; };
-		4D3B38F31CC66E16004C8994 /* jsoncpp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = jsoncpp.cpp; sourceTree = "<group>"; };
 		4D3F90CD1CED1AA600E6C0E1 /* vid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vid.cpp; sourceTree = "<group>"; };
 		4D3F90CE1CED1AA600E6C0E1 /* vid.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = vid.hpp; sourceTree = "<group>"; };
 		4D3F90D01CED1B1B00E6C0E1 /* effects.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = effects.hpp; sourceTree = "<group>"; };
@@ -192,69 +184,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4D3B38E71CC66E16004C8994 /* ofxJSON */ = {
-			isa = PBXGroup;
-			children = (
-				4D3B38E81CC66E16004C8994 /* src */,
-				4D3B38EC1CC66E16004C8994 /* libs */,
-			);
-			name = ofxJSON;
-			sourceTree = "<group>";
-		};
-		4D3B38E81CC66E16004C8994 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				4D3B38E91CC66E16004C8994 /* ofxJSON.h */,
-				4D3B38EA1CC66E16004C8994 /* ofxJSONElement.cpp */,
-				4D3B38EB1CC66E16004C8994 /* ofxJSONElement.h */,
-			);
-			name = src;
-			path = ../../../addons/ofxJSON/src;
-			sourceTree = "<group>";
-		};
-		4D3B38EC1CC66E16004C8994 /* libs */ = {
-			isa = PBXGroup;
-			children = (
-				4D3B38ED1CC66E16004C8994 /* jsoncpp */,
-			);
-			name = libs;
-			path = ../../../addons/ofxJSON/libs;
-			sourceTree = "<group>";
-		};
-		4D3B38ED1CC66E16004C8994 /* jsoncpp */ = {
-			isa = PBXGroup;
-			children = (
-				4D3B38EE1CC66E16004C8994 /* include */,
-				4D3B38F21CC66E16004C8994 /* src */,
-			);
-			path = jsoncpp;
-			sourceTree = "<group>";
-		};
-		4D3B38EE1CC66E16004C8994 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				4D3B38EF1CC66E16004C8994 /* json */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
-		4D3B38EF1CC66E16004C8994 /* json */ = {
-			isa = PBXGroup;
-			children = (
-				4D3B38F01CC66E16004C8994 /* json-forwards.h */,
-				4D3B38F11CC66E16004C8994 /* json.h */,
-			);
-			path = json;
-			sourceTree = "<group>";
-		};
-		4D3B38F21CC66E16004C8994 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				4D3B38F31CC66E16004C8994 /* jsoncpp.cpp */,
-			);
-			path = src;
-			sourceTree = "<group>";
-		};
 		4D3F90CC1CED1A8200E6C0E1 /* effects */ = {
 			isa = PBXGroup;
 			children = (
@@ -487,7 +416,6 @@
 			children = (
 				4D9B29401CC64190005D65E9 /* ofxOsc */,
 				4D9B29921CC65D82005D65E9 /* ofxXmlSettings */,
-				4D3B38E71CC66E16004C8994 /* ofxJSON */,
 			);
 			name = addons;
 			sourceTree = "<group>";
@@ -627,7 +555,6 @@
 				4DE274CA1CCE1D9300F2D470 /* xml_settings.cpp in Sources */,
 				4D9B299C1CC65D82005D65E9 /* tinyxml.cpp in Sources */,
 				4D7CFBE81CEFDB3F006E706C /* osc_playback_manager.cpp in Sources */,
-				4D3B38F51CC66E16004C8994 /* jsoncpp.cpp in Sources */,
 				4D9B296B1CC64190005D65E9 /* ofxOscBundle.cpp in Sources */,
 				4D9B296D1CC64190005D65E9 /* ofxOscParameterSync.cpp in Sources */,
 				4DE491011CC69C55003E7958 /* player.cpp in Sources */,
@@ -653,7 +580,6 @@
 				4D9B29731CC64190005D65E9 /* OscOutboundPacketStream.cpp in Sources */,
 				4D9B29701CC64190005D65E9 /* IpEndpointName.cpp in Sources */,
 				4D9B29721CC64190005D65E9 /* UdpSocket.cpp in Sources */,
-				4D3B38F41CC66E16004C8994 /* ofxJSONElement.cpp in Sources */,
 				4D66030C1CDF6CE70061035D /* xml_triggers.cpp in Sources */,
 				4DE274CE1CCE242B00F2D470 /* multi_client.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
