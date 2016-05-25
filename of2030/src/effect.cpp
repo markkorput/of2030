@@ -63,7 +63,6 @@ void Effect::setup(Context &context){
         
         video_player->play();
     }
-
 }
 
 void Effect::draw(Context &context){
@@ -79,6 +78,10 @@ void Effect::draw(Context &context){
         ofSetColor(0);
         drawTunnelMask(context);
         drawPanoMask(context);
+
+        // DEBUG
+        ofSetColor(0, 0, 255);
+        ofDrawRectangle(0,0, 100, 100);
     context.fbo3->end();
 
     // draw alpha mask (if no mask specfied, this will give a full white frame)
@@ -169,39 +172,21 @@ void Effect::drawMask(Context &context, const string &coordsName, const ofVec2f 
 void Effect::drawTunnelMask(Context &context){
     ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
 
-    float scrTunnelStart = context.screen_setting.getValue("tunnel_start", 0.0f);
-    float scrTunnelEnd = context.screen_setting.getValue("tunnel_end", 1.0f);
-    float fxTunnelStart = context.effect_setting.getValue("tunnel_start", 0.0f);
-    float fxTunnelEnd = context.effect_setting.getValue("tunnel_end", 1.0f);
-    float pixPerTunnel = resolution.x / std::abs(scrTunnelEnd-scrTunnelStart);
+    float scrStart = context.screen_setting.getValue("tunnel_start", 0.0f);
+    float scrEnd = context.screen_setting.getValue("tunnel_end", 1.0f);
+    float fxStart = context.effect_setting.getValue("tunnel_start", 0.0f);
+    float fxEnd = context.effect_setting.getValue("tunnel_end", 1.0f);
 
-//    if(scrTunnelStart > scrTunnelEnd){
-//        // swap
-//        float tmp = fxTunnelStart;
-//        fxTunnelStart = fxTunnelEnd;
-//        fxTunnelEnd = tmp;
-//    }
-//
-//    float x = (fxTunnelStart-scrTunnelStart)*pixPerTunnel;
-//    ofDrawRectangle(0.0, 0.0, x, resolution.y);
-//
-//    x = (fxTunnelEnd-scrTunnelStart)*pixPerTunnel;
-//    ofDrawRectangle(x, 0.0, resolution.x-x, resolution.y);
-
-    if(scrTunnelStart > scrTunnelEnd){
-        // swap
-        float tmp = fxTunnelStart;
-        fxTunnelStart = fxTunnelEnd;
-        fxTunnelEnd = tmp;
-    }
-
-    float x = ofMap(fxTunnelStart, scrTunnelStart, scrTunnelEnd, 0.0, resolution.x);
-//    float x = (fxTunnelStart-scrTunnelStart)*pixPerTunnel;
-    ofDrawRectangle(0.0, 0.0, x, resolution.y);
-    x = ofMap(fxTunnelEnd, scrTunnelStart, scrTunnelEnd, 0.0, resolution.x);
-//    x = (fxTunnelEnd-scrTunnelStart)*pixPerTunnel;
-    
-    ofDrawRectangle(x, 0.0, resolution.x-x, resolution.y);
+    // start of tunnel
+    float x1 = ofMap(0.0, scrStart, scrEnd, 0.0, resolution.x);
+    // start of visible part of tunnel
+    float x2 = ofMap(fxStart, scrStart, scrEnd, 0.0, resolution.x);
+    // draw "hider" for invisible part _before_ visible part
+    ofDrawRectangle(x1, 0.0, x2-x1, resolution.y);
+    x1 = ofMap(fxEnd, scrStart, scrEnd, 0.0, resolution.x);
+    x2 = ofMap(1.0, scrStart, scrEnd, 0.0, resolution.x);
+    ofDrawRectangle(x1, 0.0, x2-x1, resolution.y);
+    // ofDrawRectangle(x, 0.0, resolution.x-x, resolution.y);
 }
 
 void Effect::drawPanoMask(Context &context){
