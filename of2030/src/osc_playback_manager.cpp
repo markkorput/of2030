@@ -14,7 +14,7 @@ using namespace of2030;
 SINGLETON_CLASS_IMPLEMENTATION_CODE(OscPlaybackManager)
 
 
-void OscPlaybackManager::start(string name){
+bool OscPlaybackManager::start(const string &name){
     // load file
     OscAsciiFile* file = new OscAsciiFile();
     file->load(nameToPath(name));
@@ -23,6 +23,25 @@ void OscPlaybackManager::start(string name){
     playback->start();
     // save it
     add(*playback);
+    return true;
+}
+
+bool OscPlaybackManager::stop(const string &name){
+    OscPlayback *playback = getPlayback(name);
+    if(!playback) return false;
+    remove(playback);
+    return true;
+}
+
+OscPlayback* OscPlaybackManager::getPlayback(const string &name){
+    string p = nameToPath(name);
+
+    for(auto playback: playbacks){
+        if(playback->getFile()->getReadPath() == p){
+            return playback;
+        }
+    }
+    return NULL;
 }
 
 string OscPlaybackManager::nameToPath(const string &name){
@@ -63,6 +82,7 @@ bool OscPlaybackManager::remove(OscPlayback *playback){
             // unregister from event
             ofRemoveListener(playback->messageEvent, this, &OscPlaybackManager::onMessage);
             // delete
+            delete playback->getFile();
             delete playback;
             return true;
         }

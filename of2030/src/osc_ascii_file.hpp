@@ -26,6 +26,7 @@ public: // methods
     // reading
     void load(string path);
     OscAsciiLine* next_line();
+    inline const string &getReadPath(){ return readpath; }
 
     // writing
     void start_writing(string path);
@@ -40,6 +41,7 @@ private: // reading attributes
 private: // writing attributes
     float start_time, first_message_time;
     std::ofstream outfile;
+    string readpath;
 };
 
 #endif /* osc_ascii_file_hpp */

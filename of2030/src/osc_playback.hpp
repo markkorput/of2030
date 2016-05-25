@@ -19,6 +19,7 @@ public:
     void start();
     // returns true if not ended yet
     bool update();
+    inline OscAsciiFile* getFile(){ return file; }
 
 public: // events
     ofEvent<ofxOscMessage> messageEvent;

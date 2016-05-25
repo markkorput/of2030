@@ -92,6 +92,7 @@ void ofApp::setup(){
 
     ofAddListener(of2030::Interface::instance()->controlEvent, this, &ofApp::onControl);
     ofAddListener(of2030::Interface::instance()->playbackEvent, this, &ofApp::onPlayback);
+    ofAddListener(of2030::Interface::instance()->stopPlaybackEvent, this, &ofApp::onStopPlayback);
     
     // load & start OscReceiver; let the messages come!
     ofLogVerbose() << "Starting OscReceiver";
@@ -266,4 +267,8 @@ void ofApp::onControl(string &type){
 
 void ofApp::onPlayback(string &name){
     of2030::OscPlaybackManager::instance()->start(name);
+}
+
+void ofApp::onStopPlayback(string &name){
+    of2030::OscPlaybackManager::instance()->stop(name);
 }

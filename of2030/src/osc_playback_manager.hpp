@@ -21,7 +21,8 @@ namespace of2030{
     public:
         ~OscPlaybackManager(){ clear(); }
 
-        void start(string name);
+        bool start(const string &name);
+        bool stop(const string &name);
         void update();
         
         void clear();
@@ -32,6 +33,7 @@ namespace of2030{
     private:
         string nameToPath(const string &name);
         void onMessage(ofxOscMessage &message);
+        OscPlayback* getPlayback(const string &name);
     
     private:
         vector<OscPlayback*> playbacks;

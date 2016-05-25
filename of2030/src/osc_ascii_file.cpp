@@ -24,6 +24,7 @@ void OscAsciiFile::load(string path){
         infile.close();
 
     infile.open(path);
+    readpath = path;
 }
 
 OscAsciiLine* OscAsciiFile::next_line(){

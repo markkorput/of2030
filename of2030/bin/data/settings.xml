@@ -10,6 +10,7 @@
       <stop>/s</stop>
       <effect>/fx</effect>
       <playback>/p</playback>
+      <stop_playback>/q</stop_playback>
       <control>/ctrl</control>
       <song>/song</song>
       <clip>/clip</clip>
