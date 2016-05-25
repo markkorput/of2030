@@ -25,9 +25,17 @@ void Spot::draw(Context &context){
 
     ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
     
+
     ofVec2f spotPos = context.screen_setting.getValue(prefix, ofVec2f(-10.0f)) * resolution;
     ofVec2f spotSize = context.screen_setting.getValue(prefix+"size", ofVec2f(0.0f)) * resolution;
 
+    ofVec2f scrWorldSize(context.screen_setting.getValue("world_width", 2.67f),
+                         -context.screen_setting.getValue("world_height", 2.0f));
+    ofVec2f fxSpotPos = context.effect_setting.getValue("pos", ofVec2f(0.0f, 0.0f));
+
+    // spot reposition according to effect setting
+    spotPos += fxSpotPos * scrWorldSize * resolution * 0.01;
+    
     if(!shader){
         // draw without shader stuff
         ofSetColor(255);
