@@ -19,6 +19,8 @@
     <!-- inloop -->
     <effect name="cursor">
       <pattern>cursor</pattern>
+      <!-- real world meter -->
+      <gain>0.1</gain>
     </effect>
 
     <effect name="worms1">

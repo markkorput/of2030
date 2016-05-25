@@ -171,7 +171,8 @@ void Effect::drawPattern(Context &context, const string &patternName){
         f = f / iterationDuration;
         float x = ofMap(f, context.screen_setting.getValue("pano_start", 0.0f), context.screen_setting.getValue("pano_end", 1.0f), 0.0, resolutionx);
 
-        float gain = context.effect_setting.getValue("gain", 1.0f);
+        
+        float gain = context.effect_setting.getValue("gain", 1.0f) * resolutionx / context.screen_setting.getValue("world_width", 2.67f);
         ofDrawRectangle(x-gain*0.5, 0.0f, gain, resolutiony);
     }
 }
