@@ -58,6 +58,7 @@ namespace of2030{ namespace effects {
 
         virtual void setup(Context &context);
         virtual void draw(Context &context);
+        virtual void update(float dt);
 
         inline bool hasStartTime() const { return startTime >= 0.0f; }
         inline bool hasEndTime() const { return endTime >= 0.0f; }
@@ -74,6 +75,7 @@ namespace of2030{ namespace effects {
         void drawTunnelMask(Context &context);
         void drawPanoMask(Context &context);
         void drawVideo(Context &context, const string &video);
+        void drawPattern(Context &context, const string &patternName);
 
     public: // properties
 
@@ -84,6 +86,7 @@ namespace of2030{ namespace effects {
         string trigger;
         ofShader *shader;
         // static int cidCounter;
+        float pano_pos, pano_velocity;
     };
 
     // === === === === === === === === ===

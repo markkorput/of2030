@@ -53,6 +53,7 @@ namespace of2030{
 
     protected: // helper methods
 
+        void movePlaybackTimeTo(float time);
         void setPlaybackTime(float time);
         inline bool effectStarted(const effects::Effect &effect);
         inline bool effectEnded(const effects::Effect &effect);
@@ -67,7 +68,7 @@ namespace of2030{
         EffectManager active_effects_manager, pending_effects_manager;
 
         bool m_bPlaying;
-        float m_time, m_startTime;
+        float m_time, m_startTime, m_lastUpdateTime;
     };
 }
 

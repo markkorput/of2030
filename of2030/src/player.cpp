@@ -19,23 +19,29 @@ Player* Player::instance(){
     return singleton;
 }
 
-Player::Player() : m_time(0.0f), m_bPlaying(false), song("default"), clip("default"){
+Player::Player() : m_time(0.0f), m_lastUpdateTime(0.0f), m_bPlaying(false), song("default"), clip("default"){
 }
 
 void Player::update(){
     if(m_bPlaying){
-        setPlaybackTime(ofGetElapsedTimef() - m_startTime);
+        float dt = ofGetElapsedTimef() - m_lastUpdateTime;
+        update(dt);
+        m_lastUpdateTime += dt;
     }
 }
 
 void Player::update(float dt){
     if(m_bPlaying){
-        setPlaybackTime(m_time + dt);
+        movePlaybackTimeTo(m_time + dt);
+        for(auto effect: active_effects_manager.getEffects()){
+            effect->update(dt);
+        }
     }
 }
 
 void Player::start(){
     m_startTime = ofGetElapsedTimef();
+    m_lastUpdateTime = m_startTime;
     m_time = 0.0f;
     m_bPlaying = true;
 }
@@ -95,8 +101,8 @@ void Player::clearEffects(){
     active_effects_manager.clear();
 }
 
-void Player::setPlaybackTime(float time){
-    m_time = time;
+void Player::movePlaybackTimeTo(float time){
+    setPlaybackTime(time);
 
     // First, remove active effects that have ended
     for(auto effect: active_effects_manager.getEffects()){
@@ -107,7 +113,7 @@ void Player::setPlaybackTime(float time){
             effect_manager.remove(effect);
         }
     }
-
+    
     // Second, activate pending effects that have started
     for(auto effect: pending_effects_manager.getEffects()){
         if(effectStarted(*effect)){
@@ -115,6 +121,10 @@ void Player::setPlaybackTime(float time){
             active_effects_manager.add(effect);
         }
     }
+}
+
+void Player::setPlaybackTime(float time){
+    m_time = time;
 }
 
 inline bool Player::effectStarted(const effects::Effect &effect){
