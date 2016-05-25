@@ -47,6 +47,8 @@ void MultiClient::setup(){
         delete renderer;
     }
 
+    ofSetWindowShape(400,300);
+    ofSetWindowPosition(0,0);
     ofLog() << "[MultiClient] enabled";
 }
 

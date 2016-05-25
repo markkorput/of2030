@@ -47,8 +47,8 @@ namespace of2030 {
         
         Player *player;
         string client_id;
-        ofFbo *fbo, *fbo2;
-        ofFbo defaultFbo, defaultFbo2;
+        ofFbo *fbo, *fbo2, *fbo3;
+        ofFbo defaultFbo, defaultFbo2, defaultFbo3;
         bool bCallbacksRegistered;
         float screenWidth, screenHeight;
     };
