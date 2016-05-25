@@ -27,9 +27,17 @@
     </effect>
 
     <!-- vid -->
-    <effect name="vid">
+    <effect name="vid1">
       <!-- <video>PanoCalib-01.mov</video> -->
-      <video>fingers.mov</video>
+      <!-- <video>fingers.mov</video> -->
+      <video>Marcheren_1_BW.mov</video>
+    </effect>
+
+    <effect name="vid2">
+      <video>PanoCalib-01.mov</video>
+      <is_pano>1.0</is_pano>
+      <!-- <video>fingers.mov</video> -->
+      <!-- <video>Marcheren_1_BW.mov</video> -->
     </effect>
   </effects>
 </of2030>

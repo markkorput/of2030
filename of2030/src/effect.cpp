@@ -114,7 +114,7 @@ void Effect::drawContent(Context &context){
     } else {
         // activate shader
         shader->begin();
-        
+
         // populate shader
         shader->setUniform2f("iResolution", resolution);
         shader->setUniform3f("iPos", context.effect_setting.getValue("pos", ofVec3f(0.0f)));
@@ -122,7 +122,7 @@ void Effect::drawContent(Context &context){
         shader->setUniform2f("iScreenWorldSize", ofVec2f(context.screen_setting.getValue("world_width", 2.67f),
                                                          context.screen_setting.getValue("world_height", 2.0f)));
         shader->setUniform3f("iScreenPos", context.screen_setting.getValue("pos", ofVec3f(0.0f)));
-        
+
         shader->setUniform1f("iProgress", logic.getGlobalProgress());
         shader->setUniform1f("iDuration", logic.getGlobalDuration());
         shader->setUniform1f("iIterations", context.effect_setting.getValue("iterations", 1.0f));
@@ -159,7 +159,7 @@ void Effect::drawMask(Context &context, const string &coordsName, const ofVec2f 
     coords[1] = context.screen_setting.getValue(coordsName+"2", ofVec2f(1.0f, 1.0f)) * resolution;
     coords[2] = context.screen_setting.getValue(coordsName+"3", ofVec2f(1.0f, 0.0f)) * resolution;
     coords[3] = context.screen_setting.getValue(coordsName+"4", ofVec2f(0.0f, 0.0f)) * resolution;
-    
+
     // draw mask content
     ofDrawTriangle(coords[0].x, coords[0].y, coords[1].x, coords[1].y, coords[2].x, coords[2].y);
     ofDrawTriangle(coords[0].x, coords[0].y, coords[2].x, coords[2].y, coords[3].x, coords[3].y);
@@ -167,7 +167,7 @@ void Effect::drawMask(Context &context, const string &coordsName, const ofVec2f 
 
 void Effect::drawTunnelMask(Context &context){
     ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
-    
+
     float scrTunnelStart = context.screen_setting.getValue("tunnel_start", 0.0f);
     float scrTunnelEnd = context.screen_setting.getValue("tunnel_end", 1.0f);
     float fxTunnelStart = context.effect_setting.getValue("tunnel_start", 0.0f);
@@ -185,7 +185,9 @@ void Effect::drawVideo(Context &context, const string &video){
     ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
     ofVideoPlayer *video_player = of2030::VideoManager::instance()->get(video, true);
 
-    if(context.effect_setting.getValue("is_pano", "0") == "1"){
+    if(context.effect_setting.getValue("is_pano", 0.0f) > 0.0f){
+        video_player->draw(0.0f, 0.0f, resolution.x, resolution.y);
+    } else {
         // set up mesh with vertices and tex coords
         ofMesh mesh;
         mesh.addVertex(ofPoint(0.0f, context.fbo->getHeight())); // top left
@@ -209,8 +211,6 @@ void Effect::drawVideo(Context &context, const string &video){
         ofSetColor(255);
         mesh.draw();
         video_player->unbind();
-    } else {
-        video_player->draw(0.0f, 0.0f, resolution.x, resolution.y);
     }
 }
 
