@@ -25,5 +25,11 @@
     <effect name="voice">
       <mask_coords_name>voice_coord</mask_coords_name>
     </effect>
+
+    <!-- vid -->
+    <effect name="vid">
+      <!-- <video>PanoCalib-01.mov</video> -->
+      <video>fingers.mov</video>
+    </effect>
   </effects>
 </of2030>

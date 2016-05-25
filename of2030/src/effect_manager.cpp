@@ -47,7 +47,6 @@ void EffectManager::add(effects::Effect* effect){
 }
 
 effects::EffectType EffectManager::typeStringToType(string typ){
-    if(typ == "vid") return effects::EffectType::VID;
     if(typ == "spot") return effects::EffectType::SPOT;
     if(typ == "pos") return effects::EffectType::POS;
     return effects::EffectType::DEFAULT;
@@ -58,9 +57,7 @@ effects::Effect* EffectManager::createEffect(string typ){
 
     effects::Effect* pEffect;
 
-    if(typ == "vid"){
-        pEffect = (effects::Effect*) new effects::Vid();
-    } else if(typ == "spot"){
+    if(typ == "spot"){
         pEffect = (effects::Effect*) new effects::Spot();
     } else if(typ == "pos"){
         pEffect = (effects::Effect*) new effects::Pos();
@@ -82,7 +79,6 @@ effects::Effect* EffectManager::createEffect(string typ){
 void EffectManager::deleteEffect(effects::Effect* effect){
     ofLogVerbose() << "EffectManager::deleteEffect";
     
-    IF_TYP_DEL(VID, Vid)
     IF_TYP_DEL(SPOT, Spot)
     IF_TYP_DEL(POS, Pos)
 //    // figure out effect type and delete from memory

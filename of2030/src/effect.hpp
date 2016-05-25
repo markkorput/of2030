@@ -71,6 +71,7 @@ namespace of2030{ namespace effects {
         void setType(EffectType effect_type);
         void drawMask(Context &context, const string &coordsName);
         void drawTunnelMask(Context &context);
+        void drawVideo(Context &context, const string &video);
 
     public: // properties
 
