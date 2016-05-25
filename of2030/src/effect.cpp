@@ -184,29 +184,34 @@ void Effect::drawTunnelMask(Context &context){
 void Effect::drawVideo(Context &context, const string &video){
     ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
     ofVideoPlayer *video_player = of2030::VideoManager::instance()->get(video, true);
-    
-    // set up mesh with vertices and tex coords
-    ofMesh mesh;
-    mesh.addVertex(ofPoint(0.0f, context.fbo->getHeight())); // top left
-    mesh.addVertex(ofPoint(context.fbo->getWidth(), context.fbo->getHeight())); // top right
-    mesh.addVertex(ofPoint(context.fbo->getWidth(), 0.0f)); // bottom right
-    mesh.addVertex(ofPoint(0.0f, 0.0f)); // bottom left
 
-    // specify which part of the video texture to show (default values specify the full frame)
-    ofVec2f vidSize = ofVec2f(video_player->getWidth(), video_player->getHeight());
-    mesh.addTexCoord(ofPoint(context.screen_setting.getValue("pano_coord1", ofVec2f(0.0f, 0.0f)) * vidSize));
-    mesh.addTexCoord(ofPoint(context.screen_setting.getValue("pano_coord2", ofVec2f(1.0f, 0.0f)) * vidSize));
-    mesh.addTexCoord(ofPoint(context.screen_setting.getValue("pano_coord3", ofVec2f(1.0f, 1.0f)) * vidSize));
-    mesh.addTexCoord(ofPoint(context.screen_setting.getValue("pano_coord4", ofVec2f(0.0f, 1.0f)) * vidSize));
+    if(context.effect_setting.getValue("is_pano", "0") == "1"){
+        // set up mesh with vertices and tex coords
+        ofMesh mesh;
+        mesh.addVertex(ofPoint(0.0f, context.fbo->getHeight())); // top left
+        mesh.addVertex(ofPoint(context.fbo->getWidth(), context.fbo->getHeight())); // top right
+        mesh.addVertex(ofPoint(context.fbo->getWidth(), 0.0f)); // bottom right
+        mesh.addVertex(ofPoint(0.0f, 0.0f)); // bottom left
 
-    mesh.addTriangle(0, 1, 2);
-    mesh.addTriangle(0, 2, 3);
 
-    // bind video texture
-    video_player->bind();
-    ofSetColor(255);
-    mesh.draw();
-    video_player->unbind();
+        // specify which part of the video texture to show (default values specify the full frame)
+        ofVec2f vidSize = ofVec2f(video_player->getWidth(), video_player->getHeight());
+        mesh.addTexCoord(ofPoint(context.screen_setting.getValue("pano_coord1", ofVec2f(0.0f, 0.0f)) * vidSize));
+        mesh.addTexCoord(ofPoint(context.screen_setting.getValue("pano_coord2", ofVec2f(1.0f, 0.0f)) * vidSize));
+        mesh.addTexCoord(ofPoint(context.screen_setting.getValue("pano_coord3", ofVec2f(1.0f, 1.0f)) * vidSize));
+        mesh.addTexCoord(ofPoint(context.screen_setting.getValue("pano_coord4", ofVec2f(0.0f, 1.0f)) * vidSize));
+
+        mesh.addTriangle(0, 1, 2);
+        mesh.addTriangle(0, 2, 3);
+
+        // bind video texture
+        video_player->bind();
+        ofSetColor(255);
+        mesh.draw();
+        video_player->unbind();
+    } else {
+        video_player->draw(0.0f, 0.0f, resolution.x, resolution.y);
+    }
 }
 
 float Effect::getDuration() const {
