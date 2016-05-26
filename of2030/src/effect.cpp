@@ -119,6 +119,10 @@ void Effect::drawContent(Context &context){
     EffectLogic logic((Effect*)this, &context);
     ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
 
+    ofPushMatrix();
+    ofTranslate(context.effect_setting.getValue("translate", ofVec3f(0.0)));
+    ofScale(context.effect_setting.getValue("scale", ofVec3f(1.0)));
+
     if(shader){
         // activate shader
         shader->begin();
@@ -152,7 +156,6 @@ void Effect::drawContent(Context &context){
     }
 
     // draw
-    
     string vid = context.effect_setting.getValue("video", "");
     string pattern = context.effect_setting.getValue("pattern", "");
     if(vid != ""){
@@ -172,6 +175,8 @@ void Effect::drawContent(Context &context){
         // deactivate shader
         shader->end();
     }
+    
+    ofPopMatrix();
 }
 
 void Effect::drawPattern(Context &context, const string &patternName){
