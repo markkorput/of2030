@@ -2,7 +2,6 @@ precision highp float;
 
 uniform sampler2D tex0;
 uniform sampler2D iMask;
-uniform vec4 iColor;
 
 varying vec2 texCoordVarying;
 
