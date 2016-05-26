@@ -159,10 +159,19 @@ void Effect::drawContent(Context &context){
     string vid = context.effect_setting.getValue("video", "");
     string pattern = context.effect_setting.getValue("pattern", "");
     if(vid != ""){
-        ofShader* vidShader = ShaderManager::instance()->get("video");
-        vidShader->begin();
+        bool bAlphaBlack = (context.effect_setting.getValue("alphablack", "1") == "1");
+        ofShader* vidShader;
+
+        if(bAlphaBlack){
+            vidShader = ShaderManager::instance()->get("video");
+            vidShader->begin();
+        }
+
         drawVideo(context, vid);
-        vidShader->end();
+
+        if(bAlphaBlack){
+            vidShader->end();
+        }
     } else if(pattern != ""){
         drawPattern(context, pattern);
     } else {

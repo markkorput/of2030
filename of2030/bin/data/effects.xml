@@ -50,13 +50,17 @@
       <!-- <video>PanoCalib-01.mov</video> -->
       <!-- <video>fingers.mov</video> -->
       <video>Marcheren_1_BW.mov</video>
+      <alphablack>0</alphablack>
     </effect>
 
     <effect name="vid2">
-      <video>PanoCalib-01.mov</video>
-      <is_pano>1.0</is_pano>
-      <!-- <video>fingers.mov</video> -->
-      <!-- <video>Marcheren_1_BW.mov</video> -->
+      <video>lava.heartbeat1.v01.mov</video>
+      <!-- <is_pano>1.0</is_pano> -->
+    </effect>
+
+    <effect name="vid3">
+      <video>lava.heartbeat3.v01.mov</video>
+      <!-- <is_pano>1.0</is_pano> -->
     </effect>
 
     <!-- overlay -->
