@@ -71,6 +71,26 @@ void Effect::setup(Context &context){
 void Effect::draw(Context &context){
     ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
 
+    // draw mask (if no mask specfied, this will give a full white frame)
+    context.fbo3->begin();
+        ofClear(0.0f, 0.0f, 0.0f, 0.0f);
+        ofSetColor(255);
+        drawMask(context, context.effect_setting.getValue("mask_coords_name", ""), resolution);
+    context.fbo3->end();
+
+    // draw pano (masked with above mask) into fbo2
+    ofShader* multShader = ShaderManager::instance()->get("mask");
+
+    context.fbo2->begin();
+        ofClear(0.0f, 0.0f, 0.0f, 0.0f);
+        multShader->begin();
+            multShader->setUniformTexture("iMask", context.fbo3->getTexture(), 2);
+            ofSetColor(255);
+            ofRectangle rect = panoDrawRect(context);
+            ofDrawRectangle(rect);
+        multShader->end();
+    context.fbo2->end();
+
     // draw content to fbo3
     context.fbo3->begin();
         ofClear(0.0f, 0.0f, 0.0f, 0.0f);
@@ -80,15 +100,8 @@ void Effect::draw(Context &context){
         // tunnel 'mask'
         ofSetColor(0);
         drawTunnelMask(context);
-        drawPanoMask(context);
     context.fbo3->end();
 
-    // draw alpha mask (if no mask specfied, this will give a full white frame)
-    context.fbo2->begin();
-        ofClear(0.0f, 0.0f, 0.0f, 0.0f);
-        ofSetColor(255);
-        drawMask(context, context.effect_setting.getValue("mask_coords_name", ""), resolution);
-    context.fbo2->end();
 
     // apply alpha mask through mask shader
     ofShader* maskShader = ShaderManager::instance()->get("mask");
@@ -150,9 +163,11 @@ void Effect::drawContent(Context &context){
     } else if(pattern != ""){
         drawPattern(context, pattern);
     } else {
+//        ofRectangle r = getDrawRect(context);
+//        ofDrawRectangle(r.x, r.y, r.width, r.height);
         ofDrawRectangle(0, 0, resolution.x, resolution.y);
     }
-    
+
     if(shader){
         // deactivate shader
         shader->end();
@@ -189,6 +204,7 @@ void Effect::drawMask(Context &context, const string &coordsName, const ofVec2f 
     ofDrawTriangle(coords[0].x, coords[0].y, coords[2].x, coords[2].y, coords[3].x, coords[3].y);
 }
 
+
 void Effect::drawTunnelMask(Context &context){
     ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
 
@@ -209,7 +225,7 @@ void Effect::drawTunnelMask(Context &context){
     // ofDrawRectangle(x, 0.0, resolution.x-x, resolution.y);
 }
 
-void Effect::drawPanoMask(Context &context){
+ofRectangle Effect::panoDrawRect(Context &context){
     ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
     
     float scrStart = context.screen_setting.getValue("pano_start", 0.0f);
@@ -219,9 +235,35 @@ void Effect::drawPanoMask(Context &context){
     
     float minX = ofMap(fxStart, scrStart, scrEnd, 0.0, resolution.x);
     float maxX = ofMap(fxEnd, scrStart, scrEnd, 0.0, resolution.x);
+    
+    return ofRectangle(std::min(minX, maxX), 0.0, std::max(minX, maxX) - std::min(maxX,minX), resolution.y);
+}
 
-    ofDrawRectangle(0.0, 0.0, minX, resolution.y);
-    ofDrawRectangle(maxX, 0.0, resolution.x-maxX, resolution.y);
+//void Effect::drawPanoMask(Context &context){
+//    ofRectangle rect = panoDrawRect(context);
+//    
+//    ofDrawRectangle(0.0, 0.0, rect.x, rect.height);
+//    ofDrawRectangle(rect.x+rect.width, 0.0, resolution.x-(rect.x+rect.width), rect.height);
+//}
+
+ofRectangle Effect::tunnelDrawRect(Context &context){
+//    ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
+//    
+//    float scrStart = context.screen_setting.getValue("tunnel_start", 0.0f);
+//    float scrEnd = context.screen_setting.getValue("tunnel_end", 1.0f);
+//    float fxStart = context.effect_setting.getValue("tunnel_start", 0.0f);
+//    float fxEnd = context.effect_setting.getValue("tunnel_end", 1.0f);
+//    
+//    // start of tunnel
+//    float x1 = ofMap(0.0, scrStart, scrEnd, 0.0, resolution.x);
+//    // start of visible part of tunnel
+//    float x2 = ofMap(fxStart, scrStart, scrEnd, 0.0, resolution.x);
+//    // draw "hider" for invisible part _before_ visible part
+//    ofDrawRectangle(x1, 0.0, x2-x1, resolution.y);
+//    x1 = ofMap(fxEnd, scrStart, scrEnd, 0.0, resolution.x);
+//    x2 = ofMap(1.0, scrStart, scrEnd, 0.0, resolution.x);
+//    ofDrawRectangle(x1, 0.0, x2-x1, resolution.y);
+//    // ofDrawRectangle(x, 0.0, resolution.x-x, resolution.y);
 }
 
 void Effect::drawVideo(Context &context, const string &video){

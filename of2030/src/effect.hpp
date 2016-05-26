@@ -64,6 +64,11 @@ namespace of2030{ namespace effects {
         inline bool hasEndTime() const { return endTime >= 0.0f; }
         inline bool hasDuration() const { return duration >= 0.0f; }
 
+        
+        // draw coords
+        ofRectangle getDrawRect(Context &context);
+        ofRectangle panoDrawRect(Context &context);
+        ofRectangle tunnelDrawRect(Context &context);
         float getDuration() const;
         
 
