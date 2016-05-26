@@ -86,7 +86,7 @@ void Effect::draw(Context &context){
         multShader->begin();
             multShader->setUniformTexture("iMask", context.fbo3->getTexture(), 2);
             ofSetColor(255);
-            ofRectangle rect = panoDrawRect(context);
+            ofRectangle rect = panoTunnelDrawRect(context);
             ofDrawRectangle(rect);
         multShader->end();
     context.fbo2->end();
@@ -97,9 +97,6 @@ void Effect::draw(Context &context){
         ofColor clr = context.effect_setting.getValue("color", ofColor(255));
         ofSetColor(clr);
         drawContent(context);
-        // tunnel 'mask'
-        ofSetColor(0);
-        drawTunnelMask(context);
     context.fbo3->end();
 
 
@@ -205,25 +202,6 @@ void Effect::drawMask(Context &context, const string &coordsName, const ofVec2f 
 }
 
 
-void Effect::drawTunnelMask(Context &context){
-    ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
-
-    float scrStart = context.screen_setting.getValue("tunnel_start", 0.0f);
-    float scrEnd = context.screen_setting.getValue("tunnel_end", 1.0f);
-    float fxStart = context.effect_setting.getValue("tunnel_start", 0.0f);
-    float fxEnd = context.effect_setting.getValue("tunnel_end", 1.0f);
-
-    // start of tunnel
-    float x1 = ofMap(0.0, scrStart, scrEnd, 0.0, resolution.x);
-    // start of visible part of tunnel
-    float x2 = ofMap(fxStart, scrStart, scrEnd, 0.0, resolution.x);
-    // draw "hider" for invisible part _before_ visible part
-    ofDrawRectangle(x1, 0.0, x2-x1, resolution.y);
-    x1 = ofMap(fxEnd, scrStart, scrEnd, 0.0, resolution.x);
-    x2 = ofMap(1.0, scrStart, scrEnd, 0.0, resolution.x);
-    ofDrawRectangle(x1, 0.0, x2-x1, resolution.y);
-    // ofDrawRectangle(x, 0.0, resolution.x-x, resolution.y);
-}
 
 ofRectangle Effect::panoDrawRect(Context &context){
     ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
@@ -236,34 +214,29 @@ ofRectangle Effect::panoDrawRect(Context &context){
     float minX = ofMap(fxStart, scrStart, scrEnd, 0.0, resolution.x);
     float maxX = ofMap(fxEnd, scrStart, scrEnd, 0.0, resolution.x);
     
-    return ofRectangle(std::min(minX, maxX), 0.0, std::max(minX, maxX) - std::min(maxX,minX), resolution.y);
+    return ofRectangle(minX, 0.0, maxX-minX, resolution.y);
 }
 
-//void Effect::drawPanoMask(Context &context){
-//    ofRectangle rect = panoDrawRect(context);
-//    
-//    ofDrawRectangle(0.0, 0.0, rect.x, rect.height);
-//    ofDrawRectangle(rect.x+rect.width, 0.0, resolution.x-(rect.x+rect.width), rect.height);
-//}
-
 ofRectangle Effect::tunnelDrawRect(Context &context){
-//    ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
-//    
-//    float scrStart = context.screen_setting.getValue("tunnel_start", 0.0f);
-//    float scrEnd = context.screen_setting.getValue("tunnel_end", 1.0f);
-//    float fxStart = context.effect_setting.getValue("tunnel_start", 0.0f);
-//    float fxEnd = context.effect_setting.getValue("tunnel_end", 1.0f);
-//    
-//    // start of tunnel
-//    float x1 = ofMap(0.0, scrStart, scrEnd, 0.0, resolution.x);
-//    // start of visible part of tunnel
-//    float x2 = ofMap(fxStart, scrStart, scrEnd, 0.0, resolution.x);
-//    // draw "hider" for invisible part _before_ visible part
-//    ofDrawRectangle(x1, 0.0, x2-x1, resolution.y);
-//    x1 = ofMap(fxEnd, scrStart, scrEnd, 0.0, resolution.x);
-//    x2 = ofMap(1.0, scrStart, scrEnd, 0.0, resolution.x);
-//    ofDrawRectangle(x1, 0.0, x2-x1, resolution.y);
-//    // ofDrawRectangle(x, 0.0, resolution.x-x, resolution.y);
+    ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
+    
+    float scrStart = context.screen_setting.getValue("tunnel_start", 0.0f);
+    float scrEnd = context.screen_setting.getValue("tunnel_end", 1.0f);
+    float fxStart = context.effect_setting.getValue("tunnel_start", 0.0f);
+    float fxEnd = context.effect_setting.getValue("tunnel_end", 1.0f);
+    
+    // start of tunnel
+    float x1 = ofMap(fxStart, scrStart, scrEnd, 0.0, resolution.x);
+    // start of visible part of tunnel
+    float x2 = ofMap(fxEnd, scrStart, scrEnd, 0.0, resolution.x);
+    // draw "hider" for invisible part _before_ visible part
+    return ofRectangle(x1, 0.0, x2-x1, resolution.y);
+}
+
+ofRectangle Effect::panoTunnelDrawRect(Context &context){
+    ofRectangle prect = panoDrawRect(context);
+    ofRectangle trect = tunnelDrawRect(context);
+    return prect.getIntersection(trect);
 }
 
 void Effect::drawVideo(Context &context, const string &video){
