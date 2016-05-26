@@ -31,6 +31,8 @@ namespace of2030 {
         ofEvent<string> clipEvent;
         ofEvent<string> playbackEvent;
         ofEvent<string> stopPlaybackEvent;
+        ofEvent<string> loadVideoEvent;
+        ofEvent<string> unloadVideoEvent;
 
     private:
         static Interface* singleton;

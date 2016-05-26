@@ -54,7 +54,7 @@ namespace of2030{ namespace effects {
 
         Effect();
         void reset();
-        // ~Effect(){}
+        // ~Effect(){ destroy(); }
 
         virtual void setup(Context &context);
         virtual void draw(Context &context);

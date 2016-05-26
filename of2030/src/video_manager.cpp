@@ -62,3 +62,37 @@ ofVideoPlayer* VideoManager::get(string video_name, bool load){
 string VideoManager::video_name_to_path(string video_name){
     return "vids/" + video_name;
 }
+
+bool VideoManager::unload(string &video_name){
+    if(video_name == ""){
+        for(auto player: players){
+            unload(player);
+        }
+    }
+
+    ofVideoPlayer* player = get(video_name, false);
+    if(player){
+        unload(player);
+        return true;
+    }
+
+    return false;
+}
+
+void VideoManager::unload(ofVideoPlayer *player){
+    if(player == NULL){
+        return;
+    }
+
+    // rmeove from our list
+    for(int i=players.size()-1; i>=0; i--){
+        // this one?
+        if(players[i] == player){
+            // remove from list
+            players.erase(players.begin()+i);
+        }
+    }
+
+    player->close();
+    delete player;
+}
