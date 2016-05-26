@@ -117,10 +117,13 @@ void Effect::update(float dt){
 
 void Effect::drawContent(Context &context){
     EffectLogic logic((Effect*)this, &context);
-    ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
+    ofVec2f resolution = getResolution(context);
+    ofVec2f scrWorldSize = getScreenWorldSize(context);
+    ofVec2f world2scr2f = getWorldToScreenVector(context);
+    ofVec2f drawSize = context.effect_setting.getValue("draw_size", scrWorldSize) * world2scr2f;
 
     ofPushMatrix();
-    ofTranslate(context.effect_setting.getValue("translate", ofVec3f(0.0)) * getWorldToScreenVector(context));
+    ofTranslate(context.effect_setting.getValue("translate", ofVec3f(0.0)) * world2scr2f);
     ofScale(context.effect_setting.getValue("scale", ofVec3f(1.0)));
 
     if(shader){
@@ -167,15 +170,15 @@ void Effect::drawContent(Context &context){
             vidShader->begin();
         }
 
-        drawVideo(context, vid);
+        drawVideo(context, vid, drawSize);
 
         if(bAlphaBlack){
             vidShader->end();
         }
     } else if(pattern != ""){
-        drawPattern(context, pattern);
+        drawPattern(context, pattern, drawSize);
     } else {
-        ofDrawRectangle(0, 0, resolution.x, resolution.y);
+        ofDrawRectangle(0, 0, drawSize.x, drawSize.y);
     }
 
     if(shader){
@@ -186,10 +189,8 @@ void Effect::drawContent(Context &context){
     ofPopMatrix();
 }
 
-void Effect::drawPattern(Context &context, const string &patternName){
+void Effect::drawPattern(Context &context, const string &patternName, ofVec2f &drawSize){
     EffectLogic logic((Effect*)this, &context);
-    float resolutionx = context.fbo->getWidth();
-    float resolutiony = context.fbo->getHeight();
 
     if(patternName == "cursor"){
         float p = context.screen_setting.getValue("pano_pos", pano_pos);
@@ -197,10 +198,10 @@ void Effect::drawPattern(Context &context, const string &patternName){
                             context.screen_setting.getValue("pano_start", 0.0f),
                             context.screen_setting.getValue("pano_end", 1.0f),
                             0.0,
-                            resolutionx);
+                            drawSize.x);
 
-        float gain = context.effect_setting.getValue("gain", 1.0f) * resolutionx / context.screen_setting.getValue("world_width", 2.67f);
-        ofDrawRectangle(x-gain*0.5, 0.0f, gain, resolutiony);
+        float gain = context.effect_setting.getValue("gain", 1.0f) * drawSize.x / context.screen_setting.getValue("world_width", 2.67f);
+        ofDrawRectangle(x-gain*0.5, 0.0f, gain, drawSize.y);
     }
 }
 
@@ -254,19 +255,19 @@ ofRectangle Effect::panoTunnelDrawRect(Context &context){
     return prect.getIntersection(trect);
 }
 
-void Effect::drawVideo(Context &context, const string &video){
+void Effect::drawVideo(Context &context, const string &video, ofVec2f &drawSize){
     ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
     ofVideoPlayer *video_player = of2030::VideoManager::instance()->get(video, true);
 
     if(!context.effect_setting.hasValue("is_pano")){
-        video_player->draw(0.0f, resolution.y, resolution.x, -resolution.y);
+        video_player->draw(0.0f, drawSize.y, drawSize.x, -drawSize.y);
     } else {
         // set up mesh with vertices and tex coords
         ofMesh mesh;
         mesh.addVertex(ofPoint(0.0f, 0.0f)); // top left
-        mesh.addVertex(ofPoint(context.fbo->getWidth(), 0.0f)); // top right
-        mesh.addVertex(ofPoint(context.fbo->getWidth(), context.fbo->getHeight())); // bottom right
-        mesh.addVertex(ofPoint(0.0f, context.fbo->getHeight())); // bottom left
+        mesh.addVertex(ofPoint(drawSize.x, 0.0f)); // top right
+        mesh.addVertex(ofPoint(drawSize.x, drawSize.y)); // bottom right
+        mesh.addVertex(ofPoint(0.0f, drawSize.y)); // bottom left
 
 
         // specify which part of the video texture to show (default values specify the full frame)

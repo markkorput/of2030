@@ -51,7 +51,7 @@ namespace of2030 {
         ofFbo defaultFbo, defaultFbo2, defaultFbo3;
         bool bCallbacksRegistered;
         float screenWidth, screenHeight;
-        effects::Effect *overlayEffect;
+        //effects::Effect *overlayEffect;
     };
 }
 

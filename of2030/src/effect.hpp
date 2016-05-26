@@ -73,7 +73,7 @@ namespace of2030{ namespace effects {
         inline ofVec2f getResolution(Context &context){ return ofVec2f(context.fbo->getWidth(), context.fbo->getHeight()); }
         inline ofVec2f getScreenWorldSize(Context &context){ return ofVec2f(context.screen_setting.getValue("world_width", 2.67f),
                                                                             context.screen_setting.getValue("world_height", 2.0f)); }
-        inline ofVec2f getWorldToScreenVector(Context &context){ return getResolution(context) * getScreenWorldSize(context); }
+        inline ofVec2f getWorldToScreenVector(Context &context){ return getResolution(context) / getScreenWorldSize(context); }
         float getDuration() const;
 
 
@@ -82,8 +82,8 @@ namespace of2030{ namespace effects {
         void setType(EffectType effect_type);
         void drawContent(Context &context);
         void drawMask(Context &context, const string &coordsName, const ofVec2f &resolution);
-        void drawVideo(Context &context, const string &video);
-        void drawPattern(Context &context, const string &patternName);
+        void drawVideo(Context &context, const string &video, ofVec2f &drawSize);
+        void drawPattern(Context &context, const string &patternName, ofVec2f &drawSize);
 
     public: // properties
 

@@ -21,7 +21,7 @@ Renderer::Renderer() : fbo(NULL), fbo2(NULL), fbo3(NULL), player(NULL), client_i
     screenHeight = ofGetHeight();
 
     // runs effect's setup
-    overlayEffect = EfficientEffectManager::instance()->get("overlay");
+    //overlayEffect = EfficientEffectManager::instance()->get("overlay");
 }
 
 Renderer::~Renderer(){
@@ -87,8 +87,8 @@ void Renderer::draw(){
         effect->draw(context);
     }
     
-    fillEffectSetting(*overlayEffect, context.effect_setting);
-    overlayEffect->draw(context);
+//    fillEffectSetting(*overlayEffect, context.effect_setting);
+//    overlayEffect->draw(context);
 
     fbo->end();
 
