@@ -25,8 +25,12 @@ public: // methods
 
     // reading
     void load(string path);
-    OscAsciiLine* next_line();
+    OscAsciiLine* next_line(int recursion_count=0);
     inline const string &getReadPath(){ return readpath; }
+    inline void reset(){
+        load(readpath);
+    }
+
 
     // writing
     void start_writing(string path);
@@ -34,11 +38,14 @@ public: // methods
     void write_line(ofxOscMessage &msg);
     void write_line(const ofxOscMessage &msg, float timestamp);
 
+    inline void setLoop(bool loop){ bLoop = loop; }
+
 private: // reading attributes
     OscAsciiLine last_line;
     std::ifstream infile;
 
 private: // writing attributes
+    bool bLoop;
     float start_time, first_message_time;
     std::ofstream outfile;
     string readpath;

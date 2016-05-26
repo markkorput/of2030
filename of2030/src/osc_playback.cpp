@@ -14,7 +14,12 @@ void OscPlayback::start(){
     last_update_time = ofGetElapsedTimef();
 }
 
-bool OscPlayback::update(){
+bool OscPlayback::update(int recursion_count){
+    if(recursion_count > 2){
+        ofLogWarning() << "[OscPlayback::update] recursion count > 1";
+        return false;
+    }
+
     // update internal timer
     float t = ofGetElapsedTimef();
     time += t - last_update_time;
@@ -39,6 +44,14 @@ bool OscPlayback::update(){
             pending_line = line;
             return true; // true means "there is more to come"
         }
+    }
+
+    if(bLoop){
+        ofLog() << "LOOP";
+        file->reset();
+        ofNotifyEvent(loopEvent, *this, this);
+        start();
+        return update(recursion_count+1);
     }
 
     return false;

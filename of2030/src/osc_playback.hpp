@@ -14,17 +14,19 @@
 
 class OscPlayback {
 public:
-    OscPlayback(OscAsciiFile &_file){ file = &_file; }
+    OscPlayback(OscAsciiFile &_file) : bLoop(true){ file = &_file; }
     
     void start();
     // returns true if not ended yet
-    bool update();
+    bool update(int recursion_count=0);
     inline OscAsciiFile* getFile(){ return file; }
 
 public: // events
     ofEvent<ofxOscMessage> messageEvent;
+    ofEvent<OscPlayback> loopEvent;
 
 private:
+    bool bLoop;
     OscAsciiLine *pending_line;
     float time, last_update_time;
     OscAsciiFile *file;
