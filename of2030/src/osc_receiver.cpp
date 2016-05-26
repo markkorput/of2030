@@ -135,11 +135,6 @@ void OscReceiver::processMessage(ofxOscMessage &m){
         ofNotifyEvent(m_interface->triggerEvent, param, m_interface);
         return;
     }
-
-    
-    
-    
-    
     
     if(addr == osc_setting->addresses["stop_playback"]){
         if(m.getNumArgs() == 1 and m.getArgType(0) == ofxOscArgType::OFXOSC_TYPE_FLOAT){
@@ -269,6 +264,34 @@ void OscReceiver::processMessage(ofxOscMessage &m){
         cfg.param_value = param;
         
         ofNotifyEvent(m_interface->screenConfigEvent, cfg, m_interface);
+        return;
+    }
+
+    if(addr == osc_setting->addresses["load_video"]){
+        ofNotifyEvent(m_interface->loadVideoEvent, param, m_interface);
+        return;
+    }
+    
+    sub = osc_setting->addresses["load_video"] + "/";
+    if(addr.substr(0, sub.size()) == sub){
+        param = addr.substr(sub.size());
+        ofNotifyEvent(m_interface->loadVideoEvent, param, m_interface);
+        return;
+    }
+
+    if(addr == osc_setting->addresses["unload_video"]){
+        if(m.getNumArgs() == 1 and m.getArgType(0) == ofxOscArgType::OFXOSC_TYPE_FLOAT){
+            param = "";
+        }
+
+        ofNotifyEvent(m_interface->unloadVideoEvent, param, m_interface);
+        return;
+    }
+    
+    sub = osc_setting->addresses["unload_video"] + "/";
+    if(addr.substr(0, sub.size()) == sub){
+        param = addr.substr(sub.size());
+        ofNotifyEvent(m_interface->unloadVideoEvent, param, m_interface);
         return;
     }
     

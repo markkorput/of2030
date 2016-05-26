@@ -16,6 +16,8 @@
       <clip>/clip</clip>
       <effect_config>/cfg</effect_config>
       <screen_config>/scr</screen_config>
+      <load_video>/lvid</load_video>
+      <unload_video>/uvid</unload_video>
     </addresses>
   </osc>
 

@@ -258,6 +258,10 @@ ofRectangle Effect::panoTunnelDrawRect(Context &context){
 void Effect::drawVideo(Context &context, const string &video, ofVec2f &drawSize){
     ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
     ofVideoPlayer *video_player = of2030::VideoManager::instance()->get(video, true);
+    
+    if(!video_player){
+        return;
+    }
 
     float x = 0.0;
     if(context.effect_setting.hasValue("pano_pos")){
