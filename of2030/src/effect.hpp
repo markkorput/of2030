@@ -64,6 +64,12 @@ namespace of2030{ namespace effects {
         inline bool hasEndTime() const { return endTime >= 0.0f; }
         inline bool hasDuration() const { return duration >= 0.0f; }
 
+        
+        // draw coords
+        ofRectangle getDrawRect(Context &context);
+        ofRectangle panoDrawRect(Context &context);
+        ofRectangle tunnelDrawRect(Context &context);
+        ofRectangle panoTunnelDrawRect(Context &context);
         float getDuration() const;
         
 
@@ -72,8 +78,6 @@ namespace of2030{ namespace effects {
         void setType(EffectType effect_type);
         void drawContent(Context &context);
         void drawMask(Context &context, const string &coordsName, const ofVec2f &resolution);
-        void drawTunnelMask(Context &context);
-        void drawPanoMask(Context &context);
         void drawVideo(Context &context, const string &video);
         void drawPattern(Context &context, const string &patternName);
 

@@ -25,8 +25,7 @@ void Pos::draw(Context &context){
     float offDistance = context.effect_setting.getValue("off_distance", 9.0f);
     float distance = mypos.distance(lightpos) - lightsize;
     float gain = ofMap(distance, onDistance, offDistance, 255, 0, true);
+    context.fbo3->begin();
     ofSetColor(255, 255, 255, gain);
     ofDrawRectangle(0, 0, context.fbo->getWidth(), context.fbo->getHeight());
-    ofSetColor(0);
-    drawTunnelMask(context);
 }
