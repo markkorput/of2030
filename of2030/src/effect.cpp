@@ -118,7 +118,7 @@ void Effect::update(float dt){
 void Effect::drawContent(Context &context){
     EffectLogic logic((Effect*)this, &context);
     ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
-    
+
     if(shader){
         // activate shader
         shader->begin();
@@ -156,7 +156,10 @@ void Effect::drawContent(Context &context){
     string vid = context.effect_setting.getValue("video", "");
     string pattern = context.effect_setting.getValue("pattern", "");
     if(vid != ""){
+        ofShader* vidShader = ShaderManager::instance()->get("video");
+        vidShader->begin();
         drawVideo(context, vid);
+        vidShader->end();
     } else if(pattern != ""){
         drawPattern(context, pattern);
     } else {
