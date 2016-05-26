@@ -93,6 +93,8 @@ void ofApp::setup(){
     ofAddListener(of2030::Interface::instance()->controlEvent, this, &ofApp::onControl);
     ofAddListener(of2030::Interface::instance()->playbackEvent, this, &ofApp::onPlayback);
     ofAddListener(of2030::Interface::instance()->stopPlaybackEvent, this, &ofApp::onStopPlayback);
+    ofAddListener(of2030::Interface::instance()->loadVideoEvent, this, &ofApp::onLoadVideo);
+    ofAddListener(of2030::Interface::instance()->unloadVideoEvent, this, &ofApp::onUnloadVideo);
     
     // load & start OscReceiver; let the messages come!
     ofLogVerbose() << "Starting OscReceiver";
@@ -271,4 +273,12 @@ void ofApp::onPlayback(string &name){
 
 void ofApp::onStopPlayback(string &name){
     of2030::OscPlaybackManager::instance()->stop(name);
+}
+
+void ofApp::onLoadVideo(string &name){
+    of2030::VideoManager::instance()->get(name, true);
+}
+
+void ofApp::onUnloadVideo(string &name){
+    of2030::VideoManager::instance()->unload(name);
 }
