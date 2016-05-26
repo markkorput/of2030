@@ -31,7 +31,8 @@ bool OscPlaybackManager::stop(const string &name){
         for(auto playback: playbacks){
             remove(playback);
         }
-        return;
+        playbacks.clear();
+        return true;
     }
 
     OscPlayback *playback = getPlayback(name);

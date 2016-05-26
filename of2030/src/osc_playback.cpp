@@ -47,7 +47,7 @@ bool OscPlayback::update(int recursion_count){
     }
 
     if(bLoop){
-        ofLog() << "LOOP";
+        // ofLog() << "LOOP";
         file->reset();
         ofNotifyEvent(loopEvent, *this, this);
         start();
