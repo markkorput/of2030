@@ -27,6 +27,13 @@ bool OscPlaybackManager::start(const string &name){
 }
 
 bool OscPlaybackManager::stop(const string &name){
+    if(name ==""){ // stop all
+        for(auto playback: playbacks){
+            remove(playback);
+        }
+        return;
+    }
+
     OscPlayback *playback = getPlayback(name);
     if(!playback) return false;
     remove(playback);
