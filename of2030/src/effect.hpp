@@ -70,8 +70,12 @@ namespace of2030{ namespace effects {
         ofRectangle panoDrawRect(Context &context);
         ofRectangle tunnelDrawRect(Context &context);
         ofRectangle panoTunnelDrawRect(Context &context);
+        inline ofVec2f getResolution(Context &context){ return ofVec2f(context.fbo->getWidth(), context.fbo->getHeight()); }
+        inline ofVec2f getScreenWorldSize(Context &context){ return ofVec2f(context.screen_setting.getValue("world_width", 2.67f),
+                                                                            context.screen_setting.getValue("world_height", 2.0f)); }
+        inline ofVec2f getWorldToScreenVector(Context &context){ return getResolution(context) * getScreenWorldSize(context); }
         float getDuration() const;
-        
+
 
     protected: // methods
         

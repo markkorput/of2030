@@ -120,7 +120,7 @@ void Effect::drawContent(Context &context){
     ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
 
     ofPushMatrix();
-    ofTranslate(context.effect_setting.getValue("translate", ofVec3f(0.0)));
+    ofTranslate(context.effect_setting.getValue("translate", ofVec3f(0.0)) * getWorldToScreenVector(context));
     ofScale(context.effect_setting.getValue("scale", ofVec3f(1.0)));
 
     if(shader){
@@ -175,8 +175,6 @@ void Effect::drawContent(Context &context){
     } else if(pattern != ""){
         drawPattern(context, pattern);
     } else {
-//        ofRectangle r = getDrawRect(context);
-//        ofDrawRectangle(r.x, r.y, r.width, r.height);
         ofDrawRectangle(0, 0, resolution.x, resolution.y);
     }
 
