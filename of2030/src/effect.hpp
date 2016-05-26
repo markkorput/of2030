@@ -74,6 +74,13 @@ namespace of2030{ namespace effects {
         inline ofVec2f getScreenWorldSize(Context &context){ return ofVec2f(context.screen_setting.getValue("world_width", 2.67f),
                                                                             context.screen_setting.getValue("world_height", 2.0f)); }
         inline ofVec2f getWorldToScreenVector(Context &context){ return getResolution(context) / getScreenWorldSize(context); }
+        inline float panoWorldToScreenPos(Context &context, float p){
+            return ofMap(p - floor(p),
+                         context.screen_setting.getValue("pano_start", 0.0f),
+                         context.screen_setting.getValue("pano_end", 1.0f),
+                         0.0,
+                         getResolution(context).x);
+        }
         float getDuration() const;
 
 

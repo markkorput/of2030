@@ -259,15 +259,20 @@ void Effect::drawVideo(Context &context, const string &video, ofVec2f &drawSize)
     ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
     ofVideoPlayer *video_player = of2030::VideoManager::instance()->get(video, true);
 
+    float x = 0.0;
+    if(context.effect_setting.hasValue("pano_pos")){
+        x = panoWorldToScreenPos(context, context.effect_setting.getValue("pano_pos", 0.0f));
+    }
+
     if(!context.effect_setting.hasValue("is_pano")){
-        video_player->draw(0.0f, drawSize.y, drawSize.x, -drawSize.y);
+        video_player->draw(x, drawSize.y, drawSize.x, -drawSize.y);
     } else {
         // set up mesh with vertices and tex coords
         ofMesh mesh;
-        mesh.addVertex(ofPoint(0.0f, 0.0f)); // top left
-        mesh.addVertex(ofPoint(drawSize.x, 0.0f)); // top right
-        mesh.addVertex(ofPoint(drawSize.x, drawSize.y)); // bottom right
-        mesh.addVertex(ofPoint(0.0f, drawSize.y)); // bottom left
+        mesh.addVertex(ofPoint(x, 0.0f)); // top left
+        mesh.addVertex(ofPoint(x+drawSize.x, 0.0f)); // top right
+        mesh.addVertex(ofPoint(x+drawSize.x, drawSize.y)); // bottom right
+        mesh.addVertex(ofPoint(x, drawSize.y)); // bottom left
 
 
         // specify which part of the video texture to show (default values specify the full frame)
