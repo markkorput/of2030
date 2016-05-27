@@ -130,7 +130,7 @@ void InterfacePlayerBridge::onClip(string &name){
 void InterfacePlayerBridge::onEffectEnded(effects::Effect &effect){
     EfficientEffectManager::instance()->finish(&effect);
 
-#ifdef __UNLOAD_VIDEOS_WHEN_EFFECTS_END__
+#ifdef __AUTO_UNLOAD_VIDEOS_WHEN_EFFECTS_END__
     // did the ended effect have a video (player)?
     ofVideoPlayer* player = effect.getVideoPlayer();
     

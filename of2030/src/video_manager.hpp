@@ -35,6 +35,7 @@ namespace of2030 {
     
     private: // attributes
         vector<ofVideoPlayer*> players;
+        string folder_path;
     };
 }
 

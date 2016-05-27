@@ -41,16 +41,10 @@ void Effect::setup(Context &context){
 
     duration = context.effect_setting.getValue("duration", 30.0f);
 
-    if(hasDuration() && hasStartTime() && !hasEndTime()){
+    if(hasDuration() && !hasEndTime()){
         endTime = startTime + duration;
     }
-    
-    // load any shaders based on comma-seperated "shaders" effect setting
-    val = context.effect_setting.getValue("shader", "");
-    if(val != ""){
-        this->shader = ShaderManager::instance()->get(val);
-    }
-    
+
     // load/start/configure video if specified
     val = context.effect_setting.getValue("video", "");
     if(val != ""){
@@ -61,8 +55,18 @@ void Effect::setup(Context &context){
             if(context.effect_setting.getValue("loop", "0") == "1"){
                 // TODO; this player might currently be used by other effects?
                 video_player->setLoopState(OF_LOOP_NORMAL);
+            } else {
+                // set none-looping
+                video_player->setLoopState(OF_LOOP_NONE);
+                
+                duration = video_player->getDuration();
+                endTime = startTime + duration;
             }
-            
+
+            // reset to start of video (this video player might have been used already by other effects
+            if(context.effect_setting.getValue("reset", "1") == "1")
+                video_player->setPosition(0.0);
+
             video_player->play();
         } else {
             ofLogWarning() << "Effect::setup could not get video player for " << val;
@@ -72,6 +76,12 @@ void Effect::setup(Context &context){
             startTime=context.time-1.0f;
             endTime = startTime-1.0f;
         }
+    }
+
+    // load any shaders based shader param
+    val = context.effect_setting.getValue("shader", "");
+    if(val != ""){
+        this->shader = ShaderManager::instance()->get(val);
     }
 
     pano_pos = context.effect_setting.getValue("pano_pos", 0.0f);

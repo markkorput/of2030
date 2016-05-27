@@ -13,7 +13,11 @@ using namespace of2030;
 SINGLETON_CLASS_IMPLEMENTATION_CODE(VideoManager)
 
 VideoManager::VideoManager(){
-
+#ifdef __APPLE__
+    folder_path = "vids/_osx/";
+#else
+    folder_path = "vids/_raspi/";
+#endif // __APPLE__
 }
 
 VideoManager::~VideoManager(){
@@ -47,8 +51,6 @@ ofVideoPlayer* VideoManager::load(string video_name){
     ofVideoPlayer *player = new ofVideoPlayer;
 
     player->load(path);
-    player->setLoopState(OF_LOOP_NORMAL);
-
     players.push_back(player);
     return player;
 }
@@ -69,7 +71,7 @@ ofVideoPlayer* VideoManager::get(string video_name, bool load){
 }
 
 string VideoManager::video_name_to_path(string video_name){
-    return "vids/" + video_name;
+    return folder_path + video_name;
 }
 
 bool VideoManager::unload(string &video_name){
