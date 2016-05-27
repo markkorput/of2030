@@ -82,7 +82,8 @@ namespace of2030{ namespace effects {
                          getResolution(context).x);
         }
         float getDuration() const;
-
+        
+        inline ofVideoPlayer* getVideoPlayer() const { return video_player; }
 
     protected: // methods
         
