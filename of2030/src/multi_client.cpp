@@ -47,7 +47,6 @@ void MultiClient::setup(){
         delete renderer;
     }
 
-    ofSetWindowShape(400,300);
     ofSetWindowPosition(0,0);
     ofLog() << "[MultiClient] enabled";
 }
@@ -91,50 +90,6 @@ void MultiClient::drawFloor(){
                     xml_settings->room_size.z);
     ofPopMatrix();
 }
-
-//void MultiClient::drawDebug(){
-//    XmlConfigs* screens = XmlConfigs::screens();
-//
-//    ofPushStyle();
-//    ofSetColor(200, 0, 0);
-//
-//    ofCamera screen_cam;
-//    XmlItemSetting* screen_setting;
-//
-//    for(auto &renderer: m_renderers){
-//        screen_setting = screens->getItem(renderer->clientId());
-//        if(screen_setting == NULL){
-//            ofLogWarning() << "not screen setting found for screen ID: " << renderer->clientId();
-//            continue;
-//        }
-//        screen_cam.setPosition(screen_setting->getValue("pos_x", 0.0f),
-//                               screen_setting->getValue("pos_y", 0.0f),
-//                               screen_setting->getValue("pos_z", 0.0f));
-//        screen_cam.lookAt(ofVec3f(screen_setting->getValue("cam_look_at_x", 0.0f),
-//                                  screen_setting->getValue("cam_look_at_y", 0.0f),
-//                                  screen_setting->getValue("cam_look_at_z", 1.0f)));
-//
-//        ofPushMatrix();
-//            ofTranslate(screen_cam.getPosition());
-//            ofVec3f rot = screen_cam.getOrientationEuler();
-//            ofRotateX(rot.x);
-//            ofRotateY(rot.y);
-//            ofRotateZ(rot.z);
-//
-//            ofTranslate(0.0f, 0.0f, -0.2f);
-//
-//            float wheight = screen_setting->getValue("world_height", 2.0f) * 1.1;
-//            float wwidth = screen_setting->getValue("world_width", 2.67f) * 1.1;
-//
-//            ofDrawRectangle(-0.5f*wwidth,
-//                            -0.5f*wheight,
-//                            wwidth,
-//                            wheight);
-//        ofPopMatrix();
-//    }
-//    ofPopStyle();
-//
-//}
 
 void MultiClient::drawScreens(){
     XmlConfigs* screens = XmlConfigs::screens();

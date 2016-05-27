@@ -25,6 +25,7 @@ void ofApp::setup(){
     ofSetLogLevel(OF_LOG_VERBOSE);
     ofLogVerbose() << "Redirect logging to log.txt";
     ofLogToFile("log.txt", true);
+    ofLog() << "window size: " << ofGetWidth() << "x" << ofGetHeight();
 
 #ifdef __HIDE_CURSOR__
     ofHideCursor();
