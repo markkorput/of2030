@@ -11,6 +11,6 @@
 
 #include "effect.hpp"
 #include "spot.hpp"
-#include "pos.hpp"
+//#include "pos.hpp"
 
 #endif /* effects_h */

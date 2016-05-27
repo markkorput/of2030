@@ -45,6 +45,16 @@
       <mask_coords_name>voice_coord</mask_coords_name>
     </effect>
 
+    <!-- pos -->
+    <effect name="pos">
+      <pattern>pos</pattern>
+    </effect>
+
+    <!-- spot -->
+    <effect name="spot">
+      <pattern>spot</pattern>
+    </effect>
+
     <!-- vid -->
     <effect name="vid1">
       <!-- <video>PanoCalib-01.mov</video> -->
