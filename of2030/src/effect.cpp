@@ -29,6 +29,7 @@ void Effect::reset(){
     duration = NO_TIME;
     trigger = "";
     shader = NULL;
+    video_player = NULL;
 }
 
 void Effect::setup(Context &context){
