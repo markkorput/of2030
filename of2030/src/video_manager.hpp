@@ -29,7 +29,7 @@ namespace of2030 {
         
         bool unload(string &video_name);
         void unload(ofVideoPlayer *player);
-    
+
     protected: // helper methods
         string video_name_to_path(string video_name);
     

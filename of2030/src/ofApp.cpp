@@ -280,5 +280,13 @@ void ofApp::onLoadVideo(string &name){
 }
 
 void ofApp::onUnloadVideo(string &name){
+    if(name == ""){ // unload all?
+        of2030::Player::instance()->stopAllVideoEffects();
+    } else {
+        ofVideoPlayer* player = of2030::VideoManager::instance()->get(name, false);
+        // could be NULL!
+        of2030::Player::instance()->stopEffectsByVideoPlayer(player);
+    }
+
     of2030::VideoManager::instance()->unload(name);
 }

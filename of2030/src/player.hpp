@@ -41,6 +41,8 @@ namespace of2030{
 
         void addEffect(effects::Effect &effect);
         void stopEffectByTrigger(string &trigger);
+        void stopEffectsByVideoPlayer(ofVideoPlayer *player);
+        void stopAllVideoEffects();
         void clearEffects();
 
         inline const vector<effects::Effect*> &getActiveEffects(){ return active_effects_manager.getEffects(); }

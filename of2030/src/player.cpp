@@ -72,7 +72,6 @@ void Player::addEffect(effects::Effect &effect){
 }
 
 void Player::stopEffectByTrigger(string &trigger){
-    // ofLogVerbose() << "Player::stopEffectByTrigger";
     ofLog() << "Player::stopEffectByTrigger with " << trigger;
     const vector<effects::Effect*> *effects = &active_effects_manager.getEffects();
 
@@ -134,4 +133,50 @@ inline bool Player::effectStarted(const effects::Effect &effect){
 
 inline bool Player::effectEnded(const effects::Effect &effect){
     return effect.hasEndTime() && effect.endTime <= m_time;
+}
+
+void Player::stopEffectsByVideoPlayer(ofVideoPlayer *player){
+    const vector<effects::Effect*> *effects = &active_effects_manager.getEffects();
+    
+    // ofLogWarning() << "Player::stopEffectByTrigger active effects: " << effects->size();
+    for(auto effect: (*effects)){
+        // if the pecified trigger string is empty; stop all effects
+        if(effect->getVideoPlayer() == player){
+            // ofLogWarning() << "an active";
+            active_effects_manager.remove(effect);
+            effect_manager.remove(effect);
+        }
+    }
+    
+    effects = &pending_effects_manager.getEffects();
+    for(auto effect: (*effects)){
+        if(effect->getVideoPlayer() == player){
+            //  ofLogWarning() << "a pending";
+            pending_effects_manager.remove(effect);
+            effect_manager.remove(effect);
+        }
+    }
+}
+
+void Player::stopAllVideoEffects(){
+    const vector<effects::Effect*> *effects = &active_effects_manager.getEffects();
+    
+    // ofLogWarning() << "Player::stopEffectByTrigger active effects: " << effects->size();
+    for(auto effect: (*effects)){
+        // if the pecified trigger string is empty; stop all effects
+        if(effect->getVideoPlayer()){
+            // ofLogWarning() << "an active";
+            active_effects_manager.remove(effect);
+            effect_manager.remove(effect);
+        }
+    }
+
+    effects = &pending_effects_manager.getEffects();
+    for(auto effect: (*effects)){
+        if(effect->getVideoPlayer()){
+            //  ofLogWarning() << "a pending";
+            pending_effects_manager.remove(effect);
+            effect_manager.remove(effect);
+        }
+    }
 }
