@@ -72,7 +72,6 @@ void Player::addEffect(effects::Effect &effect){
 }
 
 void Player::stopEffectByTrigger(string &trigger){
-    // ofLogVerbose() << "Player::stopEffectByTrigger";
     ofLog() << "Player::stopEffectByTrigger with " << trigger;
     const vector<effects::Effect*> *effects = &active_effects_manager.getEffects();
 

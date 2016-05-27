@@ -14,7 +14,7 @@ using namespace of2030::effects;
 
 // int Effect::cidCounter = 0;
 
-Effect::Effect(){
+Effect::Effect() : video_player(NULL){
     reset();
     setType(DEFAULT);
 
@@ -49,21 +49,30 @@ void Effect::setup(Context &context){
     if(val != ""){
         this->shader = ShaderManager::instance()->get(val);
     }
-
+    
     // load/start/configure video if specified
     val = context.effect_setting.getValue("video", "");
     if(val != ""){
         // load video (get video player instance from the VideoManager)
-        ofVideoPlayer* video_player = VideoManager::instance()->get(val, true);
-
-        if(context.effect_setting.getValue("loop", "0") == "1"){
-            // TODO; this player might currently be used by other effects?
-            video_player->setLoopState(OF_LOOP_NORMAL);
-        }
+        video_player = VideoManager::instance()->get(val, true);
         
-        video_player->play();
+        if(video_player){
+            if(context.effect_setting.getValue("loop", "0") == "1"){
+                // TODO; this player might currently be used by other effects?
+                video_player->setLoopState(OF_LOOP_NORMAL);
+            }
+            
+            video_player->play();
+        } else {
+            ofLogWarning() << "Effect::setup could not get video player for " << val;
+            ofLog() << "setting effect duration to zero";
+            // this will effectively abort the effect
+            duration = 0.0f;
+            startTime=context.time-1.0f;
+            endTime = startTime-1.0f;
+        }
     }
-    
+
     pano_pos = context.effect_setting.getValue("pano_pos", 0.0f);
     pano_velocity = context.effect_setting.getValue("pano_velocity", 0.0f);
 }
@@ -158,10 +167,8 @@ void Effect::drawContent(Context &context){
         shader->setUniform1f("iGain", context.effect_setting.getValue("gain", 1.0f));
     }
 
-    // draw
-    string vid = context.effect_setting.getValue("video", "");
-    string pattern = context.effect_setting.getValue("pattern", "");
-    if(vid != ""){
+    // draw; video?
+    if(video_player){
         bool bAlphaBlack = (context.effect_setting.getValue("alphablack", "1") == "1");
         ofShader* vidShader;
 
@@ -170,22 +177,29 @@ void Effect::drawContent(Context &context){
             vidShader->begin();
         }
 
-        drawVideo(context, vid, drawSize);
+        drawVideo(context, drawSize);
 
         if(bAlphaBlack){
             vidShader->end();
         }
-    } else if(pattern != ""){
-        drawPattern(context, pattern, drawSize);
+    // not video
     } else {
-        ofDrawRectangle(0, 0, drawSize.x, drawSize.y);
+        string pattern = context.effect_setting.getValue("pattern", "");
+
+        // pattern?
+        if(pattern != ""){
+            drawPattern(context, pattern, drawSize);
+        // simple rectangle
+        } else {
+            ofDrawRectangle(0, 0, drawSize.x, drawSize.y);
+        }
     }
 
     if(shader){
         // deactivate shader
         shader->end();
     }
-    
+
     ofPopMatrix();
 }
 
@@ -255,13 +269,12 @@ ofRectangle Effect::panoTunnelDrawRect(Context &context){
     return prect.getIntersection(trect);
 }
 
-void Effect::drawVideo(Context &context, const string &video, ofVec2f &drawSize){
+void Effect::drawVideo(Context &context, ofVec2f &drawSize){
     ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
-    ofVideoPlayer *video_player = of2030::VideoManager::instance()->get(video, true);
     
-    if(!video_player){
-        return;
-    }
+//    if(!video_player){ // checked by caller
+//        return;
+//    }
 
     float x = 0.0;
     if(context.effect_setting.hasValue("pano_pos")){

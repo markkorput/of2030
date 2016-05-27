@@ -36,10 +36,19 @@ void VideoManager::update(){
 
 ofVideoPlayer* VideoManager::load(string video_name){
     string path = video_name_to_path(video_name);
+
+    ofLog() << "VideoManager::load " << path; //player->getMoviePath();
+    
+    if(!ofFile::doesFileExist(path)){
+        ofLogWarning() << "could not find video file.";
+        return NULL;
+    }
+
     ofVideoPlayer *player = new ofVideoPlayer;
+
     player->load(path);
     player->setLoopState(OF_LOOP_NORMAL);
-    // player->play();
+
     players.push_back(player);
     return player;
 }
@@ -51,7 +60,7 @@ ofVideoPlayer* VideoManager::get(string video_name, bool load){
             return players[i];
         }
     }
-    
+
     if(load){
         return this->load(video_name);
     }
@@ -93,6 +102,8 @@ void VideoManager::unload(ofVideoPlayer *player){
         }
     }
 
+    ofLog() << "VideoManager::unload " << player->getMoviePath();
     player->close();
     delete player;
+    ofLog() << "Video files still loaded: " << players.size();
 }

@@ -89,7 +89,7 @@ namespace of2030{ namespace effects {
         void setType(EffectType effect_type);
         void drawContent(Context &context);
         void drawMask(Context &context, const string &coordsName, const ofVec2f &resolution);
-        void drawVideo(Context &context, const string &video, ofVec2f &drawSize);
+        void drawVideo(Context &context, ofVec2f &drawSize);
         void drawPattern(Context &context, const string &patternName, ofVec2f &drawSize);
 
     public: // properties
@@ -102,6 +102,10 @@ namespace of2030{ namespace effects {
         ofShader *shader;
         // static int cidCounter;
         float pano_pos, pano_velocity;
+
+    private: // attributes
+        
+        ofVideoPlayer* video_player;
     };
 
     // === === === === === === === === ===
