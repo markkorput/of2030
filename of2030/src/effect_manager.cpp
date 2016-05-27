@@ -47,8 +47,8 @@ void EffectManager::add(effects::Effect* effect){
 }
 
 effects::EffectType EffectManager::typeStringToType(string typ){
-    if(typ == "spot") return effects::EffectType::SPOT;
-    if(typ == "pos") return effects::EffectType::POS;
+     if(typ == "spot") return effects::EffectType::SPOT;
+//    if(typ == "pos") return effects::EffectType::POS;
     return effects::EffectType::DEFAULT;
 }
 
@@ -57,16 +57,12 @@ effects::Effect* EffectManager::createEffect(string typ){
 
     effects::Effect* pEffect;
 
-    if(typ == "spot"){
-        pEffect = (effects::Effect*) new effects::Spot();
-    } else if(typ == "pos"){
-        pEffect = (effects::Effect*) new effects::Pos();
-    }else {
-        // default type, just set name to whatever was specified
-        pEffect = new effects::Effect();
-        pEffect->name = typ;
-    }
+     if(typ == "spot") return (effects::Effect*) new effects::Spot();
+//    if(typ == "pos") return (effects::Effect*) new effects::Pos();
 
+    // default type, just set name to whatever was specified
+    pEffect = new effects::Effect();
+    pEffect->name = typ;
     return pEffect;
 }
 
@@ -80,7 +76,7 @@ void EffectManager::deleteEffect(effects::Effect* effect){
     ofLogVerbose() << "EffectManager::deleteEffect";
     
     IF_TYP_DEL(SPOT, Spot)
-    IF_TYP_DEL(POS, Pos)
+//    IF_TYP_DEL(POS, Pos)
 //    // figure out effect type and delete from memory
 //    if(effect->type == effects::EffectType::VID){
 //        // turn into Vid effect pointer before deleting, to delete appropriate class type

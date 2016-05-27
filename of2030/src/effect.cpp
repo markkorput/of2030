@@ -206,6 +206,20 @@ void Effect::drawContent(Context &context){
 void Effect::drawPattern(Context &context, const string &patternName, ofVec2f &drawSize){
     EffectLogic logic((Effect*)this, &context);
 
+    if(patternName == "pos"){
+        ofVec3f lightpos = context.effect_setting.getValue("pos", ofVec3f(0.0f, 0.0f, 0.0f));
+        float lightsize = context.effect_setting.getValue("size", 0.0f);
+        ofVec3f mypos = context.screen_setting.getValue("pos", ofVec3f(0.0f, 0.0f, 0.0f));
+        float onDistance = context.effect_setting.getValue("on_distance", 3.0f);
+        float offDistance = context.effect_setting.getValue("off_distance", 9.0f);
+        float distance = mypos.distance(lightpos) - lightsize;
+        float gain = ofMap(distance, onDistance, offDistance, 255, 0, true);
+        
+        ofSetColor(255, 255, 255, gain);
+        ofDrawRectangle(0, 0, drawSize.x, drawSize.y);
+        return;
+    }
+
     if(patternName == "cursor"){
         float p = context.screen_setting.getValue("pano_pos", pano_pos);
         float x = ofMap(p - floor(p),
@@ -216,6 +230,7 @@ void Effect::drawPattern(Context &context, const string &patternName, ofVec2f &d
 
         float gain = context.effect_setting.getValue("gain", 1.0f) * drawSize.x / context.screen_setting.getValue("world_width", 2.67f);
         ofDrawRectangle(x-gain*0.5, 0.0f, gain, drawSize.y);
+        return;
     }
 }
 
@@ -272,9 +287,10 @@ ofRectangle Effect::panoTunnelDrawRect(Context &context){
 void Effect::drawVideo(Context &context, ofVec2f &drawSize){
     ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
     
-//    if(!video_player){ // checked by caller
-//        return;
-//    }
+    // this is checked by the caller
+    //    if(!video_player){
+    //        return;
+    //    }
 
     float x = 0.0;
     if(context.effect_setting.hasValue("pano_pos")){
