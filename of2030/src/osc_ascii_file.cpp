@@ -8,7 +8,7 @@
 
 #include "osc_ascii_file.hpp"
 
-OscAsciiFile::OscAsciiFile(){
+OscAsciiFile::OscAsciiFile() : bLoop(false){
 }
 
 void OscAsciiFile::destroy(){
@@ -24,9 +24,15 @@ void OscAsciiFile::load(string path){
         infile.close();
 
     infile.open(path);
+    readpath = path;
 }
 
-OscAsciiLine* OscAsciiFile::next_line(){
+OscAsciiLine* OscAsciiFile::next_line(int recursion_count){
+    if(recursion_count > 1){
+        ofLogWarning() << "[OscAsciiFile::next_line] recursion count > 1";
+        return NULL;
+    }
+
     if(!infile.is_open()){
         ofLogWarning() << "[OscAsciiFile::next_line] infile not loaded";
         return NULL;
@@ -76,6 +82,16 @@ OscAsciiLine* OscAsciiFile::next_line(){
 
         // done, return pointer to populated OscAsciiLine struct
         return &last_line;
+    }
+    
+    // loop
+    if(bLoop){
+        reset();
+        OscAsciiLine* line = next_line(recursion_count+1);
+        if(line){
+            return line;
+        }
+        // else continue closing file
     }
 
     // done
@@ -128,4 +144,3 @@ void OscAsciiFile::write_line(const ofxOscMessage &msg, float timestamp){
     outfile << '\n';
     // ofLog() << "OscAsciiFile::write_line";
 }
-

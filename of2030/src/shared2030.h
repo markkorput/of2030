@@ -19,6 +19,8 @@
     #define __HIDE_CURSOR__
 #endif
 
+// #define __AUTO_UNLOAD_VIDEOS_WHEN_EFFECTS_END__
+
 #define CTRL_RELOAD_CLIENTS "reload_clients"
 #define CTRL_RELOAD_SCREENS "reload_screens"
 #define CTRL_RELOAD_SETTINGS "reload_settings"

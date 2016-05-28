@@ -1,0 +1,8 @@
+0.0,/cfg/grow1/duration,f,1000.0
+0.0,/cfg/grow1/color_r,f,255.0
+0.0,/cfg/grow1/color_g,f,255.0
+0.0,/cfg/grow1/color_b,f,255.0
+0.0,/cfg/grow1/color_a,f,255.0
+0.0,/cfg/grow1/pano_start,f,0.6
+0.0,/cfg/grow1/pano_end,f,0.75
+0.0,/t/grow1

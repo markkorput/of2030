@@ -25,8 +25,16 @@ void Spot::draw(Context &context){
 
     ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
     
+
     ofVec2f spotPos = context.screen_setting.getValue(prefix, ofVec2f(-10.0f)) * resolution;
     ofVec2f spotSize = context.screen_setting.getValue(prefix+"size", ofVec2f(0.0f)) * resolution;
+
+    ofVec2f scrWorldSize(context.screen_setting.getValue("world_width", 2.67f),
+                         -context.screen_setting.getValue("world_height", 2.0f));
+    ofVec2f fxSpotPos = context.effect_setting.getValue("pos", ofVec2f(0.0f, 0.0f));
+
+    // spot reposition according to effect setting (interpret as real-world-meters)
+    spotPos += fxSpotPos / scrWorldSize * resolution;
 
     if(!shader){
         // draw without shader stuff
@@ -49,7 +57,7 @@ void Spot::draw(Context &context){
     shader->setUniform1i("iQuarterOn", q);
     q = std::floor(context.effect_setting.getValue("quarter_off", 0.0f));
     shader->setUniform1i("iQuarterOff", q);
-    
+
     spotPos = spotPos - spotSize * 0.5;
     ofSetColor(255);
     ofDrawRectangle(0.0f, 0.0f, resolution.x, resolution.y); //spotPos.x, spotPos.y, spotSize.x, spotSize.y);

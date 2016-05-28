@@ -1,92 +1,110 @@
 <of2030>
   <effects>
-    <!--
-    <effect name="<effect_name>[.<song>][.<clip>][.<trigger>]"
-    <effect name="shader-spotlight.fusion.fusion2.spotlight_max"
-    Effect configs are loaded in the following order (every newly loaded config
-    adds to/overwrites earlier configs, so later configs have higher priority):
-    - <effect_name>
-    - <effect_name>.<song_name>
-    - <effect_name>.<song_name>.<clip_name>
-    - <effect_name>.<trigger_name>
-    - <effect_name>.<song_name>.<clip_name>.<trigger_name>
-    -->
-
-    <!-- inloop -->
-    <effect name="worms">
-      <gain>0.0</gain>
-      <duration>30.0</duration>
+    <effect name="spot1">
+      <number>1</number>
+      <shader>spot</shader>
     </effect>
 
-    <effect name="worms.worms1">
+    <effect name="spot2">
+      <number>2</number>
+      <shader>spot</shader>
+    </effect>
+
+    <effect name="spot3">
+      <number>3</number>
+      <shader>spot</shader>
+    </effect>
+
+
+    <!-- inloop -->
+    <effect name="cursor">
+      <pattern>cursor</pattern>
+      <!-- real world meter -->
+      <gain>0.1</gain>
+      <pano_velocity>0.5</pano_velocity>
+    </effect>
+
+    <effect name="worms1">
       <shader>worms</shader>
-      <duration>250</duration>
-      <pano_start>0.162</pano_start>
-      <pano_end>0.324</pano_end>
+      <pano_start>0.0</pano_start>
+      <pano_end>1.0</pano_end>
+      <!-- <tunnel_start>0.5</tunnel_start>
+      <tunnel_end>0.9</tunnel_end> -->
       <gain>0.65</gain>
       <size_x>68.0</size_x>
       <size_y>1.0</size_y>
     </effect>
 
-    <!-- STELLAR -->
-    <effect name="spot.spot1">
-      <shader>spot</shader>
-      <duration>100.0</duration>
-      <gain>0.5</gain>
-      <pos_x>0.25</pos_x>
-      <pos_y>0.01</pos_y>
-      <!-- <quarter_on>0</quarter_on> -->
-      <quarter_off>0</quarter_off>
+    <!-- roof -->
+    <effect name="roof">
+      <mask_coords_name>roof_coord</mask_coords_name>
     </effect>
 
-    <effect name="worms.worms11">
-      <shader>worms</shader>
-      <duration>5.0</duration>
-      <gain>0.65</gain>
-      <pano_start>0.162</pano_start>
-      <pano_end>0.162</pano_end>
-      <pos_x>62.3</pos_x>
-      <pos_y>0.3</pos_y>
+    <!-- voice -->
+    <effect name="voice">
+      <mask_coords_name>voice_coord</mask_coords_name>
     </effect>
 
-    <effect name="worms.worms12">
-      <shader>worms</shader>
-      <duration>5.0</duration>
-      <gain>0.65</gain>
-      <pano_start>0.162</pano_start>
-      <pano_end>0.162</pano_end>
-      <pos_x>10.3</pos_x>
-      <pos_y>0.8</pos_y>
+    <!-- pos -->
+    <effect name="pos">
+      <pattern>pos</pattern>
     </effect>
 
-    <effect name="spot.spot2">
-      <shader>spot</shader>
-      <duration>100.0</duration>
-      <gain>1.0</gain>
-      <quarter_on>1</quarter_on>
+    <!-- spot -->
+    <effect name="spot">
+      <pattern>spot</pattern>
     </effect>
 
-
-
-
-    <!-- debug -->
-
-    <!-- full pano video test -->
-    <effect name="vid.vid1">
-      <video_file>PanoCalib-01.mov</video_file>
-      <loop>1</loop>
+    <!-- vid -->
+    <effect name="vid1">
+      <!-- <video>PanoCalib-01.mov</video> -->
+      <!-- <video>fingers.mov</video> -->
+      <video>Marcheren_1_BW.mov</video>
+      <alphablack>0</alphablack>
     </effect>
 
-    <effect name="test">
-      <shader>worms</shader>
-      <gain>0.5</gain>
+    <effect name="vid2">
+      <video>lava.heartbeat1.v01.mov</video>
+      <!-- <is_pano>1.0</is_pano> -->
     </effect>
 
-    <effect name="cursor">
-      <shader>cursor</shader>
-      <duration>3.0</duration>
-      <iterations>1.4</iterations>
-      <gain>100.0</gain>
+    <effect name="vid3">
+      <video>lava.heartbeat3.v01.mov</video>
+      <!-- <is_pano>1.0</is_pano> -->
+    </effect>
+
+    <!-- overlay -->
+    <effect name="overlay">
+      <color_r>255.0</color_r>
+      <color_g>255.0</color_g>
+      <color_b>255.0</color_b>
+      <color_a>0.0</color_a>
+    </effect>
+
+    <!-- lava vids -->
+    <effect name="lava_vid1">
+      <video>2.4 LAVA_HARTBEAT_A_STANDARD_1SCREEN_v01.mov</video>
+    </effect>
+    <effect name="lava_vid2">
+      <video>2.4 LAVA_HARTBEAT_B_5TIMES_v01.mov</video>
+    </effect>
+    <effect name="lava_vid3">
+      <video>2.4 LAVA_HARTBEAT_C_DEAD_v01.mov</video>
+    </effect>
+    <effect name="lava_vid4">
+      <video>2.4 LAVA_PATROON_EYEBLINK_v01.mov</video>
+    </effect>
+    <effect name="lava_vid5">
+      <video>2.4 LAVA_PATROON_GROW_v01.mov</video>
+    </effect>
+    <effect name="lava_vid6">
+      <video>2.4 LAVA_PATROON_v01.mov</video>
+    </effect>
+    <effect name="lava_vid7">
+      <video>2.4 LAVA_PATROON_WOBBLINGLINES_v01.mov</video>
+    </effect>
+    <effect name="lava_vid8">
+      <video>2.4 LAVA_PATROON_ZIEKENHUISBED_v01.mov</video>
     </effect>
 
   </effects>

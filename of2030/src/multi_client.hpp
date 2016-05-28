@@ -35,7 +35,6 @@ namespace of2030{
 
     private:
         void drawFloor();
-        void drawDebug();
         void drawScreens();
     
     public: // attributes

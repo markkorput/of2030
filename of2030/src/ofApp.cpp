@@ -25,6 +25,7 @@ void ofApp::setup(){
     ofSetLogLevel(OF_LOG_VERBOSE);
     ofLogVerbose() << "Redirect logging to log.txt";
     ofLogToFile("log.txt", true);
+    ofLog() << "window size: " << ofGetWidth() << "x" << ofGetHeight();
 
 #ifdef __HIDE_CURSOR__
     ofHideCursor();
@@ -91,15 +92,19 @@ void ofApp::setup(){
 #endif
 
     ofAddListener(of2030::Interface::instance()->controlEvent, this, &ofApp::onControl);
-
+    ofAddListener(of2030::Interface::instance()->playbackEvent, this, &ofApp::onPlayback);
+    ofAddListener(of2030::Interface::instance()->stopPlaybackEvent, this, &ofApp::onStopPlayback);
+    ofAddListener(of2030::Interface::instance()->loadVideoEvent, this, &ofApp::onLoadVideo);
+    ofAddListener(of2030::Interface::instance()->unloadVideoEvent, this, &ofApp::onUnloadVideo);
+    
     // load & start OscReceiver; let the messages come!
     ofLogVerbose() << "Starting OscReceiver";
     of2030::OscReceiver::instance()->configure(of2030::XmlSettings::instance()->osc_setting);
     of2030::OscReceiver::instance()->setup();
 
     // for debugging; start recorded osc sequence
-    // of2030::OscPlaybackManager::instance()->start("_rec.csv");
-    // of2030::OscPlaybackManager::instance()->start("_clock_spot.csv");
+    // of2030::OscPlaybackManager::instance()->start("_rec");
+    // of2030::OscPlaybackManager::instance()->start("clock_spot");
 
     // using the player's time as main timing mechanism
     next_log_alive_time = of2030::Player::instance()->getTime();
@@ -123,6 +128,8 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+    ofBackground(0);
+
 #ifdef __MULTI_CLIENT_ENABLED__
     if(of2030::MultiClient::instance()->enabled){
         of2030::MultiClient::instance()->draw();
@@ -259,4 +266,28 @@ void ofApp::onControl(string &type){
         // of2030::XmlClients::instance()->load();
         return;
     }
+}
+
+void ofApp::onPlayback(string &name){
+    of2030::OscPlaybackManager::instance()->start(name);
+}
+
+void ofApp::onStopPlayback(string &name){
+    of2030::OscPlaybackManager::instance()->stop(name);
+}
+
+void ofApp::onLoadVideo(string &name){
+    of2030::VideoManager::instance()->get(name, true);
+}
+
+void ofApp::onUnloadVideo(string &name){
+    if(name == ""){ // unload all?
+        of2030::Player::instance()->stopAllVideoEffects();
+    } else {
+        ofVideoPlayer* player = of2030::VideoManager::instance()->get(name, false);
+        // could be NULL!
+        of2030::Player::instance()->stopEffectsByVideoPlayer(player);
+    }
+
+    of2030::VideoManager::instance()->unload(name);
 }

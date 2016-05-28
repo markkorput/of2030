@@ -9,27 +9,29 @@
       <trigger>/t</trigger>
       <stop>/s</stop>
       <effect>/fx</effect>
+      <playback>/p</playback>
+      <stop_playback>/q</stop_playback>
       <control>/ctrl</control>
       <song>/song</song>
       <clip>/clip</clip>
       <effect_config>/cfg</effect_config>
       <screen_config>/scr</screen_config>
+      <load_video>/lvid</load_video>
+      <unload_video>/uvid</unload_video>
     </addresses>
   </osc>
 
-  <room_size_x>9.0</room_size_x>
+  <room_size_x>4.0</room_size_x>
   <room_size_y>2.0</room_size_y>
-  <room_size_z>16.5</room_size_z>
+  <room_size_z>11</room_size_z>
   <multi>
     <debug>false</debug>
-    <id>rpi1</id>
-    <!-- <id>rpi2</id>
-    <id>rpi3</id> -->
+    <id>rpi3</id>
     <id>rpi4</id>
     <id>rpi5</id>
-    <!-- <id>rpi6</id>
-    <id>rpi7</id> -->
+    <id>rpi7</id>
     <id>rpi8</id>
+    <id>rpi10</id>
     <scale>100.0</scale>
     <translate_x>0.0</translate_x>
     <translate_y>0.0</translate_y>

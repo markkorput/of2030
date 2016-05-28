@@ -22,6 +22,7 @@ namespace of2030{ namespace effects {
         XmlItemSetting screen_setting;
         ofFbo* fbo;
         ofFbo* fbo2;
+        ofFbo* fbo3;
     } Context;
 
     
@@ -31,7 +32,8 @@ namespace of2030{ namespace effects {
         TUNNEL = 4,
         SPOT = 5,
         VOICE = 6,
-        POS = 7
+        POS = 7,
+        ROOF = 8
     };
     
     static map<EffectType, string> EFFECT_NAMES = {
@@ -40,7 +42,8 @@ namespace of2030{ namespace effects {
         {TUNNEL, "tunnel"},
         {SPOT, "spot"},
         {VOICE, "voice"},
-        {POS, "pos"}
+        {POS, "pos"},
+        {ROOF, "roof"}
     };
 
     #define NO_TIME (-1.0f)
@@ -51,21 +54,44 @@ namespace of2030{ namespace effects {
 
         Effect();
         void reset();
-        // ~Effect(){}
+        // ~Effect(){ destroy(); }
 
         virtual void setup(Context &context);
         virtual void draw(Context &context);
+        virtual void update(float dt);
 
         inline bool hasStartTime() const { return startTime >= 0.0f; }
         inline bool hasEndTime() const { return endTime >= 0.0f; }
         inline bool hasDuration() const { return duration >= 0.0f; }
 
+        
+        // draw coords
+        ofRectangle getDrawRect(Context &context);
+        ofRectangle panoDrawRect(Context &context);
+        ofRectangle tunnelDrawRect(Context &context);
+        ofRectangle panoTunnelDrawRect(Context &context);
+        inline ofVec2f getResolution(Context &context){ return ofVec2f(context.fbo->getWidth(), context.fbo->getHeight()); }
+        inline ofVec2f getScreenWorldSize(Context &context){ return ofVec2f(context.screen_setting.getValue("world_width", 2.67f),
+                                                                            context.screen_setting.getValue("world_height", 2.0f)); }
+        inline ofVec2f getWorldToScreenVector(Context &context){ return getResolution(context) / getScreenWorldSize(context); }
+        inline float panoWorldToScreenPos(Context &context, float p){
+            return ofMap(p - floor(p),
+                         context.screen_setting.getValue("pano_start", 0.0f),
+                         context.screen_setting.getValue("pano_end", 1.0f),
+                         0.0,
+                         getResolution(context).x);
+        }
         float getDuration() const;
         
+        inline ofVideoPlayer* getVideoPlayer() const { return video_player; }
 
     protected: // methods
         
         void setType(EffectType effect_type);
+        void drawContent(Context &context);
+        void drawMask(Context &context, const string &coordsName, const ofVec2f &resolution);
+        void drawVideo(Context &context, ofVec2f &drawSize);
+        void drawPattern(Context &context, const string &patternName, ofVec2f &drawSize);
 
     public: // properties
 
@@ -76,6 +102,11 @@ namespace of2030{ namespace effects {
         string trigger;
         ofShader *shader;
         // static int cidCounter;
+        float pano_pos, pano_velocity;
+
+    private: // attributes
+        
+        ofVideoPlayer* video_player;
     };
 
     // === === === === === === === === ===

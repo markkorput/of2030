@@ -11,6 +11,7 @@
 #include "xml_triggers.hpp"
 #include "xml_configs.hpp"
 #include "effect_manager.hpp"
+#include "video_manager.hpp"
 
 using namespace of2030;
 
@@ -128,4 +129,25 @@ void InterfacePlayerBridge::onClip(string &name){
 
 void InterfacePlayerBridge::onEffectEnded(effects::Effect &effect){
     EfficientEffectManager::instance()->finish(&effect);
+
+#ifdef __AUTO_UNLOAD_VIDEOS_WHEN_EFFECTS_END__
+    // did the ended effect have a video (player)?
+    ofVideoPlayer* player = effect.getVideoPlayer();
+    
+    if(player){
+        // let's see if there are any more effects using this player
+        const vector<effects::Effect*> *effects = &m_player->effect_manager.getEffects();
+
+        for(auto effect: (*effects)){
+            // does this effect use the same player?
+            if(effect->getVideoPlayer() == player){
+                // player still in use, abort
+                return;
+            }
+        }
+
+        // no other effects found that use this player, tell manager to unload video from memory
+        VideoManager::instance()->unload(player);
+    }
+#endif
 }

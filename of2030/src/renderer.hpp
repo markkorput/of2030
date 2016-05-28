@@ -41,16 +41,17 @@ namespace of2030 {
         void fillContext(effects::Context &context, effects::Effect &effect);
         void fillContextClientInfo(effects::Context &context);
         void fillEffectSetting(effects::Effect &effect, XmlItemSetting &fxsetting);
-        void fillScreenSetting(effects::Effect &effect, XmlItemSetting &setting);
+        void fillScreenSetting(XmlItemSetting &setting);
 
     private: // properties
         
         Player *player;
         string client_id;
-        ofFbo *fbo, *fbo2;
-        ofFbo defaultFbo, defaultFbo2;
+        ofFbo *fbo, *fbo2, *fbo3;
+        ofFbo defaultFbo, defaultFbo2, defaultFbo3;
         bool bCallbacksRegistered;
         float screenWidth, screenHeight;
+        //effects::Effect *overlayEffect;
     };
 }
 

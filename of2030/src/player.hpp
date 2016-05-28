@@ -41,6 +41,8 @@ namespace of2030{
 
         void addEffect(effects::Effect &effect);
         void stopEffectByTrigger(string &trigger);
+        void stopEffectsByVideoPlayer(ofVideoPlayer *player);
+        void stopAllVideoEffects();
         void clearEffects();
 
         inline const vector<effects::Effect*> &getActiveEffects(){ return active_effects_manager.getEffects(); }
@@ -53,6 +55,7 @@ namespace of2030{
 
     protected: // helper methods
 
+        void movePlaybackTimeTo(float time);
         void setPlaybackTime(float time);
         inline bool effectStarted(const effects::Effect &effect);
         inline bool effectEnded(const effects::Effect &effect);
@@ -67,7 +70,7 @@ namespace of2030{
         EffectManager active_effects_manager, pending_effects_manager;
 
         bool m_bPlaying;
-        float m_time, m_startTime;
+        float m_time, m_startTime, m_lastUpdateTime;
     };
 }
 

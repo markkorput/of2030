@@ -9,15 +9,19 @@
 #include "ofMain.h"
 #include "renderer.hpp"
 #include "xml_configs.hpp"
+#include "effect_manager.hpp"
 
 using namespace of2030;
 using namespace of2030::effects;
 
 SINGLETON_CLASS_IMPLEMENTATION_CODE(Renderer)
 
-Renderer::Renderer() : fbo(NULL), fbo2(NULL), player(NULL), client_id(""), bCallbacksRegistered(false){
+Renderer::Renderer() : fbo(NULL), fbo2(NULL), fbo3(NULL), player(NULL), client_id(""), bCallbacksRegistered(false){
     screenWidth = ofGetWidth();
     screenHeight = ofGetHeight();
+
+    // runs effect's setup
+    //overlayEffect = EfficientEffectManager::instance()->get("overlay");
 }
 
 Renderer::~Renderer(){
@@ -50,6 +54,13 @@ void Renderer::setup(){
         fbo2->allocate(fbo->getWidth(), fbo->getHeight());
     }
 
+    if(fbo3 == NULL)
+        fbo3 = &defaultFbo3;
+
+    if(!fbo3->isAllocated()){
+        fbo3->allocate(fbo->getWidth(), fbo->getHeight());
+    }
+
     if(!player)
         player = Player::instance();
 
@@ -67,14 +78,17 @@ void Renderer::draw(){
     fillContextClientInfo(context);
 
     fbo->begin();
-    ofBackground(0);
+    ofClear(0.0f,0.0f,0.0f,0.0f);
 
+    fillScreenSetting(context.screen_setting);
     vector<effects::Effect*> effects = player->getActiveEffects();
     for(auto effect: effects){
         fillEffectSetting(*effect, context.effect_setting);
-        fillScreenSetting(*effect, context.screen_setting);
         effect->draw(context);
     }
+    
+//    fillEffectSetting(*overlayEffect, context.effect_setting);
+//    overlayEffect->draw(context);
 
     fbo->end();
 
@@ -100,14 +114,15 @@ void Renderer::onEffectAdded(Effect &effect){
 
 void Renderer::fillContext(effects::Context &context, Effect &effect){
     fillContextClientInfo(context);
+    fillScreenSetting(context.screen_setting);
     fillEffectSetting(effect, context.effect_setting);
-    fillScreenSetting(effect, context.screen_setting);
 }
 
 void Renderer::fillContextClientInfo(effects::Context &context){
     context.time = player->getTime();
     context.fbo = fbo;
     context.fbo2 = fbo2;
+    context.fbo3 = fbo3;
 }
 
 void Renderer::fillEffectSetting(effects::Effect &effect, XmlItemSetting &fxsetting){
@@ -132,6 +147,11 @@ void Renderer::fillEffectSetting(effects::Effect &effect, XmlItemSetting &fxsett
         fxsetting.merge(*pSetting);
 
     // trigger-specific config (has priority over song/clip-specific configs)
+    pSetting = fxs->getItem(effect.trigger);
+    if(pSetting)
+        fxsetting.merge(*pSetting);
+
+    // effect/trigger-specific config (has priority over song/clip-specific configs)
     pSetting = fxs->getItem(effect.name+"."+effect.trigger);
     if(pSetting)
         fxsetting.merge(*pSetting);
@@ -143,7 +163,7 @@ void Renderer::fillEffectSetting(effects::Effect &effect, XmlItemSetting &fxsett
         fxsetting.merge(*pSetting);
 }
 
-void Renderer::fillScreenSetting(effects::Effect &effect, XmlItemSetting &setting){
+void Renderer::fillScreenSetting(XmlItemSetting &setting){
     XmlItemSetting *pSetting = XmlConfigs::screens()->getItem(client_id);
 
     if(pSetting)

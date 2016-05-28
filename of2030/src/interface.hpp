@@ -29,6 +29,10 @@ namespace of2030 {
         ofEvent<string> controlEvent;
         ofEvent<string> songEvent;
         ofEvent<string> clipEvent;
+        ofEvent<string> playbackEvent;
+        ofEvent<string> stopPlaybackEvent;
+        ofEvent<string> loadVideoEvent;
+        ofEvent<string> unloadVideoEvent;
 
     private:
         static Interface* singleton;

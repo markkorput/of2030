@@ -46,43 +46,51 @@ namespace of2030{
             }
         }
 
-        bool hasValue(string name){
+        bool hasValue(const string &name){
             std::map<string,string>::iterator it = data.find(name);
             if(it == data.end())
                 return false;
             return true;
         }
 
-        string getValue(string name, string defaultValue=""){
+        string getValue(const string &name, string defaultValue=""){
             std::map<string,string>::iterator it = data.find(name);
             if(it == data.end())
                 return defaultValue;
             return it->second;
         }
 
-        int getValue(string name, int defaultValue){
+        int getValue(const string &name, int defaultValue){
             std::map<string,string>::iterator it = data.find(name);
             if(it == data.end())
                 return defaultValue;
             return ofToInt(it->second);
         }
-        
-        float getValue(string name, float defaultValue){
+
+        float getValue(const string &name, float defaultValue){
             std::map<string,string>::iterator it = data.find(name);
             if(it == data.end())
                 return defaultValue;
             return ofToFloat(it->second);
         }
 
-        ofVec2f getValue(string name, const ofVec2f &defaultValue){
+        ofVec2f getValue(const string &name, const ofVec2f &defaultValue){
             return ofVec2f(getValue(name+"_x", defaultValue.x),
-                           getValue(name+"_y", defaultValue.x));
+                           getValue(name+"_y", defaultValue.y));
         }
 
-        ofVec3f getValue(string name, const ofVec3f &defaultValue){
+        ofVec3f getValue(const string &name, const ofVec3f &defaultValue){
             return ofVec3f(getValue(name+"_x", defaultValue.x),
                            getValue(name+"_y", defaultValue.y),
                            getValue(name+"_z", defaultValue.z));
+        }
+
+        ofColor getValue(const string &name, const ofColor &defaultValue){
+            return ofColor(getValue(name+"_r", defaultValue.r),
+                           getValue(name+"_g", defaultValue.g),
+                           getValue(name+"_b", defaultValue.b),
+                           getValue(name+"_a", defaultValue.a));
+
         }
     };
 }

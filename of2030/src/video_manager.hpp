@@ -26,12 +26,16 @@ namespace of2030 {
 
         ofVideoPlayer* load(string video_name);
         ofVideoPlayer* get(string video_name, bool load=true);
-    
+        
+        bool unload(string &video_name);
+        void unload(ofVideoPlayer *player);
+
     protected: // helper methods
         string video_name_to_path(string video_name);
     
     private: // attributes
         vector<ofVideoPlayer*> players;
+        string folder_path;
     };
 }
 
