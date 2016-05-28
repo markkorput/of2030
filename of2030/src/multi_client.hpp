@@ -26,12 +26,16 @@ namespace of2030{
         static XmlSettings* xml_settings;
 
     public:
-        MultiClient() : enabled(false) {};
+        MultiClient() : enabled(false), previewClient(-1) {};
         ~MultiClient(){ destroy(); }
 
         void setup();
         void destroy();
         void draw();
+
+        inline void setPreviewClient(int c){ if(c>=0 && c<m_renderers.size()){ previewClient = c; } else { previewClient = -1; } ofLog() << "preview client: " << c; }
+        inline int getPreviewClient(){ return previewClient; }
+        inline int getClientCount(){ return m_renderers.size(); }
 
     private:
         void drawFloor();
@@ -40,7 +44,7 @@ namespace of2030{
     public: // attributes
         
         bool enabled;
-
+        int previewClient;
         vector<Renderer*> m_renderers;
 
         ofEasyCam cam;

@@ -77,6 +77,11 @@ void MultiClient::draw(){
 
     ofPopMatrix();
     cam.end();
+
+    if(previewClient >= 0){
+        Renderer* r = m_renderers[previewClient];
+        r->draw();
+    }
 }
 
 void MultiClient::drawFloor(){
