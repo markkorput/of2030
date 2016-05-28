@@ -90,7 +90,6 @@ void Renderer::draw(){
     vector<Effect*> effects = player->getActiveEffects();
     for(auto effect: effects){
         fillEffectSetting(*effect, context.effect_setting);
-        context.precalc();
         effect->draw(context);
     }
 
@@ -119,7 +118,6 @@ void Renderer::registerRealtimeEffectCallback(bool reg){
 void Renderer::onEffectAdded(Effect &effect){
     Context context;
     fillContext(context, effect);
-    context.precalc();
     effect.setup(context);
 }
 
