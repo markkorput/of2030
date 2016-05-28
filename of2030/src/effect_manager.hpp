@@ -21,27 +21,27 @@ namespace of2030{
     public: // methods
         ~EffectManager();
 
-        void add(effects::Effect* effect);
-        bool remove(effects::Effect* effect);
+        void add(Effect* effect);
+        bool remove(Effect* effect);
         void clear();
 
-        effects::Effect* get(string typ);
-        effects::Effect* findByType(effects::EffectType typ);
+        Effect* get(string typ);
+        Effect* findByType(EffectType typ);
         inline int getCount(){ return effects.size(); }
-        inline int getCountByType(effects::EffectType typ);
-        inline const vector<effects::Effect*> &getEffects(){ return effects; }
+        inline int getCountByType(EffectType typ);
+        inline const vector<Effect*> &getEffects(){ return effects; }
 
     public: // events
-        ofEvent<effects::Effect> effectAddedEvent;
-        ofEvent<effects::Effect> effectRemovedEvent;
+        ofEvent<Effect> effectAddedEvent;
+        ofEvent<Effect> effectRemovedEvent;
         
     protected: // methods
-        effects::EffectType typeStringToType(string typ);
-        effects::Effect* createEffect(string typ);
-        void deleteEffect(effects::Effect* effect);
+        EffectType typeStringToType(string typ);
+        Effect* createEffect(string typ);
+        void deleteEffect(Effect* effect);
 
     protected: // attributes
-        vector<effects::Effect*> effects;
+        vector<Effect*> effects;
     };
 
 
@@ -49,8 +49,8 @@ namespace of2030{
         SINGLETON_CLASS_HEADER_CODE(EfficientEffectManager)
 
     public: // methods
-        effects::Effect* get(string typ);
-        void finish(effects::Effect* effect);
+        Effect* get(string typ);
+        void finish(Effect* effect);
     
     protected: // attributes
         EffectManager idle_manager;

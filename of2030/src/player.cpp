@@ -50,7 +50,7 @@ void Player::stop(){
     m_bPlaying = false;
 }
 
-void Player::addEffect(effects::Effect &effect){
+void Player::addEffect(Effect &effect){
     // this triggers renderer to call setup on the effect (and providing
     // it with the necessary data)
     ofLog() << "Player::addEffect with trigger " << effect.trigger;
@@ -73,7 +73,7 @@ void Player::addEffect(effects::Effect &effect){
 
 void Player::stopEffectByTrigger(string &trigger){
     ofLog() << "Player::stopEffectByTrigger with " << trigger;
-    const vector<effects::Effect*> *effects = &active_effects_manager.getEffects();
+    const vector<Effect*> *effects = &active_effects_manager.getEffects();
 
     // ofLogWarning() << "Player::stopEffectByTrigger active effects: " << effects->size();
     for(auto effect: (*effects)){
@@ -127,16 +127,16 @@ void Player::setPlaybackTime(float time){
     m_time = time;
 }
 
-inline bool Player::effectStarted(const effects::Effect &effect){
+inline bool Player::effectStarted(const Effect &effect){
     return !effect.hasStartTime() || effect.startTime <= m_time;
 }
 
-inline bool Player::effectEnded(const effects::Effect &effect){
+inline bool Player::effectEnded(const Effect &effect){
     return effect.hasEndTime() && effect.endTime <= m_time;
 }
 
 void Player::stopEffectsByVideoPlayer(ofVideoPlayer *player){
-    const vector<effects::Effect*> *effects = &active_effects_manager.getEffects();
+    const vector<Effect*> *effects = &active_effects_manager.getEffects();
     
     // ofLogWarning() << "Player::stopEffectByTrigger active effects: " << effects->size();
     for(auto effect: (*effects)){
@@ -159,7 +159,7 @@ void Player::stopEffectsByVideoPlayer(ofVideoPlayer *player){
 }
 
 void Player::stopAllVideoEffects(){
-    const vector<effects::Effect*> *effects = &active_effects_manager.getEffects();
+    const vector<Effect*> *effects = &active_effects_manager.getEffects();
     
     // ofLogWarning() << "Player::stopEffectByTrigger active effects: " << effects->size();
     for(auto effect: (*effects)){

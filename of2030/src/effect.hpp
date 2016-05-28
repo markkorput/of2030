@@ -14,7 +14,7 @@
 #include "setting_types.h"
 #include "context.hpp"
 
-namespace of2030{ namespace effects {
+namespace of2030{
 
     enum EffectType{
         DEFAULT = 0,
@@ -121,6 +121,6 @@ namespace of2030{ namespace effects {
         virtual void draw(Context &context);
     };
 
-}} // namespace of2030{ namespace effects {
+} // namespace of2030{
 
 #endif /* effect_hpp */

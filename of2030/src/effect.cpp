@@ -10,7 +10,7 @@
 #include "shader_manager.hpp"
 #include "video_manager.hpp"
 
-using namespace of2030::effects;
+using namespace of2030;
 
 // int Effect::cidCounter = 0;
 

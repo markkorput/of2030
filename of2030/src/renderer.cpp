@@ -12,7 +12,6 @@
 #include "effect_manager.hpp"
 
 using namespace of2030;
-using namespace of2030::effects;
 
 SINGLETON_CLASS_IMPLEMENTATION_CODE(Renderer)
 
@@ -83,7 +82,7 @@ void Renderer::draw(){
     fillContextClientInfo(context);
     fillScreenSetting(context.screen_setting);
 
-    vector<effects::Effect*> effects = player->getActiveEffects();
+    vector<Effect*> effects = player->getActiveEffects();
     for(auto effect: effects){
         fillEffectSetting(*effect, context.effect_setting);
         effect->draw(context);
@@ -127,7 +126,7 @@ void Renderer::fillContextClientInfo(Context &context){
     context.fbo3 = fbo3;
 }
 
-void Renderer::fillEffectSetting(effects::Effect &effect, XmlItemSetting &fxsetting){
+void Renderer::fillEffectSetting(Effect &effect, XmlItemSetting &fxsetting){
     XmlConfigs *fxs = XmlConfigs::instance();
 
     // effect config
