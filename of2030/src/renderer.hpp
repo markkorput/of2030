@@ -40,8 +40,8 @@ namespace of2030 {
         
         void registerRealtimeEffectCallback(bool reg=true);
         void onEffectAdded(effects::Effect &effect);
-        void fillContext(effects::Context &context, effects::Effect &effect);
-        void fillContextClientInfo(effects::Context &context);
+        void fillContext(Context &context, effects::Effect &effect);
+        void fillContextClientInfo(Context &context);
         void fillEffectSetting(effects::Effect &effect, XmlItemSetting &fxsetting);
         void fillScreenSetting(XmlItemSetting &setting);
 

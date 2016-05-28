@@ -12,20 +12,10 @@
 //#include <stdio.h>
 #include "ofMain.h"
 #include "setting_types.h"
+#include "context.hpp"
 
 namespace of2030{ namespace effects {
 
-    
-    typedef struct {
-        float time;
-        XmlItemSetting effect_setting;
-        XmlItemSetting screen_setting;
-        ofFbo* fbo;
-        ofFbo* fbo2;
-        ofFbo* fbo3;
-    } Context;
-
-    
     enum EffectType{
         DEFAULT = 0,
         VID = 3,

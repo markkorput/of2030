@@ -76,7 +76,6 @@ void Renderer::destroy(){
 
 void Renderer::draw(){
     Context context;
-    
 
     fbo->begin();
     ofClear(0.0f,0.0f,0.0f,0.0f);
@@ -115,13 +114,13 @@ void Renderer::onEffectAdded(Effect &effect){
     effect.setup(context);
 }
 
-void Renderer::fillContext(effects::Context &context, Effect &effect){
+void Renderer::fillContext(Context &context, Effect &effect){
     fillContextClientInfo(context);
     fillScreenSetting(context.screen_setting);
     fillEffectSetting(effect, context.effect_setting);
 }
 
-void Renderer::fillContextClientInfo(effects::Context &context){
+void Renderer::fillContextClientInfo(Context &context){
     context.time = player->getTime();
     context.fbo = fbo;
     context.fbo2 = fbo2;
