@@ -178,7 +178,7 @@ void ofApp::keyPressed(int key){
         of2030::MultiClient::instance()->setPreviewClient(-1);
         return;
     }
-    if(OF_KEY_LEFT){
+    if(key == OF_KEY_LEFT){
         int idx = of2030::MultiClient::instance()->getPreviewClient()-1;
         if(idx < -1){
             idx = of2030::MultiClient::instance()->getClientCount()-1;
@@ -186,7 +186,7 @@ void ofApp::keyPressed(int key){
         of2030::MultiClient::instance()->setPreviewClient(idx);
         return;
     }
-    if(OF_KEY_RIGHT){
+    if(key == OF_KEY_RIGHT){
         int idx = of2030::MultiClient::instance()->getPreviewClient()+1;
         if(idx >= of2030::MultiClient::instance()->getClientCount()){
             idx=-1;
