@@ -13,29 +13,52 @@
 #include "setting_types.h"
 
 namespace of2030{
-    class Context {
-        
-    public: // properties
 
+    typedef struct {
         float time;
         XmlItemSetting effect_setting;
         XmlItemSetting screen_setting;
         // ofFbo* fbo;
         ofFbo* fbo2;
         ofFbo* fbo3;
+    } Context;
 
-        ofVec2f resolution;
+
+
+    class PreCalc {
 
     public: // methods
 
-        void precalc();
+        PreCalc(Context &_context);
 
-    public: // helpers
-        
+        inline float panoWorldToScreen(float p);
         ofRectangle panoDrawRect();
         ofRectangle tunnelDrawRect();
         inline ofRectangle panoTunnelDrawRect(){ return panoDrawRect().getIntersection(tunnelDrawRect()); }
+
+    public: // properties
+
+        ofVec2f resolution;
+        ofVec2f scrWorldSize, worldToScreenVec2f, scrDrawSize;
+        ofColor color;
+        float scrPanoStart, scrPanoEnd, fxPanoStart, fxPanoEnd;
+        
+    private: // attributes
+        
+        Context* context;
+
+        
     };
+
+    // inline function implementations
+
+    float PreCalc::panoWorldToScreen(float p){
+        return ofMap(p - floor(p),
+                     scrPanoStart,
+                     scrPanoEnd,
+                     0.0,
+                     resolution.x);
+    }
 }
 
 #endif /* context_hpp */

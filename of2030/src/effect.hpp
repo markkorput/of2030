@@ -47,8 +47,8 @@ namespace of2030{
         void reset();
         // ~Effect(){ destroy(); }
 
-        virtual void setup(Context &context);
-        virtual void draw(Context &context);
+        virtual void setup(Context &_context);
+        virtual void draw(Context &_context);
         virtual void update(float dt);
 
         inline bool hasStartTime() const { return startTime >= 0.0f; }
@@ -58,33 +58,20 @@ namespace of2030{
         inline EffectType getType() const { return type; }
         inline float getStartTime() const { return startTime; }
         inline float getEndTime() const { return endTime; }
-//        inline float getDuration() const { return duration; }
-        float resolveDuration() const;
-        
-        inline ofVec2f getScreenWorldSize(Context &context){ return context.screen_setting.getValue("world_size", ofVec2f(2.67f, 2.0f)); }
+        // inline float getDuration() const { return duration; }
+        // float resolveDuration() const;
 
-        inline ofVec2f getWorldToScreenVector(Context &context){ return context.resolution / getScreenWorldSize(context); }
-        inline float panoWorldToScreenPos(Context &context, float p){
-            return ofMap(p - floor(p),
-                         context.screen_setting.getValue("pano_start", 0.0f),
-                         context.screen_setting.getValue("pano_end", 1.0f),
-                         0.0,
-                         context.resolution.x);
-        }
-        
         inline ofVideoPlayer* getVideoPlayer() const { return video_player; }
 
     protected: // methods
         
-        void setType(EffectType effect_type);
-        void drawContent(Context &context);
-        void drawMask(Context &context, const string &coordsName);
-        void drawVideo(Context &context, ofVec2f &drawSize);
-        void drawPattern(Context &context, const string &patternName, ofVec2f &drawSize);
+        void drawContent();
+        void drawMask(const string &coordsName);
+        void drawVideo();
+        void drawPattern(const string &patternName);
 
-        inline float getGlobalTime(Context &context){ return context.time - startTime; }
-        inline float getGlobalDuration(){ return endTime - startTime; }
-        inline float getGlobalProgress(Context &context){ return getGlobalTime(context) / getGlobalDuration(); }
+        inline float getEffectTime(){ return context->time - startTime; }
+        inline float getProgress(){ return getEffectTime() / duration; }
 
     public: // properties
 
@@ -94,7 +81,6 @@ namespace of2030{
         
         // static int cidCounter;
 
-
     private: // attributes
         float startTime, endTime, duration;
         EffectType type;
@@ -102,6 +88,9 @@ namespace of2030{
         ofVideoPlayer* video_player;
         float pano_pos, pano_velocity;
         ofShader *shader;
+    
+        Context *context;
+        PreCalc *precalc;
     };
 
 } // namespace of2030{

@@ -159,9 +159,9 @@ Effect* EfficientEffectManager::get(string typ){
     // reset its time values (and some other attributes)
     pEffect->reset();
     // update name if necessary
-    if(pEffect->getType() == EffectType::DEFAULT){
-        pEffect->name = typ;
-    }
+//    if(pEffect->getType() == EffectType::DEFAULT){
+    pEffect->name = typ;
+//    }
 
     // add to our own list
     add(pEffect);
