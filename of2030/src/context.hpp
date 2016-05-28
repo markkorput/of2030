@@ -29,6 +29,12 @@ namespace of2030{
     public: // methods
 
         void precalc();
+
+    public: // helpers
+        
+        ofRectangle panoDrawRect();
+        ofRectangle tunnelDrawRect();
+        inline ofRectangle panoTunnelDrawRect(){ return panoDrawRect().getIntersection(tunnelDrawRect()); }
     };
 }
 

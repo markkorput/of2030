@@ -17,23 +17,24 @@
 namespace of2030{
 
     enum EffectType{
-        DEFAULT = 0,
-        VID = 3,
-        TUNNEL = 4,
-        SPOT = 5,
-        VOICE = 6,
-        POS = 7,
-        ROOF = 8
+        DEFAULT = 0
+//        DEFAULT = 0,
+//        VID = 3,
+//        TUNNEL = 4,
+//        SPOT = 5,
+//        VOICE = 6,
+//        POS = 7,
+//        ROOF = 8
     };
     
     static map<EffectType, string> EFFECT_NAMES = {
-        {DEFAULT, "default"},
-        {VID, "vid"},
-        {TUNNEL, "tunnel"},
-        {SPOT, "spot"},
-        {VOICE, "voice"},
-        {POS, "pos"},
-        {ROOF, "roof"}
+        {DEFAULT, "default"}
+//        {VID, "vid"},
+//        {TUNNEL, "tunnel"},
+//        {SPOT, "spot"},
+//        {VOICE, "voice"},
+//        {POS, "pos"},
+//        {ROOF, "roof"}
     };
 
     #define NO_TIME (-1.0f)
@@ -60,12 +61,6 @@ namespace of2030{
 //        inline float getDuration() const { return duration; }
         float resolveDuration() const;
         
-        // draw coords
-        ofRectangle getDrawRect(Context &context);
-        ofRectangle panoDrawRect(Context &context);
-        ofRectangle tunnelDrawRect(Context &context);
-        ofRectangle panoTunnelDrawRect(Context &context);
-
         inline ofVec2f getScreenWorldSize(Context &context){ return context.screen_setting.getValue("world_size", ofVec2f(2.67f, 2.0f)); }
 
         inline ofVec2f getWorldToScreenVector(Context &context){ return context.resolution / getScreenWorldSize(context); }

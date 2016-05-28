@@ -32,6 +32,11 @@ void Effect::reset(){
     video_player = NULL;
 }
 
+
+void Effect::update(float dt){
+    pano_pos += pano_velocity * dt;
+}
+
 void Effect::setup(Context &context){
     string val;
 
@@ -97,16 +102,16 @@ void Effect::draw(Context &context){
     context.fbo3->end();
 
     // draw pano (masked with above mask) into fbo2
-    ofShader* multShader = ShaderManager::instance()->get("mask");
+    ofShader* maskShader = ShaderManager::instance()->get("mask");
 
     context.fbo2->begin();
         ofClear(0.0f, 0.0f, 0.0f, 0.0f);
-        multShader->begin();
-            multShader->setUniformTexture("iMask", context.fbo3->getTexture(), 2);
+        maskShader->begin();
+            maskShader->setUniformTexture("iMask", context.fbo3->getTexture(), 2);
             ofSetColor(255);
-            ofRectangle rect = panoTunnelDrawRect(context);
+            ofRectangle rect = context.panoTunnelDrawRect();
             ofDrawRectangle(rect);
-        multShader->end();
+        maskShader->end();
     context.fbo2->end();
 
     // draw content to fbo3
@@ -117,9 +122,6 @@ void Effect::draw(Context &context){
         drawContent(context);
     context.fbo3->end();
 
-
-    // apply alpha mask through mask shader
-    ofShader* maskShader = ShaderManager::instance()->get("mask");
     maskShader->begin();
         // pass mask texture to shader
         maskShader->setUniformTexture("iMask", context.fbo2->getTexture(), 2);
@@ -127,10 +129,6 @@ void Effect::draw(Context &context){
         ofSetColor(255);
         context.fbo3->draw(0.0f, 0.0f, context.resolution.x, context.resolution.y);
     maskShader->end();
-}
-
-void Effect::update(float dt){
-    pano_pos += pano_velocity * dt;
 }
 
 void Effect::drawContent(Context &context){
@@ -280,6 +278,7 @@ void Effect::drawPattern(Context &context, const string &patternName, ofVec2f &d
 
 void Effect::drawMask(Context &context, const string &coordsName){
     ofVec2f coords[4];
+
     coords[0] = context.screen_setting.getValue(coordsName+"1", ofVec2f(0.0f, 1.0f)) * context.resolution;
     coords[1] = context.screen_setting.getValue(coordsName+"2", ofVec2f(1.0f, 1.0f)) * context.resolution;
     coords[2] = context.screen_setting.getValue(coordsName+"3", ofVec2f(1.0f, 0.0f)) * context.resolution;
@@ -288,40 +287,6 @@ void Effect::drawMask(Context &context, const string &coordsName){
     // draw mask content
     ofDrawTriangle(coords[0].x, coords[0].y, coords[1].x, coords[1].y, coords[2].x, coords[2].y);
     ofDrawTriangle(coords[0].x, coords[0].y, coords[2].x, coords[2].y, coords[3].x, coords[3].y);
-}
-
-
-
-ofRectangle Effect::panoDrawRect(Context &context){
-    float scrStart = context.screen_setting.getValue("pano_start", 0.0f);
-    float scrEnd = context.screen_setting.getValue("pano_end", 1.0f);
-    float fxStart = context.effect_setting.getValue("pano_start", 0.0f);
-    float fxEnd = context.effect_setting.getValue("pano_end", 1.0f);
-    
-    float minX = ofMap(fxStart, scrStart, scrEnd, 0.0, context.resolution.x);
-    float maxX = ofMap(fxEnd, scrStart, scrEnd, 0.0, context.resolution.x);
-    
-    return ofRectangle(minX, 0.0, maxX-minX, context.resolution.y);
-}
-
-ofRectangle Effect::tunnelDrawRect(Context &context){
-    float scrStart = context.screen_setting.getValue("tunnel_start", 0.0f);
-    float scrEnd = context.screen_setting.getValue("tunnel_end", 1.0f);
-    float fxStart = context.effect_setting.getValue("tunnel_start", 0.0f);
-    float fxEnd = context.effect_setting.getValue("tunnel_end", 1.0f);
-    
-    // start of tunnel
-    float x1 = ofMap(fxStart, scrStart, scrEnd, 0.0, context.resolution.x);
-    // start of visible part of tunnel
-    float x2 = ofMap(fxEnd, scrStart, scrEnd, 0.0, context.resolution.x);
-    // draw "hider" for invisible part _before_ visible part
-    return ofRectangle(x1, 0.0, x2-x1, context.resolution.y);
-}
-
-ofRectangle Effect::panoTunnelDrawRect(Context &context){
-    ofRectangle prect = panoDrawRect(context);
-    ofRectangle trect = tunnelDrawRect(context);
-    return prect.getIntersection(trect);
 }
 
 void Effect::drawVideo(Context &context, ofVec2f &drawSize){
