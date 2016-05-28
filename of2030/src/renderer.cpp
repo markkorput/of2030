@@ -39,7 +39,8 @@ void Renderer::setup(){
             //fbo->allocate(WIDTH, HEIGHT);
             XmlItemSetting* pItem = XmlConfigs::screens()->getItem(client_id);
             if(pItem){
-                fbo->allocate(pItem->getValue("pixel_width", WIDTH), pItem->getValue("pixel_height", HEIGHT));
+                ofVec2f resolution = pItem->getValue("resolution", ofVec2f(WIDTH, HEIGHT));
+                fbo->allocate(resolution.x, resolution.y);
             } else {
                 fbo->allocate(WIDTH, HEIGHT);
             }

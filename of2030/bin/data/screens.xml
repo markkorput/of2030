@@ -2,11 +2,11 @@
   <screens>
     <screen name="rpi3">
       <!-- resolution -->
-      <pixel_width>768</pixel_width>
-      <pixel_height>576</pixel_height>
+      <resolution_x>768</resolution_x>
+      <resolution_y>576</resolution_y>
       <!-- size of (projected) image in meters -->
-      <world_width>2.67</world_width>
-      <world_height>1.5</world_height>
+      <world_size_x>2.67</world_size_x>
+      <world_size_y>1.5</world_size_y>
       <!-- real-world-position of the center of the screen in meters -->
       <pos_x>2.0</pos_x>
       <pos_y>0.0</pos_y>
@@ -88,11 +88,11 @@
 
     <screen name="rpi4">
       <!-- resolution -->
-      <pixel_width>768</pixel_width>
-      <pixel_height>576</pixel_height>
+      <resolution_x>768</resolution_x>
+      <resolution_y>576</resolution_y>
       <!-- size of (projected) image in meters -->
-      <world_width>2.67</world_width>
-      <world_height>1.5</world_height>
+      <world_size_x>2.67</world_size_x>
+      <world_size_y>1.5</world_size_y>
       <!-- real-world-position of the center of the screen in meters -->
       <pos_x>2.0</pos_x>
       <pos_y>0.0</pos_y>
@@ -126,11 +126,11 @@
 
     <screen name="rpi5">
       <!-- resolution -->
-      <pixel_width>768</pixel_width>
-      <pixel_height>576</pixel_height>
+      <resolution_x>768</resolution_x>
+      <resolution_y>576</resolution_y>
       <!-- size of (projected) image in meters -->
-      <world_width>2.67</world_width>
-      <world_height>1.5</world_height>
+      <world_size_x>2.67</world_size_x>
+      <world_size_y>1.5</world_size_y>
       <!-- real-world-position of the center of the screen in meters -->
       <pos_x>2.0</pos_x>
       <pos_y>0.0</pos_y>
@@ -164,11 +164,11 @@
 
     <screen name="rpi7">
       <!-- resolution -->
-      <pixel_width>768</pixel_width>
-      <pixel_height>576</pixel_height>
+      <resolution_x>768</resolution_x>
+      <resolution_y>576</resolution_y>
       <!-- size of (projected) image in meters -->
-      <world_width>2.67</world_width>
-      <world_height>1.5</world_height>
+      <world_size_x>2.67</world_size_x>
+      <world_size_y>1.5</world_size_y>
       <!-- real-world-position of the center of the screen in meters -->
       <pos_x>-2.0</pos_x>
       <pos_y>0.0</pos_y>
@@ -202,11 +202,11 @@
 
     <screen name="rpi8">
       <!-- resolution -->
-      <pixel_width>768</pixel_width>
-      <pixel_height>576</pixel_height>
+      <resolution_x>768</resolution_x>
+      <resolution_y>576</resolution_y>
       <!-- size of (projected) image in meters -->
-      <world_width>2.67</world_width>
-      <world_height>1.5</world_height>
+      <world_size_x>2.67</world_size_x>
+      <world_size_y>1.5</world_size_y>
       <!-- real-world-position of the center of the screen in meters -->
       <pos_x>-2.0</pos_x>
       <pos_y>0.0</pos_y>
@@ -240,11 +240,11 @@
 
     <screen name="rpi10">
       <!-- resolution -->
-      <pixel_width>768</pixel_width>
-      <pixel_height>576</pixel_height>
+      <resolution_x>768</resolution_x>
+      <resolution_y>576</resolution_y>
       <!-- size of (projected) image in meters -->
-      <world_width>2.67</world_width>
-      <world_height>1.5</world_height>
+      <world_size_x>2.67</world_size_x>
+      <world_size_y>1.5</world_size_y>
       <!-- real-world-position of the center of the screen in meters -->
       <pos_x>-2.0</pos_x>
       <pos_y>0.0</pos_y>

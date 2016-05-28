@@ -33,7 +33,9 @@ namespace of2030 {
         
         inline void setClientId(const string &id){ client_id = id; }
         inline const string &clientId(){ return client_id; }
-            
+
+        inline ofVec2f getScreenSize(){ return ofVec2f(screenWidth, screenHeight); }
+
     private: // callbacks
         
         void registerRealtimeEffectCallback(bool reg=true);

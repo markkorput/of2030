@@ -96,7 +96,7 @@ void MultiClient::drawScreens(){
 
     XmlItemSetting* screen_setting;
 
-    for(auto &renderer: m_renderers){
+    for(auto renderer: m_renderers){
         screen_setting = screens->getItem(renderer->clientId());
 
         if(screen_setting == NULL){
@@ -107,24 +107,25 @@ void MultiClient::drawScreens(){
         ofVec3f scrpos = screen_setting->getValue("pos", ofVec3f(0.0));
         ofVec3f scrrot = screen_setting->getValue("rot", ofVec3f(0.0));
 
-        float wwidth = screen_setting->getValue("world_width", 2.67f);
-        float wheight = screen_setting->getValue("world_height", 2.0f);
-
-        float pixwidth = screen_setting->getValue("pixel_width", 768);
-        float pixheight = screen_setting->getValue("pixel_width", 576);
+        ofVec2f worldSize = screen_setting->getValue("world_size", ofVec2f(2.67f, 2.0f));
+        //ofVec2f renderSize = screen_setting->getValue("resolution", ofVec2f(768, 576));
+        ofVec2f renderSize = renderer->getScreenSize();
+         //ofGetWindowSize();
 
         ofPushMatrix();
-            // move to screen's camera position
+            // move to screen's position
             ofTranslate(scrpos);
             // rotate according to cameras orientation
             ofRotateX(scrrot.x);
             ofRotateY(scrrot.y);
             ofRotateZ(scrrot.z);
-            // translate 4.5 "meters" forward, we're gonna assume that's where the projection ends up
-            ofTranslate(wwidth*-0.5f, wheight*-0.5f, 0.0f);
-            // scale from pixel size to world size (renderer draws its fbo simply at screen size, because normally
-            // it's drawing fullscreen)
-            ofScale(wwidth / pixwidth, wheight / pixheight, 1.0f);
+
+            // translate to where the topleft corner of the screen should start
+            ofTranslate(worldSize*-0.5);
+
+            ofVec2f scaler = worldSize / renderSize;
+            ofScale(scaler.x, scaler.y, 1.0f);
+
             // NOW we can finally draw the screen
             renderer->draw();
         ofPopMatrix();

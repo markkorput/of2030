@@ -71,8 +71,8 @@ namespace of2030{ namespace effects {
         ofRectangle tunnelDrawRect(Context &context);
         ofRectangle panoTunnelDrawRect(Context &context);
         inline ofVec2f getResolution(Context &context){ return ofVec2f(context.fbo->getWidth(), context.fbo->getHeight()); }
-        inline ofVec2f getScreenWorldSize(Context &context){ return ofVec2f(context.screen_setting.getValue("world_width", 2.67f),
-                                                                            context.screen_setting.getValue("world_height", 2.0f)); }
+        inline ofVec2f getScreenWorldSize(Context &context){ return context.screen_setting.getValue("world_size", ofVec2f(2.67f, 2.0f)); }
+
         inline ofVec2f getWorldToScreenVector(Context &context){ return getResolution(context) / getScreenWorldSize(context); }
         inline float panoWorldToScreenPos(Context &context, float p){
             return ofMap(p - floor(p),

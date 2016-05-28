@@ -160,8 +160,7 @@ void Effect::drawContent(Context &context){
 
         
         
-        shader->setUniform2f("iScreenWorldSize", ofVec2f(context.screen_setting.getValue("world_width", 2.67f),
-                                                         context.screen_setting.getValue("world_height", 2.0f)));
+        shader->setUniform2f("iScreenWorldSize", context.screen_setting.getValue("world_size", ofVec2f(2.67f, 2.0f)));
         shader->setUniform3f("iScreenPos", context.screen_setting.getValue("pos", ofVec3f(0.0f)));
 
         
@@ -239,7 +238,7 @@ void Effect::drawPattern(Context &context, const string &patternName, ofVec2f &d
                             0.0,
                             drawSize.x);
 
-        float gain = context.effect_setting.getValue("gain", 1.0f) * drawSize.x / context.screen_setting.getValue("world_width", 2.67f);
+        float gain = context.effect_setting.getValue("gain", 1.0f) * drawSize.x / context.screen_setting.getValue("world_size_x", 2.67f);
         ofDrawRectangle(x-gain*0.5, 0.0f, gain, drawSize.y);
         return;
     }
