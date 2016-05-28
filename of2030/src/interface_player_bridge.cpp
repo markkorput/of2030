@@ -75,7 +75,7 @@ void InterfacePlayerBridge::registerCallbacks(bool _register){
 void InterfacePlayerBridge::onTrigger(string &trigger){
     // first check if there's already an effect with this trigger active,
     // if so; abort
-    const vector<effects::Effect*> *effects = &m_player->getActiveEffects();
+    const vector<Effect*> *effects = &m_player->getActiveEffects();
     for(auto effect: (*effects)){
         if(effect->trigger == trigger){
             return;
@@ -86,7 +86,7 @@ void InterfacePlayerBridge::onTrigger(string &trigger){
     const string effectName = XmlTriggers::instance()->getEffectName(trigger);
 
     // non-shader effect
-    effects::Effect* fx = EfficientEffectManager::instance()->get(effectName);
+    Effect* fx = EfficientEffectManager::instance()->get(effectName);
     if(!fx){
         ofLogError() << "Could not create effect for trigger: " << trigger;
         return;
@@ -106,7 +106,7 @@ void InterfacePlayerBridge::onStopTrigger(string &trigger){
 // callback to process new effect events from the interface
 void InterfacePlayerBridge::onEffect(string &name){
     // create effect
-    effects::Effect* fx = EfficientEffectManager::instance()->get(name);
+    Effect* fx = EfficientEffectManager::instance()->get(name);
     // add to players realtime comp
     m_player->addEffect(*fx);
 }
@@ -127,7 +127,7 @@ void InterfacePlayerBridge::onClip(string &name){
     m_player->setClip(name);
 }
 
-void InterfacePlayerBridge::onEffectEnded(effects::Effect &effect){
+void InterfacePlayerBridge::onEffectEnded(Effect &effect){
     EfficientEffectManager::instance()->finish(&effect);
 
 #ifdef __AUTO_UNLOAD_VIDEOS_WHEN_EFFECTS_END__
@@ -136,7 +136,7 @@ void InterfacePlayerBridge::onEffectEnded(effects::Effect &effect){
     
     if(player){
         // let's see if there are any more effects using this player
-        const vector<effects::Effect*> *effects = &m_player->effect_manager.getEffects();
+        const vector<Effect*> *effects = &m_player->effect_manager.getEffects();
 
         for(auto effect: (*effects)){
             // does this effect use the same player?

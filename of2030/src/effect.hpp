@@ -12,20 +12,10 @@
 //#include <stdio.h>
 #include "ofMain.h"
 #include "setting_types.h"
+#include "context.hpp"
 
-namespace of2030{ namespace effects {
+namespace of2030{
 
-    
-    typedef struct {
-        float time;
-        XmlItemSetting effect_setting;
-        XmlItemSetting screen_setting;
-        ofFbo* fbo;
-        ofFbo* fbo2;
-        ofFbo* fbo3;
-    } Context;
-
-    
     enum EffectType{
         DEFAULT = 0,
         VID = 3,
@@ -64,24 +54,28 @@ namespace of2030{ namespace effects {
         inline bool hasEndTime() const { return endTime >= 0.0f; }
         inline bool hasDuration() const { return duration >= 0.0f; }
 
+        inline EffectType getType() const { return type; }
+        inline float getStartTime() const { return startTime; }
+        inline float getEndTime() const { return endTime; }
+//        inline float getDuration() const { return duration; }
+        float resolveDuration() const;
         
         // draw coords
         ofRectangle getDrawRect(Context &context);
         ofRectangle panoDrawRect(Context &context);
         ofRectangle tunnelDrawRect(Context &context);
         ofRectangle panoTunnelDrawRect(Context &context);
-        inline ofVec2f getResolution(Context &context){ return ofVec2f(context.fbo->getWidth(), context.fbo->getHeight()); }
+
         inline ofVec2f getScreenWorldSize(Context &context){ return context.screen_setting.getValue("world_size", ofVec2f(2.67f, 2.0f)); }
 
-        inline ofVec2f getWorldToScreenVector(Context &context){ return getResolution(context) / getScreenWorldSize(context); }
+        inline ofVec2f getWorldToScreenVector(Context &context){ return context.resolution / getScreenWorldSize(context); }
         inline float panoWorldToScreenPos(Context &context, float p){
             return ofMap(p - floor(p),
                          context.screen_setting.getValue("pano_start", 0.0f),
                          context.screen_setting.getValue("pano_end", 1.0f),
                          0.0,
-                         getResolution(context).x);
+                         context.resolution.x);
         }
-        float getDuration() const;
         
         inline ofVideoPlayer* getVideoPlayer() const { return video_player; }
 
@@ -89,48 +83,32 @@ namespace of2030{ namespace effects {
         
         void setType(EffectType effect_type);
         void drawContent(Context &context);
-        void drawMask(Context &context, const string &coordsName, const ofVec2f &resolution);
+        void drawMask(Context &context, const string &coordsName);
         void drawVideo(Context &context, ofVec2f &drawSize);
         void drawPattern(Context &context, const string &patternName, ofVec2f &drawSize);
+
+        inline float getGlobalTime(Context &context){ return context.time - startTime; }
+        inline float getGlobalDuration(){ return endTime - startTime; }
+        inline float getGlobalProgress(Context &context){ return getGlobalTime(context) / getGlobalDuration(); }
 
     public: // properties
 
         // int cid;
-        float startTime, endTime, duration;
-        EffectType type;
         string name;
         string trigger;
-        ofShader *shader;
+        
         // static int cidCounter;
-        float pano_pos, pano_velocity;
+
 
     private: // attributes
-        
+        float startTime, endTime, duration;
+        EffectType type;
+
         ofVideoPlayer* video_player;
+        float pano_pos, pano_velocity;
+        ofShader *shader;
     };
 
-    // === === === === === === === === ===
-
-    class EffectLogic{
-    public:
-        EffectLogic(Effect *_effect, Context *_context) : effect(_effect), context(_context){}
-        inline float getGlobalTime(){ return context->time - effect->startTime; }
-        inline float getGlobalDuration(){ return effect->endTime - effect->startTime; }
-        inline float getGlobalProgress(){ return getGlobalTime() / getGlobalDuration(); }
-
-        Context *context;
-        Effect *effect;
-    };
-
-    // === === === === === === === === ===
-    
-    class Tunnel : public Effect{
-    public: // methods
-        Tunnel();
-        // virtual void setup(Context &context);
-        virtual void draw(Context &context);
-    };
-
-}} // namespace of2030{ namespace effects {
+} // namespace of2030{
 
 #endif /* effect_hpp */

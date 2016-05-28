@@ -39,13 +39,13 @@ namespace of2030{
         void start();
         void stop();
 
-        void addEffect(effects::Effect &effect);
+        void addEffect(Effect &effect);
         void stopEffectByTrigger(string &trigger);
         void stopEffectsByVideoPlayer(ofVideoPlayer *player);
         void stopAllVideoEffects();
         void clearEffects();
 
-        inline const vector<effects::Effect*> &getActiveEffects(){ return active_effects_manager.getEffects(); }
+        inline const vector<Effect*> &getActiveEffects(){ return active_effects_manager.getEffects(); }
         inline const string &getSong(){ return song; }
         inline const string &getClip(){ return clip; }
         inline void setSong(const string &newSong){ song = newSong; }
@@ -57,8 +57,8 @@ namespace of2030{
 
         void movePlaybackTimeTo(float time);
         void setPlaybackTime(float time);
-        inline bool effectStarted(const effects::Effect &effect);
-        inline bool effectEnded(const effects::Effect &effect);
+        inline bool effectStarted(const Effect &effect);
+        inline bool effectEnded(const Effect &effect);
 
     public: // properties
 

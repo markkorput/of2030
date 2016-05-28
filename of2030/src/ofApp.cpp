@@ -168,6 +168,33 @@ void ofApp::keyPressed(int key){
         of2030::OscRecorder::instance()->toggle_record();
     }
 #endif
+
+#ifdef __MULTI_CLIENT_ENABLED__
+    if(key >= '0' && key <= '9'){
+        of2030::MultiClient::instance()->setPreviewClient(key-'0');
+        return;
+    }
+    if(key ==45){ // minus/dash
+        of2030::MultiClient::instance()->setPreviewClient(-1);
+        return;
+    }
+    if(OF_KEY_LEFT){
+        int idx = of2030::MultiClient::instance()->getPreviewClient()-1;
+        if(idx < -1){
+            idx = of2030::MultiClient::instance()->getClientCount()-1;
+        }
+        of2030::MultiClient::instance()->setPreviewClient(idx);
+        return;
+    }
+    if(OF_KEY_RIGHT){
+        int idx = of2030::MultiClient::instance()->getPreviewClient()+1;
+        if(idx >= of2030::MultiClient::instance()->getClientCount()){
+            idx=-1;
+        }
+        of2030::MultiClient::instance()->setPreviewClient(idx);
+        return;
+    }
+#endif
 }
 
 //--------------------------------------------------------------

@@ -39,7 +39,7 @@ namespace of2030{
         void onScreenConfig(EffectConfig &cfg);
         void onSong(string &name);
         void onClip(string &name);
-        void onEffectEnded(effects::Effect &effect);
+        void onEffectEnded(Effect &effect);
         void onPlayback(string &name);
 
     private: // attributes

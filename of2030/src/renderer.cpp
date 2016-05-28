@@ -12,7 +12,6 @@
 #include "effect_manager.hpp"
 
 using namespace of2030;
-using namespace of2030::effects;
 
 SINGLETON_CLASS_IMPLEMENTATION_CODE(Renderer)
 
@@ -77,24 +76,34 @@ void Renderer::destroy(){
 void Renderer::draw(){
     Context context;
     fillContextClientInfo(context);
+    fillScreenSetting(context.screen_setting);
 
+#ifdef __RENDER_TO_FBO_FIRST__
     fbo->begin();
     ofClear(0.0f,0.0f,0.0f,0.0f);
+#else
+    ofPushMatrix();
+    ofScale(screenWidth / fbo2->getWidth(), screenHeight / fbo2->getHeight(), 1.0f);
+#endif
 
-    fillScreenSetting(context.screen_setting);
-    vector<effects::Effect*> effects = player->getActiveEffects();
+    // draw all active effects
+    vector<Effect*> effects = player->getActiveEffects();
     for(auto effect: effects){
         fillEffectSetting(*effect, context.effect_setting);
+        context.precalc();
         effect->draw(context);
     }
-    
-//    fillEffectSetting(*overlayEffect, context.effect_setting);
-//    overlayEffect->draw(context);
 
+    //    fillEffectSetting(*overlayEffect, context.effect_setting);
+    //    overlayEffect->draw(context);
+
+#ifdef __RENDER_TO_FBO_FIRST__
     fbo->end();
-
     ofSetColor(255);
     fbo->draw(0,0, screenWidth, screenHeight);
+#else
+    ofPopMatrix();
+#endif
 }
 
 void Renderer::registerRealtimeEffectCallback(bool reg){
@@ -110,28 +119,40 @@ void Renderer::registerRealtimeEffectCallback(bool reg){
 void Renderer::onEffectAdded(Effect &effect){
     Context context;
     fillContext(context, effect);
+    context.precalc();
     effect.setup(context);
 }
 
-void Renderer::fillContext(effects::Context &context, Effect &effect){
+void Renderer::fillContext(Context &context, Effect &effect){
     fillContextClientInfo(context);
     fillScreenSetting(context.screen_setting);
     fillEffectSetting(effect, context.effect_setting);
 }
 
-void Renderer::fillContextClientInfo(effects::Context &context){
+void Renderer::fillContextClientInfo(Context &context){
     context.time = player->getTime();
-    context.fbo = fbo;
+    // context.fbo = fbo;
     context.fbo2 = fbo2;
     context.fbo3 = fbo3;
 }
 
-void Renderer::fillEffectSetting(effects::Effect &effect, XmlItemSetting &fxsetting){
+void Renderer::fillEffectSetting(Effect &effect, XmlItemSetting &fxsetting){
     XmlConfigs *fxs = XmlConfigs::instance();
 
     // effect config
     string query = effect.name;
     XmlItemSetting *pSetting = fxs->getItem(query);
+    if(pSetting)
+        fxsetting.merge(*pSetting);
+
+    // trigger-specific config (has priority over song/clip-specific configs)
+    pSetting = fxs->getItem(effect.trigger);
+    if(pSetting)
+        fxsetting.merge(*pSetting);
+
+#ifdef __EXTENDED_EFFECT_CONFIG__
+    // effect/trigger-specific config (has priority over song/clip-specific configs)
+    pSetting = fxs->getItem(query+"."+effect.trigger);
     if(pSetting)
         fxsetting.merge(*pSetting);
 
@@ -142,26 +163,17 @@ void Renderer::fillEffectSetting(effects::Effect &effect, XmlItemSetting &fxsett
         fxsetting.merge(*pSetting);
 
     // song/clip specific effect config
-    query += "" + player->getClip();
+    query += "." + player->getClip();
     pSetting = fxs->getItem(query);
     if(pSetting)
         fxsetting.merge(*pSetting);
 
-    // trigger-specific config (has priority over song/clip-specific configs)
-    pSetting = fxs->getItem(effect.trigger);
-    if(pSetting)
-        fxsetting.merge(*pSetting);
-
-    // effect/trigger-specific config (has priority over song/clip-specific configs)
-    pSetting = fxs->getItem(effect.name+"."+effect.trigger);
-    if(pSetting)
-        fxsetting.merge(*pSetting);
-    
     // song/clip/trigger specific configs
     query += "." + effect.trigger;
     pSetting = fxs->getItem(query);
     if(pSetting)
         fxsetting.merge(*pSetting);
+#endif
 }
 
 void Renderer::fillScreenSetting(XmlItemSetting &setting){

@@ -39,10 +39,10 @@ namespace of2030 {
     private: // callbacks
         
         void registerRealtimeEffectCallback(bool reg=true);
-        void onEffectAdded(effects::Effect &effect);
-        void fillContext(effects::Context &context, effects::Effect &effect);
-        void fillContextClientInfo(effects::Context &context);
-        void fillEffectSetting(effects::Effect &effect, XmlItemSetting &fxsetting);
+        void onEffectAdded(Effect &effect);
+        void fillContext(Context &context, Effect &effect);
+        void fillContextClientInfo(Context &context);
+        void fillEffectSetting(Effect &effect, XmlItemSetting &fxsetting);
         void fillScreenSetting(XmlItemSetting &setting);
 
     private: // properties
@@ -53,7 +53,7 @@ namespace of2030 {
         ofFbo defaultFbo, defaultFbo2, defaultFbo3;
         bool bCallbacksRegistered;
         float screenWidth, screenHeight;
-        //effects::Effect *overlayEffect;
+        //Effect *overlayEffect;
     };
 }
 

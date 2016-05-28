@@ -10,7 +10,7 @@
 #include "shader_manager.hpp"
 #include "video_manager.hpp"
 
-using namespace of2030::effects;
+using namespace of2030;
 
 // int Effect::cidCounter = 0;
 
@@ -89,13 +89,11 @@ void Effect::setup(Context &context){
 }
 
 void Effect::draw(Context &context){
-    ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
-
     // draw mask (if no mask specfied, this will give a full white frame)
     context.fbo3->begin();
         ofClear(0.0f, 0.0f, 0.0f, 0.0f);
         ofSetColor(255);
-        drawMask(context, context.effect_setting.getValue("mask_coords_name", ""), resolution);
+        drawMask(context, context.effect_setting.getValue("mask_coords_name", ""));
     context.fbo3->end();
 
     // draw pano (masked with above mask) into fbo2
@@ -127,7 +125,7 @@ void Effect::draw(Context &context){
         maskShader->setUniformTexture("iMask", context.fbo2->getTexture(), 2);
         // draw content from fbo3 (masked)
         ofSetColor(255);
-        context.fbo3->draw(0.0f, 0.0f, resolution.x, resolution.y);
+        context.fbo3->draw(0.0f, 0.0f, context.resolution.x, context.resolution.y);
     maskShader->end();
 }
 
@@ -136,8 +134,6 @@ void Effect::update(float dt){
 }
 
 void Effect::drawContent(Context &context){
-    EffectLogic logic((Effect*)this, &context);
-    ofVec2f resolution = getResolution(context);
     ofVec2f scrWorldSize = getScreenWorldSize(context);
     ofVec2f world2scr2f = getWorldToScreenVector(context);
     ofVec2f drawSize = context.effect_setting.getValue("draw_size", scrWorldSize) * world2scr2f;
@@ -151,11 +147,11 @@ void Effect::drawContent(Context &context){
         shader->begin();
 
         // populate shader
-        shader->setUniform2f("iResolution", resolution);
+        shader->setUniform2f("iResolution", context.resolution);
         shader->setUniform3f("iPos", context.effect_setting.getValue("pos", ofVec3f(0.0f)));
         shader->setUniform3f("iSize", context.effect_setting.getValue("size", ofVec3f(0.0f)));
-        shader->setUniform1f("iProgress", logic.getGlobalProgress());
-        shader->setUniform1f("iDuration", logic.getGlobalDuration());
+        shader->setUniform1f("iProgress", getGlobalProgress(context));
+        shader->setUniform1f("iDuration", getGlobalDuration());
         shader->setUniform1f("iIterations", context.effect_setting.getValue("iterations", 1.0f));
 
         
@@ -214,7 +210,45 @@ void Effect::drawContent(Context &context){
 }
 
 void Effect::drawPattern(Context &context, const string &patternName, ofVec2f &drawSize){
-    EffectLogic logic((Effect*)this, &context);
+    if(patternName == "spot"){
+        int spotNumber = context.effect_setting.getValue("number", (int)1);
+        string prefix = "spot" + ofToString(spotNumber);
+        
+        ofVec2f spotPos = context.screen_setting.getValue(prefix, ofVec2f(-10.0f)) * context.resolution;
+        ofVec2f spotSize = context.screen_setting.getValue(prefix+"size", ofVec2f(0.0f)) * context.resolution;
+        
+        ofVec2f scrWorldSize = context.screen_setting.getValue("world_size", ofVec2f(2.67f, 2.0f));
+        ofVec2f fxSpotPos = context.effect_setting.getValue("pos", ofVec2f(0.0f, 0.0f));
+        
+        // spot reposition according to effect setting (interpret as real-world-meters)
+        spotPos += fxSpotPos / scrWorldSize * context.resolution;
+        
+        if(!shader){
+            // draw without shader stuff
+            ofSetColor(255);
+            // ofDrawRectangle(0, 0, context.resolution.x, context.resolution.y);
+            ofDrawEllipse(spotPos.x, spotPos.y, spotSize.x, spotSize.y);
+            return;
+        }
+
+        // shader is already activated, just add some params
+        
+        //    shader->setUniform2f("iResolution", context.resolution);
+        shader->setUniform2f("iSpotPos", spotPos);
+        shader->setUniform2f("iSpotSize", spotSize);
+        shader->setUniform1f("iGain", context.effect_setting.getValue("gain", 1.0f));
+
+        // quarter; 1 means top right, 2 means bottom right, 3 bottom left, 4 means top left, zero means none
+        int q = std::floor(context.effect_setting.getValue("quarter_on", 0.0f));
+        shader->setUniform1i("iQuarterOn", q);
+        q = std::floor(context.effect_setting.getValue("quarter_off", 0.0f));
+        shader->setUniform1i("iQuarterOff", q);
+        
+        spotPos = spotPos - spotSize * 0.5;
+        ofSetColor(255);
+        ofDrawRectangle(0.0f, 0.0f, context.resolution.x, context.resolution.y); //spotPos.x, spotPos.y, spotSize.x, spotSize.y);
+        return;
+    }
 
     if(patternName == "pos"){
         ofVec3f lightpos = context.effect_setting.getValue("pos", ofVec3f(0.0f, 0.0f, 0.0f));
@@ -244,12 +278,12 @@ void Effect::drawPattern(Context &context, const string &patternName, ofVec2f &d
     }
 }
 
-void Effect::drawMask(Context &context, const string &coordsName, const ofVec2f &resolution){
+void Effect::drawMask(Context &context, const string &coordsName){
     ofVec2f coords[4];
-    coords[0] = context.screen_setting.getValue(coordsName+"1", ofVec2f(0.0f, 1.0f)) * resolution;
-    coords[1] = context.screen_setting.getValue(coordsName+"2", ofVec2f(1.0f, 1.0f)) * resolution;
-    coords[2] = context.screen_setting.getValue(coordsName+"3", ofVec2f(1.0f, 0.0f)) * resolution;
-    coords[3] = context.screen_setting.getValue(coordsName+"4", ofVec2f(0.0f, 0.0f)) * resolution;
+    coords[0] = context.screen_setting.getValue(coordsName+"1", ofVec2f(0.0f, 1.0f)) * context.resolution;
+    coords[1] = context.screen_setting.getValue(coordsName+"2", ofVec2f(1.0f, 1.0f)) * context.resolution;
+    coords[2] = context.screen_setting.getValue(coordsName+"3", ofVec2f(1.0f, 0.0f)) * context.resolution;
+    coords[3] = context.screen_setting.getValue(coordsName+"4", ofVec2f(0.0f, 0.0f)) * context.resolution;
 
     // draw mask content
     ofDrawTriangle(coords[0].x, coords[0].y, coords[1].x, coords[1].y, coords[2].x, coords[2].y);
@@ -259,33 +293,29 @@ void Effect::drawMask(Context &context, const string &coordsName, const ofVec2f 
 
 
 ofRectangle Effect::panoDrawRect(Context &context){
-    ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
-    
     float scrStart = context.screen_setting.getValue("pano_start", 0.0f);
     float scrEnd = context.screen_setting.getValue("pano_end", 1.0f);
     float fxStart = context.effect_setting.getValue("pano_start", 0.0f);
     float fxEnd = context.effect_setting.getValue("pano_end", 1.0f);
     
-    float minX = ofMap(fxStart, scrStart, scrEnd, 0.0, resolution.x);
-    float maxX = ofMap(fxEnd, scrStart, scrEnd, 0.0, resolution.x);
+    float minX = ofMap(fxStart, scrStart, scrEnd, 0.0, context.resolution.x);
+    float maxX = ofMap(fxEnd, scrStart, scrEnd, 0.0, context.resolution.x);
     
-    return ofRectangle(minX, 0.0, maxX-minX, resolution.y);
+    return ofRectangle(minX, 0.0, maxX-minX, context.resolution.y);
 }
 
 ofRectangle Effect::tunnelDrawRect(Context &context){
-    ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
-    
     float scrStart = context.screen_setting.getValue("tunnel_start", 0.0f);
     float scrEnd = context.screen_setting.getValue("tunnel_end", 1.0f);
     float fxStart = context.effect_setting.getValue("tunnel_start", 0.0f);
     float fxEnd = context.effect_setting.getValue("tunnel_end", 1.0f);
     
     // start of tunnel
-    float x1 = ofMap(fxStart, scrStart, scrEnd, 0.0, resolution.x);
+    float x1 = ofMap(fxStart, scrStart, scrEnd, 0.0, context.resolution.x);
     // start of visible part of tunnel
-    float x2 = ofMap(fxEnd, scrStart, scrEnd, 0.0, resolution.x);
+    float x2 = ofMap(fxEnd, scrStart, scrEnd, 0.0, context.resolution.x);
     // draw "hider" for invisible part _before_ visible part
-    return ofRectangle(x1, 0.0, x2-x1, resolution.y);
+    return ofRectangle(x1, 0.0, x2-x1, context.resolution.y);
 }
 
 ofRectangle Effect::panoTunnelDrawRect(Context &context){
@@ -295,8 +325,6 @@ ofRectangle Effect::panoTunnelDrawRect(Context &context){
 }
 
 void Effect::drawVideo(Context &context, ofVec2f &drawSize){
-    ofVec2f resolution(context.fbo->getWidth(), context.fbo->getHeight());
-    
     // this is checked by the caller
     //    if(!video_player){
     //        return;
@@ -336,7 +364,7 @@ void Effect::drawVideo(Context &context, ofVec2f &drawSize){
     }
 }
 
-float Effect::getDuration() const {
+float Effect::resolveDuration() const {
     if(hasDuration())
         return duration;
 
@@ -349,19 +377,5 @@ float Effect::getDuration() const {
 void Effect::setType(EffectType effect_type){
     type = effect_type;
     name = EFFECT_NAMES[effect_type];
-}
-
-
-// === === === === === === === === ===
-
-
-Tunnel::Tunnel(){
-    setType(EffectType::TUNNEL);
-}
-
-// virtual void setup(Context &context);
-void Tunnel::draw(Context &context){
-    float tunnelStart = context.screen_setting.getValue("tunnel_start", 0.0f);
-    float tunnelEnd = context.screen_setting.getValue("tunnel_end", 1.0f);
 }
 
