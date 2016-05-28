@@ -54,6 +54,11 @@ namespace of2030{
         inline bool hasEndTime() const { return endTime >= 0.0f; }
         inline bool hasDuration() const { return duration >= 0.0f; }
 
+        inline EffectType getType() const { return type; }
+        inline float getStartTime() const { return startTime; }
+        inline float getEndTime() const { return endTime; }
+//        inline float getDuration() const { return duration; }
+        float resolveDuration() const;
         
         // draw coords
         ofRectangle getDrawRect(Context &context);
@@ -71,7 +76,6 @@ namespace of2030{
                          0.0,
                          context.resolution.x);
         }
-        float getDuration() const;
         
         inline ofVideoPlayer* getVideoPlayer() const { return video_player; }
 
@@ -83,42 +87,26 @@ namespace of2030{
         void drawVideo(Context &context, ofVec2f &drawSize);
         void drawPattern(Context &context, const string &patternName, ofVec2f &drawSize);
 
+        inline float getGlobalTime(Context &context){ return context.time - startTime; }
+        inline float getGlobalDuration(){ return endTime - startTime; }
+        inline float getGlobalProgress(Context &context){ return getGlobalTime(context) / getGlobalDuration(); }
+
     public: // properties
 
         // int cid;
-        float startTime, endTime, duration;
-        EffectType type;
         string name;
         string trigger;
-        ofShader *shader;
+        
         // static int cidCounter;
-        float pano_pos, pano_velocity;
+
 
     private: // attributes
-        
+        float startTime, endTime, duration;
+        EffectType type;
+
         ofVideoPlayer* video_player;
-    };
-
-    // === === === === === === === === ===
-
-    class EffectLogic{
-    public:
-        EffectLogic(Effect *_effect, Context *_context) : effect(_effect), context(_context){}
-        inline float getGlobalTime(){ return context->time - effect->startTime; }
-        inline float getGlobalDuration(){ return effect->endTime - effect->startTime; }
-        inline float getGlobalProgress(){ return getGlobalTime() / getGlobalDuration(); }
-
-        Context *context;
-        Effect *effect;
-    };
-
-    // === === === === === === === === ===
-    
-    class Tunnel : public Effect{
-    public: // methods
-        Tunnel();
-        // virtual void setup(Context &context);
-        virtual void draw(Context &context);
+        float pano_pos, pano_velocity;
+        ofShader *shader;
     };
 
 } // namespace of2030{

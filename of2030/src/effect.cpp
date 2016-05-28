@@ -134,7 +134,6 @@ void Effect::update(float dt){
 }
 
 void Effect::drawContent(Context &context){
-    EffectLogic logic((Effect*)this, &context);
     ofVec2f scrWorldSize = getScreenWorldSize(context);
     ofVec2f world2scr2f = getWorldToScreenVector(context);
     ofVec2f drawSize = context.effect_setting.getValue("draw_size", scrWorldSize) * world2scr2f;
@@ -151,8 +150,8 @@ void Effect::drawContent(Context &context){
         shader->setUniform2f("iResolution", context.resolution);
         shader->setUniform3f("iPos", context.effect_setting.getValue("pos", ofVec3f(0.0f)));
         shader->setUniform3f("iSize", context.effect_setting.getValue("size", ofVec3f(0.0f)));
-        shader->setUniform1f("iProgress", logic.getGlobalProgress());
-        shader->setUniform1f("iDuration", logic.getGlobalDuration());
+        shader->setUniform1f("iProgress", getGlobalProgress(context));
+        shader->setUniform1f("iDuration", getGlobalDuration());
         shader->setUniform1f("iIterations", context.effect_setting.getValue("iterations", 1.0f));
 
         
@@ -211,8 +210,6 @@ void Effect::drawContent(Context &context){
 }
 
 void Effect::drawPattern(Context &context, const string &patternName, ofVec2f &drawSize){
-    EffectLogic logic((Effect*)this, &context);
-
     if(patternName == "spot"){
         int spotNumber = context.effect_setting.getValue("number", (int)1);
         string prefix = "spot" + ofToString(spotNumber);
@@ -367,7 +364,7 @@ void Effect::drawVideo(Context &context, ofVec2f &drawSize){
     }
 }
 
-float Effect::getDuration() const {
+float Effect::resolveDuration() const {
     if(hasDuration())
         return duration;
 
@@ -380,19 +377,5 @@ float Effect::getDuration() const {
 void Effect::setType(EffectType effect_type){
     type = effect_type;
     name = EFFECT_NAMES[effect_type];
-}
-
-
-// === === === === === === === === ===
-
-
-Tunnel::Tunnel(){
-    setType(EffectType::TUNNEL);
-}
-
-// virtual void setup(Context &context);
-void Tunnel::draw(Context &context){
-    float tunnelStart = context.screen_setting.getValue("tunnel_start", 0.0f);
-    float tunnelEnd = context.screen_setting.getValue("tunnel_end", 1.0f);
 }
 

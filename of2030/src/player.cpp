@@ -128,11 +128,11 @@ void Player::setPlaybackTime(float time){
 }
 
 inline bool Player::effectStarted(const Effect &effect){
-    return !effect.hasStartTime() || effect.startTime <= m_time;
+    return !effect.hasStartTime() || effect.getStartTime() <= m_time;
 }
 
 inline bool Player::effectEnded(const Effect &effect){
-    return effect.hasEndTime() && effect.endTime <= m_time;
+    return effect.hasEndTime() && effect.getEndTime() <= m_time;
 }
 
 void Player::stopEffectsByVideoPlayer(ofVideoPlayer *player){

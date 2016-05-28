@@ -31,7 +31,7 @@ Effect* EffectManager::get(string typ){
 // of the specified type in the internal idle_effects vector
 Effect* EffectManager::findByType(EffectType typ){
     for(int i=effects.size()-1; i>=0; i--){
-        if(effects[i]->type == typ){
+        if(effects[i]->getType() == typ){
             // found!
             return effects[i];
         }
@@ -67,7 +67,7 @@ Effect* EffectManager::createEffect(string typ){
 }
 
 #define IF_TYP_DEL(__x__,__y__) \
-    if(effect->type == EffectType::__x__){\
+    if(effect->getType() == EffectType::__x__){\
         delete (effects::__y__*) effect;\
         return;\
     }\
@@ -78,18 +78,18 @@ void EffectManager::deleteEffect(Effect* effect){
 //    IF_TYP_DEL(SPOT, Spot)
 //    IF_TYP_DEL(POS, Pos)
 //    // figure out effect type and delete from memory
-//    if(effect->type == EffectType::VID){
+//    if(effect->getType() == EffectType::VID){
 //        // turn into Vid effect pointer before deleting, to delete appropriate class type
 //        delete (effects::Vid*) effect;
 //        return;
 //    }
 //    
-//    if(effect->type == EffectType::SPOT){
+//    if(effect->getType() == EffectType::SPOT){
 //        delete (effects::Spot*) effect;
 //        return;
 //    }
 //    
-//    if(effect->type == EffectType::VOICE){
+//    if(effect->getType() == EffectType::VOICE){
 //        delete (effects::Voice*) effect;
 //        return;
 //    }
@@ -126,7 +126,7 @@ void EffectManager::clear(){
 int EffectManager::getCountByType(EffectType typ){
     int count = 0;
     for(auto effect: effects)
-        if(effect->type == typ)
+        if(effect->getType() == typ)
             count++;
     return count;
 }
@@ -159,7 +159,7 @@ Effect* EfficientEffectManager::get(string typ){
     // reset its time values (and some other attributes)
     pEffect->reset();
     // update name if necessary
-    if(pEffect->type == EffectType::DEFAULT){
+    if(pEffect->getType() == EffectType::DEFAULT){
         pEffect->name = typ;
     }
 
@@ -180,7 +180,7 @@ void EfficientEffectManager::finish(Effect* effect){
     }
 
     // check if cache of idle instance has reached its limits yet
-    if(idle_manager.getCountByType(effect->type) >= idle_cache_limit_per_type){
+    if(idle_manager.getCountByType(effect->getType()) >= idle_cache_limit_per_type){
         // idle cache full, just delete this instance
         deleteEffect(effect);
         return;
