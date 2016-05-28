@@ -243,7 +243,7 @@ void Effect::drawPattern(Context &context, const string &patternName, ofVec2f &d
             ofDrawEllipse(spotPos.x, spotPos.y, spotSize.x, spotSize.y);
             return;
         }
-        
+
         // shader is already activated, just add some params
         
         //    shader->setUniform2f("iResolution", resolution);

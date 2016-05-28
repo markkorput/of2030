@@ -76,20 +76,22 @@ void Renderer::destroy(){
 
 void Renderer::draw(){
     Context context;
-    fillContextClientInfo(context);
+    
 
     fbo->begin();
     ofClear(0.0f,0.0f,0.0f,0.0f);
 
+    fillContextClientInfo(context);
     fillScreenSetting(context.screen_setting);
+
     vector<effects::Effect*> effects = player->getActiveEffects();
     for(auto effect: effects){
         fillEffectSetting(*effect, context.effect_setting);
         effect->draw(context);
     }
     
-//    fillEffectSetting(*overlayEffect, context.effect_setting);
-//    overlayEffect->draw(context);
+    //    fillEffectSetting(*overlayEffect, context.effect_setting);
+    //    overlayEffect->draw(context);
 
     fbo->end();
 
@@ -135,6 +137,17 @@ void Renderer::fillEffectSetting(effects::Effect &effect, XmlItemSetting &fxsett
     if(pSetting)
         fxsetting.merge(*pSetting);
 
+    // trigger-specific config (has priority over song/clip-specific configs)
+    pSetting = fxs->getItem(effect.trigger);
+    if(pSetting)
+        fxsetting.merge(*pSetting);
+
+#ifdef __EXTENDED_EFFECT_CONFIG__
+    // effect/trigger-specific config (has priority over song/clip-specific configs)
+    pSetting = fxs->getItem(query+"."+effect.trigger);
+    if(pSetting)
+        fxsetting.merge(*pSetting);
+
     // song specific effect config
     query += "." + player->getSong();
     pSetting = fxs->getItem(query);
@@ -142,26 +155,17 @@ void Renderer::fillEffectSetting(effects::Effect &effect, XmlItemSetting &fxsett
         fxsetting.merge(*pSetting);
 
     // song/clip specific effect config
-    query += "" + player->getClip();
+    query += "." + player->getClip();
     pSetting = fxs->getItem(query);
     if(pSetting)
         fxsetting.merge(*pSetting);
 
-    // trigger-specific config (has priority over song/clip-specific configs)
-    pSetting = fxs->getItem(effect.trigger);
-    if(pSetting)
-        fxsetting.merge(*pSetting);
-
-    // effect/trigger-specific config (has priority over song/clip-specific configs)
-    pSetting = fxs->getItem(effect.name+"."+effect.trigger);
-    if(pSetting)
-        fxsetting.merge(*pSetting);
-    
     // song/clip/trigger specific configs
     query += "." + effect.trigger;
     pSetting = fxs->getItem(query);
     if(pSetting)
         fxsetting.merge(*pSetting);
+#endif
 }
 
 void Renderer::fillScreenSetting(XmlItemSetting &setting){
