@@ -60,16 +60,16 @@ namespace of2030{
         ofRectangle panoDrawRect(Context &context);
         ofRectangle tunnelDrawRect(Context &context);
         ofRectangle panoTunnelDrawRect(Context &context);
-        inline ofVec2f getResolution(Context &context){ return ofVec2f(context.fbo->getWidth(), context.fbo->getHeight()); }
+
         inline ofVec2f getScreenWorldSize(Context &context){ return context.screen_setting.getValue("world_size", ofVec2f(2.67f, 2.0f)); }
 
-        inline ofVec2f getWorldToScreenVector(Context &context){ return getResolution(context) / getScreenWorldSize(context); }
+        inline ofVec2f getWorldToScreenVector(Context &context){ return context.resolution / getScreenWorldSize(context); }
         inline float panoWorldToScreenPos(Context &context, float p){
             return ofMap(p - floor(p),
                          context.screen_setting.getValue("pano_start", 0.0f),
                          context.screen_setting.getValue("pano_end", 1.0f),
                          0.0,
-                         getResolution(context).x);
+                         context.resolution.x);
         }
         float getDuration() const;
         
@@ -79,7 +79,7 @@ namespace of2030{
         
         void setType(EffectType effect_type);
         void drawContent(Context &context);
-        void drawMask(Context &context, const string &coordsName, const ofVec2f &resolution);
+        void drawMask(Context &context, const string &coordsName);
         void drawVideo(Context &context, ofVec2f &drawSize);
         void drawPattern(Context &context, const string &patternName, ofVec2f &drawSize);
 

@@ -14,13 +14,21 @@
 
 namespace of2030{
     class Context {
-    public:
+        
+    public: // properties
+
         float time;
         XmlItemSetting effect_setting;
         XmlItemSetting screen_setting;
-        ofFbo* fbo;
+        // ofFbo* fbo;
         ofFbo* fbo2;
         ofFbo* fbo3;
+
+        ofVec2f resolution;
+
+    public: // methods
+
+        void precalc();
     };
 }
 
