@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		4D1BFD571CD8D9C000D5493C /* video_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D1BFD551CD8D9C000D5493C /* video_manager.cpp */; };
 		4D3B38E41CC66A95004C8994 /* effect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D3B38E21CC66A95004C8994 /* effect.cpp */; };
-		4D3F90D31CED1C4000E6C0E1 /* spot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D3F90D11CED1C4000E6C0E1 /* spot.cpp */; };
 		4D4A32BB1CDFE8D100304FE9 /* xml_configs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D4A32B91CDFE8D100304FE9 /* xml_configs.cpp */; };
 		4D4C03A21CDCF45E009EEB63 /* xml_effects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D4C03A01CDCF45E009EEB63 /* xml_effects.cpp */; };
 		4D5E5EB41CE8B97A00D5D33D /* effect_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D5E5EB21CE8B97A00D5D33D /* effect_manager.cpp */; };
@@ -82,8 +81,6 @@
 		4D3B38E21CC66A95004C8994 /* effect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = effect.cpp; sourceTree = "<group>"; };
 		4D3B38E31CC66A95004C8994 /* effect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = effect.hpp; sourceTree = "<group>"; };
 		4D3F90D01CED1B1B00E6C0E1 /* effects.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = effects.hpp; sourceTree = "<group>"; };
-		4D3F90D11CED1C4000E6C0E1 /* spot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = spot.cpp; sourceTree = "<group>"; };
-		4D3F90D21CED1C4000E6C0E1 /* spot.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = spot.hpp; sourceTree = "<group>"; };
 		4D4A32B91CDFE8D100304FE9 /* xml_configs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = xml_configs.cpp; sourceTree = "<group>"; };
 		4D4A32BA1CDFE8D100304FE9 /* xml_configs.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = xml_configs.hpp; sourceTree = "<group>"; };
 		4D4C03A01CDCF45E009EEB63 /* xml_effects.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = xml_effects.cpp; sourceTree = "<group>"; };
@@ -184,8 +181,6 @@
 				4D3F90D01CED1B1B00E6C0E1 /* effects.hpp */,
 				4D3B38E21CC66A95004C8994 /* effect.cpp */,
 				4D3B38E31CC66A95004C8994 /* effect.hpp */,
-				4D3F90D11CED1C4000E6C0E1 /* spot.cpp */,
-				4D3F90D21CED1C4000E6C0E1 /* spot.hpp */,
 			);
 			name = effects;
 			sourceTree = "<group>";
@@ -549,7 +544,6 @@
 				4D9B296D1CC64190005D65E9 /* ofxOscParameterSync.cpp in Sources */,
 				4DE491011CC69C55003E7958 /* player.cpp in Sources */,
 				4D9B296C1CC64190005D65E9 /* ofxOscMessage.cpp in Sources */,
-				4D3F90D31CED1C4000E6C0E1 /* spot.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				4D1BFD571CD8D9C000D5493C /* video_manager.cpp in Sources */,
 				4D9B299D1CC65D82005D65E9 /* tinyxmlerror.cpp in Sources */,

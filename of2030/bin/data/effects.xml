@@ -1,20 +1,5 @@
 <of2030>
   <effects>
-    <effect name="spot1">
-      <number>1</number>
-      <shader>spot</shader>
-    </effect>
-
-    <effect name="spot2">
-      <number>2</number>
-      <shader>spot</shader>
-    </effect>
-
-    <effect name="spot3">
-      <number>3</number>
-      <shader>spot</shader>
-    </effect>
-
 
     <!-- inloop -->
     <effect name="cursor">
@@ -51,8 +36,21 @@
     </effect>
 
     <!-- spot -->
+    <effect name="spot1">
+      <number>1</number>
+    </effect>
+
+    <effect name="spot2">
+      <number>2</number>
+    </effect>
+
+    <effect name="spot3">
+      <number>3</number>
+    </effect>
+
     <effect name="spot">
       <pattern>spot</pattern>
+      <shader>spot</shader>
     </effect>
 
     <!-- vid -->

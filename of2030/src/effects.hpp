@@ -10,7 +10,7 @@
 #define effects_h
 
 #include "effect.hpp"
-#include "spot.hpp"
+//#include "spot.hpp"
 //#include "pos.hpp"
 
 #endif /* effects_h */
