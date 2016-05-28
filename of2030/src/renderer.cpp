@@ -75,27 +75,35 @@ void Renderer::destroy(){
 
 void Renderer::draw(){
     Context context;
-
-    fbo->begin();
-    ofClear(0.0f,0.0f,0.0f,0.0f);
-
     fillContextClientInfo(context);
     fillScreenSetting(context.screen_setting);
 
+#ifdef __RENDER_TO_FBO_FIRST__
+    fbo->begin();
+    ofClear(0.0f,0.0f,0.0f,0.0f);
+#else
+    ofPushMatrix();
+    ofScale(screenWidth / fbo2->getWidth(), screenHeight / fbo2->getHeight(), 1.0f);
+#endif
+
+    // draw all active effects
     vector<Effect*> effects = player->getActiveEffects();
     for(auto effect: effects){
         fillEffectSetting(*effect, context.effect_setting);
         context.precalc();
         effect->draw(context);
     }
-    
+
     //    fillEffectSetting(*overlayEffect, context.effect_setting);
     //    overlayEffect->draw(context);
 
+#ifdef __RENDER_TO_FBO_FIRST__
     fbo->end();
-
     ofSetColor(255);
     fbo->draw(0,0, screenWidth, screenHeight);
+#else
+    ofPopMatrix();
+#endif
 }
 
 void Renderer::registerRealtimeEffectCallback(bool reg){
