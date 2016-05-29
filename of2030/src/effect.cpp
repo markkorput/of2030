@@ -145,9 +145,26 @@ void Effect::draw(Context &_context){
     maskShader->begin();
         // pass mask texture to shader
         maskShader->setUniformTexture("iMask", context->fbo2->getTexture(), 2);
-        // draw content from fbo3 (masked)
         ofSetColor(255);
         context->fbo3->draw(0.0f, 0.0f);
+//        // draw content from fbo3 (masked)
+//        ofMesh mesh;
+//        mesh.addVertex(ofPoint(0.0f, 0.0f)); // top left
+//        mesh.addVertex(ofPoint(precalc->resolution.x, 0.0f)); // top right
+//        mesh.addVertex(ofPoint(precalc->resolution.x, precalc->resolution.y)); // bottom right
+//        mesh.addVertex(ofPoint(0.0f, precalc->resolution.y)); // bottom left
+//
+//        mesh.addTexCoord(ofVec2f(0.0f, 1.0f)*precalc->resolution);
+//        mesh.addTexCoord(ofVec2f(1.0f, 1.0f)*precalc->resolution);
+//        mesh.addTexCoord(ofVec2f(1.0f, 0.0f)*precalc->resolution);
+//        mesh.addTexCoord(ofVec2f(0.0f, 0.0f)*precalc->resolution);
+//
+//        mesh.addTriangle(0, 1, 2);
+//        mesh.addTriangle(0, 2, 3);
+//
+//        context->fbo3->getTexture().bind();
+//        mesh.draw();
+//        context->fbo3->getTexture().unbind();
     maskShader->end();
     
     context = NULL;
@@ -165,18 +182,15 @@ void Effect::drawContent(){
             bool bAlphaBlack = (context->effect_setting.getValue("alphablack", "1") == "1");
             ofShader* vidShader;
 
-            if(bAlphaBlack){
-                vidShader = ShaderManager::instance()->get("video");
-                vidShader->begin();
-            }
+            vidShader = ShaderManager::instance()->get("video");
+            vidShader->begin();
+            vidShader->setUniform1i("alphaBlack", bAlphaBlack ? 1 : 0);
 
             // ofBackground(255,0,0);
             ofSetColor(255);
             drawVideo();
-
-            if(bAlphaBlack){
-                vidShader->end();
-            }
+            
+            vidShader->end();
         }
     // not video
     } else {
