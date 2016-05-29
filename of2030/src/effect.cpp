@@ -145,9 +145,26 @@ void Effect::draw(Context &_context){
     maskShader->begin();
         // pass mask texture to shader
         maskShader->setUniformTexture("iMask", context->fbo2->getTexture(), 2);
-        // draw content from fbo3 (masked)
         ofSetColor(255);
         context->fbo3->draw(0.0f, 0.0f);
+//        // draw content from fbo3 (masked)
+//        ofMesh mesh;
+//        mesh.addVertex(ofPoint(0.0f, 0.0f)); // top left
+//        mesh.addVertex(ofPoint(precalc->resolution.x, 0.0f)); // top right
+//        mesh.addVertex(ofPoint(precalc->resolution.x, precalc->resolution.y)); // bottom right
+//        mesh.addVertex(ofPoint(0.0f, precalc->resolution.y)); // bottom left
+//
+//        mesh.addTexCoord(ofVec2f(0.0f, 1.0f)*precalc->resolution);
+//        mesh.addTexCoord(ofVec2f(1.0f, 1.0f)*precalc->resolution);
+//        mesh.addTexCoord(ofVec2f(1.0f, 0.0f)*precalc->resolution);
+//        mesh.addTexCoord(ofVec2f(0.0f, 0.0f)*precalc->resolution);
+//
+//        mesh.addTriangle(0, 1, 2);
+//        mesh.addTriangle(0, 2, 3);
+//
+//        context->fbo3->getTexture().bind();
+//        mesh.draw();
+//        context->fbo3->getTexture().unbind();
     maskShader->end();
     
     context = NULL;
@@ -157,39 +174,41 @@ void Effect::draw(Context &_context){
 void Effect::drawContent(){
     ofPushMatrix();
     ofTranslate(context->effect_setting.getValue("translate", ofVec3f(0.0)) * precalc->worldToScreenVec2f);
-    ofScale(context->effect_setting.getValue("scale", ofVec3f(1.0)));
-
-    if(shader){
-        // activate shader
-        shader->begin();
-
-        // populate shader
-        shader->setUniform2f("iResolution", precalc->resolution);
-        shader->setUniform3f("iPos", context->effect_setting.getValue("pos", ofVec3f(0.0f)));
-        shader->setUniform3f("iSize", context->effect_setting.getValue("size", ofVec3f(0.0f)));
-        shader->setUniform1f("iProgress", getProgress());
-        shader->setUniform1f("iDuration", duration);
-        shader->setUniform2f("iScreenWorldSize", precalc->scrWorldSize);
-        shader->setUniform1f("iGain", context->effect_setting.getValue("gain", 1.0f));
-    }
+    // ofScale(context->effect_setting.getValue("scale", ofVec3f(1.0)));
 
     // draw; video?
     if(video_player){
-        bool bAlphaBlack = (context->effect_setting.getValue("alphablack", "1") == "1");
-        ofShader* vidShader;
+        if(video_player->isLoaded() && video_player->getTexture().isAllocated()){
+            bool bAlphaBlack = (context->effect_setting.getValue("alphablack", "1") == "1");
+            ofShader* vidShader;
 
-        if(bAlphaBlack){
             vidShader = ShaderManager::instance()->get("video");
             vidShader->begin();
-        }
+            vidShader->setUniform1i("alphaBlack", bAlphaBlack ? 1 : 0);
 
-        drawVideo();
-
-        if(bAlphaBlack){
+            // ofBackground(255,0,0);
+            ofSetColor(255);
+            drawVideo();
+            
             vidShader->end();
         }
     // not video
     } else {
+        
+        if(shader){
+            // activate shader
+            shader->begin();
+            
+            // populate shader
+            shader->setUniform2f("iResolution", precalc->resolution);
+            shader->setUniform3f("iPos", context->effect_setting.getValue("pos", ofVec3f(0.0f)));
+            shader->setUniform3f("iSize", context->effect_setting.getValue("size", ofVec3f(0.0f)));
+            shader->setUniform1f("iProgress", getProgress());
+            shader->setUniform1f("iDuration", duration);
+            shader->setUniform2f("iScreenWorldSize", precalc->scrWorldSize);
+            shader->setUniform1f("iGain", context->effect_setting.getValue("gain", 1.0f));
+        }
+        
         string pattern = context->effect_setting.getValue("pattern", "");
 
         // pattern?
@@ -199,11 +218,11 @@ void Effect::drawContent(){
         } else {
             ofDrawRectangle(0, 0, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
         }
-    }
 
-    if(shader){
-        // deactivate shader
-        shader->end();
+        if(shader){
+            // deactivate shader
+            shader->end();
+        }
     }
 
     ofPopMatrix();
@@ -303,42 +322,45 @@ void Effect::drawMask(const string &coordsName){
 }
 
 void Effect::drawVideo(){
-    // this is checked by the caller
-    //    if(!video_player){
-    //        return;
-    //    }
-
-    float x = 0.0;
-    if(context->effect_setting.hasValue("pano_pos")){
-        x = precalc->panoWorldToScreen(context->effect_setting.getValue("pano_pos", 0.0f));
+    string coord_prefix = "";
+    if(context->effect_setting.getValue("is_tunnel", "0") == "1"){
+        coord_prefix = "tunnel_coord";
+    } else if(context->effect_setting.getValue("is_pano", "0") == "1"){
+        coord_prefix = "pano_coord";
     }
 
-    if(!context->effect_setting.hasValue("is_pano")){
-        video_player->draw(x, precalc->scrDrawSize.y, precalc->scrDrawSize.x, -precalc->scrDrawSize.y);
-    } else {
-        // set up mesh with vertices and tex coords
-        ofMesh mesh;
-        mesh.addVertex(ofPoint(x, 0.0f)); // top left
-        mesh.addVertex(ofPoint(x+precalc->scrDrawSize.x, 0.0f)); // top right
-        mesh.addVertex(ofPoint(x+precalc->scrDrawSize.x, precalc->scrDrawSize.y)); // bottom right
-        mesh.addVertex(ofPoint(x, precalc->scrDrawSize.y)); // bottom left
-
-        // specify which part of the video texture to show (default values specify the full frame)
-        ofVec2f vidSize = ofVec2f(video_player->getWidth(), video_player->getHeight());
-        mesh.addTexCoord(ofPoint(context->screen_setting.getValue("pano_coord1", ofVec2f(0.0f, 0.0f)) * vidSize));
-        mesh.addTexCoord(ofPoint(context->screen_setting.getValue("pano_coord2", ofVec2f(1.0f, 0.0f)) * vidSize));
-        mesh.addTexCoord(ofPoint(context->screen_setting.getValue("pano_coord3", ofVec2f(1.0f, 1.0f)) * vidSize));
-        mesh.addTexCoord(ofPoint(context->screen_setting.getValue("pano_coord4", ofVec2f(0.0f, 1.0f)) * vidSize));
-
-        mesh.addTriangle(0, 1, 2);
-        mesh.addTriangle(0, 2, 3);
-
-        // bind video texture
-        video_player->bind();
-        ofSetColor(255);
-        mesh.draw();
-        video_player->unbind();
+    if(coord_prefix == ""){
+        video_player->draw(0.0, 0.0, precalc->resolution.x, precalc->resolution.y);
+        return;
     }
+    
+    // set up mesh with vertices and tex coords
+    ofVec2f vidSize = ofVec2f(video_player->getWidth(), video_player->getHeight());
+    ofVec2f coords[4];
+    coords[0] = context->screen_setting.getValue(coord_prefix+"1", ofVec2f(0.0f, 0.0f));
+    coords[1] = context->screen_setting.getValue(coord_prefix+"2", ofVec2f(1.0f, 0.0f));
+    coords[2] = context->screen_setting.getValue(coord_prefix+"3", ofVec2f(1.0f, 1.0f));
+    coords[3] = context->screen_setting.getValue(coord_prefix+"4", ofVec2f(0.0f, 1.0f));
+
+    ofMesh mesh;
+    mesh.addVertex(ofPoint(0.0f, 0.0f)); // top left
+    mesh.addVertex(ofPoint(precalc->resolution.x, 0.0f)); // top right
+    mesh.addVertex(ofPoint(precalc->resolution.x, precalc->resolution.y)); // bottom right
+    mesh.addVertex(ofPoint(0.0f, precalc->resolution.y)); // bottom left
+
+    mesh.addTexCoord(coords[0]*vidSize);
+    mesh.addTexCoord(coords[1]*vidSize);
+    mesh.addTexCoord(coords[2]*vidSize);
+    mesh.addTexCoord(coords[3]*vidSize);
+
+    mesh.addTriangle(0, 1, 2);
+    mesh.addTriangle(0, 2, 3);
+    
+    // bind video texture
+    video_player->bind();
+    ofSetColor(255);
+    mesh.draw();
+    video_player->unbind();
 }
 
 //float Effect::resolveDuration() const {

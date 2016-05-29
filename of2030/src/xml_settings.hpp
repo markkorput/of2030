@@ -30,9 +30,10 @@ namespace of2030{
         string log_level_name;
         ofLogLevel log_level;
         float log_alive_interval;
+        ofVec3f room_size;
 
 #ifdef __MULTI_CLIENT_ENABLED__
-        ofVec3f room_size;
+        
         vector<string> multi_client_ids;
         bool multi_debug;
         float multi_scale;

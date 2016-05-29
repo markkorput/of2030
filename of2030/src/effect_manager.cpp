@@ -153,7 +153,7 @@ void EffectManager::sort(){
 
 SINGLETON_INLINE_IMPLEMENTATION_CODE(EfficientEffectManager)
 
-const int idle_cache_limit = 3;
+const int idle_cache_limit = 5;
 
 Effect* EfficientEffectManager::get(string trigger){
     // find already allocated effect in idle manager

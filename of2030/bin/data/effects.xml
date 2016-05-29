@@ -83,25 +83,35 @@
     <!-- lava vids -->
     <effect name="lava_vid1">
       <video>2.4 LAVA_HARTBEAT_A_STANDARD_1SCREEN_v01.mov</video>
+      <!-- <video>fill100x50.mov</video> -->
+      <is_tunnel>1</is_tunnel>
+      <!-- <loop>1</loop> -->
     </effect>
     <effect name="lava_vid2">
       <video>2.4 LAVA_HARTBEAT_B_5TIMES_v01.mov</video>
+      <!-- <video>fill100x50.mov</video> -->
+      <is_pano>1</is_pano>
+      <loop>1</loop>
     </effect>
     <effect name="lava_vid3">
       <video>2.4 LAVA_HARTBEAT_C_DEAD_v01.mov</video>
+      <is_tunnel>1</is_tunnel>
     </effect>
     <effect name="lava_vid4">
       <video>2.4 LAVA_PATROON_EYEBLINK_v01.mov</video>
       <loop>1</loop>
       <layer>2</layer>
+      <is_tunnel>1</is_tunnel>
     </effect>
     <effect name="lava_vid5">
       <video>2.4 LAVA_PATROON_GROW_v01.mov</video>
       <layer>1</layer>
+      <is_tunnel>1</is_tunnel>
     </effect>
     <effect name="lava_vid6">
       <video>2.4 LAVA_PATROON_v01.mov</video>
       <loop>1</loop>
+      <is_tunnel>1</is_tunnel>
     </effect>
     <effect name="lava_vid7">
       <video>2.4 LAVA_PATROON_WOBBLINGLINES_v01.mov</video>

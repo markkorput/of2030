@@ -35,6 +35,8 @@ namespace of2030{
         ofRectangle panoDrawRect();
         ofRectangle tunnelDrawRect();
         inline ofRectangle panoTunnelDrawRect(){ return panoDrawRect().getIntersection(tunnelDrawRect()); }
+        
+        void readTunnelScreenCoords(ofVec2f *target);
 
     public: // properties
 
@@ -42,12 +44,11 @@ namespace of2030{
         ofVec2f scrWorldSize, worldToScreenVec2f, scrDrawSize;
         ofColor color;
         float scrPanoStart, scrPanoEnd, fxPanoStart, fxPanoEnd;
-        
-    private: // attributes
-        
-        Context* context;
+        // ofVec2f tunnelScreenCoords[4];
 
-        
+    private: // attributes
+
+        Context* context;
     };
 
     // inline function implementations
