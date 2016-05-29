@@ -85,11 +85,11 @@ bool XmlSettings::load(bool reload){
 
     loadOscAddresses(xml.doc, osc_setting);
 
-#ifdef __MULTI_CLIENT_ENABLED__
     room_size = ofVec3f(xml.getValue("of2030:room_size_x", 1.0f),
                         xml.getValue("of2030:room_size_y", 1.0f),
                         xml.getValue("of2030:room_size_z", 1.0f));
 
+#ifdef __MULTI_CLIENT_ENABLED__
     multi_client_ids.clear();
     if(xml.pushTag("of2030")){
         if(xml.pushTag("multi")){
