@@ -59,6 +59,7 @@
       <!-- <video>fingers.mov</video> -->
       <video>Marcheren_1_BW.mov</video>
       <alphablack>0</alphablack>
+      <loop>1</loop>
     </effect>
 
     <effect name="vid2">

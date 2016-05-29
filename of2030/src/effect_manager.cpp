@@ -7,6 +7,7 @@
 //
 
 #include "effect_manager.hpp"
+#include <regex>
 
 using namespace of2030;
 
@@ -18,27 +19,13 @@ EffectManager::~EffectManager(){
     effects.clear();
 }
 
-Effect* EffectManager::get(string typ){
+Effect* EffectManager::get(const string &trigger){
     // create new instance
-    Effect* pEffect = createEffect(typ);
+    Effect* pEffect = createEffect(trigger);
     // add to our internal list
     add(pEffect);
     // return it to caller
     return pEffect;
-}
-
-// returns a pointer (or NULL if not found) to an allocated effect instance
-// of the specified type in the internal idle_effects vector
-Effect* EffectManager::findByType(EffectType typ){
-    for(int i=effects.size()-1; i>=0; i--){
-        if(effects[i]->getType() == typ){
-            // found!
-            return effects[i];
-        }
-    }
-
-    // not found
-    return NULL;
 }
 
 void EffectManager::add(Effect* effect){
@@ -46,23 +33,15 @@ void EffectManager::add(Effect* effect){
     ofNotifyEvent(effectAddedEvent, *effect, this);
 }
 
-EffectType EffectManager::typeStringToType(string typ){
-//     if(typ == "spot") return EffectType::SPOT;
-//    if(typ == "pos") return EffectType::POS;
-    return EffectType::DEFAULT;
-}
-
-Effect* EffectManager::createEffect(string typ){
-    ofLogVerbose() << "EffectManager::createEffect with: " << typ;
+Effect* EffectManager::createEffect(const string &trigger){
+    ofLogVerbose() << "EffectManager::createEffect with: " << trigger;
 
     Effect* pEffect;
 
-//     if(typ == "spot") return (Effect*) new effects::Spot();
-//    if(typ == "pos") return (Effect*) new effects::Pos();
-
     // default type, just set name to whatever was specified
     pEffect = new Effect();
-    pEffect->name = typ;
+    pEffect->name = triggerToName(trigger);
+    pEffect->trigger = trigger;
     return pEffect;
 }
 
@@ -74,25 +53,6 @@ Effect* EffectManager::createEffect(string typ){
 
 void EffectManager::deleteEffect(Effect* effect){
     ofLogVerbose() << "EffectManager::deleteEffect";
-    
-//    IF_TYP_DEL(SPOT, Spot)
-//    IF_TYP_DEL(POS, Pos)
-//    // figure out effect type and delete from memory
-//    if(effect->getType() == EffectType::VID){
-//        // turn into Vid effect pointer before deleting, to delete appropriate class type
-//        delete (effects::Vid*) effect;
-//        return;
-//    }
-//    
-//    if(effect->getType() == EffectType::SPOT){
-//        delete (effects::Spot*) effect;
-//        return;
-//    }
-//    
-//    if(effect->getType() == EffectType::VOICE){
-//        delete (effects::Voice*) effect;
-//        return;
-//    }
     
     // default; simply Effect
     delete effect;
@@ -123,14 +83,12 @@ void EffectManager::clear(){
     }
 }
 
-int EffectManager::getCountByType(EffectType typ){
-    int count = 0;
-    for(auto effect: effects)
-        if(effect->getType() == typ)
-            count++;
-    return count;
+string EffectManager::triggerToName(const string &trigger){
+    // matches on any digits at then end of the string
+    std::regex expression("(\\d+)$");
+    // return the trigger name without any trailing digits
+    return std::regex_replace(trigger, expression, "");
 }
-
 
 
 
@@ -140,28 +98,25 @@ int EffectManager::getCountByType(EffectType typ){
 
 SINGLETON_CLASS_IMPLEMENTATION_CODE(EfficientEffectManager)
 
-const int idle_cache_limit_per_type = 3;
+const int idle_cache_limit = 3;
 
-Effect* EfficientEffectManager::get(string typ){
-    // convert string (typ) to EffectType (type)
-    EffectType type = typeStringToType(typ);
+Effect* EfficientEffectManager::get(string trigger){
     // find already allocated effect in idle manager
-    Effect* pEffect = idle_manager.findByType(type);
+    Effect* pEffect = idle_manager.getEffectByIndex(idle_manager.getCount() - 1);
 
     // no existing idle instance found, default to "normal behaviour" (allocate new instance)
     if(!pEffect){
         // no idle effect found; create new one like usual
-        return EffectManager::get(typ);
+        return EffectManager::get(trigger);
     }
-    
+
     // found one, remove it from idle manager
     idle_manager.remove(pEffect);
     // reset its time values (and some other attributes)
     pEffect->reset();
     // update name if necessary
-//    if(pEffect->getType() == EffectType::DEFAULT){
-    pEffect->name = typ;
-//    }
+    pEffect->name = triggerToName(trigger);
+    pEffect->trigger = trigger;
 
     // add to our own list
     add(pEffect);
@@ -180,7 +135,7 @@ void EfficientEffectManager::finish(Effect* effect){
     }
 
     // check if cache of idle instance has reached its limits yet
-    if(idle_manager.getCountByType(effect->getType()) >= idle_cache_limit_per_type){
+    if(idle_manager.getCount() >= idle_cache_limit){
         // idle cache full, just delete this instance
         deleteEffect(effect);
         return;
@@ -191,4 +146,3 @@ void EfficientEffectManager::finish(Effect* effect){
     idle_manager.add(effect);
     ofLogVerbose() << "[EfficientEffectManager] idle effects count: " << idle_manager.getCount();
 }
-

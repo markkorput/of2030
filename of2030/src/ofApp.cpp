@@ -9,7 +9,6 @@
 #include "interface.hpp"
 #include "osc_receiver.hpp"
 #include "xml_configs.hpp"
-#include "xml_triggers.hpp"
 #include "shader_manager.hpp"
 #include "xml_settings.hpp"
 #include "player.hpp"
@@ -58,10 +57,6 @@ void ofApp::setup(){
     of2030::XmlConfigs::screens()->setNameFilter(of2030::XmlSettings::instance()->client_id);
 #endif
     of2030::XmlConfigs::screens()->load();
-
-    // load triggers xml
-    ofLogVerbose() << "Loading triggers.xml";
-    of2030::XmlTriggers::instance()->load();
 
     // load and start player
     ofLogVerbose() << "Starting player";
@@ -263,7 +258,6 @@ void ofApp::onControl(string &type){
 
     if(type == CTRL_RELOAD_EFFECTS){
         ofLog() << "reloading effects";
-        of2030::XmlTriggers::instance()->load();
         of2030::XmlConfigs::instance()->load();
         return;
     }
