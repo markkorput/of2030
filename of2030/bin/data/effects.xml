@@ -92,15 +92,20 @@
     </effect>
     <effect name="lava_vid4">
       <video>2.4 LAVA_PATROON_EYEBLINK_v01.mov</video>
+      <loop>1</loop>
+      <layer>2</layer>
     </effect>
     <effect name="lava_vid5">
       <video>2.4 LAVA_PATROON_GROW_v01.mov</video>
     </effect>
     <effect name="lava_vid6">
       <video>2.4 LAVA_PATROON_v01.mov</video>
+      <loop>1</loop>
     </effect>
     <effect name="lava_vid7">
       <video>2.4 LAVA_PATROON_WOBBLINGLINES_v01.mov</video>
+      <loop>1</loop>
+      <layer>1</layer>
     </effect>
     <effect name="lava_vid8">
       <video>2.4 LAVA_PATROON_ZIEKENHUISBED_v01.mov</video>

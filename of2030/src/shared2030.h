@@ -72,6 +72,6 @@
         static x* singleton;
 
 #define SINGLETON_INLINE_IMPLEMENTATION_CODE(x) \
-    x* x::singleton = NULL;\
+    x* x::singleton = NULL;
 
 #endif /* shared2030_h */

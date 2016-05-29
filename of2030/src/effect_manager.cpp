@@ -29,7 +29,25 @@ Effect* EffectManager::get(const string &trigger){
 }
 
 void EffectManager::add(Effect* effect){
-    effects.push_back(effect);
+    if(bSortByLayerAscending){
+        // loop over existing effects in reverse (starting at the last one)
+        for(int i=effects.size()-1; i>=0; i--){
+            Effect* existing_effect = effects[i];
+            // if this one has a lower of equal layer value as the new effect,
+            // add the new affect AFTER this one (for same layer value the newest effect
+            // end up on top).
+            if(existing_effect->getLayer() <= effect->getLayer()){
+                // insert new effects after the current one
+                effects.insert(effects.begin()+i, effect);
+                // we found our spot, stop looping
+                break;
+            }
+        }
+    } else {
+        // we're not sorting, just add it to the back of our list
+        effects.push_back(effect);
+    }
+
     ofNotifyEvent(effectAddedEvent, *effect, this);
 }
 
@@ -84,6 +102,44 @@ string EffectManager::triggerToName(const string &trigger){
     return std::regex_replace(trigger, expression, "");
 }
 
+void EffectManager::sort(){
+    vector<Effect*> sorted_effects;
+    int lowest, tmp;
+
+    // we'll move effect pointers from our effects vector
+    // into the local sorted_effects vector and swap them at the end
+    // kee looping until all pointer are moved
+    while(!effects.empty()){
+
+        // we'll need an initial layer value; take the first effect's layer
+        lowest = effects[0]->getLayer();
+        
+        // loop over all remaining effects, to find the (next) lowest layer value
+        for(auto effect: effects){
+            tmp = effect->getLayer();
+            if(tmp < lowest)
+                lowest = tmp;
+        }
+
+        // lowest now contains the lowest layer value for the remaining effects
+        // loop over all remaining effects again and move the ones with this layer value
+        tmp = effects.size();
+        for(int i=0; i<tmp; i++){
+            Effect* effect = effects[i];
+            // does this effect has the lowest layer value?
+            if(effect->getLayer() == lowest){
+                // add this effect to the (back of) the sorted vector...
+                sorted_effects.push_back(effect);
+                // ... and remove it from our main vector
+                effects.erase(effects.begin()+i);
+            }
+        }
+    }
+
+    // swap the content of the -currently empty- effects vector
+    // with the temporary local sorted effects vector
+    effects.swap(sorted_effects);
+}
 
 
 //

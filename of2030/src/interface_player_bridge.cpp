@@ -102,6 +102,12 @@ void InterfacePlayerBridge::onStopTrigger(string &trigger){
 void InterfacePlayerBridge::onEffect(string &name){
     // create effect
     Effect* fx = EfficientEffectManager::instance()->get(name);
+    
+    if(!fx){
+        ofLogError() << "Could not create effect for name: " << name;
+        return;
+    }
+
     // add to players realtime comp
     m_player->addEffect(*fx);
 }

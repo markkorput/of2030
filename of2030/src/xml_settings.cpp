@@ -12,6 +12,8 @@
 
 using namespace of2030;
 
+SINGLETON_INLINE_IMPLEMENTATION_CODE(XmlSettings)
+
 
 //
 // local methods
@@ -42,16 +44,6 @@ void loadOscAddresses(TiXmlDocument &doc, OscSetting &osc_setting){
 //
 // XmlSettings
 //
-
-XmlSettings* XmlSettings::singleton = NULL;
-
-XmlSettings* XmlSettings::instance(){
-    if (!singleton){   // Only allow one instance of class to be generated.
-        singleton = new XmlSettings();
-    }
-    return singleton;
-}
-
 
 bool XmlSettings::load(bool reload){
     ofLogVerbose() << "XmlSettings::load";

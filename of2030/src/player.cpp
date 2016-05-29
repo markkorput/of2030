@@ -47,6 +47,9 @@ void Player::addEffect(Effect &effect){
     // this triggers renderer to call setup on the effect (and providing
     // it with the necessary data)
     ofLog() << "Player::addEffect with trigger " << effect.trigger;
+
+    // Renderer monitors add events on this effect manager and runs effect->setup
+    // (prividing the necessary data through a Context instance)
     effect_manager.add(&effect);
 
     // dead on arrival?

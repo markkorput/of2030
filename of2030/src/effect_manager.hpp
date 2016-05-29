@@ -19,6 +19,7 @@ namespace of2030{
     class EffectManager{
 
     public: // methods
+        EffectManager() : bSortByLayerAscending(false){}
         ~EffectManager();
 
         void add(Effect* effect);
@@ -30,6 +31,11 @@ namespace of2030{
         inline const vector<Effect*> &getEffects(){ return effects; }
         inline Effect* getEffectByIndex(int idx){ return idx >= 0 && effects.size() > idx ? effects[idx] : NULL; }
 
+        inline void setSortByLayerAscending(bool _sort){
+            bSortByLayerAscending = _sort;
+            if(_sort) sort();
+        }
+
     public: // events
         ofEvent<Effect> effectAddedEvent;
         ofEvent<Effect> effectRemovedEvent;
@@ -38,9 +44,11 @@ namespace of2030{
         static Effect* createEffect(const string &trigger);
         static void deleteEffect(Effect* effect);
         static string triggerToName(const string &trigger);
+        void sort();
 
     protected: // attributes
         vector<Effect*> effects;
+        bool bSortByLayerAscending;
     };
 
 
