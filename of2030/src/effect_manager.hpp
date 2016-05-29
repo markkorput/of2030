@@ -25,20 +25,19 @@ namespace of2030{
         bool remove(Effect* effect);
         void clear();
 
-        Effect* get(string typ);
-        Effect* findByType(EffectType typ);
+        Effect* get(const string &trigger);
         inline int getCount(){ return effects.size(); }
-        inline int getCountByType(EffectType typ);
         inline const vector<Effect*> &getEffects(){ return effects; }
+        inline Effect* getEffectByIndex(int idx){ return idx >= 0 && effects.size() > idx ? effects[idx] : NULL; }
 
     public: // events
         ofEvent<Effect> effectAddedEvent;
         ofEvent<Effect> effectRemovedEvent;
-        
+
     protected: // methods
-        EffectType typeStringToType(string typ);
-        Effect* createEffect(string typ);
-        void deleteEffect(Effect* effect);
+        static Effect* createEffect(const string &trigger);
+        static void deleteEffect(Effect* effect);
+        static string triggerToName(const string &trigger);
 
     protected: // attributes
         vector<Effect*> effects;
@@ -49,7 +48,7 @@ namespace of2030{
         SINGLETON_CLASS_HEADER_CODE(EfficientEffectManager)
 
     public: // methods
-        Effect* get(string typ);
+        Effect* get(string trigger);
         void finish(Effect* effect);
     
     protected: // attributes

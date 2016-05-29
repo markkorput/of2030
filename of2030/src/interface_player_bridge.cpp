@@ -8,7 +8,6 @@
 
 #include "interface_player_bridge.hpp"
 #include "effects.hpp"
-#include "xml_triggers.hpp"
 #include "xml_configs.hpp"
 #include "effect_manager.hpp"
 #include "video_manager.hpp"
@@ -72,6 +71,7 @@ void InterfacePlayerBridge::registerCallbacks(bool _register){
     }
 }
 
+
 void InterfacePlayerBridge::onTrigger(string &trigger){
     // first check if there's already an effect with this trigger active,
     // if so; abort
@@ -82,17 +82,12 @@ void InterfacePlayerBridge::onTrigger(string &trigger){
         }
     }
 
-    // get effect to be triggerd by this trigger name
-    const string effectName = XmlTriggers::instance()->getEffectName(trigger);
-
-    // non-shader effect
-    Effect* fx = EfficientEffectManager::instance()->get(effectName);
+    Effect* fx = EfficientEffectManager::instance()->get(trigger);
     if(!fx){
         ofLogError() << "Could not create effect for trigger: " << trigger;
         return;
     }
 
-    fx->trigger = trigger;
     // add to players realtime comp
     m_player->addEffect(*fx);
 
