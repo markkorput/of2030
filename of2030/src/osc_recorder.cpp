@@ -17,7 +17,7 @@
 using namespace of2030;
 
 
-SINGLETON_CLASS_IMPLEMENTATION_CODE(OscRecorder)
+SINGLETON_INLINE_IMPLEMENTATION_CODE(OscRecorder)
 
 OscRecorder::~OscRecorder(){
     if(bRecording){

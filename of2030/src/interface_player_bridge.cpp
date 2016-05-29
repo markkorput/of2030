@@ -14,7 +14,7 @@
 
 using namespace of2030;
 
-SINGLETON_CLASS_IMPLEMENTATION_CODE(InterfacePlayerBridge)
+SINGLETON_INLINE_IMPLEMENTATION_CODE(InterfacePlayerBridge)
 
 InterfacePlayerBridge::InterfacePlayerBridge(){
     m_interface = NULL;

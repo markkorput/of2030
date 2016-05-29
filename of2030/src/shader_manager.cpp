@@ -10,21 +10,7 @@
 
 using namespace of2030;
 
-ShaderManager* ShaderManager::singleton = NULL;
-
-ShaderManager* ShaderManager::instance(){
-    if (!singleton){   // Only allow one instance of class to be generated.
-        singleton = new ShaderManager();
-    }
-    return singleton;
-}
-
-void ShaderManager::destroyInstance(){
-  if (singleton){
-    delete singleton;
-    singleton = NULL;
-  }
-}
+SINGLETON_INLINE_IMPLEMENTATION_CODE(ShaderManager)
 
 ShaderManager::ShaderManager(){
   #ifdef TARGET_OPENGLES

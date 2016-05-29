@@ -10,14 +10,7 @@
 
 using namespace of2030;
 
-Player* Player::singleton = NULL;
-
-Player* Player::instance(){
-    if (!singleton){   // Only allow one instance of class to be generated.
-        singleton = new Player();
-    }
-    return singleton;
-}
+SINGLETON_INLINE_IMPLEMENTATION_CODE(Player)
 
 Player::Player() : m_time(0.0f), m_lastUpdateTime(0.0f), m_bPlaying(false), song("default"), clip("default"){
 }

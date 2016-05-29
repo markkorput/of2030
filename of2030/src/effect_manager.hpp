@@ -45,7 +45,7 @@ namespace of2030{
 
 
     class EfficientEffectManager : public EffectManager{
-        SINGLETON_CLASS_HEADER_CODE(EfficientEffectManager)
+        SINGLETON_INLINE_HEADER_CODE(EfficientEffectManager)
 
     public: // methods
         Effect* get(string trigger);

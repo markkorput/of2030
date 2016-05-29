@@ -32,6 +32,7 @@ void Effect::reset(){
     trigger = "";
     shader = NULL;
     video_player = NULL;
+    layer = 0;
 }
 
 

@@ -13,7 +13,7 @@
 
 using namespace of2030;
 
-SINGLETON_CLASS_IMPLEMENTATION_CODE(Renderer)
+SINGLETON_INLINE_IMPLEMENTATION_CODE(Renderer)
 
 Renderer::Renderer() : fbo(NULL), fbo2(NULL), fbo3(NULL), player(NULL), client_id(""), bCallbacksRegistered(false){
     screenWidth = ofGetWidth();

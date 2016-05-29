@@ -16,7 +16,7 @@
 namespace of2030{
     
     class OscPlaybackManager{
-        SINGLETON_CLASS_HEADER_CODE(OscPlaybackManager)
+        SINGLETON_INLINE_HEADER_CODE(OscPlaybackManager)
 
     public:
         ~OscPlaybackManager(){ clear(); }

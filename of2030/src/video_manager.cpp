@@ -10,7 +10,7 @@
 
 using namespace of2030;
 
-SINGLETON_CLASS_IMPLEMENTATION_CODE(VideoManager)
+SINGLETON_INLINE_IMPLEMENTATION_CODE(VideoManager)
 
 VideoManager::VideoManager(){
 #ifdef __APPLE__

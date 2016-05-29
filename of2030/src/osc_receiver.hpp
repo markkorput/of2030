@@ -17,7 +17,7 @@
 namespace of2030 {
     
     class OscReceiver {
-        SINGLETON_CLASS_HEADER_CODE(OscReceiver)
+        SINGLETON_INLINE_HEADER_CODE(OscReceiver)
 
     public: // methods
         OscReceiver();

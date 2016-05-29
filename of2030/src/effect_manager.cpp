@@ -45,12 +45,6 @@ Effect* EffectManager::createEffect(const string &trigger){
     return pEffect;
 }
 
-#define IF_TYP_DEL(__x__,__y__) \
-    if(effect->getType() == EffectType::__x__){\
-        delete (effects::__y__*) effect;\
-        return;\
-    }\
-
 void EffectManager::deleteEffect(Effect* effect){
     ofLogVerbose() << "EffectManager::deleteEffect";
     
@@ -96,7 +90,7 @@ string EffectManager::triggerToName(const string &trigger){
 // EfficientEffectManager
 //
 
-SINGLETON_CLASS_IMPLEMENTATION_CODE(EfficientEffectManager)
+SINGLETON_INLINE_IMPLEMENTATION_CODE(EfficientEffectManager)
 
 const int idle_cache_limit = 3;
 

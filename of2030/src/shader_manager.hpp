@@ -10,15 +10,13 @@
 #define shader_manager_hpp
 
 #include "ofMain.h"
+#include "shared2030.h"
 
 namespace of2030 {
     class ShaderManager {
+        SINGLETON_INLINE_HEADER_CODE(ShaderManager)
 
     public: // methods/interface
-
-        static ShaderManager* instance();
-        static void destroyInstance();
-
         ShaderManager();
         ~ShaderManager();
 
@@ -35,7 +33,6 @@ namespace of2030 {
         string name_to_path_type(string name, string type);
         
     private: // attributes
-        static ShaderManager* singleton;
         map<string, ofShader*> shaders;
         string folder_path;
     };

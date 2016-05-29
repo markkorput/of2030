@@ -19,7 +19,7 @@
 namespace of2030{
     
     class InterfacePlayerBridge{
-        SINGLETON_CLASS_HEADER_CODE(InterfacePlayerBridge)
+        SINGLETON_INLINE_HEADER_CODE(InterfacePlayerBridge)
     
     public: // methods
         

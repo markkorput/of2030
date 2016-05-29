@@ -13,7 +13,7 @@
 
 using namespace of2030;
 
-SINGLETON_CLASS_IMPLEMENTATION_CODE(MultiClient)
+SINGLETON_INLINE_IMPLEMENTATION_CODE(MultiClient)
 XmlSettings* MultiClient::xml_settings = NULL;
 
 

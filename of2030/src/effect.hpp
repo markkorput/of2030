@@ -60,6 +60,7 @@ namespace of2030{
         inline float getEndTime() const { return endTime; }
         // inline float getDuration() const { return duration; }
         // float resolveDuration() const;
+        inline int getLayer() const { return layer; }
 
         inline ofVideoPlayer* getVideoPlayer() const { return video_player; }
 
@@ -82,6 +83,8 @@ namespace of2030{
         // static int cidCounter;
 
     private: // attributes
+
+        int layer;
         float startTime, endTime, duration;
         EffectType type;
 

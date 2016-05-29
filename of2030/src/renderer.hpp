@@ -16,7 +16,7 @@
 namespace of2030 {
     
     class Renderer{
-        SINGLETON_CLASS_HEADER_CODE(Renderer)
+        SINGLETON_INLINE_HEADER_CODE(Renderer)
 
     public:
         const static int WIDTH = 768;
