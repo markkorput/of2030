@@ -18,7 +18,7 @@
 namespace of2030{
     class OscRecorder{
 
-    SINGLETON_CLASS_HEADER_CODE(OscRecorder)
+    SINGLETON_INLINE_HEADER_CODE(OscRecorder)
 
     public:
         OscRecorder() : bRecording(false){}

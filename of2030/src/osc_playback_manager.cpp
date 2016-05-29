@@ -11,7 +11,7 @@
 
 using namespace of2030;
 
-SINGLETON_CLASS_IMPLEMENTATION_CODE(OscPlaybackManager)
+SINGLETON_INLINE_IMPLEMENTATION_CODE(OscPlaybackManager)
 
 
 bool OscPlaybackManager::start(const string &name){

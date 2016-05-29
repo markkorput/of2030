@@ -20,7 +20,7 @@
 namespace of2030{
     
     class MultiClient {
-        SINGLETON_CLASS_HEADER_CODE(MultiClient)
+        SINGLETON_INLINE_HEADER_CODE(MultiClient)
 
     private:
         static XmlSettings* xml_settings;

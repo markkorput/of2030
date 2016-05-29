@@ -9,16 +9,14 @@
 #ifndef interface_hpp
 #define interface_hpp
 
-//#include <stdio.h>
 #include "ofMain.h"
+#include "shared2030.h"
 #include "setting_types.h"
 
 namespace of2030 {
     
     class Interface {
-
-    public:
-        static Interface* instance();
+        SINGLETON_INLINE_HEADER_CODE(Interface)
     
     public: // events
         ofEvent<string> triggerEvent;
@@ -33,10 +31,6 @@ namespace of2030 {
         ofEvent<string> stopPlaybackEvent;
         ofEvent<string> loadVideoEvent;
         ofEvent<string> unloadVideoEvent;
-
-    private:
-        static Interface* singleton;
-
     };
 };
 

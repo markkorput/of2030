@@ -32,6 +32,7 @@ void Effect::reset(){
     trigger = "";
     shader = NULL;
     video_player = NULL;
+    layer = 0;
 }
 
 
@@ -102,6 +103,8 @@ void Effect::setup(Context &_context){
 
     pano_pos = _context.effect_setting.getValue("pano_pos", 0.0f);
     pano_velocity = _context.effect_setting.getValue("pano_velocity", 0.0f);
+
+    layer = _context.effect_setting.getValue("layer", 0);
 }
 
 void Effect::draw(Context &_context){

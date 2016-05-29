@@ -15,7 +15,7 @@
 namespace of2030 {
     class VideoManager {
 
-        SINGLETON_CLASS_HEADER_CODE(VideoManager)
+        SINGLETON_INLINE_HEADER_CODE(VideoManager)
 
     public: // methods/interface
         VideoManager();

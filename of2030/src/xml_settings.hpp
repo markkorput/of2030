@@ -16,10 +16,7 @@
 namespace of2030{
 
     class XmlSettings{
-    public:
-        static XmlSettings* instance();
-    private:
-        static XmlSettings* singleton;
+        SINGLETON_INLINE_HEADER_CODE(XmlSettings)
 
     public: // methods
         XmlSettings() : loaded(false), path("settings.xml"), client_id_path("client_id.xml"), log_level(OF_LOG_NOTICE){};

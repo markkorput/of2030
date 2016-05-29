@@ -17,21 +17,14 @@
 namespace of2030{
 
     class Player {
-
-    public: // singleton accessor method
-
-        static Player* instance();
-
-    private: // singleton static attribute
-
-        static Player* singleton;
+        SINGLETON_INLINE_HEADER_CODE(Player)
 
     public: // main interface methods
 
         Player();
         // ~Player(){}
 
-        //void setup();
+        void setup();
         void update(); // realtime
         void update(float dt); // custom time
         //void destroy();

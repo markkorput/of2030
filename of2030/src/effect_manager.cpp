@@ -29,7 +29,30 @@ Effect* EffectManager::get(const string &trigger){
 }
 
 void EffectManager::add(Effect* effect){
-    effects.push_back(effect);
+    bool added=false;
+
+    if(bSortByLayerAscending){
+        int i=0;
+
+        for(auto existing_effect: effects){
+            if(existing_effect->getLayer() > effect->getLayer()){
+                effects.insert(effects.begin()+i, effect);
+                added=true;
+                break;
+
+            }
+
+            i++;
+        }
+        
+        // no effect found with a layer-value that's larger
+        // than the new effect's layer-value; simply add the new effect
+        // to the end of our list
+    }
+    
+    if(!added)
+        effects.push_back(effect);
+
     ofNotifyEvent(effectAddedEvent, *effect, this);
 }
 
@@ -44,12 +67,6 @@ Effect* EffectManager::createEffect(const string &trigger){
     pEffect->trigger = trigger;
     return pEffect;
 }
-
-#define IF_TYP_DEL(__x__,__y__) \
-    if(effect->getType() == EffectType::__x__){\
-        delete (effects::__y__*) effect;\
-        return;\
-    }\
 
 void EffectManager::deleteEffect(Effect* effect){
     ofLogVerbose() << "EffectManager::deleteEffect";
@@ -90,13 +107,51 @@ string EffectManager::triggerToName(const string &trigger){
     return std::regex_replace(trigger, expression, "");
 }
 
+void EffectManager::sort(){
+    vector<Effect*> sorted_effects;
+    int lowest, tmp;
+
+    // we'll move effect pointers from our effects vector
+    // into the local sorted_effects vector and swap them at the end
+    // kee looping until all pointer are moved
+    while(!effects.empty()){
+
+        // we'll need an initial layer value; take the first effect's layer
+        lowest = effects[0]->getLayer();
+        
+        // loop over all remaining effects, to find the (next) lowest layer value
+        for(auto effect: effects){
+            tmp = effect->getLayer();
+            if(tmp < lowest)
+                lowest = tmp;
+        }
+
+        // lowest now contains the lowest layer value for the remaining effects
+        // loop over all remaining effects again and move the ones with this layer value
+        tmp = effects.size();
+        for(int i=0; i<tmp; i++){
+            Effect* effect = effects[i];
+            // does this effect has the lowest layer value?
+            if(effect->getLayer() == lowest){
+                // add this effect to the (back of) the sorted vector...
+                sorted_effects.push_back(effect);
+                // ... and remove it from our main vector
+                effects.erase(effects.begin()+i);
+            }
+        }
+    }
+
+    // swap the content of the -currently empty- effects vector
+    // with the temporary local sorted effects vector
+    effects.swap(sorted_effects);
+}
 
 
 //
 // EfficientEffectManager
 //
 
-SINGLETON_CLASS_IMPLEMENTATION_CODE(EfficientEffectManager)
+SINGLETON_INLINE_IMPLEMENTATION_CODE(EfficientEffectManager)
 
 const int idle_cache_limit = 3;
 

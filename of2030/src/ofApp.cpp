@@ -60,6 +60,7 @@ void ofApp::setup(){
 
     // load and start player
     ofLogVerbose() << "Starting player";
+    of2030::Player::instance()->setup();
     of2030::Player::instance()->start();
 
     // This bridge updates the player with new effects, songnames and clipnames
