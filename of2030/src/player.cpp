@@ -166,7 +166,7 @@ void Player::stopAllVideoEffects(){
     // ofLogWarning() << "Player::stopEffectByTrigger active effects: " << effects->size();
     for(auto effect: (*effects)){
         // if the pecified trigger string is empty; stop all effects
-        if(effect->getVideoPlayer()){
+        if(effect->getVideoPlayer() != NULL){
             // ofLogWarning() << "an active";
             active_effects_manager.remove(effect);
             effect_manager.remove(effect);
@@ -175,7 +175,7 @@ void Player::stopAllVideoEffects(){
 
     effects = &pending_effects_manager.getEffects();
     for(auto effect: (*effects)){
-        if(effect->getVideoPlayer()){
+        if(effect->getVideoPlayer() != NULL){
             //  ofLogWarning() << "a pending";
             pending_effects_manager.remove(effect);
             effect_manager.remove(effect);

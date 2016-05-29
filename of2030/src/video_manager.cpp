@@ -50,7 +50,7 @@ ofVideoPlayer* VideoManager::load(string video_name){
 
     ofVideoPlayer *player = new ofVideoPlayer;
 
-    player->load(path);
+    player->loadAsync(path);
     players.push_back(player);
     return player;
 }

@@ -175,18 +175,20 @@ void Effect::drawContent(){
 
     // draw; video?
     if(video_player){
-        bool bAlphaBlack = (context->effect_setting.getValue("alphablack", "1") == "1");
-        ofShader* vidShader;
+        if(video_player->isLoaded() && video_player->getTexture().isAllocated()){
+            bool bAlphaBlack = (context->effect_setting.getValue("alphablack", "1") == "1");
+            ofShader* vidShader;
 
-        if(bAlphaBlack){
-            vidShader = ShaderManager::instance()->get("video");
-            vidShader->begin();
-        }
+            if(bAlphaBlack){
+                vidShader = ShaderManager::instance()->get("video");
+                vidShader->begin();
+            }
 
-        drawVideo();
+            drawVideo();
 
-        if(bAlphaBlack){
-            vidShader->end();
+            if(bAlphaBlack){
+                vidShader->end();
+            }
         }
     // not video
     } else {
