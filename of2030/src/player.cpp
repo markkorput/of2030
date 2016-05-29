@@ -15,12 +15,14 @@ SINGLETON_INLINE_IMPLEMENTATION_CODE(Player)
 Player::Player() : m_time(0.0f), m_lastUpdateTime(0.0f), m_bPlaying(false), song("default"), clip("default"){
 }
 
+void Player::setup(){
+    active_effects_manager.setSortByLayerAscending(true);
+}
+
 void Player::update(){
-    if(m_bPlaying){
-        float dt = ofGetElapsedTimef() - m_lastUpdateTime;
-        update(dt);
-        m_lastUpdateTime += dt;
-    }
+    float dt = ofGetElapsedTimef() - m_lastUpdateTime;
+    update(dt);
+    m_lastUpdateTime += dt;
 }
 
 void Player::update(float dt){
@@ -100,8 +102,10 @@ void Player::clearEffects(){
 void Player::movePlaybackTimeTo(float time){
     setPlaybackTime(time);
 
+    const vector<Effect*> *effects = &active_effects_manager.getEffects();
+
     // First, remove active effects that have ended
-    for(auto effect: active_effects_manager.getEffects()){
+    for(auto effect: (*effects)){
         if(effectEnded(*effect)){
             // remove from active list
             active_effects_manager.remove(effect);
@@ -110,8 +114,10 @@ void Player::movePlaybackTimeTo(float time){
         }
     }
     
+    effects = &pending_effects_manager.getEffects();
+
     // Second, activate pending effects that have started
-    for(auto effect: pending_effects_manager.getEffects()){
+    for(auto effect: (*effects)){
         if(effectStarted(*effect)){
             pending_effects_manager.remove(effect);
             active_effects_manager.add(effect);

@@ -24,7 +24,7 @@ namespace of2030{
         Player();
         // ~Player(){}
 
-        //void setup();
+        void setup();
         void update(); // realtime
         void update(float dt); // custom time
         //void destroy();

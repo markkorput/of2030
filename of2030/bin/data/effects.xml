@@ -97,6 +97,7 @@
     </effect>
     <effect name="lava_vid5">
       <video>2.4 LAVA_PATROON_GROW_v01.mov</video>
+      <layer>1</layer>
     </effect>
     <effect name="lava_vid6">
       <video>2.4 LAVA_PATROON_v01.mov</video>

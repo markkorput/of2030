@@ -29,24 +29,29 @@ Effect* EffectManager::get(const string &trigger){
 }
 
 void EffectManager::add(Effect* effect){
+    bool added=false;
+
     if(bSortByLayerAscending){
-        // loop over existing effects in reverse (starting at the last one)
-        for(int i=effects.size()-1; i>=0; i--){
-            Effect* existing_effect = effects[i];
-            // if this one has a lower of equal layer value as the new effect,
-            // add the new affect AFTER this one (for same layer value the newest effect
-            // end up on top).
-            if(existing_effect->getLayer() <= effect->getLayer()){
-                // insert new effects after the current one
+        int i=0;
+
+        for(auto existing_effect: effects){
+            if(existing_effect->getLayer() > effect->getLayer()){
                 effects.insert(effects.begin()+i, effect);
-                // we found our spot, stop looping
+                added=true;
                 break;
+
             }
+
+            i++;
         }
-    } else {
-        // we're not sorting, just add it to the back of our list
-        effects.push_back(effect);
+        
+        // no effect found with a layer-value that's larger
+        // than the new effect's layer-value; simply add the new effect
+        // to the end of our list
     }
+    
+    if(!added)
+        effects.push_back(effect);
 
     ofNotifyEvent(effectAddedEvent, *effect, this);
 }
