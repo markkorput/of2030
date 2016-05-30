@@ -7,11 +7,7 @@
 0.0,/t/vidsload
 0.0,/cfg/vidsload/video,s,mud/2.3_MUD_MACHINE_E_NOCUBE_v01.mov
 0.0,/t/vidsload
-0.0,/cfg/vidsload/video,s,mud/2.3_MUD_SETTINGWHEEL_SPOT_1_v01.mov
-0.0,/t/vidsload
-0.0,/cfg/vidsload/video,s,mud/2.3_MUD_SETTINGWHEEL_SPOT_2_v01.mov
-0.0,/t/vidsload
-0.0,/cfg/vidsload/video,s,mud/2.3_MUD_SETTINGWHEEL_SPOT_3_v01.mov
+0.0,/cfg/vidsload/video,s,mud/2.3_MUD_WHEEL.mov
 0.0,/t/vidsload
 0.0,/cfg/vidsload/video,s,mud/2.3_MUD_MOVING_WHITE_ROOF_1_v01.mov
 0.0,/t/vidsload

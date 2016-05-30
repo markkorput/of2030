@@ -205,6 +205,10 @@
       <!-- <layer>0</layer> -->
       <is_tunnel>1</is_tunnel>
     </effect>
+    <effect name="mud_wheel_single">
+      <video>mud/2.3_MUD_WHEEL.mov</video>
+      <loop>1</loop>
+    </effect>
     <effect name="mud_wheel1">
       <video>mud/2.3_MUD_SETTINGWHEEL_SPOT_1_v01.mov</video>
       <loop>1</loop>
