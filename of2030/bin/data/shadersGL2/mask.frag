@@ -1,6 +1,5 @@
 uniform sampler2DRect tex0;
 uniform sampler2DRect iMask;
-uniform vec4 iColor;
 
 varying vec2 texCoordVarying;
 
