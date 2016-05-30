@@ -1,0 +1,15 @@
+0.0,/cfg/vidsload/operation,s,unload_video
+0.0,/cfg/vidsload/video,s,mud/2.3_MUD_MACHINE_A_OPBOUW_v01.mov
+0.0,/t/vidsload
+0.0,/cfg/vidsload/video,s,mud/2.3_MUD_MACHINE_B_LOOP_v01.mov
+0.0,/t/vidsload
+0.0,/cfg/vidsload/video,s,mud/2.3_MUD_MACHINE_D_CUBEONLY_v01.mov
+0.0,/t/vidsload
+0.0,/cfg/vidsload/video,s,mud/2.3_MUD_MACHINE_E_NOCUBE_v01.mov
+0.0,/t/vidsload
+0.0,/cfg/vidsload/video,s,mud/2.3_MUD_WHEEL.mov
+0.0,/t/vidsload
+0.0,/cfg/vidsload/video,s,mud/2.3_MUD_MOVING_WHITE_ROOF_1_v01.mov
+0.0,/t/vidsload
+0.0,/cfg/vidsload/video,s,mud/2.3_MUD_MOVING_WHITE_ROOF_2_v01.mov
+0.0,/t/vidsload
