@@ -14,7 +14,7 @@ using namespace of2030;
 
 // int Effect::cidCounter = 0;
 
-Effect::Effect() : video_player(NULL){
+Effect::Effect(){
     reset();
     // setType
     type = DEFAULT;
@@ -31,6 +31,7 @@ void Effect::reset(){
     trigger = "";
     shader = NULL;
     video_player = NULL;
+    mask_video_player = NULL;
     layer = 0;
 }
 
@@ -110,6 +111,34 @@ void Effect::setup(Context &_context){
             // this will effectively abort the effect
             truncate();
         }
+    }
+
+    // load/start/configure video_mask if specified
+    val = _context.effect_setting.getValue("video_mask", "");
+    if(val != ""){
+        // load video (get video player instance from the VideoManager)
+        mask_video_player = VideoManager::instance()->get(val, _context.effect_setting.getValue("video_mask_alias", val), true);
+        
+        if(mask_video_player){
+            if(_context.effect_setting.getValue("video_mask_loop", "1") == "1"){
+                // TODO; this player might currently be used by other effects?
+                mask_video_player->setLoopState(OF_LOOP_NORMAL);
+            } else {
+                // set none-looping
+                mask_video_player->setLoopState(OF_LOOP_NONE);
+            }
+            
+            // reset to start of video (this video player might have been used already by other effects
+            if(_context.effect_setting.getValue("video_mask_reset", "1") == "1")
+                mask_video_player->setPosition(0.0);
+            
+            mask_video_player->play();
+        }/* else {
+            ofLogWarning() << "Effect::setup could not get video player for " << val;
+            ofLog() << "setting effect duration to zero";
+            // this will effectively abort the effect
+            truncate();
+        }*/
     }
 
     // load any shaders based shader param
@@ -221,9 +250,15 @@ void Effect::drawContent(){
             bool bAlphaBlack = (context->effect_setting.getValue("alphablack", "0") == "1");
             ofShader* vidShader;
 
-            vidShader = ShaderManager::instance()->get("video");
-            vidShader->begin();
-            vidShader->setUniform1i("alphaBlack", bAlphaBlack ? 1 : 0);
+            if(mask_video_player){
+                vidShader = ShaderManager::instance()->get("video_mask");
+                vidShader->begin();
+                vidShader->setUniformTexture("iMask", mask_video_player->getTexture(), 2);
+            } else {
+                vidShader = ShaderManager::instance()->get("video");
+                vidShader->begin();
+                vidShader->setUniform1i("alphaBlack", bAlphaBlack ? 1 : 0);
+            }
 
             // ofBackground(255,0,0);
             drawVideo();
@@ -368,7 +403,7 @@ void Effect::drawVideo(){
 
 //    if(coord_prefix == ""){
         video_player->draw(0.0, 0.0, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
-    
+//    return;
 //    }
     
 //    // set up mesh with vertices and tex coords

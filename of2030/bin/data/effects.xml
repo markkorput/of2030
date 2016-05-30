@@ -118,6 +118,15 @@
       <is_tunnel>1</is_tunnel>
       <duration>200.0</duration>
     </effect>
+
+    <effect name="lava_pattern_grow">
+      <video>2.4 LAVA_PATROON_v01.mov</video>
+      <!-- <video_alias>lava_pattern_nonloop</video_alias> -->
+      <loop>1</loop>
+      <!-- <!--<is_tunnel>1</is_tunnel>--> -->
+      <video_mask>mud/2.3_MUD_WHEEL.mov</video_mask>
+    </effect>
+
     <effect name="lava_vid7">
       <video>2.4_LAVA_PATROON_WOBBLINGLINES_v02.mov</video>
       <loop>1</loop>
