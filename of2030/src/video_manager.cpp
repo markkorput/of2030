@@ -37,44 +37,32 @@ void VideoManager::update(){
     }
 }
 
-ofVideoPlayer* VideoManager::load(const string &video_name){
-    string path = video_name_to_path(video_name);
-
-    ofLog() << "VideoManager::load " << path; //player->getMoviePath();
-
-    if(!ofFile::doesFileExist(path)){
-        ofLogWarning() << "could not find video file.";
-        return NULL;
-    }
-
-    ofVideoPlayer *player = new ofVideoPlayer;
-
-    player->loadAsync(path);
-    player->setVolume(0.0f);
-    players[video_name] = player;
-    return player;
+ofVideoPlayer* VideoManager::get(const string &alias, bool load){
+    // assume alias IS the video's path
+    return get(alias, alias, load);
 }
 
-ofVideoPlayer* VideoManager::get(const string &video_name, bool load){
-    string path = video_name_to_path(video_name);
-    
-    std::map<string,ofVideoPlayer*>::iterator it = players.find(video_name);
+ofVideoPlayer* VideoManager::get(const string &alias, const string &video_name, bool load){
+    std::map<string,ofVideoPlayer*>::iterator it = players.find(alias);
 
     // found it
     if(it != players.end()){
         return it->second;
     }
+    
+    // not found, no loading
+    if(!load)
+        return NULL;
 
-    // not found, load?
-    if(load)
-        return this->load(video_name);
+    // (try to) create a player
+    ofVideoPlayer* player = createPlayer(video_name);
 
-    // nothing
-    return NULL;
-}
+    // store it
+    if(player)
+        players[alias] = player;
 
-string VideoManager::video_name_to_path(const string &video_name){
-    return folder_path + video_name;
+    // return it
+    return player;
 }
 
 bool VideoManager::unload(const string &video_name){
@@ -119,4 +107,21 @@ void VideoManager::unload(ofVideoPlayer *player){
             unload(pair.first);
         }
     }
+}
+
+ofVideoPlayer* VideoManager::createPlayer(const string &video_name){
+    string path = video_name_to_path(video_name);
+
+    ofLog() << "VideoManager::createPlayer loading: " << path; //player->getMoviePath();
+    
+    if(!ofFile::doesFileExist(path)){
+        ofLogWarning() << "could not find video file.";
+        return NULL;
+    }
+    
+    ofVideoPlayer *player = new ofVideoPlayer;
+    
+    player->loadAsync(path);
+    player->setVolume(0.0f);
+    return player;
 }

@@ -25,14 +25,16 @@ namespace of2030 {
         void update();
         void destroy();
 
-        ofVideoPlayer* load(const string &video_name);
-        ofVideoPlayer* get(const string &video_name, bool load=true);
+        ofVideoPlayer* get(const string &alias, bool load=true);
+        ofVideoPlayer* get(const string &alias, const string &video_name, bool load=true);
         
         bool unload(const string &video_name);
         void unload(ofVideoPlayer *player);
 
     protected: // helper methods
-        string video_name_to_path(const string &video_name);
+
+        inline string video_name_to_path(const string &video_name) const { return folder_path + video_name; }
+        ofVideoPlayer* createPlayer(const string &video_name);
     
     private: // attributes
         map<string, ofVideoPlayer*> players;
