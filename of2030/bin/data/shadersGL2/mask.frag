@@ -6,7 +6,7 @@ varying vec2 texCoordVarying;
 
 void main()
 {
-    vec3 clr = texture2DRect(tex0, texCoordVarying).rgb;
+    vec4 clr = texture2DRect(tex0, texCoordVarying);
     float mask = texture2DRect(iMask, texCoordVarying).r;
-    gl_FragColor = vec4(clr, mask);
+    gl_FragColor = vec4(clr.rgb, clr.a*mask);
 }
