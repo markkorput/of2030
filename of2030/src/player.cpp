@@ -56,6 +56,7 @@ void Player::addEffect(Effect &effect){
 
     // dead on arrival?
     if(effectEnded(effect)){
+        ofLog() << "Dead-on-arrival: " << effect.name;
         // this triggers cleanups
         effect_manager.remove(&effect);
         return;

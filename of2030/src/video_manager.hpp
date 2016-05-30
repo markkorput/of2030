@@ -31,6 +31,10 @@ namespace of2030 {
         bool unload(const string &alias);
         void unload(ofVideoPlayer *player);
 
+    public: // events
+        
+        ofEvent<ofVideoPlayer> unloadEvent;
+
     protected: // helper methods
 
         inline string video_name_to_path(const string &video_name) const { return folder_path + video_name; }

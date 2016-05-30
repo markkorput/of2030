@@ -27,6 +27,7 @@ class ofApp : public ofBaseApp{
         void onStopPlayback(string &type);
         void onLoadVideo(string &name);
         void onUnloadVideo(string &name);
+        void onVideoPlayerUnload(ofVideoPlayer &player);
 
     private: // attributes
         float next_log_alive_time;

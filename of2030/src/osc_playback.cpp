@@ -16,7 +16,7 @@ void OscPlayback::start(){
 
 bool OscPlayback::update(int recursion_count){
     if(recursion_count > 2){
-        ofLogWarning() << "[OscPlayback::update] recursion count > 1";
+        ofLogWarning() << "[OscPlayback::update] recursion count > 2";
         return false;
     }
 
@@ -47,7 +47,7 @@ bool OscPlayback::update(int recursion_count){
     }
 
     if(bLoop){
-        // ofLog() << "LOOP";
+        ofLog() << "OscPlayback LOOP";
         file->reset();
         ofNotifyEvent(loopEvent, *this, this);
         start();

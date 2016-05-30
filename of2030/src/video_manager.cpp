@@ -86,6 +86,8 @@ bool VideoManager::unload(const string &alias){
         return false;
     }
 
+    ofNotifyEvent(unloadEvent, *it->second, this);
+
     // remove from our list
     players.erase(it);
     // close player/video file
