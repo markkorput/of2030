@@ -88,6 +88,9 @@ bool XmlSettings::load(bool reload){
     room_size = ofVec3f(xml.getValue("of2030:room_size_x", 1.0f),
                         xml.getValue("of2030:room_size_y", 1.0f),
                         xml.getValue("of2030:room_size_z", 1.0f));
+    
+    rgbaVidPixels = xml.getValue("of2030:rgba_pixels", "0") == "1";
+    alphaBlending = xml.getValue("of2030:alpha_blending", "0") == "1";
 
 #ifdef __MULTI_CLIENT_ENABLED__
     multi_client_ids.clear();

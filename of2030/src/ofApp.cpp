@@ -25,7 +25,7 @@ void ofApp::setup(){
     ofLogVerbose() << "Redirect logging to log.txt";
     ofLogToFile("log.txt", true);
     ofLog() << "window size: " << ofGetWidth() << "x" << ofGetHeight();
-
+    
 #ifdef __HIDE_CURSOR__
     ofHideCursor();
 #endif
@@ -92,7 +92,8 @@ void ofApp::setup(){
     ofAddListener(of2030::Interface::instance()->stopPlaybackEvent, this, &ofApp::onStopPlayback);
     ofAddListener(of2030::Interface::instance()->loadVideoEvent, this, &ofApp::onLoadVideo);
     ofAddListener(of2030::Interface::instance()->unloadVideoEvent, this, &ofApp::onUnloadVideo);
-    
+    ofAddListener(of2030::VideoManager::instance()->unloadEvent, this, &ofApp::onVideoPlayerUnload);
+
     // load & start OscReceiver; let the messages come!
     ofLogVerbose() << "Starting OscReceiver";
     of2030::OscReceiver::instance()->configure(of2030::XmlSettings::instance()->osc_setting);
@@ -101,6 +102,10 @@ void ofApp::setup(){
     // for debugging; start recorded osc sequence
     // of2030::OscPlaybackManager::instance()->start("_rec");
     // of2030::OscPlaybackManager::instance()->start("clock_spot");
+
+    if(of2030::XmlSettings::instance()->alphaBlending){
+       ofEnableAlphaBlending();
+    }
 
     // using the player's time as main timing mechanism
     next_log_alive_time = of2030::Player::instance()->getTime();
@@ -259,13 +264,13 @@ void ofApp::onControl(string &type){
 
     if(type == CTRL_RELOAD_EFFECTS){
         ofLog() << "reloading effects";
-        of2030::XmlConfigs::instance()->load();
+        of2030::XmlConfigs::instance()->load(true);
         return;
     }
 
     if(type == CTRL_RELOAD_SCREENS){
         ofLog() << "reloading screens";
-        of2030::XmlConfigs::screens()->load();
+        of2030::XmlConfigs::screens()->load(true);
 #ifdef __MULTI_CLIENT_ENABLED__
         of2030::MultiClient::instance()->setup();
 #endif
@@ -312,4 +317,8 @@ void ofApp::onUnloadVideo(string &name){
     }
 
     of2030::VideoManager::instance()->unload(name);
+}
+
+void ofApp::onVideoPlayerUnload(ofVideoPlayer &player){
+    of2030::Player::instance()->stopEffectsByVideoPlayer(&player);
 }

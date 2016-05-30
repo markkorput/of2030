@@ -8,7 +8,8 @@
 
 #include "osc_ascii_file.hpp"
 
-OscAsciiFile::OscAsciiFile() : bLoop(false){
+OscAsciiFile::OscAsciiFile(){
+    bLoop = false;
 }
 
 void OscAsciiFile::destroy(){

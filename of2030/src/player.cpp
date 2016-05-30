@@ -56,6 +56,7 @@ void Player::addEffect(Effect &effect){
 
     // dead on arrival?
     if(effectEnded(effect)){
+        ofLog() << "Dead-on-arrival: " << effect.name;
         // this triggers cleanups
         effect_manager.remove(&effect);
         return;
@@ -107,6 +108,7 @@ void Player::movePlaybackTimeTo(float time){
     // First, remove active effects that have ended
     for(auto effect: (*effects)){
         if(effectEnded(*effect)){
+            ofLog() << "[Player] effect ended: " << effect->trigger;
             // remove from active list
             active_effects_manager.remove(effect);
             // remove altogether

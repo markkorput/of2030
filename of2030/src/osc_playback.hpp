@@ -14,7 +14,10 @@
 
 class OscPlayback {
 public:
-    OscPlayback(OscAsciiFile &_file) : bLoop(false){ file = &_file; }
+    OscPlayback(OscAsciiFile &_file){
+        bLoop = false;
+        file = &_file;
+    }
     
     void start();
     // returns true if not ended yet

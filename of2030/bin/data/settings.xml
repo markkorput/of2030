@@ -21,6 +21,9 @@
     </addresses>
   </osc>
 
+  <rgba_pixels>0</rgba_pixels>
+  <alpha_blending>0</alpha_blending>
+
   <room_size_x>4.0</room_size_x>
   <room_size_y>2.0</room_size_y>
   <room_size_z>11</room_size_z>

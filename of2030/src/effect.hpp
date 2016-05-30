@@ -51,18 +51,24 @@ namespace of2030{
         virtual void draw(Context &_context);
         virtual void update(float dt);
 
+        inline void truncate(){
+            startTime = 0.0f;
+            endTime = 0.0f;
+        }
+
         inline bool hasStartTime() const { return startTime >= 0.0f; }
         inline bool hasEndTime() const { return endTime >= 0.0f; }
-        inline bool hasDuration() const { return duration >= 0.0f; }
 
         inline EffectType getType() const { return type; }
         inline float getStartTime() const { return startTime; }
         inline float getEndTime() const { return endTime; }
-        // inline float getDuration() const { return duration; }
-        // float resolveDuration() const;
+         inline float getDuration() const { return endTime-startTime; }
         inline int getLayer() const { return layer; }
 
         inline ofVideoPlayer* getVideoPlayer() const { return video_player; }
+        inline void setDuration(float duration){
+            endTime = startTime + duration;
+        }
 
     protected: // methods
         
@@ -72,7 +78,7 @@ namespace of2030{
         void drawPattern(const string &patternName);
 
         inline float getEffectTime(){ return context->time - startTime; }
-        inline float getProgress(){ return getEffectTime() / duration; }
+        inline float getProgress(){ return getEffectTime() / getDuration(); }
 
     public: // properties
 
@@ -85,7 +91,7 @@ namespace of2030{
     private: // attributes
 
         int layer;
-        float startTime, endTime, duration;
+        float startTime, endTime;
         EffectType type;
 
         ofVideoPlayer* video_player;
