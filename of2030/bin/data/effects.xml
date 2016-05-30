@@ -61,7 +61,7 @@
       <!-- <video>PanoCalib-01.mov</video> -->
       <!-- <video>fingers.mov</video> -->
       <video>Marcheren_1_BW.mov</video>
-      <alphablack>0</alphablack>
+      <!-- <alphablack>0</alphablack> -->
       <loop>1</loop>
     </effect>
 
@@ -87,7 +87,7 @@
     <effect name="lava_vid1">
       <video>2.4 LAVA_HARTBEAT_A_STANDARD_1SCREEN_v01.mov</video>
       <!-- <video>fill100x50.mov</video> -->
-      <is_tunnel>1</is_tunnel>
+      <!--<is_tunnel>1</is_tunnel>-->
       <!-- <loop>1</loop> -->
     </effect>
     <effect name="lava_vid2">
@@ -98,31 +98,31 @@
     </effect>
     <effect name="lava_vid3">
       <video>2.4 LAVA_HARTBEAT_C_DEAD_v01.mov</video>
-      <is_tunnel>1</is_tunnel>
+      <!--<is_tunnel>1</is_tunnel>-->
     </effect>
     <effect name="lava_vid4">
       <video>2.4_LAVA_PATROON_EYEBLINK_v02.mov</video>
       <loop>1</loop>
       <layer>2</layer>
-      <is_tunnel>1</is_tunnel>
+      <!--<is_tunnel>1</is_tunnel>-->
       <duration>200.0</duration>
     </effect>
     <effect name="lava_vid5">
       <video>2.4_LAVA_PATROON_GROW_v02.mov</video>
       <layer>1</layer>
-      <is_tunnel>1</is_tunnel>
+      <!--<is_tunnel>1</is_tunnel>-->
     </effect>
     <effect name="lava_vid6">
       <video>2.4 LAVA_PATROON_v01.mov</video>
       <loop>1</loop>
-      <is_tunnel>1</is_tunnel>
+      <!--<is_tunnel>1</is_tunnel>-->
       <duration>200.0</duration>
     </effect>
     <effect name="lava_vid66">
       <video>2.4 LAVA_PATROON_v01.mov</video>
       <video_alias>lava_pattern_nonloop</video_alias>
       <!-- <loop>1</loop> -->
-      <!-- <is_tunnel>1</is_tunnel> -->
+      <!-- <!--<is_tunnel>1</is_tunnel>--> -->
     </effect>
     <effect name="lava_vid7">
       <video>2.4_LAVA_PATROON_WOBBLINGLINES_v02.mov</video>
@@ -138,14 +138,14 @@
       <video>rain/3.1_RAIN_NOORDERLICHT_A_START_v01.mov</video>
       <!-- <loop>1</loop> -->
       <!-- <layer>0</layer> -->
-      <is_tunnel>1</is_tunnel>
+      <!--<is_tunnel>1</is_tunnel>-->
     </effect>
     <effect name="rain_noorderlicht_loop">
       <video>rain/3.1_RAIN_NOORDERLICHT_B_LOOP_v01.mov</video>
       <loop>1</loop>
       <duration>200.0</duration>
       <!-- <layer>0</layer> -->
-      <is_tunnel>1</is_tunnel>
+      <!--<is_tunnel>1</is_tunnel>-->
     </effect>
     <effect name="rain_rain_start">
       <video>rain/3.1_RAIN_REGEN_A_START_v01.mov</video>
@@ -172,11 +172,9 @@
       <video>rain/3.1_RAIN_THUNDER_v01.mov</video>
       <!-- <loop>1</loop> -->
       <!-- <layer>0</layer> -->
-      <is_tunnel>1</is_tunnel>
+      <!--<is_tunnel>1</is_tunnel>-->
       <layer>1</layer>
     </effect>
-
-
 
 
 
@@ -184,27 +182,28 @@
       <video>mud/2.3_MUD_MACHINE_A_OPBOUW_v01.mov</video>
       <!-- <loop>1</loop> -->
       <!-- <layer>0</layer> -->
-      <is_tunnel>1</is_tunnel>
+      <!--<is_tunnel>1</is_tunnel>-->
       <layer>1</layer>
+      <freeze>first</freeze>
     </effect>
     <effect name="mud_machine_loop">
       <video>mud/2.3_MUD_MACHINE_B_LOOP_v01.mov</video>
       <!-- <loop>1</loop> -->
       <!-- <layer>0</layer> -->
-      <is_tunnel>1</is_tunnel>
+      <!--<is_tunnel>1</is_tunnel>-->
       <freeze>last</freeze>freeze>
     </effect>
     <effect name="rain_machine_cube">
       <video>mud/2.3_MUD_MACHINE_D_CUBEONLY_v01.mov</video>
       <loop>1</loop>
       <!-- <layer>0</layer> -->
-      <is_tunnel>1</is_tunnel>
+      <!--<is_tunnel>1</is_tunnel>-->
     </effect>
     <effect name="mud_machine_nocube">
       <video>mud/2.3_MUD_MACHINE_E_NOCUBE_v01.mov</video>
       <loop>1</loop>
       <!-- <layer>0</layer> -->
-      <is_tunnel>1</is_tunnel>
+      <!--<is_tunnel>1</is_tunnel>-->
     </effect>
     <effect name="mud_wheel_single">
       <video>mud/2.3_MUD_WHEEL.mov</video>
@@ -215,19 +214,19 @@
       <video>mud/2.3_MUD_SETTINGWHEEL_SPOT_1_v01.mov</video>
       <loop>1</loop>
       <!-- <layer>0</layer> -->
-      <is_tunnel>1</is_tunnel>
+      <!--<is_tunnel>1</is_tunnel>-->
     </effect>
     <effect name="mud_wheel2">
       <video>mud/2.3_MUD_SETTINGWHEEL_SPOT_2_v01.mov</video>
       <loop>1</loop>
       <!-- <layer>0</layer> -->
-      <is_tunnel>1</is_tunnel>
+      <!--<is_tunnel>1</is_tunnel>-->
     </effect>
     <effect name="mud_wheel3">
       <video>mud/2.3_MUD_SETTINGWHEEL_SPOT_3_v01.mov</video>
       <loop>1</loop>
       <!-- <layer>0</layer> -->
-      <is_tunnel>1</is_tunnel>
+      <!--<is_tunnel>1</is_tunnel>-->
       <layer>1</layer>
     </effect>
     <effect name="mud_roof1">
