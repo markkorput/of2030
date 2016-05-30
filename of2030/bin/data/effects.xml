@@ -113,6 +113,12 @@
       <loop>1</loop>
       <is_tunnel>1</is_tunnel>
     </effect>
+    <effect name="lava_vid66">
+      <video>2.4 LAVA_PATROON_v01.mov</video>
+      <video_alias>lava_pattern_nonloop</video_alias>
+      <!-- <loop>1</loop> -->
+      <!-- <is_tunnel>1</is_tunnel> -->
+    </effect>
     <effect name="lava_vid7">
       <video>2.4 LAVA_PATROON_WOBBLINGLINES_v01.mov</video>
       <loop>1</loop>

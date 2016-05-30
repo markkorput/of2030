@@ -63,7 +63,7 @@ void Effect::setup(Context &_context){
     val = _context.effect_setting.getValue("video", "");
     if(val != ""){
         // load video (get video player instance from the VideoManager)
-        video_player = VideoManager::instance()->get(val, true);
+        video_player = VideoManager::instance()->get(val, _context.effect_setting.getValue("video_alias", val), true);
 
         if(video_player){
             if(_context.effect_setting.getValue("loop", "0") == "1"){
