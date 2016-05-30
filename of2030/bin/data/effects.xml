@@ -189,9 +189,10 @@
     </effect>
     <effect name="mud_machine_loop">
       <video>mud/2.3_MUD_MACHINE_B_LOOP_v01.mov</video>
-      <loop>1</loop>
+      <!-- <loop>1</loop> -->
       <!-- <layer>0</layer> -->
       <is_tunnel>1</is_tunnel>
+      <freeze>last</freeze>freeze>
     </effect>
     <effect name="rain_machine_cube">
       <video>mud/2.3_MUD_MACHINE_D_CUBEONLY_v01.mov</video>
