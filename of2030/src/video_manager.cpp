@@ -7,6 +7,7 @@
 //
 
 #include "video_manager.hpp"
+#include "xml_settings.hpp"
 
 using namespace of2030;
 
@@ -122,7 +123,9 @@ ofVideoPlayer* VideoManager::createPlayer(const string &video_name){
     }
     
     ofVideoPlayer *player = new ofVideoPlayer;
-    
+    if(XmlSettings::instance()->rgbaVidPixels){
+        player->setPixelFormat(OF_PIXELS_RGBA);
+    }
     player->loadAsync(path);
     player->setVolume(0.0f);
     return player;

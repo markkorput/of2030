@@ -32,6 +32,8 @@ namespace of2030{
         float log_alive_interval;
         ofVec3f room_size;
 
+        bool rgbaVidPixels;
+        
 #ifdef __MULTI_CLIENT_ENABLED__
         
         vector<string> multi_client_ids;

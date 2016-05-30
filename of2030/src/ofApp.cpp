@@ -26,6 +26,8 @@ void ofApp::setup(){
     ofLogToFile("log.txt", true);
     ofLog() << "window size: " << ofGetWidth() << "x" << ofGetHeight();
 
+    ofEnableAlphaBlending();
+    
 #ifdef __HIDE_CURSOR__
     ofHideCursor();
 #endif
