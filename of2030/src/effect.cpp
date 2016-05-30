@@ -66,7 +66,7 @@ void Effect::setup(Context &_context){
     }
 
     // make sure we have endTime and duration initialized AND consistent
-    if(!hasEndTime()){
+    if(!hasEndTime() ){
         setDuration(_context.effect_setting.getValue("duration", 30.0f));
     }
 
@@ -80,12 +80,17 @@ void Effect::setup(Context &_context){
             if(_context.effect_setting.getValue("loop", "0") == "1"){
                 // TODO; this player might currently be used by other effects?
                 video_player->setLoopState(OF_LOOP_NORMAL);
+                // indefinite
+                endTime = NO_TIME;
             } else {
                 // set none-looping
                 video_player->setLoopState(OF_LOOP_NONE);
                 
-                // make sure the effect's duration time is not longer than the non-looping video's duration
-                if(getDuration() > video_player->getDuration()){
+                // wanna freeze on first or last frame when done? remove end time, go on indefinite
+                if(_context.effect_setting.hasValue("freeze")){
+                    endTime = NO_TIME;
+                } else if(getDuration() > video_player->getDuration()){
+                    // make sure the effect's duration time is not longer than the non-looping video's duration
                     setDuration(video_player->getDuration());
                 }
             }
@@ -196,6 +201,14 @@ void Effect::drawContent(){
     // draw; video?
     if(video_player){
         if(video_player->isLoaded() && video_player->getTexture().isAllocated()){
+            
+            // movie done?
+            if(video_player->getIsMovieDone()){
+                if(context->effect_setting.getValue("freeze", "") == "first"){
+                    video_player->setPosition(0.0);
+                }
+            }
+
             bool bAlphaBlack = (context->effect_setting.getValue("alphablack", "1") == "1");
             ofShader* vidShader;
 
