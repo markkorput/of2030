@@ -125,22 +125,31 @@ void Effect::draw(Context &_context){
     
     // draw 4-point coordinates mask
     // (if no coordinates specfied, this will give a full white frame)
-    context->fbo3->begin();
-        ofClear(0.0f, 0.0f, 0.0f, 0.0f);
-        ofSetColor(255);
-        drawMask(context->effect_setting.getValue("mask_coords_name", ""));
-    context->fbo3->end();
-
-    // draw pano (masked with above mask) into fbo2
     context->fbo2->begin();
-        ofClear(0.0f, 0.0f, 0.0f, 0.0f);
-        maskShader->begin();
-            maskShader->setUniformTexture("iMask", context->fbo3->getTexture(), 2);
+        if(context->effect_setting.hasValue("mask_coords_name")){
+            ofClear(0.0f, 0.0f, 0.0f, 0.0f);
+            ofSetColor(255);
+            drawMask(context->effect_setting.getValue("mask_coords_name", ""));
+        } else {
             ofSetColor(255);
             ofRectangle rect = precalc->panoTunnelDrawRect();
             ofDrawRectangle(rect);
-        maskShader->end();
+        }
     context->fbo2->end();
+
+    // draw pano (masked with above mask) into fbo2
+//    context->fbo2->begin();
+//        ofClear(0.0f, 0.0f, 0.0f, 0.0f);
+//        maskShader->begin();
+//            maskShader->setUniformTexture("iMask", context->fbo3->getTexture(), 1);
+//            ofSetColor(255);
+//            ofRectangle rect = precalc->panoTunnelDrawRect();
+//            ofDrawRectangle(rect);
+//        maskShader->end();
+//    ofClear(0.0f, 0.0f, 0.0f, 0.0f);
+//    ofSetColor(255);
+//    drawMask(context->effect_setting.getValue("mask_coords_name", ""));
+//    context->fbo2->end();
 
     // draw content to fbo3
     context->fbo3->begin();
