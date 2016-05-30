@@ -21,7 +21,7 @@
     </effect>
 
     <!-- roof -->
-    <effect name="roof">
+    <effect name="yellow_roof">
       <mask_coords_name>roof_coord</mask_coords_name>
       <color_r>255</color_r>
       <color_g>255</color_g>
