@@ -136,11 +136,13 @@
       <video>rain/3.1_RAIN_NOORDERLICHT_A_START_v01.mov</video>
       <!-- <loop>1</loop> -->
       <!-- <layer>0</layer> -->
+      <is_tunnel>1</is_tunnel>
     </effect>
     <effect name="rain_noorderlicht_loop">
       <video>rain/3.1_RAIN_NOORDERLICHT_B_LOOP_v01.mov</video>
       <loop>1</loop>
       <!-- <layer>0</layer> -->
+      <is_tunnel>1</is_tunnel>
     </effect>
     <effect name="rain_rain_start">
       <video>rain/3.1_RAIN_REGEN_A_START_v01.mov</video>
@@ -166,6 +168,7 @@
       <video>rain/3.1_RAIN_THUNDER_v01.mov</video>
       <!-- <loop>1</loop> -->
       <!-- <layer>0</layer> -->
+      <is_tunnel>1</is_tunnel>
     </effect>
 
 
