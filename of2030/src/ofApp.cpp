@@ -259,13 +259,13 @@ void ofApp::onControl(string &type){
 
     if(type == CTRL_RELOAD_EFFECTS){
         ofLog() << "reloading effects";
-        of2030::XmlConfigs::instance()->load();
+        of2030::XmlConfigs::instance()->load(true);
         return;
     }
 
     if(type == CTRL_RELOAD_SCREENS){
         ofLog() << "reloading screens";
-        of2030::XmlConfigs::screens()->load();
+        of2030::XmlConfigs::screens()->load(true);
 #ifdef __MULTI_CLIENT_ENABLED__
         of2030::MultiClient::instance()->setup();
 #endif
