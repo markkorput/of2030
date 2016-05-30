@@ -28,7 +28,6 @@ Effect::Effect() : video_player(NULL){
 void Effect::reset(){
     startTime = NO_TIME;
     endTime = NO_TIME;
-    duration = NO_TIME;
     trigger = "";
     shader = NULL;
     video_player = NULL;
@@ -48,15 +47,27 @@ void Effect::setup(Context &_context){
         startTime = _context.time;
     }
 
-    // make sure we have endTime and duration initialized AND consistent
-    if(hasEndTime()){
-        duration = endTime - startTime;
-    } else {
-        if(!hasDuration()){
-            duration = _context.effect_setting.getValue("duration", 30.0f);
+    val = _context.effect_setting.getValue("operation", "");
+    if(val != ""){
+        if(val == "load_video"){
+            val = _context.effect_setting.getValue("video", "");
+            VideoManager::instance()->get(val, _context.effect_setting.getValue("video_alias", val), true);
         }
 
-        endTime = startTime + duration;
+        if(val == "unload_video"){
+            val = _context.effect_setting.getValue("video_alias", "");
+            if(val == "")
+                val = _context.effect_setting.getValue("video", "");
+            VideoManager::instance()->unload(val);
+        }
+        
+        truncate();
+        return;
+    }
+
+    // make sure we have endTime and duration initialized AND consistent
+    if(!hasEndTime()){
+        setDuration(_context.effect_setting.getValue("duration", 30.0f));
     }
 
     // load/start/configure video if specified
@@ -74,9 +85,8 @@ void Effect::setup(Context &_context){
                 video_player->setLoopState(OF_LOOP_NONE);
                 
                 // make sure the effect's duration time is not longer than the non-looping video's duration
-                if(duration > video_player->getDuration()){
-                    duration = video_player->getDuration();
-                    endTime = startTime + duration;
+                if(getDuration() > video_player->getDuration()){
+                    setDuration(video_player->getDuration());
                 }
             }
 
@@ -89,9 +99,7 @@ void Effect::setup(Context &_context){
             ofLogWarning() << "Effect::setup could not get video player for " << val;
             ofLog() << "setting effect duration to zero";
             // this will effectively abort the effect
-            duration = 0.0f;
-            startTime=_context.time-1.0f;
-            endTime = startTime-1.0f;
+            truncate();
         }
     }
 
@@ -204,7 +212,7 @@ void Effect::drawContent(){
             shader->setUniform3f("iPos", context->effect_setting.getValue("pos", ofVec3f(0.0f)));
             shader->setUniform3f("iSize", context->effect_setting.getValue("size", ofVec3f(0.0f)));
             shader->setUniform1f("iProgress", getProgress());
-            shader->setUniform1f("iDuration", duration);
+            shader->setUniform1f("iDuration", getDuration());
             shader->setUniform2f("iScreenWorldSize", precalc->scrWorldSize);
             shader->setUniform1f("iGain", context->effect_setting.getValue("gain", 1.0f));
         }
@@ -365,7 +373,7 @@ void Effect::drawVideo(){
 
 //float Effect::resolveDuration() const {
 //    if(hasDuration())
-//        return duration;
+//        return getDuration();
 //
 //    if(hasStartTime() and hasEndTime())
 //        return endTime - startTime;

@@ -28,7 +28,7 @@ namespace of2030 {
         ofVideoPlayer* get(const string &video_name, bool load=true);
         ofVideoPlayer* get(const string &video_name, const string &alias, bool load=true);
         
-        bool unload(const string &video_name);
+        bool unload(const string &alias);
         void unload(ofVideoPlayer *player);
 
     protected: // helper methods

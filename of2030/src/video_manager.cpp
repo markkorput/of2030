@@ -67,17 +67,17 @@ ofVideoPlayer* VideoManager::get(const string &video_name, const string &alias, 
     return player;
 }
 
-bool VideoManager::unload(const string &video_name){
-    ofLog() << "VideoManager::unload with " << video_name;
+bool VideoManager::unload(const string &alias){
+    ofLog() << "VideoManager::unload with " << alias;
 
     // No specific player specified? destroy all
-    if(video_name == ""){
+    if(alias == ""){
         destroy();
         return true;
     }
 
     // find specified player
-    std::map<string,ofVideoPlayer*>::iterator it = players.find(video_name);
+    std::map<string,ofVideoPlayer*>::iterator it = players.find(alias);
 
     // not found, abort
     if(it == players.end()){
