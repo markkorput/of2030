@@ -20,29 +20,28 @@ VideoManager::VideoManager(){
 #endif // __APPLE__
 }
 
-VideoManager::~VideoManager(){
-    for(auto player: players){
-        delete player;
+void VideoManager::destroy(){
+    for (auto& pair: players) {
+        delete pair.second;
     }
 
     players.clear();
 }
-
 //void VideoManager::setup(){
 //    
 //}
 
 void VideoManager::update(){
-    for(auto player: players){
-        player->update();
+    for(auto& pair: players){
+        pair.second->update();
     }
 }
 
-ofVideoPlayer* VideoManager::load(string video_name){
+ofVideoPlayer* VideoManager::load(const string &video_name){
     string path = video_name_to_path(video_name);
 
     ofLog() << "VideoManager::load " << path; //player->getMoviePath();
-    
+
     if(!ofFile::doesFileExist(path)){
         ofLogWarning() << "could not find video file.";
         return NULL;
@@ -52,43 +51,60 @@ ofVideoPlayer* VideoManager::load(string video_name){
 
     player->loadAsync(path);
     player->setVolume(0.0f);
-    players.push_back(player);
+    players[video_name] = player;
     return player;
 }
 
-ofVideoPlayer* VideoManager::get(string video_name, bool load){
+ofVideoPlayer* VideoManager::get(const string &video_name, bool load){
     string path = video_name_to_path(video_name);
-    for(int i=players.size()-1; i>=0; i--){
-        if(players[i]->getMoviePath() == path){
-            return players[i];
-        }
+    
+    std::map<string,ofVideoPlayer*>::iterator it = players.find(video_name);
+
+    // found it
+    if(it != players.end()){
+        return it->second;
     }
 
-    if(load){
+    // not found, load?
+    if(load)
         return this->load(video_name);
-    }
 
+    // nothing
     return NULL;
 }
 
-string VideoManager::video_name_to_path(string video_name){
+string VideoManager::video_name_to_path(const string &video_name){
     return folder_path + video_name;
 }
 
-bool VideoManager::unload(string &video_name){
-    if(video_name == ""){
-        for(auto player: players){
-            unload(player);
-        }
-    }
+bool VideoManager::unload(const string &video_name){
+    ofLog() << "VideoManager::unload with " << video_name;
 
-    ofVideoPlayer* player = get(video_name, false);
-    if(player){
-        unload(player);
+    // No specific player specified? destroy all
+    if(video_name == ""){
+        destroy();
         return true;
     }
 
-    return false;
+    // find specified player
+    std::map<string,ofVideoPlayer*>::iterator it = players.find(video_name);
+
+    // not found, abort
+    if(it == players.end()){
+        ofLogWarning() << "VideoManager::unload player not found";
+        return false;
+    }
+
+    // remove from our list
+    players.erase(it);
+    // close player/video file
+    it->second->close();
+    // delete instance from memory
+    delete it->second;
+
+    // log and report
+    ofLog() << "Video players still loaded: " << players.size();
+    return true;
 }
 
 void VideoManager::unload(ofVideoPlayer *player){
@@ -96,17 +112,11 @@ void VideoManager::unload(ofVideoPlayer *player){
         return;
     }
 
-    // rmeove from our list
-    for(int i=players.size()-1; i>=0; i--){
+    // find player
+    for (auto& pair: players) {
         // this one?
-        if(players[i] == player){
-            // remove from list
-            players.erase(players.begin()+i);
+        if(pair.second == player){
+            unload(pair.first);
         }
     }
-
-    ofLog() << "VideoManager::unload " << player->getMoviePath();
-    player->close();
-    delete player;
-    ofLog() << "Video files still loaded: " << players.size();
 }

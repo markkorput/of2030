@@ -19,22 +19,24 @@ namespace of2030 {
 
     public: // methods/interface
         VideoManager();
-        ~VideoManager();
+        inline ~VideoManager(){ destroy(); }
 
         //void setup();
         void update();
+        void destroy();
 
-        ofVideoPlayer* load(string video_name);
-        ofVideoPlayer* get(string video_name, bool load=true);
+        ofVideoPlayer* load(const string &video_name);
+        ofVideoPlayer* get(const string &video_name, bool load=true);
         
-        bool unload(string &video_name);
+        bool unload(const string &video_name);
         void unload(ofVideoPlayer *player);
 
     protected: // helper methods
-        string video_name_to_path(string video_name);
+        string video_name_to_path(const string &video_name);
     
     private: // attributes
-        vector<ofVideoPlayer*> players;
+        map<string, ofVideoPlayer*> players;
+        //        vector<ofVideoPlayer*> players;
         string folder_path;
     };
 }
