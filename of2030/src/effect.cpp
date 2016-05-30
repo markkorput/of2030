@@ -89,10 +89,14 @@ void Effect::setup(Context &_context){
                 // wanna freeze on first or last frame when done? remove end time, go on indefinite
                 if(_context.effect_setting.hasValue("freeze")){
                     endTime = NO_TIME;
-                } else if(getDuration() > video_player->getDuration()){
+                }
+                
+                // video_player->getDuration() is causing problems on PI (maybe its the animation codec)
+                // we'll just truncate in the draw function, when the end of the file is reached (and we're not feezing)
+                /* else if(getDuration() > video_player->getDuration()){
                     // make sure the effect's duration time is not longer than the non-looping video's duration
                     setDuration(video_player->getDuration());
-                }
+                }*/
             }
 
             // reset to start of video (this video player might have been used already by other effects
@@ -184,6 +188,8 @@ void Effect::draw(Context &_context){
 }
 
 void Effect::drawContent(){
+    string val;
+
     ofPushMatrix();
     ofTranslate(context->effect_setting.getValue("translate", ofVec3f(0.0)) * precalc->worldToScreenVec2f);
     // ofScale(context->effect_setting.getValue("scale", ofVec3f(1.0)));
@@ -194,12 +200,16 @@ void Effect::drawContent(){
             
             // movie done?
             if(video_player->getIsMovieDone()){
-                if(context->effect_setting.getValue("freeze", "") == "first"){
+                val = context->effect_setting.getValue("freeze", "");
+                if(val == "first"){
                     video_player->setPosition(0.0);
+                } else if(val == ""){
+                    truncate(); // end this effect
+                    return;
                 }
             }
 
-            bool bAlphaBlack = (context->effect_setting.getValue("alphablack", "1") == "1");
+            bool bAlphaBlack = (context->effect_setting.getValue("alphablack", "0") == "1");
             ofShader* vidShader;
 
             vidShader = ShaderManager::instance()->get("video");
