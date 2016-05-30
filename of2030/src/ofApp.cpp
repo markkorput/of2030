@@ -25,8 +25,6 @@ void ofApp::setup(){
     ofLogVerbose() << "Redirect logging to log.txt";
     ofLogToFile("log.txt", true);
     ofLog() << "window size: " << ofGetWidth() << "x" << ofGetHeight();
-
-    ofEnableAlphaBlending();
     
 #ifdef __HIDE_CURSOR__
     ofHideCursor();
@@ -103,6 +101,10 @@ void ofApp::setup(){
     // for debugging; start recorded osc sequence
     // of2030::OscPlaybackManager::instance()->start("_rec");
     // of2030::OscPlaybackManager::instance()->start("clock_spot");
+
+    if(of2030::XmlSettings::instance()->alphaBlending){
+       ofEnableAlphaBlending();
+    }
 
     // using the player's time as main timing mechanism
     next_log_alive_time = of2030::Player::instance()->getTime();

@@ -33,15 +33,15 @@ void Renderer::setup(){
 
     if(!fbo->isAllocated()){
         if(client_id == "")
-            fbo->allocate(WIDTH, HEIGHT, GL_RGBA);
+            fbo->allocate(WIDTH, HEIGHT);
         else {
             //fbo->allocate(WIDTH, HEIGHT);
             XmlItemSetting* pItem = XmlConfigs::screens()->getItem(client_id);
             if(pItem){
                 ofVec2f resolution = pItem->getValue("resolution", ofVec2f(WIDTH, HEIGHT));
-                fbo->allocate(resolution.x, resolution.y, GL_RGBA);
+                fbo->allocate(resolution.x, resolution.y);
             } else {
-                fbo->allocate(WIDTH, HEIGHT, GL_RGBA);
+                fbo->allocate(WIDTH, HEIGHT);
             }
         }
         
@@ -51,14 +51,14 @@ void Renderer::setup(){
         fbo2 = &defaultFbo2;
     
     if(!fbo2->isAllocated()){
-        fbo2->allocate(fbo->getWidth(), fbo->getHeight(), GL_RGBA);
+        fbo2->allocate(fbo->getWidth(), fbo->getHeight());
     }
 
     if(fbo3 == NULL)
         fbo3 = &defaultFbo3;
 
     if(!fbo3->isAllocated()){
-        fbo3->allocate(fbo->getWidth(), fbo->getHeight(), GL_RGBA);
+        fbo3->allocate(fbo->getWidth(), fbo->getHeight());
     }
 
     if(!player)

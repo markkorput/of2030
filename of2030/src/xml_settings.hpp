@@ -33,7 +33,7 @@ namespace of2030{
         ofVec3f room_size;
 
         bool rgbaVidPixels;
-        
+        bool alphaBlending;
 #ifdef __MULTI_CLIENT_ENABLED__
         
         vector<string> multi_client_ids;
