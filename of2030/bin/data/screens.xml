@@ -321,7 +321,7 @@
       <pano_coord4_y>1.0</pano_coord4_y>
     </screen>
 
-    <screen name="rpi10">
+    <screen name="rpi2">
       <!-- resolution -->
       <resolution_x>768</resolution_x>
       <resolution_y>576</resolution_y>
