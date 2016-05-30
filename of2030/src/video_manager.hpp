@@ -25,8 +25,8 @@ namespace of2030 {
         void update();
         void destroy();
 
-        ofVideoPlayer* get(const string &alias, bool load=true);
-        ofVideoPlayer* get(const string &alias, const string &video_name, bool load=true);
+        ofVideoPlayer* get(const string &video_name, bool load=true);
+        ofVideoPlayer* get(const string &video_name, const string &alias, bool load=true);
         
         bool unload(const string &video_name);
         void unload(ofVideoPlayer *player);

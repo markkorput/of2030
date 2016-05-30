@@ -37,12 +37,12 @@ void VideoManager::update(){
     }
 }
 
-ofVideoPlayer* VideoManager::get(const string &alias, bool load){
+ofVideoPlayer* VideoManager::get(const string &video_name, bool load){
     // assume alias IS the video's path
-    return get(alias, alias, load);
+    return get(video_name, video_name, load);
 }
 
-ofVideoPlayer* VideoManager::get(const string &alias, const string &video_name, bool load){
+ofVideoPlayer* VideoManager::get(const string &video_name, const string &alias, bool load){
     std::map<string,ofVideoPlayer*>::iterator it = players.find(alias);
 
     // found it
@@ -58,8 +58,10 @@ ofVideoPlayer* VideoManager::get(const string &alias, const string &video_name, 
     ofVideoPlayer* player = createPlayer(video_name);
 
     // store it
-    if(player)
+    if(player){
+        ofLog() << "VideoManager loaded video alias: " << alias;
         players[alias] = player;
+    }
 
     // return it
     return player;
