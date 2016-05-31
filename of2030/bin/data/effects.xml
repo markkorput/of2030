@@ -93,7 +93,7 @@
     <effect name="lava_vid2">
       <video>2.4 LAVA_HARTBEAT_B_5TIMES_v01.mov</video>
       <!-- <video>fill100x50.mov</video> -->
-      <is_pano>1</is_pano>
+      <is_tunnel>1</is_tunnel>
       <loop>1</loop>
     </effect>
     <effect name="lava_vid3">
