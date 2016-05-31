@@ -102,10 +102,10 @@
     </effect>
     <effect name="lava_vid4">
       <video>2.4_LAVA_PATROON_EYEBLINK_v02.mov</video>
-      <loop>1</loop>
+      <!-- <loop>1</loop> -->
       <layer>2</layer>
       <is_tunnel>1</is_tunnel>
-      <duration>200.0</duration>
+      <!-- <duration>200.0</duration> -->
     </effect>
     <effect name="lava_vid5">
       <video>2.4_LAVA_PATROON_GROW_v02.mov</video>
@@ -126,6 +126,8 @@
     </effect>
     <effect name="lava_vid8">
       <video>2.4 LAVA_PATROON_ZIEKENHUISBED_v01.mov</video>
+      <is_pano>1</is_pano>
+      <!-- <freeze>last</freeze> -->
     </effect>
 
     <effect name="rain_noorderlicht_start">
