@@ -87,13 +87,13 @@
 
       <!-- roof -->
       <roof_coord1_x>0.0</roof_coord1_x>
-      <roof_coord1_y>0.0</roof_coord1_y>
+      <roof_coord1_y>1.0</roof_coord1_y>
       <roof_coord2_x>1.0</roof_coord2_x>
-      <roof_coord2_y>0.0</roof_coord2_y>
+      <roof_coord2_y>1.0</roof_coord2_y>
       <roof_coord3_x>1.0</roof_coord3_x>
-      <roof_coord3_y>0.38</roof_coord3_y>
+      <roof_coord3_y>0.62</roof_coord3_y>
       <roof_coord4_x>0.0</roof_coord4_x>
-      <roof_coord4_y>0.29</roof_coord4_y>
+      <roof_coord4_y>0.71</roof_coord4_y>
       <!-- wall -->
       <!-- <wall_coord1_x>0.0</wall_coord1_x>
       <wall_coord1_y>0.0</wall_coord1_y>
@@ -142,13 +142,13 @@
 
       <!-- roof -->
       <roof_coord1_x>0.0</roof_coord1_x>
-      <roof_coord1_y>0.0</roof_coord1_y>
+      <roof_coord1_y>1.0</roof_coord1_y>
       <roof_coord2_x>1.0</roof_coord2_x>
-      <roof_coord2_y>0.0</roof_coord2_y>
+      <roof_coord2_y>1.0</roof_coord2_y>
       <roof_coord3_x>1.0</roof_coord3_x>
-      <roof_coord3_y>0.25</roof_coord3_y>
+      <roof_coord3_y>0.75</roof_coord3_y>
       <roof_coord4_x>0.0</roof_coord4_x>
-      <roof_coord4_y>0.23</roof_coord4_y>
+      <roof_coord4_y>0.77</roof_coord4_y>
 
       <!-- the area of the tunnel that this screen shows -->
       <tunnel_start>0.57</tunnel_start>
@@ -218,13 +218,13 @@
 
       <!-- roof -->
       <roof_coord1_x>0.0</roof_coord1_x>
-      <roof_coord1_y>0.0</roof_coord1_y>
+      <roof_coord1_y>1.0</roof_coord1_y>
       <roof_coord2_x>1.0</roof_coord2_x>
-      <roof_coord2_y>0.0</roof_coord2_y>
+      <roof_coord2_y>1.0</roof_coord2_y>
       <roof_coord3_x>1.0</roof_coord3_x>
-      <roof_coord3_y>0.25</roof_coord3_y>
+      <roof_coord3_y>0.75</roof_coord3_y>
       <roof_coord4_x>0.0</roof_coord4_x>
-      <roof_coord4_y>0.23</roof_coord4_y>
+      <roof_coord4_y>0.77</roof_coord4_y>
 
       <!-- the area of the tunnel that this screen shows -->
       <tunnel_start>0.80</tunnel_start>
@@ -373,13 +373,13 @@
 
       <!-- roof -->
       <roof_coord1_x>0.0</roof_coord1_x>
-      <roof_coord1_y>0.07</roof_coord1_y>
+      <roof_coord1_y>1.0</roof_coord1_y>
       <roof_coord2_x>1.0</roof_coord2_x>
-      <roof_coord2_y>0.0</roof_coord2_y>
+      <roof_coord2_y>1.0</roof_coord2_y>
       <roof_coord3_x>1.0</roof_coord3_x>
-      <roof_coord3_y>0.19</roof_coord3_y>
+      <roof_coord3_y>0.81</roof_coord3_y>
       <roof_coord4_x>0.0</roof_coord4_x>
-      <roof_coord4_y>0.36</roof_coord4_y>
+      <roof_coord4_y>0.64</roof_coord4_y>
 
       <!-- the area of the tunnel that this screen shows -->
       <tunnel_start>0.43</tunnel_start>
@@ -447,13 +447,13 @@
 
       <!-- roof -->
       <roof_coord1_x>0.0</roof_coord1_x>
-      <roof_coord1_y>0.0</roof_coord1_y>
+      <roof_coord1_y>1.0</roof_coord1_y>
       <roof_coord2_x>1.0</roof_coord2_x>
-      <roof_coord2_y>0.0</roof_coord2_y>
+      <roof_coord2_y>1.0</roof_coord2_y>
       <roof_coord3_x>1.0</roof_coord3_x>
-      <roof_coord3_y>0.15</roof_coord3_y>
+      <roof_coord3_y>0.85</roof_coord3_y>
       <roof_coord4_x>0.0</roof_coord4_x>
-      <roof_coord4_y>0.19</roof_coord4_y>
+      <roof_coord4_y>0.81</roof_coord4_y>
 
       <!-- the area of the tunnel that this screen shows -->
       <tunnel_start>0.2</tunnel_start>
