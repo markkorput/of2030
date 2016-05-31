@@ -177,7 +177,7 @@
       <!-- <layer>0</layer> -->
       <is_tunnel>1</is_tunnel>
       <!-- <is_pano>1</is_pano> -->
-      <layer>1</layer>
+      <layer>0</layer>
       <freeze>last</freeze>
     </effect>
     <effect name="mud_machine_loop">
