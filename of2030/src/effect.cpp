@@ -214,7 +214,6 @@ void Effect::drawContent(){
                 // no freezing; end effect
                 } else if(val == ""){
                     truncate(); // end this effect
-                    return;
                 }
             }
 
