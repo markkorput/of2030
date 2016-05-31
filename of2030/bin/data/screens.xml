@@ -46,6 +46,15 @@
       <tunnel_coord4_x>0.3</tunnel_coord4_x>
       <tunnel_coord4_y>1.0</tunnel_coord4_y>
 
+      <pano_translate_x>-24.0</pano_translate_x>
+      <pano_translate_y>-2.0</pano_translate_y>
+      <!-- <pano_translate_z></pano_translate_z> -->
+      <!-- <pano_rotate_x>180.0</pano_rotate_x> -->
+      <!-- <pano_rotate_y></pano_rotate_y> -->
+      <!-- <pano_rotate_z></pano_rotate_z> -->
+      <pano_scale_x>190.0</pano_scale_x>
+      <pano_scale_y>-288.0</pano_scale_y>
+
       <pano_coord1_x>0.87</pano_coord1_x>
       <pano_coord1_y>0.0</pano_coord1_y>
       <pano_coord2_x>1.0</pano_coord2_x>
@@ -163,6 +172,15 @@
       <tunnel_coord4_x>0.66</tunnel_coord4_x>
       <tunnel_coord4_y>1.0</tunnel_coord4_y>
 
+      <pano_translate_x>-20.0</pano_translate_x>
+      <pano_translate_y>-2.0</pano_translate_y>
+      <!-- <pano_translate_z></pano_translate_z> -->
+      <!-- <pano_rotate_x>180.0</pano_rotate_x> -->
+      <!-- <pano_rotate_y></pano_rotate_y> -->
+      <!-- <pano_rotate_z></pano_rotate_z> -->
+      <pano_scale_x>190.0</pano_scale_x>
+      <pano_scale_y>-288.0</pano_scale_y>
+
       <pano_coord1_x>0.72</pano_coord1_x>
       <pano_coord1_y>0.0</pano_coord1_y>
       <pano_coord2_x>0.84</pano_coord2_x>
@@ -229,6 +247,15 @@
       <tunnel_coord3_y>1.0</tunnel_coord3_y>
       <tunnel_coord4_x>1.0</tunnel_coord4_x>
       <tunnel_coord4_y>1.0</tunnel_coord4_y>
+
+      <pano_translate_x>-16.0</pano_translate_x>
+      <pano_translate_y>-2.0</pano_translate_y>
+      <!-- <pano_translate_z></pano_translate_z> -->
+      <!-- <pano_rotate_x>180.0</pano_rotate_x> -->
+      <!-- <pano_rotate_y></pano_rotate_y> -->
+      <!-- <pano_rotate_z></pano_rotate_z> -->
+      <pano_scale_x>190.0</pano_scale_x>
+      <pano_scale_y>-288.0</pano_scale_y>
 
       <pano_coord1_x>0.53</pano_coord1_x>
       <pano_coord1_y>0.0</pano_coord1_y>
@@ -300,6 +327,15 @@
       <tunnel_coord4_x>0.66</tunnel_coord4_x>
       <tunnel_coord4_y>1.0</tunnel_coord4_y>
 
+      <pano_translate_x>-8.0</pano_translate_x>
+      <pano_translate_y>-2.0</pano_translate_y>
+      <!-- <pano_translate_z></pano_translate_z> -->
+      <!-- <pano_rotate_x>180.0</pano_rotate_x> -->
+      <!-- <pano_rotate_y></pano_rotate_y> -->
+      <!-- <pano_rotate_z></pano_rotate_z> -->
+      <pano_scale_x>190.0</pano_scale_x>
+      <pano_scale_y>-288.0</pano_scale_y>
+
       <pano_coord1_x>0.23</pano_coord1_x>
       <pano_coord1_y>0.0</pano_coord1_y>
       <pano_coord2_x>0.38</pano_coord2_x>
@@ -367,6 +403,16 @@
       <tunnel_coord4_x>0.33</tunnel_coord4_x>
       <tunnel_coord4_y>1.0</tunnel_coord4_y>
 
+      <pano_translate_x>-4.0</pano_translate_x>
+      <pano_translate_y>-2.0</pano_translate_y>
+      <!-- <pano_translate_z></pano_translate_z> -->
+      <!-- <pano_rotate_x>180.0</pano_rotate_x> -->
+      <!-- <pano_rotate_y></pano_rotate_y> -->
+      <!-- <pano_rotate_z></pano_rotate_z> -->
+      <pano_scale_x>190.0</pano_scale_x>
+      <pano_scale_y>-288.0</pano_scale_y>
+
+
       <pano_coord1_x>0.14</pano_coord1_x>
       <pano_coord1_y>0.0</pano_coord1_y>
       <pano_coord2_x>0.27</pano_coord2_x>
@@ -392,9 +438,6 @@
       <rot_x>180.0</rot_x>
       <rot_y>270.0</rot_y>
       <rot_z>0.0</rot_z>
-      <!-- the area of the panoram that this screen shows -->
-      <pano_start>0.02</pano_start>
-      <pano_end>0.15</pano_end>
 
       <!-- spot (center position, width, height in screen factors) -->
       <spot1_x>0.5</spot1_x>
@@ -433,6 +476,19 @@
       <tunnel_coord3_y>1.0</tunnel_coord3_y>
       <tunnel_coord4_x>0.0</tunnel_coord4_x>
       <tunnel_coord4_y>1.0</tunnel_coord4_y>
+
+      <!-- the area of the panoram that this screen shows -->
+      <pano_start>0.02</pano_start>
+      <pano_end>0.15</pano_end>
+
+      <pano_translate_x>0.0</pano_translate_x>
+      <pano_translate_y>-2.0</pano_translate_y>
+      <!-- <pano_translate_z></pano_translate_z> -->
+      <!-- <pano_rotate_x>180.0</pano_rotate_x> -->
+      <!-- <pano_rotate_y></pano_rotate_y> -->
+      <!-- <pano_rotate_z></pano_rotate_z> -->
+      <pano_scale_x>190.0</pano_scale_x>
+      <pano_scale_y>-288.0</pano_scale_y>
 
       <pano_coord1_x>0.02</pano_coord1_x>
       <pano_coord1_y>0.0</pano_coord1_y>
