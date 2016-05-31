@@ -153,7 +153,7 @@ void Effect::draw(Context &_context){
     // draw content to fbo3
     context->fbo3->begin();
         ofClear(0.0f, 0.0f, 0.0f, 0.0f);
-        ofSetColor(precalc->color);
+        ofSetColor(255);
         drawContent();
     context->fbo3->end();
 
@@ -161,8 +161,9 @@ void Effect::draw(Context &_context){
     maskShader->begin();
         // pass mask texture to shader
         maskShader->setUniformTexture("iMask", context->fbo2->getTexture(), 2);
-        ofSetColor(255);
+        // ofSetColor(precalc->color); / --> doesn't work because shader doesn't use this color
         context->fbo3->draw(0.0f, 0.0f);
+
 //        // draw content from fbo3 (masked)
 //        ofMesh mesh;
 //        mesh.addVertex(ofPoint(0.0f, 0.0f)); // top left
@@ -206,7 +207,7 @@ void Effect::drawContent(){
         if(video_player->isLoaded() && video_player->getTexture().isAllocated()){
             
             // movie done?
-            if(video_player->getIsMovieDone()){
+            if(video_player->getIsMovieDone() && context->effect_setting.getValue("loop", "0") != "1"){
                 // if effect is configured to free (at first or last frame)
                 val = context->effect_setting.getValue("freeze", "");
                 if(val == "first"){
@@ -225,7 +226,6 @@ void Effect::drawContent(){
             vidShader->setUniform1i("alphaBlack", bAlphaBlack ? 1 : 0);
 
             // ofBackground(255,0,0);
-            ofSetColor(255);
             drawVideo();
             
             vidShader->end();
@@ -254,6 +254,7 @@ void Effect::drawContent(){
             drawPattern(pattern);
         // simple rectangle
         } else {
+            ofSetColor(precalc->color);
             ofDrawRectangle(0, 0, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
         }
 
@@ -285,7 +286,6 @@ void Effect::drawPattern(const string &patternName){
 
         if(!shader){
             // draw without shader stuff
-            ofSetColor(255);
             // ofDrawRectangle(0, 0, precalc->resolution.x, precalc->resolution.y);
             ofDrawEllipse(spotPos.x, spotPos.y, spotSize.x, spotSize.y);
             return;
@@ -305,7 +305,6 @@ void Effect::drawPattern(const string &patternName){
         shader->setUniform1i("iQuarterOff", q);
 
         spotPos = spotPos - spotSize * 0.5;
-        ofSetColor(255);
         ofDrawRectangle(0.0f, 0.0f, precalc->resolution.x, precalc->resolution.y); //spotPos.x, spotPos.y, spotSize.x, spotSize.y);
         return;
     }
@@ -360,7 +359,7 @@ void Effect::drawMask(const string &coordsName){
 }
 
 void Effect::drawVideo(){
-    string coord_prefix = "";
+//    string coord_prefix = "";
 //    if(context->effect_setting.getValue("is_tunnel", "0") == "1"){
 //        coord_prefix = "tunnel_coord";
 //    } else if(context->effect_setting.getValue("is_pano", "0") == "1"){
