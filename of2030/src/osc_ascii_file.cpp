@@ -34,10 +34,10 @@ OscAsciiLine* OscAsciiFile::next_line(int recursion_count){
         return NULL;
     }
 
-    if(!infile.is_open()){
-        ofLogWarning() << "[OscAsciiFile::next_line] infile not loaded";
-        return NULL;
-    }
+//    if(!infile.is_open()){
+//        ofLogWarning() << "[OscAsciiFile::next_line] infile not loaded";
+//        return NULL;
+//    }
 
     string line, column, value;
 

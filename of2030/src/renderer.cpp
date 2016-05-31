@@ -10,6 +10,7 @@
 #include "renderer.hpp"
 #include "xml_configs.hpp"
 #include "effect_manager.hpp"
+#include "xml_settings.hpp"
 
 using namespace of2030;
 
@@ -132,6 +133,9 @@ void Renderer::fillContextClientInfo(Context &context){
     // context.fbo = fbo;
     context.fbo2 = fbo2;
     context.fbo3 = fbo3;
+    
+    context.tunnel_size.set(XmlSettings::instance()->room_size.z, XmlSettings::instance()->room_size.y);
+    context.pano_size.set((XmlSettings::instance()->room_size.z+XmlSettings::instance()->room_size.x)*2, XmlSettings::instance()->room_size.y);
 }
 
 void Renderer::fillEffectSetting(Effect &effect, XmlItemSetting &fxsetting){

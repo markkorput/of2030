@@ -89,10 +89,14 @@ void Effect::setup(Context &_context){
                 // wanna freeze on first or last frame when done? remove end time, go on indefinite
                 if(_context.effect_setting.hasValue("freeze")){
                     endTime = NO_TIME;
-                } else if(getDuration() > video_player->getDuration()){
+                }
+                
+                // video_player->getDuration() is causing problems on PI (maybe its the animation codec)
+                // we'll just truncate in the draw function, when the end of the file is reached (and we're not feezing)
+                /* else if(getDuration() > video_player->getDuration()){
                     // make sure the effect's duration time is not longer than the non-looping video's duration
                     setDuration(video_player->getDuration());
-                }
+                }*/
             }
 
             // reset to start of video (this video player might have been used already by other effects
@@ -184,9 +188,18 @@ void Effect::draw(Context &_context){
 }
 
 void Effect::drawContent(){
+    string val;
+
     ofPushMatrix();
-    ofTranslate(context->effect_setting.getValue("translate", ofVec3f(0.0)) * precalc->worldToScreenVec2f);
+    // ofTranslate(context->effect_setting.getValue("translate", ofVec3f(0.0)) * precalc->worldToScreenVec2f);
     // ofScale(context->effect_setting.getValue("scale", ofVec3f(1.0)));
+
+    ofRotateX(precalc->rotate.x);
+    ofRotateY(precalc->rotate.y);
+    ofRotateZ(precalc->rotate.z);
+    ofScale(precalc->scale);
+    ofTranslate(precalc->translate);
+    
 
     // draw; video?
     if(video_player){
@@ -194,12 +207,17 @@ void Effect::drawContent(){
             
             // movie done?
             if(video_player->getIsMovieDone()){
-                if(context->effect_setting.getValue("freeze", "") == "first"){
+                // if effect is configured to free (at first or last frame)
+                val = context->effect_setting.getValue("freeze", "");
+                if(val == "first"){
                     video_player->setPosition(0.0);
+                // no freezing; end effect
+                } else if(val == ""){
+                    truncate(); // end this effect
                 }
             }
 
-            bool bAlphaBlack = (context->effect_setting.getValue("alphablack", "1") == "1");
+            bool bAlphaBlack = (context->effect_setting.getValue("alphablack", "0") == "1");
             ofShader* vidShader;
 
             vidShader = ShaderManager::instance()->get("video");
@@ -228,7 +246,7 @@ void Effect::drawContent(){
             shader->setUniform2f("iScreenWorldSize", precalc->scrWorldSize);
             shader->setUniform1f("iGain", context->effect_setting.getValue("gain", 1.0f));
         }
-        
+
         string pattern = context->effect_setting.getValue("pattern", "");
 
         // pattern?
@@ -343,44 +361,44 @@ void Effect::drawMask(const string &coordsName){
 
 void Effect::drawVideo(){
     string coord_prefix = "";
-    if(context->effect_setting.getValue("is_tunnel", "0") == "1"){
-        coord_prefix = "tunnel_coord";
-    } else if(context->effect_setting.getValue("is_pano", "0") == "1"){
-        coord_prefix = "pano_coord";
-    }
+//    if(context->effect_setting.getValue("is_tunnel", "0") == "1"){
+//        coord_prefix = "tunnel_coord";
+//    } else if(context->effect_setting.getValue("is_pano", "0") == "1"){
+//        coord_prefix = "pano_coord";
+//    }
 
-    if(coord_prefix == ""){
-        video_player->draw(0.0, 0.0, precalc->resolution.x, precalc->resolution.y);
-        return;
-    }
+//    if(coord_prefix == ""){
+        video_player->draw(0.0, 0.0, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
     
-    // set up mesh with vertices and tex coords
-    ofVec2f vidSize = ofVec2f(video_player->getWidth(), video_player->getHeight());
-    ofVec2f coords[4];
-    coords[0] = context->screen_setting.getValue(coord_prefix+"1", ofVec2f(0.0f, 0.0f));
-    coords[1] = context->screen_setting.getValue(coord_prefix+"2", ofVec2f(1.0f, 0.0f));
-    coords[2] = context->screen_setting.getValue(coord_prefix+"3", ofVec2f(1.0f, 1.0f));
-    coords[3] = context->screen_setting.getValue(coord_prefix+"4", ofVec2f(0.0f, 1.0f));
-
-    ofMesh mesh;
-    mesh.addVertex(ofPoint(0.0f, 0.0f)); // top left
-    mesh.addVertex(ofPoint(precalc->resolution.x, 0.0f)); // top right
-    mesh.addVertex(ofPoint(precalc->resolution.x, precalc->resolution.y)); // bottom right
-    mesh.addVertex(ofPoint(0.0f, precalc->resolution.y)); // bottom left
-
-    mesh.addTexCoord(coords[0]*vidSize);
-    mesh.addTexCoord(coords[1]*vidSize);
-    mesh.addTexCoord(coords[2]*vidSize);
-    mesh.addTexCoord(coords[3]*vidSize);
-
-    mesh.addTriangle(0, 1, 2);
-    mesh.addTriangle(0, 2, 3);
+//    }
     
-    // bind video texture
-    video_player->bind();
-    ofSetColor(255);
-    mesh.draw();
-    video_player->unbind();
+//    // set up mesh with vertices and tex coords
+//    ofVec2f vidSize = ofVec2f(video_player->getWidth(), video_player->getHeight());
+//    ofVec2f coords[4];
+//    coords[0] = context->screen_setting.getValue(coord_prefix+"1", ofVec2f(0.0f, 0.0f));
+//    coords[1] = context->screen_setting.getValue(coord_prefix+"2", ofVec2f(1.0f, 0.0f));
+//    coords[2] = context->screen_setting.getValue(coord_prefix+"3", ofVec2f(1.0f, 1.0f));
+//    coords[3] = context->screen_setting.getValue(coord_prefix+"4", ofVec2f(0.0f, 1.0f));
+//
+//    ofMesh mesh;
+//    mesh.addVertex(ofPoint(0.0f, 0.0f)); // top left
+//    mesh.addVertex(ofPoint(precalc->resolution.x, 0.0f)); // top right
+//    mesh.addVertex(ofPoint(precalc->resolution.x, precalc->resolution.y)); // bottom right
+//    mesh.addVertex(ofPoint(0.0f, precalc->resolution.y)); // bottom left
+//
+//    mesh.addTexCoord(coords[0]*vidSize);
+//    mesh.addTexCoord(coords[1]*vidSize);
+//    mesh.addTexCoord(coords[2]*vidSize);
+//    mesh.addTexCoord(coords[3]*vidSize);
+//
+//    mesh.addTriangle(0, 1, 2);
+//    mesh.addTriangle(0, 2, 3);
+//    
+//    // bind video texture
+//    video_player->bind();
+//    ofSetColor(255);
+//    mesh.draw();
+//    video_player->unbind();
 }
 
 //float Effect::resolveDuration() const {
