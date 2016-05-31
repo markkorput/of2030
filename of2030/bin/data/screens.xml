@@ -1,6 +1,6 @@
 <of2030>
   <screens>
-    <screen name="rpi3">
+    <screen name="rpi7">
       <!-- resolution -->
       <resolution_x>768</resolution_x>
       <resolution_y>576</resolution_y>
@@ -115,7 +115,7 @@
 
     </screen>
 
-    <screen name="rpi4">
+    <screen name="rpi8">
       <!-- resolution -->
       <resolution_x>768</resolution_x>
       <resolution_y>576</resolution_y>
@@ -191,7 +191,7 @@
       <pano_coord4_y>1.0</pano_coord4_y>
     </screen>
 
-    <screen name="rpi5">
+    <screen name="rpi10">
       <!-- resolution -->
       <resolution_x>768</resolution_x>
       <resolution_y>576</resolution_y>
@@ -267,7 +267,7 @@
       <pano_coord4_y>1.0</pano_coord4_y>
     </screen>
 
-    <screen name="rpi7">
+    <screen name="rpi3">
       <!-- resolution -->
       <resolution_x>768</resolution_x>
       <resolution_y>576</resolution_y>
@@ -346,7 +346,7 @@
       <pano_coord4_y>1.0</pano_coord4_y>
     </screen>
 
-    <screen name="rpi8">
+    <screen name="rpi4">
       <!-- resolution -->
       <resolution_x>768</resolution_x>
       <resolution_y>576</resolution_y>
@@ -423,7 +423,7 @@
       <pano_coord4_y>1.0</pano_coord4_y>
     </screen>
 
-    <screen name="rpi10">
+    <screen name="rpi5">
       <!-- resolution -->
       <resolution_x>768</resolution_x>
       <resolution_y>576</resolution_y>
