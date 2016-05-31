@@ -254,6 +254,7 @@ void Effect::drawContent(){
             drawPattern(pattern);
         // simple rectangle
         } else {
+            ofSetColor(precalc->color);
             ofDrawRectangle(0, 0, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
         }
 

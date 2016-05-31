@@ -171,8 +171,34 @@
       <!--<is_tunnel>1</is_tunnel>-->
       <layer>1</layer>
     </effect>
-
-
+    <effect name="rain_cubes1">
+      <color_r>255</color_r>
+      <color_g>0</color_g>
+      <color_b>0</color_b>
+      <duration>0.2</duration>
+      <layer>1</layer>
+    </effect>
+    <effect name="rain_cubes2">
+      <color_r>0</color_r>
+      <color_g>255</color_g>
+      <color_b>0</color_b>
+      <duration>0.2</duration>
+      <layer>1</layer>
+    </effect>
+      <effect name="rain_cubes3">
+      <color_r>0</color_r>
+      <color_g>0</color_g>
+      <color_b>255</color_b>
+      <duration>0.2</duration>
+      <layer>1</layer>
+    </effect>
+      <effect name="rain_cubes4">
+      <color_r>255</color_r>
+      <color_g>0</color_g>
+      <color_b>255</color_b>
+      <duration>0.2</duration>
+      <layer>1</layer>
+    </effect>
     <effect name="mud_machine_build">
       <video>mud/2.3_MUD_MACHINE_A_OPBOUW_v02.mov</video>
       <!-- <loop>1</loop> -->
