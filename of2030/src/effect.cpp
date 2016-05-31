@@ -207,7 +207,7 @@ void Effect::drawContent(){
         if(video_player->isLoaded() && video_player->getTexture().isAllocated()){
             
             // movie done?
-            if(video_player->getIsMovieDone()){
+            if(video_player->getIsMovieDone() && context->effect_setting.getValue("loop", "0") != "1"){
                 // if effect is configured to free (at first or last frame)
                 val = context->effect_setting.getValue("freeze", "");
                 if(val == "first"){
