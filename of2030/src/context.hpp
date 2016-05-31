@@ -21,6 +21,9 @@ namespace of2030{
         // ofFbo* fbo;
         ofFbo* fbo2;
         ofFbo* fbo3;
+
+        ofVec2f tunnel_size; // real world tunnel size in meters
+        
     } Context;
 
 
@@ -45,6 +48,8 @@ namespace of2030{
         ofColor color;
         float scrPanoStart, scrPanoEnd, fxPanoStart, fxPanoEnd;
         // ofVec2f tunnelScreenCoords[4];
+        bool isTunnel;
+        ofVec3f translate, rotate, scale;
 
     private: // attributes
 
