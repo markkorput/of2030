@@ -296,13 +296,13 @@
 
       <!-- roof -->
       <roof_coord1_x>0.0</roof_coord1_x>
-      <roof_coord1_y>0.15</roof_coord1_y>
+      <roof_coord1_y>0.85</roof_coord1_y>
       <roof_coord2_x>1.0</roof_coord2_x>
-      <roof_coord2_y>0.18</roof_coord2_y>
+      <roof_coord2_y>0.82</roof_coord2_y>
       <roof_coord3_x>1.0</roof_coord3_x>
-      <roof_coord3_y>0.31</roof_coord3_y>
+      <roof_coord3_y>0.69</roof_coord3_y>
       <roof_coord4_x>0.0</roof_coord4_x>
-      <roof_coord4_y>0.29</roof_coord4_y>
+      <roof_coord4_y>0.71</roof_coord4_y>
 
 
       <!-- the area of the tunnel that this screen shows -->
