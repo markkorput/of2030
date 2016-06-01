@@ -183,7 +183,9 @@ void Effect::draw(Context &_context){
     context->fbo3->begin();
         ofClear(0.0f, 0.0f, 0.0f, 0.0f);
         ofSetColor(255);
-        drawContent();
+        ofPushMatrix();
+            drawContent();
+        ofPopMatrix();
     context->fbo3->end();
 
     // draw content of fbo3 through mask of fbo2
@@ -220,7 +222,6 @@ void Effect::draw(Context &_context){
 void Effect::drawContent(){
     string val;
 
-    ofPushMatrix();
     // ofTranslate(context->effect_setting.getValue("translate", ofVec3f(0.0)) * precalc->worldToScreenVec2f);
     // ofScale(context->effect_setting.getValue("scale", ofVec3f(1.0)));
 
@@ -260,16 +261,18 @@ void Effect::drawContent(){
                 vidShader = ShaderManager::instance()->get("mask");
                 vidShader->begin();
                 vidShader->setUniformTexture("iMask", mask_video_player->getTexture(), 2);
-            } else {
+            }/* else {
                 vidShader = ShaderManager::instance()->get("video");
                 vidShader->begin();
                 vidShader->setUniform1i("alphaBlack", bAlphaBlack ? 1 : 0);
-            }
+            }*/
 
             // ofBackground(255,0,0);
             drawVideo();
             
-            vidShader->end();
+            if(mask_video_player){
+                vidShader->end();
+            }
         }
     // not video
     } else {
@@ -304,8 +307,6 @@ void Effect::drawContent(){
             shader->end();
         }
     }
-
-    ofPopMatrix();
 }
 
 void Effect::drawPattern(const string &patternName){
