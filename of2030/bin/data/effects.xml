@@ -239,7 +239,7 @@
       <translate_x>5.0</translate_x>
       <translate_y>0.0</translate_y>
       <draw_size_x>0.3</draw_size_x>
-      <draw_size_y>0.3</draw_size_x>
+      <draw_size_y>0.3</draw_size_y>
     </effect>
     <effect name="rain_cubes2">
       <color_r>0</color_r>
@@ -247,15 +247,14 @@
       <color_b>0</color_b>
       <duration>0.2</duration>
       <layer>3</layer>
-
       <is_pano>1</is_pano>
       <is_tunnel>0</is_tunnel>
       <translate_x>5.5</translate_x>
       <translate_y>0.0</translate_y>
       <draw_size_x>0.3</draw_size_x>
-      <draw_size_y>0.3</draw_size_x>
+      <draw_size_y>0.3</draw_size_y>
     </effect>
-      <effect name="rain_cubes3">
+    <effect name="rain_cubes3">
       <color_r>0</color_r>
       <color_g>0</color_g>
       <color_b>255</color_b>
@@ -267,9 +266,9 @@
       <translate_x>6.0</translate_x>
       <translate_y>0.0</translate_y>
       <draw_size_x>0.3</draw_size_x>
-      <draw_size_y>0.3</draw_size_x>
+      <draw_size_y>0.3</draw_size_y>
     </effect>
-      <effect name="rain_cubes4">
+    <effect name="rain_cubes4">
       <color_r>255</color_r>
       <color_g>0</color_g>
       <color_b>255</color_b>
@@ -281,7 +280,7 @@
       <translate_x>6.5</translate_x>
       <translate_y>0.0</translate_y>
       <draw_size_x>0.3</draw_size_x>
-      <draw_size_y>0.3</draw_size_x>
+      <draw_size_y>0.3</draw_size_y>
     </effect>
 
     <effect name="mud_machine_build">
