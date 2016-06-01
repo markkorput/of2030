@@ -74,7 +74,6 @@ namespace of2030{
         
         void drawContent();
         void drawMask(const string &coordsName);
-        void drawVideo();
         void drawPattern(const string &patternName);
 
         inline float getEffectTime(){ return context->time - startTime; }
