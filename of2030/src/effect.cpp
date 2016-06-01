@@ -251,7 +251,7 @@ void Effect::drawContent(){
             ofShader* vidShader;
 
             if(mask_video_player){
-                vidShader = ShaderManager::instance()->get("video_mask");
+                vidShader = ShaderManager::instance()->get("mask");
                 vidShader->begin();
                 vidShader->setUniformTexture("iMask", mask_video_player->getTexture(), 2);
             } else {

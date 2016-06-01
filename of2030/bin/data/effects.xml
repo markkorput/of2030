@@ -85,19 +85,19 @@
 
     <!-- lava vids -->
     <effect name="lava_vid1">
-      <video>2.4 LAVA_HARTBEAT_A_STANDARD_1SCREEN_v01.mov</video>
+      <video>lava/2.4_LAVA_HARTBEAT_A_STANDARD_1SCREEN_v01.mov</video>
       <!-- <video>fill100x50.mov</video> -->
       <is_tunnel>1</is_tunnel>
       <!-- <loop>1</loop> -->
     </effect>
     <effect name="lava_vid2">
-      <video>2.4 LAVA_HARTBEAT_B_5TIMES_v01.mov</video>
+      <video>lava/2.4_LAVA_HARTBEAT_B_5TIMES_v01.mov</video>
       <!-- <video>fill100x50.mov</video> -->
       <is_tunnel>1</is_tunnel>
       <loop>1</loop>
     </effect>
     <effect name="lava_vid3">
-      <video>2.4 LAVA_HARTBEAT_C_DEAD_v01.mov</video>
+      <video>lava/2.4_LAVA_HARTBEAT_C_DEAD_v01.mov</video>
       <is_tunnel>1</is_tunnel>
     </effect>
     <effect name="lava_vid4">
@@ -108,23 +108,24 @@
       <!-- <duration>200.0</duration> -->
     </effect>
     <effect name="lava_vid5">
-      <video>2.4_LAVA_PATROON_GROW_v02.mov</video>
+      <video>2.4_LAVA_PATROON_GROW_v03.mov</video>
       <layer>1</layer>
       <is_tunnel>1</is_tunnel>
     </effect>
     <effect name="lava_vid6">
-      <video>2.4 LAVA_PATROON_v01.mov</video>
+      <video>lava/2.4_LAVA_PATROON_v01.mov</video>
       <loop>1</loop>
       <is_tunnel>1</is_tunnel>
       <duration>200.0</duration>
     </effect>
 
     <effect name="lava_pattern_grow">
-      <video>2.4 LAVA_PATROON_v01.mov</video>
+      <video>lava/2.4_LAVA_PATROON_v01.mov</video>
       <!-- <video_alias>lava_pattern_nonloop</video_alias> -->
       <loop>1</loop>
+      <is_tunnel>1</is_tunnel>
       <!-- <!--<is_tunnel>1</is_tunnel>--> -->
-      <video_mask>mud/2.3_MUD_WHEEL.mov</video_mask>
+      <video_mask>lava/2.4_LAVA_PATROON_GROW_v03.mov</video_mask>
     </effect>
 
     <effect name="lava_vid7">
@@ -134,7 +135,7 @@
       <layer>1</layer>
     </effect>
     <effect name="lava_vid8">
-      <video>2.4 LAVA_PATROON_ZIEKENHUISBED_v01.mov</video>
+      <video>lava/2.4_LAVA_PATROON_ZIEKENHUISBED_v01.mov</video>
       <is_pano>1</is_pano>
       <!-- <freeze>last</freeze> -->
     </effect>
