@@ -130,8 +130,9 @@ void Effect::setup(Context &_context){
             }
 
             // reset to start of video (this video player might have been used already by other effects
-            if(_context.effect_setting.getValue("video_mask_reset", "1") == "1")
+            if(_context.effect_setting.getValue("video_mask_reset", "0") == "1"){
                 mask_video_player->setPosition(0.0);
+            }
             
             mask_video_player->play();
         }/* else {
