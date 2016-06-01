@@ -61,7 +61,7 @@ void Effect::setup(Context &_context){
                 val = _context.effect_setting.getValue("video", "");
             VideoManager::instance()->unload(val);
         }
-        
+
         truncate();
         return;
     }
@@ -101,8 +101,9 @@ void Effect::setup(Context &_context){
             }
 
             // reset to start of video (this video player might have been used already by other effects
-            if(_context.effect_setting.getValue("reset", "1") == "1")
+            if(_context.effect_setting.getValue("reset", "0") == "1"){
                 video_player->setPosition(0.0);
+            }
 
             video_player->play();
         } else {
@@ -240,72 +241,76 @@ void Effect::drawContent(){
 
     // draw; video?
     if(video_player){
-        if(video_player->isLoaded() && video_player->getTexture().isAllocated()){
-            
-            // movie done?
-            if(video_player->getIsMovieDone() && context->effect_setting.getValue("loop", "0") != "1"){
-                // if effect is configured to free (at first or last frame)
-                val = context->effect_setting.getValue("freeze", "");
-                if(val == "first"){
-                    video_player->setPosition(0.0);
-                // no freezing; end effect
-                } else if(val == ""){
-                    truncate(); // end this effect
-                }
-            }
-
-            bool bAlphaBlack = (context->effect_setting.getValue("alphablack", "0") == "1");
-            ofShader* vidShader;
-
-            if(mask_video_player){
-                vidShader = ShaderManager::instance()->get("mask");
-                vidShader->begin();
-                vidShader->setUniformTexture("iMask", mask_video_player->getTexture(), 2);
-            }/* else {
-                vidShader = ShaderManager::instance()->get("video");
-                vidShader->begin();
-                vidShader->setUniform1i("alphaBlack", bAlphaBlack ? 1 : 0);
-            }*/
-
-            // ofBackground(255,0,0);
-            drawVideo();
-            
-            if(mask_video_player){
-                vidShader->end();
-            }
+        if(!(video_player->isLoaded() && video_player->getTexture().isAllocated())){
+            return;
         }
-    // not video
-    } else {
         
-        if(shader){
-            // activate shader
-            shader->begin();
-            
-            // populate shader
-            shader->setUniform2f("iResolution", precalc->resolution);
-            shader->setUniform3f("iPos", context->effect_setting.getValue("pos", ofVec3f(0.0f)));
-            shader->setUniform3f("iSize", context->effect_setting.getValue("size", ofVec3f(0.0f)));
-            shader->setUniform1f("iProgress", getProgress());
-            shader->setUniform1f("iDuration", getDuration());
-            shader->setUniform2f("iScreenWorldSize", precalc->scrWorldSize);
-            shader->setUniform1f("iGain", context->effect_setting.getValue("gain", 1.0f));
+        // movie done?
+        if(video_player->getIsMovieDone() && context->effect_setting.getValue("loop", "0") != "1"){
+            // if effect is configured to free (at first or last frame)
+            val = context->effect_setting.getValue("freeze", "");
+            if(val == "first"){
+                video_player->setPosition(0.0);
+            // no freezing; end effect
+            } else if(val == ""){
+                truncate(); // end this effect
+                return;
+            }
         }
 
-        string pattern = context->effect_setting.getValue("pattern", "");
+        bool bAlphaBlack = (context->effect_setting.getValue("alphablack", "0") == "1");
+        ofShader* vidShader;
 
-        // pattern?
-        if(pattern != ""){
-            drawPattern(pattern);
-        // simple rectangle
-        } else {
-            ofSetColor(precalc->color);
-            ofDrawRectangle(0, 0, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
+        if(mask_video_player){
+            if(!(mask_video_player->isLoaded() && mask_video_player->getTexture().isAllocated())){
+                return;
+            }
+            vidShader = ShaderManager::instance()->get("mask");
+            vidShader->begin();
+            vidShader->setUniformTexture("iMask", mask_video_player->getTexture(), 2);
         }
 
-        if(shader){
-            // deactivate shader
-            shader->end();
+        drawVideo();
+        
+        if(mask_video_player){
+            vidShader->end();
         }
+
+        return;
+    }
+
+
+    // not video
+
+        
+    if(shader){
+        // activate shader
+        shader->begin();
+        
+        // populate shader
+        shader->setUniform2f("iResolution", precalc->resolution);
+        shader->setUniform3f("iPos", context->effect_setting.getValue("pos", ofVec3f(0.0f)));
+        shader->setUniform3f("iSize", context->effect_setting.getValue("size", ofVec3f(0.0f)));
+        shader->setUniform1f("iProgress", getProgress());
+        shader->setUniform1f("iDuration", getDuration());
+        shader->setUniform2f("iScreenWorldSize", precalc->scrWorldSize);
+        shader->setUniform1f("iGain", context->effect_setting.getValue("gain", 1.0f));
+    }
+
+    string pattern = context->effect_setting.getValue("pattern", "");
+
+    // pattern?
+    if(pattern != ""){
+        drawPattern(pattern);
+    // simple rectangle
+    } else {
+        ofSetColor(precalc->color);
+        ofDrawRectangle(0, 0, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
+    }
+
+    if(shader){
+        // deactivate shader
+        shader->end();
     }
 }
 

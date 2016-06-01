@@ -140,11 +140,27 @@
     </effect>
     <effect name="lava_pattern_grow">
       <video>lava/2.4_LAVA_PATROON_v01.mov</video>
+      <video_alias>lava_pattern</video_alias>
       <!-- <video_alias>lava_pattern_nonloop</video_alias> -->
       <loop>1</loop>
       <is_tunnel>1</is_tunnel>
       <!-- <!--<is_tunnel>1</is_tunnel>--> -->
       <video_mask>lava/2.4_LAVA_PATROON_GROW_v03.mov</video_mask>
+    </effect>
+    <effect name="lava_blink">
+      <video>lava/2.4_LAVA_PATROON_v01.mov</video>
+      <video_alias>lava_pattern</video_alias>
+      <loop>1</loop>
+      <is_tunnel>1</is_tunnel>
+      <video_mask>lava/2.4_LAVA_PATROON_EYEBLINK_v03.mov</video_mask>
+      <video_mask_loop>0</video_mask_loop>
+    </effect>
+    <effect name="lava_nightmare">
+      <video>lava/2.4_LAVA_PATROON_v01.mov</video>
+      <video_alias>lava_pattern</video_alias>
+      <loop>1</loop>
+      <video_mask>lava/2.4_LAVA_PATROON_WOBBLINGLINES_v03.mov</video_mask>
+      <video_mask_loop>1</video_mask_loop>
     </effect>
 
 
