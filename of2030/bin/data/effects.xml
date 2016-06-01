@@ -270,10 +270,10 @@
     </effect>
     <effect name="mud_machine_destruct">
       <video>mud/2.3_MUD_MACHINE_C_AFBOUW_v03.mov</video>
-      <!-- <loop>1</loop> -->
+      <loop>0</loop>
       <!-- <layer>0</layer> -->
       <is_tunnel>1</is_tunnel>
-      <duration>18.0</duration>
+      <duration>24.0</duration>
     </effect>
     <effect name="mud_machine_cube">
       <video>mud/2.3_MUD_MACHINE_D_CUBEONLY_v02.mov</video>
