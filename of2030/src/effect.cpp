@@ -121,7 +121,7 @@ void Effect::setup(Context &_context){
         mask_video_player = VideoManager::instance()->get(val, _context.effect_setting.getValue("video_mask_alias", val), true);
 
         if(mask_video_player){
-            if(_context.effect_setting.getValue("video_mask_loop", "1") == "1"){
+            if(_context.effect_setting.getValue("video_mask_loop", "0") == "1"){
                 // TODO; this player might currently be used by other effects?
                 mask_video_player->setLoopState(OF_LOOP_NORMAL);
             } else {
@@ -296,7 +296,7 @@ void Effect::drawContent(){
     // simple rectangle
     } else {
         ofSetColor(precalc->color);
-        ofDrawRectangle(0, 0, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
+        ofDrawRectangle(0.0f, 0.0f, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
     }
 
     if(shader){
