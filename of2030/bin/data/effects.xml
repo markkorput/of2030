@@ -161,6 +161,7 @@
       <video>lava/2.4_LAVA_PATROON_v01.mov</video>
       <video_alias>lava_pattern</video_alias>
       <loop>1</loop>
+      <is_tunnel>1</is_tunnel>
       <video_mask>lava/2.4_LAVA_PATROON_WOBBLINGLINES_v03.mov</video_mask>
       <video_mask_loop>1</video_mask_loop>
     </effect>
