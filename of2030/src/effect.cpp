@@ -118,7 +118,7 @@ void Effect::setup(Context &_context){
     if(val != ""){
         // load video (get video player instance from the VideoManager)
         mask_video_player = VideoManager::instance()->get(val, _context.effect_setting.getValue("video_mask_alias", val), true);
-        
+
         if(mask_video_player){
             if(_context.effect_setting.getValue("video_mask_loop", "1") == "1"){
                 // TODO; this player might currently be used by other effects?
@@ -127,7 +127,7 @@ void Effect::setup(Context &_context){
                 // set none-looping
                 mask_video_player->setLoopState(OF_LOOP_NONE);
             }
-            
+
             // reset to start of video (this video player might have been used already by other effects
             if(_context.effect_setting.getValue("video_mask_reset", "1") == "1")
                 mask_video_player->setPosition(0.0);
@@ -229,6 +229,12 @@ void Effect::drawContent(){
     ofRotateZ(precalc->rotate.z);
     ofScale(precalc->scale);
     ofTranslate(precalc->translate);
+
+    ofRotateX(precalc->effect_rotate.x);
+    ofRotateY(precalc->effect_rotate.y);
+    ofRotateZ(precalc->effect_rotate.z);
+    ofScale(precalc->effect_scale);
+    ofTranslate(precalc->effect_translate);
     
 
     // draw; video?
