@@ -247,6 +247,14 @@ void Effect::drawContent(){
             if(!(mask_video_player->isLoaded() && mask_video_player->getTexture().isAllocated())){
                 return;
             }
+
+            if(mask_video_player->getIsMovieDone() && context->effect_setting.getValue("video_mask_loop", "0") != "1"){
+                float freeze_pos = context->effect_setting.getValue("video_mask_freeze", -1.0f);
+                if(freeze_pos >= 0.0f){
+                    mask_video_player->setPosition(freeze_pos);
+                }
+            }
+
             vidShader = ShaderManager::instance()->get("mask");
             vidShader->begin();
             vidShader->setUniformTexture("iMask", mask_video_player->getTexture(), 2);

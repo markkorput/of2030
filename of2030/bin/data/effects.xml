@@ -155,6 +155,7 @@
       <is_tunnel>1</is_tunnel>
       <video_mask>lava/2.4_LAVA_PATROON_EYEBLINK_v03.mov</video_mask>
       <video_mask_loop>0</video_mask_loop>
+      <video_mask_freeze>0.0</video_mask_freeze>
     </effect>
     <effect name="lava_nightmare">
       <video>lava/2.4_LAVA_PATROON_v01.mov</video>
