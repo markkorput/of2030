@@ -100,7 +100,9 @@
     </effect>
     <effect name="lava_vid3">
       <video>lava/2.4_LAVA_HARTBEAT_C_DEAD_v01.mov</video>
-      <is_tunnel>1</is_tunnel>
+      <is_tunnel>0</is_tunnel>
+      <is_pano>1</is_pano>
+      <reset>1</reset>
     </effect>
     <effect name="lava_vid4">
       <video>2.4_LAVA_PATROON_EYEBLINK_v03.mov</video>
@@ -266,7 +268,7 @@
       <!-- <loop>1</loop> -->
       <!-- <layer>0</layer> -->
       <is_tunnel>1</is_tunnel>
-      <freeze>first</freeze>
+      <freeze>last</freeze>
     </effect>
     <effect name="mud_machine_destruct">
       <video>mud/2.3_MUD_MACHINE_C_AFBOUW_v03.mov</video>
