@@ -118,16 +118,6 @@
       <is_tunnel>1</is_tunnel>
       <duration>200.0</duration>
     </effect>
-
-    <effect name="lava_pattern_grow">
-      <video>lava/2.4_LAVA_PATROON_v01.mov</video>
-      <!-- <video_alias>lava_pattern_nonloop</video_alias> -->
-      <loop>1</loop>
-      <is_tunnel>1</is_tunnel>
-      <!-- <!--<is_tunnel>1</is_tunnel>--> -->
-      <video_mask>lava/2.4_LAVA_PATROON_GROW_v03.mov</video_mask>
-    </effect>
-
     <effect name="lava_vid7">
       <video>2.4_LAVA_PATROON_WOBBLINGLINES_v02.mov</video>
       <loop>1</loop>
@@ -139,6 +129,24 @@
       <is_pano>1</is_pano>
       <!-- <freeze>last</freeze> -->
     </effect>
+
+    <effect name="lava_bed">
+      <video>lava/2.4_LAVA_PATROON_ZIEKENHUISBED_v01.mov</video>
+      <is_pano>1</is_pano>
+      <translate_x>24.0</translate_x>
+      <translate_y>-0.6</translate_y>
+      <draw_size_x>1.0</draw_size_x>
+      <freeze>last</freeze>
+    </effect>
+    <effect name="lava_pattern_grow">
+      <video>lava/2.4_LAVA_PATROON_v01.mov</video>
+      <!-- <video_alias>lava_pattern_nonloop</video_alias> -->
+      <loop>1</loop>
+      <is_tunnel>1</is_tunnel>
+      <!-- <!--<is_tunnel>1</is_tunnel>--> -->
+      <video_mask>lava/2.4_LAVA_PATROON_GROW_v03.mov</video_mask>
+    </effect>
+
 
     <effect name="rain_noorderlicht_start">
       <video>rain/3.1_RAIN_NOORDERLICHT_A_START_v01.mov</video>
