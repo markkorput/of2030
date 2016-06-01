@@ -50,7 +50,7 @@ namespace of2030{
         float scrPanoStart, scrPanoEnd, fxPanoStart, fxPanoEnd;
         // ofVec2f tunnelScreenCoords[4];
         bool isTunnel, isPano;
-        ofVec3f translate, rotate, scale;
+        ofVec3f translate, rotate, scale, effect_translate, effect_scale, effect_rotate;
 
     private: // attributes
 

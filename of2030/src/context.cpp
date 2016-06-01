@@ -50,6 +50,11 @@ PreCalc::PreCalc(Context &_context){
             scrDrawSize = scrWorldSize; //resolution; //_context.effect_setting.getValue("draw_size", scrWorldSize) * worldToScreenVec2f;
         }
     }
+
+    effect_translate = _context.effect_setting.getValue("translate", ofVec3f(0.0f));
+    effect_rotate = _context.effect_setting.getValue("rotate", ofVec3f(0.0f));
+    effect_scale = _context.effect_setting.getValue("scale", ofVec3f(1.0));
+    scrDrawSize = _context.effect_setting.getValue("draw_size", scrDrawSize);
 }
 
 ofRectangle PreCalc::panoDrawRect(){

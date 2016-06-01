@@ -209,6 +209,11 @@ void OscReceiver::processMessage(ofxOscMessage &m){
     
     sub = osc_setting->addresses["control"] + "/";
     if(addr.substr(0, sub.size()) == sub){
+        if(m.getNumArgs() == 1 and m.getArgType(0) == ofxOscArgType::OFXOSC_TYPE_FLOAT and m.getArgAsFloat(0) == 0.0f){
+            // ignore this message; touch osc sends two message on for touch down, one for touch up, this is a touch up
+            return;
+        }
+
         param = addr.substr(sub.size());
         ofNotifyEvent(m_interface->controlEvent, param, m_interface);
         return;

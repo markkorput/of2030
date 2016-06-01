@@ -94,7 +94,7 @@ namespace of2030{
         float startTime, endTime;
         EffectType type;
 
-        ofVideoPlayer* video_player;
+        ofVideoPlayer *video_player, *mask_video_player;
         float pano_pos, pano_velocity;
         ofShader *shader;
     
