@@ -121,7 +121,7 @@ void Effect::setup(Context &_context){
         mask_video_player = VideoManager::instance()->get(val, _context.effect_setting.getValue("video_mask_alias", val), true);
 
         if(mask_video_player){
-            if(_context.effect_setting.getValue("video_mask_loop", "1") == "1"){
+            if(_context.effect_setting.getValue("video_mask_loop", "0") == "1"){
                 // TODO; this player might currently be used by other effects?
                 mask_video_player->setLoopState(OF_LOOP_NORMAL);
             } else {
@@ -130,8 +130,9 @@ void Effect::setup(Context &_context){
             }
 
             // reset to start of video (this video player might have been used already by other effects
-            if(_context.effect_setting.getValue("video_mask_reset", "1") == "1")
+            if(_context.effect_setting.getValue("video_mask_reset", "0") == "1"){
                 mask_video_player->setPosition(0.0);
+            }
             
             mask_video_player->play();
         }/* else {
@@ -232,6 +233,7 @@ void Effect::drawContent(){
             val = context->effect_setting.getValue("freeze", "");
             if(val == "first"){
                 video_player->setPosition(0.0);
+                //video_player->setPaused(true);
             // no freezing; end effect
             } else if(val == ""){
                 truncate(); // end this effect
@@ -246,6 +248,14 @@ void Effect::drawContent(){
             if(!(mask_video_player->isLoaded() && mask_video_player->getTexture().isAllocated())){
                 return;
             }
+
+            if(mask_video_player->getIsMovieDone() && context->effect_setting.getValue("video_mask_loop", "0") != "1"){
+                float freeze_pos = context->effect_setting.getValue("video_mask_freeze", -1.0f);
+                if(freeze_pos >= 0.0f){
+                    mask_video_player->setPosition(freeze_pos);
+                }
+            }
+
             vidShader = ShaderManager::instance()->get("mask");
             vidShader->begin();
             vidShader->setUniformTexture("iMask", mask_video_player->getTexture(), 2);
@@ -287,7 +297,7 @@ void Effect::drawContent(){
     // simple rectangle
     } else {
         ofSetColor(precalc->color);
-        ofDrawRectangle(0, 0, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
+        ofDrawRectangle(0.0f, 0.0f, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
     }
 
     if(shader){

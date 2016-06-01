@@ -17,9 +17,23 @@ SINGLETON_INLINE_IMPLEMENTATION_CODE(OscPlaybackManager)
 bool OscPlaybackManager::start(const string &name){
     // load file
     OscAsciiFile* file = new OscAsciiFile();
-    file->load(nameToPath(name));
+    if(!file){
+        return false;
+    }
+
+    if(!file->load(nameToPath(name))){
+        delete file;
+        return false;
+    }
+
     // start playback
     OscPlayback* playback = new OscPlayback(*file);
+
+    if(!playback){
+        delete file;
+        return false;
+    }
+
     playback->start();
     // save it
     add(*playback);

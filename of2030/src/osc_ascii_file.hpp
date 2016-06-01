@@ -24,7 +24,7 @@ public: // methods
     void destroy();
 
     // reading
-    void load(string path);
+    bool load(string path);
     OscAsciiLine* next_line(int recursion_count=0);
     inline const string &getReadPath(){ return readpath; }
     inline void reset(){
