@@ -10,6 +10,14 @@
       <reset>1</reset>
     </effect>
 
+    <effect name="scavenger_spot">
+      <video>scavenger/2.1_SCAVENGER_S_VENTILATOR_1_v01.mov</video>
+      <loop>1</loop>
+      <!-- <freeze>last</freeze> -->
+      <is_tunnel>0</is_tunnel>
+      <is_pano>0</is_pano>
+      <reset>1</reset>
+    </effect>
 
     <!-- inloop -->
     <effect name="cursor">
