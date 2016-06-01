@@ -233,6 +233,7 @@ void Effect::drawContent(){
             val = context->effect_setting.getValue("freeze", "");
             if(val == "first"){
                 video_player->setPosition(0.0);
+                //video_player->setPaused(true);
             // no freezing; end effect
             } else if(val == ""){
                 truncate(); // end this effect
