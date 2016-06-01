@@ -146,6 +146,7 @@
       <is_tunnel>1</is_tunnel>
       <!-- <!--<is_tunnel>1</is_tunnel>--> -->
       <video_mask>lava/2.4_LAVA_PATROON_GROW_v03.mov</video_mask>
+      <video_mask_loop>0</video_mask_loop>
     </effect>
     <effect name="lava_blink">
       <video>lava/2.4_LAVA_PATROON_v01.mov</video>
