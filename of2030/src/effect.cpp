@@ -195,25 +195,6 @@ void Effect::draw(Context &_context){
         maskShader->setUniformTexture("iMask", context->fbo2->getTexture(), 2);
         // ofSetColor(precalc->color); / --> doesn't work because shader doesn't use this color
         context->fbo3->draw(0.0f, 0.0f);
-
-//        // draw content from fbo3 (masked)
-//        ofMesh mesh;
-//        mesh.addVertex(ofPoint(0.0f, 0.0f)); // top left
-//        mesh.addVertex(ofPoint(precalc->resolution.x, 0.0f)); // top right
-//        mesh.addVertex(ofPoint(precalc->resolution.x, precalc->resolution.y)); // bottom right
-//        mesh.addVertex(ofPoint(0.0f, precalc->resolution.y)); // bottom left
-//
-//        mesh.addTexCoord(ofVec2f(0.0f, 1.0f)*precalc->resolution);
-//        mesh.addTexCoord(ofVec2f(1.0f, 1.0f)*precalc->resolution);
-//        mesh.addTexCoord(ofVec2f(1.0f, 0.0f)*precalc->resolution);
-//        mesh.addTexCoord(ofVec2f(0.0f, 0.0f)*precalc->resolution);
-//
-//        mesh.addTriangle(0, 1, 2);
-//        mesh.addTriangle(0, 2, 3);
-//
-//        context->fbo3->getTexture().bind();
-//        mesh.draw();
-//        context->fbo3->getTexture().unbind();
     maskShader->end();
 
     context = NULL;
@@ -270,7 +251,8 @@ void Effect::drawContent(){
             vidShader->setUniformTexture("iMask", mask_video_player->getTexture(), 2);
         }
 
-        drawVideo();
+        // draw video texture
+        video_player->draw(0.0, 0.0, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
         
         if(mask_video_player){
             vidShader->end();
@@ -404,55 +386,3 @@ void Effect::drawMask(const string &coordsName){
     ofDrawTriangle(coords[0].x, coords[0].y, coords[1].x, coords[1].y, coords[2].x, coords[2].y);
     ofDrawTriangle(coords[0].x, coords[0].y, coords[2].x, coords[2].y, coords[3].x, coords[3].y);
 }
-
-void Effect::drawVideo(){
-//    string coord_prefix = "";
-//    if(context->effect_setting.getValue("is_tunnel", "0") == "1"){
-//        coord_prefix = "tunnel_coord";
-//    } else if(context->effect_setting.getValue("is_pano", "0") == "1"){
-//        coord_prefix = "pano_coord";
-//    }
-
-//    if(coord_prefix == ""){
-        video_player->draw(0.0, 0.0, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
-//    return;
-//    }
-    
-//    // set up mesh with vertices and tex coords
-//    ofVec2f vidSize = ofVec2f(video_player->getWidth(), video_player->getHeight());
-//    ofVec2f coords[4];
-//    coords[0] = context->screen_setting.getValue(coord_prefix+"1", ofVec2f(0.0f, 0.0f));
-//    coords[1] = context->screen_setting.getValue(coord_prefix+"2", ofVec2f(1.0f, 0.0f));
-//    coords[2] = context->screen_setting.getValue(coord_prefix+"3", ofVec2f(1.0f, 1.0f));
-//    coords[3] = context->screen_setting.getValue(coord_prefix+"4", ofVec2f(0.0f, 1.0f));
-//
-//    ofMesh mesh;
-//    mesh.addVertex(ofPoint(0.0f, 0.0f)); // top left
-//    mesh.addVertex(ofPoint(precalc->resolution.x, 0.0f)); // top right
-//    mesh.addVertex(ofPoint(precalc->resolution.x, precalc->resolution.y)); // bottom right
-//    mesh.addVertex(ofPoint(0.0f, precalc->resolution.y)); // bottom left
-//
-//    mesh.addTexCoord(coords[0]*vidSize);
-//    mesh.addTexCoord(coords[1]*vidSize);
-//    mesh.addTexCoord(coords[2]*vidSize);
-//    mesh.addTexCoord(coords[3]*vidSize);
-//
-//    mesh.addTriangle(0, 1, 2);
-//    mesh.addTriangle(0, 2, 3);
-//    
-//    // bind video texture
-//    video_player->bind();
-//    ofSetColor(255);
-//    mesh.draw();
-//    video_player->unbind();
-}
-
-//float Effect::resolveDuration() const {
-//    if(hasDuration())
-//        return getDuration();
-//
-//    if(hasStartTime() and hasEndTime())
-//        return endTime - startTime;
-//
-//    return -1.0;
-//}
