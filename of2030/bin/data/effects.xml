@@ -212,11 +212,11 @@
       <reset>1</reset>
     </effect>
     <effect name="rain_tear">
-      <video>rain/3.1_RAIN_REGEN_TRAAN_v01.mov</video>
+      <video>rain/3.1_RAIN_REGEN_TRAAN_v02.mov</video>
       <!-- <loop>1</loop> -->
       <layer>4</layer>
       <reset>1</reset>
-      <video_mask>rain/3.1_RAIN_REGEN_TRAAN_v01.mov</video_mask>
+      <video_mask>rain/3.1_RAIN_REGEN_TRAAN_v02.mov</video_mask>
       <duration>7.2</duration>
     </effect>
     <effect name="rain_thunder">
