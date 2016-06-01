@@ -290,6 +290,7 @@
       <video>mud/2.3_MUD_SETTINGWHEEL_SPOT_3_v02.mov</video>
       <!-- <loop>1</loop> -->
       <freeze>first</freeze>
+      <is_tunnel>0</is_tunnel>
     </effect>
     <effect name="mud_wheel1">
       <video>mud/2.3_MUD_SETTINGWHEEL_SPOT_1_v02.mov</video>

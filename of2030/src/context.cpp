@@ -28,6 +28,7 @@ PreCalc::PreCalc(Context &_context){
 
     // readTunnelScreenCoords(tunnelScreenCoords);
     isPano = false;
+    isTunnel = false;
     isTunnel = (_context.effect_setting.getValue("is_tunnel", "0") == "1");
 
     if(isTunnel){
