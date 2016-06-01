@@ -20,12 +20,17 @@ void OscAsciiFile::destroy(){
         outfile.close();
 }
 
-void OscAsciiFile::load(string path){
+bool OscAsciiFile::load(string path){
     if(infile.is_open())
         infile.close();
 
+    if(!ofFile::doesFileExist(path)){
+        return false;
+    }
+
     infile.open(path);
     readpath = path;
+    return true;
 }
 
 OscAsciiLine* OscAsciiFile::next_line(int recursion_count){
