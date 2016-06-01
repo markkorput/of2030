@@ -1,4 +1,8 @@
-0.0,/lvid/lava/2.4_LAVA_HARTBEAT_A_STANDARD_1SCREEN_v01.mov
+0.0,/cfg/vidsload/operation,s,load_video
+0.0,/cfg/vidsload/video,s,lava/2.4_LAVA_PATROON_v01.mov
+0.0,/cfg/vidsload/video_alias,s,lava_pattern
+0.0,/t/vidsload
+0.01,/lvid/lava/2.4_LAVA_HARTBEAT_A_STANDARD_1SCREEN_v01.mov
 0.02,/lvid/lava/2.4_LAVA_HARTBEAT_B_5TIMES_v01.mov
 0.04,/lvid/lava/2.4_LAVA_HARTBEAT_C_DEAD_v01.mov
 0.06,/lvid/lava/2.4_LAVA_PATROON_EYEBLINK_v03.mov
