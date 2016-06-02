@@ -90,6 +90,7 @@ void Renderer::draw(){
     // draw all active effects
     vector<Effect*> effects = player->getActiveEffects();
     for(auto effect: effects){
+        context.effect_setting.data.clear();
         fillEffectSetting(*effect, context.effect_setting);
         effect->draw(context);
     }

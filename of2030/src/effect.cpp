@@ -157,9 +157,10 @@ void Effect::setup(Context &_context){
 
 void Effect::draw(Context &_context){
     // make some context, logic and precalculate data available to the entire class
-    PreCalc* prec = new PreCalc(_context);
+    PreCalc prec;
+    prec.load(_context);
     context = &_context;
-    precalc = prec;
+    precalc = &prec;
     string val;
     
 
@@ -200,7 +201,6 @@ void Effect::draw(Context &_context){
 
     context = NULL;
     precalc = NULL;
-    delete prec;
 }
 
 void Effect::drawContent(){

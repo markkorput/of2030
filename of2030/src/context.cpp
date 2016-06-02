@@ -11,7 +11,7 @@
 
 using namespace of2030;
 
-PreCalc::PreCalc(Context &_context){
+void PreCalc::load(Context &_context){
     context = &_context;
 
     //    resolution = screen_setting.getValue("resolution", ofVec2f(768, 576));

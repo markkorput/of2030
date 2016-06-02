@@ -33,7 +33,9 @@ namespace of2030{
 
     public: // methods
 
-        PreCalc(Context &_context);
+        PreCalc(){ reset(); }
+        inline void reset(){ context = NULL; }
+        void load(Context &_context);
 
         inline float panoWorldToScreen(float p);
         ofRectangle panoDrawRect();
