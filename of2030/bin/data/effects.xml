@@ -14,21 +14,25 @@
     <effect name="impro_">
     </effect>
 
-
-<!--          0: '/p/stellar.worms'
-              1: '/p/stellar.spot_grow'
-              2: '/p/stellar.clock1'
-              3: '/p/stellar.clock2'
-              4: '/p/stellar.clock3'
-              5: '/p/stellar.clock4'
-              6: '/p/stellar.clock5'
-              7: '/p/stellar.clock6'
-              8: '/p/stellar.clock7'
-              9: '/p/stellar.map'
-              10: '/p/stellar.voice1'
-              11: '/p/stellar.chorus' # two spots and smoke
-              12: '/p/stellar.ping'
-              13: '/p/stellar.voice2' # also turns on steady (non-blinking) spot
+<!--          
+'/stellar':
+  0: '/p/stellar.worms'
+  1: '/p/stellar.spot_grow'
+  2: '/p/stellar.clock1'
+  3: '/p/stellar.clock2'
+  4: '/p/stellar.clock3'
+  5: '/p/stellar.clock4'
+  6: '/p/stellar.clock5'
+  7: '/p/stellar.clock6'
+  8: '/p/stellar.clock7'
+  9: '/p/stellar.map'
+  10: '/p/stellar.voice1'
+  11: '/p/stellar.chorus' # two spots and smoke
+  12: '/p/stellar.ping'
+  13: '/p/stellar.voice2' # also turns on steady (non-blinking) spot
+'/live':
+  0: '/p/stellar.voice1'
+  1: '/p/stellar.voice2'
  -->
 
     <effect name="stellar_worms">
@@ -70,8 +74,10 @@
       <layer>3</layer>
     </effect>
     <effect name="stellar_smoke">
-      <video>stellar/1.1_STELLAR_SMOKE_v01.mov</video>
+      <!-- <video>stellar/1.1_STELLAR_SMOKE_v01.mov</video> -->
       <TODO>true</TODO>
+      <color_b>0.0</color_b>
+      <draw_size_y>0.3</draw_size_y>
       <is_tunnel>1</is_tunnel>
       <reset>1</reset>
     </effect>
@@ -96,13 +102,14 @@
       <pattern>spot</pattern>
     </effect>
     <effect name="stellar_sirene_max">
-      <video>stellar/1.1_STELLAR_SIRENE_GYDO_v01-150x150.mov</video>
+      <!-- <video>stellar/1.1_STELLAR_SIRENE_GYDO_v01-150x150.mov</video> -->
+      <color_g>0</color_g>
       <spot>3</spot>
-      <TODO>true</TODO>
       <reset>1</reset>
     </effect>
     <effect name="stellar_sirene_gydo">
-      <video>stellar/1.1_STELLAR_SIRENE_GYDO_v01-150x150.mov</video>
+      <!-- <video>stellar/1.1_STELLAR_SIRENE_GYDO_v01-150x150.mov</video> -->
+      <color_r>0</color_r>
       <spot>1</spot>
       <TODO>true</TODO>
       <reset>1</reset>
