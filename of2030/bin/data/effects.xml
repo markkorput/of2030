@@ -1,5 +1,32 @@
 <of2030>
   <effects>
+    <effect name="stellar_worms">
+      <video>stellar/1.1_STELLAR_WORMS_1_v01.mov</video>
+      <video_mask>stellar/1.1_STELLAR_WORMS_1_v01.mov</video_mask>
+      <!-- <loop>1</loop> -->
+      <!-- <freeze>last</freeze> -->
+      <is_tunnel>0</is_tunnel>
+      <is_pano>0</is_pano>
+      <reset>1</reset>
+    </effect>
+
+    <effect name="scavenger_spot">
+      <video>scavenger/2.1_SCAVENGER_S_VENTILATOR_1_v01.mov</video>
+      <loop>1</loop>
+      <!-- <freeze>last</freeze> -->
+      <is_tunnel>0</is_tunnel>
+      <is_pano>0</is_pano>
+      <reset>1</reset>
+    </effect>
+
+    <effect name="inloop_worms">
+      <video>inloop/0.0_INLOOP_WOBBLINGLINES_v01.mov</video>
+      <loop>1</loop>
+      <!-- <freeze>last</freeze> -->
+      <is_tunnel>1</is_tunnel>
+      <is_pano>0</is_pano>
+      <reset>1</reset>
+    </effect>
 
     <!-- inloop -->
     <effect name="cursor">
@@ -149,7 +176,6 @@
       <video>lava/2.4_LAVA_PATROON_v01.mov</video>
       <video_alias>lava_pattern</video_alias>
       <reset>1</reset>
-      <!-- <video_alias>lava_pattern_nonloop</video_alias> -->
       <loop>1</loop>
       <is_tunnel>1</is_tunnel>
       <!-- <!--<is_tunnel>1</is_tunnel>--> -->
@@ -181,8 +207,9 @@
       <video>rain/3.1_RAIN_NOORDERLICHT_A_START_v01.mov</video>
       <!-- <loop>1</loop> -->
       <!-- <layer>0</layer> -->
+      <is_pano>0</is_pano>
       <is_tunnel>1</is_tunnel>
-      <freeze>first</freeze>
+      <freeze>last</freeze>
       <reset>1</reset>
     </effect>
     <effect name="rain_noorderlicht_loop">
@@ -211,11 +238,11 @@
       <reset>1</reset>
     </effect>
     <effect name="rain_tear">
-      <video>rain/3.1_RAIN_REGEN_TRAAN_v01.mov</video>
+      <video>rain/3.1_RAIN_REGEN_TRAAN_v02.mov</video>
       <!-- <loop>1</loop> -->
       <layer>4</layer>
       <reset>1</reset>
-      <video_mask>rain/3.1_RAIN_REGEN_TRAAN_v01.mov</video_mask>
+      <video_mask>rain/3.1_RAIN_REGEN_TRAAN_v02.mov</video_mask>
       <duration>7.2</duration>
     </effect>
     <effect name="rain_thunder">
@@ -231,29 +258,57 @@
       <color_g>0</color_g>
       <color_b>0</color_b>
       <duration>0.2</duration>
-      <layer>1</layer>
+      <layer>3</layer>
+
+      <is_pano>1</is_pano>
+      <is_tunnel>0</is_tunnel>
+      <translate_x>5.0</translate_x>
+      <translate_y>0.0</translate_y>
+      <draw_size_x>0.3</draw_size_x>
+      <draw_size_y>0.3</draw_size_y>
     </effect>
     <effect name="rain_cubes2">
       <color_r>0</color_r>
       <color_g>255</color_g>
       <color_b>0</color_b>
       <duration>0.2</duration>
-      <layer>1</layer>
+      <layer>3</layer>
+      <is_pano>1</is_pano>
+      <is_tunnel>0</is_tunnel>
+      <translate_x>5.5</translate_x>
+      <translate_y>0.0</translate_y>
+      <draw_size_x>0.3</draw_size_x>
+      <draw_size_y>0.3</draw_size_y>
     </effect>
-      <effect name="rain_cubes3">
+    <effect name="rain_cubes3">
       <color_r>0</color_r>
       <color_g>0</color_g>
       <color_b>255</color_b>
       <duration>0.2</duration>
-      <layer>1</layer>
+      <layer>3</layer>
+
+      <is_pano>1</is_pano>
+      <is_tunnel>0</is_tunnel>
+      <translate_x>6.0</translate_x>
+      <translate_y>0.0</translate_y>
+      <draw_size_x>0.3</draw_size_x>
+      <draw_size_y>0.3</draw_size_y>
     </effect>
-      <effect name="rain_cubes4">
+    <effect name="rain_cubes4">
       <color_r>255</color_r>
       <color_g>0</color_g>
       <color_b>255</color_b>
       <duration>0.2</duration>
-      <layer>1</layer>
+      <layer>3</layer>
+
+      <is_pano>1</is_pano>
+      <is_tunnel>0</is_tunnel>
+      <translate_x>6.5</translate_x>
+      <translate_y>0.0</translate_y>
+      <draw_size_x>0.3</draw_size_x>
+      <draw_size_y>0.3</draw_size_y>
     </effect>
+
     <effect name="mud_machine_build">
       <video>mud/2.3_MUD_MACHINE_A_OPBOUW_v02.mov</video>
       <!-- <loop>1</loop> -->
@@ -270,6 +325,7 @@
       <!-- <layer>0</layer> -->
       <is_tunnel>1</is_tunnel>
       <freeze>last</freeze>
+      <reset>1</reset>
     </effect>
     <effect name="mud_machine_destruct">
       <video>mud/2.3_MUD_MACHINE_C_AFBOUW_v03.mov</video>
