@@ -315,6 +315,7 @@ void Effect::drawPattern(const string &patternName){
         int spotNumber = context->effect_setting.getValue("spot", (int)1);
         string prefix = "spot" + ofToString(spotNumber);
 
+
         ofVec2f spotPos = context->screen_setting.getValue(prefix, ofVec2f(-10.0f)) * precalc->resolution;
         ofVec2f spotSize = context->screen_setting.getValue(prefix+"size", ofVec2f(0.0f)) * precalc->resolution;
 
@@ -326,7 +327,7 @@ void Effect::drawPattern(const string &patternName){
         if(!shader){
             // draw without shader stuff
             // ofDrawRectangle(0, 0, precalc->resolution.x, precalc->resolution.y);
-            ofDrawEllipse(spotPos.x, spotPos.y, spotSize.x, spotSize.y);
+            ofDrawEllipse(0.0f, 0.0f, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
             return;
         }
 
@@ -344,7 +345,7 @@ void Effect::drawPattern(const string &patternName){
         shader->setUniform1i("iQuarterOff", q);
 
         spotPos = spotPos - spotSize * 0.5;
-        ofDrawRectangle(0.0f, 0.0f, precalc->resolution.x, precalc->resolution.y); //spotPos.x, spotPos.y, spotSize.x, spotSize.y);
+        ofDrawRectangle(0.0f, 0.0f, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
         return;
     }
 

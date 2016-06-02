@@ -53,14 +53,14 @@
     <effect name="stellar_max_blink">
       <!-- currently not used -->
       <video>stellar/1.1_STELLAR_S_MAX_TIK_v01.mov</video>
-      <freeze>last</freeze>
+      <!-- <freeze>last</freeze> -->
       <spot>3</spot>
       <pattern>spot</pattern>
       <reset>1</reset>
     </effect>
     <effect name="stellar_max_grow">
       <video>stellar/1.1_STELLAR_S_MAX_STRING_v01.mov</video>
-      <freeze>last</freeze>
+      <!-- <freeze>last</freeze> -->
       <spot>3</spot>
       <pattern>spot</pattern>
       <reset>1</reset>
@@ -92,13 +92,13 @@
       <pattern>spot</pattern>
     </effect>
     <effect name="stellar_sirene_max">
-      <video>stellar/1.1_STELLAR_SIRENE_MAX_v01.mov</video>
+      <video>stellar/1.1_STELLAR_SIRENE_GYDO_v01-150x150.mov</video>
       <spot>3</spot>
       <TODO>true</TODO>
       <reset>1</reset>
     </effect>
     <effect name="stellar_sirene_gydo">
-      <video>stellar/1.1_STELLAR_SIRENE_GYDO_v01.mov</video>
+      <video>stellar/1.1_STELLAR_SIRENE_GYDO_v01-150x150.mov</video>
       <spot>1</spot>
       <TODO>true</TODO>
       <reset>1</reset>
@@ -106,7 +106,7 @@
     <effect name="stellar_koen_ping">
       <video>stellar/1.1_STELLAR_S_KOEN_OPKOMST_v01.mov</video>
       <spot>2</spot>
-      <freeze>last</freeze>
+      <!-- <freeze>last</freeze> -->
       <reset>1</reset>
     </effect>
     <effect name="stellar_koen_spot">
