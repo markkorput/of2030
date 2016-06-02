@@ -49,12 +49,12 @@ namespace of2030{
         ofColor color;
         float scrPanoStart, scrPanoEnd, fxPanoStart, fxPanoEnd;
         // ofVec2f tunnelScreenCoords[4];
-        bool isTunnel, isPano;
         ofVec3f translate, rotate, scale, effect_translate, effect_scale, effect_rotate;
 
     private: // attributes
 
         Context* context;
+//        bool isTunnel, isPano;
     };
 
     // inline function implementations

@@ -27,19 +27,18 @@ PreCalc::PreCalc(Context &_context){
     fxPanoEnd = _context.effect_setting.getValue("pano_end", 1.0f);
 
     // readTunnelScreenCoords(tunnelScreenCoords);
-    isPano = false;
-    isTunnel = false;
-    isTunnel = (_context.effect_setting.getValue("is_tunnel", "0") == "1");
+//    isPano = false;
+//    isTunnel = false;
 
-    if(isTunnel){
+    if(_context.effect_setting.getValue("is_tunnel", "0") == "1"){
+//        isTunnel = true;
         translate = _context.screen_setting.getValue("tunnel_translate", ofVec3f(0.0f));
         rotate = _context.screen_setting.getValue("tunnel_rotate", ofVec3f(0.0f));
         scale = _context.screen_setting.getValue("tunnel_scale", ofVec3f(1.0f));
         scrDrawSize = _context.tunnel_size;
-        isPano = false;
     } else {
-        isPano = (_context.effect_setting.getValue("is_pano", "0") == "1");
-        if(isPano){
+        if(_context.effect_setting.getValue("is_pano", "0") == "1"){
+//            isPano = true;
             translate = _context.screen_setting.getValue("pano_translate", ofVec3f(0.0f));
             rotate = _context.screen_setting.getValue("pano_rotate", ofVec3f(0.0f));
             scale = _context.screen_setting.getValue("pano_scale", ofVec3f(1.0f));
