@@ -33,11 +33,12 @@
 
     <effect name="stellar_worms">
       <video>stellar/1.1_STELLAR_WORMS_1_v01.mov</video>
+      <video_mask>stellar/1.1_STELLAR_WORMS_1_v01.mov</video_mask>
       <!-- <video_mask>stellar/1.1_STELLAR_WORMS_1_v01.mov</video_mask> -->
       <!-- <loop>1</loop> -->
       <!-- <freeze>last</freeze> -->
       <is_tunnel>0</is_tunnel>
-      <is_pano>1</is_pano>
+      <is_pano>0</is_pano>
       <reset>1</reset>
     </effect>
     <effect name="stellar_worms_end">
@@ -55,6 +56,8 @@
       <video>stellar/1.1_STELLAR_S_MAX_TIK_v01.mov</video>
       <!-- <freeze>last</freeze> -->
       <spot>3</spot>
+      <is_pano>0</is_pano>
+      <is_tunnel>0</is_tunnel>
       <pattern>spot</pattern>
       <reset>1</reset>
     </effect>
@@ -64,6 +67,7 @@
       <spot>3</spot>
       <pattern>spot</pattern>
       <reset>1</reset>
+      <layer>3</layer>
     </effect>
     <effect name="stellar_smoke">
       <video>stellar/1.1_STELLAR_SMOKE_v01.mov</video>
