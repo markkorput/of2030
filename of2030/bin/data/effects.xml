@@ -5,8 +5,8 @@
       <video>inloop/0.0_INLOOP_WOBBLINGLINES_v01.mov</video>
       <loop>1</loop>
       <!-- <freeze>last</freeze> -->
-      <is_tunnel>1</is_tunnel>
-      <is_pano>0</is_pano>
+      <is_tunnel>0</is_tunnel>
+      <is_pano>1</is_pano>
       <reset>1</reset>
     </effect>
 
@@ -15,13 +15,105 @@
     </effect>
 
 
+<!--          0: '/p/stellar.worms'
+              1: '/p/stellar.spot_grow'
+              2: '/p/stellar.clock1'
+              3: '/p/stellar.clock2'
+              4: '/p/stellar.clock3'
+              5: '/p/stellar.clock4'
+              6: '/p/stellar.clock5'
+              7: '/p/stellar.clock6'
+              8: '/p/stellar.clock7'
+              9: '/p/stellar.map'
+              10: '/p/stellar.voice1'
+              11: '/p/stellar.chorus' # two spots and smoke
+              12: '/p/stellar.ping'
+              13: '/p/stellar.voice2' # also turns on steady (non-blinking) spot
+ -->
+
     <effect name="stellar_worms">
       <video>stellar/1.1_STELLAR_WORMS_1_v01.mov</video>
-      <video_mask>stellar/1.1_STELLAR_WORMS_1_v01.mov</video_mask>
+      <!-- <video_mask>stellar/1.1_STELLAR_WORMS_1_v01.mov</video_mask> -->
       <!-- <loop>1</loop> -->
       <!-- <freeze>last</freeze> -->
       <is_tunnel>0</is_tunnel>
-      <is_pano>0</is_pano>
+      <is_pano>1</is_pano>
+      <reset>1</reset>
+    </effect>
+    <effect name="stellar_worms_end">
+      <video>inloop/0.0_INLOOP_WOBBLINGLINES_v01.mov</video>
+      <video_mask>stellar/0.1_STELLAR_END_WOBBLINGLINES_A_v01.mov</video_mask>
+      <!-- <loop>1</loop> -->
+      <!-- <freeze>last</freeze> -->
+      <is_tunnel>0</is_tunnel>
+      <is_pano>1</is_pano>
+      <!-- <reset>1</reset> NOOOO -->
+      <video_mask_reset>1</video_mask_reset>
+    </effect>
+    <effect name="stellar_max_blink">
+      <!-- currently not used -->
+      <video>stellar/1.1_STELLAR_S_MAX_TIK_v01.mov</video>
+      <freeze>last</freeze>
+      <spot>3</spot>
+      <pattern>spot</pattern>
+      <reset>1</reset>
+    </effect>
+    <effect name="stellar_max_grow">
+      <video>stellar/1.1_STELLAR_S_MAX_STRING_v01.mov</video>
+      <freeze>last</freeze>
+      <spot>3</spot>
+      <pattern>spot</pattern>
+      <reset>1</reset>
+    </effect>
+    <effect name="stellar_smoke">
+      <video>stellar/1.1_STELLAR_SMOKE_v01.mov</video>
+      <TODO>true</TODO>
+      <is_tunnel>1</is_tunnel>
+      <reset>1</reset>
+    </effect>
+    <effect name="stellar_map">
+      <video>stellar/1.1_STELLAR_LAUNCH_v01.mov</video>
+      <is_pano>1</is_pano>
+      <reset>1</reset>
+    </effect>
+    <effect name="stellar_voice1">
+      <video>stellar/1.1_STELLAR_VOICEOVER_1_v01.mov</video>
+      <mask_coords_name>voice_coord</mask_coords_name>
+      <reset>1</reset>
+    </effect>
+    <effect name="stellar_voice2">
+      <video>stellar/1.1_STELLAR_VOICEOVER_2_v01.mov</video>
+      <mask_coords_name>voice_coord</mask_coords_name>
+      <reset>1</reset>
+    </effect>
+    <effect name="stellar_clock">
+      <spot>1</spot>
+      <TODO>true</TODO>
+      <pattern>spot</pattern>
+    </effect>
+    <effect name="stellar_sirene_max">
+      <video>stellar/1.1_STELLAR_SIRENE_MAX_v01.mov</video>
+      <spot>3</spot>
+      <TODO>true</TODO>
+      <reset>1</reset>
+    </effect>
+    <effect name="stellar_sirene_gydo">
+      <video>stellar/1.1_STELLAR_SIRENE_GYDO_v01.mov</video>
+      <spot>1</spot>
+      <TODO>true</TODO>
+      <reset>1</reset>
+    </effect>
+    <effect name="stellar_koen_ping">
+      <video>stellar/1.1_STELLAR_S_KOEN_OPKOMST_v01.mov</video>
+      <spot>2</spot>
+      <freeze>last</freeze>
+      <reset>1</reset>
+    </effect>
+    <effect name="stellar_koen_spot">
+      <video>stellar/1.1_STELLAR_S_KOEN_VOICEOVER_v01.mov</video>
+      <spot>2</spot>
+      <freeze>last</freeze>
+      <pattern>spot</pattern>
       <reset>1</reset>
     </effect>
 
@@ -390,20 +482,20 @@
 
     <!-- spot -->
     <effect name="spot1">
-      <number>1</number>
+      <spot>1</spot>
     </effect>
 
     <effect name="spot2">
-      <number>2</number>
+      <spot>2</spot>
     </effect>
 
     <effect name="spot3">
-      <number>3</number>
+      <spot>3</spot>
     </effect>
 
     <effect name="spot">
-      <pattern>spot</pattern>
       <shader>spot</shader>
+      <pattern>spot</pattern>
     </effect>
 
     <!-- vid -->

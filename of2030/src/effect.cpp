@@ -67,7 +67,7 @@ void Effect::setup(Context &_context){
     }
 
     // make sure we have endTime and duration initialized AND consistent
-    if(!hasEndTime() ){
+    if(!hasEndTime() && _context.effect_setting.hasValue("duration")){
         setDuration(_context.effect_setting.getValue("duration", 30.0f));
     }
 
@@ -133,7 +133,7 @@ void Effect::setup(Context &_context){
             if(_context.effect_setting.getValue("video_mask_reset", "0") == "1"){
                 mask_video_player->setPosition(0.0);
             }
-            
+
             mask_video_player->play();
         }/* else {
             ofLogWarning() << "Effect::setup could not get video player for " << val;
@@ -312,7 +312,7 @@ void Effect::drawPattern(const string &patternName){
     //
 
     if(patternName == "spot"){
-        int spotNumber = context->effect_setting.getValue("number", (int)1);
+        int spotNumber = context->effect_setting.getValue("spot", (int)1);
         string prefix = "spot" + ofToString(spotNumber);
 
         ofVec2f spotPos = context->screen_setting.getValue(prefix, ofVec2f(-10.0f)) * precalc->resolution;
@@ -338,9 +338,9 @@ void Effect::drawPattern(const string &patternName){
         shader->setUniform1f("iGain", context->effect_setting.getValue("gain", 1.0f));
 
         // quarter; 1 means top right, 2 means bottom right, 3 bottom left, 4 means top left, zero means none
-        int q = std::floor(context->effect_setting.getValue("quarter_on", 0.0f));
+        int q = context->effect_setting.getValue("quarter_on", 0);
         shader->setUniform1i("iQuarterOn", q);
-        q = std::floor(context->effect_setting.getValue("quarter_off", 0.0f));
+        q = context->effect_setting.getValue("quarter_off", 0);
         shader->setUniform1i("iQuarterOff", q);
 
         spotPos = spotPos - spotSize * 0.5;
