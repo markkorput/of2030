@@ -117,30 +117,34 @@ void Effect::setup(Context &_context){
     // load/start/configure video_mask if specified
     val = _context.effect_setting.getValue("video_mask", "");
     if(val != ""){
-        // load video (get video player instance from the VideoManager)
-        mask_video_player = VideoManager::instance()->get(val, _context.effect_setting.getValue("video_mask_alias", val), true);
+        if(val == "self"){
+            mask_video_player = video_player;
+        } else {
+            // load video (get video player instance from the VideoManager)
+            mask_video_player = VideoManager::instance()->get(val, _context.effect_setting.getValue("video_mask_alias", val), true);
 
-        if(mask_video_player){
-            if(_context.effect_setting.getValue("video_mask_loop", "0") == "1"){
-                // TODO; this player might currently be used by other effects?
-                mask_video_player->setLoopState(OF_LOOP_NORMAL);
-            } else {
-                // set none-looping
-                mask_video_player->setLoopState(OF_LOOP_NONE);
-            }
+            if(mask_video_player){
+                if(_context.effect_setting.getValue("video_mask_loop", "0") == "1"){
+                    // TODO; this player might currently be used by other effects?
+                    mask_video_player->setLoopState(OF_LOOP_NORMAL);
+                } else {
+                    // set none-looping
+                    mask_video_player->setLoopState(OF_LOOP_NONE);
+                }
 
-            // reset to start of video (this video player might have been used already by other effects
-            if(_context.effect_setting.getValue("video_mask_reset", "0") == "1"){
-                mask_video_player->setPosition(0.0);
-            }
+                // reset to start of video (this video player might have been used already by other effects
+                if(_context.effect_setting.getValue("video_mask_reset", "0") == "1"){
+                    mask_video_player->setPosition(0.0);
+                }
 
-            mask_video_player->play();
-        }/* else {
-            ofLogWarning() << "Effect::setup could not get video player for " << val;
-            ofLog() << "setting effect duration to zero";
-            // this will effectively abort the effect
-            truncate();
-        }*/
+                mask_video_player->play();
+            }/* else {
+                ofLogWarning() << "Effect::setup could not get video player for " << val;
+                ofLog() << "setting effect duration to zero";
+                // this will effectively abort the effect
+                truncate();
+            }*/
+        }
     }
 
     // load any shaders based shader param
