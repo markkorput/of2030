@@ -192,21 +192,27 @@
     </effect>
     <effect name="scav_turbo_max">
       <video>scav/2.1_SCAVENGER_S_VENTILATOR_3_v01.mov</video>
+      <video_mask>self</video_mask>
       <spot>3</spot>
       <reset>1</reset>
-      <layer>1</layer>
+      <layer>4</layer>
+      <scale_x>1.33</scale_x>
     </effect>
     <effect name="scav_turbo_koen">
       <video>scav/2.1_SCAVENGER_S_VENTILATOR_3_v01.mov</video>
+      <video_mask>self</video_mask>
       <spot>2</spot>
       <reset>1</reset>
-      <layer>1</layer>
+      <layer>4</layer>
+      <scale_x>1.33</scale_x>
     </effect>
     <effect name="scav_turbo_gydo">
       <video>scav/2.1_SCAVENGER_S_VENTILATOR_3_v01.mov</video>
+      <video_mask>self</video_mask>
       <spot>1</spot>
       <reset>1</reset>
-      <layer>1</layer>
+      <layer>4</layer>
+      <scale_x>1.33</scale_x>
     </effect>
     <effect name="scav_pano">
       <video>scav/2.1_SCAVENGER_PANOHELI_OPTIE_1_v01.mov</video>
@@ -215,7 +221,7 @@
     </effect>
     <effect name="scav_roof">
       <TODO>true</TODO>
-      <color_r>0.0</color_r>
+      <color_a>200.0</color_a>
       <mask_coords_name>roof_coord</mask_coords_name>
       <!-- <duration>1000.0</duration> -->
     </effect>
