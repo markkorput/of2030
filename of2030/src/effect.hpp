@@ -42,6 +42,7 @@ namespace of2030{
         inline float getEndTime() const { return endTime; }
          inline float getDuration() const { return endTime-startTime; }
         inline int getLayer() const { return layer; }
+        inline bool getUnique() const { return bUnique; }
 
         inline ofVideoPlayer* getVideoPlayer() const { return video_player; }
         inline void setDuration(float duration){
@@ -69,6 +70,7 @@ namespace of2030{
 
         int layer;
         float startTime, endTime;
+        bool bUnique; // if there can be only one effect with this trigger value at any given moment
 
         ofVideoPlayer *video_player, *mask_video_player;
         ofVec3f auto_pos, auto_velocity;
