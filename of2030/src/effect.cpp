@@ -87,7 +87,7 @@ void Effect::setup(Context &_context){
                 // set none-looping
                 video_player->setLoopState(OF_LOOP_NONE);
                 
-                // wanna freeze on first or last frame when done? remove end time, go on indefinite
+                // wanna freeze on a frame when done? remove end time, go on indefinite
                 if(_context.effect_setting.hasValue("freeze")){
                     endTime = NO_TIME;
                 }
@@ -236,13 +236,13 @@ void Effect::drawContent(){
         
         // movie done?
         if(video_player->getIsMovieDone() && context->effect_setting.getValue("loop", "0") != "1"){
-            // if effect is configured to free (at first or last frame)
-            val = context->effect_setting.getValue("freeze", "");
-            if(val == "first"){
-                video_player->setPosition(0.0);
-                //video_player->setPaused(true);
+            // if effect is configured to freeze (at certain position, usually first or last frame)
+            float freeze_pos = context->effect_setting.getValue("freeze", (float)-1.0);
+            if(freeze_pos >= 0.0f){
+                video_player->setPosition(freeze_pos);
+                video_player->setPaused(true);
             // no freezing; end effect
-            } else if(val == ""){
+            } else {
                 truncate(); // end this effect
                 return;
             }
