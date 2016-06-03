@@ -229,9 +229,10 @@
       <!-- <pattern>horiline</pattern> -->
       <is_pano>1</is_pano>
       <draw_size_y>0.05</draw_size_y>
-      <color_a>200.0</color_a>
+      <color_a>240.0</color_a>
       <duration>5.0</duration>
-      <auto_velocity_y>-0.35</auto_velocity_y>
+      <!-- negative value means down on OSX positive value means down on RASPI -->
+      <auto_velocity_y>0.15</auto_velocity_y>
       <auto_pos_y>2.0</auto_pos_y>
       <unique>0</unique>
     </effect>
