@@ -16,9 +16,6 @@ using namespace of2030;
 
 Effect::Effect(){
     reset();
-    // setType
-    type = DEFAULT;
-    name = EFFECT_NAMES[type];
 
     // every effect instance gets a unique cid (client-side-id)
     // cid = cidCounter;
@@ -33,6 +30,7 @@ void Effect::reset(){
     video_player = NULL;
     mask_video_player = NULL;
     layer = 0;
+    bUnique = true;
 }
 
 
@@ -42,6 +40,8 @@ void Effect::update(float dt){
 
 void Effect::setup(Context &_context){
     string val;
+
+    bUnique = _context.effect_setting.getValue("unique", "1") == "0";
 
     // make sure we have a start time (default to NOW)
     if(!hasStartTime()){

@@ -34,11 +34,11 @@ namespace of2030{
         void registerCallbacks(bool _register=true);
         void onTrigger(string &trigger);
         void onStopTrigger(string &trigger);
-        void onEffect(string &effect);
+//        void onEffect(string &effect);
         void onEffectConfig(EffectConfig &cfg);
         void onScreenConfig(EffectConfig &cfg);
-        void onSong(string &name);
-        void onClip(string &name);
+//        void onSong(string &name);
+//        void onClip(string &name);
         void onEffectEnded(Effect &effect);
         void onPlayback(string &name);
 

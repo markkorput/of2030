@@ -73,6 +73,23 @@ void OscReceiver::processMessage(ofxOscMessage &m){
     ofLogVerbose() << "[osc-in] " << addr << " with " << param;
 
     
+    if(addr == osc_setting->addresses["trigger"]){
+        ofNotifyEvent(m_interface->triggerEvent, param, m_interface);
+        return;
+    }
+    
+    sub = osc_setting->addresses["trigger"] + "/";
+    if(addr.substr(0, sub.size()) == sub){
+        if(m.getNumArgs() == 1 and m.getArgType(0) == ofxOscArgType::OFXOSC_TYPE_FLOAT and m.getArgAsFloat(0) == 0.0f){
+            // ignore this message; touch osc sends two message on for touch down, one for touch up, this is a touch up
+            return;
+        }
+        
+        param = addr.substr(sub.size());
+        ofNotifyEvent(m_interface->triggerEvent, param, m_interface);
+        return;
+    }
+
     
     sub = osc_setting->addresses["effect_config"] + "/";
     if(addr.substr(0, sub.size()) == sub){
@@ -99,7 +116,6 @@ void OscReceiver::processMessage(ofxOscMessage &m){
     }
 
     
-
     if(addr == osc_setting->addresses["playback"]){
         ofNotifyEvent(m_interface->playbackEvent, param, m_interface);
         return;
@@ -117,24 +133,6 @@ void OscReceiver::processMessage(ofxOscMessage &m){
         return;
     }
 
-    
-    
-    if(addr == osc_setting->addresses["trigger"]){
-        ofNotifyEvent(m_interface->triggerEvent, param, m_interface);
-        return;
-    }
-    
-    sub = osc_setting->addresses["trigger"] + "/";
-    if(addr.substr(0, sub.size()) == sub){
-        if(m.getNumArgs() == 1 and m.getArgType(0) == ofxOscArgType::OFXOSC_TYPE_FLOAT and m.getArgAsFloat(0) == 0.0f){
-            // ignore this message; touch osc sends two message on for touch down, one for touch up, this is a touch up
-            return;
-        }
-        
-        param = addr.substr(sub.size());
-        ofNotifyEvent(m_interface->triggerEvent, param, m_interface);
-        return;
-    }
     
     if(addr == osc_setting->addresses["stop_playback"]){
         if(m.getNumArgs() == 1 and m.getArgType(0) == ofxOscArgType::OFXOSC_TYPE_FLOAT){
@@ -156,7 +154,8 @@ void OscReceiver::processMessage(ofxOscMessage &m){
         ofNotifyEvent(m_interface->stopPlaybackEvent, param, m_interface);
         return;
     }
-    
+
+
     if(addr == osc_setting->addresses["stop"]){
         if(m.getNumArgs() == 1 and m.getArgType(0) == ofxOscArgType::OFXOSC_TYPE_FLOAT){
             param = "";
@@ -178,29 +177,29 @@ void OscReceiver::processMessage(ofxOscMessage &m){
         return;
     }
     
-    if(addr == osc_setting->addresses["song"]){
-        ofLogVerbose() << "[osc-in] song: " << param;
-        ofNotifyEvent(m_interface->songEvent, param, m_interface);
-        return;
-    }
-    
-    if(addr == osc_setting->addresses["clip"]){
-        ofLogVerbose() << "[osc-in] clip: " << param;
-        ofNotifyEvent(m_interface->clipEvent, param, m_interface);
-        return;
-    }
-    
-    if(addr == osc_setting->addresses["effect"]){
-        ofNotifyEvent(m_interface->effectEvent, param, m_interface);
-        return;
-    }
-    
-    sub = osc_setting->addresses["effect"] + "/";
-    if(addr.substr(0, sub.size()) == sub){
-        param = addr.substr(sub.size());
-        ofNotifyEvent(m_interface->effectEvent, param, m_interface);
-        return;
-    }
+//    if(addr == osc_setting->addresses["song"]){
+//        ofLogVerbose() << "[osc-in] song: " << param;
+//        ofNotifyEvent(m_interface->songEvent, param, m_interface);
+//        return;
+//    }
+//    
+//    if(addr == osc_setting->addresses["clip"]){
+//        ofLogVerbose() << "[osc-in] clip: " << param;
+//        ofNotifyEvent(m_interface->clipEvent, param, m_interface);
+//        return;
+//    }
+//    
+//    if(addr == osc_setting->addresses["effect"]){
+//        ofNotifyEvent(m_interface->effectEvent, param, m_interface);
+//        return;
+//    }
+//    
+//    sub = osc_setting->addresses["effect"] + "/";
+//    if(addr.substr(0, sub.size()) == sub){
+//        param = addr.substr(sub.size());
+//        ofNotifyEvent(m_interface->effectEvent, param, m_interface);
+//        return;
+//    }
     
     if(addr == osc_setting->addresses["control"]){
         ofNotifyEvent(m_interface->controlEvent, param, m_interface);
