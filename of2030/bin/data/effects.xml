@@ -549,26 +549,33 @@
       <translate_x>3.0</translate_x>
       <draw_size_x>4.0</draw_size_x>
       <draw_size_y>2.0</draw_size_y>
+      <reset>1</reset>
     </effect>
     <effect name="divide_chords">
       <video>divide/3.2_WMND_AKKOORDEN_v01.mov</video>
       <is_tunnel>1</is_tunnel>
       <video_mask>self</video_mask>
       <layer>5</layer>
+      <reset>1</reset>
     </effect>
     <effect name="divide_particles1">
       <video>divide/3.2_WMND_KOEN_HANDMOVES_1_05806_v01.mov</video>
       <is_tunnel>1</is_tunnel>
+      <reset>1</reset>
     </effect>
     <effect name="divide_particles2">
       <video>divide/3.2_WMND_KOEN_HANDMOVES_2_22320_v01.mov</video>
       <is_tunnel>1</is_tunnel>
+      <reset>1</reset>
     </effect>
     <effect name="divide_blinks">
-      <video>divide/3.2_WMND_FLASHLIGHTS_v01.mov</video>
-      <is_tunnel>1</is_tunnel>
+      <video>divide/3.2_WMND_FLASHLIGHTS_v01-cropped-mask.mov</video>
       <video_mask>self</video_mask>
+      <is_pano>1</is_pano>
+      <!-- <video_mask>self</video_mask> -->
       <layer>5</layer>
+      <loop>1</loop>
+      <reset>1</reset>
     </effect>
 
 
