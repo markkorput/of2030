@@ -37,7 +37,6 @@ void Effect::reset(){
 
 
 void Effect::update(float dt){
-    pano_pos += pano_velocity * dt;
     auto_pos += auto_velocity * dt;
 }
 
@@ -152,10 +151,6 @@ void Effect::setup(Context &_context){
 
     auto_pos = _context.effect_setting.getValue("auto_pos", ofVec3f(0.0f));
     auto_velocity = _context.effect_setting.getValue("auto_velocity", ofVec3f(0.0f));
-
-    // TODO; remove
-    pano_pos = _context.effect_setting.getValue("pano_pos", 0.0f);
-    pano_velocity = _context.effect_setting.getValue("pano_velocity", 0.0f);
 
     layer = _context.effect_setting.getValue("layer", 0);
 }
@@ -375,22 +370,6 @@ void Effect::drawPattern(const string &patternName){
         return;
     }
 
-    //
-    // CURSOR
-    //
-
-    if(patternName == "cursor"){
-        float p = context->screen_setting.getValue("pano_pos", pano_pos);
-        float x = ofMap(p - floor(p),
-                            context->screen_setting.getValue("pano_start", 0.0f),
-                            context->screen_setting.getValue("pano_end", 1.0f),
-                            0.0,
-                            precalc->scrDrawSize.x);
-
-        float gain = context->effect_setting.getValue("gain", 1.0f) * precalc->scrDrawSize.x / precalc->scrWorldSize.x;
-        ofDrawRectangle(x-gain*0.5, 0.0f, gain, precalc->scrDrawSize.y);
-        return;
-    }
 }
 
 void Effect::drawMask(const string &coordsName){
