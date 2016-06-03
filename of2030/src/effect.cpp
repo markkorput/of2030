@@ -41,7 +41,7 @@ void Effect::reset(){
 void Effect::setup(Context &_context){
     string val;
 
-    bUnique = _context.effect_setting.getValue("unique", "1") == "0";
+    bUnique = _context.effect_setting.getValue("unique", "1") == "1";
 
     // make sure we have a start time (default to NOW)
     if(!hasStartTime()){
@@ -275,6 +275,7 @@ void Effect::drawContent(){
         }
 
         // draw video texture
+        
         video_player->draw(0.0, 0.0, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
         
         if(mask_video_player){

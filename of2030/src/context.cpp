@@ -45,15 +45,12 @@ void PreCalc::load(Context &_context){
         bIsSpot = true;
         string prefix = "spot" + _context.effect_setting.getValue("spot", "0");
 
+        // convert from screen resolution (per-pixel) to real-world meters
         scale = ofVec3f(resolution/scrWorldSize);
         rotate = ofVec3f(0.0);
-        
         // default value is way off screen; having no configuration for this spot,
         // means this spot should not be visible on this screen
         translate = context->screen_setting.getValue(prefix, ofVec3f(-100.0f, -100.0f, 0.0f));
-
-//        ofVec2f spotPos = context->screen_setting.getValue(prefix, ofVec2f(-100.0f));
-//        translate.set(spotPos.x, spotPos.y, 0.0f);
         scrDrawSize = context->screen_setting.getValue(prefix+"size", ofVec2f(0.0f));
     // full screen
     } else {

@@ -121,13 +121,15 @@
 
     <effect name="scav_search_max">
       <video>scav/2.1_SCAVENGER_S_SEARCHLIGHT_MAX_v01.mov</video>
-      <video_mask>scav/2.1_SCAVENGER_S_SEARCHLIGHT_MAX_v01.mov</video_mask>
       <spot>3</spot>
       <reset>1</reset>
       <layer>3</layer>
+      <!-- videos are not square but 768x576 so this way we compensate-->
+      <scale_x>1.33</scale_x>
     </effect>
     <effect name="scav_search_koen">
       <video>scav/2.1_SCAVENGER_S_SEARCHLIGHT_KOEN_v01.mov</video>
+      <scale_x>1.33</scale_x>
       <spot>2</spot>
       <reset>1</reset>
       <layer>3</layer>
@@ -137,6 +139,7 @@
       <spot>1</spot>
       <reset>1</reset>
       <layer>3</layer>
+      <scale_x>1.33</scale_x>
     </effect>
     <effect name="scav_fan_max">
       <video>scav/2.1_SCAVENGER_S_VENTILATOR_1_v02.mov</video>
@@ -144,6 +147,7 @@
       <reset>1</reset>
       <layer>2</layer>
       <loop>1</loop>
+      <scale_x>1.33</scale_x>
     </effect>
     <effect name="scav_fan_koen">
       <video>scav/2.1_SCAVENGER_S_VENTILATOR_1_v02.mov</video>
@@ -151,6 +155,7 @@
       <reset>1</reset>
       <layer>2</layer>
       <loop>1</loop>
+      <scale_x>1.33</scale_x>
     </effect>
     <effect name="scav_fan_gydo">
       <video>scav/2.1_SCAVENGER_S_VENTILATOR_1_v02.mov</video>
@@ -158,6 +163,7 @@
       <reset>1</reset>
       <layer>2</layer>
       <loop>1</loop>
+      <scale_x>1.33</scale_x>
     </effect>
     <effect name="scav_beat_max">
       <video>scav/2.1_SCAVENGER_S_VENTILATOR_2_v02-frame.mov</video>
@@ -219,8 +225,9 @@
       <draw_size_y>0.05</draw_size_y>
       <color_a>200.0</color_a>
       <duration>5.0</duration>
-      <auto_velocity_y>-0.5</auto_velocity_y>
+      <auto_velocity_y>-0.35</auto_velocity_y>
       <auto_pos_y>2.0</auto_pos_y>
+      <unique>0</unique>
     </effect>
 
 
