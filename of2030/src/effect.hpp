@@ -27,8 +27,8 @@ namespace of2030{
         // ~Effect(){ destroy(); }
 
         virtual void setup(Context &_context);
-        virtual void draw(Context &_context);
-        virtual void update(float dt);
+        virtual void draw(Context &_context, float dt);
+        // virtual void update(float dt);
 
         inline void truncate(){
             startTime = 0.0f;
@@ -73,7 +73,7 @@ namespace of2030{
         bool bUnique; // if there can be only one effect with this trigger value at any given moment
 
         ofVideoPlayer *video_player, *mask_video_player;
-        ofVec3f auto_pos, auto_velocity;
+        ofVec3f auto_pos, auto_rotation;
         ofShader *shader;
     
         Context *context;

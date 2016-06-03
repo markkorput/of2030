@@ -28,9 +28,9 @@ void Player::update(){
 void Player::update(float dt){
     if(m_bPlaying){
         movePlaybackTimeTo(m_time + dt);
-        for(auto effect: active_effects_manager.getEffects()){
-            effect->update(dt);
-        }
+//        for(auto effect: active_effects_manager.getEffects()){
+//            effect->update(dt);
+//        }
     }
 }
 

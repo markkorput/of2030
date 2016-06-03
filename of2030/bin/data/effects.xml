@@ -166,6 +166,7 @@
       <spot>3</spot>
       <!-- <reset>1</reset> -->
       <layer>3</layer>
+      <auto_rotate_z>80.0</auto_rotate_z>
     </effect>
     <effect name="scav_beat_koen">
       <video>scav/2.1_SCAVENGER_S_VENTILATOR_2_v02-frame.mov</video>
@@ -173,6 +174,7 @@
       <freeze>last</freeze>
       <spot>2</spot>
       <layer>3</layer>
+      <auto_rotate_z>80.0</auto_rotate_z>
     </effect>
     <effect name="scav_beat_gydo">
       <video>scav/2.1_SCAVENGER_S_VENTILATOR_2_v02-frame.mov</video>
@@ -180,6 +182,7 @@
       <freeze>last</freeze>
       <spot>1</spot>
       <layer>3</layer>
+      <auto_rotate_z>80.0</auto_rotate_z>
     </effect>
     <effect name="scav_turbo_max">
       <video>scav/2.1_SCAVENGER_S_VENTILATOR_3_v01.mov</video>
@@ -545,6 +548,8 @@
       <draw_size_x>0.05</draw_size_x>
       <auto_velocity_x>25.0</auto_velocity_x>
       <duration>1.3</duration>
+      <!-- <auto_rotate_z>180.0</auto_rotate_x> -->
+      <rotate_z>45.0</rotate_z>
     </effect>
 
     <effect name="worms1">

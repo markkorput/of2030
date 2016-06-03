@@ -34,9 +34,9 @@ void Effect::reset(){
 }
 
 
-void Effect::update(float dt){
-    auto_pos += auto_velocity * dt;
-}
+//void Effect::update(float dt){
+//
+//}
 
 void Effect::setup(Context &_context){
     string val;
@@ -154,12 +154,12 @@ void Effect::setup(Context &_context){
     }
 
     auto_pos = _context.effect_setting.getValue("auto_pos", ofVec3f(0.0f));
-    auto_velocity = _context.effect_setting.getValue("auto_velocity", ofVec3f(0.0f));
+    auto_rotation = _context.effect_setting.getValue("auto_rotation", ofVec3f(0.0f));
 
     layer = _context.effect_setting.getValue("layer", 0);
 }
 
-void Effect::draw(Context &_context){
+void Effect::draw(Context &_context, float dt){
     // make some context, logic and precalculate data available to the entire class
     PreCalc prec;
     prec.load(_context);
@@ -167,8 +167,9 @@ void Effect::draw(Context &_context){
     precalc = &prec;
     string val;
     
-    // this value can be updates during the effect (was already initialized in setup())
-    auto_velocity = _context.effect_setting.getValue("auto_velocity", ofVec3f(0.0f));
+    // these value can be updates during the effect (were already initialized in setup)
+    auto_pos += _context.effect_setting.getValue("auto_velocity", ofVec3f(0.0f)) * dt;
+    auto_rotation += _context.effect_setting.getValue("auto_rotate", ofVec3f(0.0f)) * dt;
 
     ofShader* maskShader = ShaderManager::instance()->get("mask");
     
@@ -215,18 +216,17 @@ void Effect::drawContent(){
     // ofTranslate(context->effect_setting.getValue("translate", ofVec3f(0.0)) * precalc->worldToScreenVec2f);
     // ofScale(context->effect_setting.getValue("scale", ofVec3f(1.0)));
 
+    ofScale(precalc->scale);
+    ofTranslate(precalc->translate);
     ofRotateX(precalc->rotate.x);
     ofRotateY(precalc->rotate.y);
     ofRotateZ(precalc->rotate.z);
-    ofScale(precalc->scale);
-    ofTranslate(precalc->translate);
 
-    ofRotateX(precalc->effect_rotate.x);
-    ofRotateY(precalc->effect_rotate.y);
-    ofRotateZ(precalc->effect_rotate.z);
     ofScale(precalc->effect_scale);
     ofTranslate(precalc->effect_translate + auto_pos);
-    
+    ofRotateX(precalc->effect_rotate.x + auto_rotation.x);
+    ofRotateY(precalc->effect_rotate.y + auto_rotation.y);
+    ofRotateZ(precalc->effect_rotate.z + auto_rotation.z);
 
     // draw; video?
     if(video_player){

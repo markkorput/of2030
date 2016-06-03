@@ -54,6 +54,8 @@ namespace of2030 {
         bool bCallbacksRegistered;
         float screenWidth, screenHeight;
         //Effect *overlayEffect;
+        
+        float lastFrameTime;
     };
 }
 
