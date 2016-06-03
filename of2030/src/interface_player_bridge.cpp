@@ -52,21 +52,21 @@ void InterfacePlayerBridge::registerCallbacks(bool _register){
         // subscribe to events
         ofAddListener(m_interface->triggerEvent, this, &InterfacePlayerBridge::onTrigger);
         ofAddListener(m_interface->stopTriggerEvent, this, &InterfacePlayerBridge::onStopTrigger);
-        ofAddListener(m_interface->effectEvent, this, &InterfacePlayerBridge::onEffect);
+//        ofAddListener(m_interface->effectEvent, this, &InterfacePlayerBridge::onEffect);
         ofAddListener(m_interface->effectConfigEvent, this, &InterfacePlayerBridge::onEffectConfig);
         ofAddListener(m_interface->screenConfigEvent, this, &InterfacePlayerBridge::onScreenConfig);
-        ofAddListener(m_interface->songEvent, this, &InterfacePlayerBridge::onSong);
-        ofAddListener(m_interface->clipEvent, this, &InterfacePlayerBridge::onClip);
+//        ofAddListener(m_interface->songEvent, this, &InterfacePlayerBridge::onSong);
+//        ofAddListener(m_interface->clipEvent, this, &InterfacePlayerBridge::onClip);
         ofAddListener(m_player->effect_manager.effectRemovedEvent, this, &InterfacePlayerBridge::onEffectEnded);
     } else {
         // unsubscribe from events
         ofRemoveListener(m_interface->triggerEvent, this, &InterfacePlayerBridge::onTrigger);
         ofRemoveListener(m_interface->stopTriggerEvent, this, &InterfacePlayerBridge::onStopTrigger);
-        ofRemoveListener(m_interface->effectEvent, this, &InterfacePlayerBridge::onEffect);
+//        ofRemoveListener(m_interface->effectEvent, this, &InterfacePlayerBridge::onEffect);
         ofRemoveListener(m_interface->effectConfigEvent, this, &InterfacePlayerBridge::onEffectConfig);
         ofRemoveListener(m_interface->screenConfigEvent, this, &InterfacePlayerBridge::onScreenConfig);
-        ofRemoveListener(m_interface->songEvent, this, &InterfacePlayerBridge::onSong);
-        ofRemoveListener(m_interface->clipEvent, this, &InterfacePlayerBridge::onClip);
+//        ofRemoveListener(m_interface->songEvent, this, &InterfacePlayerBridge::onSong);
+//        ofRemoveListener(m_interface->clipEvent, this, &InterfacePlayerBridge::onClip);
         ofRemoveListener(m_player->effect_manager.effectRemovedEvent, this, &InterfacePlayerBridge::onEffectEnded);
     }
 }
@@ -98,19 +98,19 @@ void InterfacePlayerBridge::onStopTrigger(string &trigger){
     m_player->stopEffectByTrigger(trigger);
 }
 
-// callback to process new effect events from the interface
-void InterfacePlayerBridge::onEffect(string &name){
-    // create effect
-    Effect* fx = EfficientEffectManager::instance()->get(name);
-    
-    if(!fx){
-        ofLogError() << "Could not create effect for name: " << name;
-        return;
-    }
-
-    // add to players realtime comp
-    m_player->addEffect(*fx);
-}
+//// callback to process new effect events from the interface
+//void InterfacePlayerBridge::onEffect(string &name){
+//    // create effect
+//    Effect* fx = EfficientEffectManager::instance()->get(name);
+//    
+//    if(!fx){
+//        ofLogError() << "Could not create effect for name: " << name;
+//        return;
+//    }
+//
+//    // add to players realtime comp
+//    m_player->addEffect(*fx);
+//}
 
 void InterfacePlayerBridge::onEffectConfig(EffectConfig &cfg){
     XmlConfigs::instance()->setItemParam(cfg.setting_name, cfg.param_name, cfg.param_value);
@@ -120,13 +120,13 @@ void InterfacePlayerBridge::onScreenConfig(EffectConfig &cfg){
     XmlConfigs::screens()->setItemParam(cfg.setting_name, cfg.param_name, cfg.param_value);
 }
 
-void InterfacePlayerBridge::onSong(string &name){
-    m_player->setSong(name);
-}
-
-void InterfacePlayerBridge::onClip(string &name){
-    m_player->setClip(name);
-}
+//void InterfacePlayerBridge::onSong(string &name){
+//    m_player->setSong(name);
+//}
+//
+//void InterfacePlayerBridge::onClip(string &name){
+//    m_player->setClip(name);
+//}
 
 void InterfacePlayerBridge::onEffectEnded(Effect &effect){
     EfficientEffectManager::instance()->finish(&effect);
