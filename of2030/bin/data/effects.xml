@@ -14,26 +14,6 @@
     <effect name="impro_">
     </effect>
 
-<!--          
-'/stellar':
-  0: '/p/stellar.worms'
-  1: '/p/stellar.spot_grow'
-  2: '/p/stellar.clock1'
-  3: '/p/stellar.clock2'
-  4: '/p/stellar.clock3'
-  5: '/p/stellar.clock4'
-  6: '/p/stellar.clock5'
-  7: '/p/stellar.clock6'
-  8: '/p/stellar.clock7'
-  9: '/p/stellar.map'
-  10: '/p/stellar.voice1'
-  11: '/p/stellar.chorus' # two spots and smoke
-  12: '/p/stellar.ping'
-  13: '/p/stellar.voice2' # also turns on steady (non-blinking) spot
-'/live':
-  0: '/p/stellar.voice1'
-  1: '/p/stellar.voice2'
- -->
 
     <effect name="stellar_worms">
       <video>stellar/1.1_STELLAR_WORMS_1_v01.mov</video>
@@ -129,14 +109,108 @@
     </effect>
 
 
+    <!-- old (for professors demo) -->
     <effect name="scavenger_spot">
-      <video>scavenger/2.1_SCAVENGER_S_VENTILATOR_1_v01.mov</video>
+      <video>scav/2.1_SCAVENGER_S_VENTILATOR_1_v01.mov</video>
       <loop>1</loop>
       <!-- <freeze>last</freeze> -->
       <is_tunnel>0</is_tunnel>
       <is_pano>0</is_pano>
       <reset>1</reset>
     </effect>
+
+    <effect name="scav_search_max">
+      <video>scav/2.1_SCAVENGER_S_SEARCHLIGHT_MAX_v01.mov</video>
+      <spot>3</spot>
+      <reset>1</reset>
+      <layer>3</layer>
+    </effect>
+    <effect name="scav_search_koen">
+      <video>scav/2.1_SCAVENGER_S_SEARCHLIGHT_KOEN_v01.mov</video>
+      <spot>2</spot>
+      <reset>1</reset>
+      <layer>3</layer>
+    </effect>
+    <effect name="scav_search_gydo">
+      <video>scav/2.1_SCAVENGER_S_SEARCHLIGHT_GYDO_v01.mov</video>
+      <spot>3</spot>
+      <reset>1</reset>
+      <layer>3</layer>
+    </effect>
+    <effect name="scav_fan_max">
+      <video>scav/2.1_SCAVENGER_S_VENTILATOR_1_v02.mov</video>
+      <spot>3</spot>
+      <reset>1</reset>
+      <layer>2</layer>
+      <loop>1</loop>
+    </effect>
+    <effect name="scav_fan_koen">
+      <video>scav/2.1_SCAVENGER_S_VENTILATOR_1_v02.mov</video>
+      <spot>2</spot>
+      <reset>1</reset>
+      <layer>2</layer>
+      <loop>1</loop>
+    </effect>
+    <effect name="scav_fan_gydo">
+      <video>scav/2.1_SCAVENGER_S_VENTILATOR_1_v02.mov</video>
+      <spot>1</spot>
+      <reset>1</reset>
+      <layer>2</layer>
+      <loop>1</loop>
+    </effect>
+    <effect name="scav_beat_max">
+      <video>scav/2.1_SCAVENGER_S_VENTILATOR_2_v02.mov</video>
+      <spot>3</spot>
+      <reset>1</reset>
+      <layer>1</layer>
+    </effect>
+    <effect name="scav_beat_koen">
+      <video>scav/2.1_SCAVENGER_S_VENTILATOR_2_v02.mov</video>
+      <spot>2</spot>
+      <reset>1</reset>
+      <layer>1</layer>
+    </effect>
+    <effect name="scav_beat_gydo">
+      <video>scav/2.1_SCAVENGER_S_VENTILATOR_2_v02.mov</video>
+      <spot>1</spot>
+      <reset>1</reset>
+      <layer>1</layer>
+    </effect>
+    <effect name="scav_turbo_max">
+      <video>scav/2.1_SCAVENGER_S_VENTILATOR_3_v01.mov</video>
+      <spot>3</spot>
+      <reset>1</reset>
+      <layer>1</layer>
+    </effect>
+    <effect name="scav_turbo_koen">
+      <video>scav/2.1_SCAVENGER_S_VENTILATOR_3_v01.mov</video>
+      <spot>2</spot>
+      <reset>1</reset>
+      <layer>1</layer>
+    </effect>
+    <effect name="scav_turbo_gydo">
+      <video>scav/2.1_SCAVENGER_S_VENTILATOR_3_v01.mov</video>
+      <spot>1</spot>
+      <reset>1</reset>
+      <layer>1</layer>
+    </effect>
+    <effect name="scav_pano">
+      <video>scav/2.1_SCAVENGER_PANOHELI_OPTIE_1_v01.mov</video>
+      <reset>1</reset>
+      <is_pano>1</is_pano>
+    </effect>
+    <effect name="scav_roof">
+      <TODO>true</TODO>
+      <color_r>0.0</color_r>
+      <mask_coords_name>roof_coord</mask_coords_name>
+      <!-- <duration>1000.0</duration> -->
+    </effect>
+    <effect name="scav_fallingline">
+      <pattern>horiline</pattern>
+      <is_pano>1</is_pano>
+    </effect>
+
+
 
 
 
