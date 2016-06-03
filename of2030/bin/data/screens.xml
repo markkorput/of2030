@@ -21,8 +21,8 @@
       <!-- spot (center position, width, height in screen factors) -->
       <spot1_x>0.5</spot1_x>
       <spot1_y>0.5</spot1_y>
-      <spot1size_x>0.4</spot1size_x>
-      <spot1size_y>0.4</spot1size_y>
+      <spot1size_x>1.0</spot1size_x>
+      <spot1size_y>1.0</spot1size_y>
 
       <!-- tunnel -->
       <tunnel_start>0.34</tunnel_start>
@@ -63,16 +63,6 @@
       <pano_coord3_y>1.0</pano_coord3_y>
       <pano_coord4_x>0.87</pano_coord4_x>
       <pano_coord4_y>1.0</pano_coord4_y>
-
-      <!-- <spot2_x>0.6</spot2_x>
-      <spot2_y>0.5</spot2_y>
-      <spot2size_x>0.25</spot2size_x>
-      <spot2size_y>0.25</spot2size_y>
-
-      <spot3_x>0.6</spot3_x>
-      <spot3_y>0.5</spot3_y>
-      <spot3size_x>0.1</spot3size_x>
-      <spot3size_y>0.25</spot3size_y> -->
 
       <!-- voice bar -->
       <!-- <voice_coord1_x>0.381</voice_coord1_x>
@@ -137,8 +127,8 @@
       <!-- spot (center position, width, height in screen factors) -->
       <spot2_x>0.5</spot2_x>
       <spot2_y>0.5</spot2_y>
-      <spot2size_x>0.3</spot2size_x>
-      <spot2size_y>0.3</spot2size_y>
+      <spot2size_x>1.0</spot2size_x>
+      <spot2size_y>1.0</spot2size_y>
 
       <!-- roof -->
       <roof_coord1_x>0.0</roof_coord1_x>
@@ -213,8 +203,8 @@
       <!-- spot (center position, width, height in screen factors) -->
       <spot3_x>0.5</spot3_x>
       <spot3_y>0.5</spot3_y>
-      <spot3size_x>0.5</spot3size_x>
-      <spot3size_y>0.5</spot3size_y>
+      <spot3size_x>1.0</spot3size_x>
+      <spot3size_y>1.0</spot3size_y>
 
       <!-- roof -->
       <roof_coord1_x>0.0</roof_coord1_x>
@@ -291,8 +281,8 @@
       <!-- spot (center position, width, height in screen factors) -->
       <spot3_x>0.5</spot3_x>
       <spot3_y>0.5</spot3_y>
-      <spot3size_x>0.5</spot3size_x>
-      <spot3size_y>0.5</spot3size_y>
+      <spot3size_x>1.0</spot3size_x>
+      <spot3size_y>1.0</spot3size_y>
 
       <!-- roof -->
       <roof_coord1_x>0.0</roof_coord1_x>
@@ -368,8 +358,8 @@
       <!-- spot (center position, width, height in screen factors) -->
       <spot2_x>0.5</spot2_x>
       <spot2_y>0.5</spot2_y>
-      <spot2size_x>0.3</spot2size_x>
-      <spot2size_y>0.3</spot2size_y>
+      <spot2size_x>1.0</spot2size_x>
+      <spot2size_y>1.0</spot2size_y>
 
       <!-- roof -->
       <roof_coord1_x>0.0</roof_coord1_x>
@@ -442,8 +432,8 @@
       <!-- spot (center position, width, height in screen factors) -->
       <spot1_x>0.5</spot1_x>
       <spot1_y>0.5</spot1_y>
-      <spot1size_x>0.4</spot1size_x>
-      <spot1size_y>0.4</spot1size_y>
+      <spot1size_x>1.0</spot1size_x>
+      <spot1size_y>1.0</spot1size_y>
 
       <!-- roof -->
       <roof_coord1_x>0.0</roof_coord1_x>
