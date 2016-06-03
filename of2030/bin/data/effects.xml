@@ -133,7 +133,7 @@
     </effect>
     <effect name="scav_search_gydo">
       <video>scav/2.1_SCAVENGER_S_SEARCHLIGHT_GYDO_v01.mov</video>
-      <spot>3</spot>
+      <spot>1</spot>
       <reset>1</reset>
       <layer>3</layer>
     </effect>
@@ -160,21 +160,22 @@
     </effect>
     <effect name="scav_beat_max">
       <video>scav/2.1_SCAVENGER_S_VENTILATOR_2_v02.mov</video>
+      <vido_mask>scav/2.1_SCAVENGER_S_VENTILATOR_2_v02.mov</vido_mask>
       <spot>3</spot>
       <reset>1</reset>
-      <layer>1</layer>
+      <layer>3</layer>
     </effect>
     <effect name="scav_beat_koen">
       <video>scav/2.1_SCAVENGER_S_VENTILATOR_2_v02.mov</video>
       <spot>2</spot>
       <reset>1</reset>
-      <layer>1</layer>
+      <layer>3</layer>
     </effect>
     <effect name="scav_beat_gydo">
       <video>scav/2.1_SCAVENGER_S_VENTILATOR_2_v02.mov</video>
       <spot>1</spot>
       <reset>1</reset>
-      <layer>1</layer>
+      <layer>3</layer>
     </effect>
     <effect name="scav_turbo_max">
       <video>scav/2.1_SCAVENGER_S_VENTILATOR_3_v01.mov</video>
@@ -206,8 +207,10 @@
       <!-- <duration>1000.0</duration> -->
     </effect>
     <effect name="scav_fallingline">
-      <pattern>horiline</pattern>
+      <!-- <pattern>horiline</pattern> -->
       <is_pano>1</is_pano>
+      <draw_size_y>0.5</draw_size_y>
+      <color_g>10.0</color_g>
     </effect>
 
 
