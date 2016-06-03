@@ -209,8 +209,11 @@
     <effect name="scav_fallingline">
       <!-- <pattern>horiline</pattern> -->
       <is_pano>1</is_pano>
-      <draw_size_y>0.5</draw_size_y>
-      <color_g>10.0</color_g>
+      <draw_size_y>0.05</draw_size_y>
+      <color_a>200.0</color_a>
+      <duration>5.0</duration>
+      <auto_velocity_y>-0.5</auto_velocity_y>
+      <auto_pos_y>2.0</auto_pos_y>
     </effect>
 
 
@@ -533,10 +536,11 @@
 
     <!--  MISC -->
     <effect name="cursor">
-      <pattern>cursor</pattern>
-      <!-- real world meter -->
-      <gain>0.1</gain>
-      <pano_velocity>0.5</pano_velocity>
+      <!-- <pattern>horiline</pattern> -->
+      <is_pano>1</is_pano>
+      <draw_size_x>0.05</draw_size_x>
+      <auto_velocity_x>25.0</auto_velocity_x>
+      <duration>1.3</duration>
     </effect>
 
     <effect name="worms1">
