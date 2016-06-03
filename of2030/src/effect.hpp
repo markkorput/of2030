@@ -61,7 +61,7 @@ namespace of2030{
     public: // properties
 
         // int cid;
-        string name;
+        // string name;
         string trigger;
         
         // static int cidCounter;

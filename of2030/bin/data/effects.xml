@@ -535,7 +535,7 @@
 
 
     <!--  MISC -->
-    <effect name="cursor">
+    <effect name="cursor1">
       <!-- <pattern>horiline</pattern> -->
       <is_pano>1</is_pano>
       <draw_size_x>0.05</draw_size_x>
@@ -568,24 +568,25 @@
     </effect>
 
     <!-- pos -->
-    <effect name="pos">
+    <effect name="pos1">
       <pattern>pos</pattern>
     </effect>
 
     <!-- spot -->
     <effect name="spot1">
       <spot>1</spot>
+      <shader>spot</shader>
+      <pattern>spot</pattern>
     </effect>
 
     <effect name="spot2">
       <spot>2</spot>
+      <shader>spot</shader>
+      <pattern>spot</pattern>
     </effect>
 
     <effect name="spot3">
       <spot>3</spot>
-    </effect>
-
-    <effect name="spot">
       <shader>spot</shader>
       <pattern>spot</pattern>
     </effect>

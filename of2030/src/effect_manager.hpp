@@ -43,7 +43,7 @@ namespace of2030{
     protected: // methods
         static Effect* createEffect(const string &trigger);
         static void deleteEffect(Effect* effect);
-        static string triggerToName(const string &trigger);
+        // static string triggerToName(const string &trigger);
         void sort();
 
     protected: // attributes

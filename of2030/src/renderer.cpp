@@ -142,14 +142,9 @@ void Renderer::fillContextClientInfo(Context &context){
 void Renderer::fillEffectSetting(Effect &effect, XmlItemSetting &fxsetting){
     XmlConfigs *fxs = XmlConfigs::instance();
 
-    // effect config
-    string query = effect.name;
+    // effect- (trigger)-specific config
+    string query = effect.trigger;
     XmlItemSetting *pSetting = fxs->getItem(query);
-    if(pSetting)
-        fxsetting.merge(*pSetting);
-
-    // trigger-specific config (has priority over song/clip-specific configs)
-    pSetting = fxs->getItem(effect.trigger);
     if(pSetting)
         fxsetting.merge(*pSetting);
 
