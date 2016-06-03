@@ -228,6 +228,12 @@ void Effect::drawContent(){
     ofRotateY(precalc->effect_rotate.y + auto_rotation.y);
     ofRotateZ(precalc->effect_rotate.z + auto_rotation.z);
 
+    if(precalc->bIsSpot){
+        ofSetRectMode(OF_RECTMODE_CENTER);
+    }else{
+        ofSetRectMode(OF_RECTMODE_CORNER);
+    }
+
     // draw; video?
     if(video_player){
         if(!(video_player->isLoaded() && video_player->getTexture().isAllocated())){

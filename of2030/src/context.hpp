@@ -34,7 +34,7 @@ namespace of2030{
     public: // methods
 
         PreCalc(){ reset(); }
-        inline void reset(){ context = NULL; }
+        inline void reset(){ context = NULL; bIsSpot = false; }
         void load(Context &_context);
 
         inline float panoWorldToScreen(float p);
@@ -46,6 +46,7 @@ namespace of2030{
 
     public: // properties
 
+        bool bIsSpot;
         ofVec2f resolution;
         ofVec2f scrWorldSize, worldToScreenVec2f, scrDrawSize;
         ofColor color;

@@ -42,16 +42,16 @@ void PreCalc::load(Context &_context){
         scrDrawSize = _context.pano_size;
     // spot?
     } else if (_context.effect_setting.getValue("spot", 0) != 0){
+        bIsSpot = true;
         string prefix = "spot" + _context.effect_setting.getValue("spot", "0");
 
         scale = ofVec3f(resolution/scrWorldSize);
         rotate = ofVec3f(0.0);
-        // TODO; make this work!
-        if(context->screen_setting.hasValue(prefix+"_x")){
-            translate = ofVec3f(0.0f);
-        } else {
-            translate = ofVec3f(-100.0f);
-        }
+        
+        // default value is way off screen; having no configuration for this spot,
+        // means this spot should not be visible on this screen
+        translate = context->screen_setting.getValue(prefix, ofVec3f(-100.0f, -100.0f, 0.0f));
+
 //        ofVec2f spotPos = context->screen_setting.getValue(prefix, ofVec2f(-100.0f));
 //        translate.set(spotPos.x, spotPos.y, 0.0f);
         scrDrawSize = context->screen_setting.getValue(prefix+"size", ofVec2f(0.0f));
