@@ -73,11 +73,11 @@ void InterfacePlayerBridge::registerCallbacks(bool _register){
 
 
 void InterfacePlayerBridge::onTrigger(string &trigger){
-    // first check if there's already an effect with this trigger active,
+    // first check if there's already an effect with this trigger (and unique enabled)
     // if so; abort
     const vector<Effect*> *effects = &m_player->getActiveEffects();
     for(auto effect: (*effects)){
-        if(effect->trigger == trigger){
+        if(effect->getUnique() && effect->trigger == trigger){
             return;
         }
     }
