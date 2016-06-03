@@ -16,9 +16,6 @@ using namespace of2030;
 
 Effect::Effect(){
     reset();
-    // setType
-    type = DEFAULT;
-    name = EFFECT_NAMES[type];
 
     // every effect instance gets a unique cid (client-side-id)
     // cid = cidCounter;
