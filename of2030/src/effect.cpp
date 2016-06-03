@@ -38,6 +38,7 @@ void Effect::reset(){
 
 void Effect::update(float dt){
     pano_pos += pano_velocity * dt;
+    auto_pos += auto_velocity * dt;
 }
 
 void Effect::setup(Context &_context){
@@ -149,6 +150,10 @@ void Effect::setup(Context &_context){
         this->shader = ShaderManager::instance()->get(val);
     }
 
+    auto_pos = _context.effect_setting.getValue("auto_pos", ofVec3f(0.0f));
+    auto_velocity = _context.effect_setting.getValue("auto_velocity", ofVec3f(0.0f));
+
+    // TODO; remove
     pano_pos = _context.effect_setting.getValue("pano_pos", 0.0f);
     pano_velocity = _context.effect_setting.getValue("pano_velocity", 0.0f);
 
@@ -163,6 +168,8 @@ void Effect::draw(Context &_context){
     precalc = &prec;
     string val;
     
+    // this value can be updates during the effect (was already initialized in setup())
+    auto_velocity = _context.effect_setting.getValue("auto_velocity", ofVec3f(0.0f));
 
     ofShader* maskShader = ShaderManager::instance()->get("mask");
     
@@ -219,7 +226,7 @@ void Effect::drawContent(){
     ofRotateY(precalc->effect_rotate.y);
     ofRotateZ(precalc->effect_rotate.z);
     ofScale(precalc->effect_scale);
-    ofTranslate(precalc->effect_translate);
+    ofTranslate(precalc->effect_translate + auto_pos);
     
 
     // draw; video?

@@ -94,7 +94,8 @@ namespace of2030{
         EffectType type;
 
         ofVideoPlayer *video_player, *mask_video_player;
-        float pano_pos, pano_velocity;
+        float pano_pos, pano_velocity; // TODO: REMOVE
+        ofVec3f auto_pos, auto_velocity;
         ofShader *shader;
     
         Context *context;
