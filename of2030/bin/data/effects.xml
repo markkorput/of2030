@@ -4,7 +4,7 @@
     <effect name="inloop_worms">
       <video>inloop/0.0_INLOOP_WOBBLINGLINES_v01.mov</video>
       <loop>1</loop>
-      <!-- <freeze>last</freeze> -->
+      <!-- <freeze>1.0</freeze> -->
       <is_tunnel>0</is_tunnel>
       <is_pano>1</is_pano>
       <reset>1</reset>
@@ -20,7 +20,7 @@
       <video_mask>stellar/1.1_STELLAR_WORMS_1_v01.mov</video_mask>
       <!-- <video_mask>stellar/1.1_STELLAR_WORMS_1_v01.mov</video_mask> -->
       <!-- <loop>1</loop> -->
-      <!-- <freeze>last</freeze> -->
+      <!-- <freeze>1.0</freeze> -->
       <is_tunnel>0</is_tunnel>
       <is_pano>0</is_pano>
       <reset>1</reset>
@@ -29,7 +29,7 @@
       <video>inloop/0.0_INLOOP_WOBBLINGLINES_v01.mov</video>
       <video_mask>stellar/0.1_STELLAR_END_WOBBLINGLINES_A_v01.mov</video_mask>
       <!-- <loop>1</loop> -->
-      <!-- <freeze>last</freeze> -->
+      <!-- <freeze>1.0</freeze> -->
       <is_tunnel>0</is_tunnel>
       <is_pano>1</is_pano>
       <!-- <reset>1</reset> NOOOO -->
@@ -38,7 +38,7 @@
     <effect name="stellar_max_blink">
       <!-- currently not used -->
       <video>stellar/1.1_STELLAR_S_MAX_TIK_v01.mov</video>
-      <!-- <freeze>last</freeze> -->
+      <!-- <freeze>1.0</freeze> -->
       <spot>3</spot>
       <is_pano>0</is_pano>
       <is_tunnel>0</is_tunnel>
@@ -47,7 +47,7 @@
     </effect>
     <effect name="stellar_max_grow">
       <video>stellar/1.1_STELLAR_S_MAX_STRING_v01.mov</video>
-      <!-- <freeze>last</freeze> -->
+      <!-- <freeze>1.0</freeze> -->
       <spot>3</spot>
       <pattern>spot</pattern>
       <reset>1</reset>
@@ -97,13 +97,13 @@
     <effect name="stellar_koen_ping">
       <video>stellar/1.1_STELLAR_S_KOEN_OPKOMST_v01.mov</video>
       <spot>2</spot>
-      <!-- <freeze>last</freeze> -->
+      <!-- <freeze>1.0</freeze> -->
       <reset>1</reset>
     </effect>
     <effect name="stellar_koen_spot">
       <video>stellar/1.1_STELLAR_S_KOEN_VOICEOVER_v01.mov</video>
       <spot>2</spot>
-      <freeze>last</freeze>
+      <freeze>1.0</freeze>
       <pattern>spot</pattern>
       <reset>1</reset>
     </effect>
@@ -113,7 +113,7 @@
     <effect name="scavenger_spot">
       <video>scav/2.1_SCAVENGER_S_VENTILATOR_1_v01.mov</video>
       <loop>1</loop>
-      <!-- <freeze>last</freeze> -->
+      <!-- <freeze>1.0</freeze> -->
       <is_tunnel>0</is_tunnel>
       <is_pano>0</is_pano>
       <reset>1</reset>
@@ -168,7 +168,7 @@
     <effect name="scav_beat_max">
       <video>scav/2.1_SCAVENGER_S_VENTILATOR_2_v02-frame.mov</video>
       <!-- <video_mask>self</video_mask> -->
-      <freeze>last</freeze>
+      <freeze>1.0</freeze>
       <spot>3</spot>
       <!-- <reset>1</reset> -->
       <layer>3</layer>
@@ -177,7 +177,7 @@
     <effect name="scav_beat_koen">
       <video>scav/2.1_SCAVENGER_S_VENTILATOR_2_v02-frame.mov</video>
       <!-- <video_mask>self</video_mask> -->
-      <freeze>last</freeze>
+      <freeze>1.0</freeze>
       <spot>2</spot>
       <layer>3</layer>
       <auto_rotate_z>-80.0</auto_rotate_z>
@@ -185,7 +185,7 @@
     <effect name="scav_beat_gydo">
       <video>scav/2.1_SCAVENGER_S_VENTILATOR_2_v02-frame.mov</video>
       <!-- <video_mask>self</video_mask> -->
-      <freeze>last</freeze>
+      <freeze>1.0</freeze>
       <spot>1</spot>
       <layer>3</layer>
       <auto_rotate_z>-80.0</auto_rotate_z>
@@ -254,7 +254,7 @@
       <is_tunnel>1</is_tunnel>
       <!-- <is_pano>1</is_pano> -->
       <layer>0</layer>
-      <freeze>last</freeze>
+      <freeze>1.0</freeze>
       <reset>1</reset>
     </effect>
     <effect name="mud_machine_loop">
@@ -262,7 +262,7 @@
       <!-- <loop>1</loop> -->
       <!-- <layer>0</layer> -->
       <is_tunnel>1</is_tunnel>
-      <freeze>last</freeze>
+      <freeze>1.0</freeze>
       <reset>1</reset>
     </effect>
     <effect name="mud_machine_destruct">
@@ -287,7 +287,7 @@
     <effect name="mud_wheel_single">
       <video>mud/2.3_MUD_SETTINGWHEEL_SPOT_3_v02.mov</video>
       <!-- <loop>1</loop> -->
-      <freeze>last</freeze>
+      <freeze>1.0</freeze>
       <is_tunnel>0</is_tunnel>
       <reset>1</reset>
     </effect>
@@ -329,11 +329,10 @@
 
     <effect name="lava_vid1">
       <video>lava/2.4_LAVA_HARTBEAT_A_STANDARD_1SCREEN_v01.mov</video>
-      <!-- <video>fill100x50.mov</video> -->
-      <is_tunnel>0</is_tunnel>
-      <is_pano>1</is_pano>
-      <!-- <loop>1</loop> -->
       <video_mask>lava/2.4_LAVA_HARTBEAT_A_STANDARD_1SCREEN_v01.mov</video_mask>
+      <is_tunnel>1</is_tunnel>
+      <!-- <is_pano>1</is_pano> -->
+      <!-- <loop>1</loop> -->
       <reset>1</reset>
     </effect>
     <effect name="lava_vid2">
@@ -375,7 +374,7 @@
     <effect name="lava_vid8">
       <video>lava/2.4_LAVA_PATROON_ZIEKENHUISBED_v01.mov</video>
       <is_pano>1</is_pano>
-      <!-- <freeze>last</freeze> -->
+      <!-- <freeze>1.0</freeze> -->
     </effect>
     <effect name="lava_bed">
       <!-- <video>lava/2.4_LAVA_PATROON_ZIEKENHUISBED_v01.mov</video> -->
@@ -429,7 +428,7 @@
       <!-- <layer>0</layer> -->
       <is_pano>0</is_pano>
       <is_tunnel>1</is_tunnel>
-      <freeze>last</freeze>
+      <freeze>1.0</freeze>
       <reset>1</reset>
     </effect>
     <effect name="rain_noorderlicht_loop">
