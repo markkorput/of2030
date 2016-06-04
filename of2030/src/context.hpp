@@ -33,7 +33,9 @@ namespace of2030{
 
     public: // methods
 
-        PreCalc(Context &_context);
+        PreCalc(){ reset(); }
+        inline void reset(){ context = NULL; bIsSpot = false; }
+        void load(Context &_context);
 
         inline float panoWorldToScreen(float p);
         ofRectangle panoDrawRect();
@@ -44,17 +46,18 @@ namespace of2030{
 
     public: // properties
 
+        bool bIsSpot;
         ofVec2f resolution;
         ofVec2f scrWorldSize, worldToScreenVec2f, scrDrawSize;
         ofColor color;
         float scrPanoStart, scrPanoEnd, fxPanoStart, fxPanoEnd;
         // ofVec2f tunnelScreenCoords[4];
-        bool isTunnel, isPano;
         ofVec3f translate, rotate, scale, effect_translate, effect_scale, effect_rotate;
 
     private: // attributes
 
         Context* context;
+//        bool isTunnel, isPano;
     };
 
     // inline function implementations

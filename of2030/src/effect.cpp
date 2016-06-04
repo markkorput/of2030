@@ -16,9 +16,6 @@ using namespace of2030;
 
 Effect::Effect(){
     reset();
-    // setType
-    type = DEFAULT;
-    name = EFFECT_NAMES[type];
 
     // every effect instance gets a unique cid (client-side-id)
     // cid = cidCounter;
@@ -33,15 +30,18 @@ void Effect::reset(){
     video_player = NULL;
     mask_video_player = NULL;
     layer = 0;
+    bUnique = true;
 }
 
 
-void Effect::update(float dt){
-    pano_pos += pano_velocity * dt;
-}
+//void Effect::update(float dt){
+//
+//}
 
 void Effect::setup(Context &_context){
     string val;
+
+    bUnique = _context.effect_setting.getValue("unique", "1") == "1";
 
     // make sure we have a start time (default to NOW)
     if(!hasStartTime()){
@@ -67,7 +67,7 @@ void Effect::setup(Context &_context){
     }
 
     // make sure we have endTime and duration initialized AND consistent
-    if(!hasEndTime() ){
+    if(!hasEndTime() && _context.effect_setting.hasValue("duration")){
         setDuration(_context.effect_setting.getValue("duration", 30.0f));
     }
 
@@ -87,7 +87,7 @@ void Effect::setup(Context &_context){
                 // set none-looping
                 video_player->setLoopState(OF_LOOP_NONE);
                 
-                // wanna freeze on first or last frame when done? remove end time, go on indefinite
+                // wanna freeze on a frame when done? remove end time, go on indefinite
                 if(_context.effect_setting.hasValue("freeze")){
                     endTime = NO_TIME;
                 }
@@ -117,30 +117,34 @@ void Effect::setup(Context &_context){
     // load/start/configure video_mask if specified
     val = _context.effect_setting.getValue("video_mask", "");
     if(val != ""){
-        // load video (get video player instance from the VideoManager)
-        mask_video_player = VideoManager::instance()->get(val, _context.effect_setting.getValue("video_mask_alias", val), true);
+        if(val == "self"){
+            mask_video_player = video_player;
+        } else {
+            // load video (get video player instance from the VideoManager)
+            mask_video_player = VideoManager::instance()->get(val, _context.effect_setting.getValue("video_mask_alias", val), true);
 
-        if(mask_video_player){
-            if(_context.effect_setting.getValue("video_mask_loop", "0") == "1"){
-                // TODO; this player might currently be used by other effects?
-                mask_video_player->setLoopState(OF_LOOP_NORMAL);
-            } else {
-                // set none-looping
-                mask_video_player->setLoopState(OF_LOOP_NONE);
-            }
+            if(mask_video_player){
+                if(_context.effect_setting.getValue("video_mask_loop", "0") == "1"){
+                    // TODO; this player might currently be used by other effects?
+                    mask_video_player->setLoopState(OF_LOOP_NORMAL);
+                } else {
+                    // set none-looping
+                    mask_video_player->setLoopState(OF_LOOP_NONE);
+                }
 
-            // reset to start of video (this video player might have been used already by other effects
-            if(_context.effect_setting.getValue("video_mask_reset", "0") == "1"){
-                mask_video_player->setPosition(0.0);
-            }
-            
-            mask_video_player->play();
-        }/* else {
-            ofLogWarning() << "Effect::setup could not get video player for " << val;
-            ofLog() << "setting effect duration to zero";
-            // this will effectively abort the effect
-            truncate();
-        }*/
+                // reset to start of video (this video player might have been used already by other effects
+                if(_context.effect_setting.getValue("video_mask_reset", "0") == "1"){
+                    mask_video_player->setPosition(0.0);
+                }
+
+                mask_video_player->play();
+            }/* else {
+                ofLogWarning() << "Effect::setup could not get video player for " << val;
+                ofLog() << "setting effect duration to zero";
+                // this will effectively abort the effect
+                truncate();
+            }*/
+        }
     }
 
     // load any shaders based shader param
@@ -149,19 +153,23 @@ void Effect::setup(Context &_context){
         this->shader = ShaderManager::instance()->get(val);
     }
 
-    pano_pos = _context.effect_setting.getValue("pano_pos", 0.0f);
-    pano_velocity = _context.effect_setting.getValue("pano_velocity", 0.0f);
+    auto_pos = _context.effect_setting.getValue("auto_pos", ofVec3f(0.0f));
+    auto_rotation = _context.effect_setting.getValue("auto_rotation", ofVec3f(0.0f));
 
     layer = _context.effect_setting.getValue("layer", 0);
 }
 
-void Effect::draw(Context &_context){
+void Effect::draw(Context &_context, float dt){
     // make some context, logic and precalculate data available to the entire class
-    PreCalc prec(_context);
+    PreCalc prec;
+    prec.load(_context);
     context = &_context;
     precalc = &prec;
     string val;
     
+    // these value can be updates during the effect (were already initialized in setup)
+    auto_pos += _context.effect_setting.getValue("auto_velocity", ofVec3f(0.0f)) * dt;
+    auto_rotation += _context.effect_setting.getValue("auto_rotate", ofVec3f(0.0f)) * dt;
 
     ofShader* maskShader = ShaderManager::instance()->get("mask");
     
@@ -208,18 +216,23 @@ void Effect::drawContent(){
     // ofTranslate(context->effect_setting.getValue("translate", ofVec3f(0.0)) * precalc->worldToScreenVec2f);
     // ofScale(context->effect_setting.getValue("scale", ofVec3f(1.0)));
 
+    ofScale(precalc->scale);
+    ofTranslate(precalc->translate);
     ofRotateX(precalc->rotate.x);
     ofRotateY(precalc->rotate.y);
     ofRotateZ(precalc->rotate.z);
-    ofScale(precalc->scale);
-    ofTranslate(precalc->translate);
 
-    ofRotateX(precalc->effect_rotate.x);
-    ofRotateY(precalc->effect_rotate.y);
-    ofRotateZ(precalc->effect_rotate.z);
     ofScale(precalc->effect_scale);
-    ofTranslate(precalc->effect_translate);
-    
+    ofTranslate(precalc->effect_translate + auto_pos);
+    ofRotateX(precalc->effect_rotate.x + auto_rotation.x);
+    ofRotateY(precalc->effect_rotate.y + auto_rotation.y);
+    ofRotateZ(precalc->effect_rotate.z + auto_rotation.z);
+
+    if(precalc->bIsSpot){
+        ofSetRectMode(OF_RECTMODE_CENTER);
+    }else{
+        ofSetRectMode(OF_RECTMODE_CORNER);
+    }
 
     // draw; video?
     if(video_player){
@@ -229,13 +242,13 @@ void Effect::drawContent(){
         
         // movie done?
         if(video_player->getIsMovieDone() && context->effect_setting.getValue("loop", "0") != "1"){
-            // if effect is configured to free (at first or last frame)
-            val = context->effect_setting.getValue("freeze", "");
-            if(val == "first"){
-                video_player->setPosition(0.0);
-                //video_player->setPaused(true);
+            // if effect is configured to freeze (at certain position, usually first or last frame)
+            float freeze_pos = context->effect_setting.getValue("freeze", (float)-1.0);
+            if(freeze_pos >= 0.0f){
+                video_player->setPosition(freeze_pos);
+                video_player->setPaused(true);
             // no freezing; end effect
-            } else if(val == ""){
+            } else {
                 truncate(); // end this effect
                 return;
             }
@@ -262,6 +275,7 @@ void Effect::drawContent(){
         }
 
         // draw video texture
+        
         video_player->draw(0.0, 0.0, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
         
         if(mask_video_player){
@@ -312,8 +326,9 @@ void Effect::drawPattern(const string &patternName){
     //
 
     if(patternName == "spot"){
-        int spotNumber = context->effect_setting.getValue("number", (int)1);
+        int spotNumber = context->effect_setting.getValue("spot", (int)1);
         string prefix = "spot" + ofToString(spotNumber);
+
 
         ofVec2f spotPos = context->screen_setting.getValue(prefix, ofVec2f(-10.0f)) * precalc->resolution;
         ofVec2f spotSize = context->screen_setting.getValue(prefix+"size", ofVec2f(0.0f)) * precalc->resolution;
@@ -326,7 +341,7 @@ void Effect::drawPattern(const string &patternName){
         if(!shader){
             // draw without shader stuff
             // ofDrawRectangle(0, 0, precalc->resolution.x, precalc->resolution.y);
-            ofDrawEllipse(spotPos.x, spotPos.y, spotSize.x, spotSize.y);
+            ofDrawEllipse(0.0f, 0.0f, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
             return;
         }
 
@@ -338,13 +353,13 @@ void Effect::drawPattern(const string &patternName){
         shader->setUniform1f("iGain", context->effect_setting.getValue("gain", 1.0f));
 
         // quarter; 1 means top right, 2 means bottom right, 3 bottom left, 4 means top left, zero means none
-        int q = std::floor(context->effect_setting.getValue("quarter_on", 0.0f));
+        int q = context->effect_setting.getValue("quarter_on", 0);
         shader->setUniform1i("iQuarterOn", q);
-        q = std::floor(context->effect_setting.getValue("quarter_off", 0.0f));
+        q = context->effect_setting.getValue("quarter_off", 0);
         shader->setUniform1i("iQuarterOff", q);
 
         spotPos = spotPos - spotSize * 0.5;
-        ofDrawRectangle(0.0f, 0.0f, precalc->resolution.x, precalc->resolution.y); //spotPos.x, spotPos.y, spotSize.x, spotSize.y);
+        ofDrawRectangle(0.0f, 0.0f, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
         return;
     }
 
@@ -366,22 +381,6 @@ void Effect::drawPattern(const string &patternName){
         return;
     }
 
-    //
-    // CURSOR
-    //
-
-    if(patternName == "cursor"){
-        float p = context->screen_setting.getValue("pano_pos", pano_pos);
-        float x = ofMap(p - floor(p),
-                            context->screen_setting.getValue("pano_start", 0.0f),
-                            context->screen_setting.getValue("pano_end", 1.0f),
-                            0.0,
-                            precalc->scrDrawSize.x);
-
-        float gain = context->effect_setting.getValue("gain", 1.0f) * precalc->scrDrawSize.x / precalc->scrWorldSize.x;
-        ofDrawRectangle(x-gain*0.5, 0.0f, gain, precalc->scrDrawSize.y);
-        return;
-    }
 }
 
 void Effect::drawMask(const string &coordsName){

@@ -63,7 +63,7 @@ Effect* EffectManager::createEffect(const string &trigger){
 
     // default type, just set name to whatever was specified
     pEffect = new Effect();
-    pEffect->name = triggerToName(trigger);
+    // pEffect->name = triggerToName(trigger);
     pEffect->trigger = trigger;
     return pEffect;
 }
@@ -100,12 +100,12 @@ void EffectManager::clear(){
     }
 }
 
-string EffectManager::triggerToName(const string &trigger){
-    // matches on any digits at then end of the string
-    std::regex expression("(\\d+)$");
-    // return the trigger name without any trailing digits
-    return std::regex_replace(trigger, expression, "");
-}
+//string EffectManager::triggerToName(const string &trigger){
+//    // matches on any digits at then end of the string
+//    std::regex expression("(\\d+)$");
+//    // return the trigger name without any trailing digits
+//    return std::regex_replace(trigger, expression, "");
+//}
 
 void EffectManager::sort(){
     vector<Effect*> sorted_effects;
@@ -170,7 +170,7 @@ Effect* EfficientEffectManager::get(string trigger){
     // reset its time values (and some other attributes)
     pEffect->reset();
     // update name if necessary
-    pEffect->name = triggerToName(trigger);
+    //pEffect->name = triggerToName(trigger);
     pEffect->trigger = trigger;
 
     // add to our own list

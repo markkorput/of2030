@@ -11,7 +11,7 @@
 
 using namespace of2030;
 
-PreCalc::PreCalc(Context &_context){
+void PreCalc::load(Context &_context){
     context = &_context;
 
     //    resolution = screen_setting.getValue("resolution", ofVec2f(768, 576));
@@ -27,30 +27,38 @@ PreCalc::PreCalc(Context &_context){
     fxPanoEnd = _context.effect_setting.getValue("pano_end", 1.0f);
 
     // readTunnelScreenCoords(tunnelScreenCoords);
-    isPano = false;
-    isTunnel = false;
-    isTunnel = (_context.effect_setting.getValue("is_tunnel", "0") == "1");
 
-    if(isTunnel){
+    // tunnel?
+    if(_context.effect_setting.getValue("is_tunnel", "0") == "1"){
         translate = _context.screen_setting.getValue("tunnel_translate", ofVec3f(0.0f));
         rotate = _context.screen_setting.getValue("tunnel_rotate", ofVec3f(0.0f));
         scale = _context.screen_setting.getValue("tunnel_scale", ofVec3f(1.0f));
         scrDrawSize = _context.tunnel_size;
-        isPano = false;
+    // pano???
+    } else if(_context.effect_setting.getValue("is_pano", "0") == "1"){
+        translate = _context.screen_setting.getValue("pano_translate", ofVec3f(0.0f));
+        rotate = _context.screen_setting.getValue("pano_rotate", ofVec3f(0.0f));
+        scale = _context.screen_setting.getValue("pano_scale", ofVec3f(1.0f));
+        scrDrawSize = _context.pano_size;
+    // spot?
+    } else if (_context.effect_setting.getValue("spot", 0) != 0){
+        bIsSpot = true;
+        string prefix = "spot" + _context.effect_setting.getValue("spot", "0");
+
+        // convert from screen resolution (per-pixel) to real-world meters
+        scale = ofVec3f(resolution/scrWorldSize);
+        rotate = ofVec3f(0.0);
+        // default value is way off screen; having no configuration for this spot,
+        // means this spot should not be visible on this screen
+        translate = context->screen_setting.getValue(prefix, ofVec3f(-100.0f, -100.0f, 0.0f));
+        scrDrawSize = context->screen_setting.getValue(prefix+"size", ofVec2f(0.0f));
+    // full screen
     } else {
-        isPano = (_context.effect_setting.getValue("is_pano", "0") == "1");
-        if(isPano){
-            translate = _context.screen_setting.getValue("pano_translate", ofVec3f(0.0f));
-            rotate = _context.screen_setting.getValue("pano_rotate", ofVec3f(0.0f));
-            scale = _context.screen_setting.getValue("pano_scale", ofVec3f(1.0f));
-            scrDrawSize = _context.pano_size;
-        } else {
-            // not pano not tunnel; just do a regular "fullscreen"
-            translate = _context.screen_setting.getValue("single_translate", ofVec3f(0.0f)) + ofVec3f(0.0f, -scrWorldSize.y, 0.0f);
-            rotate = _context.screen_setting.getValue("single_rotate", ofVec3f(0.0f));
-            scale = _context.screen_setting.getValue("single_scale", ofVec3f(resolution/scrWorldSize)) * ofVec3f(1.0f, -1.0f, 1.0f);
-            scrDrawSize = scrWorldSize; //resolution; //_context.effect_setting.getValue("draw_size", scrWorldSize) * worldToScreenVec2f;
-        }
+        // not pano not tunnel; just do a regular "fullscreen"
+        translate = _context.screen_setting.getValue("single_translate", ofVec3f(0.0f)) + ofVec3f(0.0f, -scrWorldSize.y, 0.0f);
+        rotate = _context.screen_setting.getValue("single_rotate", ofVec3f(0.0f));
+        scale = _context.screen_setting.getValue("single_scale", ofVec3f(resolution/scrWorldSize)) * ofVec3f(1.0f, -1.0f, 1.0f);
+        scrDrawSize = scrWorldSize; //resolution; //_context.effect_setting.getValue("draw_size", scrWorldSize) * worldToScreenVec2f;
     }
 
     effect_translate = _context.effect_setting.getValue("translate", ofVec3f(0.0f));

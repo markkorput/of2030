@@ -16,7 +16,7 @@ using namespace of2030;
 
 SINGLETON_INLINE_IMPLEMENTATION_CODE(Renderer)
 
-Renderer::Renderer() : fbo(NULL), fbo2(NULL), fbo3(NULL), player(NULL), client_id(""), bCallbacksRegistered(false){
+Renderer::Renderer() : fbo(NULL), fbo2(NULL), fbo3(NULL), player(NULL), client_id(""), bCallbacksRegistered(false), lastFrameTime(0.0f){
     screenWidth = ofGetWidth();
     screenHeight = ofGetHeight();
 
@@ -67,6 +67,8 @@ void Renderer::setup(){
 
     if(!bCallbacksRegistered)
         registerRealtimeEffectCallback();
+
+    lastFrameTime = ofGetElapsedTimef();
 }
 
 void Renderer::destroy(){
@@ -87,11 +89,17 @@ void Renderer::draw(){
     ofScale(screenWidth / fbo2->getWidth(), screenHeight / fbo2->getHeight(), 1.0f);
 #endif
 
+    float dt = ofGetElapsedTimef() - lastFrameTime;
+    lastFrameTime += dt;
+
     // draw all active effects
     vector<Effect*> effects = player->getActiveEffects();
     for(auto effect: effects){
+        context.effect_setting.data.clear();
         fillEffectSetting(*effect, context.effect_setting);
-        effect->draw(context);
+        effect->draw(context, dt);
+        
+//        float dt = ofGetElapsedTimef() - m_lastUpdateTime;
     }
 
     //    fillEffectSetting(*overlayEffect, context.effect_setting);
@@ -141,14 +149,9 @@ void Renderer::fillContextClientInfo(Context &context){
 void Renderer::fillEffectSetting(Effect &effect, XmlItemSetting &fxsetting){
     XmlConfigs *fxs = XmlConfigs::instance();
 
-    // effect config
-    string query = effect.name;
+    // effect- (trigger)-specific config
+    string query = effect.trigger;
     XmlItemSetting *pSetting = fxs->getItem(query);
-    if(pSetting)
-        fxsetting.merge(*pSetting);
-
-    // trigger-specific config (has priority over song/clip-specific configs)
-    pSetting = fxs->getItem(effect.trigger);
     if(pSetting)
         fxsetting.merge(*pSetting);
 

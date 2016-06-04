@@ -28,9 +28,9 @@ void Player::update(){
 void Player::update(float dt){
     if(m_bPlaying){
         movePlaybackTimeTo(m_time + dt);
-        for(auto effect: active_effects_manager.getEffects()){
-            effect->update(dt);
-        }
+//        for(auto effect: active_effects_manager.getEffects()){
+//            effect->update(dt);
+//        }
     }
 }
 
@@ -56,7 +56,7 @@ void Player::addEffect(Effect &effect){
 
     // dead on arrival?
     if(effectEnded(effect)){
-        ofLog() << "Dead-on-arrival: " << effect.name;
+        ofLog() << "Dead-on-arrival: " << effect.trigger;
         // this triggers cleanups
         effect_manager.remove(&effect);
         return;
