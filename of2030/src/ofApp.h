@@ -10,16 +10,16 @@ class ofApp : public ofBaseApp{
         void exit(ofEventArgs &args);
     
 		void keyPressed(int key);
-		void keyReleased(int key);
-		void mouseMoved(int x, int y);
-		void mouseDragged(int x, int y, int button);
-		void mousePressed(int x, int y, int button);
-		void mouseReleased(int x, int y, int button);
-		void mouseEntered(int x, int y);
-		void mouseExited(int x, int y);
-		void windowResized(int w, int h);
-		void dragEvent(ofDragInfo dragInfo);
-		void gotMessage(ofMessage msg);
+        void dragEvent(ofDragInfo dragInfo);
+//		void keyReleased(int key);
+//		void mouseMoved(int x, int y);
+//		void mouseDragged(int x, int y, int button);
+//		void mousePressed(int x, int y, int button);
+//		void mouseReleased(int x, int y, int button);
+//		void mouseEntered(int x, int y);
+//		void mouseExited(int x, int y);
+//		void windowResized(int w, int h);
+//		void gotMessage(ofMessage msg);
     
     private: // callbacks
         void onControl(string &type);
@@ -28,6 +28,7 @@ class ofApp : public ofBaseApp{
         void onLoadVideo(string &name);
         void onUnloadVideo(string &name);
         void onVideoPlayerUnload(ofVideoPlayer &player);
+        void onImageUnload(ofImage &image);
 
     private: // attributes
         float next_log_alive_time;

@@ -32,17 +32,20 @@ namespace of2030{
         void start();
         void stop();
 
+        // add/stop/clear effects
         void addEffect(Effect &effect);
         void stopEffectByTrigger(string &trigger);
         void stopEffectsByVideoPlayer(ofVideoPlayer *player);
         void stopAllVideoEffects();
+        void stopEffectsByImage(ofImage &image);
         void clearEffects();
 
+        // get specific effects
         inline const vector<Effect*> &getActiveEffects(){ return active_effects_manager.getEffects(); }
-        inline const string &getSong(){ return song; }
-        inline const string &getClip(){ return clip; }
-        inline void setSong(const string &newSong){ song = newSong; }
-        inline void setClip(const string &newClip){ clip = newClip; }
+//        inline const string &getSong(){ return song; }
+//        inline const string &getClip(){ return clip; }
+//        inline void setSong(const string &newSong){ song = newSong; }
+//        inline void setClip(const string &newClip){ clip = newClip; }
 
         inline float getTime(){ return m_time; }
 
@@ -59,7 +62,7 @@ namespace of2030{
 
     private: // attributes
 
-        string song, clip;
+        // string song, clip;
         EffectManager active_effects_manager, pending_effects_manager;
 
         bool m_bPlaying;

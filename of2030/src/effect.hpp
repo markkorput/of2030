@@ -44,10 +44,12 @@ namespace of2030{
         inline int getLayer() const { return layer; }
         inline bool getUnique() const { return bUnique; }
 
-        inline ofVideoPlayer* getVideoPlayer() const { return video_player; }
         inline void setDuration(float duration){
             endTime = startTime + duration;
         }
+
+        inline ofVideoPlayer* getVideoPlayer() const { return video_player; }
+        inline ofImage* getImage() const { return image; }
 
     protected: // methods
         
@@ -72,6 +74,7 @@ namespace of2030{
         float startTime, endTime;
         bool bUnique; // if there can be only one effect with this trigger value at any given moment
 
+        ofImage *image;
         ofVideoPlayer *video_player, *mask_video_player;
         ofVec3f auto_pos, auto_rotation;
         ofShader *shader;

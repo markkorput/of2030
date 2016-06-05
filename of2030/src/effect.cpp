@@ -29,6 +29,7 @@ void Effect::reset(){
     shader = NULL;
     video_player = NULL;
     mask_video_player = NULL;
+    image = NULL;
     layer = 0;
     bUnique = true;
 }
