@@ -47,7 +47,7 @@ ofImage* ImageManager::get(const string &name, const string &alias, bool load){
     
     // store it
     if(img){
-        ofLog() << "ImageManager loaded alias: " << alias;
+        ofLog() << alias << " loaded.";
         images[alias] = img;
     }
 
