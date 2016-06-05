@@ -19,7 +19,7 @@ ImageManager::ImageManager(){
 
 void ImageManager::destroy(){
     for (auto& pair: images) {
-        unload(pair.second);
+        unload(pair.first);
     }
 
     images.clear();
