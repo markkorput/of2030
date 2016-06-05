@@ -37,6 +37,7 @@
 		4D9B299E1CC65D82005D65E9 /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D9B299A1CC65D82005D65E9 /* tinyxmlparser.cpp */; };
 		4D9DF2781CF1BB9A0083BE56 /* osc_recorder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D9DF2761CF1BB9A0083BE56 /* osc_recorder.cpp */; };
 		4DB3EC701CFA0D3600C2BD99 /* context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DB3EC6E1CFA0D3600C2BD99 /* context.cpp */; };
+		4DBFD1E91D045870000A7DC6 /* image_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DBFD1E71D04586F000A7DC6 /* image_manager.cpp */; };
 		4DE274CA1CCE1D9300F2D470 /* xml_settings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DE274C81CCE1D9300F2D470 /* xml_settings.cpp */; };
 		4DE274CE1CCE242B00F2D470 /* multi_client.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DE274CC1CCE242B00F2D470 /* multi_client.cpp */; };
 		4DE491011CC69C55003E7958 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DE490FF1CC69C55003E7958 /* player.cpp */; };
@@ -143,6 +144,8 @@
 		4D9DF2771CF1BB9A0083BE56 /* osc_recorder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = osc_recorder.hpp; sourceTree = "<group>"; };
 		4DB3EC6E1CFA0D3600C2BD99 /* context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = context.cpp; sourceTree = "<group>"; };
 		4DB3EC6F1CFA0D3600C2BD99 /* context.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = context.hpp; sourceTree = "<group>"; };
+		4DBFD1E71D04586F000A7DC6 /* image_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = image_manager.cpp; sourceTree = "<group>"; };
+		4DBFD1E81D04586F000A7DC6 /* image_manager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = image_manager.hpp; sourceTree = "<group>"; };
 		4DE274C81CCE1D9300F2D470 /* xml_settings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = xml_settings.cpp; sourceTree = "<group>"; };
 		4DE274C91CCE1D9300F2D470 /* xml_settings.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = xml_settings.hpp; sourceTree = "<group>"; };
 		4DE274CC1CCE242B00F2D470 /* multi_client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = multi_client.cpp; sourceTree = "<group>"; };
@@ -377,6 +380,8 @@
 				4D5E5EB31CE8B97A00D5D33D /* effect_manager.hpp */,
 				4DB3EC6E1CFA0D3600C2BD99 /* context.cpp */,
 				4DB3EC6F1CFA0D3600C2BD99 /* context.hpp */,
+				4DBFD1E71D04586F000A7DC6 /* image_manager.cpp */,
+				4DBFD1E81D04586F000A7DC6 /* image_manager.hpp */,
 			);
 			name = visual;
 			sourceTree = "<group>";
@@ -550,6 +555,7 @@
 				4D9B296E1CC64190005D65E9 /* ofxOscReceiver.cpp in Sources */,
 				4D7E54FD1CC6AD1D00DF588E /* interface_player_bridge.cpp in Sources */,
 				4D9B29761CC64190005D65E9 /* OscTypes.cpp in Sources */,
+				4DBFD1E91D045870000A7DC6 /* image_manager.cpp in Sources */,
 				4D9B296F1CC64190005D65E9 /* ofxOscSender.cpp in Sources */,
 				4D4A32BB1CDFE8D100304FE9 /* xml_configs.cpp in Sources */,
 				4D9B29731CC64190005D65E9 /* OscOutboundPacketStream.cpp in Sources */,
