@@ -136,6 +136,27 @@ void OscReceiver::processMessage(ofxOscMessage &m){
         return;
     }
 
+    if(addr == OSC_TRIGGERSTOP){
+        if(m.getNumArgs() == 1 and m.getArgType(0) == ofxOscArgType::OFXOSC_TYPE_FLOAT){
+            param = "";
+        }
+        
+        ofNotifyEvent(m_interface->stopTriggerEvent, param, m_interface);
+        return;
+    }
+    
+    sub = OSC_TRIGGERSTOP;
+    sub += "/";
+    if(addr.substr(0, sub.size()) == sub){
+        if(m.getNumArgs() == 1 and m.getArgType(0) == ofxOscArgType::OFXOSC_TYPE_FLOAT and m.getArgAsFloat(0) == 0.0f){
+            // ignore this message; touch osc sends two message on for touch down, one for touch up, this is a touch up
+            return;
+        }
+        
+        param = addr.substr(sub.size());
+        ofNotifyEvent(m_interface->stopTriggerEvent, param, m_interface);
+        return;
+    }
     
     if(addr == OSC_PLAYSTOP){
         if(m.getNumArgs() == 1 and m.getArgType(0) == ofxOscArgType::OFXOSC_TYPE_FLOAT){
@@ -159,28 +180,6 @@ void OscReceiver::processMessage(ofxOscMessage &m){
         return;
     }
 
-
-    if(addr == OSC_TRIGGERSTOP){
-        if(m.getNumArgs() == 1 and m.getArgType(0) == ofxOscArgType::OFXOSC_TYPE_FLOAT){
-            param = "";
-        }
-
-        ofNotifyEvent(m_interface->stopTriggerEvent, param, m_interface);
-        return;
-    }
-    
-    sub = OSC_TRIGGERSTOP;
-    sub += "/";
-    if(addr.substr(0, sub.size()) == sub){
-        if(m.getNumArgs() == 1 and m.getArgType(0) == ofxOscArgType::OFXOSC_TYPE_FLOAT and m.getArgAsFloat(0) == 0.0f){
-            // ignore this message; touch osc sends two message on for touch down, one for touch up, this is a touch up
-            return;
-        }
-
-        param = addr.substr(sub.size());
-        ofNotifyEvent(m_interface->stopTriggerEvent, param, m_interface);
-        return;
-    }
 
 //    if(addr == osc_setting->addresses["song"]){
 //        ofLogVerbose() << "[osc-in] song: " << param;
@@ -298,12 +297,49 @@ void OscReceiver::processMessage(ofxOscMessage &m){
         ofNotifyEvent(m_interface->unloadVideoEvent, param, m_interface);
         return;
     }
-    
+  
     sub = OSC_VIDUNLOAD;
     sub += "/";
     if(addr.substr(0, sub.size()) == sub){
         param = addr.substr(sub.size());
         ofNotifyEvent(m_interface->unloadVideoEvent, param, m_interface);
+        return;
+    }
+
+
+    if(addr == OSC_IMGLOAD){
+        ofNotifyEvent(m_interface->loadImageEvent, param, m_interface);
+        return;
+    }
+
+    sub = OSC_IMGLOAD;
+    sub += "/";
+    if(addr.substr(0, sub.size()) == sub){
+        if(m.getNumArgs() == 1 and m.getArgType(0) == ofxOscArgType::OFXOSC_TYPE_FLOAT and m.getArgAsFloat(0) == 0.0f){
+            // ignore this message; touch osc sends two message on for touch down, one for touch up, this is a touch up
+            return;
+        }
+
+        param = addr.substr(sub.size());
+        ofNotifyEvent(m_interface->loadImageEvent, param, m_interface);
+        return;
+    }
+
+    if(addr == OSC_IMGUNLOAD){
+        ofNotifyEvent(m_interface->unloadImageEvent, param, m_interface);
+        return;
+    }
+    
+    sub = OSC_IMGUNLOAD;
+    sub += "/";
+    if(addr.substr(0, sub.size()) == sub){
+        if(m.getNumArgs() == 1 and m.getArgType(0) == ofxOscArgType::OFXOSC_TYPE_FLOAT and m.getArgAsFloat(0) == 0.0f){
+            // ignore this message; touch osc sends two message on for touch down, one for touch up, this is a touch up
+            return;
+        }
+        
+        param = addr.substr(sub.size());
+        ofNotifyEvent(m_interface->unloadImageEvent, param, m_interface);
         return;
     }
 
