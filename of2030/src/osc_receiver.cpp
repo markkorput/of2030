@@ -72,13 +72,14 @@ void OscReceiver::processMessage(ofxOscMessage &m){
     
     ofLogVerbose() << "[osc-in] " << addr << " with " << param;
 
-    
-    if(addr == osc_setting->addresses["trigger"]){
+
+    if(addr == OSC_TRIGGER){
         ofNotifyEvent(m_interface->triggerEvent, param, m_interface);
         return;
     }
     
-    sub = osc_setting->addresses["trigger"] + "/";
+    sub = OSC_TRIGGER;
+    sub += "/";
     if(addr.substr(0, sub.size()) == sub){
         if(m.getNumArgs() == 1 and m.getArgType(0) == ofxOscArgType::OFXOSC_TYPE_FLOAT and m.getArgAsFloat(0) == 0.0f){
             // ignore this message; touch osc sends two message on for touch down, one for touch up, this is a touch up
@@ -91,7 +92,8 @@ void OscReceiver::processMessage(ofxOscMessage &m){
     }
 
     
-    sub = osc_setting->addresses["effect_config"] + "/";
+    sub = OSC_CONFIG_EFFECT;
+    sub += "/";
     if(addr.substr(0, sub.size()) == sub){
         sub = addr.substr(sub.size());
         std::size_t pos = sub.find("/");
@@ -116,12 +118,13 @@ void OscReceiver::processMessage(ofxOscMessage &m){
     }
 
     
-    if(addr == osc_setting->addresses["playback"]){
+    if(addr == OSC_PLAY){
         ofNotifyEvent(m_interface->playbackEvent, param, m_interface);
         return;
     }
 
-    sub = osc_setting->addresses["playback"] + "/";
+    sub = OSC_PLAY;
+    sub += "/";
     if(addr.substr(0, sub.size()) == sub){
         if(m.getNumArgs() == 1 and m.getArgType(0) == ofxOscArgType::OFXOSC_TYPE_FLOAT and m.getArgAsFloat(0) == 0.0f){
             // ignore this message; touch osc sends two message on for touch down, one for touch up, this is a touch up
@@ -133,8 +136,29 @@ void OscReceiver::processMessage(ofxOscMessage &m){
         return;
     }
 
+    if(addr == OSC_TRIGGERSTOP){
+        if(m.getNumArgs() == 1 and m.getArgType(0) == ofxOscArgType::OFXOSC_TYPE_FLOAT){
+            param = "";
+        }
+        
+        ofNotifyEvent(m_interface->stopTriggerEvent, param, m_interface);
+        return;
+    }
     
-    if(addr == osc_setting->addresses["stop_playback"]){
+    sub = OSC_TRIGGERSTOP;
+    sub += "/";
+    if(addr.substr(0, sub.size()) == sub){
+        if(m.getNumArgs() == 1 and m.getArgType(0) == ofxOscArgType::OFXOSC_TYPE_FLOAT and m.getArgAsFloat(0) == 0.0f){
+            // ignore this message; touch osc sends two message on for touch down, one for touch up, this is a touch up
+            return;
+        }
+        
+        param = addr.substr(sub.size());
+        ofNotifyEvent(m_interface->stopTriggerEvent, param, m_interface);
+        return;
+    }
+    
+    if(addr == OSC_PLAYSTOP){
         if(m.getNumArgs() == 1 and m.getArgType(0) == ofxOscArgType::OFXOSC_TYPE_FLOAT){
             param = "";
         }
@@ -142,8 +166,9 @@ void OscReceiver::processMessage(ofxOscMessage &m){
         ofNotifyEvent(m_interface->stopPlaybackEvent, param, m_interface);
         return;
     }
-    
-    sub = osc_setting->addresses["stop_playback"] + "/";
+
+    sub = OSC_PLAYSTOP;
+    sub += "/";
     if(addr.substr(0, sub.size()) == sub){
         if(m.getNumArgs() == 1 and m.getArgType(0) == ofxOscArgType::OFXOSC_TYPE_FLOAT and m.getArgAsFloat(0) == 0.0f){
             // ignore this message; touch osc sends two message on for touch down, one for touch up, this is a touch up
@@ -156,27 +181,6 @@ void OscReceiver::processMessage(ofxOscMessage &m){
     }
 
 
-    if(addr == osc_setting->addresses["stop"]){
-        if(m.getNumArgs() == 1 and m.getArgType(0) == ofxOscArgType::OFXOSC_TYPE_FLOAT){
-            param = "";
-        }
-
-        ofNotifyEvent(m_interface->stopTriggerEvent, param, m_interface);
-        return;
-    }
-    
-    sub = osc_setting->addresses["stop"] + "/";
-    if(addr.substr(0, sub.size()) == sub){
-        if(m.getNumArgs() == 1 and m.getArgType(0) == ofxOscArgType::OFXOSC_TYPE_FLOAT and m.getArgAsFloat(0) == 0.0f){
-            // ignore this message; touch osc sends two message on for touch down, one for touch up, this is a touch up
-            return;
-        }
-
-        param = addr.substr(sub.size());
-        ofNotifyEvent(m_interface->stopTriggerEvent, param, m_interface);
-        return;
-    }
-    
 //    if(addr == osc_setting->addresses["song"]){
 //        ofLogVerbose() << "[osc-in] song: " << param;
 //        ofNotifyEvent(m_interface->songEvent, param, m_interface);
@@ -201,12 +205,13 @@ void OscReceiver::processMessage(ofxOscMessage &m){
 //        return;
 //    }
     
-    if(addr == osc_setting->addresses["control"]){
+    if(addr == OSC_CONTROL){
         ofNotifyEvent(m_interface->controlEvent, param, m_interface);
         return;
     }
     
-    sub = osc_setting->addresses["control"] + "/";
+    sub = OSC_CONTROL;
+    sub += "/";
     if(addr.substr(0, sub.size()) == sub){
         if(m.getNumArgs() == 1 and m.getArgType(0) == ofxOscArgType::OFXOSC_TYPE_FLOAT and m.getArgAsFloat(0) == 0.0f){
             // ignore this message; touch osc sends two message on for touch down, one for touch up, this is a touch up
@@ -218,24 +223,24 @@ void OscReceiver::processMessage(ofxOscMessage &m){
         return;
     }
 
-    
-    sub = osc_setting->addresses["screen_config"] + "/";
+    sub = OSC_CONFIG_SCREEN;
+    sub += "/";
     if(addr.substr(0, sub.size()) == sub){
         sub = addr.substr(sub.size());
         std::size_t pos = sub.find("/");
-        
+
         if (pos==std::string::npos){
             ofLogError() << "could not get screen-name and param name from osc address";
             return;
         }
-        
+
         if(m.getNumArgs() < 1){
             ofLogError() << "param value missing from OSC message";
             return;
         }
-        
+
         EffectConfig cfg;
-        
+
         // 2 params and screen config param-name end with pos?
         // then treat as two _x and _y params
         if(m.getNumArgs() == 2 && sub.substr(sub.size()-3) == "pos"){
@@ -247,7 +252,7 @@ void OscReceiver::processMessage(ofxOscMessage &m){
             cfg.param_value = m.getArgAsString(1);
             ofNotifyEvent(m_interface->screenConfigEvent, cfg, m_interface);
         }
-        
+
         // 2 params and screen config param-name end with pos?
         // then treat as two _x and _y params
         if(m.getNumArgs() == 3 && sub.substr(sub.size()-3) == "pos"){
@@ -271,19 +276,20 @@ void OscReceiver::processMessage(ofxOscMessage &m){
         return;
     }
 
-    if(addr == osc_setting->addresses["load_video"]){
+    if(addr == OSC_VIDLOAD){
         ofNotifyEvent(m_interface->loadVideoEvent, param, m_interface);
         return;
     }
     
-    sub = osc_setting->addresses["load_video"] + "/";
+    sub = OSC_VIDLOAD;
+    sub += "/";
     if(addr.substr(0, sub.size()) == sub){
         param = addr.substr(sub.size());
         ofNotifyEvent(m_interface->loadVideoEvent, param, m_interface);
         return;
     }
 
-    if(addr == osc_setting->addresses["unload_video"]){
+    if(addr == OSC_VIDUNLOAD){
         if(m.getNumArgs() == 1 and m.getArgType(0) == ofxOscArgType::OFXOSC_TYPE_FLOAT){
             param = "";
         }
@@ -291,14 +297,52 @@ void OscReceiver::processMessage(ofxOscMessage &m){
         ofNotifyEvent(m_interface->unloadVideoEvent, param, m_interface);
         return;
     }
-    
-    sub = osc_setting->addresses["unload_video"] + "/";
+  
+    sub = OSC_VIDUNLOAD;
+    sub += "/";
     if(addr.substr(0, sub.size()) == sub){
         param = addr.substr(sub.size());
         ofNotifyEvent(m_interface->unloadVideoEvent, param, m_interface);
         return;
     }
+
+
+    if(addr == OSC_IMGLOAD){
+        ofNotifyEvent(m_interface->loadImageEvent, param, m_interface);
+        return;
+    }
+
+    sub = OSC_IMGLOAD;
+    sub += "/";
+    if(addr.substr(0, sub.size()) == sub){
+        if(m.getNumArgs() == 1 and m.getArgType(0) == ofxOscArgType::OFXOSC_TYPE_FLOAT and m.getArgAsFloat(0) == 0.0f){
+            // ignore this message; touch osc sends two message on for touch down, one for touch up, this is a touch up
+            return;
+        }
+
+        param = addr.substr(sub.size());
+        ofNotifyEvent(m_interface->loadImageEvent, param, m_interface);
+        return;
+    }
+
+    if(addr == OSC_IMGUNLOAD){
+        ofNotifyEvent(m_interface->unloadImageEvent, param, m_interface);
+        return;
+    }
     
+    sub = OSC_IMGUNLOAD;
+    sub += "/";
+    if(addr.substr(0, sub.size()) == sub){
+        if(m.getNumArgs() == 1 and m.getArgType(0) == ofxOscArgType::OFXOSC_TYPE_FLOAT and m.getArgAsFloat(0) == 0.0f){
+            // ignore this message; touch osc sends two message on for touch down, one for touch up, this is a touch up
+            return;
+        }
+        
+        param = addr.substr(sub.size());
+        ofNotifyEvent(m_interface->unloadImageEvent, param, m_interface);
+        return;
+    }
+
     ofLog() << "Unable to process OSC Message " << m.getAddress();
 }
 

@@ -166,26 +166,19 @@
       <scale_x>1.33</scale_x>
     </effect>
     <effect name="scav_beat_max">
-      <video>scav/2.1_SCAVENGER_S_VENTILATOR_2_v02-frame.mov</video>
-      <!-- <video_mask>self</video_mask> -->
-      <freeze>1.0</freeze>
+      <image>scav_fan2_v01.jpg</image>
       <spot>3</spot>
-      <!-- <reset>1</reset> -->
       <layer>3</layer>
       <auto_rotate_z>-80.0</auto_rotate_z>
     </effect>
     <effect name="scav_beat_koen">
-      <video>scav/2.1_SCAVENGER_S_VENTILATOR_2_v02-frame.mov</video>
-      <!-- <video_mask>self</video_mask> -->
-      <freeze>1.0</freeze>
+      <image>scav_fan2_v01.jpg</image>
       <spot>2</spot>
       <layer>3</layer>
       <auto_rotate_z>-80.0</auto_rotate_z>
     </effect>
     <effect name="scav_beat_gydo">
-      <video>scav/2.1_SCAVENGER_S_VENTILATOR_2_v02-frame.mov</video>
-      <!-- <video_mask>self</video_mask> -->
-      <freeze>1.0</freeze>
+      <image>scav_fan2_v01.jpg</image>
       <spot>1</spot>
       <layer>3</layer>
       <auto_rotate_z>-80.0</auto_rotate_z>
@@ -551,12 +544,42 @@
       <draw_size_y>2.0</draw_size_y>
       <reset>1</reset>
     </effect>
-    <effect name="divide_chords">
+<!--     <effect name="divide_chords">
       <video>divide/3.2_WMND_AKKOORDEN_v01.mov</video>
       <is_tunnel>1</is_tunnel>
       <video_mask>self</video_mask>
       <layer>5</layer>
       <reset>1</reset>
+    </effect> -->
+    <effect name="divide_chord1">
+      <image>divide_chord1.png</image>
+      <is_tunnel>1</is_tunnel>
+      <layer>5</layer>
+      <draw_size_y>0.4</draw_size_y>
+    </effect>
+    <effect name="divide_chord2">
+      <image>divide_chord2.png</image>
+      <is_tunnel>1</is_tunnel>
+      <layer>5</layer>
+      <draw_size_y>0.4</draw_size_y>
+    </effect>
+    <effect name="divide_chord3">
+      <image>divide_chord3.png</image>
+      <is_tunnel>1</is_tunnel>
+      <layer>5</layer>
+      <draw_size_y>0.4</draw_size_y>
+    </effect>
+    <effect name="divide_chord4">
+      <image>divide_chord4.png</image>
+      <is_tunnel>1</is_tunnel>
+      <layer>5</layer>
+      <draw_size_y>0.4</draw_size_y>
+    </effect>
+    <effect name="divide_chord5">
+      <image>divide_chord5.png</image>
+      <is_tunnel>1</is_tunnel>
+      <layer>5</layer>
+      <draw_size_y>0.4</draw_size_y>
     </effect>
     <effect name="divide_particles1">
       <video>divide/3.2_WMND_KOEN_HANDMOVES_1_05806_v01.mov</video>
@@ -591,14 +614,13 @@
 
 
 
-
     <!--  MISC -->
     <effect name="cursor1">
       <!-- <pattern>horiline</pattern> -->
       <is_pano>1</is_pano>
       <draw_size_x>0.05</draw_size_x>
-      <auto_velocity_x>25.0</auto_velocity_x>
-      <duration>1.3</duration>
+      <auto_velocity_x>10.0</auto_velocity_x>
+      <duration>1.0</duration>
       <!-- <auto_rotate_z>180.0</auto_rotate_x> -->
       <rotate_z>45.0</rotate_z>
     </effect>

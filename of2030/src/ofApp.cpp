@@ -16,6 +16,7 @@
 #include "interface_player_bridge.hpp"
 #include "effect_manager.hpp"
 #include "video_manager.hpp"
+#include "image_manager.hpp"
 #include "osc_playback_manager.hpp"
 #include "osc_recorder.hpp"
 
@@ -93,6 +94,9 @@ void ofApp::setup(){
     ofAddListener(of2030::Interface::instance()->loadVideoEvent, this, &ofApp::onLoadVideo);
     ofAddListener(of2030::Interface::instance()->unloadVideoEvent, this, &ofApp::onUnloadVideo);
     ofAddListener(of2030::VideoManager::instance()->unloadEvent, this, &ofApp::onVideoPlayerUnload);
+    ofAddListener(of2030::Interface::instance()->loadImageEvent, this, &ofApp::onLoadImage);
+    ofAddListener(of2030::Interface::instance()->unloadImageEvent, this, &ofApp::onUnloadImage);
+    ofAddListener(of2030::ImageManager::instance()->unloadEvent, this, &ofApp::onImageUnload);
 
     // load & start OscReceiver; let the messages come!
     ofLogVerbose() << "Starting OscReceiver";
@@ -156,6 +160,7 @@ void ofApp::exit(ofEventArgs &args){
     // TODO; call delete_instance for all singleton instance implementations
     of2030::EfficientEffectManager::delete_instance();
     of2030::VideoManager::delete_instance();
+    of2030::VideoManager::delete_instance();
 
 #ifdef __OSC_RECORDER_ENABLED__
     of2030::OscRecorder::delete_instance();
@@ -196,51 +201,6 @@ void ofApp::keyPressed(int key){
         return;
     }
 #endif
-}
-
-//--------------------------------------------------------------
-void ofApp::keyReleased(int key){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseMoved(int x, int y){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseDragged(int x, int y, int button){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mousePressed(int x, int y, int button){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseReleased(int x, int y, int button){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseEntered(int x, int y){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseExited(int x, int y){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::windowResized(int w, int h){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::gotMessage(ofMessage msg){
-
 }
 
 //--------------------------------------------------------------
@@ -308,17 +268,32 @@ void ofApp::onLoadVideo(string &name){
 }
 
 void ofApp::onUnloadVideo(string &name){
-    if(name == ""){ // unload all?
-        of2030::Player::instance()->stopAllVideoEffects();
-    } else {
-        ofVideoPlayer* player = of2030::VideoManager::instance()->get(name, false);
-        // could be NULL!
-        of2030::Player::instance()->stopEffectsByVideoPlayer(player);
-    }
+    // every video that gets unloaded in the VideoManager triggers the onVideoPlayerUnload callback below
+    // which takes care of destroying any effects that might still be using the unloaded player(s)
+
+//    if(name == ""){ // unload all?
+//        of2030::Player::instance()->stopAllVideoEffects();
+//    } else {
+//        ofVideoPlayer* player = of2030::VideoManager::instance()->get(name, false);
+//        // could be NULL!
+//        of2030::Player::instance()->stopEffectsByVideoPlayer(player);
+//    }
 
     of2030::VideoManager::instance()->unload(name);
 }
 
 void ofApp::onVideoPlayerUnload(ofVideoPlayer &player){
     of2030::Player::instance()->stopEffectsByVideoPlayer(&player);
+}
+
+void ofApp::onLoadImage(string &name){
+    of2030::ImageManager::instance()->get(name, true);
+}
+
+void ofApp::onUnloadImage(string &name){
+    of2030::ImageManager::instance()->unload(name);
+}
+
+void ofApp::onImageUnload(ofImage &image){
+    of2030::Player::instance()->stopEffectsByImage(image);
 }

@@ -31,6 +31,8 @@ namespace of2030 {
         ofEvent<string> stopPlaybackEvent;
         ofEvent<string> loadVideoEvent;
         ofEvent<string> unloadVideoEvent;
+        ofEvent<string> loadImageEvent;
+        ofEvent<string> unloadImageEvent;
     };
 };
 

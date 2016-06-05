@@ -18,7 +18,7 @@ namespace of2030{
     //
     typedef struct {
         int port;
-        map<string, string> addresses;
+        // map<string, string> addresses;
     } OscSetting;
 
     //

@@ -29,6 +29,18 @@
 #define CTRL_RELOAD_EFFECTS "reload_effects"
 #define CTRL_RELOAD_SHADERS "reload_shaders"
 
+#define OSC_TRIGGER "/t"
+#define OSC_TRIGGERSTOP "/s"
+#define OSC_PLAY "/p"
+#define OSC_PLAYSTOP "/q"
+#define OSC_CONTROL "/ctrl"
+#define OSC_CONFIG_EFFECT "/cfg"
+#define OSC_CONFIG_SCREEN "/scr"
+#define OSC_VIDLOAD "/lvid"
+#define OSC_VIDUNLOAD "/uvid"
+#define OSC_IMGLOAD "/limg"
+#define OSC_IMGUNLOAD "/uimg"
+
 // singleton conveniece macros
 #define SINGLETON_CLASS_HEADER_CODE(x) \
     public: \

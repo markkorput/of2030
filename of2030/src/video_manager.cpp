@@ -60,7 +60,7 @@ ofVideoPlayer* VideoManager::get(const string &video_name, const string &alias, 
 
     // store it
     if(player){
-        ofLog() << "VideoManager loaded video alias: " << alias;
+        ofLog() << alias << " loaded.";
         players[alias] = player;
     }
 

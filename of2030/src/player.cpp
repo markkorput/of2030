@@ -12,7 +12,7 @@ using namespace of2030;
 
 SINGLETON_INLINE_IMPLEMENTATION_CODE(Player)
 
-Player::Player() : m_time(0.0f), m_lastUpdateTime(0.0f), m_bPlaying(false), song("default"), clip("default"){
+Player::Player() : m_time(0.0f), m_lastUpdateTime(0.0f), m_bPlaying(false){
 }
 
 void Player::setup(){
@@ -179,6 +179,25 @@ void Player::stopAllVideoEffects(){
     for(auto effect: (*effects)){
         if(effect->getVideoPlayer() != NULL){
             //  ofLogWarning() << "a pending";
+            pending_effects_manager.remove(effect);
+            effect_manager.remove(effect);
+        }
+    }
+}
+
+void Player::stopEffectsByImage(ofImage &image){
+    const vector<Effect*>* effects = &active_effects_manager.getEffects();
+
+    for(auto effect: (*effects)){
+        if(effect->getImage() == &image){
+            active_effects_manager.remove(effect);
+            effect_manager.remove(effect);
+        }
+    }
+
+    effects = &pending_effects_manager.getEffects();
+    for(auto effect: (*effects)){
+        if(effect->getImage() == &image){
             pending_effects_manager.remove(effect);
             effect_manager.remove(effect);
         }

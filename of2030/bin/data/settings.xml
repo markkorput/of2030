@@ -5,20 +5,20 @@
   </app>
   <osc>
     <port>2031</port><!-- 0 (zero) means disabled -->
-    <addresses>
+<!--     <addresses>
       <trigger>/t</trigger>
       <stop>/s</stop>
-      <!-- <effect>/fx</effect> -->
+      <effect>/fx</effect>
       <playback>/p</playback>
       <stop_playback>/q</stop_playback>
       <control>/ctrl</control>
-      <!-- <song>/song</song> -->
-      <!-- <clip>/clip</clip> -->
+      <song>/song</song>
+      <clip>/clip</clip>
       <effect_config>/cfg</effect_config>
       <screen_config>/scr</screen_config>
       <load_video>/lvid</load_video>
       <unload_video>/uvid</unload_video>
-    </addresses>
+    </addresses> -->
   </osc>
 
   <rgba_pixels>0</rgba_pixels>

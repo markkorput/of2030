@@ -37,7 +37,7 @@ bool OscPlaybackManager::start(const string &name){
     playback->start();
     // save it
     add(*playback);
-    ofLog() << "Started playback of: " << file->getReadPath();
+    ofLogVerbose() << "Started playback of: " << file->getReadPath();
     return true;
 }
 

@@ -9,6 +9,7 @@
 #include "effects.hpp"
 #include "shader_manager.hpp"
 #include "video_manager.hpp"
+#include "image_manager.hpp"
 
 using namespace of2030;
 
@@ -29,6 +30,7 @@ void Effect::reset(){
     shader = NULL;
     video_player = NULL;
     mask_video_player = NULL;
+    image = NULL;
     layer = 0;
     bUnique = true;
 }
@@ -41,37 +43,40 @@ void Effect::reset(){
 void Effect::setup(Context &_context){
     string val;
 
-    bUnique = _context.effect_setting.getValue("unique", "1") == "1";
-
-    // make sure we have a start time (default to NOW)
-    if(!hasStartTime()){
-        startTime = _context.time;
-    }
-
+    // just perform an operation?
     val = _context.effect_setting.getValue("operation", "");
     if(val != ""){
         if(val == "load_video"){
             val = _context.effect_setting.getValue("video", "");
             VideoManager::instance()->get(val, _context.effect_setting.getValue("video_alias", val), true);
         }
-
+        
         if(val == "unload_video"){
             val = _context.effect_setting.getValue("video_alias", "");
             if(val == "")
                 val = _context.effect_setting.getValue("video", "");
             VideoManager::instance()->unload(val);
         }
-
+        
         truncate();
         return;
     }
+
+
+    // make sure we have a start time (default to NOW)
+    if(!hasStartTime()){
+        startTime = _context.time;
+    }
+
 
     // make sure we have endTime and duration initialized AND consistent
     if(!hasEndTime() && _context.effect_setting.hasValue("duration")){
         setDuration(_context.effect_setting.getValue("duration", 30.0f));
     }
 
-    // load/start/configure video if specified
+    //
+    // video
+    //
     val = _context.effect_setting.getValue("video", "");
     if(val != ""){
         // load video (get video player instance from the VideoManager)
@@ -114,7 +119,9 @@ void Effect::setup(Context &_context){
         }
     }
 
-    // load/start/configure video_mask if specified
+    //
+    // video mask
+    //
     val = _context.effect_setting.getValue("video_mask", "");
     if(val != ""){
         if(val == "self"){
@@ -146,6 +153,19 @@ void Effect::setup(Context &_context){
             }*/
         }
     }
+
+    //
+    // load image if specified
+    //
+    val = _context.effect_setting.getValue("image", "");
+    if(val != ""){
+        image = ImageManager::instance()->get(
+                    val,
+                    _context.effect_setting.getValue("image_alias", val),
+                    true);
+    }
+
+    bUnique = _context.effect_setting.getValue("unique", "1") == "1";
 
     // load any shaders based shader param
     val = _context.effect_setting.getValue("shader", "");
@@ -233,8 +253,16 @@ void Effect::drawContent(){
     }else{
         ofSetRectMode(OF_RECTMODE_CORNER);
     }
+    
+    // draw image?
+
+    if(image){
+        image->draw(0.0, 0.0, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
+        return;
+    }
 
     // draw; video?
+
     if(video_player){
         if(!(video_player->isLoaded() && video_player->getTexture().isAllocated())){
             return;
