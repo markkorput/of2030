@@ -25,9 +25,13 @@ class ofApp : public ofBaseApp{
         void onControl(string &type);
         void onPlayback(string &type);
         void onStopPlayback(string &type);
+    
         void onLoadVideo(string &name);
         void onUnloadVideo(string &name);
         void onVideoPlayerUnload(ofVideoPlayer &player);
+    
+        void onLoadImage(string &name);
+        void onUnloadImage(string &name);
         void onImageUnload(ofImage &image);
 
     private: // attributes

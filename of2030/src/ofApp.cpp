@@ -94,6 +94,8 @@ void ofApp::setup(){
     ofAddListener(of2030::Interface::instance()->loadVideoEvent, this, &ofApp::onLoadVideo);
     ofAddListener(of2030::Interface::instance()->unloadVideoEvent, this, &ofApp::onUnloadVideo);
     ofAddListener(of2030::VideoManager::instance()->unloadEvent, this, &ofApp::onVideoPlayerUnload);
+    ofAddListener(of2030::Interface::instance()->loadImageEvent, this, &ofApp::onLoadImage);
+    ofAddListener(of2030::Interface::instance()->unloadImageEvent, this, &ofApp::onUnloadImage);
     ofAddListener(of2030::ImageManager::instance()->unloadEvent, this, &ofApp::onImageUnload);
 
     // load & start OscReceiver; let the messages come!
@@ -282,6 +284,14 @@ void ofApp::onUnloadVideo(string &name){
 
 void ofApp::onVideoPlayerUnload(ofVideoPlayer &player){
     of2030::Player::instance()->stopEffectsByVideoPlayer(&player);
+}
+
+void ofApp::onLoadImage(string &name){
+    of2030::ImageManager::instance()->get(name, true);
+}
+
+void ofApp::onUnloadImage(string &name){
+    of2030::ImageManager::instance()->unload(name);
 }
 
 void ofApp::onImageUnload(ofImage &image){

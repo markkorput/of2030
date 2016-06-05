@@ -19,27 +19,27 @@ SINGLETON_INLINE_IMPLEMENTATION_CODE(XmlSettings)
 // local methods
 //
 
-void loadOscAddresses(TiXmlDocument &doc, OscSetting &osc_setting){
-    TiXmlElement *el = doc.FirstChildElement("of2030");
-    if(!el) return;
-
-    el = el->FirstChildElement("osc");
-    if(!el) return;
-
-    el = el->FirstChildElement("addresses");
-    if(!el) return;
-
-    TiXmlElement* child = el->FirstChildElement();
-    string name, val;
-
-    while(child){
-        name = child->ValueStr();
-        val = child->GetText();
-        osc_setting.addresses[name] = val;
-        // ofLogVerbose() << "XmlSettings::loadOsc found OSC-address: " << name << ":" << val;
-        child = child->NextSiblingElement();
-    }
-}
+//void loadOscAddresses(TiXmlDocument &doc, OscSetting &osc_setting){
+//    TiXmlElement *el = doc.FirstChildElement("of2030");
+//    if(!el) return;
+//
+//    el = el->FirstChildElement("osc");
+//    if(!el) return;
+//
+//    el = el->FirstChildElement("addresses");
+//    if(!el) return;
+//
+//    TiXmlElement* child = el->FirstChildElement();
+//    string name, val;
+//
+//    while(child){
+//        name = child->ValueStr();
+//        val = child->GetText();
+//        osc_setting.addresses[name] = val;
+//        // ofLogVerbose() << "XmlSettings::loadOsc found OSC-address: " << name << ":" << val;
+//        child = child->NextSiblingElement();
+//    }
+//}
 
 //
 // XmlSettings
@@ -82,8 +82,7 @@ bool XmlSettings::load(bool reload){
     // osc
     osc_setting.port = xml.getValue("of2030:osc:port", 0);
     ofLogVerbose() << "OSC port: " << osc_setting.port;
-
-    loadOscAddresses(xml.doc, osc_setting);
+    // loadOscAddresses(xml.doc, osc_setting);
 
     room_size = ofVec3f(xml.getValue("of2030:room_size_x", 1.0f),
                         xml.getValue("of2030:room_size_y", 1.0f),
@@ -113,23 +112,3 @@ bool XmlSettings::load(bool reload){
     loaded = true;
     return true;
 }
-
-//void XmlSettings::save(){
-//    ofxXmlSettings xml;
-//    xml.setValue("of2030:osc:port", osc_setting.port);
-//    xml.setValue("of2030:osc:port", osc_setting.port);
-//    xml.setValue("of2030:client_id", client_id);
-//
-//#ifdef __MULTI_CLIENT_ENABLED__
-//    if(multi_client_ids.size() > 0){
-//        if(xml.pushTag("of2030")){
-//            if(xml.pushTag("multi")){
-//                for(int i=0; i<multi_client_ids.size(); i++){
-//                    xml.setValue("id", multi_client_ids[i], i);
-//                }
-//            }
-//        }
-//    }
-//#endif // __MULTI_CLIENT_ENABLED__
-//    xml.saveFile(path);
-//}

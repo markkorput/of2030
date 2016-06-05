@@ -21,7 +21,6 @@ namespace of2030{
     public: // methods
         XmlSettings() : loaded(false), path("settings.xml"), client_id_path("client_id.xml"), log_level(OF_LOG_NOTICE){};
         bool load(bool reload=false);
-        // void save();
 
     public: // properties
         string client_id;
@@ -34,8 +33,8 @@ namespace of2030{
 
         bool rgbaVidPixels;
         bool alphaBlending;
+
 #ifdef __MULTI_CLIENT_ENABLED__
-        
         vector<string> multi_client_ids;
         bool multi_debug;
         float multi_scale;
