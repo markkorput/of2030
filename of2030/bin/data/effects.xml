@@ -168,22 +168,18 @@
     <effect name="scav_beat_max">
       <image>scav_fan2_v01.jpg</image>
       <spot>3</spot>
-      <!-- <reset>1</reset> -->
       <layer>3</layer>
       <auto_rotate_z>-80.0</auto_rotate_z>
     </effect>
     <effect name="scav_beat_koen">
-      <video>scav/2.1_SCAVENGER_S_VENTILATOR_2_v02-frame.mov</video>
-      <!-- <video_mask>self</video_mask> -->
+      <image>scav_fan2_v01.jpg</image>
       <freeze>1.0</freeze>
       <spot>2</spot>
       <layer>3</layer>
       <auto_rotate_z>-80.0</auto_rotate_z>
     </effect>
     <effect name="scav_beat_gydo">
-      <video>scav/2.1_SCAVENGER_S_VENTILATOR_2_v02-frame.mov</video>
-      <!-- <video_mask>self</video_mask> -->
-      <freeze>1.0</freeze>
+      <image>scav_fan2_v01.jpg</image>
       <spot>1</spot>
       <layer>3</layer>
       <auto_rotate_z>-80.0</auto_rotate_z>
