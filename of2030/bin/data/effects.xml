@@ -82,12 +82,14 @@
       <pattern>spot</pattern>
     </effect>
     <effect name="stellar_sirene_max">
+      <pattern>rect</pattern>
       <!-- <video>stellar/1.1_STELLAR_SIRENE_GYDO_v01-150x150.mov</video> -->
       <color_g>0</color_g>
       <spot>3</spot>
       <reset>1</reset>
     </effect>
     <effect name="stellar_sirene_gydo">
+      <pattern>rect</pattern>
       <!-- <video>stellar/1.1_STELLAR_SIRENE_GYDO_v01-150x150.mov</video> -->
       <color_r>0</color_r>
       <spot>1</spot>
@@ -219,6 +221,7 @@
       <!-- <duration>1000.0</duration> -->
     </effect>
     <effect name="scav_fallingline">
+      <pattern>rect</pattern>
       <!-- <pattern>horiline</pattern> -->
       <is_pano>1</is_pano>
       <draw_size_y>0.05</draw_size_y>
@@ -226,12 +229,9 @@
       <duration>5.0</duration>
       <!-- negative value means down on OSX positive value means down on RASPI -->
       <auto_velocity_y>0.15</auto_velocity_y>
-      <auto_pos_y>2.0</auto_pos_y>
+      <auto_pos_y>0.0</auto_pos_y>
       <unique>0</unique>
     </effect>
-
-
-
 
 
     <effect name="rings_">
@@ -370,6 +370,7 @@
       <!-- <freeze>1.0</freeze> -->
     </effect>
     <effect name="lava_bed">
+      <pattern>rect</pattern>
       <!-- <video>lava/2.4_LAVA_PATROON_ZIEKENHUISBED_v01.mov</video> -->
       <is_pano>1</is_pano>
       <is_tunnel>0</is_tunnel>
@@ -616,10 +617,10 @@
 
     <!--  MISC -->
     <effect name="cursor1">
-      <!-- <pattern>horiline</pattern> -->
+      <pattern>rect</pattern>
       <is_pano>1</is_pano>
       <draw_size_x>0.05</draw_size_x>
-      <auto_velocity_x>10.0</auto_velocity_x>
+      <auto_velocity_x>7.0</auto_velocity_x>
       <duration>1.0</duration>
       <!-- <auto_rotate_z>180.0</auto_rotate_x> -->
       <rotate_z>45.0</rotate_z>
@@ -638,6 +639,7 @@
 
     <!-- roof -->
     <effect name="yellow_roof">
+      <pattern>rect</pattern>
       <mask_coords_name>roof_coord</mask_coords_name>
       <color_r>255</color_r>
       <color_g>255</color_g>
@@ -646,6 +648,7 @@
 
     <!-- voice -->
     <effect name="voice">
+      <pattern>rect</pattern>
       <mask_coords_name>voice_coord</mask_coords_name>
     </effect>
 
@@ -671,33 +674,6 @@
       <spot>3</spot>
       <shader>spot</shader>
       <pattern>spot</pattern>
-    </effect>
-
-    <!-- vid -->
-    <effect name="vid1">
-      <!-- <video>PanoCalib-01.mov</video> -->
-      <!-- <video>fingers.mov</video> -->
-      <video>Marcheren_1_BW.mov</video>
-      <!-- <alphablack>0</alphablack> -->
-      <loop>1</loop>
-    </effect>
-
-    <effect name="vid2">
-      <video>lava.heartbeat1.v01.mov</video>
-      <!-- <is_pano>1.0</is_pano> -->
-    </effect>
-
-    <effect name="vid3">
-      <video>lava.heartbeat3.v01.mov</video>
-      <!-- <is_pano>1.0</is_pano> -->
-    </effect>
-
-    <!-- overlay -->
-    <effect name="overlay">
-      <color_r>255.0</color_r>
-      <color_g>255.0</color_g>
-      <color_b>255.0</color_b>
-      <color_a>0.0</color_a>
     </effect>
   </effects>
 </of2030>

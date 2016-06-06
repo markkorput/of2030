@@ -188,7 +188,7 @@ void Effect::draw(Context &_context, float dt){
     precalc = &prec;
     
     string val;
-    
+
     // these value can be updates during the effect (were already initialized in setup)
     auto_pos += _context.effect_setting.getValue("auto_velocity", ofVec3f(0.0f)) * dt;
     auto_rotation += _context.effect_setting.getValue("auto_rotate", ofVec3f(0.0f)) * dt;
@@ -343,11 +343,12 @@ void Effect::drawContent(){
     // pattern?
     if(pattern != ""){
         drawPattern(pattern);
-    // simple rectangle
-    } else {
-        //ofSetColor(precalc->color);
-        ofDrawRectangle(0.0f, 0.0f, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
     }
+    // don't draw anything by default; we don't want 'accidental' effects appear
+    //    else {
+    //        //ofSetColor(precalc->color);
+    //        ofDrawRectangle(0.0f, 0.0f, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
+    //    }
 
     if(shader){
         // deactivate shader
@@ -356,6 +357,11 @@ void Effect::drawContent(){
 }
 
 void Effect::drawPattern(const string &patternName){
+    if(patternName == "rect"){
+        ofDrawRectangle(0.0f, 0.0f, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
+        return;
+    }
+
     //
     // SPOT
     //
