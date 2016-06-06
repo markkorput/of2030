@@ -1,2 +1,9 @@
-0.0,/s/mud_wheel_single
-0.0,/t/mud_wheel_single
+0.0,/t/mud_wheel_max
+0.0,/t/mud_wheel_koen
+0.0,/t/mud_wheel_gydo
+0.0,/cfg/mud_wheel_gydo/auto_rotate_z,f,-15.0
+0.30,/cfg/mud_wheel_gydo/auto_rotate_z,f,0.0
+0.30,/cfg/mud_wheel_koen/auto_rotate_z,f,-15.0
+0.60,/cfg/mud_wheel_koen/auto_rotate_z,f,0.0
+0.60,/cfg/mud_wheel_max/auto_rotate_z,f,-15.0
+0.90,/cfg/mud_wheel_max/auto_rotate_z,f,0.0

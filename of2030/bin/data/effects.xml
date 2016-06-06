@@ -97,16 +97,6 @@
     </effect>
 
 
-    <!-- old (for professors demo) -->
-    <effect name="scavenger_spot">
-      <video>scav/2.1_SCAVENGER_S_VENTILATOR_1_v01.mov</video>
-      <loop>1</loop>
-      <!-- <freeze>1.0</freeze> -->
-      <is_tunnel>0</is_tunnel>
-      <is_pano>0</is_pano>
-      <reset>1</reset>
-    </effect>
-
     <effect name="scav_search_max">
       <video>scav/2.1_SCAVENGER_S_SEARCHLIGHT_MAX_v01.mov</video>
       <spot>3</spot>
@@ -235,7 +225,7 @@
       <!-- <loop>1</loop> -->
       <!-- <layer>0</layer> -->
       <is_tunnel>1</is_tunnel>
-      <freeze>1.0</freeze>
+      <freeze>1.1</freeze>
       <reset>1</reset>
     </effect>
     <effect name="mud_machine_destruct">
@@ -257,31 +247,17 @@
       <!-- <layer>0</layer> -->
       <is_tunnel>1</is_tunnel>
     </effect>
-    <effect name="mud_wheel_single">
-      <video>mud/2.3_MUD_SETTINGWHEEL_SPOT_3_v02.mov</video>
-      <!-- <loop>1</loop> -->
-      <freeze>1.0</freeze>
-      <is_tunnel>0</is_tunnel>
-      <reset>1</reset>
+    <effect name="mud_wheel_max">
+      <image>mud_wheel_v01.jpg</image>
+      <spot>3</spot>
     </effect>
-    <effect name="mud_wheel1">
-      <video>mud/2.3_MUD_SETTINGWHEEL_SPOT_1_v02.mov</video>
-      <loop>1</loop>
-      <!-- <layer>0</layer> -->
-      <!--<is_tunnel>1</is_tunnel>-->
+    <effect name="mud_wheel_gydo">
+      <image>mud_wheel_v01.jpg</image>
+      <spot>1</spot>
     </effect>
-    <effect name="mud_wheel2">
-      <video>mud/2.3_MUD_SETTINGWHEEL_SPOT_2_v02.mov</video>
-      <loop>1</loop>
-      <!-- <layer>0</layer> -->
-      <!--<is_tunnel>1</is_tunnel>-->
-    </effect>
-    <effect name="mud_wheel3">
-      <video>mud/2.3_MUD_SETTINGWHEEL_SPOT_3_v02.mov</video>
-      <loop>1</loop>
-      <!-- <layer>0</layer> -->
-      <!--<is_tunnel>1</is_tunnel>-->
-      <layer>1</layer>
+    <effect name="mud_wheel_koen">
+      <image>mud_wheel_v01.jpg</image>
+      <spot>2</spot>
     </effect>
     <effect name="mud_roof1">
       <video>mud/2.3_MUD_MOVING_WHITE_ROOF_1_v02.mov</video>
