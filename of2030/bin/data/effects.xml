@@ -35,23 +35,9 @@
       <!-- <reset>1</reset> NOOOO -->
       <video_mask_reset>1</video_mask_reset>
     </effect>
-    <effect name="stellar_max_blink">
-      <!-- currently not used -->
-      <video>stellar/1.1_STELLAR_S_MAX_TIK_v01.mov</video>
-      <!-- <freeze>1.0</freeze> -->
+    <effect name="stellar_max_spot">
+      <image>stellar_spot1_v02.jpg</image>
       <spot>3</spot>
-      <is_pano>0</is_pano>
-      <is_tunnel>0</is_tunnel>
-      <pattern>spot</pattern>
-      <reset>1</reset>
-    </effect>
-    <effect name="stellar_max_grow">
-      <video>stellar/1.1_STELLAR_S_MAX_STRING_v01.mov</video>
-      <!-- <freeze>1.0</freeze> -->
-      <spot>3</spot>
-      <pattern>spot</pattern>
-      <reset>1</reset>
-      <layer>3</layer>
     </effect>
     <effect name="stellar_smoke">
       <!-- <video>stellar/1.1_STELLAR_SMOKE_v01.mov</video> -->
@@ -77,9 +63,9 @@
       <reset>1</reset>
     </effect>
     <effect name="stellar_clock">
+      <image>stellar_spot1_v02_q1.jpg</image>
       <spot>1</spot>
       <TODO>true</TODO>
-      <pattern>spot</pattern>
     </effect>
     <effect name="stellar_sirene_max">
       <pattern>rect</pattern>
