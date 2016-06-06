@@ -71,7 +71,7 @@ void Player::addEffect(Effect &effect){
 }
 
 void Player::stopEffectByTrigger(string &trigger){
-    ofLog() << "Player::stopEffectByTrigger with " << trigger;
+    ofLogVerbose() << "Player::stopEffectByTrigger with " << trigger;
     const vector<Effect*> *effects = &active_effects_manager.getEffects();
 
     // ofLogWarning() << "Player::stopEffectByTrigger active effects: " << effects->size();
@@ -79,6 +79,7 @@ void Player::stopEffectByTrigger(string &trigger){
         // if the pecified trigger string is empty; stop all effects
         if(effect->trigger == trigger || trigger == ""){
             // ofLogWarning() << "an active";
+            ofLog() << "Stopped active: " << effect->trigger;
             active_effects_manager.remove(effect);
             effect_manager.remove(effect);
         }
@@ -88,6 +89,7 @@ void Player::stopEffectByTrigger(string &trigger){
     for(auto effect: (*effects)){
         if(effect->trigger == trigger){
             //  ofLogWarning() << "a pending";
+            ofLog() << "Stopped pending: " << effect->trigger;
             pending_effects_manager.remove(effect);
             effect_manager.remove(effect);
         }
