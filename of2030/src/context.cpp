@@ -47,7 +47,7 @@ void PreCalc::load(Context &_context){
 
         // convert from screen resolution (per-pixel) to real-world meters
         scale = ofVec3f(resolution/scrWorldSize);
-        rotate = ofVec3f(0.0);
+        rotate = context->screen_setting.getValue(prefix+"rotate", ofVec3f(0.0f));
         // default value is way off screen; having no configuration for this spot,
         // means this spot should not be visible on this screen
         translate = context->screen_setting.getValue(prefix, ofVec3f(-100.0f, -100.0f, 0.0f));

@@ -142,31 +142,25 @@
       <scale_x>1.33</scale_x>
     </effect>
     <effect name="scav_fan_max">
-      <video>scav/2.1_SCAVENGER_S_VENTILATOR_1_v02.mov</video>
+      <image>scav_fan1_v01.jpg</image>
+      <auto_rotate_z>-25.0</auto_rotate_z>
       <spot>3</spot>
-      <reset>1</reset>
       <layer>2</layer>
-      <loop>1</loop>
-      <scale_x>1.33</scale_x>
     </effect>
     <effect name="scav_fan_koen">
-      <video>scav/2.1_SCAVENGER_S_VENTILATOR_1_v02.mov</video>
+      <image>scav_fan1_v01.jpg</image>
+      <auto_rotate_z>-25.0</auto_rotate_z>
       <spot>2</spot>
-      <reset>1</reset>
       <layer>2</layer>
-      <loop>1</loop>
-      <scale_x>1.33</scale_x>
     </effect>
     <effect name="scav_fan_gydo">
-      <video>scav/2.1_SCAVENGER_S_VENTILATOR_1_v02.mov</video>
+      <image>scav_fan1_v01.jpg</image>
+      <auto_rotate_z>-25.0</auto_rotate_z>
       <spot>1</spot>
-      <reset>1</reset>
       <layer>2</layer>
-      <loop>1</loop>
-      <scale_x>1.33</scale_x>
     </effect>
     <effect name="scav_beat_max">
-      <image>scav_fan2_v01.jpg</image>
+      <image>scav_fan2_v02.jpg</image>
       <spot>3</spot>
       <layer>3</layer>
       <auto_rotate_z>-40.0</auto_rotate_z>
@@ -174,7 +168,7 @@
       <scale_y>1.1</scale_y>
     </effect>
     <effect name="scav_beat_koen">
-      <image>scav_fan2_v01.jpg</image>
+      <image>scav_fan2_v02.jpg</image>
       <spot>2</spot>
       <layer>3</layer>
       <auto_rotate_z>-40.0</auto_rotate_z>
@@ -182,7 +176,7 @@
       <scale_y>1.1</scale_y>
     </effect>
     <effect name="scav_beat_gydo">
-      <image>scav_fan2_v01.jpg</image>
+      <image>scav_fan2_v02.jpg</image>
       <spot>1</spot>
       <layer>3</layer>
       <auto_rotate_z>-40.0</auto_rotate_z>
