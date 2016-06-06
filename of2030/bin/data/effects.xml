@@ -169,19 +169,25 @@
       <image>scav_fan2_v01.jpg</image>
       <spot>3</spot>
       <layer>3</layer>
-      <auto_rotate_z>-80.0</auto_rotate_z>
+      <auto_rotate_z>-40.0</auto_rotate_z>
+      <scale_x>1.1</scale_x>
+      <scale_y>1.1</scale_y>
     </effect>
     <effect name="scav_beat_koen">
       <image>scav_fan2_v01.jpg</image>
       <spot>2</spot>
       <layer>3</layer>
-      <auto_rotate_z>-80.0</auto_rotate_z>
+      <auto_rotate_z>-40.0</auto_rotate_z>
+      <scale_x>1.1</scale_x>
+      <scale_y>1.1</scale_y>
     </effect>
     <effect name="scav_beat_gydo">
       <image>scav_fan2_v01.jpg</image>
       <spot>1</spot>
       <layer>3</layer>
-      <auto_rotate_z>-80.0</auto_rotate_z>
+      <auto_rotate_z>-40.0</auto_rotate_z>
+      <scale_x>1.1</scale_x>
+      <scale_y>1.1</scale_y>
     </effect>
     <effect name="scav_turbo_max">
       <video>scav/2.1_SCAVENGER_S_VENTILATOR_3_v01.mov</video>

@@ -18,8 +18,8 @@ ImageManager::ImageManager(){
 }
 
 void ImageManager::destroy(){
-    for (auto& pair: images) {
-        unload(pair.first);
+    for (std::map<string,ofImage*>::iterator it=images.begin(); it!=images.end(); ++it){
+        unload(it->first);
     }
 
     images.clear();

@@ -159,8 +159,9 @@ void ofApp::exit(ofEventArgs &args){
 
     // TODO; call delete_instance for all singleton instance implementations
     of2030::EfficientEffectManager::delete_instance();
+    of2030::ShaderManager::delete_instance();
     of2030::VideoManager::delete_instance();
-    of2030::VideoManager::delete_instance();
+    of2030::ImageManager::delete_instance();
 
 #ifdef __OSC_RECORDER_ENABLED__
     of2030::OscRecorder::delete_instance();

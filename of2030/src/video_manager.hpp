@@ -19,7 +19,7 @@ namespace of2030 {
 
     public: // methods/interface
         VideoManager();
-        inline ~VideoManager(){ destroy(); }
+        ~VideoManager(){ destroy(); }
 
         //void setup();
         void update();
