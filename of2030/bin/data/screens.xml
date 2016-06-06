@@ -283,6 +283,7 @@
       <spot3_y>0.5</spot3_y>
       <spot3size_x>1.0</spot3size_x>
       <spot3size_y>1.0</spot3size_y>
+      <spot3rotate_y>180</spot3rotate_y>
 
       <!-- roof -->
       <roof_coord1_x>0.0</roof_coord1_x>
@@ -360,6 +361,7 @@
       <spot2_y>0.5</spot2_y>
       <spot2size_x>1.0</spot2size_x>
       <spot2size_y>1.0</spot2size_y>
+      <spot2rotate_y>180.0</spot2rotate_y>
 
       <!-- roof -->
       <roof_coord1_x>0.0</roof_coord1_x>
@@ -434,6 +436,7 @@
       <spot1_y>0.5</spot1_y>
       <spot1size_x>1.0</spot1size_x>
       <spot1size_y>1.0</spot1size_y>
+      <spot1rotate_y>180</spot1rotate_y>
 
       <!-- roof -->
       <roof_coord1_x>0.0</roof_coord1_x>

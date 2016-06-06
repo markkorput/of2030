@@ -85,6 +85,13 @@ namespace of2030{
                            getValue(name+"_z", defaultValue.z));
         }
 
+        ofVec3f getValue(const string &name, const ofVec4f &defaultValue){
+            return ofVec4f(getValue(name+"_r", defaultValue.x),
+                           getValue(name+"_g", defaultValue.y),
+                           getValue(name+"_b", defaultValue.z),
+                           getValue(name+"_a", defaultValue.w));
+        }
+
         ofColor getValue(const string &name, const ofColor &defaultValue){
             return ofColor(getValue(name+"_r", defaultValue.r),
                            getValue(name+"_g", defaultValue.g),

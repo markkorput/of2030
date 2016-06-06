@@ -35,23 +35,9 @@
       <!-- <reset>1</reset> NOOOO -->
       <video_mask_reset>1</video_mask_reset>
     </effect>
-    <effect name="stellar_max_blink">
-      <!-- currently not used -->
-      <video>stellar/1.1_STELLAR_S_MAX_TIK_v01.mov</video>
-      <!-- <freeze>1.0</freeze> -->
+    <effect name="stellar_max_spot">
+      <image>stellar_spot1_v02.jpg</image>
       <spot>3</spot>
-      <is_pano>0</is_pano>
-      <is_tunnel>0</is_tunnel>
-      <pattern>spot</pattern>
-      <reset>1</reset>
-    </effect>
-    <effect name="stellar_max_grow">
-      <video>stellar/1.1_STELLAR_S_MAX_STRING_v01.mov</video>
-      <!-- <freeze>1.0</freeze> -->
-      <spot>3</spot>
-      <pattern>spot</pattern>
-      <reset>1</reset>
-      <layer>3</layer>
     </effect>
     <effect name="stellar_smoke">
       <!-- <video>stellar/1.1_STELLAR_SMOKE_v01.mov</video> -->
@@ -77,17 +63,19 @@
       <reset>1</reset>
     </effect>
     <effect name="stellar_clock">
+      <image>stellar_spot1_v02_q1.jpg</image>
       <spot>1</spot>
       <TODO>true</TODO>
-      <pattern>spot</pattern>
     </effect>
     <effect name="stellar_sirene_max">
+      <pattern>rect</pattern>
       <!-- <video>stellar/1.1_STELLAR_SIRENE_GYDO_v01-150x150.mov</video> -->
       <color_g>0</color_g>
       <spot>3</spot>
       <reset>1</reset>
     </effect>
     <effect name="stellar_sirene_gydo">
+      <pattern>rect</pattern>
       <!-- <video>stellar/1.1_STELLAR_SIRENE_GYDO_v01-150x150.mov</video> -->
       <color_r>0</color_r>
       <spot>1</spot>
@@ -109,103 +97,87 @@
     </effect>
 
 
-    <!-- old (for professors demo) -->
-    <effect name="scavenger_spot">
-      <video>scav/2.1_SCAVENGER_S_VENTILATOR_1_v01.mov</video>
-      <loop>1</loop>
-      <!-- <freeze>1.0</freeze> -->
-      <is_tunnel>0</is_tunnel>
-      <is_pano>0</is_pano>
-      <reset>1</reset>
-    </effect>
-
     <effect name="scav_search_max">
       <video>scav/2.1_SCAVENGER_S_SEARCHLIGHT_MAX_v01.mov</video>
       <spot>3</spot>
       <reset>1</reset>
-      <layer>4</layer>
       <!-- videos are not square but 768x576 so this way we compensate-->
-      <scale_x>1.33</scale_x>
+      <scale_x>1.92</scale_x>
+      <scale_y>1.44</scale_y>
     </effect>
     <effect name="scav_search_koen">
       <video>scav/2.1_SCAVENGER_S_SEARCHLIGHT_KOEN_v01.mov</video>
-      <scale_x>1.33</scale_x>
       <spot>2</spot>
       <reset>1</reset>
-      <layer>4</layer>
+      <scale_x>1.92</scale_x>
+      <scale_y>1.44</scale_y>
     </effect>
     <effect name="scav_search_gydo">
       <video>scav/2.1_SCAVENGER_S_SEARCHLIGHT_GYDO_v01.mov</video>
       <spot>1</spot>
       <reset>1</reset>
-      <layer>4</layer>
-      <scale_x>1.33</scale_x>
+      <scale_x>1.92</scale_x>
+      <scale_y>1.44</scale_y>
     </effect>
     <effect name="scav_fan_max">
-      <video>scav/2.1_SCAVENGER_S_VENTILATOR_1_v02.mov</video>
+      <image>scav_fan1_v01.jpg</image>
+      <auto_rotate_z>-25.0</auto_rotate_z>
       <spot>3</spot>
-      <reset>1</reset>
-      <layer>2</layer>
-      <loop>1</loop>
-      <scale_x>1.33</scale_x>
+      <layer>1</layer>
     </effect>
     <effect name="scav_fan_koen">
-      <video>scav/2.1_SCAVENGER_S_VENTILATOR_1_v02.mov</video>
+      <image>scav_fan1_v01.jpg</image>
+      <auto_rotate_z>-25.0</auto_rotate_z>
       <spot>2</spot>
-      <reset>1</reset>
-      <layer>2</layer>
-      <loop>1</loop>
-      <scale_x>1.33</scale_x>
+      <layer>1</layer>
     </effect>
     <effect name="scav_fan_gydo">
-      <video>scav/2.1_SCAVENGER_S_VENTILATOR_1_v02.mov</video>
+      <image>scav_fan1_v01.jpg</image>
+      <auto_rotate_z>-25.0</auto_rotate_z>
       <spot>1</spot>
-      <reset>1</reset>
-      <layer>2</layer>
-      <loop>1</loop>
-      <scale_x>1.33</scale_x>
+      <layer>1</layer>
     </effect>
     <effect name="scav_beat_max">
-      <image>scav_fan2_v01.jpg</image>
+      <image>scav_fan2_v02.jpg</image>
       <spot>3</spot>
       <layer>3</layer>
-      <auto_rotate_z>-80.0</auto_rotate_z>
+      <auto_rotate_z>-40.0</auto_rotate_z>
+      <scale_x>1.1</scale_x>
+      <scale_y>1.1</scale_y>
     </effect>
     <effect name="scav_beat_koen">
-      <image>scav_fan2_v01.jpg</image>
+      <image>scav_fan2_v02.jpg</image>
       <spot>2</spot>
       <layer>3</layer>
-      <auto_rotate_z>-80.0</auto_rotate_z>
+      <auto_rotate_z>-40.0</auto_rotate_z>
+      <scale_x>1.1</scale_x>
+      <scale_y>1.1</scale_y>
     </effect>
     <effect name="scav_beat_gydo">
-      <image>scav_fan2_v01.jpg</image>
+      <image>scav_fan2_v02.jpg</image>
       <spot>1</spot>
       <layer>3</layer>
-      <auto_rotate_z>-80.0</auto_rotate_z>
+      <auto_rotate_z>-40.0</auto_rotate_z>
+      <scale_x>1.1</scale_x>
+      <scale_y>1.1</scale_y>
     </effect>
     <effect name="scav_turbo_max">
-      <video>scav/2.1_SCAVENGER_S_VENTILATOR_3_v01.mov</video>
-      <video_mask>self</video_mask>
+      <image>scav_fan3_v01.jpg</image>
       <spot>3</spot>
-      <reset>1</reset>
       <layer>4</layer>
-      <scale_x>1.33</scale_x>
+      <auto_rotate_z>-60.0</auto_rotate_z>
     </effect>
     <effect name="scav_turbo_koen">
-      <video>scav/2.1_SCAVENGER_S_VENTILATOR_3_v01.mov</video>
-      <video_mask>self</video_mask>
+      <image>scav_fan3_v01.jpg</image>
       <spot>2</spot>
-      <reset>1</reset>
       <layer>4</layer>
-      <scale_x>1.33</scale_x>
+      <auto_rotate_z>-60.0</auto_rotate_z>
     </effect>
     <effect name="scav_turbo_gydo">
-      <video>scav/2.1_SCAVENGER_S_VENTILATOR_3_v01.mov</video>
-      <video_mask>self</video_mask>
+      <image>scav_fan3_v01.jpg</image>
       <spot>1</spot>
-      <reset>1</reset>
       <layer>4</layer>
-      <scale_x>1.33</scale_x>
+      <auto_rotate_z>-60.0</auto_rotate_z>
     </effect>
     <effect name="scav_pano">
       <video>scav/2.1_SCAVENGER_PANOHELI_OPTIE_1_v01.mov</video>
@@ -219,6 +191,7 @@
       <!-- <duration>1000.0</duration> -->
     </effect>
     <effect name="scav_fallingline">
+      <pattern>rect</pattern>
       <!-- <pattern>horiline</pattern> -->
       <is_pano>1</is_pano>
       <draw_size_y>0.05</draw_size_y>
@@ -226,12 +199,9 @@
       <duration>5.0</duration>
       <!-- negative value means down on OSX positive value means down on RASPI -->
       <auto_velocity_y>0.15</auto_velocity_y>
-      <auto_pos_y>2.0</auto_pos_y>
+      <auto_pos_y>0.0</auto_pos_y>
       <unique>0</unique>
     </effect>
-
-
-
 
 
     <effect name="rings_">
@@ -255,7 +225,7 @@
       <!-- <loop>1</loop> -->
       <!-- <layer>0</layer> -->
       <is_tunnel>1</is_tunnel>
-      <freeze>1.0</freeze>
+      <freeze>1.1</freeze>
       <reset>1</reset>
     </effect>
     <effect name="mud_machine_destruct">
@@ -277,31 +247,17 @@
       <!-- <layer>0</layer> -->
       <is_tunnel>1</is_tunnel>
     </effect>
-    <effect name="mud_wheel_single">
-      <video>mud/2.3_MUD_SETTINGWHEEL_SPOT_3_v02.mov</video>
-      <!-- <loop>1</loop> -->
-      <freeze>1.0</freeze>
-      <is_tunnel>0</is_tunnel>
-      <reset>1</reset>
+    <effect name="mud_wheel_max">
+      <image>mud_wheel_v01.jpg</image>
+      <spot>3</spot>
     </effect>
-    <effect name="mud_wheel1">
-      <video>mud/2.3_MUD_SETTINGWHEEL_SPOT_1_v02.mov</video>
-      <loop>1</loop>
-      <!-- <layer>0</layer> -->
-      <!--<is_tunnel>1</is_tunnel>-->
+    <effect name="mud_wheel_gydo">
+      <image>mud_wheel_v01.jpg</image>
+      <spot>1</spot>
     </effect>
-    <effect name="mud_wheel2">
-      <video>mud/2.3_MUD_SETTINGWHEEL_SPOT_2_v02.mov</video>
-      <loop>1</loop>
-      <!-- <layer>0</layer> -->
-      <!--<is_tunnel>1</is_tunnel>-->
-    </effect>
-    <effect name="mud_wheel3">
-      <video>mud/2.3_MUD_SETTINGWHEEL_SPOT_3_v02.mov</video>
-      <loop>1</loop>
-      <!-- <layer>0</layer> -->
-      <!--<is_tunnel>1</is_tunnel>-->
-      <layer>1</layer>
+    <effect name="mud_wheel_koen">
+      <image>mud_wheel_v01.jpg</image>
+      <spot>2</spot>
     </effect>
     <effect name="mud_roof1">
       <video>mud/2.3_MUD_MOVING_WHITE_ROOF_1_v02.mov</video>
@@ -370,6 +326,7 @@
       <!-- <freeze>1.0</freeze> -->
     </effect>
     <effect name="lava_bed">
+      <pattern>rect</pattern>
       <!-- <video>lava/2.4_LAVA_PATROON_ZIEKENHUISBED_v01.mov</video> -->
       <is_pano>1</is_pano>
       <is_tunnel>0</is_tunnel>
@@ -616,10 +573,10 @@
 
     <!--  MISC -->
     <effect name="cursor1">
-      <!-- <pattern>horiline</pattern> -->
+      <pattern>rect</pattern>
       <is_pano>1</is_pano>
       <draw_size_x>0.05</draw_size_x>
-      <auto_velocity_x>10.0</auto_velocity_x>
+      <auto_velocity_x>7.0</auto_velocity_x>
       <duration>1.0</duration>
       <!-- <auto_rotate_z>180.0</auto_rotate_x> -->
       <rotate_z>45.0</rotate_z>
@@ -638,6 +595,7 @@
 
     <!-- roof -->
     <effect name="yellow_roof">
+      <pattern>rect</pattern>
       <mask_coords_name>roof_coord</mask_coords_name>
       <color_r>255</color_r>
       <color_g>255</color_g>
@@ -646,6 +604,7 @@
 
     <!-- voice -->
     <effect name="voice">
+      <pattern>rect</pattern>
       <mask_coords_name>voice_coord</mask_coords_name>
     </effect>
 
@@ -671,33 +630,6 @@
       <spot>3</spot>
       <shader>spot</shader>
       <pattern>spot</pattern>
-    </effect>
-
-    <!-- vid -->
-    <effect name="vid1">
-      <!-- <video>PanoCalib-01.mov</video> -->
-      <!-- <video>fingers.mov</video> -->
-      <video>Marcheren_1_BW.mov</video>
-      <!-- <alphablack>0</alphablack> -->
-      <loop>1</loop>
-    </effect>
-
-    <effect name="vid2">
-      <video>lava.heartbeat1.v01.mov</video>
-      <!-- <is_pano>1.0</is_pano> -->
-    </effect>
-
-    <effect name="vid3">
-      <video>lava.heartbeat3.v01.mov</video>
-      <!-- <is_pano>1.0</is_pano> -->
-    </effect>
-
-    <!-- overlay -->
-    <effect name="overlay">
-      <color_r>255.0</color_r>
-      <color_g>255.0</color_g>
-      <color_b>255.0</color_b>
-      <color_a>0.0</color_a>
     </effect>
   </effects>
 </of2030>

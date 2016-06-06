@@ -175,6 +175,7 @@ void Effect::setup(Context &_context){
 
     auto_pos = _context.effect_setting.getValue("auto_pos", ofVec3f(0.0f));
     auto_rotation = _context.effect_setting.getValue("auto_rotation", ofVec3f(0.0f));
+    auto_alpha = _context.effect_setting.getValue("initial_alpha", 1.0f);
 
     layer = _context.effect_setting.getValue("layer", 0);
 }
@@ -185,19 +186,20 @@ void Effect::draw(Context &_context, float dt){
     prec.load(_context);
     context = &_context;
     precalc = &prec;
-    string val;
     
+    string val;
+
     // these value can be updates during the effect (were already initialized in setup)
     auto_pos += _context.effect_setting.getValue("auto_velocity", ofVec3f(0.0f)) * dt;
     auto_rotation += _context.effect_setting.getValue("auto_rotate", ofVec3f(0.0f)) * dt;
+    auto_alpha += _context.effect_setting.getValue("auto_alpha", 0.0f) * dt;
 
     ofShader* maskShader = ShaderManager::instance()->get("mask");
-    
+    ofSetColor(255);
+
     // draw 4-point coordinate mask in fbo2
     context->fbo2->begin();
         ofClear(0.0f, 0.0f, 0.0f, 0.0f);
-        ofSetColor(255);
-    
         val = context->effect_setting.getValue("mask_coords_name", "");
         if(val != ""){
             // draw 4-point coordinates mask
@@ -212,7 +214,6 @@ void Effect::draw(Context &_context, float dt){
     // draw content to fbo3
     context->fbo3->begin();
         ofClear(0.0f, 0.0f, 0.0f, 0.0f);
-        ofSetColor(255);
         ofPushMatrix();
             drawContent();
         ofPopMatrix();
@@ -222,7 +223,11 @@ void Effect::draw(Context &_context, float dt){
     maskShader->begin();
         // pass mask texture to shader
         maskShader->setUniformTexture("iMask", context->fbo2->getTexture(), 2);
-        // ofSetColor(precalc->color); / --> doesn't work because shader doesn't use this color
+        maskShader->setUniform4f("iColor", precalc->color);
+        maskShader->setUniform1f("iAlpha", auto_alpha);
+    
+        // ofSetColor(precalc->color); // --> doesn't work because shader doesn't use this color
+    
         context->fbo3->draw(0.0f, 0.0f);
     maskShader->end();
 
@@ -300,10 +305,12 @@ void Effect::drawContent(){
             vidShader = ShaderManager::instance()->get("mask");
             vidShader->begin();
             vidShader->setUniformTexture("iMask", mask_video_player->getTexture(), 2);
+            vidShader->setUniform4f("iColor", ofColor::white);
+            vidShader->setUniform1f("iAlpha", 1.0f);
         }
 
         // draw video texture
-        
+
         video_player->draw(0.0, 0.0, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
         
         if(mask_video_player){
@@ -336,11 +343,12 @@ void Effect::drawContent(){
     // pattern?
     if(pattern != ""){
         drawPattern(pattern);
-    // simple rectangle
-    } else {
-        ofSetColor(precalc->color);
-        ofDrawRectangle(0.0f, 0.0f, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
     }
+    // don't draw anything by default; we don't want 'accidental' effects appear
+    //    else {
+    //        //ofSetColor(precalc->color);
+    //        ofDrawRectangle(0.0f, 0.0f, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
+    //    }
 
     if(shader){
         // deactivate shader
@@ -349,6 +357,11 @@ void Effect::drawContent(){
 }
 
 void Effect::drawPattern(const string &patternName){
+    if(patternName == "rect"){
+        ofDrawRectangle(0.0f, 0.0f, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
+        return;
+    }
+
     //
     // SPOT
     //
@@ -406,6 +419,7 @@ void Effect::drawPattern(const string &patternName){
 
         ofSetColor(255, 255, 255, gain);
         ofDrawRectangle(0, 0, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
+        ofSetColor(255);
         return;
     }
 
