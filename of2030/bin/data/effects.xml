@@ -204,9 +204,50 @@
     </effect>
 
 
-    <effect name="rings_">
-    </effect>
 
+    <effect name="rings_pattern_black2white">
+      <video>rings/2.2_RINGS_NON_EGAAL_BLACKTOWHITE_v01.mov</video>
+      <is_tunnel>1</is_tunnel>
+      <reset>1</reset>
+      <layer>1</layer>
+    </effect>
+    <effect name="rings_pattern_white">
+      <video>rings/2.2_RINGS_NON_EGAAL_WHITE_v01.mov</video>
+      <is_tunnel>1</is_tunnel>
+      <loop>1</loop>
+    </effect>
+    <effect name="rings_pattern_white2black">
+      <video>rings/2.2_RINGS_NON_EGAAL_WHITETOBLACK_v01.mov</video>
+      <is_tunnel>1</is_tunnel>
+      <reset>1</reset>
+      <layer>1</layer>
+    </effect>
+    <effect name="rings_pattern_black">
+      <video>rings/2.2_RINGS_NON_EGAAL_BLACK_v01.mov</video>
+      <is_tunnel>1</is_tunnel>
+      <loop>1</loop>
+    </effect>
+    <effect name="rings_march_spot_gydo">
+      <video>rings/2.2_RINGS_WALK_v02.mov</video>
+      <video_mask>rings/2.2_RINGS_WALK_v02.mov</video_mask>
+      <video_mask_loop>1</video_mask_loop>
+      <spot>1</spot>
+      <loop>1</loop>
+    </effect>
+    <effect name="rings_march_spot_koen">
+      <video>rings/2.2_RINGS_WALK_v02.mov</video>
+      <video_mask>rings/2.2_RINGS_WALK_v02.mov</video_mask>
+      <spot>2</spot>
+      <loop>1</loop>
+      <video_mask_loop>1</video_mask_loop>
+    </effect>
+    <effect name="rings_march_spot_max">
+      <video>rings/2.2_RINGS_WALK_v02.mov</video>
+      <video_mask>rings/2.2_RINGS_WALK_v02.mov</video_mask>
+      <video_mask_loop>1</video_mask_loop>
+      <loop>1</loop>
+      <spot>3</spot>
+    </effect>
 
 
 

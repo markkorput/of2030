@@ -1,1 +1,14 @@
 0.0,/t/rings_pattern_white2black
+6.0,/t/rings_pattern_black
+6.1,/cfg/rings_march_spot_max/initial_alpha,f,0.0
+6.1,/cfg/rings_march_spot_koen/initial_alpha,f,0.0
+6.1,/cfg/rings_march_spot_gydo/initial_alpha,f,0.0
+6.2,/t/rings_march_spot_max
+6.2,/t/rings_march_spot_gydo
+6.2,/t/rings_march_spot_koen
+6.3,/cfg/rings_march_spot_max/auto_alpha,f,0.1
+6.3,/cfg/rings_march_spot_gydo/auto_alpha,f,0.1
+6.3,/cfg/rings_march_spot_koen/auto_alpha,f,0.1
+10.0,/cfg/rings_march_spot_max/auto_alpha,f,0.0
+10.0,/cfg/rings_march_spot_gydo/auto_alpha,f,0.0
+10.0,/cfg/rings_march_spot_koen/auto_alpha,f,0.0
