@@ -163,6 +163,10 @@ void Effect::setup(Context &_context){
                     val,
                     _context.effect_setting.getValue("image_alias", val),
                     true);
+        if(!image){
+            truncate();
+            return;
+        }
     }
 
     bUnique = _context.effect_setting.getValue("unique", "1") == "1";
