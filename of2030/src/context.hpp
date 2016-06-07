@@ -24,7 +24,6 @@ namespace of2030{
 
         ofVec2f tunnel_size; // real world tunnel size in meters
         ofVec2f pano_size;
-        
     } Context;
 
 
@@ -37,12 +36,14 @@ namespace of2030{
         inline void reset(){ context = NULL; bIsSpot = false; }
         void load(Context &_context);
 
-        inline float panoWorldToScreen(float p);
-        ofRectangle panoDrawRect();
-        ofRectangle tunnelDrawRect();
+//        inline float panoWorldToScreen(float p);
         inline ofRectangle panoTunnelDrawRect(){ return panoDrawRect().getIntersection(tunnelDrawRect()); }
+        // void readTunnelScreenCoords(ofVec2f *target);
+
+    protected:
         
-        void readTunnelScreenCoords(ofVec2f *target);
+         ofRectangle panoDrawRect();
+         ofRectangle tunnelDrawRect();
 
     public: // properties
 
@@ -50,8 +51,6 @@ namespace of2030{
         ofVec2f resolution;
         ofVec2f scrWorldSize, worldToScreenVec2f, scrDrawSize;
         ofColor color;
-        float scrPanoStart, scrPanoEnd, fxPanoStart, fxPanoEnd;
-        // ofVec2f tunnelScreenCoords[4];
         ofVec3f translate, rotate, scale, effect_translate, effect_scale, effect_rotate;
 
     private: // attributes
@@ -62,13 +61,13 @@ namespace of2030{
 
     // inline function implementations
 
-    float PreCalc::panoWorldToScreen(float p){
-        return ofMap(p - floor(p),
-                     scrPanoStart,
-                     scrPanoEnd,
-                     0.0,
-                     resolution.x);
-    }
+//    float PreCalc::panoWorldToScreen(float p){
+//        return ofMap(p - floor(p),
+//                     scrPanoStart,
+//                     scrPanoEnd,
+//                     0.0,
+//                     resolution.x);
+//    }
 }
 
 #endif /* context_hpp */
