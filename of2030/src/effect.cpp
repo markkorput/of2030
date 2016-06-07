@@ -197,8 +197,7 @@ void Effect::draw(Context &_context, float dt){
     auto_pos += _context.effect_setting.getValue("auto_velocity", ofVec3f(0.0f)) * dt;
     auto_rotation += _context.effect_setting.getValue("auto_rotate", ofVec3f(0.0f)) * dt;
     auto_alpha += _context.effect_setting.getValue("auto_alpha", 0.0f) * dt;
-
-    ofShader* maskShader = ShaderManager::instance()->get("mask");
+    
     ofSetColor(255);
 
     // draw 4-point coordinate mask in fbo2
@@ -223,13 +222,16 @@ void Effect::draw(Context &_context, float dt){
         ofPopMatrix();
     context->fbo3->end();
 
+    ofShader* maskShader = ShaderManager::instance()->get("mask");
+
     // draw content of fbo3 through mask of fbo2
     maskShader->begin();
         // pass mask texture to shader
         maskShader->setUniformTexture("iMask", context->fbo2->getTexture(), 2);
         maskShader->setUniform4f("iColor", precalc->color);
         maskShader->setUniform1f("iAlpha", auto_alpha);
-    
+        maskShader->setUniform2f("iResolution", precalc->resolution);
+
         // ofSetColor(precalc->color); // --> doesn't work because shader doesn't use this color
     
         context->fbo3->draw(0.0f, 0.0f);
@@ -311,6 +313,8 @@ void Effect::drawContent(){
             vidShader->setUniformTexture("iMask", mask_video_player->getTexture(), 2);
             vidShader->setUniform4f("iColor", ofColor::white);
             vidShader->setUniform1f("iAlpha", 1.0f);
+            vidShader->setUniform2f("iResolution", ofVec2f(video_player->getWidth(), video_player->getHeight()));
+            vidShader->setUniform2f("iTexCoordMultiply", context->effect_setting.getValue("texcoord_multiply", ofVec2f(1.0f, 1.0f)));
         }
 
         // draw video texture
@@ -334,6 +338,7 @@ void Effect::drawContent(){
         
         // populate shader
         shader->setUniform2f("iResolution", precalc->resolution);
+        shader->setUniform2f("iTexCoordMultiply", ofVec2f(1.0f, 1.0f));
         shader->setUniform3f("iPos", context->effect_setting.getValue("pos", ofVec3f(0.0f)));
         shader->setUniform3f("iSize", context->effect_setting.getValue("size", ofVec3f(0.0f)));
         shader->setUniform1f("iProgress", getProgress());

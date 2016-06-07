@@ -248,8 +248,23 @@
       <loop>1</loop>
       <spot>3</spot>
     </effect>
-
-
+    <effect name="rings_hey">
+      <pattern>rect</pattern>/
+      <is_pano>1</is_pano>
+      <draw_size_x>51</draw_size_x>
+      <auto_pos_x>-51</auto_pos_x>
+      <auto_velocity_x>40.0</auto_velocity_x>
+      <unique>0</unique>
+      <layer>9</layer>
+    </effect>
+    <effect name="rings_march_tunnel">
+      <video>rings/2.2_RINGS_FOOTSTEPS_A_TUNNEL_v01.mov</video>
+      <video_mask>rings/2.2_RINGS_FOOTSTEPS_A_TUNNEL_v01.mov</video_mask>
+      <loop>1</loop>
+      <video_mask_loop>1</video_mask_loop>
+      <is_pano>1</is_pano>
+      <texcoord_multiply_x>3.8</texcoord_multiply_x>
+    </effect>
 
     <effect name="mud_machine_build">
       <video>mud/2.3_MUD_MACHINE_A_OPBOUW_v02.mov</video>
