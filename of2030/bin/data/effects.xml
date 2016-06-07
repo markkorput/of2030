@@ -306,6 +306,73 @@
       <!-- <texcoord_multiply_x>3.8</texcoord_multiply_x> -->
       <layer>2</layer>
     </effect>
+    <effect name="rings_beat1_max">
+      <image>rings_beat1.jpg</image>
+      <spot>3</spot>
+    </effect>
+    <effect name="rings_beat1_koen">
+      <image>rings_beat1.jpg</image>
+      <spot>2</spot>
+    </effect>
+    <effect name="rings_beat1_gydo">
+      <image>rings_beat1.jpg</image>
+      <spot>1</spot>
+    </effect>
+
+    <effect name="rings_beat2_max">
+      <image>rings_beat2.jpg</image>
+      <spot>3</spot>
+    </effect>
+    <effect name="rings_beat2_koen">
+      <image>rings_beat2.jpg</image>
+      <spot>2</spot>
+    </effect>
+    <effect name="rings_beat2_gydo">
+      <image>rings_beat2.jpg</image>
+      <spot>1</spot>
+    </effect>
+
+    <effect name="rings_beat3_max">
+      <image>rings_beat3.jpg</image>
+      <spot>3</spot>
+    </effect>
+    <effect name="rings_beat3_koen">
+      <image>rings_beat3.jpg</image>
+      <spot>2</spot>
+    </effect>
+    <effect name="rings_beat3_gydo">
+      <image>rings_beat3.jpg</image>
+      <spot>1</spot>
+    </effect>
+
+    <effect name="rings_beat4_max">
+      <image>rings_beat4.jpg</image>
+      <spot>3</spot>
+    </effect>
+    <effect name="rings_beat4_koen">
+      <image>rings_beat4.jpg</image>
+      <spot>2</spot>
+    </effect>
+    <effect name="rings_beat4_gydo">
+      <image>rings_beat4.jpg</image>
+      <spot>1</spot>
+    </effect>
+
+    <effect name="rings_beat5_max">
+      <image>rings_beat5.jpg</image>
+      <spot>3</spot>
+    </effect>
+    <effect name="rings_beat5_koen">
+      <image>rings_beat5.jpg</image>
+      <spot>2</spot>
+    </effect>
+    <effect name="rings_beat5_gydo">
+      <image>rings_beat5.jpg</image>
+      <spot>1</spot>
+    </effect>
+
+
+
     <effect name="mud_machine_build">
       <video>mud/2.3_MUD_MACHINE_A_OPBOUW_v02.mov</video>
       <!-- <loop>1</loop> -->

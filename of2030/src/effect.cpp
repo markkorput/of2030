@@ -196,6 +196,7 @@ void Effect::draw(Context &_context, float dt){
     // these value can be updates during the effect (were already initialized in setup)
     auto_pos += _context.effect_setting.getValue("auto_velocity", ofVec3f(0.0f)) * dt;
     auto_rotation += _context.effect_setting.getValue("auto_rotate", ofVec3f(0.0f)) * dt;
+    auto_alpha = _context.effect_setting.getValue("current_alpha", auto_alpha);
     auto_alpha += _context.effect_setting.getValue("auto_alpha", 0.0f) * dt;
     
     ofSetColor(255);
