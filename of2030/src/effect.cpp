@@ -231,7 +231,6 @@ void Effect::draw(Context &_context, float dt){
         maskShader->setUniform4f("iColor", precalc->color);
         maskShader->setUniform1f("iAlpha", auto_alpha);
         maskShader->setUniform2f("iResolution", precalc->resolution);
-
         // ofSetColor(precalc->color); // --> doesn't work because shader doesn't use this color
     
         context->fbo3->draw(0.0f, 0.0f);
@@ -313,8 +312,8 @@ void Effect::drawContent(){
             vidShader->setUniformTexture("iMask", mask_video_player->getTexture(), 2);
             vidShader->setUniform4f("iColor", ofColor::white);
             vidShader->setUniform1f("iAlpha", 1.0f);
-            vidShader->setUniform2f("iResolution", ofVec2f(video_player->getWidth(), video_player->getHeight()));
             vidShader->setUniform2f("iTexCoordMultiply", context->effect_setting.getValue("texcoord_multiply", ofVec2f(1.0f, 1.0f)));
+            vidShader->setUniform2f("iResolution", ofVec2f(video_player->getTexture().getWidth(), video_player->getTexture().getHeight()));
         }
 
         // draw video texture
@@ -337,7 +336,6 @@ void Effect::drawContent(){
         shader->begin();
         
         // populate shader
-        shader->setUniform2f("iResolution", precalc->resolution);
         shader->setUniform2f("iTexCoordMultiply", ofVec2f(1.0f, 1.0f));
         shader->setUniform3f("iPos", context->effect_setting.getValue("pos", ofVec3f(0.0f)));
         shader->setUniform3f("iSize", context->effect_setting.getValue("size", ofVec3f(0.0f)));
@@ -396,8 +394,6 @@ void Effect::drawPattern(const string &patternName){
         }
 
         // shader is already activated, just add some params
-
-        //    shader->setUniform2f("iResolution", precalc->resolution);
         shader->setUniform2f("iSpotPos", spotPos);
         shader->setUniform2f("iSpotSize", spotSize);
         shader->setUniform1f("iGain", context->effect_setting.getValue("gain", 1.0f));

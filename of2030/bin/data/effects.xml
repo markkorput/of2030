@@ -233,6 +233,7 @@
       <video_mask_loop>1</video_mask_loop>
       <spot>1</spot>
       <loop>1</loop>
+      <layer>2</layer>
     </effect>
     <effect name="rings_march_spot_koen">
       <video>rings/2.2_RINGS_WALK_v02.mov</video>
@@ -240,6 +241,7 @@
       <spot>2</spot>
       <loop>1</loop>
       <video_mask_loop>1</video_mask_loop>
+      <layer>2</layer>
     </effect>
     <effect name="rings_march_spot_max">
       <video>rings/2.2_RINGS_WALK_v02.mov</video>
@@ -247,6 +249,7 @@
       <video_mask_loop>1</video_mask_loop>
       <loop>1</loop>
       <spot>3</spot>
+      <layer>2</layer>
     </effect>
     <effect name="rings_hey">
       <pattern>rect</pattern>/
@@ -257,7 +260,24 @@
       <unique>0</unique>
       <layer>9</layer>
     </effect>
-    <effect name="rings_march_tunnel">
+    <effect name="rings_march">
+      <video>rings/2.2_RINGS_FOOTSTEPS_A_TUNNEL_v01.mov</video>
+      <video_mask>rings/2.2_RINGS_FOOTSTEPS_A_TUNNEL_v01.mov</video_mask>
+      <loop>1</loop>
+      <video_mask_loop>1</video_mask_loop>
+      <!-- <is_pano>1</is_pano> -->
+      <!-- <texcoord_multiply_x>17.8</texcoord_multiply_x> -->
+    </effect>
+    <effect name="rings_march2circles">
+      <video>rings/2.2_RINGS_FOOTSTEPS_B_TO_WHITE_v01.mov</video>
+      <!-- <video_mask>rings/2.2_RINGS_FOOTSTEPS_A_TUNNEL_v01.mov</video_mask> -->
+      <loop>1</loop>
+      <!-- <video_mask_loop>1</video_mask_loop> -->
+      <is_pano>1</is_pano>
+      <texcoord_multiply_x>3.8</texcoord_multiply_x>
+    </effect>
+
+    <effect name="rings_circles">
       <video>rings/2.2_RINGS_FOOTSTEPS_A_TUNNEL_v01.mov</video>
       <video_mask>rings/2.2_RINGS_FOOTSTEPS_A_TUNNEL_v01.mov</video_mask>
       <loop>1</loop>
@@ -265,6 +285,7 @@
       <is_pano>1</is_pano>
       <texcoord_multiply_x>3.8</texcoord_multiply_x>
     </effect>
+
 
     <effect name="mud_machine_build">
       <video>mud/2.3_MUD_MACHINE_A_OPBOUW_v02.mov</video>
