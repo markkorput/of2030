@@ -185,6 +185,10 @@ void Effect::setup(Context &_context){
 }
 
 void Effect::draw(Context &_context, float dt){
+    if(_context.effect_setting.getValue("visible", "1") != "1"){
+        return;
+    }
+
     // make some context, logic and precalculate data available to the entire class
     PreCalc prec;
     prec.load(_context);
