@@ -572,6 +572,15 @@
 
 
     <!--  MISC -->
+    <effect name="calib_pano">
+      <image>calib_pano.jpg</image>
+      <is_pano>1</is_pano>
+    </effect>
+    <effect name="calib_tunnel">
+      <image>calib_tunnel.jpg</image>
+      <is_tunnel>1</is_tunnel>
+    </effect>
+
     <effect name="cursor1">
       <pattern>rect</pattern>
       <is_pano>1</is_pano>
