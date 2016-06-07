@@ -24,7 +24,6 @@ namespace of2030{
 
         ofVec2f tunnel_size; // real world tunnel size in meters
         ofVec2f pano_size;
-        
     } Context;
 
 
@@ -38,11 +37,13 @@ namespace of2030{
         void load(Context &_context);
 
         inline float panoWorldToScreen(float p);
-        ofRectangle panoDrawRect();
-        ofRectangle tunnelDrawRect();
         inline ofRectangle panoTunnelDrawRect(){ return panoDrawRect().getIntersection(tunnelDrawRect()); }
+        // void readTunnelScreenCoords(ofVec2f *target);
+
+    protected:
         
-        void readTunnelScreenCoords(ofVec2f *target);
+         ofRectangle panoDrawRect();
+         ofRectangle tunnelDrawRect();
 
     public: // properties
 

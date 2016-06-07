@@ -93,20 +93,20 @@ ofRectangle PreCalc::tunnelDrawRect(){
     return ofRectangle(x1, 0.0, x2-x1, resolution.y);
 }
 
-void PreCalc::readTunnelScreenCoords(ofVec2f *target){
-    // read screen's config; it specifies which portion of the tunnel ("wall") is shown through this screen
-    // screen corners respectively; top left, top right, bottom right, bottom left
-    ofVec2f screenTunnelCoords[4];
-    screenTunnelCoords[0] = context->screen_setting.getValue("tunnel_coord1", ofVec2f(0.0f, 0.0f));
-    screenTunnelCoords[1] = context->screen_setting.getValue("tunnel_coord2", ofVec2f(1.0f, 0.0f));
-    screenTunnelCoords[2] = context->screen_setting.getValue("tunnel_coord3", ofVec2f(1.0f, 1.0f));
-    screenTunnelCoords[3] = context->screen_setting.getValue("tunnel_coord4", ofVec2f(0.0f, 1.0f));
-
-    target[0] = -screenTunnelCoords[0] * resolution;
-    target[1] = ofVec2f(1.0 / screenTunnelCoords[1].x, -screenTunnelCoords[1].y)  * resolution;
-    target[2] = ofVec2f(1.0 / screenTunnelCoords[2].x, 1.0/screenTunnelCoords[2].y)  * resolution;
-    target[3] = ofVec2f(-screenTunnelCoords[3].x, 1.0/screenTunnelCoords[3].y) * resolution;
-}
+//void PreCalc::readTunnelScreenCoords(ofVec2f *target){
+//    // read screen's config; it specifies which portion of the tunnel ("wall") is shown through this screen
+//    // screen corners respectively; top left, top right, bottom right, bottom left
+//    ofVec2f screenTunnelCoords[4];
+//    screenTunnelCoords[0] = context->screen_setting.getValue("tunnel_coord1", ofVec2f(0.0f, 0.0f));
+//    screenTunnelCoords[1] = context->screen_setting.getValue("tunnel_coord2", ofVec2f(1.0f, 0.0f));
+//    screenTunnelCoords[2] = context->screen_setting.getValue("tunnel_coord3", ofVec2f(1.0f, 1.0f));
+//    screenTunnelCoords[3] = context->screen_setting.getValue("tunnel_coord4", ofVec2f(0.0f, 1.0f));
+//
+//    target[0] = -screenTunnelCoords[0] * resolution;
+//    target[1] = ofVec2f(1.0 / screenTunnelCoords[1].x, -screenTunnelCoords[1].y)  * resolution;
+//    target[2] = ofVec2f(1.0 / screenTunnelCoords[2].x, 1.0/screenTunnelCoords[2].y)  * resolution;
+//    target[3] = ofVec2f(-screenTunnelCoords[3].x, 1.0/screenTunnelCoords[3].y) * resolution;
+//}
 
 
 
