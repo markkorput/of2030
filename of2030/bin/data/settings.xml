@@ -30,6 +30,8 @@
   <multi>
     <id>dev1</id>
     <id>dev2</id>
+    <id>dev3</id>
+    <id>dev4</id>
 <!--     <id>rpi5</id>
     <id>rpi7</id>
     <id>rpi8</id>

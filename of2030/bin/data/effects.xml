@@ -575,28 +575,31 @@
     <effect name="calib_pano">
       <image>calib_pano.jpg</image>
       <is_pano>1</is_pano>
+      <!-- <pano_start>0.5</pano_start> -->
+      <!-- <pano_end>0.75</pano_end> -->
     </effect>
     <effect name="calib_tunnel">
       <image>calib_tunnel.jpg</image>
       <is_tunnel>1</is_tunnel>
+      <!-- <tunnel_start>0.25</tunnel_start> -->
+      <!-- <tunnel_end>0.55</tunnel_end> -->
     </effect>
 
     <effect name="cursor1">
       <pattern>rect</pattern>
       <is_pano>1</is_pano>
-      <draw_size_x>0.05</draw_size_x>
-      <auto_velocity_x>7.0</auto_velocity_x>
-      <duration>1.0</duration>
-      <!-- <auto_rotate_z>180.0</auto_rotate_x> -->
+      <draw_size_x>0.2</draw_size_x>
+      <auto_velocity_x>6.0</auto_velocity_x>
+      <duration>2.0</duration>
+      <auto_rotate_z>180.0</auto_rotate_x>
       <rotate_z>45.0</rotate_z>
+      <unique>0</unique>
     </effect>
 
     <effect name="worms1">
       <shader>worms</shader>
       <pano_start>0.0</pano_start>
       <pano_end>1.0</pano_end>
-      <!-- <tunnel_start>0.5</tunnel_start>
-      <tunnel_end>0.9</tunnel_end> -->
       <gain>0.65</gain>
       <size_x>68.0</size_x>
       <size_y>1.0</size_y>
