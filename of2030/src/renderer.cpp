@@ -17,11 +17,10 @@ using namespace of2030;
 SINGLETON_INLINE_IMPLEMENTATION_CODE(Renderer)
 
 Renderer::Renderer() : fbo(NULL), fbo2(NULL), fbo3(NULL), player(NULL), client_id(""), bCallbacksRegistered(false), lastFrameTime(0.0f){
-    screenWidth = ofGetWidth();
-    screenHeight = ofGetHeight();
-
     // runs effect's setup
     //overlayEffect = EfficientEffectManager::instance()->get("overlay");
+    screenWidth = ofGetWidth();
+    screenHeight = ofGetHeight();
 }
 
 Renderer::~Renderer(){
@@ -33,19 +32,16 @@ void Renderer::setup(){
         fbo = &defaultFbo;
 
     if(!fbo->isAllocated()){
-        if(client_id == "")
-            fbo->allocate(WIDTH, HEIGHT);
-        else {
-            //fbo->allocate(WIDTH, HEIGHT);
+        ofVec2f resolution(screenWidth, screenHeight);
+
+        if(client_id != ""){
             XmlItemSetting* pItem = XmlConfigs::screens()->getItem(client_id);
             if(pItem){
-                ofVec2f resolution = pItem->getValue("resolution", ofVec2f(WIDTH, HEIGHT));
-                fbo->allocate(resolution.x, resolution.y);
-            } else {
-                fbo->allocate(WIDTH, HEIGHT);
+                resolution = pItem->getValue("resolution", resolution);
             }
         }
-        
+
+        fbo->allocate(resolution.x, resolution.y);
     }
 
     if(fbo2 == NULL)
@@ -87,7 +83,13 @@ void Renderer::draw(){
         ofClear(0.0f,0.0f,0.0f,0.0f);
     } else {
         ofPushMatrix();
-        ofScale(screenWidth / fbo2->getWidth(), screenHeight / fbo2->getHeight(), 1.0f);
+        ofScale(screenWidth / fbo->getWidth(), screenHeight / fbo->getHeight(), 1.0f);
+        ofScale(context.screen_setting.getValue("screen_scale", ofVec3f(1.0)));
+        ofTranslate(context.screen_setting.getValue("screen_translate", ofVec3f(0.0)));
+        ofVec3f rot = context.screen_setting.getValue("screen_rotate", ofVec3f(0.0));
+        ofRotateX(rot.x);
+        ofRotateY(rot.y);
+        ofRotateZ(rot.z);
     }
 
     float dt = ofGetElapsedTimef() - lastFrameTime;
@@ -101,10 +103,23 @@ void Renderer::draw(){
         effect->draw(context, dt);
     }
 
+    ofRectMode(OF_RECTMODE_CORNER);
+
     if(fboFirst){
         fbo->end();
+
+        ofPushMatrix();
+        ofScale(screenWidth / fbo->getWidth(), screenHeight / fbo->getHeight(), 1.0f);
+        ofScale(context.screen_setting.getValue("screen_scale", ofVec3f(1.0)));
+        ofTranslate(context.screen_setting.getValue("screen_translate", ofVec3f(0.0)));
+        ofVec3f rot = context.screen_setting.getValue("screen_rotate", ofVec3f(0.0));
+        ofRotateX(rot.x);
+        ofRotateY(rot.y);
+        ofRotateZ(rot.z);
+
         ofSetColor(255);
-        fbo->draw(0,0, screenWidth, screenHeight);
+        fbo->draw(0,0);
+        ofPopMatrix();
     } else {
         ofPopMatrix();
     }

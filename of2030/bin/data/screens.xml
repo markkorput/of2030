@@ -1,6 +1,10 @@
 <of2030>
   <screens>
     <screen name="dev1">
+      <!-- <screen_rotate_z>180</screen_rotate_z> -->
+      <!-- <screen_translate_x>768</screen_translate_x> -->
+      <!-- <screen_translate_y>576</screen_translate_y> -->
+
       <!-- resolution -->
       <resolution_x>768</resolution_x>
       <resolution_y>576</resolution_y>
@@ -68,6 +72,10 @@
     </screen>
 
     <screen name="dev2">
+      <!-- <screen_rotate_z>180</screen_rotate_z> -->
+      <!-- <screen_translate_x>765</screen_translate_x> -->
+      <!-- <screen_translate_y>576</screen_translate_y> -->
+
       <!-- resolution -->
       <resolution_x>768</resolution_x>
       <resolution_y>576</resolution_y>
