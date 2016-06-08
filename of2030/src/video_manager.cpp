@@ -91,15 +91,16 @@ bool VideoManager::unload(const string &alias){
 
     ofNotifyEvent(unloadEvent, *it->second, this);
 
-    // remove from our list
-    players.erase(it);
-
     if(it->second){
         // close player/video file
         it->second->close();
         // delete instance from memory
         delete it->second;
     }
+
+    // remove from our list
+    players.erase(it);
+
 
     // log and report
     ofLog() << "Video players still loaded: " << players.size();
