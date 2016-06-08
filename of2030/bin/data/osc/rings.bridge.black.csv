@@ -1,0 +1,9 @@
+0.0,/cfg/rings_pattern_black_bridge/initial_alpha,f,0.0
+0.0,/cfg/rings_pattern_black_bridge/auto_alpha,f,0.03
+0.0,/t/rings_pattern_black_bridge
+0.1,/cfg/rings_pattern_white_bridge/auto_alpha,f,-0.05
+3.0,/t/rings_lone_block
+3.0,/cfg/rings_lone_block/color_r,f,255.0
+3.0,/cfg/rings_lone_block/color_g,f,255.0
+3.0,/cfg/rings_lone_block/color_b,f,255.0
+10.0,/s/rings_pattern_white_bridge

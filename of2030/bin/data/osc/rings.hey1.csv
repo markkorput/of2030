@@ -2,5 +2,7 @@
 0.1,/s/rings_march_spot_gydo
 0.1,/s/rings_march_spot_koen
 0.1,/s/rings_march_spot_max
-0.2,/t/rings_march
+0.3,/cfg/rings_march/draw_size_y,f,1.0
+0.3,/cfg/rings_march/texcoord_multiply_x,f,9.0
+0.3,/t/rings_march
 2.0,/s/rings_hey
