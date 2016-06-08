@@ -79,6 +79,8 @@ void Effect::setup(Context &_context){
     //
     video_player = getVideoPlayer(_context);
     if(video_player){
+        bVidStarted = false;
+
         if(_context.effect_setting.getValue("loop", "0") == "1"){
             // TODO; this player might currently be used by other effects?
             video_player->setLoopState(OF_LOOP_NORMAL);
@@ -105,8 +107,13 @@ void Effect::setup(Context &_context){
         if(_context.effect_setting.getValue("reset", "0") == "1"){
             video_player->setPosition(0.0);
         }
-
-        video_player->play();
+        
+        if(!(video_player->isLoaded() && video_player->getTexture().isAllocated())){
+            video_player->play();
+            bVidStarted=true;
+        } else{
+            bVidStarted=false;
+        }
     } /*else {
         ofLogWarning() << "Effect::setup could not get video player for " << val;
         ofLog() << "setting effect duration to zero";
@@ -276,9 +283,15 @@ void Effect::drawContent(){
 
     if(video_player){
         if(!(video_player->isLoaded() && video_player->getTexture().isAllocated())){
+            ofLogVerbose() << "Effect::draw: video not yet loaded";
             return;
         }
         
+        if(!bVidStarted){
+            video_player->play();
+            bVidStarted=true;
+        }
+
         // movie done?
         if(video_player->getIsMovieDone() && context->effect_setting.getValue("loop", "0") != "1"){
             // if effect is configured to freeze (at certain position, usually first or last frame)
