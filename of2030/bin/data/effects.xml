@@ -811,7 +811,7 @@
 
     <!--  MISC -->
     <effect name="calib_pano">
-      <image>calib_pano.jpg</image>
+      <image>calib_pano_v02.jpg</image>
       <is_pano>1</is_pano>
       <!-- <pano_start>0.5</pano_start> -->
       <!-- <pano_end>0.75</pano_end> -->
