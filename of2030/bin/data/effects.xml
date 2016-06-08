@@ -265,8 +265,8 @@
       <video_mask>self</video_mask>
       <loop>1</loop>
       <video_mask_loop>1</video_mask_loop>
-      <!-- <is_pano>1</is_pano> -->
-      <!-- <texcoord_multiply_x>17.8</texcoord_multiply_x> -->
+      <is_pano>1</is_pano>
+      <texcoord_multiply_x>14.8</texcoord_multiply_x>
     </effect>
     <effect name="rings_march2">
       <video>rings/2.2_RINGS_FOOTSTEPS_A_TUNNEL_v01.mov</video>
@@ -314,6 +314,16 @@
       <!-- <texcoord_multiply_x>3.8</texcoord_multiply_x> -->
       <layer>2</layer>
     </effect>
+    <effect name="rings_squares_blacksheep">
+      <video>rings/2.2_RINGS_FOOTSTEPS_F_SQUAREBLACK_v01.mov</video>
+      <video_mask>self</video_mask>
+      <loop>1</loop>
+      <!-- <video_mask_loop>1</video_mask_loop> -->
+      <!-- <is_pano>1</is_pano> -->
+      <!-- <texcoord_multiply_x>3.8</texcoord_multiply_x> -->
+      <layer>2</layer>
+    </effect>
+
     <effect name="rings_beat1_max">
       <image>rings_beat1.jpg</image>
       <spot>3</spot>
@@ -379,6 +389,56 @@
       <spot>1</spot>
     </effect>
 
+    <effect name="rings_random_max">
+      <video_option1>rings/2.2_RINGS_RITME_VERSTOORD_1_v01.mov</video_option1>
+      <video_option2>rings/2.2_RINGS_RITME_VERSTOORD_2_v01.mov</video_option2>
+      <video_option3>rings/2.2_RINGS_RITME_VERSTOORD_3_v01.mov</video_option3>
+      <video_option4>rings/2.2_RINGS_RITME_VERSTOORD_4_v01.mov</video_option4>
+      <video_option5>rings/2.2_RINGS_RITME_VERSTOORD_5_v01.mov</video_option5>
+      <video_option6>rings/2.2_RINGS_RITME_VERSTOORD_6_v01.mov</video_option6>
+      <video_option7>rings/2.2_RINGS_RITME_VERSTOORD_7_v01.mov</video_option7>
+      <video_option8>rings/2.2_RINGS_RITME_VERSTOORD_8_v01.mov</video_option8>
+      <video_option9>rings/2.2_RINGS_RITME_VERSTOORD_9_v01.mov</video_option9>
+      <video_option0>rings/2.2_RINGS_RITME_VERSTOORD_10_v01.mov</video_option0>
+      <video_mask>self</video_mask>
+      <reset>1</reset>
+      <spot>3</spot>
+      <unique>0</unique>
+    </effect>
+
+    <effect name="rings_random_koen">
+      <video_option1>rings/2.2_RINGS_RITME_VERSTOORD_1_v01.mov</video_option1>
+      <video_option2>rings/2.2_RINGS_RITME_VERSTOORD_2_v01.mov</video_option2>
+      <video_option3>rings/2.2_RINGS_RITME_VERSTOORD_3_v01.mov</video_option3>
+      <video_option4>rings/2.2_RINGS_RITME_VERSTOORD_4_v01.mov</video_option4>
+      <video_option5>rings/2.2_RINGS_RITME_VERSTOORD_5_v01.mov</video_option5>
+      <video_option6>rings/2.2_RINGS_RITME_VERSTOORD_6_v01.mov</video_option6>
+      <video_option7>rings/2.2_RINGS_RITME_VERSTOORD_7_v01.mov</video_option7>
+      <video_option8>rings/2.2_RINGS_RITME_VERSTOORD_8_v01.mov</video_option8>
+      <video_option9>rings/2.2_RINGS_RITME_VERSTOORD_9_v01.mov</video_option9>
+      <video_option0>rings/2.2_RINGS_RITME_VERSTOORD_10_v01.mov</video_option0>
+      <video_mask>self</video_mask>
+      <reset>1</reset>
+      <spot>2</spot>
+      <unique>0</unique>
+    </effect>
+
+    <effect name="rings_random_gydo">
+      <video_option1>rings/2.2_RINGS_RITME_VERSTOORD_1_v01.mov</video_option1>
+      <video_option2>rings/2.2_RINGS_RITME_VERSTOORD_2_v01.mov</video_option2>
+      <video_option3>rings/2.2_RINGS_RITME_VERSTOORD_3_v01.mov</video_option3>
+      <video_option4>rings/2.2_RINGS_RITME_VERSTOORD_4_v01.mov</video_option4>
+      <video_option5>rings/2.2_RINGS_RITME_VERSTOORD_5_v01.mov</video_option5>
+      <video_option6>rings/2.2_RINGS_RITME_VERSTOORD_6_v01.mov</video_option6>
+      <video_option7>rings/2.2_RINGS_RITME_VERSTOORD_7_v01.mov</video_option7>
+      <video_option8>rings/2.2_RINGS_RITME_VERSTOORD_8_v01.mov</video_option8>
+      <video_option9>rings/2.2_RINGS_RITME_VERSTOORD_9_v01.mov</video_option9>
+      <video_option0>rings/2.2_RINGS_RITME_VERSTOORD_10_v01.mov</video_option0>
+      <video_mask>self</video_mask>
+      <reset>1</reset>
+      <spot>1</spot>
+      <unique>0</unique>
+    </effect>
 
 
     <effect name="mud_machine_build">
@@ -755,6 +815,8 @@
       <is_pano>1</is_pano>
       <!-- <pano_start>0.5</pano_start> -->
       <!-- <pano_end>0.75</pano_end> -->
+      <texcoord_multiply_x>4.0</texcoord_multiply_x>
+      <texcoord_multiply_y>4.0</texcoord_multiply_y>
     </effect>
     <effect name="calib_tunnel">
       <image>calib_tunnel.jpg</image>

@@ -111,6 +111,8 @@ void ofApp::setup(){
        ofEnableAlphaBlending();
     }
 
+//    ofDisableArbTex();
+    
     // using the player's time as main timing mechanism
     next_log_alive_time = of2030::Player::instance()->getTime();
     ofClear(0);
