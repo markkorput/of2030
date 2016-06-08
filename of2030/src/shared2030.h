@@ -19,7 +19,7 @@
     #define __HIDE_CURSOR__
 #endif
 
-#define __RENDER_TO_FBO_FIRST__
+//#define __RENDER_TO_FBO_FIRST__
 // #define __AUTO_UNLOAD_VIDEOS_WHEN_EFFECTS_END__
 // #define __EXTENDED_EFFECT_CONFIG__
 

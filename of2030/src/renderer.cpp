@@ -98,12 +98,7 @@ void Renderer::draw(){
         context.effect_setting.data.clear();
         fillEffectSetting(*effect, context.effect_setting);
         effect->draw(context, dt);
-        
-//        float dt = ofGetElapsedTimef() - m_lastUpdateTime;
     }
-
-    //    fillEffectSetting(*overlayEffect, context.effect_setting);
-    //    overlayEffect->draw(context);
 
 #ifdef __RENDER_TO_FBO_FIRST__
     fbo->end();
