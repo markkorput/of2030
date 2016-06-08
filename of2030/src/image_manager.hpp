@@ -19,7 +19,7 @@ namespace of2030 {
         
     public: // methods/interface
         ImageManager();
-        // ~ImageManager(){ destroy(); }
+         ~ImageManager(){ destroy(); }
 
         //void setup();
         // void update();

@@ -22,8 +22,11 @@ VideoManager::VideoManager(){
 }
 
 void VideoManager::destroy(){
-    for (auto& pair: players) {
-        delete pair.second;
+    // don't iterate like normal, because the iterator gets corrupted and causes
+    // BAD ACCESS errors when the map gets modified during its iterations
+    // we'll just take the first item every time and remove it, until there's nothing left
+    while(!players.empty()){
+        unload(players.begin()->first);
     }
 
     players.clear();
