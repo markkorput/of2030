@@ -23,15 +23,15 @@ void PreCalc::load(Context &_context){
 
     // tunnel?
     if(_context.effect_setting.getValue("is_tunnel", "0") == "1"){
-        translate = _context.screen_setting.getValue("tunnel_translate", ofVec3f(0.0f));
+        translate = _context.screen_setting.getValue("tunnel_translate", ofVec3f(-1000.0f));
         rotate = _context.screen_setting.getValue("tunnel_rotate", ofVec3f(0.0f));
-        scale = _context.screen_setting.getValue("tunnel_scale", ofVec3f(1.0f));
+        scale = _context.screen_setting.getValue("tunnel_scale", ofVec3f(0.0f));
         scrDrawSize = _context.tunnel_size;
     // pano???
     } else if(_context.effect_setting.getValue("is_pano", "0") == "1"){
-        translate = _context.screen_setting.getValue("pano_translate", ofVec3f(0.0f));
+        translate = _context.screen_setting.getValue("pano_translate", ofVec3f(-1000.0f));
         rotate = _context.screen_setting.getValue("pano_rotate", ofVec3f(0.0f));
-        scale = _context.screen_setting.getValue("pano_scale", ofVec3f(1.0f));
+        scale = _context.screen_setting.getValue("pano_scale", ofVec3f(0.0f));
         scrDrawSize = _context.pano_size;
     // spot?
     } else if (_context.effect_setting.getValue("spot", 0) != 0){

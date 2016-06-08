@@ -40,7 +40,7 @@ namespace of2030{
 
         inline float getStartTime() const { return startTime; }
         inline float getEndTime() const { return endTime; }
-         inline float getDuration() const { return endTime-startTime; }
+        inline float getDuration() const { return endTime-startTime; }
         inline int getLayer() const { return layer; }
         inline bool getUnique() const { return bUnique; }
 
@@ -59,6 +59,7 @@ namespace of2030{
 
         inline float getEffectTime(){ return context->time - startTime; }
         inline float getProgress(){ return getEffectTime() / getDuration(); }
+        static inline ofVideoPlayer* getVideoPlayer(Context &contxt);
 
     public: // properties
 

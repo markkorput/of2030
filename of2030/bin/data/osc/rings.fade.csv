@@ -1,1 +1,7 @@
 0.0,/t/rings_pattern_white2black
+1.0,/s/rings_pattern_white
+3.0,/cfg/rings_pattern_black/initial_alpha,f,1.0
+6.0,/t/rings_pattern_black
+6.1,/s/rings_pattern_white2black
+16.0,/cfg/rings_pattern_black/auto_alpha,f,-0.1
+18.0,/s/rings_pattern_black
