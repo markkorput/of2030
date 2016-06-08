@@ -81,13 +81,14 @@ void Renderer::draw(){
     fillContextClientInfo(context);
     fillScreenSetting(context.screen_setting);
 
-#ifdef __RENDER_TO_FBO_FIRST__
-    fbo->begin();
-    ofClear(0.0f,0.0f,0.0f,0.0f);
-#else
-    ofPushMatrix();
-    ofScale(screenWidth / fbo2->getWidth(), screenHeight / fbo2->getHeight(), 1.0f);
-#endif
+    bool fboFirst = XmlSettings::instance()->drawToFboFirst;
+    if(fboFirst){
+        fbo->begin();
+        ofClear(0.0f,0.0f,0.0f,0.0f);
+    } else {
+        ofPushMatrix();
+        ofScale(screenWidth / fbo2->getWidth(), screenHeight / fbo2->getHeight(), 1.0f);
+    }
 
     float dt = ofGetElapsedTimef() - lastFrameTime;
     lastFrameTime += dt;
@@ -100,13 +101,13 @@ void Renderer::draw(){
         effect->draw(context, dt);
     }
 
-#ifdef __RENDER_TO_FBO_FIRST__
-    fbo->end();
-    ofSetColor(255);
-    fbo->draw(0,0, screenWidth, screenHeight);
-#else
-    ofPopMatrix();
-#endif
+    if(fboFirst){
+        fbo->end();
+        ofSetColor(255);
+        fbo->draw(0,0, screenWidth, screenHeight);
+    } else {
+        ofPopMatrix();
+    }
 }
 
 void Renderer::registerRealtimeEffectCallback(bool reg){
