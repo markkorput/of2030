@@ -38,6 +38,8 @@
     <effect name="stellar_max_spot">
       <image>stellar_spot1_v02.jpg</image>
       <spot>3</spot>
+      <unique>0</unique>
+      <duration>8.7</duration>
     </effect>
     <effect name="stellar_smoke">
       <!-- <video>stellar/1.1_STELLAR_SMOKE_v01.mov</video> -->
