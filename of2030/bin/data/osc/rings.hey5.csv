@@ -1,6 +1,11 @@
 0.0,/t/rings_hey
-0.02,/TODO_rings_bridge_pattern
-10.0,/TODO_rings_white2black
-11.0,/TODO_rings_black
-
-
+0.3,/p/rings.chorus.unload
+0.5,/cfg/rings_pattern_white_bridge/initial_alpha,f,0.0
+1.0,/cfg/rings_pattern_white_bridge/auto_alpha,f,0.02
+2.0,/t/rings_pattern_white_bridge
+2.1,/cfg/rings_lone_block/color_r,f,0.0
+2.1,/cfg/rings_lone_block/color_g,f,0.0
+2.1,/cfg/rings_lone_block/color_b,f,0.0
+2.3,/t/rings_lone_block
+10.0,/cfg/rings_pattern_white_bridge/auto_alpha,f,0.0
+30.0,/p/rings.bridge.black

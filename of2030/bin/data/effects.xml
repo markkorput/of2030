@@ -207,24 +207,40 @@
 
     <effect name="rings_pattern_black2white">
       <video>rings/2.2_RINGS_NON_EGAAL_BLACKTOWHITE_v01.mov</video>
-      <is_tunnel>1</is_tunnel>
+      <is_pano>1</is_pano>
       <reset>1</reset>
       <layer>1</layer>
     </effect>
     <effect name="rings_pattern_white">
       <video>rings/2.2_RINGS_NON_EGAAL_WHITE_v01.mov</video>
-      <is_tunnel>1</is_tunnel>
+      <is_pano>1</is_pano>
       <loop>1</loop>
+    </effect>
+    <effect name="rings_pattern_white_bridge">
+      <video>rings/2.2_RINGS_NON_EGAAL_WHITE_v01.mov</video>
+      <is_pano>1</is_pano>
+      <loop>1</loop>
+    </effect>
+    <effect name="rings_pattern_white_outro">
+      <video>rings/2.2_RINGS_NON_EGAAL_WHITE_v01.mov</video>
+      <is_pano>1</is_pano>
+      <loop>1</loop>
+      <layer>-1</layer>
     </effect>
     <effect name="rings_pattern_white2black">
       <video>rings/2.2_RINGS_NON_EGAAL_WHITETOBLACK_v01.mov</video>
-      <is_tunnel>1</is_tunnel>
+      <is_pano>1</is_pano>
       <reset>1</reset>
       <layer>1</layer>
     </effect>
     <effect name="rings_pattern_black">
       <video>rings/2.2_RINGS_NON_EGAAL_BLACK_v01.mov</video>
-      <is_tunnel>1</is_tunnel>
+      <is_pano>1</is_pano>
+      <loop>1</loop>
+    </effect>
+    <effect name="rings_pattern_black_bridge">
+      <video>rings/2.2_RINGS_NON_EGAAL_BLACK_v01.mov</video>
+      <is_pano>1</is_pano>
       <loop>1</loop>
     </effect>
     <effect name="rings_march_spot_gydo">
@@ -261,20 +277,22 @@
       <layer>9</layer>
     </effect>
     <effect name="rings_march">
-      <video>rings/2.2_RINGS_FOOTSTEPS_A_TUNNEL_v01.mov</video>
+      <video>rings/2.2_RINGS_FOOTSTEPS_A_TUNNEL_v01-cropped-single.mov</video>
       <video_mask>self</video_mask>
       <loop>1</loop>
-      <video_mask_loop>1</video_mask_loop>
-      <is_pano>1</is_pano>
-      <texcoord_multiply_x>14.8</texcoord_multiply_x>
+      <is_tunnel>1</is_tunnel>
+      <texcoord_multiply_x>9.0</texcoord_multiply_x>
+      <draw_size_y>1.0</draw_size_y>
+      <auto_pos_y>1.0</auto_pos_y>
     </effect>
     <effect name="rings_march2">
-      <video>rings/2.2_RINGS_FOOTSTEPS_A_TUNNEL_v01.mov</video>
+      <video>rings/2.2_RINGS_FOOTSTEPS_A_TUNNEL_v01-cropped-single.mov</video>
       <video_mask>self</video_mask>
       <loop>1</loop>
-      <video_mask_loop>1</video_mask_loop>
-      <!-- <is_pano>1</is_pano> -->
-      <!-- <texcoord_multiply_x>17.8</texcoord_multiply_x> -->
+      <is_tunnel>1</is_tunnel>
+      <texcoord_multiply_x>9.0</texcoord_multiply_x>
+      <draw_size_y>1.0</draw_size_y>
+      <auto_pos_y>1</auto_pos_y>
     </effect>
     <effect name="rings_march2circles">
       <video>rings/2.2_RINGS_FOOTSTEPS_B_TO_WHITE_v01.mov</video>
@@ -320,72 +338,87 @@
       <loop>1</loop>
       <!-- <video_mask_loop>1</video_mask_loop> -->
       <!-- <is_pano>1</is_pano> -->
-      <!-- <texcoord_multiply_x>3.8</texcoord_multiply_x> -->
+      <texcoord_multiply_x>5.8</texcoord_multiply_x>
       <layer>2</layer>
     </effect>
 
     <effect name="rings_beat1_max">
       <image>rings_beat1.jpg</image>
+      <image_mask>self</image_mask>
       <spot>3</spot>
     </effect>
     <effect name="rings_beat1_koen">
       <image>rings_beat1.jpg</image>
+      <image_mask>self</image_mask>
       <spot>2</spot>
     </effect>
     <effect name="rings_beat1_gydo">
       <image>rings_beat1.jpg</image>
+      <image_mask>self</image_mask>
       <spot>1</spot>
     </effect>
 
     <effect name="rings_beat2_max">
       <image>rings_beat2.jpg</image>
+      <image_mask>self</image_mask>
       <spot>3</spot>
     </effect>
     <effect name="rings_beat2_koen">
       <image>rings_beat2.jpg</image>
+      <image_mask>self</image_mask>
       <spot>2</spot>
     </effect>
     <effect name="rings_beat2_gydo">
       <image>rings_beat2.jpg</image>
+      <image_mask>self</image_mask>
       <spot>1</spot>
     </effect>
 
     <effect name="rings_beat3_max">
       <image>rings_beat3.jpg</image>
+      <image_mask>self</image_mask>
       <spot>3</spot>
     </effect>
     <effect name="rings_beat3_koen">
       <image>rings_beat3.jpg</image>
+      <image_mask>self</image_mask>
       <spot>2</spot>
     </effect>
     <effect name="rings_beat3_gydo">
       <image>rings_beat3.jpg</image>
+      <image_mask>self</image_mask>
       <spot>1</spot>
     </effect>
 
     <effect name="rings_beat4_max">
       <image>rings_beat4.jpg</image>
+      <image_mask>self</image_mask>
       <spot>3</spot>
     </effect>
     <effect name="rings_beat4_koen">
       <image>rings_beat4.jpg</image>
+      <image_mask>self</image_mask>
       <spot>2</spot>
     </effect>
     <effect name="rings_beat4_gydo">
       <image>rings_beat4.jpg</image>
+      <image_mask>self</image_mask>
       <spot>1</spot>
     </effect>
 
     <effect name="rings_beat5_max">
       <image>rings_beat5.jpg</image>
+      <image_mask>self</image_mask>
       <spot>3</spot>
     </effect>
     <effect name="rings_beat5_koen">
       <image>rings_beat5.jpg</image>
+      <image_mask>self</image_mask>
       <spot>2</spot>
     </effect>
     <effect name="rings_beat5_gydo">
       <image>rings_beat5.jpg</image>
+      <image_mask>self</image_mask>
       <spot>1</spot>
     </effect>
 
@@ -438,6 +471,39 @@
       <reset>1</reset>
       <spot>1</spot>
       <unique>0</unique>
+    </effect>
+    <effect name="rings_lone_block">
+      <spot>2</spot>
+      <pattern>rect</pattern>
+      <layer>10</layer>
+    </effect>
+
+    <effect name="rings_randomimg_max">
+      <image_option1>rings_beat1.jpg</image_option1>
+      <image_option2>rings_beat2.jpg</image_option2>
+      <image_option3>rings_beat3.jpg</image_option3>
+      <image_option4>rings_beat4.jpg</image_option4>
+      <image_option5>rings_beat5.jpg</image_option5>
+      <image_mask>self</image_mask>
+      <spot>3</spot>
+    </effect>
+    <effect name="rings_randomimg_koen">
+      <image_option1>rings_beat1.jpg</image_option1>
+      <image_option2>rings_beat2.jpg</image_option2>
+      <image_option3>rings_beat3.jpg</image_option3>
+      <image_option4>rings_beat4.jpg</image_option4>
+      <image_option5>rings_beat5.jpg</image_option5>
+      <image_mask>self</image_mask>
+      <spot>2</spot>
+    </effect>
+      <effect name="rings_randomimg_gydo">
+      <image_option1>rings_beat1.jpg</image_option1>
+      <image_option2>rings_beat2.jpg</image_option2>
+      <image_option3>rings_beat3.jpg</image_option3>
+      <image_option4>rings_beat4.jpg</image_option4>
+      <image_option5>rings_beat5.jpg</image_option5>
+      <image_mask>self</image_mask>
+      <spot>1</spot>
     </effect>
 
 

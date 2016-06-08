@@ -31,6 +31,7 @@ void Effect::reset(){
     video_player = NULL;
     mask_video_player = NULL;
     image = NULL;
+    mask_image=NULL;
     layer = 0;
     bUnique = true;
 }
@@ -159,17 +160,10 @@ void Effect::setup(Context &_context){
     //
     // load image if specified
     //
-    val = _context.effect_setting.getValue("image", "");
-    if(val != ""){
-        image = ImageManager::instance()->get(
-                    val,
-                    _context.effect_setting.getValue("image_alias", val),
-                    true);
-        if(!image){
-            truncate();
-            return;
-        }
-    }
+    image = loadImage(_context);
+    if(image && _context.effect_setting.getValue("image_mask", "") == "self"){
+        mask_image = image;
+    };
 
     bUnique = _context.effect_setting.getValue("unique", "1") == "1";
 
@@ -250,6 +244,7 @@ void Effect::draw(Context &_context, float dt){
 
 void Effect::drawContent(){
     string val;
+    ofShader* maskShader = ShaderManager::instance()->get("mask");
 
     // ofTranslate(context->effect_setting.getValue("translate", ofVec3f(0.0)) * precalc->worldToScreenVec2f);
     // ofScale(context->effect_setting.getValue("scale", ofVec3f(1.0)));
@@ -275,7 +270,19 @@ void Effect::drawContent(){
     // draw image?
 
     if(image){
+        if(mask_image){
+            maskShader = ShaderManager::instance()->get("mask");
+            maskShader->begin();
+            maskShader->setUniformTexture("iMask", mask_image->getTexture(), 2);
+            maskShader->setUniform4f("iColor", ofColor::white);
+            maskShader->setUniform1f("iAlpha", 1.0f);
+            maskShader->setUniform2f("iTexCoordMultiply", ofVec2f(1.0f,1.0f));
+            maskShader->setUniform2f("iResolution", ofVec2f(image->getWidth(), image->getHeight()));
+        }
         image->draw(0.0, 0.0, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
+        if(mask_image){
+            maskShader->end();
+        }
         return;
     }
 
@@ -307,7 +314,7 @@ void Effect::drawContent(){
         }
 
         bool bAlphaBlack = (context->effect_setting.getValue("alphablack", "0") == "1");
-        ofShader* vidShader;
+        
 
         if(mask_video_player){
             if(!(mask_video_player->isLoaded() && mask_video_player->getTexture().isAllocated())){
@@ -321,13 +328,12 @@ void Effect::drawContent(){
                 }
             }
 
-            vidShader = ShaderManager::instance()->get("mask");
-            vidShader->begin();
-            vidShader->setUniformTexture("iMask", mask_video_player->getTexture(), 2);
-            vidShader->setUniform4f("iColor", ofColor::white);
-            vidShader->setUniform1f("iAlpha", 1.0f);
-            vidShader->setUniform2f("iTexCoordMultiply", ofVec2f(1.0f,1.0f));
-            vidShader->setUniform2f("iResolution", ofVec2f(video_player->getTexture().getWidth(), video_player->getTexture().getHeight()));
+            maskShader->begin();
+            maskShader->setUniformTexture("iMask", mask_video_player->getTexture(), 2);
+            maskShader->setUniform4f("iColor", ofColor::white);
+            maskShader->setUniform1f("iAlpha", 1.0f);
+            maskShader->setUniform2f("iTexCoordMultiply", ofVec2f(1.0f,1.0f));
+            maskShader->setUniform2f("iResolution", ofVec2f(video_player->getTexture().getWidth(), video_player->getTexture().getHeight()));
         }
 
         // draw video texture
@@ -335,7 +341,7 @@ void Effect::drawContent(){
         video_player->draw(0.0, 0.0, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
         
         if(mask_video_player){
-            vidShader->end();
+            maskShader->end();
         }
 
         return;
@@ -474,4 +480,24 @@ inline ofVideoPlayer* Effect::getVideoPlayer(Context &contxt){
 
     val = contxt.effect_setting.getValue("video_option"+ofToString(floor(ofRandom(i))), "");
     return VideoManager::instance()->get(val, contxt.effect_setting.getValue("video_alias", val), true);
+}
+
+inline ofImage* Effect::loadImage(Context &contxt){
+    string val = contxt.effect_setting.getValue("image", "");
+
+    if(val != ""){
+        return ImageManager::instance()->get(val,
+                                      contxt.effect_setting.getValue("image_alias", val),
+                                      true);
+    }
+
+    int i=1;
+    while(contxt.effect_setting.getValue("image_option"+ofToString(i), "") != "")
+        i++;
+    
+    if(i == 1)
+        return NULL;
+    
+    val = contxt.effect_setting.getValue("image_option"+ofToString(floor(ofRandom(i))), "");
+    return ImageManager::instance()->get(val, contxt.effect_setting.getValue("image_options_alias"+ofToString(floor(ofRandom(i))), val), true);
 }

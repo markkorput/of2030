@@ -50,6 +50,7 @@ namespace of2030{
 
         inline ofVideoPlayer* getVideoPlayer() const { return video_player; }
         inline ofImage* getImage() const { return image; }
+        
 
     protected: // methods
         
@@ -60,6 +61,7 @@ namespace of2030{
         inline float getEffectTime(){ return context->time - startTime; }
         inline float getProgress(){ return getEffectTime() / getDuration(); }
         static inline ofVideoPlayer* getVideoPlayer(Context &contxt);
+        inline ofImage* loadImage(Context &contxt);
 
     public: // properties
 
@@ -75,7 +77,7 @@ namespace of2030{
         float startTime, endTime;
         bool bUnique; // if there can be only one effect with this trigger value at any given moment
 
-        ofImage *image;
+        ofImage *image, *mask_image;
         ofVideoPlayer *video_player, *mask_video_player;
         bool bVidStarted;
         ofVec3f auto_pos, auto_rotation;
