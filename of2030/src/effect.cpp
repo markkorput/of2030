@@ -77,47 +77,42 @@ void Effect::setup(Context &_context){
     //
     // video
     //
-    val = _context.effect_setting.getValue("video", "");
-    if(val != ""){
-        // load video (get video player instance from the VideoManager)
-        video_player = VideoManager::instance()->get(val, _context.effect_setting.getValue("video_alias", val), true);
-
-        if(video_player){
-            if(_context.effect_setting.getValue("loop", "0") == "1"){
-                // TODO; this player might currently be used by other effects?
-                video_player->setLoopState(OF_LOOP_NORMAL);
-                // indefinite
-                endTime = NO_TIME;
-            } else {
-                // set none-looping
-                video_player->setLoopState(OF_LOOP_NONE);
-                
-                // wanna freeze on a frame when done? remove end time, go on indefinite
-                if(_context.effect_setting.hasValue("freeze")){
-                    endTime = NO_TIME;
-                }
-                
-                // video_player->getDuration() is causing problems on PI (maybe its the animation codec)
-                // we'll just truncate in the draw function, when the end of the file is reached (and we're not feezing)
-                /* else if(getDuration() > video_player->getDuration()){
-                    // make sure the effect's duration time is not longer than the non-looping video's duration
-                    setDuration(video_player->getDuration());
-                }*/
-            }
-
-            // reset to start of video (this video player might have been used already by other effects
-            if(_context.effect_setting.getValue("reset", "0") == "1"){
-                video_player->setPosition(0.0);
-            }
-
-            video_player->play();
+    video_player = getVideoPlayer(_context);
+    if(video_player){
+        if(_context.effect_setting.getValue("loop", "0") == "1"){
+            // TODO; this player might currently be used by other effects?
+            video_player->setLoopState(OF_LOOP_NORMAL);
+            // indefinite
+            endTime = NO_TIME;
         } else {
-            ofLogWarning() << "Effect::setup could not get video player for " << val;
-            ofLog() << "setting effect duration to zero";
-            // this will effectively abort the effect
-            truncate();
+            // set none-looping
+            video_player->setLoopState(OF_LOOP_NONE);
+            
+            // wanna freeze on a frame when done? remove end time, go on indefinite
+            if(_context.effect_setting.hasValue("freeze")){
+                endTime = NO_TIME;
+            }
+            
+            // video_player->getDuration() is causing problems on PI (maybe its the animation codec)
+            // we'll just truncate in the draw function, when the end of the file is reached (and we're not feezing)
+            /* else if(getDuration() > video_player->getDuration()){
+                // make sure the effect's duration time is not longer than the non-looping video's duration
+                setDuration(video_player->getDuration());
+            }*/
         }
-    }
+
+        // reset to start of video (this video player might have been used already by other effects
+        if(_context.effect_setting.getValue("reset", "0") == "1"){
+            video_player->setPosition(0.0);
+        }
+
+        video_player->play();
+    } /*else {
+        ofLogWarning() << "Effect::setup could not get video player for " << val;
+        ofLog() << "setting effect duration to zero";
+        // this will effectively abort the effect
+        truncate();
+    }*/
 
     //
     // video mask
@@ -237,6 +232,7 @@ void Effect::draw(Context &_context, float dt){
         maskShader->setUniform1f("iAlpha", auto_alpha);
         maskShader->setUniform2f("iResolution", precalc->resolution);
         // ofSetColor(precalc->color); // --> doesn't work because shader doesn't use this color
+        maskShader->setUniform2f("iTexCoordMultiply", context->effect_setting.getValue("texcoord_multiply", ofVec2f(1.0f, 1.0f)));
     
         context->fbo3->draw(0.0f, 0.0f);
     maskShader->end();
@@ -317,7 +313,7 @@ void Effect::drawContent(){
             vidShader->setUniformTexture("iMask", mask_video_player->getTexture(), 2);
             vidShader->setUniform4f("iColor", ofColor::white);
             vidShader->setUniform1f("iAlpha", 1.0f);
-            vidShader->setUniform2f("iTexCoordMultiply", context->effect_setting.getValue("texcoord_multiply", ofVec2f(1.0f, 1.0f)));
+            vidShader->setUniform2f("iTexCoordMultiply", ofVec2f(1.0f,1.0f));
             vidShader->setUniform2f("iResolution", ofVec2f(video_player->getTexture().getWidth(), video_player->getTexture().getHeight()));
         }
 
@@ -341,7 +337,6 @@ void Effect::drawContent(){
         shader->begin();
         
         // populate shader
-        shader->setUniform2f("iTexCoordMultiply", ofVec2f(1.0f, 1.0f));
         shader->setUniform3f("iPos", context->effect_setting.getValue("pos", ofVec3f(0.0f)));
         shader->setUniform3f("iSize", context->effect_setting.getValue("size", ofVec3f(0.0f)));
         shader->setUniform1f("iProgress", getProgress());
@@ -446,4 +441,24 @@ void Effect::drawMask(const string &coordsName){
     // draw mask content
     ofDrawTriangle(coords[0].x, coords[0].y, coords[1].x, coords[1].y, coords[2].x, coords[2].y);
     ofDrawTriangle(coords[0].x, coords[0].y, coords[2].x, coords[2].y, coords[3].x, coords[3].y);
+}
+
+inline ofVideoPlayer* Effect::getVideoPlayer(Context &contxt){
+    string val = contxt.effect_setting.getValue("video", "");
+
+    if(val != ""){
+        // load video (get video player instance from the VideoManager)
+        return VideoManager::instance()->get(val, contxt.effect_setting.getValue("video_alias", val), true);
+    }
+
+    
+    int i=1;
+    while(contxt.effect_setting.getValue("video_option"+ofToString(i), "") != "")
+        i++;
+
+    if(i == 1)
+        return NULL;
+
+    val = contxt.effect_setting.getValue("video_option"+ofToString(floor(ofRandom(i))), "");
+    return VideoManager::instance()->get(val, contxt.effect_setting.getValue("video_alias", val), true);
 }
