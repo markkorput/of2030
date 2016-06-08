@@ -67,21 +67,23 @@
     <effect name="stellar_clock">
       <image>stellar_spot1_v02_q1.jpg</image>
       <spot>1</spot>
-      <TODO>true</TODO>
+      <!-- TODO -->
     </effect>
     <effect name="stellar_sirene_max">
-      <pattern>rect</pattern>
+      <!-- <pattern>rect</pattern> -->
       <!-- <video>stellar/1.1_STELLAR_SIRENE_GYDO_v01-150x150.mov</video> -->
-      <color_g>0</color_g>
+      <!-- <color_g>0</color_g> -->
+      <image>stellar_spot1_v02.jpg</image>
       <spot>3</spot>
       <reset>1</reset>
     </effect>
     <effect name="stellar_sirene_gydo">
-      <pattern>rect</pattern>
+      <!-- <pattern>rect</pattern> -->
       <!-- <video>stellar/1.1_STELLAR_SIRENE_GYDO_v01-150x150.mov</video> -->
-      <color_r>0</color_r>
+      <!-- <color_r>0</color_r> -->
+      <image>stellar_spot1_v02.jpg</image>
       <spot>1</spot>
-      <TODO>true</TODO>
+      <!-- <TODO>true</TODO> -->
       <reset>1</reset>
     </effect>
     <effect name="stellar_koen_ping">
@@ -198,7 +200,7 @@
       <is_pano>1</is_pano>
       <draw_size_y>0.05</draw_size_y>
       <color_a>240.0</color_a>
-      <duration>5.0</duration>
+      <duration>8.0</duration>
       <!-- negative value means down on OSX positive value means down on RASPI -->
       <auto_velocity_y>0.15</auto_velocity_y>
       <auto_pos_y>0.0</auto_pos_y>
@@ -533,6 +535,7 @@
       <is_tunnel>1</is_tunnel>
       <freeze>1.1</freeze>
       <reset>1</reset>
+      <layer>1</layer>
     </effect>
     <effect name="mud_machine_destruct">
       <video>mud/2.3_MUD_MACHINE_C_AFBOUW_v03.mov</video>
@@ -571,6 +574,7 @@
       <layer>1</layer>
       <is_pano>1</is_pano>
       <mask_coords_name>roof_coord</mask_coords_name>
+      <layer>3</layer>
     </effect>
     <effect name="mud_roof2">
       <video>mud/2.3_MUD_MOVING_WHITE_ROOF_2_v02.mov</video>
@@ -578,6 +582,7 @@
       <layer>1</layer>
       <is_pano>1</is_pano>
       <mask_coords_name>roof_coord</mask_coords_name>
+      <layer>3</layer>
     </effect>
 
 
