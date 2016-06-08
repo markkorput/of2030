@@ -48,9 +48,9 @@ void PreCalc::load(Context &_context){
     // full screen
     } else {
         // not pano not tunnel; just do a regular "fullscreen"
-        translate = _context.screen_setting.getValue("single_translate", ofVec3f(0.0f)) + ofVec3f(0.0f, -scrWorldSize.y, 0.0f);
+        translate = _context.screen_setting.getValue("single_translate", ofVec3f(0.0f)) + ofVec3f(0.0f, 0.0f, 0.0f);
         rotate = _context.screen_setting.getValue("single_rotate", ofVec3f(0.0f));
-        scale = _context.screen_setting.getValue("single_scale", ofVec3f(resolution/scrWorldSize)) * ofVec3f(1.0f, -1.0f, 1.0f);
+        scale = _context.screen_setting.getValue("single_scale", ofVec3f(resolution/scrWorldSize)) * ofVec3f(1.0f, 1.0f, 1.0f);
         scrDrawSize = scrWorldSize; //resolution; //_context.effect_setting.getValue("draw_size", scrWorldSize) * worldToScreenVec2f;
     }
 

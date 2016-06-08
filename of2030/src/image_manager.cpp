@@ -18,8 +18,11 @@ ImageManager::ImageManager(){
 }
 
 void ImageManager::destroy(){
-    for (std::map<string,ofImage*>::iterator it=images.begin(); it!=images.end(); ++it){
-        unload(it->first);
+    // don't iterate like normal, because the iterator gets corrupted and causes
+    // BAD ACCESS errors when the map gets modified during its iterations
+    // we'll just take the first item every time and remove it, until there's nothing left
+    while(!images.empty()){
+        unload(images.begin()->first);
     }
 
     images.clear();

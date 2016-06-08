@@ -77,6 +77,7 @@ namespace of2030{
 
         ofImage *image;
         ofVideoPlayer *video_player, *mask_video_player;
+        bool bVidStarted;
         ofVec3f auto_pos, auto_rotation;
         float auto_alpha;
         ofShader *shader;

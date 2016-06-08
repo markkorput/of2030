@@ -121,19 +121,19 @@
     </effect>
     <effect name="scav_fan_max">
       <image>scav_fan1_v01.jpg</image>
-      <auto_rotate_z>-25.0</auto_rotate_z>
+      <auto_rotate_z>25.0</auto_rotate_z>
       <spot>3</spot>
       <layer>1</layer>
     </effect>
     <effect name="scav_fan_koen">
       <image>scav_fan1_v01.jpg</image>
-      <auto_rotate_z>-25.0</auto_rotate_z>
+      <auto_rotate_z>25.0</auto_rotate_z>
       <spot>2</spot>
       <layer>1</layer>
     </effect>
     <effect name="scav_fan_gydo">
       <image>scav_fan1_v01.jpg</image>
-      <auto_rotate_z>-25.0</auto_rotate_z>
+      <auto_rotate_z>25.0</auto_rotate_z>
       <spot>1</spot>
       <layer>1</layer>
     </effect>
@@ -141,7 +141,7 @@
       <image>scav_fan2_v02.jpg</image>
       <spot>3</spot>
       <layer>3</layer>
-      <auto_rotate_z>-40.0</auto_rotate_z>
+      <auto_rotate_z>40.0</auto_rotate_z>
       <scale_x>1.1</scale_x>
       <scale_y>1.1</scale_y>
     </effect>
@@ -149,7 +149,7 @@
       <image>scav_fan2_v02.jpg</image>
       <spot>2</spot>
       <layer>3</layer>
-      <auto_rotate_z>-40.0</auto_rotate_z>
+      <auto_rotate_z>40.0</auto_rotate_z>
       <scale_x>1.1</scale_x>
       <scale_y>1.1</scale_y>
     </effect>
@@ -157,7 +157,7 @@
       <image>scav_fan2_v02.jpg</image>
       <spot>1</spot>
       <layer>3</layer>
-      <auto_rotate_z>-40.0</auto_rotate_z>
+      <auto_rotate_z>40.0</auto_rotate_z>
       <scale_x>1.1</scale_x>
       <scale_y>1.1</scale_y>
     </effect>
@@ -165,19 +165,19 @@
       <image>scav_fan3_v01.jpg</image>
       <spot>3</spot>
       <layer>4</layer>
-      <auto_rotate_z>-60.0</auto_rotate_z>
+      <auto_rotate_z>60.0</auto_rotate_z>
     </effect>
     <effect name="scav_turbo_koen">
       <image>scav_fan3_v01.jpg</image>
       <spot>2</spot>
       <layer>4</layer>
-      <auto_rotate_z>-60.0</auto_rotate_z>
+      <auto_rotate_z>60.0</auto_rotate_z>
     </effect>
     <effect name="scav_turbo_gydo">
       <image>scav_fan3_v01.jpg</image>
       <spot>1</spot>
       <layer>4</layer>
-      <auto_rotate_z>-60.0</auto_rotate_z>
+      <auto_rotate_z>60.0</auto_rotate_z>
     </effect>
     <effect name="scav_pano">
       <video>scav/2.1_SCAVENGER_PANOHELI_OPTIE_1_v01.mov</video>
@@ -811,7 +811,7 @@
 
     <!--  MISC -->
     <effect name="calib_pano">
-      <image>calib_pano.jpg</image>
+      <image>calib_pano_v02.jpg</image>
       <is_pano>1</is_pano>
       <!-- <pano_start>0.5</pano_start> -->
       <!-- <pano_end>0.75</pano_end> -->
@@ -831,7 +831,7 @@
       <draw_size_x>0.2</draw_size_x>
       <auto_velocity_x>6.0</auto_velocity_x>
       <duration>2.0</duration>
-      <auto_rotate_z>180.0</auto_rotate_x>
+      <!-- <auto_rotate_z>180.0</auto_rotate_x> -->
       <rotate_z>45.0</rotate_z>
       <unique>0</unique>
     </effect>

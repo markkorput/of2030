@@ -90,6 +90,7 @@ bool XmlSettings::load(bool reload){
     
     rgbaVidPixels = xml.getValue("of2030:rgba_pixels", "0") == "1";
     alphaBlending = xml.getValue("of2030:alpha_blending", "0") == "1";
+    drawToFboFirst = xml.getValue("of2030::draw_to_fbo_first", "0") == "1";
 
 #ifdef __MULTI_CLIENT_ENABLED__
     multi_client_ids.clear();

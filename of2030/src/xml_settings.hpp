@@ -33,6 +33,7 @@ namespace of2030{
 
         bool rgbaVidPixels;
         bool alphaBlending;
+        bool drawToFboFirst;
 
 #ifdef __MULTI_CLIENT_ENABLED__
         vector<string> multi_client_ids;
