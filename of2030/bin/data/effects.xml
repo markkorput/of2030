@@ -330,7 +330,7 @@
       <is_tunnel>1</is_tunnel>
       <!-- <video_mask_loop>1</video_mask_loop> -->
       <!-- <is_pano>1</is_pano> -->
-      <!-- <texcoord_multiply_x>3.8</texcoord_multiply_x> -->
+      <texcoord_multiply_x>1.8</texcoord_multiply_x>
       <layer>2</layer>
     </effect>
     <effect name="rings_circles">
@@ -339,7 +339,7 @@
       <is_tunnel>1</is_tunnel>
       <loop>1</loop>
       <!-- <is_pano>1</is_pano> -->
-      <!-- <texcoord_multiply_x>3.8</texcoord_multiply_x> -->
+      <texcoord_multiply_x>1.8</texcoord_multiply_x>
       <layer>2</layer>
     </effect>
     <effect name="rings_circles2squares">
@@ -351,7 +351,7 @@
       <reset>1</reset>
       <!-- <video_mask_loop>1</video_mask_loop> -->
       <!-- <is_pano>1</is_pano> -->
-      <!-- <texcoord_multiply_x>3.8</texcoord_multiply_x> -->
+      <texcoord_multiply_x>1.8</texcoord_multiply_x>
       <layer>2</layer>
     </effect>
     <effect name="rings_squares">
@@ -360,7 +360,7 @@
       <loop>1</loop>
       <!-- <video_mask_loop>1</video_mask_loop> -->
       <!-- <is_pano>1</is_pano> -->
-      <!-- <texcoord_multiply_x>3.8</texcoord_multiply_x> -->
+      <texcoord_multiply_x>1.8</texcoord_multiply_x>
       <layer>2</layer>
     </effect>
     <effect name="rings_squares_blacksheep">
