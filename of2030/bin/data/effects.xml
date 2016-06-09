@@ -5,19 +5,30 @@
       <video>inloop/0.0_INLOOP_WOBBLINGLINES_v01.mov</video>
       <loop>1</loop>
       <!-- <freeze>1.0</freeze> -->
-      <is_tunnel>0</is_tunnel>
       <is_pano>1</is_pano>
       <reset>1</reset>
     </effect>
 
+    <effect name="impro_worms_end">
+      <video>inloop/0.0_INLOOP_WOBBLINGLINES_v01.mov</video>
+      <video_mask>stellar/0.1_STELLAR_END_WOBBLINGLINES_A_v01.mov</video_mask>
+      <loop>1</loop>
+      <is_pano>1</is_pano>
+      <!-- <reset>1</reset> NOOOO -->
+      <video_mask_reset>1</video_mask_reset>
+      <duration>10.0</duration>
+    </effect>
 
-    <effect name="impro_">
+    <effect name="impro_spot_max">
+      <image>stellar_spot1_v02.jpg</image>
+      <spot>3</spot>
+      <initial_alpha>0.8</initial_alpha>
     </effect>
 
 
     <effect name="stellar_worms">
       <video>stellar/1.1_STELLAR_WORMS_1_v01.mov</video>
-      <video_mask>stellar/1.1_STELLAR_WORMS_1_v01.mov</video_mask>
+      <video_mask>self</video_mask>
       <!-- <video_mask>stellar/1.1_STELLAR_WORMS_1_v01.mov</video_mask> -->
       <!-- <loop>1</loop> -->
       <!-- <freeze>1.0</freeze> -->
@@ -38,6 +49,8 @@
     <effect name="stellar_max_spot">
       <image>stellar_spot1_v02.jpg</image>
       <spot>3</spot>
+      <unique>0</unique>
+      <duration>8.7</duration>
     </effect>
     <effect name="stellar_smoke">
       <!-- <video>stellar/1.1_STELLAR_SMOKE_v01.mov</video> -->
@@ -56,30 +69,34 @@
       <video>stellar/1.1_STELLAR_VOICEOVER_1_v01.mov</video>
       <mask_coords_name>voice_coord</mask_coords_name>
       <reset>1</reset>
+      <layer>-1</layer>
     </effect>
     <effect name="stellar_voice2">
       <video>stellar/1.1_STELLAR_VOICEOVER_2_v01.mov</video>
       <mask_coords_name>voice_coord</mask_coords_name>
       <reset>1</reset>
+      <layer>-1</layer>
     </effect>
     <effect name="stellar_clock">
       <image>stellar_spot1_v02_q1.jpg</image>
       <spot>1</spot>
-      <TODO>true</TODO>
+      <!-- TODO -->
     </effect>
     <effect name="stellar_sirene_max">
-      <pattern>rect</pattern>
+      <!-- <pattern>rect</pattern> -->
       <!-- <video>stellar/1.1_STELLAR_SIRENE_GYDO_v01-150x150.mov</video> -->
-      <color_g>0</color_g>
+      <!-- <color_g>0</color_g> -->
+      <image>stellar_spot1_v02.jpg</image>
       <spot>3</spot>
       <reset>1</reset>
     </effect>
     <effect name="stellar_sirene_gydo">
-      <pattern>rect</pattern>
+      <!-- <pattern>rect</pattern> -->
       <!-- <video>stellar/1.1_STELLAR_SIRENE_GYDO_v01-150x150.mov</video> -->
-      <color_r>0</color_r>
+      <!-- <color_r>0</color_r> -->
+      <image>stellar_spot1_v02.jpg</image>
       <spot>1</spot>
-      <TODO>true</TODO>
+      <!-- <TODO>true</TODO> -->
       <reset>1</reset>
     </effect>
     <effect name="stellar_koen_ping">
@@ -121,18 +138,21 @@
     </effect>
     <effect name="scav_fan_max">
       <image>scav_fan1_v01.jpg</image>
+      <image_mask>self</image_mask>
       <auto_rotate_z>25.0</auto_rotate_z>
       <spot>3</spot>
       <layer>1</layer>
     </effect>
     <effect name="scav_fan_koen">
       <image>scav_fan1_v01.jpg</image>
+      <image_mask>self</image_mask>
       <auto_rotate_z>25.0</auto_rotate_z>
       <spot>2</spot>
       <layer>1</layer>
     </effect>
     <effect name="scav_fan_gydo">
       <image>scav_fan1_v01.jpg</image>
+      <image_mask>self</image_mask>
       <auto_rotate_z>25.0</auto_rotate_z>
       <spot>1</spot>
       <layer>1</layer>
@@ -163,18 +183,21 @@
     </effect>
     <effect name="scav_turbo_max">
       <image>scav_fan3_v01.jpg</image>
+      <image_mask>self</image_mask>
       <spot>3</spot>
       <layer>4</layer>
       <auto_rotate_z>60.0</auto_rotate_z>
     </effect>
     <effect name="scav_turbo_koen">
       <image>scav_fan3_v01.jpg</image>
+      <image_mask>self</image_mask>
       <spot>2</spot>
       <layer>4</layer>
       <auto_rotate_z>60.0</auto_rotate_z>
     </effect>
     <effect name="scav_turbo_gydo">
       <image>scav_fan3_v01.jpg</image>
+      <image_mask>self</image_mask>
       <spot>1</spot>
       <layer>4</layer>
       <auto_rotate_z>60.0</auto_rotate_z>
@@ -196,7 +219,7 @@
       <is_pano>1</is_pano>
       <draw_size_y>0.05</draw_size_y>
       <color_a>240.0</color_a>
-      <duration>5.0</duration>
+      <duration>8.0</duration>
       <!-- negative value means down on OSX positive value means down on RASPI -->
       <auto_velocity_y>0.15</auto_velocity_y>
       <auto_pos_y>0.0</auto_pos_y>
@@ -210,6 +233,11 @@
       <is_pano>1</is_pano>
       <reset>1</reset>
       <layer>1</layer>
+    </effect>
+    <effect name="rings_pattern_white_intro">
+      <video>rings/2.2_RINGS_NON_EGAAL_WHITE_v01.mov</video>
+      <is_pano>1</is_pano>
+      <loop>1</loop>
     </effect>
     <effect name="rings_pattern_white">
       <video>rings/2.2_RINGS_NON_EGAAL_WHITE_v01.mov</video>
@@ -299,6 +327,7 @@
       <video_mask>self</video_mask>
       <!-- <loop>1</loop> -->
       <reset>1</reset>
+      <is_tunnel>1</is_tunnel>
       <!-- <video_mask_loop>1</video_mask_loop> -->
       <!-- <is_pano>1</is_pano> -->
       <!-- <texcoord_multiply_x>3.8</texcoord_multiply_x> -->
@@ -307,6 +336,7 @@
     <effect name="rings_circles">
       <video>rings/2.2_RINGS_FOOTSTEPS_C_WHITE_v01.mov</video>
       <video_mask>self</video_mask>
+      <is_tunnel>1</is_tunnel>
       <loop>1</loop>
       <!-- <is_pano>1</is_pano> -->
       <!-- <texcoord_multiply_x>3.8</texcoord_multiply_x> -->
@@ -315,6 +345,7 @@
     <effect name="rings_circles2squares">
       <video>rings/2.2_RINGS_FOOTSTEPS_D_TO_SQUARE_v01.mov</video>
       <video_mask>self</video_mask>
+      <is_tunnel>1</is_tunnel>
       <!-- <video_mask>rings/2.2_RINGS_FOOTSTEPS_A_TUNNEL_v01.mov</video_mask> -->
       <!-- <loop>1</loop> -->
       <reset>1</reset>
@@ -428,11 +459,11 @@
       <video_option3>rings/2.2_RINGS_RITME_VERSTOORD_3_v01.mov</video_option3>
       <video_option4>rings/2.2_RINGS_RITME_VERSTOORD_4_v01.mov</video_option4>
       <video_option5>rings/2.2_RINGS_RITME_VERSTOORD_5_v01.mov</video_option5>
-      <video_option6>rings/2.2_RINGS_RITME_VERSTOORD_6_v01.mov</video_option6>
-      <video_option7>rings/2.2_RINGS_RITME_VERSTOORD_7_v01.mov</video_option7>
-      <video_option8>rings/2.2_RINGS_RITME_VERSTOORD_8_v01.mov</video_option8>
-      <video_option9>rings/2.2_RINGS_RITME_VERSTOORD_9_v01.mov</video_option9>
-      <video_option0>rings/2.2_RINGS_RITME_VERSTOORD_10_v01.mov</video_option0>
+      <!-- <video_option6>rings/2.2_RINGS_RITME_VERSTOORD_6_v01.mov</video_option6> -->
+      <!-- <video_option7>rings/2.2_RINGS_RITME_VERSTOORD_7_v01.mov</video_option7> -->
+      <!-- <video_option8>rings/2.2_RINGS_RITME_VERSTOORD_8_v01.mov</video_option8> -->
+      <!-- <video_option9>rings/2.2_RINGS_RITME_VERSTOORD_9_v01.mov</video_option9> -->
+      <!-- <video_option0>rings/2.2_RINGS_RITME_VERSTOORD_10_v01.mov</video_option0> -->
       <video_mask>self</video_mask>
       <reset>1</reset>
       <spot>3</spot>
@@ -445,11 +476,11 @@
       <video_option3>rings/2.2_RINGS_RITME_VERSTOORD_3_v01.mov</video_option3>
       <video_option4>rings/2.2_RINGS_RITME_VERSTOORD_4_v01.mov</video_option4>
       <video_option5>rings/2.2_RINGS_RITME_VERSTOORD_5_v01.mov</video_option5>
-      <video_option6>rings/2.2_RINGS_RITME_VERSTOORD_6_v01.mov</video_option6>
-      <video_option7>rings/2.2_RINGS_RITME_VERSTOORD_7_v01.mov</video_option7>
-      <video_option8>rings/2.2_RINGS_RITME_VERSTOORD_8_v01.mov</video_option8>
-      <video_option9>rings/2.2_RINGS_RITME_VERSTOORD_9_v01.mov</video_option9>
-      <video_option0>rings/2.2_RINGS_RITME_VERSTOORD_10_v01.mov</video_option0>
+      <!-- <video_option6>rings/2.2_RINGS_RITME_VERSTOORD_6_v01.mov</video_option6> -->
+      <!-- <video_option7>rings/2.2_RINGS_RITME_VERSTOORD_7_v01.mov</video_option7> -->
+      <!-- <video_option8>rings/2.2_RINGS_RITME_VERSTOORD_8_v01.mov</video_option8> -->
+      <!-- <video_option9>rings/2.2_RINGS_RITME_VERSTOORD_9_v01.mov</video_option9> -->
+      <!-- <video_option0>rings/2.2_RINGS_RITME_VERSTOORD_10_v01.mov</video_option0> -->
       <video_mask>self</video_mask>
       <reset>1</reset>
       <spot>2</spot>
@@ -462,11 +493,11 @@
       <video_option3>rings/2.2_RINGS_RITME_VERSTOORD_3_v01.mov</video_option3>
       <video_option4>rings/2.2_RINGS_RITME_VERSTOORD_4_v01.mov</video_option4>
       <video_option5>rings/2.2_RINGS_RITME_VERSTOORD_5_v01.mov</video_option5>
-      <video_option6>rings/2.2_RINGS_RITME_VERSTOORD_6_v01.mov</video_option6>
-      <video_option7>rings/2.2_RINGS_RITME_VERSTOORD_7_v01.mov</video_option7>
-      <video_option8>rings/2.2_RINGS_RITME_VERSTOORD_8_v01.mov</video_option8>
-      <video_option9>rings/2.2_RINGS_RITME_VERSTOORD_9_v01.mov</video_option9>
-      <video_option0>rings/2.2_RINGS_RITME_VERSTOORD_10_v01.mov</video_option0>
+      <!-- <video_option6>rings/2.2_RINGS_RITME_VERSTOORD_6_v01.mov</video_option6> -->
+      <!-- <video_option7>rings/2.2_RINGS_RITME_VERSTOORD_7_v01.mov</video_option7> -->
+      <!-- <video_option8>rings/2.2_RINGS_RITME_VERSTOORD_8_v01.mov</video_option8> -->
+      <!-- <video_option9>rings/2.2_RINGS_RITME_VERSTOORD_9_v01.mov</video_option9> -->
+      <!-- <video_option0>rings/2.2_RINGS_RITME_VERSTOORD_10_v01.mov</video_option0> -->
       <video_mask>self</video_mask>
       <reset>1</reset>
       <spot>1</spot>
@@ -531,6 +562,7 @@
       <is_tunnel>1</is_tunnel>
       <freeze>1.1</freeze>
       <reset>1</reset>
+      <layer>1</layer>
     </effect>
     <effect name="mud_machine_destruct">
       <video>mud/2.3_MUD_MACHINE_C_AFBOUW_v03.mov</video>
@@ -569,6 +601,7 @@
       <layer>1</layer>
       <is_pano>1</is_pano>
       <mask_coords_name>roof_coord</mask_coords_name>
+      <layer>3</layer>
     </effect>
     <effect name="mud_roof2">
       <video>mud/2.3_MUD_MOVING_WHITE_ROOF_2_v02.mov</video>
@@ -576,6 +609,7 @@
       <layer>1</layer>
       <is_pano>1</is_pano>
       <mask_coords_name>roof_coord</mask_coords_name>
+      <layer>3</layer>
     </effect>
 
 
