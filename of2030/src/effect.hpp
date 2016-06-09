@@ -49,7 +49,9 @@ namespace of2030{
         }
 
         inline ofVideoPlayer* getVideoPlayer() const { return video_player; }
+        inline ofVideoPlayer* getMaskVideoPlayer() const { return mask_video_player; }
         inline ofImage* getImage() const { return image; }
+        inline ofImage* getMaskImage() const { return mask_image; }
         
 
     protected: // methods
