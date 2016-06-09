@@ -36,7 +36,6 @@ namespace of2030{
         void addEffect(Effect &effect);
         void stopEffectByTrigger(string &trigger);
         void stopEffectsByVideoPlayer(ofVideoPlayer *player);
-        void stopAllVideoEffects();
         void stopEffectsByImage(ofImage &image);
         void clearEffects();
 
