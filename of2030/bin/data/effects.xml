@@ -654,7 +654,11 @@
     </effect>
 
 
-    <effect name="deadman_">
+    <effect name="dead_spot">
+      <pattern>rect</pattern>
+      <is_tunnel>1</is_tunnel>
+      <draw_size_x>0.5</draw_size_x>
+      <auto_velocity_x>0.2</auto_velocity_x>
     </effect>
 
 
@@ -663,8 +667,7 @@
       <video>rain/3.1_RAIN_NOORDERLICHT_A_START_v01.mov</video>
       <!-- <loop>1</loop> -->
       <!-- <layer>0</layer> -->
-      <is_pano>0</is_pano>
-      <is_tunnel>1</is_tunnel>
+      <!-- <is_tunnel>1</is_tunnel> -->
       <freeze>1.0</freeze>
       <reset>1</reset>
     </effect>
@@ -673,7 +676,7 @@
       <loop>1</loop>
       <!-- <duration>200.0</duration> -->
       <layer>1</layer>
-      <is_tunnel>1</is_tunnel>
+      <!-- <is_tunnel>1</is_tunnel> -->
     </effect>
     <effect name="rain_rain_start">
       <video>rain/3.1_RAIN_REGEN_A_START_v01.mov</video>
@@ -698,8 +701,10 @@
       <!-- <loop>1</loop> -->
       <layer>4</layer>
       <reset>1</reset>
+      <is_pano>1</is_pano>
+      <draw_size_x>0.26</draw_size_x>
+      <draw_size_y>0.2</draw_size_y>
       <video_mask>rain/3.1_RAIN_REGEN_TRAAN_v02.mov</video_mask>
-      <duration>7.2</duration>
     </effect>
     <effect name="rain_thunder">
       <video>rain/3.1_RAIN_THUNDER_v01.mov</video>
@@ -710,57 +715,54 @@
       <reset>1</reset>
     </effect>
     <effect name="rain_cubes1">
+      <pattern>rect</pattern>
       <color_r>255</color_r>
       <color_g>0</color_g>
       <color_b>0</color_b>
       <duration>0.2</duration>
       <layer>3</layer>
-
       <is_pano>1</is_pano>
-      <is_tunnel>0</is_tunnel>
-      <translate_x>5.0</translate_x>
-      <translate_y>0.0</translate_y>
+      <translate_x>32.5</translate_x>
+      <translate_y>1.3</translate_y>
       <draw_size_x>0.3</draw_size_x>
       <draw_size_y>0.3</draw_size_y>
     </effect>
     <effect name="rain_cubes2">
+      <pattern>rect</pattern>
       <color_r>0</color_r>
       <color_g>255</color_g>
       <color_b>0</color_b>
       <duration>0.2</duration>
       <layer>3</layer>
       <is_pano>1</is_pano>
-      <is_tunnel>0</is_tunnel>
-      <translate_x>5.5</translate_x>
-      <translate_y>0.0</translate_y>
+      <translate_x>33.0</translate_x>
+      <translate_y>1.5</translate_y>
       <draw_size_x>0.3</draw_size_x>
       <draw_size_y>0.3</draw_size_y>
     </effect>
     <effect name="rain_cubes3">
+      <pattern>rect</pattern>
       <color_r>0</color_r>
       <color_g>0</color_g>
       <color_b>255</color_b>
       <duration>0.2</duration>
       <layer>3</layer>
-
       <is_pano>1</is_pano>
-      <is_tunnel>0</is_tunnel>
-      <translate_x>6.0</translate_x>
-      <translate_y>0.0</translate_y>
+      <translate_x>33.5</translate_x>
+      <translate_y>1.3</translate_y>
       <draw_size_x>0.3</draw_size_x>
       <draw_size_y>0.3</draw_size_y>
     </effect>
     <effect name="rain_cubes4">
+      <pattern>rect</pattern>
       <color_r>255</color_r>
       <color_g>0</color_g>
       <color_b>255</color_b>
       <duration>0.2</duration>
       <layer>3</layer>
-
       <is_pano>1</is_pano>
-      <is_tunnel>0</is_tunnel>
-      <translate_x>6.5</translate_x>
-      <translate_y>0.0</translate_y>
+      <translate_x>34.0</translate_x>
+      <translate_y>1.5</translate_y>
       <draw_size_x>0.3</draw_size_x>
       <draw_size_y>0.3</draw_size_y>
     </effect>
