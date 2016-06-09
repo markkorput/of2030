@@ -138,18 +138,21 @@
     </effect>
     <effect name="scav_fan_max">
       <image>scav_fan1_v01.jpg</image>
+      <image_mask>self</image_mask>
       <auto_rotate_z>25.0</auto_rotate_z>
       <spot>3</spot>
       <layer>1</layer>
     </effect>
     <effect name="scav_fan_koen">
       <image>scav_fan1_v01.jpg</image>
+      <image_mask>self</image_mask>
       <auto_rotate_z>25.0</auto_rotate_z>
       <spot>2</spot>
       <layer>1</layer>
     </effect>
     <effect name="scav_fan_gydo">
       <image>scav_fan1_v01.jpg</image>
+      <image_mask>self</image_mask>
       <auto_rotate_z>25.0</auto_rotate_z>
       <spot>1</spot>
       <layer>1</layer>
@@ -180,18 +183,21 @@
     </effect>
     <effect name="scav_turbo_max">
       <image>scav_fan3_v01.jpg</image>
+      <image_mask>self</image_mask>
       <spot>3</spot>
       <layer>4</layer>
       <auto_rotate_z>60.0</auto_rotate_z>
     </effect>
     <effect name="scav_turbo_koen">
       <image>scav_fan3_v01.jpg</image>
+      <image_mask>self</image_mask>
       <spot>2</spot>
       <layer>4</layer>
       <auto_rotate_z>60.0</auto_rotate_z>
     </effect>
     <effect name="scav_turbo_gydo">
       <image>scav_fan3_v01.jpg</image>
+      <image_mask>self</image_mask>
       <spot>1</spot>
       <layer>4</layer>
       <auto_rotate_z>60.0</auto_rotate_z>
