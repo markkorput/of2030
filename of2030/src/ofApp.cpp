@@ -107,10 +107,6 @@ void ofApp::setup(){
     // of2030::OscPlaybackManager::instance()->start("_rec");
     // of2030::OscPlaybackManager::instance()->start("clock_spot");
 
-    if(of2030::XmlSettings::instance()->alphaBlending){
-       ofEnableAlphaBlending();
-    }
-
 //    ofDisableArbTex();
     
     // using the player's time as main timing mechanism

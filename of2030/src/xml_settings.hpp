@@ -32,7 +32,6 @@ namespace of2030{
         ofVec3f room_size;
 
         bool rgbaVidPixels;
-        bool alphaBlending;
         bool drawToFboFirst;
 
 #ifdef __MULTI_CLIENT_ENABLED__

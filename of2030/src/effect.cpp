@@ -34,6 +34,7 @@ void Effect::reset(){
     mask_image=NULL;
     layer = 0;
     bUnique = true;
+    blendMode = OF_BLENDMODE_SCREEN;
 }
 
 
@@ -43,6 +44,19 @@ void Effect::reset(){
 
 void Effect::setup(Context &_context){
     string val;
+    int vali;
+    
+    vali = _context.effect_setting.getValue("blendmode", -1);
+    if(vali != -1){
+        switch(vali){
+            case 0: blendMode = OF_BLENDMODE_DISABLED; break;
+            case 1: blendMode = OF_BLENDMODE_ALPHA; break;
+            case 2: blendMode = OF_BLENDMODE_ADD; break;
+            case 3: blendMode = OF_BLENDMODE_SUBTRACT; break;
+            case 4: blendMode = OF_BLENDMODE_MULTIPLY; break;
+            case 5: blendMode = OF_BLENDMODE_SCREEN;
+        }
+    }
 
     // just perform an operation?
     val = _context.effect_setting.getValue("operation", "");
