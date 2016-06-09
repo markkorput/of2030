@@ -217,7 +217,7 @@ void Effect::draw(Context &_context, float dt){
 
     // draw 4-point coordinate mask in fbo2
     context->fbo2->begin();
-        ofClear(0.0f, 0.0f, 0.0f, 0.0f);
+        ofClear(0.0f, 0.0f, 0.0f, 255.0f);
         val = context->effect_setting.getValue("mask_coords_name", "");
         if(val != ""){
             // draw 4-point coordinates mask
@@ -228,27 +228,31 @@ void Effect::draw(Context &_context, float dt){
             ofDrawRectangle(rect);
         }
     context->fbo2->end();
-
-    // draw content to fbo3
+    
     context->fbo3->begin();
+        // draw content to fbo3
         ofClear(0.0f, 0.0f, 0.0f, 0.0f);
         ofPushMatrix();
             drawContent();
         ofPopMatrix();
+    
+        // draw mask with blend mode multiply (essentially only leaving the parts where the mask is white)
+        ofEnableBlendMode(OF_BLENDMODE_MULTIPLY);
+        context->fbo2->draw(0.0f, 0.0f);
     context->fbo3->end();
 
-    ofShader* maskShader = ShaderManager::instance()->get("mask");
+    // draw the resulting content in fbo 3 with our standard shader (allows for texture-tiling, colorizing and alpha-fading)
+    ofShader* maskShader = ShaderManager::instance()->get("standard");
 
     // draw content of fbo3 through mask of fbo2
     maskShader->begin();
         // pass mask texture to shader
-        maskShader->setUniformTexture("iMask", context->fbo2->getTexture(), 2);
+//        maskShader->setUniformTexture("iMask", context->fbo2->getTexture(), 2);
         maskShader->setUniform4f("iColor", precalc->color);
         maskShader->setUniform1f("iAlpha", auto_alpha);
         maskShader->setUniform2f("iResolution", precalc->resolution);
         // ofSetColor(precalc->color); // --> doesn't work because shader doesn't use this color
         maskShader->setUniform2f("iTexCoordMultiply", context->effect_setting.getValue("texcoord_multiply", ofVec2f(1.0f, 1.0f)));
-    
         context->fbo3->draw(0.0f, 0.0f);
     maskShader->end();
 
@@ -361,10 +365,8 @@ void Effect::drawContent(){
         return;
     }
 
-
     // not video
 
-        
     if(shader){
         // activate shader
         shader->begin();
