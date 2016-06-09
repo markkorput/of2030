@@ -21,16 +21,6 @@ VideoManager::VideoManager(){
 #endif // __APPLE__
 }
 
-void VideoManager::destroy(){
-    // don't iterate like normal, because the iterator gets corrupted and causes
-    // BAD ACCESS errors when the map gets modified during its iterations
-    // we'll just take the first item every time and remove it, until there's nothing left
-    while(!players.empty()){
-        unload(players.begin()->first);
-    }
-
-    players.clear();
-}
 //void VideoManager::setup(){
 //    
 //}
@@ -71,14 +61,25 @@ ofVideoPlayer* VideoManager::get(const string &video_name, const string &alias, 
     return player;
 }
 
+void VideoManager::unloadAll(){
+    // don't iterate like normal, because the iterator gets corrupted and causes
+    // BAD ACCESS errors when the map gets modified during its iterations
+    // we'll just take the first item every time and remove it, until there's nothing left
+    while(!players.empty()){
+        unload(players.begin()->first);
+    }
+    
+    players.clear();
+}
+
 bool VideoManager::unload(const string &alias){
     ofLog() << "VideoManager::unload with " << alias;
 
     // No specific player specified? destroy all
-    if(alias == ""){
-        destroy();
-        return true;
-    }
+//    if(alias == ""){
+//        destroy();
+//        return true;
+//    }
 
     // find specified player
     std::map<string,ofVideoPlayer*>::iterator it = players.find(alias);

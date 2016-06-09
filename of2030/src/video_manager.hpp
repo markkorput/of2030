@@ -23,11 +23,12 @@ namespace of2030 {
 
         //void setup();
         void update();
-        void destroy();
+        void destroy(){ unloadAll(); }
 
         ofVideoPlayer* get(const string &video_name, bool load=true);
         ofVideoPlayer* get(const string &video_name, const string &alias, bool load=true);
         
+        void unloadAll();
         bool unload(const string &alias);
         void unload(ofVideoPlayer *player);
 

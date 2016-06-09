@@ -17,17 +17,6 @@ ImageManager::ImageManager(){
     folder_path = "images/";
 }
 
-void ImageManager::destroy(){
-    // don't iterate like normal, because the iterator gets corrupted and causes
-    // BAD ACCESS errors when the map gets modified during its iterations
-    // we'll just take the first item every time and remove it, until there's nothing left
-    while(!images.empty()){
-        unload(images.begin()->first);
-    }
-
-    images.clear();
-}
-
 ofImage* ImageManager::get(const string &name, bool load){
     // assume alias IS the video's path
     return get(name, name, load);
@@ -58,15 +47,26 @@ ofImage* ImageManager::get(const string &name, const string &alias, bool load){
     return img;
 }
 
+void ImageManager::unloadAll(){
+    // don't iterate like normal, because the iterator gets corrupted and causes
+    // BAD ACCESS errors when the map gets modified during its iterations
+    // we'll just take the first item every time and remove it, until there's nothing left
+    while(!images.empty()){
+        unload(images.begin()->first);
+    }
+    
+    images.clear();
+}
+
 bool ImageManager::unload(const string &alias){
     ofLog() << "ImageManager::unload with " << alias;
 
-    // No specific player specified?
-    if(alias == ""){
-        // destroy (unload all)
-        destroy();
-        return true;
-    }
+//    // No specific player specified?
+//    if(alias == ""){
+//        // destroy (unload all)
+//        destroy();
+//        return true;
+//    }
 
     // find specified image
     std::map<string,ofImage*>::iterator it = images.find(alias);

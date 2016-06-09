@@ -273,16 +273,11 @@ void ofApp::onLoadVideo(string &name){
 void ofApp::onUnloadVideo(string &name){
     // every video that gets unloaded in the VideoManager triggers the onVideoPlayerUnload callback below
     // which takes care of destroying any effects that might still be using the unloaded player(s)
-
-//    if(name == ""){ // unload all?
-//        of2030::Player::instance()->stopAllVideoEffects();
-//    } else {
-//        ofVideoPlayer* player = of2030::VideoManager::instance()->get(name, false);
-//        // could be NULL!
-//        of2030::Player::instance()->stopEffectsByVideoPlayer(player);
-//    }
-
-    of2030::VideoManager::instance()->unload(name);
+    if(name == ""){
+        of2030::VideoManager::instance()->unloadAll();
+    } else {
+        of2030::VideoManager::instance()->unload(name);
+    }
 }
 
 void ofApp::onVideoPlayerUnload(ofVideoPlayer &player){
@@ -294,7 +289,11 @@ void ofApp::onLoadImage(string &name){
 }
 
 void ofApp::onUnloadImage(string &name){
-    of2030::ImageManager::instance()->unload(name);
+    if(name == ""){
+        of2030::ImageManager::instance()->unloadAll();
+    } else{
+        of2030::ImageManager::instance()->unload(name);
+    }
 }
 
 void ofApp::onImageUnload(ofImage &image){

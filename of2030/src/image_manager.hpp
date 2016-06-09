@@ -23,11 +23,12 @@ namespace of2030 {
 
         //void setup();
         // void update();
-        void destroy();
+        void destroy(){ unloadAll(); }
 
         ofImage* get(const string &name, bool load=true);
         ofImage* get(const string &name, const string &alias, bool load=true);
 
+        void unloadAll();
         bool unload(const string &name);
         void unload(ofImage* image);
         
