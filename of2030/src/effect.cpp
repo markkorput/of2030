@@ -34,7 +34,7 @@ void Effect::reset(){
     mask_image=NULL;
     layer = 0;
     bUnique = true;
-    blendMode = OF_BLENDMODE_SCREEN;
+    blendMode = OF_BLENDMODE_ADD;
 }
 
 
