@@ -560,7 +560,7 @@
       <!-- <loop>1</loop> -->
       <!-- <layer>0</layer> -->
       <is_tunnel>1</is_tunnel>
-      <freeze>1.1</freeze>
+      <freeze>1.0</freeze>
       <reset>1</reset>
       <layer>1</layer>
     </effect>
@@ -570,18 +570,6 @@
       <!-- <layer>0</layer> -->
       <is_tunnel>1</is_tunnel>
       <duration>24.0</duration>
-    </effect>
-    <effect name="mud_machine_cube">
-      <video>mud/2.3_MUD_MACHINE_D_CUBEONLY_v02.mov</video>
-      <loop>1</loop>
-      <!-- <layer>0</layer> -->
-      <is_tunnel>1</is_tunnel>
-    </effect>
-    <effect name="mud_machine_nocube">
-      <video>mud/2.3_MUD_MACHINE_E_NOCUBE_v02.mov</video>
-      <loop>1</loop>
-      <!-- <layer>0</layer> -->
-      <is_tunnel>1</is_tunnel>
     </effect>
     <effect name="mud_wheel_max">
       <image>mud_wheel_v01.jpg</image>
@@ -614,69 +602,25 @@
 
 
 
-    <effect name="lava_vid1">
+    <effect name="lava_beat">
       <video>lava/2.4_LAVA_HARTBEAT_A_STANDARD_1SCREEN_v01.mov</video>
-      <video_mask>lava/2.4_LAVA_HARTBEAT_A_STANDARD_1SCREEN_v01.mov</video_mask>
+      <!-- <video_mask>self</video_mask> -->
       <is_tunnel>1</is_tunnel>
       <!-- <is_pano>1</is_pano> -->
       <!-- <loop>1</loop> -->
       <reset>1</reset>
     </effect>
-    <effect name="lava_vid2">
-      <video>lava/2.4_LAVA_HARTBEAT_B_5TIMES_v01.mov</video>
-      <!-- <video>fill100x50.mov</video> -->
-      <is_tunnel>1</is_tunnel>
-      <loop>1</loop>
-    </effect>
-    <effect name="lava_vid3">
-      <video>lava/2.4_LAVA_HARTBEAT_C_DEAD_v01.mov</video>
-      <is_tunnel>0</is_tunnel>
-      <is_pano>1</is_pano>
-      <reset>1</reset>
-    </effect>
-    <effect name="lava_vid4">
-      <video>2.4_LAVA_PATROON_EYEBLINK_v03.mov</video>
-      <!-- <loop>1</loop> -->
-      <layer>2</layer>
-      <is_tunnel>1</is_tunnel>
-      <!-- <duration>200.0</duration> -->
-    </effect>
-    <effect name="lava_vid5">
-      <video>2.4_LAVA_PATROON_GROW_v03.mov</video>
-      <layer>1</layer>
-      <is_tunnel>1</is_tunnel>
-    </effect>
-    <effect name="lava_vid6">
-      <video>lava/2.4_LAVA_PATROON_v01.mov</video>
-      <loop>1</loop>
-      <is_tunnel>1</is_tunnel>
-      <duration>200.0</duration>
-    </effect>
-    <effect name="lava_vid7">
-      <video>2.4_LAVA_PATROON_WOBBLINGLINES_v03.mov</video>
-      <loop>1</loop>
-      <is_tunnel>1</is_tunnel>
-      <layer>1</layer>
-    </effect>
-    <effect name="lava_vid8">
-      <video>lava/2.4_LAVA_PATROON_ZIEKENHUISBED_v01.mov</video>
-      <is_pano>1</is_pano>
-      <!-- <freeze>1.0</freeze> -->
-    </effect>
     <effect name="lava_bed">
       <pattern>rect</pattern>
       <!-- <video>lava/2.4_LAVA_PATROON_ZIEKENHUISBED_v01.mov</video> -->
       <is_pano>1</is_pano>
-      <is_tunnel>0</is_tunnel>
       <translate_x>5.0</translate_x>
       <translate_y>-0.6</translate_y>
       <draw_size_x>2.0</draw_size_x>
-      <duration>200.0</duration>
       <layer>6</layer>
     </effect>
     <effect name="lava_pattern_grow">
       <video>lava/2.4_LAVA_PATROON_v01.mov</video>
-      <video_alias>lava_pattern</video_alias>
       <reset>1</reset>
       <loop>1</loop>
       <is_tunnel>1</is_tunnel>
@@ -687,7 +631,6 @@
     </effect>
     <effect name="lava_blink">
       <video>lava/2.4_LAVA_PATROON_v01.mov</video>
-      <video_alias>lava_pattern</video_alias>
       <loop>1</loop>
       <is_tunnel>1</is_tunnel>
       <video_mask>lava/2.4_LAVA_PATROON_EYEBLINK_v03.mov</video_mask>
@@ -696,12 +639,17 @@
     </effect>
     <effect name="lava_nightmare">
       <video>lava/2.4_LAVA_PATROON_v01.mov</video>
-      <video_alias>lava_pattern</video_alias>
       <loop>1</loop>
       <is_tunnel>1</is_tunnel>
       <video_mask>lava/2.4_LAVA_PATROON_WOBBLINGLINES_v03.mov</video_mask>
       <video_mask_loop>1</video_mask_loop>
       <layer>2</layer>
+    </effect>
+    <effect name="lava_flatline">
+      <video>lava/2.4_LAVA_HARTBEAT_C_DEAD_v01.mov</video>
+      <is_tunnel>0</is_tunnel>
+      <is_pano>1</is_pano>
+      <reset>1</reset>
     </effect>
 
 
