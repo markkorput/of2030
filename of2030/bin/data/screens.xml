@@ -1,6 +1,6 @@
 <of2030>
   <screens>
-    <screen name="dev1">
+    <screen name="rpi10">
       <!-- <screen_rotate_z>180</screen_rotate_z> -->
       <!-- <screen_translate_x>768</screen_translate_x> -->
       <!-- <screen_translate_y>576</screen_translate_y> -->
@@ -113,7 +113,7 @@
     </screen>
 
 
-    <screen name="dev3">
+    <screen name="rpi7">
       <!-- resolution -->
       <resolution_x>768</resolution_x>
       <resolution_y>576</resolution_y>
@@ -227,7 +227,7 @@
 
 
 
-    <screen name="rpi7">
+    <screen name="practice_rpi7">
       <!-- resolution -->
       <resolution_x>768</resolution_x>
       <resolution_y>576</resolution_y>
@@ -332,7 +332,7 @@
 
     </screen>
 
-    <screen name="rpi8">
+    <screen name="practice_rpi8">
       <!-- resolution -->
       <resolution_x>768</resolution_x>
       <resolution_y>576</resolution_y>
@@ -408,7 +408,7 @@
       <pano_coord4_y>1.0</pano_coord4_y>
     </screen>
 
-    <screen name="rpi10">
+    <screen name="practice_rpi10">
       <!-- resolution -->
       <resolution_x>768</resolution_x>
       <resolution_y>576</resolution_y>
@@ -484,7 +484,7 @@
       <pano_coord4_y>1.0</pano_coord4_y>
     </screen>
 
-    <screen name="rpi3">
+    <screen name="practice_rpi3">
       <!-- resolution -->
       <resolution_x>768</resolution_x>
       <resolution_y>576</resolution_y>
@@ -564,7 +564,7 @@
       <pano_coord4_y>1.0</pano_coord4_y>
     </screen>
 
-    <screen name="rpi4">
+    <screen name="practice_rpi4">
       <!-- resolution -->
       <resolution_x>768</resolution_x>
       <resolution_y>576</resolution_y>
@@ -642,7 +642,7 @@
       <pano_coord4_y>1.0</pano_coord4_y>
     </screen>
 
-    <screen name="rpi5">
+    <screen name="practice_rpi5">
       <!-- resolution -->
       <resolution_x>768</resolution_x>
       <resolution_y>576</resolution_y>

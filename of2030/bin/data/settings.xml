@@ -15,9 +15,9 @@
   <room_size_y>2.0</room_size_y>
   <room_size_z>16.5</room_size_z>
   <multi>
-    <id>dev1</id>
+    <id>rpi10</id>
     <id>dev2</id>
-    <id>dev3</id>
+    <id>rpi7</id>
     <id>dev4</id>
 <!--     <id>rpi5</id>
     <id>rpi7</id>
