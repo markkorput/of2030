@@ -218,6 +218,7 @@ void Effect::draw(Context &_context, float dt){
     // draw 4-point coordinate mask in fbo2
     context->fbo2->begin();
         ofClear(0.0f, 0.0f, 0.0f, 255.0f);
+    
         val = context->effect_setting.getValue("mask_coords_name", "");
         if(val != ""){
             // draw 4-point coordinates mask
@@ -230,6 +231,7 @@ void Effect::draw(Context &_context, float dt){
     context->fbo2->end();
     
     context->fbo3->begin();
+        ofEnableBlendMode(OF_BLENDMODE_ALPHA);
         // draw content to fbo3
         ofClear(0.0f, 0.0f, 0.0f, 0.0f);
         ofPushMatrix();
@@ -289,7 +291,6 @@ void Effect::drawContent(){
 
     if(image){
         if(mask_image){
-            maskShader = ShaderManager::instance()->get("mask");
             maskShader->begin();
             maskShader->setUniformTexture("iMask", mask_image->getTexture(), 2);
             maskShader->setUniform4f("iColor", ofColor::white);
@@ -297,6 +298,7 @@ void Effect::drawContent(){
             maskShader->setUniform2f("iTexCoordMultiply", ofVec2f(1.0f,1.0f));
             maskShader->setUniform2f("iResolution", ofVec2f(image->getWidth(), image->getHeight()));
         }
+
         image->draw(0.0, 0.0, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
         if(mask_image){
             maskShader->end();
