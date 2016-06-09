@@ -100,10 +100,9 @@ void Renderer::draw(){
     for(auto effect: effects){
         context.effect_setting.data.clear();
         fillEffectSetting(*effect, context.effect_setting);
+        ofEnableBlendMode(effect->getBlendMode());
         effect->draw(context, dt);
     }
-
-    ofRectMode(OF_RECTMODE_CORNER);
 
     if(fboFirst){
         fbo->end();
@@ -118,6 +117,9 @@ void Renderer::draw(){
         ofRotateZ(rot.z);
 
         ofSetColor(255);
+        ofRectMode(OF_RECTMODE_CORNER);
+        ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+
         fbo->draw(0,0);
         ofPopMatrix();
     } else {

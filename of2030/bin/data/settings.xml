@@ -8,7 +8,6 @@
   </osc>
 
   <rgba_pixels>0</rgba_pixels>
-  <alpha_blending>0</alpha_blending>
   <!-- <draw_to_fbo_first>1</draw_to_fbo_first> -->
 
   <room_size_x>9.0</room_size_x>

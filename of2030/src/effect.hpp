@@ -49,8 +49,10 @@ namespace of2030{
         }
 
         inline ofVideoPlayer* getVideoPlayer() const { return video_player; }
+        inline ofVideoPlayer* getMaskVideoPlayer() const { return mask_video_player; }
         inline ofImage* getImage() const { return image; }
-        
+        inline ofImage* getMaskImage() const { return mask_image; }
+        inline ofBlendMode getBlendMode() const { return blendMode; }
 
     protected: // methods
         
@@ -77,6 +79,17 @@ namespace of2030{
         float startTime, endTime;
         bool bUnique; // if there can be only one effect with this trigger value at any given moment
 
+//        enum ofBlendMode{
+//            OF_BLENDMODE_DISABLED = 0,
+//            OF_BLENDMODE_ALPHA 	  = 1,
+//            OF_BLENDMODE_ADD 	  = 2,
+//            OF_BLENDMODE_SUBTRACT = 3,
+//            OF_BLENDMODE_MULTIPLY = 4,
+//            OF_BLENDMODE_SCREEN   = 5
+//        };
+        ofBlendMode blendMode;
+        
+        
         ofImage *image, *mask_image;
         ofVideoPlayer *video_player, *mask_video_player;
         bool bVidStarted;
