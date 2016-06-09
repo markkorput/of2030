@@ -66,13 +66,13 @@
       <reset>1</reset>
     </effect>
     <effect name="stellar_voice1">
-      <video>stellar/1.1_STELLAR_VOICEOVER_1_v01.mov</video>
+      <video>stellar/1.1_STELLAR_VOICEOVER_1_v02.mov</video>
       <mask_coords_name>voice_coord</mask_coords_name>
       <reset>1</reset>
       <layer>-1</layer>
     </effect>
     <effect name="stellar_voice2">
-      <video>stellar/1.1_STELLAR_VOICEOVER_2_v01.mov</video>
+      <video>stellar/1.1_STELLAR_VOICEOVER_2_v02.mov</video>
       <mask_coords_name>voice_coord</mask_coords_name>
       <reset>1</reset>
       <layer>-1</layer>
