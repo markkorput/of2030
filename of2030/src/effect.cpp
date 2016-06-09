@@ -34,6 +34,7 @@ void Effect::reset(){
     mask_image=NULL;
     layer = 0;
     bUnique = true;
+    blendMode = OF_BLENDMODE_SCREEN;
 }
 
 
@@ -43,6 +44,19 @@ void Effect::reset(){
 
 void Effect::setup(Context &_context){
     string val;
+    int vali;
+    
+    vali = _context.effect_setting.getValue("blendmode", -1);
+    if(vali != -1){
+        switch(vali){
+            case 0: blendMode = OF_BLENDMODE_DISABLED; break;
+            case 1: blendMode = OF_BLENDMODE_ALPHA; break;
+            case 2: blendMode = OF_BLENDMODE_ADD; break;
+            case 3: blendMode = OF_BLENDMODE_SUBTRACT; break;
+            case 4: blendMode = OF_BLENDMODE_MULTIPLY; break;
+            case 5: blendMode = OF_BLENDMODE_SCREEN;
+        }
+    }
 
     // just perform an operation?
     val = _context.effect_setting.getValue("operation", "");
@@ -203,7 +217,8 @@ void Effect::draw(Context &_context, float dt){
 
     // draw 4-point coordinate mask in fbo2
     context->fbo2->begin();
-        ofClear(0.0f, 0.0f, 0.0f, 0.0f);
+        ofClear(0.0f, 0.0f, 0.0f, 255.0f);
+    
         val = context->effect_setting.getValue("mask_coords_name", "");
         if(val != ""){
             // draw 4-point coordinates mask
@@ -214,27 +229,32 @@ void Effect::draw(Context &_context, float dt){
             ofDrawRectangle(rect);
         }
     context->fbo2->end();
-
-    // draw content to fbo3
+    
     context->fbo3->begin();
+        ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+        // draw content to fbo3
         ofClear(0.0f, 0.0f, 0.0f, 0.0f);
         ofPushMatrix();
             drawContent();
         ofPopMatrix();
+    
+        // draw mask with blend mode multiply (essentially only leaving the parts where the mask is white)
+        ofEnableBlendMode(OF_BLENDMODE_MULTIPLY);
+        context->fbo2->draw(0.0f, 0.0f);
     context->fbo3->end();
 
-    ofShader* maskShader = ShaderManager::instance()->get("mask");
+    // draw the resulting content in fbo 3 with our standard shader (allows for texture-tiling, colorizing and alpha-fading)
+    ofShader* maskShader = ShaderManager::instance()->get("standard");
 
     // draw content of fbo3 through mask of fbo2
     maskShader->begin();
         // pass mask texture to shader
-        maskShader->setUniformTexture("iMask", context->fbo2->getTexture(), 2);
+//        maskShader->setUniformTexture("iMask", context->fbo2->getTexture(), 2);
         maskShader->setUniform4f("iColor", precalc->color);
         maskShader->setUniform1f("iAlpha", auto_alpha);
         maskShader->setUniform2f("iResolution", precalc->resolution);
         // ofSetColor(precalc->color); // --> doesn't work because shader doesn't use this color
         maskShader->setUniform2f("iTexCoordMultiply", context->effect_setting.getValue("texcoord_multiply", ofVec2f(1.0f, 1.0f)));
-    
         context->fbo3->draw(0.0f, 0.0f);
     maskShader->end();
 
@@ -271,7 +291,6 @@ void Effect::drawContent(){
 
     if(image){
         if(mask_image){
-            maskShader = ShaderManager::instance()->get("mask");
             maskShader->begin();
             maskShader->setUniformTexture("iMask", mask_image->getTexture(), 2);
             maskShader->setUniform4f("iColor", ofColor::white);
@@ -279,6 +298,7 @@ void Effect::drawContent(){
             maskShader->setUniform2f("iTexCoordMultiply", ofVec2f(1.0f,1.0f));
             maskShader->setUniform2f("iResolution", ofVec2f(image->getWidth(), image->getHeight()));
         }
+
         image->draw(0.0, 0.0, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
         if(mask_image){
             maskShader->end();
@@ -347,10 +367,8 @@ void Effect::drawContent(){
         return;
     }
 
-
     // not video
 
-        
     if(shader){
         // activate shader
         shader->begin();
