@@ -614,10 +614,10 @@
       <pattern>rect</pattern>
       <!-- <video>lava/2.4_LAVA_PATROON_ZIEKENHUISBED_v01.mov</video> -->
       <is_pano>1</is_pano>
-      <translate_x>5.0</translate_x>
+      <translate_x>7.25</translate_x>
       <translate_y>-0.6</translate_y>
       <draw_size_x>2.0</draw_size_x>
-      <layer>6</layer>
+      <layer>8</layer>
     </effect>
     <effect name="lava_pattern_grow">
       <video>lava/2.4_LAVA_PATROON_v01.mov</video>
@@ -628,6 +628,7 @@
       <video_mask>lava/2.4_LAVA_PATROON_GROW_v03.mov</video_mask>
       <video_mask_loop>0</video_mask_loop>
       <video_mask_reset>1</video_mask_reset>
+      <layer>7</layer>
     </effect>
     <effect name="lava_blink">
       <video>lava/2.4_LAVA_PATROON_v01.mov</video>
