@@ -11,6 +11,7 @@
 #include "xml_configs.hpp"
 #include "effect_manager.hpp"
 #include "video_manager.hpp"
+#include "image_manager.hpp"
 
 using namespace of2030;
 
@@ -100,7 +101,7 @@ void InterfacePlayerBridge::onTrigger(string &trigger){
 
 void InterfacePlayerBridge::onStopTrigger(string &trigger){
     if(trigger == ""){
-        ofLog() << "InterfacePlayerBridge::onStopTrigger - clear all";
+        // ofLog() << "InterfacePlayerBridge::onStopTrigger - clear all";
         m_player->clearEffects();
     } else {
         m_player->stopEffectByTrigger(trigger);
@@ -140,7 +141,35 @@ void InterfacePlayerBridge::onScreenConfig(EffectConfig &cfg){
 void InterfacePlayerBridge::onEffectEnded(Effect &effect){
     EfficientEffectManager::instance()->finish(&effect);
 
-#ifdef __AUTO_UNLOAD_VIDEOS_WHEN_EFFECTS_END__
+#ifndef __AUTO_UNLOAD_VIDEOS_WHEN_EFFECTS_END__
+    // do we want to unload the videos player of this effect?
+    if(effect.unloadVideos()){
+        ofVideoPlayer* player;
+        
+        player = effect.getVideoPlayer();
+        if(player){
+            VideoManager::instance()->deprecate(player);
+        }
+        
+        player = effect.getMaskVideoPlayer();
+        if(player){
+            VideoManager::instance()->deprecate(player);
+        }
+    }
+    
+    // do we want to unload the images of this effect?
+    if(effect.unloadImages()){
+        ofImage* img;
+        img = effect.getImage();
+        if(img){
+            ImageManager::instance()->unload(img);
+        }
+        img = effect.getMaskImage();
+        if(img){
+            ImageManager::instance()->unload(img);
+        }
+    }
+#else
     // did the ended effect have a video (player)?
     ofVideoPlayer* player = effect.getVideoPlayer();
     
