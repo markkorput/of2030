@@ -82,6 +82,12 @@ bool XmlSettings::load(bool reload){
     // osc
     osc_setting.port = xml.getValue("of2030:osc:port", 0);
     ofLogVerbose() << "OSC port: " << osc_setting.port;
+
+#ifdef __OSC_SENDER_ENABLED__
+    osc_out_port = xml.getValue("of2030:osc:out:port", 0);
+    osc_out_host = xml.getValue("of2030:osc:out:host", "");
+#endif // __OSC_SENDER_ENABLED__
+
     // loadOscAddresses(xml.doc, osc_setting);
 
     room_size = ofVec3f(xml.getValue("of2030:room_size_x", 1.0f),

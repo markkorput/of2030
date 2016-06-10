@@ -8,6 +8,7 @@
 
 #include "osc_playback_manager.hpp"
 #include "osc_receiver.hpp"
+#include "osc_sender.hpp"
 
 using namespace of2030;
 
@@ -123,5 +124,14 @@ void OscPlaybackManager::clear(){
 }
 
 void OscPlaybackManager::onMessage(ofxOscMessage &message){
-    of2030::OscReceiver::instance()->processMessage(message);
+#ifdef __OSC_SENDER_ENABLED__
+    if(OscSender::instance()->isEnabled()){
+        OscSender::instance()->sender.sendMessage(message);
+    } else {
+        OscReceiver::instance()->processMessage(message);
+    }
+#else
+    OscReceiver::instance()->processMessage(message);
+#endif
 }
+

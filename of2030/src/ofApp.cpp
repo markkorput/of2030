@@ -19,6 +19,7 @@
 #include "image_manager.hpp"
 #include "osc_playback_manager.hpp"
 #include "osc_recorder.hpp"
+#include "osc_sender.hpp"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -88,6 +89,11 @@ void ofApp::setup(){
     of2030::Renderer::instance()->setup();
 #endif
 
+#ifdef __OSC_SENDER_ENABLED__
+    of2030::OscSender::instance()->setup(of2030::XmlSettings::instance()->osc_out_host,
+                                         of2030::XmlSettings::instance()->osc_out_port);
+#endif // __OSC_SENDER_ENABLED__
+
     ofAddListener(of2030::Interface::instance()->controlEvent, this, &ofApp::onControl);
     ofAddListener(of2030::Interface::instance()->playbackEvent, this, &ofApp::onPlayback);
     ofAddListener(of2030::Interface::instance()->stopPlaybackEvent, this, &ofApp::onStopPlayback);
@@ -102,12 +108,6 @@ void ofApp::setup(){
     ofLogVerbose() << "Starting OscReceiver";
     of2030::OscReceiver::instance()->configure(of2030::XmlSettings::instance()->osc_setting);
     of2030::OscReceiver::instance()->setup();
-
-    // for debugging; start recorded osc sequence
-    // of2030::OscPlaybackManager::instance()->start("_rec");
-    // of2030::OscPlaybackManager::instance()->start("clock_spot");
-
-//    ofDisableArbTex();
     
     // using the player's time as main timing mechanism
     next_log_alive_time = of2030::Player::instance()->getTime();
