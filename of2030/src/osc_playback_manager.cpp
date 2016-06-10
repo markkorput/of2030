@@ -81,10 +81,11 @@ string OscPlaybackManager::nameToPath(const string &name){
 }
 
 void OscPlaybackManager::update(){
-    for(auto playback: playbacks){
-        // update
+    OscPlayback *playback;
+
+    for(int i=playbacks.size()-1; i>=0; i--){
+        playback = playbacks[i];
         if(!playback->update()){
-            // done?
             remove(playback);
         }
     }

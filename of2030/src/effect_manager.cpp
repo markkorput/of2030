@@ -95,8 +95,13 @@ bool EffectManager::remove(Effect* effect){
 }
 
 void EffectManager::clear(){
-    for(auto effect: effects){
-        remove(effect);
+// THIS CAUSES CRASHES
+//    for(auto effect: effects){
+//        remove(effect);
+//    }
+
+    for(int i=effects.size()-1; i>=0; i--){
+        remove(effects[i]);
     }
 }
 

@@ -25,7 +25,7 @@ public: // methods
 
     // reading
     bool load(string path);
-    OscAsciiLine* next_line(int recursion_count=0);
+    OscAsciiLine* next_line();
     inline const string &getReadPath(){ return readpath; }
     inline void reset(){
         load(readpath);
@@ -40,6 +40,9 @@ public: // methods
 
     inline void setLoop(bool loop){ bLoop = loop; }
 
+private:
+    OscAsciiLine* read_line();
+    
 private: // reading attributes
     OscAsciiLine last_line;
     std::ifstream infile;

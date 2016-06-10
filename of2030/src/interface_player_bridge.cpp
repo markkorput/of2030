@@ -95,10 +95,12 @@ void InterfacePlayerBridge::onTrigger(string &trigger){
 }
 
 void InterfacePlayerBridge::onStopTrigger(string &trigger){
-    if(trigger == "")
+    if(trigger == ""){
+        ofLog() << "InterfacePlayerBridge::onStopTrigger - clear all";
         m_player->clearEffects();
-    else
+    } else {
         m_player->stopEffectByTrigger(trigger);
+    }
 }
 
 //// callback to process new effect events from the interface
