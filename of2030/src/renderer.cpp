@@ -97,7 +97,12 @@ void Renderer::draw(){
 
     // draw all active effects
     vector<Effect*> effects = player->getActiveEffects();
-    for(auto effect: effects){
+    int count=effects.size();
+    Effect* effect;
+
+    for(int i=0; i<count; i++){
+        effect = effects[i];
+
         context.effect_setting.data.clear();
         fillEffectSetting(*effect, context.effect_setting);
         ofEnableBlendMode(effect->getBlendMode());

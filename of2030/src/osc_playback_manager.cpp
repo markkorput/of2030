@@ -42,10 +42,11 @@ bool OscPlaybackManager::start(const string &name){
 }
 
 bool OscPlaybackManager::stop(const string &name){
-    if(name ==""){ // stop all
-        for(auto playback: playbacks){
-            remove(playback);
+    if(name == ""){ // stop all
+        for(int i=playbacks.size()-1; i>=0; i--){
+            remove(playbacks[i]);
         }
+
         playbacks.clear();
         return true;
     }
@@ -59,9 +60,9 @@ bool OscPlaybackManager::stop(const string &name){
 OscPlayback* OscPlaybackManager::getPlayback(const string &name){
     string p = nameToPath(name);
 
-    for(auto playback: playbacks){
-        if(playback->getFile()->getReadPath() == p){
-            return playback;
+    for(int i=playbacks.size()-1; i>=0; i--){
+        if(playbacks[i]->getFile()->getReadPath() == p){
+            return playbacks[i];
         }
     }
     return NULL;
@@ -116,8 +117,8 @@ bool OscPlaybackManager::remove(OscPlayback *playback){
 }
 
 void OscPlaybackManager::clear(){
-    for(auto playback: playbacks){
-        remove(playback);
+    for(int i=playbacks.size()-1; i>=0; i--){
+        remove(playbacks[i]);
     }
 }
 

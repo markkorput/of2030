@@ -12,8 +12,8 @@
 using namespace of2030;
 
 EffectManager::~EffectManager(){
-    for(auto effect: effects){
-        deleteEffect(effect);
+    for(int i=effects.size()-1; i>=0; i--){
+        deleteEffect(effects[i]);
     }
 
     effects.clear();
@@ -32,24 +32,22 @@ void EffectManager::add(Effect* effect){
     bool added=false;
 
     if(bSortByLayerAscending){
-        int i=0;
+        int count=effects.size();
+        int layer = effect->getLayer();
 
-        for(auto existing_effect: effects){
-            if(existing_effect->getLayer() > effect->getLayer()){
+        for(int i=0; i<count; i++){
+            if(effects[i]->getLayer() > layer){
                 effects.insert(effects.begin()+i, effect);
                 added=true;
                 break;
-
             }
 
-            i++;
         }
-        
-        // no effect found with a layer-value that's larger
-        // than the new effect's layer-value; simply add the new effect
-        // to the end of our list
     }
-    
+
+    // no effect found with a layer-value that's larger
+    // than the new effect's layer-value; simply add the new effect
+    // to the end of our list
     if(!added)
         effects.push_back(effect);
 
@@ -123,10 +121,10 @@ void EffectManager::sort(){
 
         // we'll need an initial layer value; take the first effect's layer
         lowest = effects[0]->getLayer();
-        
-        // loop over all remaining effects, to find the (next) lowest layer value
-        for(auto effect: effects){
-            tmp = effect->getLayer();
+
+        // loop over all other effects, to find the (next) lowest layer value
+        for(int i=effects.size()-1; i>0; i--){
+            tmp = effects[i]->getLayer();
             if(tmp < lowest)
                 lowest = tmp;
         }

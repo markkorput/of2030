@@ -73,10 +73,14 @@ void InterfacePlayerBridge::registerCallbacks(bool _register){
 
 
 void InterfacePlayerBridge::onTrigger(string &trigger){
-    // first check if there's already an effect with this trigger (and unique enabled)
-    // if so; abort
-    const vector<Effect*> *effects = &m_player->getActiveEffects();
-    for(auto effect: (*effects)){
+    Effect* effect;
+
+    // first check if there's already an effect with this trigger
+    // (and unique enabled) if so; abort
+    const vector<Effect*> effects = m_player->getActiveEffects();
+    for(int i=effects.size()-1; i>=0; i--){
+        effect = effects[i];
+
         if(effect->getUnique() && effect->trigger == trigger){
             return;
         }
@@ -142,11 +146,11 @@ void InterfacePlayerBridge::onEffectEnded(Effect &effect){
     
     if(player){
         // let's see if there are any more effects using this player
-        const vector<Effect*> *effects = &m_player->effect_manager.getEffects();
+        const vector<Effect*> effects = m_player->effect_manager.getEffects();
 
-        for(auto effect: (*effects)){
+        for(int i=effects.size()-1; i>=0 i--){
             // does this effect use the same player?
-            if(effect->getVideoPlayer() == player){
+            if(effects[i]->getVideoPlayer() == player){
                 // player still in use, abort
                 return;
             }

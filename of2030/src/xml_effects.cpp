@@ -48,9 +48,11 @@ XmlEffects::XmlEffects() : path("effects.xml"), rootNodeName("effects"), itemNod
 }
 
 void XmlEffects::destroy(){
-    for(auto &fx_setting: settings)
-        if(fx_setting)
-            delete fx_setting;
+    for(int i=settings.size()-1; i>=0; i--){
+        if(settings[i]){
+            delete settings[i];
+        }
+    }
 
     settings.clear();
 }
