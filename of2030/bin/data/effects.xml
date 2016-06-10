@@ -875,6 +875,7 @@
       <is_pano>1</is_pano>
       <reset>1</reset>
       <layer>-1</layer>
+      <unload>1</unload>
     </effect>
     <effect name="now_drumlines">
       <video>now/3.4_WAN_DRUMLINES_v01.mov</video>
@@ -893,6 +894,7 @@
       <video>now/3.4_WAN_DRIEHOEK_UIEN_v01.mov</video>
       <reset>1</reset>
       <is_pano>1</is_pano>
+      <unload>1</unload>
     </effect>
     <effect name="now_roof1">
       <video>now/3.4_WAN_ROOF_v01.mov</video>
@@ -900,15 +902,22 @@
       <is_pano>1</is_pano>
       <!-- <mask_coods_name>roof</mask_coods_name> -->
       <layer>10</layer>
+      <unload>1</unload>
     </effect>
     <effect name="now_voice1">
       <video>now/3.4_WAN_VOICEOVER_3_v01.mov</video>
+      <unload>1</unload>
+    </effect>
+    <effect name="now_voice2">
+      <video>now/3.4_WAN_VOICEOVER_4_v01.mov</video>
+      <unload>1</unload>
     </effect>
     <effect name="now_magnet_short">
       <video>now/3.4_WAN_MAGNET_SHORT_v01.mov</video>
       <video_mask>self</video_mask>
       <is_pano>1</is_pano>
       <layer>5</layer>
+      <unload>1</unload>
     </effect>
     <effect name="now_magnet_long1">
       <video>now/3.4_WAN_MAGNET_LONG_v01.mov</video>
@@ -941,6 +950,7 @@
       <reset>1</reset>
       <layer>5</layer>
       <!-- texture offset -->
+      <unload>1</unload>
     </effect>
 
 
