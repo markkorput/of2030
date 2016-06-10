@@ -41,6 +41,11 @@ namespace of2030{
         ofVec3f multi_translate;
 #endif
 
+#ifdef __OSC_SENDER_ENABLED__
+        int osc_out_port;
+        string osc_out_host;
+#endif
+
     private: // attributes
         bool loaded;
         std::string path, client_id_path;

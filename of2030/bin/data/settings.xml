@@ -5,6 +5,10 @@
   </app>
   <osc>
     <port>2031</port><!-- 0 (zero) means disabled -->
+<!--     <out>
+      <port>2030</port>
+      <host>localhost</host>
+    </out> -->
   </osc>
 
   <rgba_pixels>0</rgba_pixels>

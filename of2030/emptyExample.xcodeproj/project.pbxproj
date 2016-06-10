@@ -17,6 +17,7 @@
 		4D7CFBEB1CEFDC0D006E706C /* osc_playback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D7CFBE91CEFDC0D006E706C /* osc_playback.cpp */; };
 		4D7E54FD1CC6AD1D00DF588E /* interface_player_bridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D7E54FB1CC6AD1D00DF588E /* interface_player_bridge.cpp */; };
 		4D7E55021CC6C71B00DF588E /* renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D7E55001CC6C71B00DF588E /* renderer.cpp */; };
+		4D94F28E1D0B76B700A12436 /* osc_sender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D94F28C1D0B76B700A12436 /* osc_sender.cpp */; };
 		4D9B296B1CC64190005D65E9 /* ofxOscBundle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D9B29441CC64190005D65E9 /* ofxOscBundle.cpp */; };
 		4D9B296C1CC64190005D65E9 /* ofxOscMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D9B29461CC64190005D65E9 /* ofxOscMessage.cpp */; };
 		4D9B296D1CC64190005D65E9 /* ofxOscParameterSync.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D9B29481CC64190005D65E9 /* ofxOscParameterSync.cpp */; };
@@ -98,6 +99,8 @@
 		4D7E54FC1CC6AD1D00DF588E /* interface_player_bridge.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = interface_player_bridge.hpp; sourceTree = "<group>"; };
 		4D7E55001CC6C71B00DF588E /* renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = renderer.cpp; sourceTree = "<group>"; };
 		4D7E55011CC6C71B00DF588E /* renderer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = renderer.hpp; sourceTree = "<group>"; };
+		4D94F28C1D0B76B700A12436 /* osc_sender.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = osc_sender.cpp; sourceTree = "<group>"; };
+		4D94F28D1D0B76B700A12436 /* osc_sender.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = osc_sender.hpp; sourceTree = "<group>"; };
 		4D9B29421CC64190005D65E9 /* ofxOsc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxOsc.h; sourceTree = "<group>"; };
 		4D9B29431CC64190005D65E9 /* ofxOscArg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxOscArg.h; sourceTree = "<group>"; };
 		4D9B29441CC64190005D65E9 /* ofxOscBundle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxOscBundle.cpp; sourceTree = "<group>"; };
@@ -278,7 +281,7 @@
 		4D9B297C1CC64F52005D65E9 /* 2030 */ = {
 			isa = PBXGroup;
 			children = (
-				4DE274CB1CCE23FE00F2D470 /* test */,
+				4DE274CB1CCE23FE00F2D470 /* control */,
 				4DF6EBEE1CDCB95600D37FB7 /* io */,
 				4DF6EBED1CDCB93100D37FB7 /* communication */,
 				4DF6EBEF1CDCB97200D37FB7 /* visual */,
@@ -319,13 +322,13 @@
 			path = ../../../addons/ofxXmlSettings/libs;
 			sourceTree = "<group>";
 		};
-		4DE274CB1CCE23FE00F2D470 /* test */ = {
+		4DE274CB1CCE23FE00F2D470 /* control */ = {
 			isa = PBXGroup;
 			children = (
 				4DE274CC1CCE242B00F2D470 /* multi_client.cpp */,
 				4DE274CD1CCE242B00F2D470 /* multi_client.hpp */,
 			);
-			name = test;
+			name = control;
 			sourceTree = "<group>";
 		};
 		4DF6EBED1CDCB93100D37FB7 /* communication */ = {
@@ -343,6 +346,8 @@
 				4D7CFBEA1CEFDC0D006E706C /* osc_playback.hpp */,
 				4D9DF2761CF1BB9A0083BE56 /* osc_recorder.cpp */,
 				4D9DF2771CF1BB9A0083BE56 /* osc_recorder.hpp */,
+				4D94F28C1D0B76B700A12436 /* osc_sender.cpp */,
+				4D94F28D1D0B76B700A12436 /* osc_sender.hpp */,
 			);
 			name = communication;
 			sourceTree = "<group>";
@@ -562,6 +567,7 @@
 				4D9B29701CC64190005D65E9 /* IpEndpointName.cpp in Sources */,
 				4D9B29721CC64190005D65E9 /* UdpSocket.cpp in Sources */,
 				4DE274CE1CCE242B00F2D470 /* multi_client.cpp in Sources */,
+				4D94F28E1D0B76B700A12436 /* osc_sender.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				4D9B29741CC64190005D65E9 /* OscPrintReceivedElements.cpp in Sources */,
 				4D9DF2781CF1BB9A0083BE56 /* osc_recorder.cpp in Sources */,

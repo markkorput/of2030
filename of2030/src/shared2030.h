@@ -12,6 +12,7 @@
 #ifdef __APPLE__
     #define __MULTI_CLIENT_ENABLED__
     #define __OSC_RECORDER_ENABLED__
+    #define __OSC_SENDER_ENABLED__
     #define __BOOL_OSC_SETUP__
     #define __DRAGNDROP__ 
 #else
