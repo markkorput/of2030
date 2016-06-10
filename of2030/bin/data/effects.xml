@@ -857,23 +857,25 @@
 
     <effect name="now_noisylines">
       <video>now/3.4_WAN_NOISYLINES_v01.mov</video>
-      <video_mask>3.4_WAN_NOISYLINES_MASK_v01.mov</video_mask>
       <loop>1</loop>
       <video_mask_loop>1</video_mask_loop>
       <is_pano>1</is_pano>
       <layer>2</layer>
+      <unload>1</unload>
     </effect>
     <effect name="now_alarm1">
       <video>now/3.4_WAN_ALARMLIGHTS_1_v01.mov</video>
       <is_pano>1</is_pano>
       <reset>1</reset>
       <layer>-1</layer>
+      <unload>1</unload>
     </effect>
     <effect name="now_alarm2">
       <video>now/3.4_WAN_ALARMLIGHTS_2_v01.mov</video>
       <is_pano>1</is_pano>
       <reset>1</reset>
       <layer>-1</layer>
+      <unload>1</unload>
     </effect>
     <effect name="now_drumlines">
       <video>now/3.4_WAN_DRUMLINES_v01.mov</video>
@@ -884,7 +886,6 @@
     </effect>
     <effect name="now_dots">
       <video>now/3.4_WAN_SUBTLE_DOTS_v01.mov</video>
-      <video_mask>now/3.4_WAN_SUBTLE_DOTS_MASK_v01.mov</video_mask>
       <reset>1</reset>
       <is_pano>1</is_pano>
       <layer>1</layer>
@@ -893,6 +894,7 @@
       <video>now/3.4_WAN_DRIEHOEK_UIEN_v01.mov</video>
       <reset>1</reset>
       <is_pano>1</is_pano>
+      <unload>1</unload>
     </effect>
     <effect name="now_roof1">
       <video>now/3.4_WAN_ROOF_v01.mov</video>
@@ -900,15 +902,22 @@
       <is_pano>1</is_pano>
       <!-- <mask_coods_name>roof</mask_coods_name> -->
       <layer>10</layer>
+      <unload>1</unload>
     </effect>
     <effect name="now_voice1">
       <video>now/3.4_WAN_VOICEOVER_3_v01.mov</video>
+      <unload>1</unload>
+    </effect>
+    <effect name="now_voice2">
+      <video>now/3.4_WAN_VOICEOVER_4_v01.mov</video>
+      <unload>1</unload>
     </effect>
     <effect name="now_magnet_short">
       <video>now/3.4_WAN_MAGNET_SHORT_v01.mov</video>
       <video_mask>self</video_mask>
       <is_pano>1</is_pano>
       <layer>5</layer>
+      <unload>1</unload>
     </effect>
     <effect name="now_magnet_long1">
       <video>now/3.4_WAN_MAGNET_LONG_v01.mov</video>
@@ -941,6 +950,7 @@
       <reset>1</reset>
       <layer>5</layer>
       <!-- texture offset -->
+      <unload>1</unload>
     </effect>
 
 

@@ -53,6 +53,9 @@ namespace of2030{
         inline ofImage* getImage() const { return image; }
         inline ofImage* getMaskImage() const { return mask_image; }
         inline ofBlendMode getBlendMode() const { return blendMode; }
+        inline bool getUnload() const { return bUnload; }
+        inline bool unloadImages() const { return bUnload; }
+        inline bool unloadVideos() const { return bUnload; }
 
     protected: // methods
         
@@ -77,7 +80,7 @@ namespace of2030{
 
         int layer;
         float startTime, endTime;
-        bool bUnique; // if there can be only one effect with this trigger value at any given moment
+        bool bUnique, bUnload; // if there can be only one effect with this trigger value at any given moment
 
 //        enum ofBlendMode{
 //            OF_BLENDMODE_DISABLED = 0,

@@ -35,6 +35,7 @@ void Effect::reset(){
     layer = 0;
     bUnique = true;
     blendMode = OF_BLENDMODE_ADD;
+    bUnload=false;
 }
 
 
@@ -56,6 +57,10 @@ void Effect::setup(Context &_context){
             case 4: blendMode = OF_BLENDMODE_MULTIPLY; break;
             case 5: blendMode = OF_BLENDMODE_SCREEN;
         }
+    }
+
+    if(_context.effect_setting.getValue("unload", "0") == "1"){
+        bUnload = true;
     }
 
     // just perform an operation?
@@ -212,7 +217,7 @@ void Effect::draw(Context &_context, float dt){
     auto_rotation += _context.effect_setting.getValue("auto_rotate", ofVec3f(0.0f)) * dt;
     auto_alpha = _context.effect_setting.getValue("current_alpha", auto_alpha);
     auto_alpha += _context.effect_setting.getValue("auto_alpha", 0.0f) * dt;
-    
+
     ofSetColor(255);
 
     // draw 4-point coordinate mask in fbo2
@@ -244,19 +249,19 @@ void Effect::draw(Context &_context, float dt){
     context->fbo3->end();
 
     // draw the resulting content in fbo 3 with our standard shader (allows for texture-tiling, colorizing and alpha-fading)
-    ofShader* maskShader = ShaderManager::instance()->get("standard");
+    ofShader* effectShader = ShaderManager::instance()->get("standard");
 
     // draw content of fbo3 through mask of fbo2
-    maskShader->begin();
+    effectShader->begin();
         // pass mask texture to shader
 //        maskShader->setUniformTexture("iMask", context->fbo2->getTexture(), 2);
-        maskShader->setUniform4f("iColor", precalc->color);
-        maskShader->setUniform1f("iAlpha", auto_alpha);
-        maskShader->setUniform2f("iResolution", precalc->resolution);
+        effectShader->setUniform4f("iColor", precalc->color);
+        effectShader->setUniform1f("iAlpha", auto_alpha);
+        effectShader->setUniform2f("iResolution", precalc->resolution);
         // ofSetColor(precalc->color); // --> doesn't work because shader doesn't use this color
-        maskShader->setUniform2f("iTexCoordMultiply", context->effect_setting.getValue("texcoord_multiply", ofVec2f(1.0f, 1.0f)));
+        effectShader->setUniform2f("iTexCoordMultiply", context->effect_setting.getValue("texcoord_multiply", ofVec2f(1.0f, 1.0f)));
         context->fbo3->draw(0.0f, 0.0f);
-    maskShader->end();
+    effectShader->end();
 
     context = NULL;
     precalc = NULL;
