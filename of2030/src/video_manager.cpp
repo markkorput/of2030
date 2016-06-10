@@ -26,6 +26,13 @@ VideoManager::VideoManager(){
 //}
 
 void VideoManager::update(){
+    // first all players queued for removal
+    for(int i=deprecated_players.size()-1; i>=0; i--){
+        unload(deprecated_players[i]);
+    }
+    deprecated_players.clear();
+
+    // then update all active players
     for(auto& pair: players){
         pair.second->update();
     }
@@ -118,6 +125,7 @@ void VideoManager::unload(ofVideoPlayer *player){
         // this one?
         if(pair.second == player){
             unload(pair.first);
+            return;
         }
     }
 }
