@@ -1,0 +1,15 @@
+
+0.0,/cfg/layer1/color_r,f,0.0
+0.0,/cfg/layer1/layer,f,1.0
+0.0,/cfg/layer1/pattern,s,rect
+0.0,/cfg/layer1/layer,i,1
+0.0,/cfg/layer1/blendmode,i,0
+0.0,/cfg/layer2/color_b,f,0.0
+0.0,/cfg/layer2/layer,f,1.0
+0.0,/cfg/layer2/pattern,s,rect
+0.0,/cfg/layer2/layer,i,2
+0.0,/cfg/layer2/blendmode,i,0
+0.0,/t/layer2
+0.0,/t/layer1
+2.0,/s/layer2
+3.0,/s/layer1

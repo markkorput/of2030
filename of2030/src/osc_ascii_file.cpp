@@ -33,12 +33,30 @@ bool OscAsciiFile::load(string path){
     return true;
 }
 
-OscAsciiLine* OscAsciiFile::next_line(int recursion_count){
-    if(recursion_count > 1){
-        ofLogWarning() << "[OscAsciiFile::next_line] recursion count > 1";
-        return NULL;
+OscAsciiLine* OscAsciiFile::next_line(){
+    // recursion check is for empty files; without this check we could get
+    // stuck in an endless while-loop
+    int loopCount = 0;
+
+    while(loopCount <= 1){
+        OscAsciiLine* line = read_line();
+        
+        if(line)
+            return line;
+
+        if(!bLoop){
+            infile.close();
+            return NULL;
+        }
+
+        loopCount++;
     }
 
+    ofLogWarning() << "OscAsciiFile::next_line loopCount > 1";
+    return NULL;
+}
+
+OscAsciiLine* OscAsciiFile::read_line(){
 //    if(!infile.is_open()){
 //        ofLogWarning() << "[OscAsciiFile::next_line] infile not loaded";
 //        return NULL;
@@ -89,19 +107,7 @@ OscAsciiLine* OscAsciiFile::next_line(int recursion_count){
         // done, return pointer to populated OscAsciiLine struct
         return &last_line;
     }
-    
-    // loop
-    if(bLoop){
-        reset();
-        OscAsciiLine* line = next_line(recursion_count+1);
-        if(line){
-            return line;
-        }
-        // else continue closing file
-    }
 
-    // done
-    infile.close();
     return NULL;
 }
 

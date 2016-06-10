@@ -74,9 +74,11 @@ void Player::movePlaybackTimeTo(float time){
     setPlaybackTime(time);
 
     const vector<Effect*> *effects = &active_effects_manager.getEffects();
-
+    Effect* effect;
     // First, remove active effects that have ended
-    for(auto effect: (*effects)){
+    for(int i=effects->size()-1; i>=0; i--){
+        effect= (*effects)[i];
+
         if(effectEnded(*effect)){
             ofLog() << "[Player] effect ended: " << effect->trigger;
             // remove from active list
@@ -89,7 +91,9 @@ void Player::movePlaybackTimeTo(float time){
     effects = &pending_effects_manager.getEffects();
 
     // Second, activate pending effects that have started
-    for(auto effect: (*effects)){
+    for(int i=effects->size()-1; i>=0; i--){
+        effect= (*effects)[i];
+
         if(effectStarted(*effect)){
             pending_effects_manager.remove(effect);
             active_effects_manager.add(effect);
@@ -116,11 +120,15 @@ void Player::clearEffects(){
 }
 
 void Player::stopEffectByTrigger(string &trigger){
-    ofLogVerbose() << "Player::stopEffectByTrigger with " << trigger;
+    // ofLogVerbose() << "Player::stopEffectByTrigger with " << trigger;
+
     const vector<Effect*> *effects = &active_effects_manager.getEffects();
-    
+    Effect * effect;
+
     // ofLogWarning() << "Player::stopEffectByTrigger active effects: " << effects->size();
-    for(auto effect: (*effects)){
+    for(int i=effects->size()-1; i>=0; i--){
+        effect = (*effects)[i];
+
         // if the pecified trigger string is empty; stop all effects
         if(effect->trigger == trigger || trigger == ""){
             // ofLogWarning() << "an active";
@@ -131,7 +139,9 @@ void Player::stopEffectByTrigger(string &trigger){
     }
     
     effects = &pending_effects_manager.getEffects();
-    for(auto effect: (*effects)){
+    for(int i=effects->size()-1; i>=0; i--){
+        effect = (*effects)[i];
+
         if(effect->trigger == trigger){
             //  ofLogWarning() << "a pending";
             ofLog() << "Stopped pending (by trigger): " << effect->trigger;
@@ -144,9 +154,12 @@ void Player::stopEffectByTrigger(string &trigger){
 
 void Player::stopEffectsByVideoPlayer(ofVideoPlayer *player){
     const vector<Effect*> *effects = &active_effects_manager.getEffects();
-    
+    Effect *effect;
+
     // ofLogWarning() << "Player::stopEffectByTrigger active effects: " << effects->size();
-    for(auto effect: (*effects)){
+    for(int i=effects->size()-1; i>=0; i--){
+        effect = (*effects)[i];
+
         // if the pecified trigger string is empty; stop all effects
         if(effect->getVideoPlayer() == player || effect->getMaskVideoPlayer() == player){
             ofLog() << "Stopped active (by vid): " << effect->trigger;
@@ -156,7 +169,9 @@ void Player::stopEffectsByVideoPlayer(ofVideoPlayer *player){
     }
 
     effects = &pending_effects_manager.getEffects();
-    for(auto effect: (*effects)){
+    for(int i=effects->size()-1; i>=0; i--){
+        effect = (*effects)[i];
+
         if(effect->getVideoPlayer() == player || effect->getMaskVideoPlayer() == player){
             ofLog() << "Stopped pending (by vid): " << effect->trigger;
             pending_effects_manager.remove(effect);
@@ -167,8 +182,11 @@ void Player::stopEffectsByVideoPlayer(ofVideoPlayer *player){
 
 void Player::stopEffectsByImage(ofImage &image){
     const vector<Effect*>* effects = &active_effects_manager.getEffects();
+    Effect* effect;
 
-    for(auto effect: (*effects)){
+    for(int i=effects->size()-1; i>=0; i--){
+        effect = (*effects)[i];
+
         if(effect->getImage() == &image || effect->getMaskImage() == &image){
             ofLog() << "Stopped active (by img): " << effect->trigger;
             active_effects_manager.remove(effect);
@@ -177,7 +195,10 @@ void Player::stopEffectsByImage(ofImage &image){
     }
 
     effects = &pending_effects_manager.getEffects();
-    for(auto effect: (*effects)){
+
+    for(int i=effects->size()-1; i>=0; i--){
+        effect = (*effects)[i];
+
         if(effect->getImage() == &image || effect->getMaskImage() == &image){
             ofLog() << "Stopped pending (by img): " << effect->trigger;
             pending_effects_manager.remove(effect);
