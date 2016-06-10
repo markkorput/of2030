@@ -254,12 +254,12 @@ void Effect::draw(Context &_context, float dt){
     // draw content of fbo3 through mask of fbo2
     effectShader->begin();
         // pass mask texture to shader
-//        maskShader->setUniformTexture("iMask", context->fbo2->getTexture(), 2);
         effectShader->setUniform4f("iColor", precalc->color);
         effectShader->setUniform1f("iAlpha", auto_alpha);
         effectShader->setUniform2f("iResolution", precalc->resolution);
         // ofSetColor(precalc->color); // --> doesn't work because shader doesn't use this color
-        effectShader->setUniform2f("iTexCoordMultiply", context->effect_setting.getValue("texcoord_multiply", ofVec2f(1.0f, 1.0f)));
+        effectShader->setUniform2f("iTexCoordMultiply", ofVec2f(1.0f));
+        effectShader->setUniform2f("iTexCoordOffset", ofVec2f(0.0f));
         context->fbo3->draw(0.0f, 0.0f);
     effectShader->end();
 
@@ -269,7 +269,7 @@ void Effect::draw(Context &_context, float dt){
 
 void Effect::drawContent(){
     string val;
-    ofShader* maskShader = ShaderManager::instance()->get("mask");
+    ofShader* vidShader;
 
     // ofTranslate(context->effect_setting.getValue("translate", ofVec3f(0.0)) * precalc->worldToScreenVec2f);
     // ofScale(context->effect_setting.getValue("scale", ofVec3f(1.0)));
@@ -296,18 +296,22 @@ void Effect::drawContent(){
 
     if(image){
         if(mask_image){
-            maskShader->begin();
-            maskShader->setUniformTexture("iMask", mask_image->getTexture(), 2);
-            maskShader->setUniform4f("iColor", ofColor::white);
-            maskShader->setUniform1f("iAlpha", 1.0f);
-            maskShader->setUniform2f("iTexCoordMultiply", ofVec2f(1.0f,1.0f));
-            maskShader->setUniform2f("iResolution", ofVec2f(image->getWidth(), image->getHeight()));
+            vidShader = ShaderManager::instance()->get("mask");
+            vidShader->begin();
+            vidShader->setUniformTexture("iMask", mask_image->getTexture(), 2);
+        } else {
+            vidShader = ShaderManager::instance()->get("standard");
+            vidShader->begin();
         }
 
+        vidShader->setUniform4f("iColor", ofColor::white);
+        vidShader->setUniform1f("iAlpha", 1.0f);
+        vidShader->setUniform2f("iTexCoordMultiply", context->effect_setting.getValue("texcoord_multiply", ofVec2f(1.0f, 1.0f)));
+        vidShader->setUniform2f("iTexCoordOffset", context->effect_setting.getValue("texcoord_offset", ofVec2f(0.0f)));
+        vidShader->setUniform2f("iResolution", ofVec2f(image->getWidth(), image->getHeight()));
+
         image->draw(0.0, 0.0, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
-        if(mask_image){
-            maskShader->end();
-        }
+        vidShader->end();
         return;
     }
 
@@ -353,22 +357,23 @@ void Effect::drawContent(){
                 }
             }
 
-            maskShader->begin();
-            maskShader->setUniformTexture("iMask", mask_video_player->getTexture(), 2);
-            maskShader->setUniform4f("iColor", ofColor::white);
-            maskShader->setUniform1f("iAlpha", 1.0f);
-            maskShader->setUniform2f("iTexCoordMultiply", ofVec2f(1.0f,1.0f));
-            maskShader->setUniform2f("iResolution", ofVec2f(video_player->getTexture().getWidth(), video_player->getTexture().getHeight()));
+            vidShader = ShaderManager::instance()->get("mask");
+            vidShader->begin();
+            vidShader->setUniformTexture("iMask", mask_video_player->getTexture(), 2);
+        } else {
+            vidShader = ShaderManager::instance()->get("standard");
         }
+
+        vidShader->setUniform4f("iColor", ofColor::white);
+        vidShader->setUniform1f("iAlpha", 1.0f);
+        vidShader->setUniform2f("iTexCoordMultiply", context->effect_setting.getValue("texcoord_multiply", ofVec2f(1.0f, 1.0f)));
+        vidShader->setUniform2f("iTexCoordOffset", context->effect_setting.getValue("texcoord_offset", ofVec2f(0.0f)));
+        vidShader->setUniform2f("iResolution", ofVec2f(video_player->getTexture().getWidth(), video_player->getTexture().getHeight()));
 
         // draw video texture
 
         video_player->draw(0.0, 0.0, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
-        
-        if(mask_video_player){
-            maskShader->end();
-        }
-
+        vidShader->end();
         return;
     }
 

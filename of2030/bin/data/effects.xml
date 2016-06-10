@@ -933,6 +933,7 @@
       <is_pano>1</is_pano>
       <reset>1</reset>
       <layer>5</layer>
+      <texcoord_offset_x>0.5</texcoord_offset_x>
       <!-- texture offset -->
     </effect>
     <effect name="now_magnet_long3">
@@ -941,6 +942,7 @@
       <is_pano>1</is_pano>
       <reset>1</reset>
       <layer>5</layer>
+      <texcoord_offset_x>0.2</texcoord_offset_x>
       <!-- texture offset -->
     </effect>
     <effect name="now_magnet_long4">
@@ -951,6 +953,7 @@
       <layer>5</layer>
       <!-- texture offset -->
       <unload>1</unload>
+      <texcoord_offset_x>1.0</texcoord_offset_x>
     </effect>
 
 
