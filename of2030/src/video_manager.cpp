@@ -26,13 +26,33 @@ VideoManager::VideoManager(){
 //}
 
 void VideoManager::update(){
-    int count=deprecations.size();
+    ofVideoPlayer* player;
 
     // first all players queued for removal
-    for(int i=0; i<count; i++){
-        unload(deprecations[i]);
+    for(int i=deprecations.size()-1; i>=0; i--){
+        // players map pair for current deprecation alias
+        std::map<string,ofVideoPlayer*>::iterator it = players.find(deprecations[i]);
+
+        // found?
+        if(it != players.end()){
+            // take player from pair
+            player = it->second;
+            // if player is still playing, stop it and unload at next iteration
+            if(player && player->isPlaying()){
+                player->stop();
+                player->closeMovie();
+                player->close();
+                // skip removal of depreaction alias; we still need it next iteration
+                continue;
+            // player not playing, unload now
+            } else {
+                unload(deprecations[i]);
+            }
+        }
+
+        // this depraction is done
+        deprecations.erase(deprecations.begin()+i);
     }
-    deprecations.clear();
 
     // then update all active players
     for(auto& pair: players){
@@ -97,15 +117,10 @@ bool VideoManager::unload(const string &alias){
     ofVideoPlayer* player = it->second;
 
     if(player){
-        if(player->isLoaded()){
-            // close player/video file
-            player->stop();
-            player->closeMovie();
-            player->close();
-            ofNotifyEvent(unloadEvent, *player, this);
-            return;
-        }
-
+        player->stop();
+        player->closeMovie();
+        player->close();
+        ofNotifyEvent(unloadEvent, *player, this);
         // delete instance from memory
         delete player;
     }
