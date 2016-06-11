@@ -26,11 +26,13 @@ VideoManager::VideoManager(){
 //}
 
 void VideoManager::update(){
+    int count=deprecations.size();
+
     // first all players queued for removal
-    for(int i=deprecated_players.size()-1; i>=0; i--){
-        unload(deprecated_players[i]);
+    for(int i=0; i<count; i++){
+        unload(deprecations[i]);
     }
-    deprecated_players.clear();
+    deprecations.clear();
 
     // then update all active players
     for(auto& pair: players){
@@ -50,7 +52,7 @@ ofVideoPlayer* VideoManager::get(const string &video_name, const string &alias, 
     if(it != players.end()){
         return it->second;
     }
-    
+
     // not found, no loading
     if(!load)
         return NULL;
@@ -60,8 +62,8 @@ ofVideoPlayer* VideoManager::get(const string &video_name, const string &alias, 
 
     // store it
     if(player){
-        ofLog() << alias << " loaded.";
         players[alias] = player;
+        ofLog() << alias << " loaded. Video count: " << players.size();
     }
 
     // return it
@@ -69,31 +71,26 @@ ofVideoPlayer* VideoManager::get(const string &video_name, const string &alias, 
 }
 
 void VideoManager::unloadAll(){
+    string alias;
+
     // don't iterate like normal, because the iterator gets corrupted and causes
     // BAD ACCESS errors when the map gets modified during its iterations
     // we'll just take the first item every time and remove it, until there's nothing left
     while(!players.empty()){
-        unload(players.begin()->first);
+        alias = players.begin()->first;
+        unload(alias);
     }
-    
+
     players.clear();
 }
 
 bool VideoManager::unload(const string &alias){
-    ofLog() << "VideoManager::unload with " << alias;
-
-    // No specific player specified? destroy all
-//    if(alias == ""){
-//        destroy();
-//        return true;
-//    }
-
     // find specified player
     std::map<string,ofVideoPlayer*>::iterator it = players.find(alias);
 
     // not found, abort
     if(it == players.end()){
-        ofLogWarning() << "VideoManager::unload player not found: " << alias;
+        ofLogWarning() << "video not found for unload: " << alias;
         return false;
     }
 
@@ -109,9 +106,8 @@ bool VideoManager::unload(const string &alias){
     // remove from our list
     players.erase(it);
 
-
     // log and report
-    ofLog() << "Video players still loaded: " << players.size();
+    ofLog() << alias << " unloaded, video count: " << players.size();
     return true;
 }
 
@@ -121,28 +117,63 @@ void VideoManager::unload(ofVideoPlayer *player){
         return;
     }
 
+    string alias = "";
+
     // find player
     for (auto& pair: players) {
         // this one?
         if(pair.second == player){
-            unload(pair.first);
-            return;
+            alias = pair.first;
+            break;
         }
     }
     
-    ofLog() << "VideoManager could not find specified player to unload";
+    if(alias == ""){
+        ofLog() << "VideoManager could not find specified player to unload";
+        return;
+    }
+
+    unload(alias);
+}
+
+void VideoManager::deprecate(ofVideoPlayer *player){
+    string alias = "";
+
+    for(std::map<string,ofVideoPlayer*>::iterator it = players.begin(); it != players.end(); ++it){
+        if(it->second == player){
+            alias = it->first;
+            break;
+        }
+    }
+    
+    if(alias == ""){
+        ofLogWarning() << "video not found for deprecation";
+        return;
+    }
+
+    deprecate(alias);
+}
+
+void VideoManager::deprecateAll(){
+    string alias;
+
+    // add all active player sto the deprecation list
+    for(std::map<string,ofVideoPlayer*>::iterator it = players.begin(); it != players.end(); ++it){
+        alias = it->first;
+        deprecate(alias);
+    }
 }
 
 ofVideoPlayer* VideoManager::createPlayer(const string &video_name){
     string path = video_name_to_path(video_name);
 
-    ofLog() << "VideoManager::createPlayer loading: " << path; //player->getMoviePath();
+    // ofLog() << "loading vid: " << path; //player->getMoviePath();
     
     if(!ofFile::doesFileExist(path)){
-        ofLogWarning() << "could not find video file.";
+        ofLogWarning() << "could not find video file to load: " << path;
         return NULL;
     }
-    
+
     ofVideoPlayer *player = new ofVideoPlayer;
     if(XmlSettings::instance()->rgbaVidPixels){
         player->setPixelFormat(OF_PIXELS_RGBA);

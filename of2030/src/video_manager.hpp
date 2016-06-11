@@ -31,7 +31,9 @@ namespace of2030 {
         void unloadAll();
         bool unload(const string &alias);
         void unload(ofVideoPlayer *player);
-        inline void deprecate(ofVideoPlayer *player){ deprecated_players.push_back(player); }
+        void deprecateAll();
+        inline void deprecate(const string &alias){ deprecations.push_back(alias); }
+        void deprecate(ofVideoPlayer *player);
 
     public: // events
         
@@ -44,7 +46,7 @@ namespace of2030 {
     
     private: // attributes
         map<string, ofVideoPlayer*> players;
-        vector<ofVideoPlayer*> deprecated_players;
+        vector<string> deprecations;
 
         //        vector<ofVideoPlayer*> players;
         string folder_path;

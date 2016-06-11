@@ -39,8 +39,8 @@ ofImage* ImageManager::get(const string &name, const string &alias, bool load){
     
     // store it
     if(img){
-        ofLog() << alias << " loaded.";
         images[alias] = img;
+        ofLog() << alias << " loaded. Image count: " << images.size();
     }
 
     // return it
@@ -48,32 +48,25 @@ ofImage* ImageManager::get(const string &name, const string &alias, bool load){
 }
 
 void ImageManager::unloadAll(){
+    string alias;
     // don't iterate like normal, because the iterator gets corrupted and causes
     // BAD ACCESS errors when the map gets modified during its iterations
     // we'll just take the first item every time and remove it, until there's nothing left
     while(!images.empty()){
-        unload(images.begin()->first);
+        alias = images.begin()->first;
+        unload(alias);
     }
-    
+
     images.clear();
 }
 
 bool ImageManager::unload(const string &alias){
-    ofLog() << "ImageManager::unload with " << alias;
-
-//    // No specific player specified?
-//    if(alias == ""){
-//        // destroy (unload all)
-//        destroy();
-//        return true;
-//    }
-
     // find specified image
     std::map<string,ofImage*>::iterator it = images.find(alias);
 
     // not found, abort
     if(it == images.end()){
-        ofLogWarning() << "ImageManager::unload image not found";
+        ofLogWarning() << "image not found for unload: " << alias;
         return false;
     }
 
@@ -86,9 +79,9 @@ bool ImageManager::unload(const string &alias){
         // delete instance from memory
         delete it->second;
     }
-    
+
     // log and report
-    ofLog() << "Images still loaded: " << images.size();
+    ofLog() << alias << " unloaded. Image count: " << images.size();
     return true;
 }
 
@@ -97,23 +90,33 @@ void ImageManager::unload(ofImage *image){
         return;
     }
 
+    string alias = "";
+
     // find player
     for (auto& pair: images) {
         // this one?
         if(pair.second == image){
-            // call the unload-by-alias function
-            unload(pair.first);
+            alias = pair.first;
+            break;
         }
     }
+
+    if(alias == ""){
+        ofLog() << "could not find image to unload";
+        return;
+    }
+
+    // call the unload-by-alias function
+    unload(alias);
 }
 
 ofImage* ImageManager::create(const string &name){
     string path = name_to_path(name);
-    ofLog() << "ImageManager::create loading: " << path;
+    // ofLog() << "ImageManager::create loading: " << path;
 
     // does file exist?
     if(!ofFile::doesFileExist(path)){
-        ofLogWarning() << "could not find image file";
+        ofLogWarning() << "could not find image file to load: " << path;
         return NULL;
     }
 

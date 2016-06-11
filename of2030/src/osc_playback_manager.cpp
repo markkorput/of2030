@@ -22,7 +22,9 @@ bool OscPlaybackManager::start(const string &name){
         return false;
     }
 
-    if(!file->load(nameToPath(name))){
+    string path = nameToPath(name);
+    if(!file->load(path)){
+        ofLog() << "could not load osc file: " << path;
         delete file;
         return false;
     }
@@ -79,8 +81,8 @@ string OscPlaybackManager::nameToPath(const string &name){
     if(ofFile::doesFileExist(p))
         return p;
 
-    if(ofFile::doesFileExist(name))
-        return name;
+    // if(ofFile::doesFileExist(name))
+    return name;
 }
 
 void OscPlaybackManager::update(float dt){

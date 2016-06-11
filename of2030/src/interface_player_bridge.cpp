@@ -186,7 +186,7 @@ void InterfacePlayerBridge::onEffectEnded(Effect &effect){
         }
 
         // no other effects found that use this player, tell manager to unload video from memory
-        VideoManager::instance()->unload(player);
+        VideoManager::instance()->deprecate(player);
     }
 #endif
 }

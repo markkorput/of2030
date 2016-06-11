@@ -279,9 +279,9 @@ void ofApp::onUnloadVideo(string &name){
     // every video that gets unloaded in the VideoManager triggers the onVideoPlayerUnload callback below
     // which takes care of destroying any effects that might still be using the unloaded player(s)
     if(name == ""){
-        of2030::VideoManager::instance()->unloadAll();
+        of2030::VideoManager::instance()->deprecateAll();
     } else {
-        of2030::VideoManager::instance()->unload(name);
+        of2030::VideoManager::instance()->deprecate(name);
     }
 }
 

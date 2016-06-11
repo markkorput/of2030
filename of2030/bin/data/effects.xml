@@ -2,21 +2,30 @@
   <effects>
 
     <effect name="inloop_worms">
-      <video>inloop/0.0_INLOOP_WOBBLINGLINES_v01.mov</video>
+      <video>inloop/0.0_INLOOP_WOBBLINGLINES_v02.mov</video>
       <loop>1</loop>
       <!-- <freeze>1.0</freeze> -->
       <is_pano>1</is_pano>
       <reset>1</reset>
+      <translate_x>10.5</translate_x>
+      <translate_y>0.4</translate_y>
+      <draw_size_x>21</draw_size_x>
+      <draw_size_y>1.8</draw_size_y>
     </effect>
 
     <effect name="impro_worms_end">
-      <video>inloop/0.0_INLOOP_WOBBLINGLINES_v01.mov</video>
-      <video_mask>stellar/0.1_STELLAR_END_WOBBLINGLINES_A_v01.mov</video_mask>
+      <video>inloop/0.0_INLOOP_WOBBLINGLINES_v02.mov</video>
+      <video_mask>stellar/0.1_STELLAR_END_WOBBLINGLINES_A_v02.mov</video_mask>
       <loop>1</loop>
       <is_pano>1</is_pano>
       <!-- <reset>1</reset> NOOOO -->
       <video_mask_reset>1</video_mask_reset>
-      <duration>10.0</duration>
+      <translate_x>10.5</translate_x>
+      <translate_y>0.4</translate_y>
+      <draw_size_x>21</draw_size_x>
+      <draw_size_y>1.8</draw_size_y>
+      <unload>1</unload>
+      <duration>11.0</duration>
     </effect>
 
     <effect name="impro_spot_max">
@@ -25,27 +34,6 @@
       <initial_alpha>0.8</initial_alpha>
     </effect>
 
-
-    <effect name="stellar_worms">
-      <video>stellar/1.1_STELLAR_WORMS_1_v01.mov</video>
-      <video_mask>self</video_mask>
-      <!-- <video_mask>stellar/1.1_STELLAR_WORMS_1_v01.mov</video_mask> -->
-      <!-- <loop>1</loop> -->
-      <!-- <freeze>1.0</freeze> -->
-      <is_tunnel>0</is_tunnel>
-      <is_pano>0</is_pano>
-      <reset>1</reset>
-    </effect>
-    <effect name="stellar_worms_end">
-      <video>inloop/0.0_INLOOP_WOBBLINGLINES_v01.mov</video>
-      <video_mask>stellar/0.1_STELLAR_END_WOBBLINGLINES_A_v01.mov</video_mask>
-      <!-- <loop>1</loop> -->
-      <!-- <freeze>1.0</freeze> -->
-      <is_tunnel>0</is_tunnel>
-      <is_pano>1</is_pano>
-      <!-- <reset>1</reset> NOOOO -->
-      <video_mask_reset>1</video_mask_reset>
-    </effect>
     <effect name="stellar_max_spot">
       <image>stellar_spot1_v02.jpg</image>
       <spot>3</spot>
