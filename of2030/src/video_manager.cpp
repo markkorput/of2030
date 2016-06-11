@@ -104,7 +104,7 @@ void VideoManager::unloadAll(){
     players.clear();
 }
 
-bool VideoManager::unload(const string &alias){
+bool VideoManager::unload(string alias){
     // find specified player
     std::map<string,ofVideoPlayer*>::iterator it = players.find(alias);
 
