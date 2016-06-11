@@ -111,6 +111,8 @@ void Renderer::draw(){
     float dt = ofGetElapsedTimef() - lastFrameTime;
     lastFrameTime += dt;
 
+    cached_context.time = player->getTime();
+
     // draw all active effects
     vector<Effect*> effects = player->getActiveEffects();
     int count=effects.size();
@@ -167,6 +169,7 @@ void Renderer::onEffectAdded(Effect &effect){
     
     cached_context.effect_setting.data.clear();
     fillEffectSetting(effect, cached_context.effect_setting);
+    cached_context.time = player->getTime();
     effect.setup(cached_context);
 }
 
