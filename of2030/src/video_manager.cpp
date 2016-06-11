@@ -27,10 +27,10 @@ VideoManager::VideoManager(){
 
 void VideoManager::update(){
     // first all players queued for removal
-    for(int i=deprecated_players.size()-1; i>=0; i--){
-        unload(deprecated_players[i]);
+    for(int i=deprecations.size()-1; i>=0; i--){
+        unload(deprecations[i]);
     }
-    deprecated_players.clear();
+    deprecations.clear();
 
     // then update all active players
     for(auto& pair: players){
@@ -50,7 +50,7 @@ ofVideoPlayer* VideoManager::get(const string &video_name, const string &alias, 
     if(it != players.end()){
         return it->second;
     }
-    
+
     // not found, no loading
     if(!load)
         return NULL;
@@ -61,7 +61,7 @@ ofVideoPlayer* VideoManager::get(const string &video_name, const string &alias, 
     // store it
     if(player){
         players[alias] = player;
-        ofLog() << alias << " loaded. Video count: " << players.size() + deprecated_players.size();
+        ofLog() << alias << " loaded. Video count: " << players.size();
     }
 
     // return it
@@ -105,7 +105,7 @@ bool VideoManager::unload(const string &alias){
     players.erase(it);
 
     // log and report
-    ofLog() << alias << " unloaded, video count: " << players.size() + deprecated_players.size();
+    ofLog() << alias << " unloaded, video count: " << players.size();
     return true;
 }
 
@@ -134,26 +134,31 @@ void VideoManager::unload(ofVideoPlayer *player){
     unload(alias);
 }
 
-void VideoManager::deprecate(const string &alias){
-    std::map<string,ofVideoPlayer*>::iterator it = players.find(alias);
+void VideoManager::deprecate(ofVideoPlayer *player){
+    string alias = "";
 
-    // not found, abort
-    if(it == players.end()){
-        ofLogWarning() << "video not found for deprecation: " << alias;
-        return false;
+    for(std::map<string,ofVideoPlayer*>::iterator it = players.begin(); it != players.end(); ++it){
+        if(it->second == player){
+            alias = it->first;
+            break;
+        }
+    }
+    
+    if(alias == ""){
+        ofLogWarning() << "video not found for deprecation";
+        return;
     }
 
-    ofVideoPlayer* player = it->second;
-    deprecate(player);
+    deprecate(alias);
 }
 
 void VideoManager::deprecateAll(){
-    ofVideoPlayer* player;
+    string alias;
 
     // add all active player sto the deprecation list
     for(std::map<string,ofVideoPlayer*>::iterator it = players.begin(); it != players.end(); ++it){
-        player = it->second;
-        deprecate(player);
+        alias = it->first;
+        deprecate(alias);
     }
 }
 
