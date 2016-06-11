@@ -81,8 +81,8 @@ string OscPlaybackManager::nameToPath(const string &name){
     if(ofFile::doesFileExist(p))
         return p;
 
-    if(ofFile::doesFileExist(name))
-        return name;
+    // if(ofFile::doesFileExist(name))
+    return name;
 }
 
 void OscPlaybackManager::update(float dt){
