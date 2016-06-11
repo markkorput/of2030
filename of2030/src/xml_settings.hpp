@@ -44,6 +44,7 @@ namespace of2030{
 #ifdef __OSC_SENDER_ENABLED__
         int osc_out_port;
         string osc_out_host;
+        bool osc_out_keycheck;
 #endif
 
     private: // attributes

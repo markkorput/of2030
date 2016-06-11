@@ -35,5 +35,6 @@ class ofApp : public ofBaseApp{
         void onImageUnload(ofImage &image);
 
     private: // attributes
-        float next_log_alive_time;
+        float next_log_alive_time, log_alive_interval;
+        float last_update_time;
 };

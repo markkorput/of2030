@@ -12,38 +12,33 @@ using namespace of2030;
 
 SINGLETON_INLINE_IMPLEMENTATION_CODE(Player)
 
-Player::Player() : m_time(0.0f), m_lastUpdateTime(0.0f), m_bPlaying(false){
+Player::Player() : m_time(0.0f)/*, m_lastUpdateTime(0.0f), m_bPlaying(false)*/{
 }
 
 void Player::setup(){
     active_effects_manager.setSortByLayerAscending(true);
 }
 
-void Player::update(){
-    float dt = ofGetElapsedTimef() - m_lastUpdateTime;
-    update(dt);
-    m_lastUpdateTime += dt;
-}
+//void Player::update(){
+//    float dt = ofGetElapsedTimef() - m_lastUpdateTime;
+//    update(dt);
+//    m_lastUpdateTime += dt;
+//}
 
 void Player::update(float dt){
-    if(m_bPlaying){
-        movePlaybackTimeTo(m_time + dt);
-//        for(auto effect: active_effects_manager.getEffects()){
-//            effect->update(dt);
-//        }
-    }
+    movePlaybackTimeTo(m_time + dt);
 }
 
-void Player::start(){
-    m_startTime = ofGetElapsedTimef();
-    m_lastUpdateTime = m_startTime;
-    m_time = 0.0f;
-    m_bPlaying = true;
-}
+//void Player::start(){
+//    // m_startTime = ofGetElapsedTimef();
+//    // m_lastUpdateTime = m_startTime;
+//    m_time = 0.0f;
+//    // m_bPlaying = true;
+//}
 
-void Player::stop(){
-    m_bPlaying = false;
-}
+//void Player::stop(){
+//    m_bPlaying = false;
+//}
 
 void Player::addEffect(Effect &effect){
     // this triggers renderer to call setup on the effect (and providing
@@ -71,7 +66,7 @@ void Player::addEffect(Effect &effect){
 }
 
 void Player::movePlaybackTimeTo(float time){
-    setPlaybackTime(time);
+    m_time = time;
 
     const vector<Effect*> *effects = &active_effects_manager.getEffects();
     Effect* effect;
@@ -101,15 +96,11 @@ void Player::movePlaybackTimeTo(float time){
     }
 }
 
-void Player::setPlaybackTime(float time){
-    m_time = time;
-}
-
-inline bool Player::effectStarted(const Effect &effect){
+inline bool Player::effectStarted(const Effect &effect) const {
     return !effect.hasStartTime() || effect.getStartTime() <= m_time;
 }
 
-inline bool Player::effectEnded(const Effect &effect){
+inline bool Player::effectEnded(const Effect &effect) const {
     return effect.hasEndTime() && effect.getEndTime() <= m_time;
 }
 

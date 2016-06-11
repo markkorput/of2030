@@ -23,18 +23,18 @@ namespace of2030{
 
         bool start(const string &name);
         bool stop(const string &name);
-        void update();
-        
-        void clear();
-        
+        void update(float dt);
+    
+    private: // methods
+
         void add(OscPlayback &playback);
         bool remove(OscPlayback *playback);
-    
-    private:
-        string nameToPath(const string &name);
+        void clear();
+
+        static string nameToPath(const string &name);
         void onMessage(ofxOscMessage &message);
         OscPlayback* getPlayback(const string &name);
-    
+
     private:
         vector<OscPlayback*> playbacks;
     };

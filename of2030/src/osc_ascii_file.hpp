@@ -46,12 +46,13 @@ private:
 private: // reading attributes
     OscAsciiLine last_line;
     std::ifstream infile;
+    bool bLoop;
+    string readpath;
 
 private: // writing attributes
-    bool bLoop;
     float start_time, first_message_time;
     std::ofstream outfile;
-    string readpath;
+    
 };
 
 #endif /* osc_ascii_file_hpp */

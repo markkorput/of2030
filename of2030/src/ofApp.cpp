@@ -63,7 +63,6 @@ void ofApp::setup(){
     // load and start player
     ofLogVerbose() << "Starting player";
     of2030::Player::instance()->setup();
-    of2030::Player::instance()->start();
 
     // This bridge updates the player with new effects, songnames and clipnames
     // when events on the interface are triggered
@@ -110,22 +109,28 @@ void ofApp::setup(){
     of2030::OscReceiver::instance()->setup();
     
     // using the player's time as main timing mechanism
-    next_log_alive_time = of2030::Player::instance()->getTime();
     ofClear(0);
+    
+    log_alive_interval = of2030::XmlSettings::instance()->log_alive_interval;
+    last_update_time = ofGetElapsedTimef();
+    next_log_alive_time = last_update_time;
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    of2030::OscPlaybackManager::instance()->update();
+    float t = ofGetElapsedTimef() - last_update_time;
+    float dt = t-last_update_time;
+    last_update_time=t;
+
+    of2030::OscPlaybackManager::instance()->update(dt);
     of2030::OscReceiver::instance()->update();
-    of2030::Player::instance()->update();
+    of2030::Player::instance()->update(dt);
     of2030::VideoManager::instance()->update();
 
     // time for a new log message to indicate aliveness
-    float t = of2030::Player::instance()->getTime();
     if(t >= next_log_alive_time){
         ofLog() << "alive time (s): " << t;
-        next_log_alive_time = t + of2030::XmlSettings::instance()->log_alive_interval;
+        next_log_alive_time = t + log_alive_interval;
     }
 }
 
@@ -206,7 +211,11 @@ void ofApp::keyPressed(int key){
 void ofApp::dragEvent(ofDragInfo dragInfo){
 #ifdef __DRAGNDROP__
     for(auto file: dragInfo.files){
-        of2030::OscPlaybackManager::instance()->start(file);
+        // if sender is enabled; user must hold the control key to send out
+        #ifdef __OSC_SENDER_ENABLED__
+        if(ofGetKeyPressed(OF_KEY_COMMAND) || !of2030::OscSender::instance()->isEnabled() || !of2030::XmlSettings::instance()->osc_out_keycheck)
+        #endif
+            of2030::OscPlaybackManager::instance()->start(file);
     }
 #endif // __DRAGNDROP__
 }
