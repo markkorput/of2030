@@ -21,17 +21,18 @@ public:
     
     void start();
     // returns true if not ended yet
-    bool update(int recursion_count=0);
-    inline OscAsciiFile* getFile(){ return file; }
+    bool update(float dt);
+
+    inline OscAsciiFile* getFile() const { return file; }
 
 public: // events
     ofEvent<ofxOscMessage> messageEvent;
     ofEvent<OscPlayback> loopEvent;
 
-private:
+private: // attributes
     bool bLoop;
     OscAsciiLine *pending_line;
-    float time, last_update_time;
+    float time;
     OscAsciiFile *file;
 };
 

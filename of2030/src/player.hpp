@@ -25,12 +25,12 @@ namespace of2030{
         // ~Player(){}
 
         void setup();
-        void update(); // realtime
+        // void update(); // realtime
         void update(float dt); // custom time
         //void destroy();
 
-        void start();
-        void stop();
+        //void start();
+        // void stop();
 
         // add/stop/clear effects
         void addEffect(Effect &effect);
@@ -50,10 +50,9 @@ namespace of2030{
 
     protected: // helper methods
 
-        void movePlaybackTimeTo(float time);
-        void setPlaybackTime(float time);
-        inline bool effectStarted(const Effect &effect);
-        inline bool effectEnded(const Effect &effect);
+        inline void movePlaybackTimeTo(float time);
+        inline bool effectStarted(const Effect &effect) const;
+        inline bool effectEnded(const Effect &effect) const;
 
     public: // properties
 
@@ -64,8 +63,8 @@ namespace of2030{
         // string song, clip;
         EffectManager active_effects_manager, pending_effects_manager;
 
-        bool m_bPlaying;
-        float m_time, m_startTime, m_lastUpdateTime;
+        // bool m_bPlaying;
+        float m_time/*, m_lastUpdateTime*/;
     };
 }
 

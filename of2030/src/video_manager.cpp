@@ -93,7 +93,7 @@ bool VideoManager::unload(const string &alias){
 
     // not found, abort
     if(it == players.end()){
-        ofLogWarning() << "VideoManager::unload player not found";
+        ofLogWarning() << "VideoManager::unload player not found: " << alias;
         return false;
     }
 
@@ -117,6 +117,7 @@ bool VideoManager::unload(const string &alias){
 
 void VideoManager::unload(ofVideoPlayer *player){
     if(player == NULL){
+        ofLog() << "VideoManager got NULL player to unload";
         return;
     }
 
@@ -128,6 +129,8 @@ void VideoManager::unload(ofVideoPlayer *player){
             return;
         }
     }
+    
+    ofLog() << "VideoManager could not find specified player to unload";
 }
 
 ofVideoPlayer* VideoManager::createPlayer(const string &video_name){

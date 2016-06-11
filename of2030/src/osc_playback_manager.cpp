@@ -38,7 +38,8 @@ bool OscPlaybackManager::start(const string &name){
     playback->start();
     // save it
     add(*playback);
-    ofLogVerbose() << "Started playback of: " << file->getReadPath();
+
+    // ofLogVerbose() << "Started playback of: " << file->getReadPath();
     return true;
 }
 
@@ -82,12 +83,12 @@ string OscPlaybackManager::nameToPath(const string &name){
         return name;
 }
 
-void OscPlaybackManager::update(){
+void OscPlaybackManager::update(float dt){
     OscPlayback *playback;
 
     for(int i=playbacks.size()-1; i>=0; i--){
         playback = playbacks[i];
-        if(!playback->update()){
+        if(!playback->update(dt)){
             remove(playback);
         }
     }
@@ -101,6 +102,7 @@ void OscPlaybackManager::add(OscPlayback &playback){
 }
 
 bool OscPlaybackManager::remove(OscPlayback *playback){
+    // find specified playback
     for(int i=playbacks.size()-1; i>=0; i--){
         if(playbacks[i] == playback){
             // found it! remove from list
@@ -126,11 +128,15 @@ void OscPlaybackManager::clear(){
 void OscPlaybackManager::onMessage(ofxOscMessage &message){
 #ifdef __OSC_SENDER_ENABLED__
     if(OscSender::instance()->isEnabled()){
+        // send out to specified address (used for debugging; the receiving end can
+        // broadcast everything and so it might come right back to us)
         OscSender::instance()->sender.sendMessage(message);
     } else {
+        // deal with messages locally
         OscReceiver::instance()->processMessage(message);
     }
 #else
+    // the raspi version doesn't send osc out, deal with these locally
     OscReceiver::instance()->processMessage(message);
 #endif
 }
