@@ -31,6 +31,7 @@ namespace of2030{
         float log_alive_interval;
         ofVec3f room_size;
 
+        bool cache_screen_configs;
         bool rgbaVidPixels;
         bool drawToFboFirst;
 

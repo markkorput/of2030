@@ -12,6 +12,7 @@
     </out>
   </osc>
 
+  <cache_screen_configs>1</cache_screen_configs>
   <rgba_pixels>0</rgba_pixels>
   <!-- <draw_to_fbo_first>1</draw_to_fbo_first> -->
 

@@ -40,7 +40,7 @@ namespace of2030{
         void clearEffects();
 
         // get specific effects
-        inline const vector<Effect*> &getActiveEffects(){ return active_effects_manager.getEffects(); }
+        inline vector<Effect*> &getActiveEffects(){ return active_effects_manager.getEffects(); }
 //        inline const string &getSong(){ return song; }
 //        inline const string &getClip(){ return clip; }
 //        inline void setSong(const string &newSong){ song = newSong; }
@@ -50,7 +50,6 @@ namespace of2030{
 
     protected: // helper methods
 
-        inline void movePlaybackTimeTo(float time);
         inline bool effectStarted(const Effect &effect) const;
         inline bool effectEnded(const Effect &effect) const;
 

@@ -12,6 +12,7 @@
 #include "shared2030.h"
 #include "player.hpp"
 #include "effects.hpp"
+#include "xml_configs.hpp"
 
 namespace of2030 {
     
@@ -36,7 +37,7 @@ namespace of2030 {
         
         void registerRealtimeEffectCallback(bool reg=true);
         void onEffectAdded(Effect &effect);
-        void fillContext(Context &context, Effect &effect);
+
         void fillContextClientInfo(Context &context);
         void fillEffectSetting(Effect &effect, XmlItemSetting &fxsetting);
         void fillScreenSetting(XmlItemSetting &setting);
@@ -52,6 +53,9 @@ namespace of2030 {
         //Effect *overlayEffect;
         
         float lastFrameTime;
+        XmlConfigs* effect_configs_instance;
+        Context cached_context;
+        bool bScreenConfigCached;
     };
 }
 

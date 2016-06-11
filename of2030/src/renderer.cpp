@@ -8,7 +8,6 @@
 
 #include "ofMain.h"
 #include "renderer.hpp"
-#include "xml_configs.hpp"
 #include "effect_manager.hpp"
 #include "xml_settings.hpp"
 
@@ -16,7 +15,14 @@ using namespace of2030;
 
 SINGLETON_INLINE_IMPLEMENTATION_CODE(Renderer)
 
-Renderer::Renderer() : fbo(NULL), fbo2(NULL), fbo3(NULL), player(NULL), client_id(""), bCallbacksRegistered(false), lastFrameTime(0.0f){
+Renderer::Renderer() : fbo(NULL),
+                        fbo2(NULL),
+                        fbo3(NULL),
+                        player(NULL),
+                        client_id(""),
+                        bCallbacksRegistered(false),
+                        lastFrameTime(0.0f),
+                        effect_configs_instance(NULL){
     // runs effect's setup
     //overlayEffect = EfficientEffectManager::instance()->get("overlay");
     screenWidth = ofGetWidth();
@@ -65,6 +71,15 @@ void Renderer::setup(){
         registerRealtimeEffectCallback();
 
     lastFrameTime = ofGetElapsedTimef();
+    effect_configs_instance = XmlConfigs::instance(); // let's cache this one, might speed loading effect configs up a bit
+    
+
+    fillContextClientInfo(cached_context);
+    bScreenConfigCached = XmlSettings::instance()->cache_screen_configs;
+    if(bScreenConfigCached){
+        // preload screen config cache
+        fillScreenSetting(cached_context.screen_setting);
+    }
 }
 
 void Renderer::destroy(){
@@ -73,9 +88,10 @@ void Renderer::destroy(){
 }
 
 void Renderer::draw(){
-    Context context;
-    fillContextClientInfo(context);
-    fillScreenSetting(context.screen_setting);
+    if(!bScreenConfigCached){
+        cached_context.screen_setting.data.clear();
+        fillScreenSetting(cached_context.screen_setting);
+    }
 
     bool fboFirst = XmlSettings::instance()->drawToFboFirst;
     if(fboFirst){
@@ -84,9 +100,9 @@ void Renderer::draw(){
     } else {
         ofPushMatrix();
         ofScale(screenWidth / fbo->getWidth(), screenHeight / fbo->getHeight(), 1.0f);
-        ofScale(context.screen_setting.getValue("screen_scale", ofVec3f(1.0)));
-        ofTranslate(context.screen_setting.getValue("screen_translate", ofVec3f(0.0)));
-        ofVec3f rot = context.screen_setting.getValue("screen_rotate", ofVec3f(0.0));
+        ofScale(cached_context.screen_setting.getValue("screen_scale", ofVec3f(1.0)));
+        ofTranslate(cached_context.screen_setting.getValue("screen_translate", ofVec3f(0.0)));
+        ofVec3f rot = cached_context.screen_setting.getValue("screen_rotate", ofVec3f(0.0));
         ofRotateX(rot.x);
         ofRotateY(rot.y);
         ofRotateZ(rot.z);
@@ -103,10 +119,11 @@ void Renderer::draw(){
     for(int i=0; i<count; i++){
         effect = effects[i];
 
-        context.effect_setting.data.clear();
-        fillEffectSetting(*effect, context.effect_setting);
+        cached_context.effect_setting.data.clear();
+        fillEffectSetting(*effect, cached_context.effect_setting);
+
         ofEnableBlendMode(effect->getBlendMode());
-        effect->draw(context, dt);
+        effect->draw(cached_context, dt);
     }
 
     if(fboFirst){
@@ -114,9 +131,9 @@ void Renderer::draw(){
 
         ofPushMatrix();
         ofScale(screenWidth / fbo->getWidth(), screenHeight / fbo->getHeight(), 1.0f);
-        ofScale(context.screen_setting.getValue("screen_scale", ofVec3f(1.0)));
-        ofTranslate(context.screen_setting.getValue("screen_translate", ofVec3f(0.0)));
-        ofVec3f rot = context.screen_setting.getValue("screen_rotate", ofVec3f(0.0));
+        ofScale(cached_context.screen_setting.getValue("screen_scale", ofVec3f(1.0)));
+        ofTranslate(cached_context.screen_setting.getValue("screen_translate", ofVec3f(0.0)));
+        ofVec3f rot = cached_context.screen_setting.getValue("screen_rotate", ofVec3f(0.0));
         ofRotateX(rot.x);
         ofRotateY(rot.y);
         ofRotateZ(rot.z);
@@ -143,57 +160,54 @@ void Renderer::registerRealtimeEffectCallback(bool reg){
 }
 
 void Renderer::onEffectAdded(Effect &effect){
-    Context context;
-    fillContext(context, effect);
-    effect.setup(context);
-}
-
-void Renderer::fillContext(Context &context, Effect &effect){
-    fillContextClientInfo(context);
-    fillScreenSetting(context.screen_setting);
-    fillEffectSetting(effect, context.effect_setting);
+    if(!bScreenConfigCached){
+        cached_context.screen_setting.data.clear();
+        fillScreenSetting(cached_context.screen_setting);
+    }
+    
+    cached_context.effect_setting.data.clear();
+    fillEffectSetting(effect, cached_context.effect_setting);
+    effect.setup(cached_context);
 }
 
 void Renderer::fillContextClientInfo(Context &context){
-    context.time = player->getTime();
+    // context.time = player->getTime();
     // context.fbo = fbo;
     context.fbo2 = fbo2;
     context.fbo3 = fbo3;
-    
+
     context.tunnel_size.set(XmlSettings::instance()->room_size.z, XmlSettings::instance()->room_size.y);
     context.pano_size.set((XmlSettings::instance()->room_size.z+XmlSettings::instance()->room_size.x)*2, XmlSettings::instance()->room_size.y);
 }
 
 void Renderer::fillEffectSetting(Effect &effect, XmlItemSetting &fxsetting){
-    XmlConfigs *fxs = XmlConfigs::instance();
-
     // effect- (trigger)-specific config
     string query = effect.trigger;
-    XmlItemSetting *pSetting = fxs->getItem(query);
+    XmlItemSetting *pSetting = effect_configs_instance->getItem(query);
     if(pSetting)
         fxsetting.merge(*pSetting);
 
 #ifdef __EXTENDED_EFFECT_CONFIG__
     // effect/trigger-specific config (has priority over song/clip-specific configs)
-    pSetting = fxs->getItem(query+"."+effect.trigger);
+    pSetting = effect_configs_instance->getItem(query+"."+effect.trigger);
     if(pSetting)
         fxsetting.merge(*pSetting);
 
     // song specific effect config
     query += "." + player->getSong();
-    pSetting = fxs->getItem(query);
+    pSetting = effect_configs_instance->getItem(query);
     if(pSetting)
         fxsetting.merge(*pSetting);
 
     // song/clip specific effect config
     query += "." + player->getClip();
-    pSetting = fxs->getItem(query);
+    pSetting = effect_configs_instance->getItem(query);
     if(pSetting)
         fxsetting.merge(*pSetting);
 
     // song/clip/trigger specific configs
     query += "." + effect.trigger;
-    pSetting = fxs->getItem(query);
+    pSetting = effect_configs_instance->getItem(query);
     if(pSetting)
         fxsetting.merge(*pSetting);
 #endif
