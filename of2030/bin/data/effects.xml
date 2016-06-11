@@ -965,8 +965,8 @@
       <is_pano>1</is_pano>
       <!-- <pano_start>0.5</pano_start> -->
       <!-- <pano_end>0.75</pano_end> -->
-      <texcoord_multiply_x>4.0</texcoord_multiply_x>
-      <texcoord_multiply_y>4.0</texcoord_multiply_y>
+      <!-- <texcoord_multiply_x>4.0</texcoord_multiply_x> -->
+      <texcoord_multiply_y>2.0</texcoord_multiply_y>
     </effect>
     <effect name="calib_tunnel">
       <image>calib_tunnel.jpg</image>
