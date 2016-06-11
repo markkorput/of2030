@@ -151,28 +151,31 @@
       <scale_y>1.44</scale_y>
     </effect>
     <effect name="scav_fan_max">
-      <image>scav_fan1_v01.jpg</image>
+      <image>scav_fan1_v02.jpg</image>
       <image_mask>self</image_mask>
       <auto_rotate_z>25.0</auto_rotate_z>
       <spot>3</spot>
       <layer>1</layer>
+      <color_a>150</color_a>
     </effect>
     <effect name="scav_fan_koen">
-      <image>scav_fan1_v01.jpg</image>
+      <image>scav_fan1_v02.jpg</image>
       <image_mask>self</image_mask>
       <auto_rotate_z>25.0</auto_rotate_z>
       <spot>2</spot>
       <layer>1</layer>
+      <color_a>150</color_a>
     </effect>
     <effect name="scav_fan_gydo">
-      <image>scav_fan1_v01.jpg</image>
+      <image>scav_fan1_v02.jpg</image>
       <image_mask>self</image_mask>
       <auto_rotate_z>25.0</auto_rotate_z>
       <spot>1</spot>
       <layer>1</layer>
+      <color_a>150</color_a>
     </effect>
     <effect name="scav_beat_max">
-      <image>scav_fan2_v02.jpg</image>
+      <image>scav_fan2_v03.jpg</image>
       <spot>3</spot>
       <layer>3</layer>
       <auto_rotate_z>40.0</auto_rotate_z>
@@ -180,9 +183,10 @@
       <!-- <scale_y>1.1</scale_y> -->
       <!-- <duration>1.8</duration> -->
       <initial_alpha>0.25</initial_alpha>
+      <blendmode>1</blendmode>
     </effect>
     <effect name="scav_beat_koen">
-      <image>scav_fan2_v02.jpg</image>
+      <image>scav_fan2_v03.jpg</image>
       <spot>2</spot>
       <layer>3</layer>
       <auto_rotate_z>40.0</auto_rotate_z>
@@ -190,9 +194,10 @@
       <!-- <scale_y>1.1</scale_y> -->
       <!-- <duration>1.8</duration> -->
       <initial_alpha>0.25</initial_alpha>
+      <blendmode>1</blendmode>
     </effect>
     <effect name="scav_beat_gydo">
-      <image>scav_fan2_v02.jpg</image>
+      <image>scav_fan2_v03.jpg</image>
       <spot>1</spot>
       <layer>3</layer>
       <auto_rotate_z>40.0</auto_rotate_z>
@@ -200,6 +205,7 @@
       <!-- <scale_y>1.1</scale_y> -->
       <!-- <duration>1.8</duration> -->
       <initial_alpha>0.25</initial_alpha>
+      <blendmode>1</blendmode>
     </effect>
     <effect name="scav_turbo_max">
       <image>scav_fan3_v01.jpg</image>
