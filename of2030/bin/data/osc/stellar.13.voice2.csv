@@ -1,5 +1,7 @@
 0.0,/t/stellar_voice2
+0.0,/cfg/stellar_koen_spot/initial_alpha,f,0.0
+0.0,/cfg/stellar_koen_spot/auto_alpha,f,0.05
 0.0,/t/stellar_koen_spot
-30.0,/s/stellar_koen_spot
 0.0,/s/stellar_sirene_max
 0.0,/s/stellar_sirene_gydo
+33.0,/cfg/stellar_koen_spot/auto_alpha,f,-0.05

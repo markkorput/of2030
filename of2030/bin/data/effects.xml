@@ -117,17 +117,14 @@
       <reset>1</reset>
     </effect>
     <effect name="stellar_koen_ping">
-      <video>stellar/1.1_STELLAR_S_KOEN_OPKOMST_v01.mov</video>
+      <video>stellar/1.1_STELLAR_S_TIK_v01.mov</video>
       <spot>2</spot>
       <!-- <freeze>1.0</freeze> -->
       <reset>1</reset>
     </effect>
     <effect name="stellar_koen_spot">
-      <video>stellar/1.1_STELLAR_S_KOEN_VOICEOVER_v01.mov</video>
+      <image>stellar_spot1_v02.jpg</image>
       <spot>2</spot>
-      <freeze>1.0</freeze>
-      <pattern>spot</pattern>
-      <reset>1</reset>
     </effect>
 
 
