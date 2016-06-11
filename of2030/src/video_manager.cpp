@@ -26,8 +26,10 @@ VideoManager::VideoManager(){
 //}
 
 void VideoManager::update(){
+    int count=deprecations.size();
+
     // first all players queued for removal
-    for(int i=deprecations.size()-1; i>=0; i--){
+    for(int i=0; i<count; i++){
         unload(deprecations[i]);
     }
     deprecations.clear();

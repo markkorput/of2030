@@ -68,11 +68,6 @@ void Effect::setup(Context &_context){
         startTime = _context.time;
     }
 
-    // make sure we have endTime and duration initialized AND consistent
-    if(!hasEndTime() && _context.effect_setting.hasValue("duration")){
-        setDuration(_context.effect_setting.getValue("duration", 30.0f));
-    }
-
     //
     // video
     //
@@ -153,6 +148,11 @@ void Effect::setup(Context &_context){
                 truncate();
             }*/
         }
+    }
+
+    // make sure we have endTime and duration initialized AND consistent
+    if(_context.effect_setting.hasValue("duration")){
+        setDuration(_context.effect_setting.getValue("duration", 30.0f));
     }
 
     //
