@@ -25,13 +25,13 @@
       <draw_size_x>21</draw_size_x>
       <draw_size_y>1.8</draw_size_y>
       <unload>1</unload>
-      <duration>11.0</duration>
+      <duration>10.0</duration>
     </effect>
 
     <effect name="impro_spot_max">
       <image>stellar_spot1_v02.jpg</image>
       <spot>3</spot>
-      <initial_alpha>0.8</initial_alpha>
+      <initial_alpha>0.0</initial_alpha>
     </effect>
 
     <effect name="stellar_max_spot">
@@ -40,6 +40,21 @@
       <unique>0</unique>
       <duration>8.7</duration>
     </effect>
+    <effect name="stellar_worms">
+      <!-- <video>stellar/1.1_STELLAR_WORMS_1_v01.mov</video> -->
+      <video_option1>stellar/1.1_STELLAR_WORMS_1_v01.mov</video_option1>
+      <video_option2>stellar/1.1_STELLAR_WORMS_2_v01.mov</video_option2>
+      <video_option3>stellar/1.1_STELLAR_WORMS_3_v01.mov</video_option3>
+      <video_option4>stellar/1.1_STELLAR_WORMS_4_v01.mov</video_option4>
+      <video_option5>stellar/1.1_STELLAR_WORMS_5_v01.mov</video_option5>
+      <is_pano>1</is_pano>
+      <reset>1</reset>
+      <translate_x>10.5</translate_x>
+      <translate_y>0.4</translate_y>
+      <draw_size_x>21</draw_size_x>
+      <draw_size_y>1.8</draw_size_y>
+    </effect>
+
     <effect name="stellar_smoke">
       <!-- <video>stellar/1.1_STELLAR_SMOKE_v01.mov</video> -->
       <TODO>true</TODO>
