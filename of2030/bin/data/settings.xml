@@ -16,7 +16,7 @@
   <!-- <draw_to_fbo_first>1</draw_to_fbo_first> -->
 
   <room_size_x>9.0</room_size_x>
-  <room_size_y>2.0</room_size_y>
+  <room_size_y>2.5</room_size_y>
   <room_size_z>16.5</room_size_z>
   <multi>
     <id>rpi10</id>
