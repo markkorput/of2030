@@ -31,6 +31,8 @@ namespace of2030 {
         void unloadAll();
         bool unload(const string &alias);
         void unload(ofVideoPlayer *player);
+        void deprecateAll();
+        void deprecate(const string &alias);
         inline void deprecate(ofVideoPlayer *player){ deprecated_players.push_back(player); }
 
     public: // events
