@@ -27,7 +27,6 @@ void Effect::reset(){
     startTime = NO_TIME;
     endTime = NO_TIME;
     trigger = "";
-    shader = NULL;
     video_player = NULL;
     mask_video_player = NULL;
     image = NULL;
@@ -185,12 +184,6 @@ void Effect::setup(Context &_context){
     };
 
     bUnique = _context.effect_setting.getValue("unique", "1") == "1";
-
-    // load any shaders based shader param
-    val = _context.effect_setting.getValue("shader", "");
-    if(val != ""){
-        this->shader = ShaderManager::instance()->get(val);
-    }
 
     auto_pos = _context.effect_setting.getValue("auto_pos", ofVec3f(0.0f));
     auto_rotation = _context.effect_setting.getValue("auto_rotation", ofVec3f(0.0f));
@@ -377,37 +370,14 @@ void Effect::drawContent(){
         return;
     }
 
-    // not video
+    // not video, pattern?
+    val = context->effect_setting.getValue("pattern", "");
 
-    if(shader){
-        // activate shader
-        shader->begin();
-        
-        // populate shader
-        shader->setUniform3f("iPos", context->effect_setting.getValue("pos", ofVec3f(0.0f)));
-        shader->setUniform3f("iSize", context->effect_setting.getValue("size", ofVec3f(0.0f)));
-        shader->setUniform1f("iProgress", getProgress());
-        shader->setUniform1f("iDuration", getDuration());
-        shader->setUniform2f("iScreenWorldSize", precalc->scrWorldSize);
-        shader->setUniform1f("iGain", context->effect_setting.getValue("gain", 1.0f));
+    if(val != ""){
+        drawPattern(val);
     }
 
-    string pattern = context->effect_setting.getValue("pattern", "");
-
-    // pattern?
-    if(pattern != ""){
-        drawPattern(pattern);
-    }
     // don't draw anything by default; we don't want 'accidental' effects appear
-    //    else {
-    //        //ofSetColor(precalc->color);
-    //        ofDrawRectangle(0.0f, 0.0f, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
-    //    }
-
-    if(shader){
-        // deactivate shader
-        shader->end();
-    }
 }
 
 void Effect::drawPattern(const string &patternName){
@@ -433,26 +403,10 @@ void Effect::drawPattern(const string &patternName){
         // spot reposition according to effect setting (interpret as real-world-meters)
         spotPos += fxSpotPos / precalc->scrWorldSize * precalc->resolution;
 
-        if(!shader){
-            // draw without shader stuff
-            // ofDrawRectangle(0, 0, precalc->resolution.x, precalc->resolution.y);
-            ofDrawEllipse(0.0f, 0.0f, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
-            return;
-        }
 
-        // shader is already activated, just add some params
-        shader->setUniform2f("iSpotPos", spotPos);
-        shader->setUniform2f("iSpotSize", spotSize);
-        shader->setUniform1f("iGain", context->effect_setting.getValue("gain", 1.0f));
-
-        // quarter; 1 means top right, 2 means bottom right, 3 bottom left, 4 means top left, zero means none
-        int q = context->effect_setting.getValue("quarter_on", 0);
-        shader->setUniform1i("iQuarterOn", q);
-        q = context->effect_setting.getValue("quarter_off", 0);
-        shader->setUniform1i("iQuarterOff", q);
-
-        spotPos = spotPos - spotSize * 0.5;
-        ofDrawRectangle(0.0f, 0.0f, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
+        // draw without shader stuff
+        // ofDrawRectangle(0, 0, precalc->resolution.x, precalc->resolution.y);
+        ofDrawEllipse(0.0f, 0.0f, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
         return;
     }
 

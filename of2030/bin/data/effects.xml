@@ -965,8 +965,8 @@
       <is_pano>1</is_pano>
       <!-- <pano_start>0.5</pano_start> -->
       <!-- <pano_end>0.75</pano_end> -->
-      <texcoord_multiply_x>4.0</texcoord_multiply_x>
-      <texcoord_multiply_y>4.0</texcoord_multiply_y>
+      <!-- <texcoord_multiply_x>4.0</texcoord_multiply_x> -->
+      <texcoord_multiply_y>2.0</texcoord_multiply_y>
     </effect>
     <effect name="calib_tunnel">
       <image>calib_tunnel.jpg</image>
@@ -984,15 +984,6 @@
       <!-- <auto_rotate_z>180.0</auto_rotate_x> -->
       <rotate_z>45.0</rotate_z>
       <unique>0</unique>
-    </effect>
-
-    <effect name="worms1">
-      <shader>worms</shader>
-      <pano_start>0.0</pano_start>
-      <pano_end>1.0</pano_end>
-      <gain>0.65</gain>
-      <size_x>68.0</size_x>
-      <size_y>1.0</size_y>
     </effect>
 
     <!-- roof -->
@@ -1013,25 +1004,6 @@
     <!-- pos -->
     <effect name="pos1">
       <pattern>pos</pattern>
-    </effect>
-
-    <!-- spot -->
-    <effect name="spot1">
-      <spot>1</spot>
-      <shader>spot</shader>
-      <pattern>spot</pattern>
-    </effect>
-
-    <effect name="spot2">
-      <spot>2</spot>
-      <shader>spot</shader>
-      <pattern>spot</pattern>
-    </effect>
-
-    <effect name="spot3">
-      <spot>3</spot>
-      <shader>spot</shader>
-      <pattern>spot</pattern>
     </effect>
   </effects>
 </of2030>
