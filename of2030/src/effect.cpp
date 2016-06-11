@@ -334,6 +334,7 @@ void Effect::drawContent(){
             vidShader->setUniformTexture("iMask", mask_video_player->getTexture(), 2);
         } else {
             vidShader = ShaderManager::instance()->get("standard");
+            vidShader->begin();
         }
 
         vidShader->setUniform4f("iColor", ofColor::white);
