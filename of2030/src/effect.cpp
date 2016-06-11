@@ -63,31 +63,10 @@ void Effect::setup(Context &_context){
         bUnload = true;
     }
 
-    // just perform an operation?
-    val = _context.effect_setting.getValue("operation", "");
-    if(val != ""){
-        if(val == "load_video"){
-            val = _context.effect_setting.getValue("video", "");
-            VideoManager::instance()->get(val, _context.effect_setting.getValue("video_alias", val), true);
-        }
-        
-        if(val == "unload_video"){
-            val = _context.effect_setting.getValue("video_alias", "");
-            if(val == "")
-                val = _context.effect_setting.getValue("video", "");
-            VideoManager::instance()->unload(val);
-        }
-        
-        truncate();
-        return;
-    }
-
-
     // make sure we have a start time (default to NOW)
     if(!hasStartTime()){
         startTime = _context.time;
     }
-
 
     // make sure we have endTime and duration initialized AND consistent
     if(!hasEndTime() && _context.effect_setting.hasValue("duration")){
