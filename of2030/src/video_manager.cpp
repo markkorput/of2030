@@ -94,13 +94,16 @@ bool VideoManager::unload(const string &alias){
         return false;
     }
 
-    ofNotifyEvent(unloadEvent, *it->second, this);
+    ofVideoPlayer* player = it->second;
 
-    if(it->second){
+    if(player){
+        ofNotifyEvent(unloadEvent, *player, this);
+
         // close player/video file
-        it->second->close();
+        player->closeMovie();
+        player->close();
         // delete instance from memory
-        delete it->second;
+        delete player;
     }
 
     // remove from our list
