@@ -98,8 +98,7 @@ namespace of2030{
         bool bVidStarted;
         ofVec3f auto_pos, auto_rotation;
         float auto_alpha;
-        ofShader *shader;
-    
+
         Context *context;
         PreCalc *precalc;
     };
