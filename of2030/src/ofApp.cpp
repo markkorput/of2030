@@ -211,7 +211,11 @@ void ofApp::keyPressed(int key){
 void ofApp::dragEvent(ofDragInfo dragInfo){
 #ifdef __DRAGNDROP__
     for(auto file: dragInfo.files){
-        of2030::OscPlaybackManager::instance()->start(file);
+        // if sender is enabled; user must hold the control key to send out
+        #ifdef __OSC_SENDER_ENABLED__
+        if(ofGetKeyPressed(OF_KEY_COMMAND) || !of2030::OscSender::instance()->isEnabled() || !of2030::XmlSettings::instance()->osc_out_keycheck)
+        #endif
+            of2030::OscPlaybackManager::instance()->start(file);
     }
 #endif // __DRAGNDROP__
 }
