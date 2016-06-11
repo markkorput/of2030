@@ -1,3 +1,2 @@
-0.0,/cfg/stellar_clock/image,s,stellar_spot1_v02_q2.jpg
-0.0,/s/stellar_clock
-0.0,/t/stellar_clock
+0.0,/cfg/stellar_clock1/rotate_z,f,90.0
+0.0,/t/stellar_clock1

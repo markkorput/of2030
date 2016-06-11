@@ -67,23 +67,37 @@
       <video>stellar/1.1_STELLAR_LAUNCH_v01.mov</video>
       <is_pano>1</is_pano>
       <reset>1</reset>
+      <unload>1</unload>
     </effect>
     <effect name="stellar_voice1">
       <video>stellar/1.1_STELLAR_VOICEOVER_1_v02.mov</video>
       <mask_coords_name>voice_coord</mask_coords_name>
       <reset>1</reset>
       <layer>-1</layer>
+      <unload>1</unload>
     </effect>
     <effect name="stellar_voice2">
       <video>stellar/1.1_STELLAR_VOICEOVER_2_v02.mov</video>
       <mask_coords_name>voice_coord</mask_coords_name>
       <reset>1</reset>
       <layer>-1</layer>
+      <unload>1</unload>
     </effect>
     <effect name="stellar_clock">
+      <image>stellar_spot1_v02.jpg</image>
+      <spot>1</spot>
+    </effect>
+    <effect name="stellar_clock1">
       <image>stellar_spot1_v02_q1.jpg</image>
       <spot>1</spot>
-      <!-- TODO -->
+    </effect>
+    <effect name="stellar_clock5">
+      <image>stellar_spot1_v02_q5.jpg</image>
+      <spot>1</spot>
+    </effect>
+    <effect name="stellar_clock6">
+      <image>stellar_spot1_v02_q6.jpg</image>
+      <spot>1</spot>
     </effect>
     <effect name="stellar_sirene_max">
       <!-- <pattern>rect</pattern> -->
