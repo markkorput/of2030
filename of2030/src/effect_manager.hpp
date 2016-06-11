@@ -28,7 +28,7 @@ namespace of2030{
 
         Effect* get(const string &trigger);
         inline int getCount(){ return effects.size(); }
-        inline const vector<Effect*> &getEffects(){ return effects; }
+        inline vector<Effect*> &getEffects(){ return effects; }
         inline Effect* getEffectByIndex(int idx){ return idx >= 0 && effects.size() > idx ? effects[idx] : NULL; }
 
         inline void setSortByLayerAscending(bool _sort){

@@ -4,3 +4,7 @@
 0.0,/t/scav_search_gydo
 0.0,/t/scav_search_koen
 0.0,/t/scav_search_max
+40.0,/cfg/scav_beat_max/visible,s,0
+40.0,/cfg/scav_beat_gydo/visible,s,0
+40.0,/cfg/scav_beat_koen/visible,s,0
+41.0,/p/scav.00.beat.start

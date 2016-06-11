@@ -19,26 +19,36 @@ void Player::setup(){
     active_effects_manager.setSortByLayerAscending(true);
 }
 
-//void Player::update(){
-//    float dt = ofGetElapsedTimef() - m_lastUpdateTime;
-//    update(dt);
-//    m_lastUpdateTime += dt;
-//}
-
 void Player::update(float dt){
-    movePlaybackTimeTo(m_time + dt);
+    m_time += dt;
+
+    const vector<Effect*> *effects = &active_effects_manager.getEffects();
+    Effect* effect;
+    // First, remove active effects that have ended
+    for(int i=effects->size()-1; i>=0; i--){
+        effect= (*effects)[i];
+        
+        if(effectEnded(*effect)){
+            ofLog() << "[Player] effect ended: " << effect->trigger;
+            // remove from active list
+            active_effects_manager.remove(effect);
+            // remove altogether
+            effect_manager.remove(effect);
+        }
+    }
+
+    effects = &pending_effects_manager.getEffects();
+
+    // Second, activate pending effects that have started
+    for(int i=effects->size()-1; i>=0; i--){
+        effect= (*effects)[i];
+        
+        if(effectStarted(*effect)){
+            pending_effects_manager.remove(effect);
+            active_effects_manager.add(effect);
+        }
+    }
 }
-
-//void Player::start(){
-//    // m_startTime = ofGetElapsedTimef();
-//    // m_lastUpdateTime = m_startTime;
-//    m_time = 0.0f;
-//    // m_bPlaying = true;
-//}
-
-//void Player::stop(){
-//    m_bPlaying = false;
-//}
 
 void Player::addEffect(Effect &effect){
     // this triggers renderer to call setup on the effect (and providing
@@ -49,50 +59,19 @@ void Player::addEffect(Effect &effect){
     // (prividing the necessary data through a Context instance)
     effect_manager.add(&effect);
 
-    // dead on arrival?
-    if(effectEnded(effect)){
-        ofLog() << "Dead-on-arrival: " << effect.trigger;
-        // this triggers cleanups
-        effect_manager.remove(&effect);
-        return;
-    }
+//    // dead on arrival?
+//    if(effectEnded(effect)){
+//        ofLog() << "Dead-on-arrival: " << effect.trigger;
+//        // this triggers cleanups
+//        effect_manager.remove(&effect);
+//        return;
+//    }
 
     // put it in the right "folder"
     if(effectStarted(effect)){
         active_effects_manager.add(&effect);
     } else {
         pending_effects_manager.add(&effect);
-    }
-}
-
-void Player::movePlaybackTimeTo(float time){
-    m_time = time;
-
-    const vector<Effect*> *effects = &active_effects_manager.getEffects();
-    Effect* effect;
-    // First, remove active effects that have ended
-    for(int i=effects->size()-1; i>=0; i--){
-        effect= (*effects)[i];
-
-        if(effectEnded(*effect)){
-            ofLog() << "[Player] effect ended: " << effect->trigger;
-            // remove from active list
-            active_effects_manager.remove(effect);
-            // remove altogether
-            effect_manager.remove(effect);
-        }
-    }
-    
-    effects = &pending_effects_manager.getEffects();
-
-    // Second, activate pending effects that have started
-    for(int i=effects->size()-1; i>=0; i--){
-        effect= (*effects)[i];
-
-        if(effectStarted(*effect)){
-            pending_effects_manager.remove(effect);
-            active_effects_manager.add(effect);
-        }
     }
 }
 

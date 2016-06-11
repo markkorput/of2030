@@ -25,13 +25,13 @@
       <draw_size_x>21</draw_size_x>
       <draw_size_y>1.8</draw_size_y>
       <unload>1</unload>
-      <duration>11.0</duration>
+      <duration>10.0</duration>
     </effect>
 
     <effect name="impro_spot_max">
       <image>stellar_spot1_v02.jpg</image>
       <spot>3</spot>
-      <initial_alpha>0.8</initial_alpha>
+      <initial_alpha>0.0</initial_alpha>
     </effect>
 
     <effect name="stellar_max_spot">
@@ -40,6 +40,21 @@
       <unique>0</unique>
       <duration>8.7</duration>
     </effect>
+    <effect name="stellar_worms">
+      <!-- <video>stellar/1.1_STELLAR_WORMS_1_v01.mov</video> -->
+      <video_option1>stellar/1.1_STELLAR_WORMS_1_v01.mov</video_option1>
+      <video_option2>stellar/1.1_STELLAR_WORMS_2_v01.mov</video_option2>
+      <video_option3>stellar/1.1_STELLAR_WORMS_3_v01.mov</video_option3>
+      <video_option4>stellar/1.1_STELLAR_WORMS_4_v01.mov</video_option4>
+      <video_option5>stellar/1.1_STELLAR_WORMS_5_v01.mov</video_option5>
+      <is_pano>1</is_pano>
+      <reset>1</reset>
+      <translate_x>10.5</translate_x>
+      <translate_y>0.4</translate_y>
+      <draw_size_x>21</draw_size_x>
+      <draw_size_y>1.8</draw_size_y>
+    </effect>
+
     <effect name="stellar_smoke">
       <!-- <video>stellar/1.1_STELLAR_SMOKE_v01.mov</video> -->
       <TODO>true</TODO>
@@ -52,23 +67,37 @@
       <video>stellar/1.1_STELLAR_LAUNCH_v01.mov</video>
       <is_pano>1</is_pano>
       <reset>1</reset>
+      <unload>1</unload>
     </effect>
     <effect name="stellar_voice1">
       <video>stellar/1.1_STELLAR_VOICEOVER_1_v02.mov</video>
       <mask_coords_name>voice_coord</mask_coords_name>
       <reset>1</reset>
       <layer>-1</layer>
+      <unload>1</unload>
     </effect>
     <effect name="stellar_voice2">
       <video>stellar/1.1_STELLAR_VOICEOVER_2_v02.mov</video>
       <mask_coords_name>voice_coord</mask_coords_name>
       <reset>1</reset>
       <layer>-1</layer>
+      <unload>1</unload>
     </effect>
     <effect name="stellar_clock">
+      <image>stellar_spot1_v02.jpg</image>
+      <spot>1</spot>
+    </effect>
+    <effect name="stellar_clock1">
       <image>stellar_spot1_v02_q1.jpg</image>
       <spot>1</spot>
-      <!-- TODO -->
+    </effect>
+    <effect name="stellar_clock5">
+      <image>stellar_spot1_v02_q5.jpg</image>
+      <spot>1</spot>
+    </effect>
+    <effect name="stellar_clock6">
+      <image>stellar_spot1_v02_q6.jpg</image>
+      <spot>1</spot>
     </effect>
     <effect name="stellar_sirene_max">
       <!-- <pattern>rect</pattern> -->
@@ -88,17 +117,14 @@
       <reset>1</reset>
     </effect>
     <effect name="stellar_koen_ping">
-      <video>stellar/1.1_STELLAR_S_KOEN_OPKOMST_v01.mov</video>
+      <video>stellar/1.1_STELLAR_S_TIK_v01.mov</video>
       <spot>2</spot>
       <!-- <freeze>1.0</freeze> -->
       <reset>1</reset>
     </effect>
     <effect name="stellar_koen_spot">
-      <video>stellar/1.1_STELLAR_S_KOEN_VOICEOVER_v01.mov</video>
+      <image>stellar_spot1_v02.jpg</image>
       <spot>2</spot>
-      <freeze>1.0</freeze>
-      <pattern>spot</pattern>
-      <reset>1</reset>
     </effect>
 
 
@@ -125,49 +151,61 @@
       <scale_y>1.44</scale_y>
     </effect>
     <effect name="scav_fan_max">
-      <image>scav_fan1_v01.jpg</image>
+      <image>scav_fan1_v02.jpg</image>
       <image_mask>self</image_mask>
       <auto_rotate_z>25.0</auto_rotate_z>
       <spot>3</spot>
       <layer>1</layer>
+      <color_a>150</color_a>
     </effect>
     <effect name="scav_fan_koen">
-      <image>scav_fan1_v01.jpg</image>
+      <image>scav_fan1_v02.jpg</image>
       <image_mask>self</image_mask>
       <auto_rotate_z>25.0</auto_rotate_z>
       <spot>2</spot>
       <layer>1</layer>
+      <color_a>150</color_a>
     </effect>
     <effect name="scav_fan_gydo">
-      <image>scav_fan1_v01.jpg</image>
+      <image>scav_fan1_v02.jpg</image>
       <image_mask>self</image_mask>
       <auto_rotate_z>25.0</auto_rotate_z>
       <spot>1</spot>
       <layer>1</layer>
+      <color_a>150</color_a>
     </effect>
     <effect name="scav_beat_max">
-      <image>scav_fan2_v02.jpg</image>
+      <image>scav_fan2_v03.jpg</image>
       <spot>3</spot>
       <layer>3</layer>
       <auto_rotate_z>40.0</auto_rotate_z>
-      <scale_x>1.1</scale_x>
-      <scale_y>1.1</scale_y>
+      <!-- <scale_x>1.1</scale_x> -->
+      <!-- <scale_y>1.1</scale_y> -->
+      <!-- <duration>1.8</duration> -->
+      <initial_alpha>0.25</initial_alpha>
+      <blendmode>1</blendmode>
     </effect>
     <effect name="scav_beat_koen">
-      <image>scav_fan2_v02.jpg</image>
+      <image>scav_fan2_v03.jpg</image>
       <spot>2</spot>
       <layer>3</layer>
       <auto_rotate_z>40.0</auto_rotate_z>
-      <scale_x>1.1</scale_x>
-      <scale_y>1.1</scale_y>
+      <!-- <scale_x>1.1</scale_x> -->
+      <!-- <scale_y>1.1</scale_y> -->
+      <!-- <duration>1.8</duration> -->
+      <initial_alpha>0.25</initial_alpha>
+      <blendmode>1</blendmode>
     </effect>
     <effect name="scav_beat_gydo">
-      <image>scav_fan2_v02.jpg</image>
+      <image>scav_fan2_v03.jpg</image>
       <spot>1</spot>
       <layer>3</layer>
       <auto_rotate_z>40.0</auto_rotate_z>
-      <scale_x>1.1</scale_x>
-      <scale_y>1.1</scale_y>
+      <!-- <scale_x>1.1</scale_x> -->
+      <!-- <scale_y>1.1</scale_y> -->
+      <!-- <duration>1.8</duration> -->
+      <initial_alpha>0.25</initial_alpha>
+      <blendmode>1</blendmode>
     </effect>
     <effect name="scav_turbo_max">
       <image>scav_fan3_v01.jpg</image>
