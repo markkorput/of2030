@@ -1,7 +1,7 @@
 0.0,/s/rings_randomimg_max
 0.0,/s/rings_randomimg_gydo
 0.0,/p/rings.chorus.load
-0.1,/p/rings.chorus.beat
+0.1,/p/rings.07.chorus.beat
 0.1,/cfg/rings_pattern_white_outro/initial_alpha,f,0.0
 0.7,/cfg/rings_pattern_white_outro/auto_alpha,f,0.05
 1.0,/t/rings_pattern_white_outro
