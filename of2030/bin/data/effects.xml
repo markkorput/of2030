@@ -238,10 +238,11 @@
       <blendmode>3</blendmode>
     </effect>
     <effect name="scav_pano">
-      <video>scav/2.1_SCAVENGER_PANOHELI_OPTIE_1_v01.mov</video>
+      <video>scav/2.1_SCAVENGER_PANOHELI_OPTIE_2_v02.mov</video>
       <reset>1</reset>
       <is_pano>1</is_pano>
       <unload>1</unload>
+      <texcoord_multiply_x>2.0</texcoord_multiply_x>
     </effect>
     <effect name="scav_roof">
       <pattern>opposites</pattern>
