@@ -72,14 +72,23 @@
     <effect name="stellar_voice1">
       <video>stellar/1.1_STELLAR_VOICEOVER_1_v02.mov</video>
       <mask_coords_name>voice_coord</mask_coords_name>
+      <is_tunnel>1</is_tunnel>
       <reset>1</reset>
       <layer>-1</layer>
       <unload>1</unload>
+      <draw_size_x>6</draw_size_x>
+      <draw_size_y>0.3</draw_size_y>
+      <translate_x>5.25</translate_x>
+      <translate_y>0.2</translate_y>
     </effect>
     <effect name="stellar_voice2">
       <video>stellar/1.1_STELLAR_VOICEOVER_2_v02.mov</video>
       <mask_coords_name>voice_coord</mask_coords_name>
-
+      <is_tunnel>1</is_tunnel>
+      <draw_size_x>6</draw_size_x>
+      <draw_size_y>0.3</draw_size_y>
+      <translate_x>5.25</translate_x>
+      <translate_y>0.2</translate_y>
       <reset>1</reset>
       <layer>-1</layer>
       <unload>1</unload>
@@ -840,7 +849,7 @@
       <reset>1</reset>
     </effect>
     <effect name="fusion_spring">
-      <video>fusion/3.3_FUSION_SPRING_v01.mov</video>
+      <video>fusion/3.3_FUSION_SPRING_v02.mov</video>
       <is_pano>1</is_pano>
       <reset>1</reset>
     </effect>
@@ -974,32 +983,38 @@
       <unload>1</unload>
     </effect>
     <effect name="now_drumlines">
-      <video>now/3.4_WAN_DRUMLINES_v01.mov</video>
-      <video_mask>now/3.4_WAN_DRUMLINES_MASK_v01.mov</video_mask>
+      <video>now/3.4_WAN_DRUMLINES_v02.mov</video>
       <reset>1</reset>
       <is_pano>1</is_pano>
+      <loop>1</loop>
+      <texcoord_multiply_x>40</texcoord_multiply_x>
       <layer>3</layer>
     </effect>
     <effect name="now_dots">
-      <video>now/3.4_WAN_SUBTLE_DOTS_v01.mov</video>
+      <video>now/3.4_WAN_SUBTLE_DOTS_v02.mov</video>
       <reset>1</reset>
+      <loop>1</loop>
       <is_pano>1</is_pano>
       <layer>1</layer>
+      <texcoord_multiply_x>40.42</texcoord_multiply_x>
+      <texcoord_multiply_y>7.5</texcoord_multiply_y>
     </effect>
     <effect name="now_triangles1">
-      <video>now/3.4_WAN_DRIEHOEK_UIEN_v01.mov</video>
+      <video>now/3.4_WAN_DRIEHOEK_UIEN_v02.mov</video>
       <reset>1</reset>
       <is_pano>1</is_pano>
       <freeze>0.0</freeze>
+      <texcoord_multiply_x>2.0</texcoord_multiply_x>
     </effect>
     <effect name="now_triangles2">
-      <video>now/3.4_WAN_DRIEHOEK_UIEN_v01.mov</video>
+      <video>now/3.4_WAN_DRIEHOEK_UIEN_v02.mov</video>
       <reset>1</reset>
       <is_pano>1</is_pano>
       <unload>1</unload>
+      <texcoord_multiply_x>2.0</texcoord_multiply_x>
     </effect>
     <effect name="now_roof1">
-      <video>now/3.4_WAN_ROOF_v01.mov</video>
+      <video>now/3.4_WAN_ROOF_v02.mov</video>
       <reset>1</reset>
       <is_pano>1</is_pano>
       <loop>1</loop>
@@ -1010,6 +1025,11 @@
     <effect name="now_voice1">
       <video>now/3.4_WAN_VOICEOVER_3_v01.mov</video>
       <unload>1</unload>
+      <is_tunnel>1</is_tunnel>
+    </effect>
+    <effect name="now_voice1panning">
+      <video>now/3.4_WAN_VOICEOVER_3_v01.mov</video>
+      <is_panning>1</is_panning>
     </effect>
     <effect name="now_voice2">
       <video>now/3.4_WAN_VOICEOVER_4_v01.mov</video>

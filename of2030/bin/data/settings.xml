@@ -6,8 +6,8 @@
   <osc>
     <port>2031</port><!-- 0 (zero) means disabled -->
     <out>
-      <port>2030</port>
-      <host>localhost</host>
+      <!-- <port>2030</port> -->
+      <!-- <host>localhost</host> -->
       <key_check>0</key_check>
     </out>
   </osc>
