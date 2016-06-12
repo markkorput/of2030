@@ -181,6 +181,7 @@ void Renderer::fillContextClientInfo(Context &context){
 
     context.tunnel_size.set(XmlSettings::instance()->room_size.z, XmlSettings::instance()->room_size.y);
     context.pano_size.set((XmlSettings::instance()->room_size.z+XmlSettings::instance()->room_size.x)*2, XmlSettings::instance()->room_size.y);
+    context.panning_size.set(XmlSettings::instance()->room_size.x, XmlSettings::instance()->room_size.y);
 }
 
 void Renderer::fillEffectSetting(Effect &effect, XmlItemSetting &fxsetting){

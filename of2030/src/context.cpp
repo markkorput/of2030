@@ -33,7 +33,13 @@ void PreCalc::load(Context &_context){
         rotate = _context.screen_setting.getValue("pano_rotate", ofVec3f(0.0f));
         scale = _context.screen_setting.getValue("pano_scale", ofVec3f(0.0f));
         scrDrawSize = _context.pano_size;
-    // spot?
+        // pano???
+    } else if(_context.effect_setting.getValue("is_panning", "0") == "1"){
+        translate = _context.screen_setting.getValue("panning_translate", ofVec3f(-1000.0f));
+        rotate = _context.screen_setting.getValue("panning_rotate", ofVec3f(0.0f));
+        scale = _context.screen_setting.getValue("panning_scale", ofVec3f(0.0f));
+        scrDrawSize = _context.panning_size;
+        // spot?
     } else if (_context.effect_setting.getValue("spot", 0) != 0){
         bIsSpot = true;
         string prefix = "spot" + _context.effect_setting.getValue("spot", "0");

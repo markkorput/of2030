@@ -23,7 +23,7 @@ namespace of2030{
         ofFbo* fbo3;
 
         ofVec2f tunnel_size; // real world tunnel size in meters
-        ofVec2f pano_size;
+        ofVec2f pano_size, panning_size;
     } Context;
 
 

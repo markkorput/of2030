@@ -686,9 +686,10 @@
 
     <effect name="dead_spot">
       <pattern>rect</pattern>
-      <is_tunnel>1</is_tunnel>
+      <is_panning>1</is_panning>
       <draw_size_x>0.5</draw_size_x>
       <auto_velocity_x>0.2</auto_velocity_x>
+      <duration>20.0</duration>
     </effect>
 
 
@@ -1123,5 +1124,11 @@
       <pattern>rect</pattern>
       <mask_coords_name>voice_coord</mask_coords_name>
     </effect>
+
+    <effect name="panning_test">
+      <pattern>rect</pattern>
+      <is_panning>1</is_panning>
+      <color_g>0</color_g>
+      <duration>3</duration>
   </effects>
 </of2030>

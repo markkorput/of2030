@@ -110,16 +110,14 @@
       <roof_coord4_x>0.0</roof_coord4_x>
       <roof_coord4_y>0.29</roof_coord4_y>
 
-      <!-- tunnel -->
-      <tunnel_translate_x>0.0</tunnel_translate_x>
-      <tunnel_translate_y>0.0</tunnel_translate_y>
-      <!-- <tunnel_translate_z></tunnel_translate_z> -->
-      <!-- <tunnel_rotate_x>180.0</tunnel_rotate_x> -->
-      <!-- <tunnel_rotate_y></tunnel_rotate_y> -->
-      <!-- <tunnel_rotate_z></tunnel_rotate_z> -->
-      <tunnel_scale_x>46.5</tunnel_scale_x>
-      <tunnel_scale_y>230.4</tunnel_scale_y>
-
+      <panning_translate_x>0.0</panning_translate_x>
+      <panning_translate_y>0.0</panning_translate_y>
+      <!-- <panning_translate_z></panning_translate_z> -->
+      <!-- <panning_rotate_x>180.0</panning_rotate_x> -->
+      <!-- <panning_rotate_y></panning_rotate_y> -->
+      <!-- <panning_rotate_z></panning_rotate_z> -->
+      <panning_scale_x>85.3</panning_scale_x>
+      <panning_scale_y>230.4</panning_scale_y>
     </screen>
 
 
@@ -227,6 +225,15 @@
       <roof_coord3_y>0.38</roof_coord3_y>
       <roof_coord4_x>0.0</roof_coord4_x>
       <roof_coord4_y>0.29</roof_coord4_y>
+
+      <panning_translate_x>-9.0</panning_translate_x>
+      <panning_translate_y>0.0</panning_translate_y>
+      <!-- <panning_translate_z></panning_translate_z> -->
+      <!-- <panning_rotate_x>180.0</panning_rotate_x> -->
+      <!-- <panning_rotate_y></panning_rotate_y> -->
+      <!-- <panning_rotate_z></panning_rotate_z> -->
+      <panning_scale_x>-85.3</panning_scale_x>
+      <panning_scale_y>230.4</panning_scale_y>
     </screen>
   </screens>
 </of2030>
