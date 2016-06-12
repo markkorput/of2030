@@ -18,8 +18,8 @@ void PreCalc::load(Context &_context){
     resolution.set(_context.fbo2->getWidth(), _context.fbo2->getHeight());
     color = _context.effect_setting.getValue("color", ofColor(255));
     
-    scrWorldSize = _context.screen_setting.getValue("world_size", ofVec2f(2.67f, 2.0f));
-    worldToScreenVec2f = resolution / scrWorldSize;
+    ofVec2f scrWorldSize = _context.screen_setting.getValue("world_size", ofVec2f(2.67f, 2.0f));
+    // worldToScreenVec2f = resolution / scrWorldSize;
 
     // tunnel?
     if(_context.effect_setting.getValue("is_tunnel", "0") == "1"){
@@ -60,33 +60,33 @@ void PreCalc::load(Context &_context){
     scrDrawSize = _context.effect_setting.getValue("draw_size", scrDrawSize);
 }
 
-ofRectangle PreCalc::panoDrawRect(){
-    float scrStart = context->screen_setting.getValue("pano_start", 0.0f);
-    float scrEnd = context->screen_setting.getValue("pano_end", 1.0f);
-    float fxStart = context->effect_setting.getValue("pano_start", 0.0f);
-    float fxEnd = context->effect_setting.getValue("pano_end", 1.0f);
-
-    // start of tunnel
-    float x1 = ofMap(fxStart, scrStart, scrEnd, 0.0, resolution.x);
-    // start of visible part of tunnel
-    float x2 = ofMap(fxEnd, scrStart, scrEnd, 0.0, resolution.x);
-    // draw "hider" for invisible part _before_ visible part
-    return ofRectangle(x1, 0.0, x2-x1, resolution.y);
-}
-
-ofRectangle PreCalc::tunnelDrawRect(){
-    float scrStart = context->screen_setting.getValue("tunnel_start", 0.0f);
-    float scrEnd = context->screen_setting.getValue("tunnel_end", 1.0f);
-    float fxStart = context->effect_setting.getValue("tunnel_start", 0.0f);
-    float fxEnd = context->effect_setting.getValue("tunnel_end", 1.0f);
-
-    // start of tunnel
-    float x1 = ofMap(fxStart, scrStart, scrEnd, 0.0, resolution.x);
-    // start of visible part of tunnel
-    float x2 = ofMap(fxEnd, scrStart, scrEnd, 0.0, resolution.x);
-    // draw "hider" for invisible part _before_ visible part
-    return ofRectangle(x1, 0.0, x2-x1, resolution.y);
-}
+//ofRectangle PreCalc::panoDrawRect(){
+//    float scrStart = context->screen_setting.getValue("pano_start", 0.0f);
+//    float scrEnd = context->screen_setting.getValue("pano_end", 1.0f);
+//    float fxStart = context->effect_setting.getValue("pano_start", 0.0f);
+//    float fxEnd = context->effect_setting.getValue("pano_end", 1.0f);
+//
+//    // start of tunnel
+//    float x1 = ofMap(fxStart, scrStart, scrEnd, 0.0, resolution.x);
+//    // start of visible part of tunnel
+//    float x2 = ofMap(fxEnd, scrStart, scrEnd, 0.0, resolution.x);
+//    // draw "hider" for invisible part _before_ visible part
+//    return ofRectangle(x1, 0.0, x2-x1, resolution.y);
+//}
+//
+//ofRectangle PreCalc::tunnelDrawRect(){
+//    float scrStart = context->screen_setting.getValue("tunnel_start", 0.0f);
+//    float scrEnd = context->screen_setting.getValue("tunnel_end", 1.0f);
+//    float fxStart = context->effect_setting.getValue("tunnel_start", 0.0f);
+//    float fxEnd = context->effect_setting.getValue("tunnel_end", 1.0f);
+//
+//    // start of tunnel
+//    float x1 = ofMap(fxStart, scrStart, scrEnd, 0.0, resolution.x);
+//    // start of visible part of tunnel
+//    float x2 = ofMap(fxEnd, scrStart, scrEnd, 0.0, resolution.x);
+//    // draw "hider" for invisible part _before_ visible part
+//    return ofRectangle(x1, 0.0, x2-x1, resolution.y);
+//}
 
 //void PreCalc::readTunnelScreenCoords(ofVec2f *target){
 //    // read screen's config; it specifies which portion of the tunnel ("wall") is shown through this screen

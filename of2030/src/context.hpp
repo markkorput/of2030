@@ -37,19 +37,19 @@ namespace of2030{
         void load(Context &_context);
 
 //        inline float panoWorldToScreen(float p);
-        inline ofRectangle panoTunnelDrawRect(){ return panoDrawRect().getIntersection(tunnelDrawRect()); }
+//        inline ofRectangle panoTunnelDrawRect(){ return panoDrawRect().getIntersection(tunnelDrawRect()); }
         // void readTunnelScreenCoords(ofVec2f *target);
 
-    protected:
-        
-         ofRectangle panoDrawRect();
-         ofRectangle tunnelDrawRect();
+//    protected:
+//        
+//         ofRectangle panoDrawRect();
+//         ofRectangle tunnelDrawRect();
 
     public: // properties
 
         bool bIsSpot;
         ofVec2f resolution;
-        ofVec2f scrWorldSize, worldToScreenVec2f, scrDrawSize;
+        ofVec2f /*worldToScreenVec2f,*/ scrDrawSize;
         ofColor color;
         ofVec3f translate, rotate, scale, effect_translate, effect_scale, effect_rotate;
 

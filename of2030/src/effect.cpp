@@ -196,20 +196,23 @@ void Effect::draw(Context &_context, float dt){
 
     ofSetColor(255);
 
-    // draw 4-point coordinate mask in fbo2
-    context->fbo2->begin();
-        ofClear(0.0f, 0.0f, 0.0f, 255.0f);
-    
-        val = context->effect_setting.getValue("mask_coords_name", "");
-        if(val != ""){
-            // draw 4-point coordinates mask
-            // (if no coordinates specfied, this will give a full white frame)
-            drawMask(val);
-        } else {
-            ofRectangle rect = precalc->panoTunnelDrawRect();
-            ofDrawRectangle(rect);
-        }
-    context->fbo2->end();
+    bool doMask = context->effect_setting.hasValue("mask_coords_name");
+    if(doMask){
+        // draw 4-point coordinate mask in fbo2
+        context->fbo2->begin();
+            ofClear(0.0f, 0.0f, 0.0f, 255.0f);
+        
+            val = context->effect_setting.getValue("mask_coords_name", "");
+            if(val != ""){
+                // draw 4-point coordinates mask
+                // (if no coordinates specfied, this will give a full white frame)
+                drawMask(val);
+            }/* else {
+                ofRectangle rect = precalc->panoTunnelDrawRect();
+                ofDrawRectangle(rect);
+            }*/
+        context->fbo2->end();
+    }
     
     context->fbo3->begin();
         ofEnableBlendMode(OF_BLENDMODE_ALPHA);
@@ -219,9 +222,11 @@ void Effect::draw(Context &_context, float dt){
             drawContent();
         ofPopMatrix();
     
-        // draw mask with blend mode multiply (essentially only leaving the parts where the mask is white)
-        ofEnableBlendMode(OF_BLENDMODE_MULTIPLY);
-        context->fbo2->draw(0.0f, 0.0f);
+        if(doMask){
+            // draw mask with blend mode multiply (essentially only leaving the parts where the mask is white)
+            ofEnableBlendMode(OF_BLENDMODE_MULTIPLY);
+            context->fbo2->draw(0.0f, 0.0f);
+        }
     context->fbo3->end();
 
     // draw the resulting content in fbo 3 with our standard shader (allows for texture-tiling, colorizing and alpha-fading)
@@ -386,48 +391,48 @@ void Effect::drawPattern(const string &patternName){
         }
     }
 
-    //
-    // SPOT
-    //
-
-    if(patternName == "spot"){
-        int spotNumber = context->effect_setting.getValue("spot", (int)1);
-        string prefix = "spot" + ofToString(spotNumber);
-
-
-        ofVec2f spotPos = context->screen_setting.getValue(prefix, ofVec2f(-10.0f)) * precalc->resolution;
-        ofVec2f spotSize = context->screen_setting.getValue(prefix+"size", ofVec2f(0.0f)) * precalc->resolution;
-
-        ofVec2f fxSpotPos = context->effect_setting.getValue("pos", ofVec2f(0.0f, 0.0f));
-
-        // spot reposition according to effect setting (interpret as real-world-meters)
-        spotPos += fxSpotPos / precalc->scrWorldSize * precalc->resolution;
-
-
-        // draw without shader stuff
-        // ofDrawRectangle(0, 0, precalc->resolution.x, precalc->resolution.y);
-        ofDrawEllipse(0.0f, 0.0f, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
-        return;
-    }
-
-    //
-    // POS
-    //
-
-    if(patternName == "pos"){
-        ofVec3f lightpos = context->effect_setting.getValue("pos", ofVec3f(0.0f, 0.0f, 0.0f));
-        float lightsize = context->effect_setting.getValue("size", 0.0f);
-        ofVec3f mypos = context->screen_setting.getValue("pos", ofVec3f(0.0f, 0.0f, 0.0f));
-        float onDistance = context->effect_setting.getValue("on_distance", 3.0f);
-        float offDistance = context->effect_setting.getValue("off_distance", 9.0f);
-        float distance = mypos.distance(lightpos) - lightsize;
-        float gain = ofMap(distance, onDistance, offDistance, 255, 0, true);
-
-        ofSetColor(255, 255, 255, gain);
-        ofDrawRectangle(0, 0, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
-        ofSetColor(255);
-        return;
-    }
+//    //
+//    // SPOT
+//    //
+//
+//    if(patternName == "spot"){
+//        int spotNumber = context->effect_setting.getValue("spot", (int)1);
+//        string prefix = "spot" + ofToString(spotNumber);
+//
+//
+//        ofVec2f spotPos = context->screen_setting.getValue(prefix, ofVec2f(-10.0f)) * precalc->resolution;
+//        ofVec2f spotSize = context->screen_setting.getValue(prefix+"size", ofVec2f(0.0f)) * precalc->resolution;
+//
+//        ofVec2f fxSpotPos = context->effect_setting.getValue("pos", ofVec2f(0.0f, 0.0f));
+//
+//        // spot reposition according to effect setting (interpret as real-world-meters)
+//        spotPos += fxSpotPos / precalc->scrWorldSize * precalc->resolution;
+//
+//
+//        // draw without shader stuff
+//        // ofDrawRectangle(0, 0, precalc->resolution.x, precalc->resolution.y);
+//        ofDrawEllipse(0.0f, 0.0f, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
+//        return;
+//    }
+//
+//    //
+//    // POS
+//    //
+//
+//    if(patternName == "pos"){
+//        ofVec3f lightpos = context->effect_setting.getValue("pos", ofVec3f(0.0f, 0.0f, 0.0f));
+//        float lightsize = context->effect_setting.getValue("size", 0.0f);
+//        ofVec3f mypos = context->screen_setting.getValue("pos", ofVec3f(0.0f, 0.0f, 0.0f));
+//        float onDistance = context->effect_setting.getValue("on_distance", 3.0f);
+//        float offDistance = context->effect_setting.getValue("off_distance", 9.0f);
+//        float distance = mypos.distance(lightpos) - lightsize;
+//        float gain = ofMap(distance, onDistance, offDistance, 255, 0, true);
+//
+//        ofSetColor(255, 255, 255, gain);
+//        ofDrawRectangle(0, 0, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
+//        ofSetColor(255);
+//        return;
+//    }
 }
 
 void Effect::drawMask(const string &coordsName){
