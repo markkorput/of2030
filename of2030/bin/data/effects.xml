@@ -278,6 +278,11 @@
       <is_pano>1</is_pano>
       <loop>1</loop>
     </effect>
+    <effect name="rings_pattern_black_intro">
+      <video>rings/2.2_RINGS_NON_EGAAL_BLACK_v01.mov</video>
+      <is_pano>1</is_pano>
+      <loop>1</loop>
+    </effect>
     <effect name="rings_pattern_white">
       <video>rings/2.2_RINGS_NON_EGAAL_WHITE_v01.mov</video>
       <is_pano>1</is_pano>
@@ -359,33 +364,38 @@
       <is_tunnel>1</is_tunnel>
       <texcoord_multiply_x>9.0</texcoord_multiply_x>
       <draw_size_y>1.0</draw_size_y>
-      <auto_pos_y>1</auto_pos_y>
+      <auto_pos_y>1.0</auto_pos_y>
     </effect>
-    <effect name="rings_march2circles">
+    <effect name="DELETE_ME_rings_march2circles">
       <video>rings/2.2_RINGS_FOOTSTEPS_B_TO_WHITE_v01.mov</video>
-      <video_mask>self</video_mask>
+      <!-- <video_mask>self</video_mask> -->
       <!-- <loop>1</loop> -->
       <reset>1</reset>
       <is_tunnel>1</is_tunnel>
+      <texcoord_multiply_x>9.0</texcoord_multiply_x>
+      <draw_size_y>1.0</draw_size_y>
+      <auto_pos_y>1.0</auto_pos_y>
+
       <!-- <video_mask_loop>1</video_mask_loop> -->
       <!-- <is_pano>1</is_pano> -->
       <texcoord_multiply_x>1.8</texcoord_multiply_x>
       <layer>2</layer>
     </effect>
     <effect name="rings_circles">
-      <video>rings/2.2_RINGS_FOOTSTEPS_C_WHITE_v01.mov</video>
+      <video>rings/2.2_RINGS_FOOTSTEPS_C_WHITE_v02.mov</video>
       <video_mask>self</video_mask>
       <is_tunnel>1</is_tunnel>
       <loop>1</loop>
+      <draw_size_y>1.0</draw_size_y>
+      <auto_pos_y>1.0</auto_pos_y>
       <!-- <is_pano>1</is_pano> -->
-      <texcoord_multiply_x>1.8</texcoord_multiply_x>
+      <texcoord_multiply_x>9.0</texcoord_multiply_x>
       <layer>2</layer>
     </effect>
     <effect name="rings_circles2squares">
       <video>rings/2.2_RINGS_FOOTSTEPS_D_TO_SQUARE_v01.mov</video>
       <video_mask>self</video_mask>
       <is_tunnel>1</is_tunnel>
-      <!-- <video_mask>rings/2.2_RINGS_FOOTSTEPS_A_TUNNEL_v01.mov</video_mask> -->
       <!-- <loop>1</loop> -->
       <reset>1</reset>
       <!-- <video_mask_loop>1</video_mask_loop> -->

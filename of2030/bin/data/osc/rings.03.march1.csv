@@ -7,6 +7,7 @@
 0.1,/t/rings_march_spot_max
 0.1,/t/rings_march_spot_gydo
 0.1,/t/rings_march_spot_koen
-8.0,/cfg/rings_march_spot_max/auto_alpha,f,0.0
-8.0,/cfg/rings_march_spot_gydo/auto_alpha,f,0.0
-8.0,/cfg/rings_march_spot_koen/auto_alpha,f,0.0
+5.0,/lvid/rings/2.2_RINGS_FOOTSTEPS_A_TUNNEL_v01-cropped-single.mov
+6.0,/cfg/rings_march_spot_max/auto_alpha,f,0.0
+6.0,/cfg/rings_march_spot_gydo/auto_alpha,f,0.0
+6.0,/cfg/rings_march_spot_koen/auto_alpha,f,0.0

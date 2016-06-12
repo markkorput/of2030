@@ -1,4 +1,6 @@
-0.0,/t/rings_march2circles
-0.0,/s/rings_march
-2.0,/t/rings_circles
-2.0,/s/rings_march2circles
+0.0,/cfg/rings_circles/initial_alpha,f,0.0
+0.0,/cfg/rings_circles/auto_alpha,f,0.3
+0.0,/cfg/rings_march/auto_alpha,f,-0.3
+0.0,/t/rings_circles
+2.0,/cfg/rings_circles/auto_alpha,f,0.0
+2.0,/s/rings_march

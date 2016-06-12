@@ -1,8 +1,10 @@
+0.0,/cfg/rings_march/auto_alpha,f,0.0
 0.0,/t/rings_hey
-0.1,/s/rings_march_spot_gydo
-0.1,/s/rings_march_spot_koen
-0.1,/s/rings_march_spot_max
+0.2,/s/rings_march_spot_gydo
+0.2,/s/rings_march_spot_koen
+0.2,/s/rings_march_spot_max
 0.3,/cfg/rings_march/draw_size_y,f,1.0
 0.3,/cfg/rings_march/texcoord_multiply_x,f,9.0
 0.3,/t/rings_march
 2.0,/s/rings_hey
+2.0,/lvid/rings/2.2_RINGS_FOOTSTEPS_C_WHITE_v02.mov
