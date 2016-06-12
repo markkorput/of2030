@@ -86,7 +86,7 @@ bool XmlSettings::load(bool reload){
 #ifdef __OSC_SENDER_ENABLED__
     osc_out_port = xml.getValue("of2030:osc:out:port", 0);
     osc_out_host = xml.getValue("of2030:osc:out:host", "");
-    osc_out_keycheck = xml.getValue("of2030:osc:out:host", "1") == "1";
+    osc_out_keycheck = xml.getValue("of2030:osc:out:key_check", "1") == "1";
 #endif // __OSC_SENDER_ENABLED__
 
     // loadOscAddresses(xml.doc, osc_setting);

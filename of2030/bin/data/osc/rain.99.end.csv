@@ -1,6 +1,6 @@
-0.0,/cfg/rain_rain_loop/auto_alpha,-0.05
+0.0,/cfg/rain_rain_loop/auto_alpha,f,-0.1
 0.0,/t/rain_rain_end
-5.0,/s/rain_rain_loop
+3.0,/s/rain_rain_loop
 5.0,/uvid/rain/3.1_RAIN_REGEN_B_LOOP_v01.mov
 5.0,/uvid/rain/3.1_RAIN_THUNDER_v01.mov
 5.0,/uvid/rain/3.1_RAIN_REGEN_A_START_v01.mov

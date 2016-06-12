@@ -38,7 +38,7 @@
       <image>stellar_spot1_v02.jpg</image>
       <spot>3</spot>
       <unique>0</unique>
-      <duration>8.7</duration>
+      <duration>3.5</duration>
     </effect>
     <effect name="stellar_worms">
       <!-- <video>stellar/1.1_STELLAR_WORMS_1_v01.mov</video> -->
@@ -79,6 +79,7 @@
     <effect name="stellar_voice2">
       <video>stellar/1.1_STELLAR_VOICEOVER_2_v02.mov</video>
       <mask_coords_name>voice_coord</mask_coords_name>
+
       <reset>1</reset>
       <layer>-1</layer>
       <unload>1</unload>
@@ -552,7 +553,7 @@
 
 
     <effect name="mud_machine_build">
-      <video>mud/2.3_MUD_MACHINE_A_OPBOUW_v02.mov</video>
+      <video>mud/2.3_MUD_MACHINE_A_OPBOUW_v03.mov</video>
       <!-- <loop>1</loop> -->
       <!-- <layer>0</layer> -->
       <is_tunnel>1</is_tunnel>
@@ -560,16 +561,17 @@
       <layer>0</layer>
       <freeze>1.0</freeze>
       <reset>1</reset>
+      <unload>1</unload>
     </effect>
 
     <effect name="mud_machine">
-      <image>mud_machine_v02.png</image>
+      <image>mud_machine_v03.jpg</image>
       <is_tunnel>1</is_tunnel>
       <layer>1</layer>
     </effect>
 
     <effect name="mud_machine_loop">
-      <video>mud/2.3_MUD_MACHINE_B_LOOP_v02.mov</video>
+      <video>mud/2.3_MUD_MACHINE_B_LOOP_v03.mov</video>
       <!-- <loop>1</loop> -->
       <!-- <layer>0</layer> -->
       <is_tunnel>1</is_tunnel>
@@ -578,11 +580,12 @@
       <layer>1</layer>
     </effect>
     <effect name="mud_machine_destruct">
-      <video>mud/2.3_MUD_MACHINE_C_AFBOUW_v03.mov</video>
+      <video>mud/2.3_MUD_MACHINE_C_AFBOUW_v04.mov</video>
       <loop>0</loop>
       <!-- <layer>0</layer> -->
       <is_tunnel>1</is_tunnel>
       <duration>24.0</duration>
+      <unload>1</unload>
     </effect>
     <effect name="mud_wheel_max">
       <image>mud_wheel_v01.jpg</image>
@@ -597,20 +600,22 @@
       <spot>2</spot>
     </effect>
     <effect name="mud_roof1">
-      <video>mud/2.3_MUD_MOVING_WHITE_ROOF_1_v02.mov</video>
+      <video>mud/2.3_MUD_MOVING_WHITE_ROOF_1_v03.mov</video>
       <!-- <loop>1</loop> -->
       <layer>1</layer>
       <is_pano>1</is_pano>
       <mask_coords_name>roof_coord</mask_coords_name>
       <layer>3</layer>
+      <unload>1</unload>
     </effect>
     <effect name="mud_roof2">
-      <video>mud/2.3_MUD_MOVING_WHITE_ROOF_2_v02.mov</video>
+      <video>mud/2.3_MUD_MOVING_WHITE_ROOF_2_v03.mov</video>
       <!-- <loop>1</loop> -->
       <layer>1</layer>
       <is_pano>1</is_pano>
       <mask_coords_name>roof_coord</mask_coords_name>
       <layer>3</layer>
+      <unload>1</unload>
     </effect>
 
 
@@ -736,7 +741,7 @@
       <layer>3</layer>
       <is_pano>1</is_pano>
       <translate_x>32.5</translate_x>
-      <translate_y>1.3</translate_y>
+      <!-- <translate_y>1.3</translate_y> -->
       <draw_size_x>0.3</draw_size_x>
       <draw_size_y>0.3</draw_size_y>
     </effect>
@@ -783,7 +788,7 @@
 
 
     <effect name="fusion_startline">
-      <video>fusion/3.3 FUSION_STARTLINE_LEAP_v02.mov</video>
+      <video>fusion/3.3_FUSION_STARTLINE_LEAP_v02.mov</video>
       <is_pano>1</is_pano>
       <unload>1</unload>
     </effect>
@@ -849,7 +854,8 @@
       <video_alias>fusion_space_double</video_alias>
       <loop>1</loop>
       <is_pano>1</is_pano>
-      <texcoord_multiply_x>3.0</texcoord_multiply_x>
+      <texcoord_offset_x>0.5</texcoord_offset_x>
+      <texcoord_multiply_x>5.0</texcoord_multiply_x>
       <reset>1</reset>
       <unload>1</unload>
     </effect>
@@ -910,17 +916,20 @@
       <video>divide/3.2_WMND_KOEN_HANDMOVES_1_05806_v01.mov</video>
       <is_tunnel>1</is_tunnel>
       <reset>1</reset>
+      <unload>1</unload>
     </effect>
     <effect name="divide_particles2">
       <video>divide/3.2_WMND_KOEN_HANDMOVES_2_22320_v01.mov</video>
       <!-- <video_mask>self</video_mask> -->
       <is_tunnel>1</is_tunnel>
       <reset>1</reset>
+      <unload>1</unload>
     </effect>
     <effect name="divide_particles3">
       <video>divide/3.2_WMND_KOEN_HANDMOVES_3_31123_ALLE_BEAMERS_v01.mov</video>
       <is_tunnel>1</is_tunnel>
       <reset>1</reset>
+      <unload>1</unload>
     </effect>
     <effect name="divide_blinks">
       <video>divide/3.2_WMND_FLASHLIGHTS_v01-cropped-mask.mov</video>
@@ -973,15 +982,22 @@
       <video>now/3.4_WAN_DRIEHOEK_UIEN_v01.mov</video>
       <reset>1</reset>
       <is_pano>1</is_pano>
+      <freeze>0.0</freeze>
+    </effect>
+    <effect name="now_triangles2">
+      <video>now/3.4_WAN_DRIEHOEK_UIEN_v01.mov</video>
+      <reset>1</reset>
+      <is_pano>1</is_pano>
       <unload>1</unload>
     </effect>
     <effect name="now_roof1">
       <video>now/3.4_WAN_ROOF_v01.mov</video>
       <reset>1</reset>
       <is_pano>1</is_pano>
-      <!-- <mask_coods_name>roof</mask_coods_name> -->
+      <loop>1</loop>
+      <mask_coords_name>roof_coord</mask_coords_name>
       <layer>10</layer>
-      <unload>1</unload>
+      <!-- <unload>1</unload> -->
     </effect>
     <effect name="now_voice1">
       <video>now/3.4_WAN_VOICEOVER_3_v01.mov</video>

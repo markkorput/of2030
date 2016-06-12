@@ -191,7 +191,7 @@ void Effect::draw(Context &_context, float dt){
     auto_rotation += _context.effect_setting.getValue("auto_rotate", ofVec3f(0.0f)) * dt;
     auto_scale += _context.effect_setting.getValue("auto_scale", ofVec3f(0.0f)) * dt;
     auto_alpha = _context.effect_setting.getValue("current_alpha", auto_alpha);
-    auto_alpha += _context.effect_setting.getValue("auto_alpha", 0.0f) * dt;
+    auto_alpha = ofClamp(auto_alpha + _context.effect_setting.getValue("auto_alpha", 0.0f) * dt, 0.0f, 1.0f);
     auto_texcoord_offset += _context.effect_setting.getValue("auto_texcoord_offset", ofVec2f(0.0f)) * dt;
 
     ofSetColor(255);
@@ -479,6 +479,6 @@ inline ofImage* Effect::loadImage(Context &contxt){
     if(i == 1)
         return NULL;
     
-    val = contxt.effect_setting.getValue("image_option"+ofToString(floor(ofRandom(i))), "");
+    val = contxt.effect_setting.getValue("image_option"+ofToString(floor(ofRandom(i)+1)), "");
     return ImageManager::instance()->get(val, contxt.effect_setting.getValue("image_options_alias"+ofToString(floor(ofRandom(i))), val), true);
 }

@@ -1,6 +1,7 @@
 0.0,/cfg/now_noisylines/initial_alpha,f,0.0
-0.0,/cfg/now_noisylines/auto_alpha,f,0.05
+0.0,/cfg/now_noisylines/auto_alpha,f,0.02
 0.0,/t/now_noisylines
 2.5,/lvid/now/3.4_WAN_ALARMLIGHTS_1_v01.mov
 3.5,/lvid/now/3.4_WAN_DRUMLINES_v01.mov
 4.5,/lvid/now/3.4_WAN_SUBTLE_DOTS_v01.mov
+3.0,/cfg/now_noisylines/auto_alpha,f,0.0
