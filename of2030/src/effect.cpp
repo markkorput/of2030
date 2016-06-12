@@ -166,6 +166,7 @@ void Effect::setup(Context &_context){
 
     auto_pos = _context.effect_setting.getValue("auto_pos", ofVec3f(0.0f));
     auto_rotation = _context.effect_setting.getValue("auto_rotation", ofVec3f(0.0f));
+    auto_scale = _context.effect_setting.getValue("initial_scale", ofVec3f(0.0f));
     auto_alpha = _context.effect_setting.getValue("initial_alpha", 1.0f);
 
     layer = _context.effect_setting.getValue("layer", 0);
@@ -187,6 +188,7 @@ void Effect::draw(Context &_context, float dt){
     // these value can be updates during the effect (were already initialized in setup)
     auto_pos += _context.effect_setting.getValue("auto_velocity", ofVec3f(0.0f)) * dt;
     auto_rotation += _context.effect_setting.getValue("auto_rotate", ofVec3f(0.0f)) * dt;
+    auto_scale += _context.effect_setting.getValue("auto_scale", ofVec3f(0.0f)) * dt;
     auto_alpha = _context.effect_setting.getValue("current_alpha", auto_alpha);
     auto_alpha += _context.effect_setting.getValue("auto_alpha", 0.0f) * dt;
 
@@ -252,7 +254,7 @@ void Effect::drawContent(){
     ofRotateY(precalc->rotate.y);
     ofRotateZ(precalc->rotate.z);
 
-    ofScale(precalc->effect_scale);
+    ofScale(precalc->effect_scale+auto_scale);
     ofTranslate(precalc->effect_translate + auto_pos);
     ofRotateX(precalc->effect_rotate.x + auto_rotation.x);
     ofRotateY(precalc->effect_rotate.y + auto_rotation.y);
@@ -334,6 +336,7 @@ void Effect::drawContent(){
             vidShader->setUniformTexture("iMask", mask_video_player->getTexture(), 2);
         } else {
             vidShader = ShaderManager::instance()->get("standard");
+            vidShader->begin();
         }
 
         vidShader->setUniform4f("iColor", ofColor::white);

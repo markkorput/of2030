@@ -322,7 +322,7 @@
       <layer>2</layer>
     </effect>
     <effect name="rings_hey">
-      <pattern>rect</pattern>/
+      <pattern>rect</pattern>
       <is_pano>1</is_pano>
       <draw_size_x>51</draw_size_x>
       <auto_pos_x>-51</auto_pos_x>
@@ -332,7 +332,7 @@
     </effect>
     <effect name="rings_march">
       <video>rings/2.2_RINGS_FOOTSTEPS_A_TUNNEL_v01-cropped-single.mov</video>
-      <video_mask>self</video_mask>
+      <!-- <video_mask>self</video_mask> -->
       <loop>1</loop>
       <is_tunnel>1</is_tunnel>
       <texcoord_multiply_x>9.0</texcoord_multiply_x>
@@ -341,7 +341,7 @@
     </effect>
     <effect name="rings_march2">
       <video>rings/2.2_RINGS_FOOTSTEPS_A_TUNNEL_v01-cropped-single.mov</video>
-      <video_mask>self</video_mask>
+      <!-- <video_mask>self</video_mask> -->
       <loop>1</loop>
       <is_tunnel>1</is_tunnel>
       <texcoord_multiply_x>9.0</texcoord_multiply_x>
@@ -795,18 +795,84 @@
 
 
 
-    <effect name="fusion_">
+    <effect name="fusion_startline">
+      <video>fusion/3.3 FUSION_STARTLINE_LEAP_v02.mov</video>
+      <is_pano>1</is_pano>
+      <unload>1</unload>
+    </effect>
+    <effect name="fusion_lines_in">
+      <video>fusion/3.3_FUSION_PARRALEL_LINES_v02.mov</video>
+      <is_pano>1</is_pano>
+      <loop>1</loop>
+      <reset>1</reset>
+      <texcoord_multiply_x>20.0</texcoord_multiply_x>
+    </effect>
+    <effect name="fusion_lines">
+      <video>fusion/3.3_FUSION_PARRALEL_LINES_v02.mov</video>
+      <is_pano>1</is_pano>
+      <loop>1</loop>
+      <reset>1</reset>
+      <texcoord_multiply_x>20.0</texcoord_multiply_x>
+    </effect>
+    <effect name="fusion_lines_out">
+      <video>fusion/3.3_FUSION_PARRALEL_LINES_v02.mov</video>
+      <is_pano>1</is_pano>
+      <loop>1</loop>
+      <reset>1</reset>
+      <texcoord_multiply_x>20.0</texcoord_multiply_x>
+    </effect>
+    <effect name="fusion_spot_koen1">
+      <video>fusion/3.3_FUSION_SPOT_KOEN_v01.mov</video>
+      <spot>2</spot>
+      <loop>1</loop>
+    </effect>
+    <effect name="fusion_spot_max1">
+      <video>fusion/3.3_FUSION_SPOT_MAX_v01.mov</video>
+      <spot>3</spot>
+      <loop>1</loop>
+    </effect>
+    <effect name="fusion_spot_gydo1">
+      <video>fusion/3.3_FUSION_SPOT_GYDO_v01.mov</video>
+      <spot>1</spot>
+      <loop>1</loop>
+    </effect>
+    <effect name="fusion_spot_gydo_accent">
+      <video>fusion/3.3_FUSION_SPOT_GYDO_v01.mov</video>
+      <spot>1</spot>
+      <loop>1</loop>
+      <duration>2.0</duration>
+      <unique>0</unique>
+      <reset>1</reset>
+    </effect>
+    <effect name="fusion_spring">
+      <video>fusion/3.3_FUSION_SPRING_v01.mov</video>
+      <is_pano>1</is_pano>
+      <reset>1</reset>
+    </effect>
+    <effect name="fusion_space1">
+      <video>fusion/3.3_FUSION_SPACEND_v02.mov</video>
+      <loop>1</loop>
+      <is_pano>1</is_pano>
+      <texcoord_multiply_x>3.0</texcoord_multiply_x>
+      <reset>1</reset>
+      <unload>1</unload>
+    </effect>
+    <effect name="fusion_space1again">
+      <video>fusion/3.3_FUSION_SPACEND_v02.mov</video>
+      <video_alias>fusion_space_double</video_alias>
+      <loop>1</loop>
+      <is_pano>1</is_pano>
+      <texcoord_multiply_x>3.0</texcoord_multiply_x>
+      <reset>1</reset>
+      <unload>1</unload>
+    </effect>
+    <effect name="fusion_space2">
+      <video>fusion/3.3_FUSION_SPACEND_END_v02.mov</video>
+      <unload>1</unload>
+      <is_pano>1</is_pano>
+      <texcoord_multiply_x>3.0</texcoord_multiply_x>
     </effect>
 
-
-
-<!-- 
-              0: '/p/divide.start'
-              1: '/p/divide.chords'
-              2: '/p/particles1'
-              3: '/p/particles2'
-              4: '/p/blinks'
- -->
     <effect name="divide_cloud">
       <video>divide/3.2_WMND_LOOPJE.mov</video>
       <loop>1</loop>

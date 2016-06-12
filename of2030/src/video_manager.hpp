@@ -29,7 +29,7 @@ namespace of2030 {
         ofVideoPlayer* get(const string &video_name, const string &alias, bool load=true);
         
         void unloadAll();
-        bool unload(const string &alias);
+        bool unload(string alias);
         void unload(ofVideoPlayer *player);
         void deprecateAll();
         inline void deprecate(const string &alias){ deprecations.push_back(alias); }
