@@ -40,8 +40,6 @@
       <spot3size_y>1.0</spot3size_y>
 
       <!-- tunnel -->
-      <tunnel_start>0.0</tunnel_start>
-      <tunnel_end>1.0</tunnel_end>
       <tunnel_translate_x>0.0</tunnel_translate_x>
       <tunnel_translate_y>0.0</tunnel_translate_y>
       <!-- <tunnel_translate_z></tunnel_translate_z> -->
@@ -52,8 +50,6 @@
       <tunnel_scale_y>230.4</tunnel_scale_y>
 
       <!-- the area of the panoram that this screen shows -->
-      <pano_start>0.0</pano_start>
-      <pano_end>0.324</pano_end>
       <pano_translate_x>0.0</pano_translate_x>
       <pano_translate_y>0.0</pano_translate_y>
       <!-- <pano_translate_z></pano_translate_z> -->
@@ -95,8 +91,6 @@
       <!-- <rot_y>0.0</rot_y> -->
 
       <!-- the area of the panoram that this screen shows -->
-      <pano_start>0.324</pano_start>
-      <pano_end>0.5</pano_end>
       <pano_translate_x>-16.5</pano_translate_x>
       <pano_translate_y>0.0</pano_translate_y>
       <!-- <pano_translate_z></pano_translate_z> -->
@@ -115,6 +109,17 @@
       <roof_coord3_y>0.38</roof_coord3_y>
       <roof_coord4_x>0.0</roof_coord4_x>
       <roof_coord4_y>0.29</roof_coord4_y>
+
+      <!-- tunnel -->
+      <tunnel_translate_x>0.0</tunnel_translate_x>
+      <tunnel_translate_y>0.0</tunnel_translate_y>
+      <!-- <tunnel_translate_z></tunnel_translate_z> -->
+      <!-- <tunnel_rotate_x>180.0</tunnel_rotate_x> -->
+      <!-- <tunnel_rotate_y></tunnel_rotate_y> -->
+      <!-- <tunnel_rotate_z></tunnel_rotate_z> -->
+      <tunnel_scale_x>46.5</tunnel_scale_x>
+      <tunnel_scale_y>230.4</tunnel_scale_y>
+
     </screen>
 
 
@@ -156,8 +161,6 @@
       <spot3rotate_y>180.0</spot3rotate_y>
 
       <!-- tunnel -->
-      <tunnel_start>1.0</tunnel_start>
-      <tunnel_end>0.0</tunnel_end>
       <tunnel_translate_x>-17.5</tunnel_translate_x>
       <tunnel_translate_y>0.0</tunnel_translate_y>
       <!-- <tunnel_translate_z></tunnel_translate_z> -->
@@ -168,8 +171,6 @@
       <tunnel_scale_y>230.4</tunnel_scale_y>
 
       <!-- the area of the panoram that this screen shows -->
-      <pano_start>0.5</pano_start>
-      <pano_end>0.834</pano_end>
       <pano_translate_x>-25.5</pano_translate_x>
       <pano_translate_y>0.0</pano_translate_y>
       <!-- <pano_translate_z></pano_translate_z> -->
@@ -208,8 +209,6 @@
       <rot_y>180.0</rot_y>
 
       <!-- the area of the panoram that this screen shows -->
-      <pano_start>0.834</pano_start>
-      <pano_end>1.0</pano_end>
       <pano_translate_x>-42.0</pano_translate_x>
       <pano_translate_y>0.0</pano_translate_y>
       <!-- <pano_translate_z></pano_translate_z> -->

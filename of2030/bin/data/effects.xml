@@ -1123,10 +1123,5 @@
       <pattern>rect</pattern>
       <mask_coords_name>voice_coord</mask_coords_name>
     </effect>
-
-    <!-- pos -->
-    <effect name="pos1">
-      <pattern>pos</pattern>
-    </effect>
   </effects>
 </of2030>
