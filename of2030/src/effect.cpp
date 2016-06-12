@@ -168,6 +168,7 @@ void Effect::setup(Context &_context){
     auto_rotation = _context.effect_setting.getValue("auto_rotation", ofVec3f(0.0f));
     auto_scale = _context.effect_setting.getValue("initial_scale", ofVec3f(0.0f));
     auto_alpha = _context.effect_setting.getValue("initial_alpha", 1.0f);
+    auto_texcoord_offset = ofVec2f(0.0f);
 
     layer = _context.effect_setting.getValue("layer", 0);
 }
@@ -191,6 +192,7 @@ void Effect::draw(Context &_context, float dt){
     auto_scale += _context.effect_setting.getValue("auto_scale", ofVec3f(0.0f)) * dt;
     auto_alpha = _context.effect_setting.getValue("current_alpha", auto_alpha);
     auto_alpha += _context.effect_setting.getValue("auto_alpha", 0.0f) * dt;
+    auto_texcoord_offset += _context.effect_setting.getValue("auto_texcoord_offset", ofVec2f(0.0f)) * dt;
 
     ofSetColor(255);
 
@@ -281,7 +283,7 @@ void Effect::drawContent(){
         vidShader->setUniform4f("iColor", ofColor::white);
         vidShader->setUniform1f("iAlpha", 1.0f);
         vidShader->setUniform2f("iTexCoordMultiply", context->effect_setting.getValue("texcoord_multiply", ofVec2f(1.0f, 1.0f)));
-        vidShader->setUniform2f("iTexCoordOffset", context->effect_setting.getValue("texcoord_offset", ofVec2f(0.0f)));
+        vidShader->setUniform2f("iTexCoordOffset", context->effect_setting.getValue("texcoord_offset", ofVec2f(0.0f))+auto_texcoord_offset);
         vidShader->setUniform2f("iResolution", ofVec2f(image->getWidth(), image->getHeight()));
 
         image->draw(0.0, 0.0, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
@@ -342,7 +344,7 @@ void Effect::drawContent(){
         vidShader->setUniform4f("iColor", ofColor::white);
         vidShader->setUniform1f("iAlpha", 1.0f);
         vidShader->setUniform2f("iTexCoordMultiply", context->effect_setting.getValue("texcoord_multiply", ofVec2f(1.0f, 1.0f)));
-        vidShader->setUniform2f("iTexCoordOffset", context->effect_setting.getValue("texcoord_offset", ofVec2f(0.0f)));
+        vidShader->setUniform2f("iTexCoordOffset", context->effect_setting.getValue("texcoord_offset", ofVec2f(0.0f))+auto_texcoord_offset);
         vidShader->setUniform2f("iResolution", ofVec2f(video_player->getTexture().getWidth(), video_player->getTexture().getHeight()));
 
         // draw video texture
@@ -366,6 +368,22 @@ void Effect::drawPattern(const string &patternName){
     if(patternName == "rect"){
         ofDrawRectangle(0.0f, 0.0f, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
         return;
+    }
+
+    //
+    //
+    //
+    if(patternName == "opposites"){
+        int half = floor(context->screen_setting.getValue("total", 12) * 0.5);
+        int idx = floor(context->screen_setting.getValue("index", 0) % half);
+        float steptime = context->effect_setting.getValue("steptime", 0.1f);
+        float tmin = idx*steptime;
+        float tmax = tmin + steptime;
+        // float cycletime = steptime * half;
+        float tcycle = fmod(getEffectTime(), steptime * half);
+        if(tcycle < tmax and tcycle >= tmin){
+            ofDrawRectangle(0, 0, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
+        }
     }
 
     //
@@ -410,7 +428,6 @@ void Effect::drawPattern(const string &patternName){
         ofSetColor(255);
         return;
     }
-
 }
 
 void Effect::drawMask(const string &coordsName){

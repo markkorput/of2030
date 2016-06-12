@@ -97,6 +97,7 @@ namespace of2030{
         ofVideoPlayer *video_player, *mask_video_player;
         bool bVidStarted;
         ofVec3f auto_pos, auto_rotation, auto_scale;
+        ofVec2f auto_texcoord_offset;
         float auto_alpha;
 
         Context *context;

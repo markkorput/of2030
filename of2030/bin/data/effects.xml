@@ -135,6 +135,7 @@
       <!-- videos are not square but 768x576 so this way we compensate-->
       <scale_x>1.92</scale_x>
       <scale_y>1.44</scale_y>
+      <unload>1</unload>
     </effect>
     <effect name="scav_search_koen">
       <video>scav/2.1_SCAVENGER_S_SEARCHLIGHT_KOEN_v01.mov</video>
@@ -142,6 +143,7 @@
       <reset>1</reset>
       <scale_x>1.92</scale_x>
       <scale_y>1.44</scale_y>
+      <unload>1</unload>
     </effect>
     <effect name="scav_search_gydo">
       <video>scav/2.1_SCAVENGER_S_SEARCHLIGHT_GYDO_v01.mov</video>
@@ -149,6 +151,7 @@
       <reset>1</reset>
       <scale_x>1.92</scale_x>
       <scale_y>1.44</scale_y>
+      <unload>1</unload>
     </effect>
     <effect name="scav_fan_max">
       <image>scav_fan1_v02.jpg</image>
@@ -178,65 +181,75 @@
       <image>scav_fan2_v03.jpg</image>
       <spot>3</spot>
       <layer>3</layer>
-      <auto_rotate_z>40.0</auto_rotate_z>
+      <auto_rotate_z>60.0</auto_rotate_z>
       <!-- <scale_x>1.1</scale_x> -->
       <!-- <scale_y>1.1</scale_y> -->
       <!-- <duration>1.8</duration> -->
-      <initial_alpha>0.25</initial_alpha>
+      <initial_alpha>0.60</initial_alpha>
       <blendmode>1</blendmode>
+      <visible>0</visible>
     </effect>
     <effect name="scav_beat_koen">
       <image>scav_fan2_v03.jpg</image>
       <spot>2</spot>
       <layer>3</layer>
-      <auto_rotate_z>40.0</auto_rotate_z>
+      <auto_rotate_z>60.0</auto_rotate_z>
       <!-- <scale_x>1.1</scale_x> -->
       <!-- <scale_y>1.1</scale_y> -->
       <!-- <duration>1.8</duration> -->
-      <initial_alpha>0.25</initial_alpha>
+      <initial_alpha>0.60</initial_alpha>
       <blendmode>1</blendmode>
+      <visible>0</visible>
     </effect>
     <effect name="scav_beat_gydo">
       <image>scav_fan2_v03.jpg</image>
       <spot>1</spot>
       <layer>3</layer>
-      <auto_rotate_z>40.0</auto_rotate_z>
+      <auto_rotate_z>60.0</auto_rotate_z>
       <!-- <scale_x>1.1</scale_x> -->
       <!-- <scale_y>1.1</scale_y> -->
       <!-- <duration>1.8</duration> -->
-      <initial_alpha>0.25</initial_alpha>
+      <initial_alpha>0.60</initial_alpha>
       <blendmode>1</blendmode>
+      <visible>0</visible>
     </effect>
     <effect name="scav_turbo_max">
       <image>scav_fan3_v01.jpg</image>
       <image_mask>self</image_mask>
       <spot>3</spot>
       <layer>4</layer>
-      <auto_rotate_z>60.0</auto_rotate_z>
+      <auto_rotate_z>100.0</auto_rotate_z>
+      <blendmode>3</blendmode>
     </effect>
     <effect name="scav_turbo_koen">
       <image>scav_fan3_v01.jpg</image>
       <image_mask>self</image_mask>
       <spot>2</spot>
       <layer>4</layer>
-      <auto_rotate_z>60.0</auto_rotate_z>
+      <auto_rotate_z>100.0</auto_rotate_z>
+      <blendmode>3</blendmode>
     </effect>
     <effect name="scav_turbo_gydo">
       <image>scav_fan3_v01.jpg</image>
       <image_mask>self</image_mask>
       <spot>1</spot>
       <layer>4</layer>
-      <auto_rotate_z>60.0</auto_rotate_z>
+      <auto_rotate_z>100.0</auto_rotate_z>
+      <blendmode>3</blendmode>
     </effect>
     <effect name="scav_pano">
-      <video>scav/2.1_SCAVENGER_PANOHELI_OPTIE_1_v01.mov</video>
+      <video>scav/2.1_SCAVENGER_PANOHELI_OPTIE_2_v02.mov</video>
       <reset>1</reset>
       <is_pano>1</is_pano>
+      <unload>1</unload>
+      <texcoord_multiply_x>2.0</texcoord_multiply_x>
     </effect>
     <effect name="scav_roof">
-      <TODO>true</TODO>
-      <color_a>200.0</color_a>
+      <pattern>opposites</pattern>
+      <!-- <color_a>200.0</color_a> -->
       <mask_coords_name>roof_coord</mask_coords_name>
+      <steptime>0.2</steptime>
+      <layer>5</layer>
       <!-- <duration>1000.0</duration> -->
     </effect>
     <effect name="scav_fallingline">
@@ -253,47 +266,39 @@
     </effect>
 
 
-
-    <effect name="rings_pattern_black2white">
-      <video>rings/2.2_RINGS_NON_EGAAL_BLACKTOWHITE_v01.mov</video>
-      <is_pano>1</is_pano>
-      <reset>1</reset>
-      <layer>1</layer>
-    </effect>
     <effect name="rings_pattern_white_intro">
-      <video>rings/2.2_RINGS_NON_EGAAL_WHITE_v01.mov</video>
+      <video>rings/2.2_RINGS_NON_EGAAL_WHITE_v02.mov</video>
+      <is_pano>1</is_pano>
+      <loop>1</loop>
+    </effect>
+    <effect name="rings_pattern_black_intro">
+      <video>rings/2.2_RINGS_NON_EGAAL_BLACK_v02.mov</video>
       <is_pano>1</is_pano>
       <loop>1</loop>
     </effect>
     <effect name="rings_pattern_white">
-      <video>rings/2.2_RINGS_NON_EGAAL_WHITE_v01.mov</video>
+      <video>rings/2.2_RINGS_NON_EGAAL_WHITE_v02.mov</video>
       <is_pano>1</is_pano>
       <loop>1</loop>
     </effect>
     <effect name="rings_pattern_white_bridge">
-      <video>rings/2.2_RINGS_NON_EGAAL_WHITE_v01.mov</video>
+      <video>rings/2.2_RINGS_NON_EGAAL_WHITE_v02.mov</video>
       <is_pano>1</is_pano>
       <loop>1</loop>
     </effect>
     <effect name="rings_pattern_white_outro">
-      <video>rings/2.2_RINGS_NON_EGAAL_WHITE_v01.mov</video>
+      <video>rings/2.2_RINGS_NON_EGAAL_WHITE_v02.mov</video>
       <is_pano>1</is_pano>
       <loop>1</loop>
       <layer>-1</layer>
     </effect>
-    <effect name="rings_pattern_white2black">
-      <video>rings/2.2_RINGS_NON_EGAAL_WHITETOBLACK_v01.mov</video>
-      <is_pano>1</is_pano>
-      <reset>1</reset>
-      <layer>1</layer>
-    </effect>
     <effect name="rings_pattern_black">
-      <video>rings/2.2_RINGS_NON_EGAAL_BLACK_v01.mov</video>
+      <video>rings/2.2_RINGS_NON_EGAAL_BLACK_v02.mov</video>
       <is_pano>1</is_pano>
       <loop>1</loop>
     </effect>
     <effect name="rings_pattern_black_bridge">
-      <video>rings/2.2_RINGS_NON_EGAAL_BLACK_v01.mov</video>
+      <video>rings/2.2_RINGS_NON_EGAAL_BLACK_v02.mov</video>
       <is_pano>1</is_pano>
       <loop>1</loop>
     </effect>
@@ -331,72 +336,54 @@
       <layer>9</layer>
     </effect>
     <effect name="rings_march">
-      <video>rings/2.2_RINGS_FOOTSTEPS_A_TUNNEL_v01-cropped-single.mov</video>
-      <!-- <video_mask>self</video_mask> -->
+      <video>rings/2.2_RINGS_WALK_v02.mov</video>
       <loop>1</loop>
       <is_tunnel>1</is_tunnel>
       <texcoord_multiply_x>9.0</texcoord_multiply_x>
+      <auto_texcoord_offset_x>-0.3</auto_texcoord_offset_x>
       <draw_size_y>1.0</draw_size_y>
       <auto_pos_y>1.0</auto_pos_y>
     </effect>
     <effect name="rings_march2">
-      <video>rings/2.2_RINGS_FOOTSTEPS_A_TUNNEL_v01-cropped-single.mov</video>
-      <!-- <video_mask>self</video_mask> -->
+      <video>rings/2.2_RINGS_WALK_v02.mov</video>
       <loop>1</loop>
       <is_tunnel>1</is_tunnel>
-      <texcoord_multiply_x>9.0</texcoord_multiply_x>
-      <draw_size_y>1.0</draw_size_y>
-      <auto_pos_y>1</auto_pos_y>
-    </effect>
-    <effect name="rings_march2circles">
-      <video>rings/2.2_RINGS_FOOTSTEPS_B_TO_WHITE_v01.mov</video>
-      <video_mask>self</video_mask>
-      <!-- <loop>1</loop> -->
-      <reset>1</reset>
-      <is_tunnel>1</is_tunnel>
-      <!-- <video_mask_loop>1</video_mask_loop> -->
-      <!-- <is_pano>1</is_pano> -->
-      <texcoord_multiply_x>1.8</texcoord_multiply_x>
-      <layer>2</layer>
+      <texcoord_multiply_x>12.0</texcoord_multiply_x>
+      <texcoord_multiply_y>2.0</texcoord_multiply_y>
+      <auto_texcoord_offset_x>-0.3</auto_texcoord_offset_x>
+      <draw_size_y>1.5</draw_size_y>
+      <translate_y>0.25</translate_y>
     </effect>
     <effect name="rings_circles">
-      <video>rings/2.2_RINGS_FOOTSTEPS_C_WHITE_v01.mov</video>
-      <video_mask>self</video_mask>
+      <image>rings_circle.jpg</image>
       <is_tunnel>1</is_tunnel>
-      <loop>1</loop>
+      <draw_size_y>1.0</draw_size_y>
+      <auto_pos_y>1.0</auto_pos_y>
       <!-- <is_pano>1</is_pano> -->
-      <texcoord_multiply_x>1.8</texcoord_multiply_x>
-      <layer>2</layer>
-    </effect>
-    <effect name="rings_circles2squares">
-      <video>rings/2.2_RINGS_FOOTSTEPS_D_TO_SQUARE_v01.mov</video>
-      <video_mask>self</video_mask>
-      <is_tunnel>1</is_tunnel>
-      <!-- <video_mask>rings/2.2_RINGS_FOOTSTEPS_A_TUNNEL_v01.mov</video_mask> -->
-      <!-- <loop>1</loop> -->
-      <reset>1</reset>
-      <!-- <video_mask_loop>1</video_mask_loop> -->
-      <!-- <is_pano>1</is_pano> -->
-      <texcoord_multiply_x>1.8</texcoord_multiply_x>
+      <auto_texcoord_offset_x>-0.3</auto_texcoord_offset_x>
+      <texcoord_multiply_x>9.0</texcoord_multiply_x>
       <layer>2</layer>
     </effect>
     <effect name="rings_squares">
-      <video>rings/2.2_RINGS_FOOTSTEPS_E_SQUARES_v01.mov</video>
-      <video_mask>self</video_mask>
-      <loop>1</loop>
-      <!-- <video_mask_loop>1</video_mask_loop> -->
-      <!-- <is_pano>1</is_pano> -->
-      <texcoord_multiply_x>1.8</texcoord_multiply_x>
+      <image>rings_square.jpg</image>
+      <is_tunnel>1</is_tunnel>
+      <draw_size_y>1.0</draw_size_y>
+      <auto_pos_y>1.0</auto_pos_y>
+      <auto_texcoord_offset_x>-0.3</auto_texcoord_offset_x>
+      <texcoord_multiply_x>9.0</texcoord_multiply_x>
       <layer>2</layer>
     </effect>
     <effect name="rings_squares_blacksheep">
-      <video>rings/2.2_RINGS_FOOTSTEPS_F_SQUAREBLACK_v01.mov</video>
-      <video_mask>self</video_mask>
+      <video>rings/2.2_RINGS_FOOTSTEPS_F_SQUAREBLACK_v02.mov</video>
       <loop>1</loop>
+      <is_tunnel>1</is_tunnel>
       <!-- <video_mask_loop>1</video_mask_loop> -->
       <!-- <is_pano>1</is_pano> -->
-      <texcoord_multiply_x>5.8</texcoord_multiply_x>
+      <draw_size_y>1.0</draw_size_y>
+      <auto_pos_y>1.0</auto_pos_y>
+      <texcoord_multiply_x>2.25</texcoord_multiply_x>
       <layer>2</layer>
+      <unload>1</unload>
     </effect>
 
     <effect name="rings_beat1_max">

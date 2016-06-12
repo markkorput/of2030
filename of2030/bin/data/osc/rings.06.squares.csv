@@ -1,4 +1,11 @@
-0.0,/t/rings_circles2squares
-0.1,/s/rings_circles
-3.2,/t/rings_squares
-3.2,/s/rings_circles2squares
+0.0,/cfg/rings_squares/initial_alpha,f,0.0
+0.0,/cfg/rings_circles/auto_alpha,f,-0.5
+0.0,/t/rings_squares
+0.3,/cfg/rings_squares/auto_alpha,f,0.3
+2.0,/cfg/rings_squares/auto_alpha,f,0.0
+2.5,/limg/rings_beat1.jpg
+2.5,/limg/rings_beat2.jpg
+2.5,/limg/rings_beat3.jpg
+2.5,/limg/rings_beat4.jpg
+2.5,/limg/rings_beat5.jpg
+3.0,/s/rings_circles

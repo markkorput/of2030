@@ -131,6 +131,10 @@ void ofApp::update(){
     if(t >= next_log_alive_time){
         ofLog() << "alive time (s): " << t;
         next_log_alive_time = t + log_alive_interval;
+//        vector<of2030::Effect*> fxs = of2030::Player::instance()->getActiveEffects();
+//        for(int i=fxs.size()-1; i>=0; i--){
+//            ofLog() << "fx: " << fxs[i]->trigger;
+//        }
     }
 }
 

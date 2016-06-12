@@ -1,6 +1,5 @@
-0.0,/s/dead_spot
 0.0,/cfg/rings_pattern_white_intro/initial_alpha,f,0.0
-0.0,/t/rings_pattern_black2white
 0.0,/t/rings_pattern_white_intro
-5.0,/cfg/rings_pattern_white_intro/auto_alpha,f,0.1
-7.0,/cfg/rings_pattern_white_intro/auto_alpha,f,0.0
+0.0,/cfg/rings_pattern_white_intro/auto_alpha,f,0.04
+2.5,/lvid/rings/2.2_RINGS_NON_EGAAL_BLACK_v02.mov
+4.0,/cfg/rings_pattern_white_intro/auto_alpha,f,0.0

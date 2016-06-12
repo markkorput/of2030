@@ -1,6 +1,8 @@
 <of2030>
   <screens>
     <screen name="rpi10">
+      <index>0</index>
+      <total>4</total>
       <!-- <screen_rotate_z>180</screen_rotate_z> -->
       <!-- <screen_translate_x>768</screen_translate_x> -->
       <!-- <screen_translate_y>576</screen_translate_y> -->
@@ -63,16 +65,18 @@
 
       <!-- roof -->
       <roof_coord1_x>0.0</roof_coord1_x>
-      <roof_coord1_y>1.0</roof_coord1_y>
+      <roof_coord1_y>0.0</roof_coord1_y>
       <roof_coord2_x>1.0</roof_coord2_x>
-      <roof_coord2_y>1.0</roof_coord2_y>
+      <roof_coord2_y>0.0</roof_coord2_y>
       <roof_coord3_x>1.0</roof_coord3_x>
-      <roof_coord3_y>0.62</roof_coord3_y>
+      <roof_coord3_y>0.38</roof_coord3_y>
       <roof_coord4_x>0.0</roof_coord4_x>
-      <roof_coord4_y>0.71</roof_coord4_y>
+      <roof_coord4_y>0.29</roof_coord4_y>
     </screen>
 
     <screen name="dev2">
+      <index>1</index>
+      <total>4</total>
       <!-- <screen_rotate_z>180</screen_rotate_z> -->
       <!-- <screen_translate_x>765</screen_translate_x> -->
       <!-- <screen_translate_y>576</screen_translate_y> -->
@@ -104,17 +108,19 @@
 
       <!-- roof -->
       <roof_coord1_x>0.0</roof_coord1_x>
-      <roof_coord1_y>1.0</roof_coord1_y>
+      <roof_coord1_y>0.0</roof_coord1_y>
       <roof_coord2_x>1.0</roof_coord2_x>
-      <roof_coord2_y>1.0</roof_coord2_y>
+      <roof_coord2_y>0.0</roof_coord2_y>
       <roof_coord3_x>1.0</roof_coord3_x>
-      <roof_coord3_y>0.62</roof_coord3_y>
+      <roof_coord3_y>0.38</roof_coord3_y>
       <roof_coord4_x>0.0</roof_coord4_x>
-      <roof_coord4_y>0.71</roof_coord4_y>
+      <roof_coord4_y>0.29</roof_coord4_y>
     </screen>
 
 
     <screen name="rpi7">
+      <index>2</index>
+      <total>4</total>
       <!-- resolution -->
       <resolution_x>768</resolution_x>
       <resolution_y>576</resolution_y>
@@ -175,16 +181,19 @@
 
       <!-- roof -->
       <roof_coord1_x>0.0</roof_coord1_x>
-      <roof_coord1_y>1.0</roof_coord1_y>
+      <roof_coord1_y>0.0</roof_coord1_y>
       <roof_coord2_x>1.0</roof_coord2_x>
-      <roof_coord2_y>1.0</roof_coord2_y>
+      <roof_coord2_y>0.0</roof_coord2_y>
       <roof_coord3_x>1.0</roof_coord3_x>
-      <roof_coord3_y>0.62</roof_coord3_y>
+      <roof_coord3_y>0.38</roof_coord3_y>
       <roof_coord4_x>0.0</roof_coord4_x>
-      <roof_coord4_y>0.71</roof_coord4_y>
+      <roof_coord4_y>0.29</roof_coord4_y>
     </screen>
 
     <screen name="dev4">
+      <index>3</index>
+      <total>4</total>
+
       <!-- resolution -->
       <resolution_x>768</resolution_x>
       <resolution_y>576</resolution_y>
@@ -212,13 +221,13 @@
 
       <!-- roof -->
       <roof_coord1_x>0.0</roof_coord1_x>
-      <roof_coord1_y>1.0</roof_coord1_y>
+      <roof_coord1_y>0.0</roof_coord1_y>
       <roof_coord2_x>1.0</roof_coord2_x>
-      <roof_coord2_y>1.0</roof_coord2_y>
+      <roof_coord2_y>0.0</roof_coord2_y>
       <roof_coord3_x>1.0</roof_coord3_x>
-      <roof_coord3_y>0.62</roof_coord3_y>
+      <roof_coord3_y>0.38</roof_coord3_y>
       <roof_coord4_x>0.0</roof_coord4_x>
-      <roof_coord4_y>0.71</roof_coord4_y>
+      <roof_coord4_y>0.29</roof_coord4_y>
     </screen>
   </screens>
 </of2030>

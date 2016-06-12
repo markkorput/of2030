@@ -5,4 +5,4 @@
 0.1,/cfg/rings_pattern_white_outro/initial_alpha,f,0.0
 0.7,/cfg/rings_pattern_white_outro/auto_alpha,f,0.05
 1.0,/t/rings_pattern_white_outro
-5.0,/cfg/rings_pattern_white_outro/auto_alpha,f,0.0
+5.0,/cfg/rings_pattern_white_outro/auto_alpha,f,-0.01
