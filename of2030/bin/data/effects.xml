@@ -135,6 +135,7 @@
       <!-- videos are not square but 768x576 so this way we compensate-->
       <scale_x>1.92</scale_x>
       <scale_y>1.44</scale_y>
+      <unload>1</unload>
     </effect>
     <effect name="scav_search_koen">
       <video>scav/2.1_SCAVENGER_S_SEARCHLIGHT_KOEN_v01.mov</video>
@@ -142,6 +143,7 @@
       <reset>1</reset>
       <scale_x>1.92</scale_x>
       <scale_y>1.44</scale_y>
+      <unload>1</unload>
     </effect>
     <effect name="scav_search_gydo">
       <video>scav/2.1_SCAVENGER_S_SEARCHLIGHT_GYDO_v01.mov</video>
@@ -149,6 +151,7 @@
       <reset>1</reset>
       <scale_x>1.92</scale_x>
       <scale_y>1.44</scale_y>
+      <unload>1</unload>
     </effect>
     <effect name="scav_fan_max">
       <image>scav_fan1_v02.jpg</image>
@@ -178,60 +181,67 @@
       <image>scav_fan2_v03.jpg</image>
       <spot>3</spot>
       <layer>3</layer>
-      <auto_rotate_z>40.0</auto_rotate_z>
+      <auto_rotate_z>60.0</auto_rotate_z>
       <!-- <scale_x>1.1</scale_x> -->
       <!-- <scale_y>1.1</scale_y> -->
       <!-- <duration>1.8</duration> -->
-      <initial_alpha>0.25</initial_alpha>
+      <initial_alpha>0.60</initial_alpha>
       <blendmode>1</blendmode>
+      <visible>0</visible>
     </effect>
     <effect name="scav_beat_koen">
       <image>scav_fan2_v03.jpg</image>
       <spot>2</spot>
       <layer>3</layer>
-      <auto_rotate_z>40.0</auto_rotate_z>
+      <auto_rotate_z>60.0</auto_rotate_z>
       <!-- <scale_x>1.1</scale_x> -->
       <!-- <scale_y>1.1</scale_y> -->
       <!-- <duration>1.8</duration> -->
-      <initial_alpha>0.25</initial_alpha>
+      <initial_alpha>0.60</initial_alpha>
       <blendmode>1</blendmode>
+      <visible>0</visible>
     </effect>
     <effect name="scav_beat_gydo">
       <image>scav_fan2_v03.jpg</image>
       <spot>1</spot>
       <layer>3</layer>
-      <auto_rotate_z>40.0</auto_rotate_z>
+      <auto_rotate_z>60.0</auto_rotate_z>
       <!-- <scale_x>1.1</scale_x> -->
       <!-- <scale_y>1.1</scale_y> -->
       <!-- <duration>1.8</duration> -->
-      <initial_alpha>0.25</initial_alpha>
+      <initial_alpha>0.60</initial_alpha>
       <blendmode>1</blendmode>
+      <visible>0</visible>
     </effect>
     <effect name="scav_turbo_max">
       <image>scav_fan3_v01.jpg</image>
       <image_mask>self</image_mask>
       <spot>3</spot>
       <layer>4</layer>
-      <auto_rotate_z>60.0</auto_rotate_z>
+      <auto_rotate_z>100.0</auto_rotate_z>
+      <blendmode>3</blendmode>
     </effect>
     <effect name="scav_turbo_koen">
       <image>scav_fan3_v01.jpg</image>
       <image_mask>self</image_mask>
       <spot>2</spot>
       <layer>4</layer>
-      <auto_rotate_z>60.0</auto_rotate_z>
+      <auto_rotate_z>100.0</auto_rotate_z>
+      <blendmode>3</blendmode>
     </effect>
     <effect name="scav_turbo_gydo">
       <image>scav_fan3_v01.jpg</image>
       <image_mask>self</image_mask>
       <spot>1</spot>
       <layer>4</layer>
-      <auto_rotate_z>60.0</auto_rotate_z>
+      <auto_rotate_z>100.0</auto_rotate_z>
+      <blendmode>3</blendmode>
     </effect>
     <effect name="scav_pano">
       <video>scav/2.1_SCAVENGER_PANOHELI_OPTIE_1_v01.mov</video>
       <reset>1</reset>
       <is_pano>1</is_pano>
+      <unload>1</unload>
     </effect>
     <effect name="scav_roof">
       <TODO>true</TODO>
