@@ -1,6 +1,8 @@
 <of2030>
   <screens>
     <screen name="rpi10">
+      <index>0</index>
+      <total>12</total>
       <!-- <screen_rotate_z>180</screen_rotate_z> -->
       <!-- <screen_translate_x>768</screen_translate_x> -->
       <!-- <screen_translate_y>576</screen_translate_y> -->
@@ -73,6 +75,8 @@
     </screen>
 
     <screen name="dev2">
+      <index>1</index>
+      <total>12</total>
       <!-- <screen_rotate_z>180</screen_rotate_z> -->
       <!-- <screen_translate_x>765</screen_translate_x> -->
       <!-- <screen_translate_y>576</screen_translate_y> -->
@@ -115,6 +119,8 @@
 
 
     <screen name="rpi7">
+      <index>2</index>
+      <total>12</total>
       <!-- resolution -->
       <resolution_x>768</resolution_x>
       <resolution_y>576</resolution_y>
@@ -185,6 +191,9 @@
     </screen>
 
     <screen name="dev4">
+      <index>3</index>
+      <total>12</total>
+
       <!-- resolution -->
       <resolution_x>768</resolution_x>
       <resolution_y>576</resolution_y>

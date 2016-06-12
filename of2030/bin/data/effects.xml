@@ -244,9 +244,11 @@
       <unload>1</unload>
     </effect>
     <effect name="scav_roof">
-      <TODO>true</TODO>
-      <color_a>200.0</color_a>
+      <pattern>opposites</pattern>
+      <!-- <color_a>200.0</color_a> -->
       <mask_coords_name>roof_coord</mask_coords_name>
+      <steptime>0.15</steptime>
+      <layer>5</layer>
       <!-- <duration>1000.0</duration> -->
     </effect>
     <effect name="scav_fallingline">

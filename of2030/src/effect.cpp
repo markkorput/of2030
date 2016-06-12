@@ -369,6 +369,20 @@ void Effect::drawPattern(const string &patternName){
     }
 
     //
+    //
+    //
+    if(patternName == "opposites"){
+        int half = floor(context->screen_setting.getValue("total", 12) * 0.5);
+        int idx = floor(context->screen_setting.getValue("index", 0) % half);
+        float steptime = context->effect_setting.getValue("steptime", 0.1f);
+        float cycletime = steptime * half;
+        int current = fmod(getEffectTime(), cycletime) / steptime;
+        if(current == idx){
+            ofDrawRectangle(0, 0, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
+        }
+    }
+
+    //
     // SPOT
     //
 
@@ -410,7 +424,6 @@ void Effect::drawPattern(const string &patternName){
         ofSetColor(255);
         return;
     }
-
 }
 
 void Effect::drawMask(const string &coordsName){
