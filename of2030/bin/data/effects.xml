@@ -787,7 +787,7 @@
 
 
     <effect name="fusion_startline">
-      <video>fusion/3.3 FUSION_STARTLINE_LEAP_v02.mov</video>
+      <video>fusion/3.3_FUSION_STARTLINE_LEAP_v02.mov</video>
       <is_pano>1</is_pano>
       <unload>1</unload>
     </effect>
