@@ -621,7 +621,7 @@
 
 
     <effect name="lava_beat">
-      <video>lava/2.4_LAVA_HARTBEAT_A_STANDARD_1SCREEN_v01.mov</video>
+      <video>lava/2.4_LAVA_HARTBEAT_A_STANDARD_1SCREEN_v02.mov</video>
       <!-- <video_mask>self</video_mask> -->
       <is_tunnel>1</is_tunnel>
       <!-- <is_pano>1</is_pano> -->
@@ -630,7 +630,6 @@
     </effect>
     <effect name="lava_bed">
       <pattern>rect</pattern>
-      <!-- <video>lava/2.4_LAVA_PATROON_ZIEKENHUISBED_v01.mov</video> -->
       <is_pano>1</is_pano>
       <translate_x>7.25</translate_x>
       <translate_y>-0.6</translate_y>
@@ -638,30 +637,21 @@
       <layer>8</layer>
     </effect>
     <effect name="lava_pattern_grow">
-      <video>lava/2.4_LAVA_PATROON_v01.mov</video>
+      <video>lava/2.4_LAVA_PATROON_v03.mov</video>
       <reset>1</reset>
       <loop>1</loop>
       <is_tunnel>1</is_tunnel>
-      <!-- <!--<is_tunnel>1</is_tunnel>--> -->
-      <video_mask>lava/2.4_LAVA_PATROON_GROW_v03.mov</video_mask>
+      <video_mask>lava/2.4_LAVA_PATROON_GROW_v05.mov</video_mask>
       <video_mask_loop>0</video_mask_loop>
       <video_mask_reset>1</video_mask_reset>
       <layer>7</layer>
     </effect>
-    <effect name="lava_blink">
-      <video>lava/2.4_LAVA_PATROON_v01.mov</video>
-      <loop>1</loop>
-      <is_tunnel>1</is_tunnel>
-      <video_mask>lava/2.4_LAVA_PATROON_EYEBLINK_v03.mov</video_mask>
-      <video_mask_loop>0</video_mask_loop>
-      <video_mask_freeze>0.0</video_mask_freeze>
-    </effect>
     <effect name="lava_nightmare">
-      <video>lava/2.4_LAVA_PATROON_v01.mov</video>
+      <video>lava/2.4_LAVA_PATROON_v03.mov</video>
+      <video_mask>lava/2.4_LAVA_PATROON_WOBBLINGLINES_v06.mov</video_mask>
       <loop>1</loop>
-      <is_tunnel>1</is_tunnel>
-      <video_mask>lava/2.4_LAVA_PATROON_WOBBLINGLINES_v03.mov</video_mask>
       <video_mask_loop>1</video_mask_loop>
+      <is_tunnel>1</is_tunnel>
       <layer>2</layer>
     </effect>
     <effect name="lava_flatline">
@@ -671,6 +661,14 @@
       <reset>1</reset>
     </effect>
 
+<!--     //        enum ofBlendMode{
+    //            OF_BLENDMODE_DISABLED = 0,
+    //            OF_BLENDMODE_ALPHA    = 1,
+    //            OF_BLENDMODE_ADD    = 2,
+    //            OF_BLENDMODE_SUBTRACT = 3,
+    //            OF_BLENDMODE_MULTIPLY = 4,
+    //            OF_BLENDMODE_SCREEN   = 5
+    //        }; -->
 
     <effect name="dead_spot">
       <pattern>rect</pattern>
