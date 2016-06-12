@@ -375,9 +375,11 @@ void Effect::drawPattern(const string &patternName){
         int half = floor(context->screen_setting.getValue("total", 12) * 0.5);
         int idx = floor(context->screen_setting.getValue("index", 0) % half);
         float steptime = context->effect_setting.getValue("steptime", 0.1f);
-        float cycletime = steptime * half;
-        int current = fmod(getEffectTime(), cycletime) / steptime;
-        if(current == idx){
+        float tmin = idx*steptime;
+        float tmax = tmin + steptime;
+        // float cycletime = steptime * half;
+        float tcycle = fmod(getEffectTime(), steptime * half);
+        if(tcycle < tmax and tcycle >= tmin){
             ofDrawRectangle(0, 0, precalc->scrDrawSize.x, precalc->scrDrawSize.y);
         }
     }
