@@ -191,7 +191,7 @@ void Effect::draw(Context &_context, float dt){
     auto_rotation += _context.effect_setting.getValue("auto_rotate", ofVec3f(0.0f)) * dt;
     auto_scale += _context.effect_setting.getValue("auto_scale", ofVec3f(0.0f)) * dt;
     auto_alpha = _context.effect_setting.getValue("current_alpha", auto_alpha);
-    auto_alpha += _context.effect_setting.getValue("auto_alpha", 0.0f) * dt;
+    auto_alpha = ofClamp(auto_alpha + _context.effect_setting.getValue("auto_alpha", 0.0f) * dt, 0.0f, 1.0f);
     auto_texcoord_offset += _context.effect_setting.getValue("auto_texcoord_offset", ofVec2f(0.0f)) * dt;
 
     ofSetColor(255);
