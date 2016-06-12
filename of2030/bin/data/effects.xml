@@ -853,7 +853,8 @@
       <video_alias>fusion_space_double</video_alias>
       <loop>1</loop>
       <is_pano>1</is_pano>
-      <texcoord_multiply_x>3.0</texcoord_multiply_x>
+      <texcoord_offset_x>0.5</texcoord_offset_x>
+      <texcoord_multiply_x>5.0</texcoord_multiply_x>
       <reset>1</reset>
       <unload>1</unload>
     </effect>
