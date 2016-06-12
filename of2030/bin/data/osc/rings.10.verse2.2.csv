@@ -1,10 +1,2 @@
-0.0,/cfg/rings_march/draw_size_y,f,0.5
-0.0,/cfg/rings_march2/draw_size_y,f,0.5
-0.0,/cfg/rings_march/texcoord_multiply_x,f,18.0
-0.0,/cfg/rings_march2/texcoord_multiply_x,f,18.0
-0.0,/t/rings_march
+0.0,/s/rings_march
 0.0,/t/rings_march2
-0.0,/cfg/rings_march/auto_velocity_y,f,-0.1
-0.0,/cfg/rings_march2/auto_velocity_y,f,0.1
-0.6,/cfg/rings_march/auto_velocity_y,f,0.0
-0.6,/cfg/rings_march2/auto_velocity_y,f,0.0
