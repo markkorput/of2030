@@ -655,10 +655,15 @@
       <layer>2</layer>
     </effect>
     <effect name="lava_flatline">
-      <video>lava/2.4_LAVA_HARTBEAT_C_DEAD_v01.mov</video>
-      <is_tunnel>0</is_tunnel>
+      <pattern>rect</pattern>
       <is_pano>1</is_pano>
-      <reset>1</reset>
+      <draw_size_y>0.05</draw_size_y>
+      <draw_size_x>470.0</draw_size_x>
+      <translate_y>1.0</translate_y>
+      <color_r>0.0</color_r>
+      <auto_pos_x>-470.0</auto_pos_x>
+      <auto_velocity_x>10.0</auto_velocity_x>
+      <duration>12.0</duration>
     </effect>
 
 <!--     //        enum ofBlendMode{
