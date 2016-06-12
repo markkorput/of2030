@@ -1,4 +1,6 @@
 0.0,/t/rain_thunder
 0.0,/s/rain_noorderlicht_loop
 2.6,/t/rain_rain_start
-7.1,/t/rain_rain_loop
+2.0,/cfg/rain_rain_loop/initial_alpha,f,0.0
+2.0,/cfg/rain_rain_loop/auto_alpha,f,0.08
+4.1,/t/rain_rain_loop

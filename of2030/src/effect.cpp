@@ -479,6 +479,6 @@ inline ofImage* Effect::loadImage(Context &contxt){
     if(i == 1)
         return NULL;
     
-    val = contxt.effect_setting.getValue("image_option"+ofToString(floor(ofRandom(i))), "");
+    val = contxt.effect_setting.getValue("image_option"+ofToString(floor(ofRandom(i)+1)), "");
     return ImageManager::instance()->get(val, contxt.effect_setting.getValue("image_options_alias"+ofToString(floor(ofRandom(i))), val), true);
 }
