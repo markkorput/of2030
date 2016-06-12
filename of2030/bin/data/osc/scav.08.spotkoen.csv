@@ -1,5 +1,6 @@
 0.0,/cfg/scav_fan_koen/initial_alpha,f,0.0
 0.0,/cfg/scav_fan_koen/auto_alpha,f,0.5
 0.0,/t/scav_fan_koen
-0.1,/s/scav_roof
+0.1,/cfg/scav_roof/auto_alpha,f,-0.1
 1.5,/cfg/scav_fan_koen/auto_alpha,f,0.0
+2.0,/s/scav_roof
