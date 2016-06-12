@@ -79,7 +79,7 @@
     <effect name="stellar_voice2">
       <video>stellar/1.1_STELLAR_VOICEOVER_2_v02.mov</video>
       <mask_coords_name>voice_coord</mask_coords_name>
-      
+
       <reset>1</reset>
       <layer>-1</layer>
       <unload>1</unload>
@@ -916,17 +916,20 @@
       <video>divide/3.2_WMND_KOEN_HANDMOVES_1_05806_v01.mov</video>
       <is_tunnel>1</is_tunnel>
       <reset>1</reset>
+      <unload>1</unload>
     </effect>
     <effect name="divide_particles2">
       <video>divide/3.2_WMND_KOEN_HANDMOVES_2_22320_v01.mov</video>
       <!-- <video_mask>self</video_mask> -->
       <is_tunnel>1</is_tunnel>
       <reset>1</reset>
+      <unload>1</unload>
     </effect>
     <effect name="divide_particles3">
       <video>divide/3.2_WMND_KOEN_HANDMOVES_3_31123_ALLE_BEAMERS_v01.mov</video>
       <is_tunnel>1</is_tunnel>
       <reset>1</reset>
+      <unload>1</unload>
     </effect>
     <effect name="divide_blinks">
       <video>divide/3.2_WMND_FLASHLIGHTS_v01-cropped-mask.mov</video>
