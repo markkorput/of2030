@@ -1,10 +1,18 @@
+<!--     //        enum ofBlendMode{
+    //            OF_BLENDMODE_DISABLED = 0,
+    //            OF_BLENDMODE_ALPHA    = 1,
+    //            OF_BLENDMODE_ADD    = 2,
+    //            OF_BLENDMODE_SUBTRACT = 3,
+    //            OF_BLENDMODE_MULTIPLY = 4,
+    //            OF_BLENDMODE_SCREEN   = 5
+    //        }; -->
+
 <of2030>
   <effects>
 
     <effect name="inloop_worms">
       <video>inloop/0.0_INLOOP_WOBBLINGLINES_v02.mov</video>
       <loop>1</loop>
-      <!-- <freeze>1.0</freeze> -->
       <is_pano>1</is_pano>
       <reset>1</reset>
       <translate_x>10.5</translate_x>
@@ -18,7 +26,6 @@
       <video_mask>stellar/0.1_STELLAR_END_WOBBLINGLINES_A_v02.mov</video_mask>
       <loop>1</loop>
       <is_pano>1</is_pano>
-      <!-- <reset>1</reset> NOOOO -->
       <video_mask_reset>1</video_mask_reset>
       <translate_x>10.5</translate_x>
       <translate_y>0.4</translate_y>
@@ -41,7 +48,6 @@
       <duration>3.5</duration>
     </effect>
     <effect name="stellar_worms">
-      <!-- <video>stellar/1.1_STELLAR_WORMS_1_v01.mov</video> -->
       <video_option1>stellar/1.1_STELLAR_WORMS_1_v01.mov</video_option1>
       <video_option2>stellar/1.1_STELLAR_WORMS_2_v01.mov</video_option2>
       <video_option3>stellar/1.1_STELLAR_WORMS_3_v01.mov</video_option3>
@@ -56,7 +62,6 @@
     </effect>
 
     <effect name="stellar_smoke">
-      <!-- <video>stellar/1.1_STELLAR_SMOKE_v01.mov</video> -->
       <TODO>true</TODO>
       <color_b>0.0</color_b>
       <draw_size_y>0.3</draw_size_y>
@@ -675,15 +680,6 @@
       <duration>12.0</duration>
     </effect>
 
-<!--     //        enum ofBlendMode{
-    //            OF_BLENDMODE_DISABLED = 0,
-    //            OF_BLENDMODE_ALPHA    = 1,
-    //            OF_BLENDMODE_ADD    = 2,
-    //            OF_BLENDMODE_SUBTRACT = 3,
-    //            OF_BLENDMODE_MULTIPLY = 4,
-    //            OF_BLENDMODE_SCREEN   = 5
-    //        }; -->
-
     <effect name="dead_spot">
       <pattern>rect</pattern>
       <is_panning>1</is_panning>
@@ -692,56 +688,40 @@
       <duration>20.0</duration>
     </effect>
 
-
-
-    <effect name="rain_noorderlicht_start">
-      <video>rain/3.1_RAIN_NOORDERLICHT_A_START_v01.mov</video>
-      <!-- <loop>1</loop> -->
-      <!-- <layer>0</layer> -->
-      <!-- <is_tunnel>1</is_tunnel> -->
-      <freeze>1.0</freeze>
-      <reset>1</reset>
-    </effect>
     <effect name="rain_noorderlicht_loop">
-      <video>rain/3.1_RAIN_NOORDERLICHT_B_LOOP_v01.mov</video>
+      <video>rain/3.1_RAIN_NOORDERLICHT_B_LOOP_v02.mov</video>
       <loop>1</loop>
-      <!-- <duration>200.0</duration> -->
       <layer>1</layer>
-      <!-- <is_tunnel>1</is_tunnel> -->
+      <draw_size_y>0.5</draw_size_y>
     </effect>
     <effect name="rain_rain_start">
-      <video>rain/3.1_RAIN_REGEN_A_START_v01.mov</video>
-      <!-- <loop>1</loop> -->
-      <!-- <layer>0</layer> -->
+      <video>rain/3.1_RAIN_REGEN_A_START_v02.mov</video>
       <reset>1</reset>
+      <unload>1</unload>
     </effect>
     <effect name="rain_rain_loop">
-      <video>rain/3.1_RAIN_REGEN_B_LOOP_v01.mov</video>
+      <video>rain/3.1_RAIN_REGEN_B_LOOP_v02.mov</video>
       <loop>1</loop>
-      <!-- <layer>0</layer> -->
-      <!-- <duration>200.0</duration> -->
+      <unload>1</unload>
     </effect>
     <effect name="rain_rain_end">
-      <video>rain/3.1_RAIN_REGEN_C_EIND_v01.mov</video>
+      <video>rain/3.1_RAIN_REGEN_C_EIND_v02.mov</video>
       <!-- <loop>1</loop> -->
       <!-- <layer>0</layer> -->
       <reset>1</reset>
+      <unload>1</unload>
     </effect>
-    <effect name="rain_tear">
+<!--     <effect name="rain_tear">
       <video>rain/3.1_RAIN_REGEN_TRAAN_v02.mov</video>
-      <!-- <loop>1</loop> -->
       <layer>4</layer>
       <reset>1</reset>
       <is_pano>1</is_pano>
       <draw_size_x>0.26</draw_size_x>
       <draw_size_y>0.2</draw_size_y>
-      <video_mask>rain/3.1_RAIN_REGEN_TRAAN_v02.mov</video_mask>
-    </effect>
+      <unload>1</unload>
+    </effect> -->
     <effect name="rain_thunder">
-      <video>rain/3.1_RAIN_THUNDER_v01.mov</video>
-      <!-- <loop>1</loop> -->
-      <!-- <layer>0</layer> -->
-      <!--<is_tunnel>1</is_tunnel>-->
+      <video>rain/3.1_RAIN_THUNDER_v02.mov</video>
       <layer>5</layer>
       <reset>1</reset>
     </effect>

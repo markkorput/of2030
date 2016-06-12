@@ -1,3 +1,4 @@
-0.0,/t/rain_noorderlicht_start
-5.8,/t/rain_noorderlicht_loop
-5.8,/s/rain_noorderlicht_start
+0.0,/cfg/rain_noorderlicht_loop/initial_alpha,f,0.0
+0.0,/cfg/rain_noorderlicht_loop/auto_alpha,f,0.01
+0.0,/t/rain_noorderlicht_loop
+6.0,/cfg/rain_noorderlicht_loop/auto_alpha,f,0.0
