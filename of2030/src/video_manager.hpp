@@ -23,7 +23,7 @@ namespace of2030 {
 
         //void setup();
         void update();
-        void destroy(){ unloadAll(); }
+        void destroy(){ unloadAll(); destroyIdlePlayers(); }
 
         ofVideoPlayer* get(const string &video_name, bool load=true);
         ofVideoPlayer* get(const string &video_name, const string &alias, bool load=true);
@@ -43,10 +43,12 @@ namespace of2030 {
 
         inline string video_name_to_path(const string &video_name) const { return folder_path + video_name; }
         ofVideoPlayer* createPlayer(const string &video_name);
+        void destroyIdlePlayers();
     
     private: // attributes
         map<string, ofVideoPlayer*> players;
         vector<string> deprecations;
+        vector<ofVideoPlayer*> idle_players;
 
         //        vector<ofVideoPlayer*> players;
         string folder_path;

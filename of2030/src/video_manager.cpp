@@ -104,6 +104,8 @@ void VideoManager::unloadAll(){
     players.clear();
 }
 
+#define MAX_IDLE_PLAYERS 7
+
 bool VideoManager::unload(string alias){
     // find specified player
     std::map<string,ofVideoPlayer*>::iterator it = players.find(alias);
@@ -122,7 +124,13 @@ bool VideoManager::unload(string alias){
         player->close();
         ofNotifyEvent(unloadEvent, *player, this);
         // delete instance from memory
-        delete player;
+        idle_players.push_back(player);
+        
+        if(idle_players.size() > MAX_IDLE_PLAYERS){
+            player = idle_players[0];
+            idle_players.erase(idle_players.begin());
+            delete player;
+        }
     }
 
     // remove from our list
@@ -196,11 +204,28 @@ ofVideoPlayer* VideoManager::createPlayer(const string &video_name){
         return NULL;
     }
 
-    ofVideoPlayer *player = new ofVideoPlayer;
+    ofVideoPlayer *player;
+
+    if(!idle_players.empty()){
+        player = idle_players[0];
+        ofLog() << "recycling idle video player";
+        idle_players.erase(idle_players.begin());
+    } else {
+        player = new ofVideoPlayer;
+    }
+
     if(XmlSettings::instance()->rgbaVidPixels){
         player->setPixelFormat(OF_PIXELS_RGBA);
     }
     player->loadAsync(path);
     player->setVolume(0.0f);
     return player;
+}
+
+void VideoManager::destroyIdlePlayers(){
+    for(int i=idle_players.size()-1; i>=0; i--){
+        delete idle_players[i];
+    }
+    
+    idle_players.clear();
 }
