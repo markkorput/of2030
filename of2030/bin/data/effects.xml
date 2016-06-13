@@ -174,7 +174,7 @@
       <auto_rotate_z>25.0</auto_rotate_z>
       <spot>3</spot>
       <layer>1</layer>
-      <color_a>150</color_a>
+      <!-- <color_a>150</color_a> -->
     </effect>
     <effect name="scav_fan_koen">
       <image>scav_fan1_v02.jpg</image>
@@ -182,7 +182,7 @@
       <auto_rotate_z>25.0</auto_rotate_z>
       <spot>2</spot>
       <layer>1</layer>
-      <color_a>150</color_a>
+      <!-- <color_a>150</color_a> -->
     </effect>
     <effect name="scav_fan_gydo">
       <image>scav_fan1_v02.jpg</image>
@@ -190,7 +190,7 @@
       <auto_rotate_z>25.0</auto_rotate_z>
       <spot>1</spot>
       <layer>1</layer>
-      <color_a>150</color_a>
+      <!-- <color_a>150</color_a> -->
     </effect>
     <effect name="scav_beat_max">
       <image>scav_fan2_v03.jpg</image>
@@ -258,6 +258,7 @@
       <is_pano>1</is_pano>
       <unload>1</unload>
       <texcoord_multiply_x>2.0</texcoord_multiply_x>
+      <layer>5</layer>
     </effect>
     <effect name="scav_roof">
       <pattern>opposites</pattern>
@@ -273,9 +274,9 @@
       <is_pano>1</is_pano>
       <draw_size_y>0.05</draw_size_y>
       <color_a>240.0</color_a>
-      <duration>10.0</duration>
+      <duration>6.0</duration>
       <!-- negative value means down on OSX positive value means down on RASPI -->
-      <auto_velocity_y>0.15</auto_velocity_y>
+      <auto_velocity_y>0.22</auto_velocity_y>
       <auto_pos_y>0.0</auto_pos_y>
       <unique>0</unique>
     </effect>
@@ -346,7 +347,7 @@
       <is_pano>1</is_pano>
       <draw_size_x>51</draw_size_x>
       <auto_pos_x>-51</auto_pos_x>
-      <auto_velocity_x>40.0</auto_velocity_x>
+      <auto_velocity_x>80.0</auto_velocity_x>
       <unique>0</unique>
       <layer>9</layer>
     </effect>
@@ -955,15 +956,22 @@
       <is_pano>1</is_pano>
       <reset>1</reset>
       <layer>-1</layer>
-      <unload>1</unload>
+      <!-- <unload>1</unload> -->
     </effect>
     <effect name="now_alarm2">
-      <video>now/3.4_WAN_ALARMLIGHTS_2_v01.mov</video>
+      <video>now/3.4_WAN_ALARMLIGHTS_1_v01.mov</video>
       <is_pano>1</is_pano>
       <reset>1</reset>
       <layer>-1</layer>
       <unload>1</unload>
     </effect>
+<!--     <effect name="now_alarm2">
+      <video>now/3.4_WAN_ALARMLIGHTS_2_v01.mov</video>
+      <is_pano>1</is_pano>
+      <reset>1</reset>
+      <layer>-1</layer>
+      <unload>1</unload>
+    </effect> -->
     <effect name="now_drumlines">
       <video>now/3.4_WAN_DRUMLINES_v02.mov</video>
       <reset>1</reset>
