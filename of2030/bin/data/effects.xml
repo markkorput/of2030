@@ -28,8 +28,8 @@
       <is_pano>1</is_pano>
       <video_mask_reset>1</video_mask_reset>
       <translate_x>10.5</translate_x>
-      <translate_y>0.4</translate_y>
       <draw_size_x>21</draw_size_x>
+      <translate_y>0.4</translate_y>
       <draw_size_y>1.8</draw_size_y>
       <unload>1</unload>
       <duration>10.0</duration>
@@ -84,8 +84,8 @@
       <layer>-1</layer>
       <unload>1</unload>
       <draw_size_x>6</draw_size_x>
-      <draw_size_y>0.3</draw_size_y>
       <translate_x>5.25</translate_x>
+      <draw_size_y>0.3</draw_size_y>
       <translate_y>0.2</translate_y>
     </effect>
     <effect name="stellar_voice2">
@@ -993,14 +993,20 @@
       <video>now/3.4_WAN_VOICEOVER_3_v01.mov</video>
       <unload>1</unload>
       <is_tunnel>1</is_tunnel>
+      <draw_size_y>0.3</draw_size_y>
+      <translate_y>0.2</translate_y>
     </effect>
     <effect name="now_voice1panning">
       <video>now/3.4_WAN_VOICEOVER_3_v01.mov</video>
       <is_panning>1</is_panning>
+      <draw_size_y>0.3</draw_size_y>
+      <translate_y>0.2</translate_y>
     </effect>
     <effect name="now_voice2">
       <video>now/3.4_WAN_VOICEOVER_4_v01.mov</video>
       <unload>1</unload>
+      <draw_size_y>0.3</draw_size_y>
+      <translate_y>0.2</translate_y>
     </effect>
     <effect name="now_magnet_short">
       <video>now/3.4_WAN_MAGNET_SHORT_v01.mov</video>

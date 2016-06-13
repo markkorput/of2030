@@ -4,5 +4,5 @@
 0.0,/cfg/rings_pattern_white_intro/auto_alpha,f,-0.4
 2.0,/lvid/rings/2.2_RINGS_WALK_v02.mov
 6.0,/s/rings_pattern_white_intro
-16.0,/cfg/rings_pattern_black_intro/auto_alpha,f,-0.1
-18.0,/s/rings_pattern_black_intro
+8.0,/cfg/rings_pattern_black_intro/auto_alpha,f,-0.1
+10.0,/s/rings_pattern_black_intro
