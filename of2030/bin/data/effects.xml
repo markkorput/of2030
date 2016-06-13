@@ -984,7 +984,7 @@
       <loop>1</loop>
       <mask_coords_name>roof_coord</mask_coords_name>
       <layer>10</layer>
-      <!-- <unload>1</unload> -->
+      <unload>1</unload>
     </effect>
     <effect name="now_voice1">
       <video>now/3.4_WAN_VOICEOVER_3_v01.mov</video>
