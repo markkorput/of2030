@@ -15,6 +15,12 @@ using namespace of2030;
 SINGLETON_INLINE_IMPLEMENTATION_CODE(OscPlaybackManager)
 
 
+OscPlaybackManager::OscPlaybackManager(){
+#ifdef __OSC_SENDER_ENABLED__
+    toOscSender = false;
+#endif
+}
+
 bool OscPlaybackManager::start(const string &name){
     // load file
     OscAsciiFile* file = new OscAsciiFile();
@@ -129,7 +135,7 @@ void OscPlaybackManager::clear(){
 
 void OscPlaybackManager::onMessage(ofxOscMessage &message){
 #ifdef __OSC_SENDER_ENABLED__
-    if(OscSender::instance()->isEnabled()){
+    if(toOscSender){
         // send out to specified address (used for debugging; the receiving end can
         // broadcast everything and so it might come right back to us)
         OscSender::instance()->sender.sendMessage(message);

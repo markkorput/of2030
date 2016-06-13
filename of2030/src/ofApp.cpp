@@ -1,7 +1,5 @@
 #include "ofApp.h"
 
-#include "shared2030.h"
-
 #ifdef __MULTI_CLIENT_ENABLED__
     #include "multi_client.hpp"
 #endif
@@ -17,7 +15,6 @@
 #include "effect_manager.hpp"
 #include "video_manager.hpp"
 #include "image_manager.hpp"
-#include "osc_playback_manager.hpp"
 #include "osc_recorder.hpp"
 #include "osc_sender.hpp"
 
@@ -91,6 +88,7 @@ void ofApp::setup(){
 #ifdef __OSC_SENDER_ENABLED__
     of2030::OscSender::instance()->setup(of2030::XmlSettings::instance()->osc_out_host,
                                          of2030::XmlSettings::instance()->osc_out_port);
+    osc_out_playback_manager.setToOscSender(true);
 #endif // __OSC_SENDER_ENABLED__
 
     ofAddListener(of2030::Interface::instance()->controlEvent, this, &ofApp::onControl);
@@ -123,6 +121,9 @@ void ofApp::update(){
     last_update_time=t;
 
     of2030::OscPlaybackManager::instance()->update(dt);
+    #ifdef __OSC_SENDER_ENABLED__
+        osc_out_playback_manager.update(dt);
+    #endif
     of2030::OscReceiver::instance()->update();
     of2030::Player::instance()->update(dt);
     of2030::VideoManager::instance()->update();
@@ -217,9 +218,14 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
     for(auto file: dragInfo.files){
         // if sender is enabled; user must hold the control key to send out
         #ifdef __OSC_SENDER_ENABLED__
-        if(ofGetKeyPressed(OF_KEY_COMMAND) || !of2030::OscSender::instance()->isEnabled() || !of2030::XmlSettings::instance()->osc_out_keycheck)
+            if(of2030::OscSender::instance()->isEnabled() && (ofGetKeyPressed(OF_KEY_COMMAND) || !of2030::XmlSettings::instance()->osc_out_keycheck)){
+                osc_out_playback_manager.start(file);
+                return;
+            }
         #endif
-            of2030::OscPlaybackManager::instance()->start(file);
+
+        // default behaviour; just execute locally
+        of2030::OscPlaybackManager::instance()->start(file);
     }
 #endif // __DRAGNDROP__
 }
