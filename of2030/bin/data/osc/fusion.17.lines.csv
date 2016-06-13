@@ -1,8 +1,7 @@
-0.0,/cfg/fusion_lines_in/initial_scale_y,f,-3.0
-0.0,/cfg/fusion_lines_in/auto_scale_y,f,0.1
+0.0,/cfg/fusion_lines_in/initial_alpha,f,0.0
+0.0,/cfg/fusion_lines_in/auto_alpha,f,0.5
 0.0,/t/fusion_lines_in
 0.0,/cfg/fusion_spot_max1/auto_alpha,f,-0.2
 0.0,/cfg/fusion_spot_gydo1/auto_alpha,f,-0.2
 2.0,/s/fusion_spot_max1
 2.0,/s/fusion_spot_gydo1
-3.0,/cfg/fusion_lines_in/auto_scale_y,f,0.0
