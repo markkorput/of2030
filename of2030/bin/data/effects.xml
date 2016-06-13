@@ -116,17 +116,17 @@
     </effect>
     <effect name="stellar_sirene_max">
       <!-- <pattern>rect</pattern> -->
-      <video>stellar/1.1_STELLAR_SIRENE_GYDO_v01-150x150.mov</video>
+      <!-- <video>stellar/1.1_STELLAR_SIRENE_GYDO_v01-150x150.mov</video> -->
       <!-- <color_g>0</color_g> -->
-      <!-- <image>stellar_spot1_v02.jpg</image> -->
+      <image>stellar_spot1_v02.jpg</image>
       <spot>3</spot>
       <reset>1</reset>
     </effect>
     <effect name="stellar_sirene_gydo">
       <!-- <pattern>rect</pattern> -->
-      <video>stellar/1.1_STELLAR_SIRENE_GYDO_v01-150x150.mov</video>
+      <!-- <video>stellar/1.1_STELLAR_SIRENE_GYDO_v01-150x150.mov</video> -->
       <!-- <color_r>0</color_r> -->
-      <!-- <image>stellar_spot1_v02.jpg</image> -->
+      <image>stellar_spot1_v02.jpg</image>
       <spot>1</spot>
       <!-- <TODO>true</TODO> -->
       <reset>1</reset>
@@ -320,24 +320,18 @@
     </effect>
     <effect name="rings_march_spot_gydo">
       <video>rings/2.2_RINGS_WALK_v02.mov</video>
-      <video_mask>self</video_mask>
-      <video_mask_loop>1</video_mask_loop>
       <spot>1</spot>
       <loop>1</loop>
       <layer>2</layer>
     </effect>
     <effect name="rings_march_spot_koen">
       <video>rings/2.2_RINGS_WALK_v02.mov</video>
-      <video_mask>self</video_mask>
       <spot>2</spot>
       <loop>1</loop>
-      <video_mask_loop>1</video_mask_loop>
       <layer>2</layer>
     </effect>
     <effect name="rings_march_spot_max">
       <video>rings/2.2_RINGS_WALK_v02.mov</video>
-      <video_mask>self</video_mask>
-      <video_mask_loop>1</video_mask_loop>
       <loop>1</loop>
       <spot>3</spot>
       <layer>2</layer>
@@ -393,7 +387,6 @@
       <video>rings/2.2_RINGS_FOOTSTEPS_F_SQUAREBLACK_v02.mov</video>
       <loop>1</loop>
       <is_tunnel>1</is_tunnel>
-      <!-- <video_mask_loop>1</video_mask_loop> -->
       <!-- <is_pano>1</is_pano> -->
       <draw_size_y>1.0</draw_size_y>
       <auto_pos_y>1.0</auto_pos_y>
@@ -488,12 +481,6 @@
       <video_option3>rings/2.2_RINGS_RITME_VERSTOORD_3_v01.mov</video_option3>
       <video_option4>rings/2.2_RINGS_RITME_VERSTOORD_4_v01.mov</video_option4>
       <video_option5>rings/2.2_RINGS_RITME_VERSTOORD_5_v01.mov</video_option5>
-      <!-- <video_option6>rings/2.2_RINGS_RITME_VERSTOORD_6_v01.mov</video_option6> -->
-      <!-- <video_option7>rings/2.2_RINGS_RITME_VERSTOORD_7_v01.mov</video_option7> -->
-      <!-- <video_option8>rings/2.2_RINGS_RITME_VERSTOORD_8_v01.mov</video_option8> -->
-      <!-- <video_option9>rings/2.2_RINGS_RITME_VERSTOORD_9_v01.mov</video_option9> -->
-      <!-- <video_option0>rings/2.2_RINGS_RITME_VERSTOORD_10_v01.mov</video_option0> -->
-      <video_mask>self</video_mask>
       <reset>1</reset>
       <spot>3</spot>
       <unique>0</unique>
@@ -505,12 +492,6 @@
       <video_option3>rings/2.2_RINGS_RITME_VERSTOORD_3_v01.mov</video_option3>
       <video_option4>rings/2.2_RINGS_RITME_VERSTOORD_4_v01.mov</video_option4>
       <video_option5>rings/2.2_RINGS_RITME_VERSTOORD_5_v01.mov</video_option5>
-      <!-- <video_option6>rings/2.2_RINGS_RITME_VERSTOORD_6_v01.mov</video_option6> -->
-      <!-- <video_option7>rings/2.2_RINGS_RITME_VERSTOORD_7_v01.mov</video_option7> -->
-      <!-- <video_option8>rings/2.2_RINGS_RITME_VERSTOORD_8_v01.mov</video_option8> -->
-      <!-- <video_option9>rings/2.2_RINGS_RITME_VERSTOORD_9_v01.mov</video_option9> -->
-      <!-- <video_option0>rings/2.2_RINGS_RITME_VERSTOORD_10_v01.mov</video_option0> -->
-      <video_mask>self</video_mask>
       <reset>1</reset>
       <spot>2</spot>
       <unique>0</unique>
@@ -522,12 +503,6 @@
       <video_option3>rings/2.2_RINGS_RITME_VERSTOORD_3_v01.mov</video_option3>
       <video_option4>rings/2.2_RINGS_RITME_VERSTOORD_4_v01.mov</video_option4>
       <video_option5>rings/2.2_RINGS_RITME_VERSTOORD_5_v01.mov</video_option5>
-      <!-- <video_option6>rings/2.2_RINGS_RITME_VERSTOORD_6_v01.mov</video_option6> -->
-      <!-- <video_option7>rings/2.2_RINGS_RITME_VERSTOORD_7_v01.mov</video_option7> -->
-      <!-- <video_option8>rings/2.2_RINGS_RITME_VERSTOORD_8_v01.mov</video_option8> -->
-      <!-- <video_option9>rings/2.2_RINGS_RITME_VERSTOORD_9_v01.mov</video_option9> -->
-      <!-- <video_option0>rings/2.2_RINGS_RITME_VERSTOORD_10_v01.mov</video_option0> -->
-      <video_mask>self</video_mask>
       <reset>1</reset>
       <spot>1</spot>
       <unique>0</unique>
@@ -637,10 +612,9 @@
 
     <effect name="lava_beat">
       <video>lava/2.4_LAVA_HARTBEAT_A_STANDARD_1SCREEN_v02.mov</video>
-      <!-- <video_mask>self</video_mask> -->
-      <is_tunnel>1</is_tunnel>
-      <!-- <is_pano>1</is_pano> -->
-      <!-- <loop>1</loop> -->
+      <!-- <is_tunnel>1</is_tunnel> -->
+      <is_pano>1</is_pano>
+      <draw_size_x>16.5</draw_size_x>
       <reset>1</reset>
     </effect>
     <effect name="lava_bed">
@@ -923,7 +897,6 @@
     </effect>
     <effect name="divide_particles2">
       <video>divide/3.2_WMND_KOEN_HANDMOVES_2_22320_v01.mov</video>
-      <!-- <video_mask>self</video_mask> -->
       <is_tunnel>1</is_tunnel>
       <reset>1</reset>
       <unload>1</unload>
@@ -937,7 +910,6 @@
     <effect name="divide_blinks">
       <video>divide/3.2_WMND_FLASHLIGHTS_v01-cropped-mask.mov</video>
       <is_pano>1</is_pano>
-      <!-- <video_mask>self</video_mask> -->
       <layer>5</layer>
       <loop>1</loop>
       <reset>1</reset>
@@ -949,7 +921,6 @@
     <effect name="now_noisylines">
       <video>now/3.4_WAN_NOISYLINES_v01.mov</video>
       <loop>1</loop>
-      <video_mask_loop>1</video_mask_loop>
       <is_pano>1</is_pano>
       <layer>2</layer>
       <unload>1</unload>
@@ -1030,14 +1001,12 @@
     </effect>
     <effect name="now_magnet_short">
       <video>now/3.4_WAN_MAGNET_SHORT_v01.mov</video>
-      <video_mask>self</video_mask>
       <is_pano>1</is_pano>
       <layer>5</layer>
       <unload>1</unload>
     </effect>
     <effect name="now_magnet_long1">
       <video>now/3.4_WAN_MAGNET_LONG_v01.mov</video>
-      <video_mask>self</video_mask>
       <is_pano>1</is_pano>
       <reset>1</reset>
       <layer>5</layer>
@@ -1045,7 +1014,6 @@
     </effect>
     <effect name="now_magnet_long2">
       <video>now/3.4_WAN_MAGNET_LONG_v01.mov</video>
-      <video_mask>self</video_mask>
       <is_pano>1</is_pano>
       <reset>1</reset>
       <layer>5</layer>
@@ -1054,7 +1022,6 @@
     </effect>
     <effect name="now_magnet_long3">
       <video>now/3.4_WAN_MAGNET_LONG_v01.mov</video>
-      <video_mask>self</video_mask>
       <is_pano>1</is_pano>
       <reset>1</reset>
       <layer>5</layer>
@@ -1063,7 +1030,6 @@
     </effect>
     <effect name="now_magnet_long4">
       <video>now/3.4_WAN_MAGNET_LONG_v01.mov</video>
-      <video_mask>self</video_mask>
       <is_pano>1</is_pano>
       <reset>1</reset>
       <layer>5</layer>
