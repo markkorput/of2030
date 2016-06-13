@@ -803,7 +803,7 @@
       <video>fusion/3.3_FUSION_SPOT_GYDO_v01.mov</video>
       <spot>1</spot>
       <loop>1</loop>
-      <duration>2.0</duration>
+      <duration>1.0</duration>
       <unique>0</unique>
       <reset>1</reset>
     </effect>
