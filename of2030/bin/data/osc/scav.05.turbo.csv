@@ -7,6 +7,11 @@
 0.0,/t/scav_turbo_gydo
 0.0,/t/scav_turbo_koen
 0.0,/t/scav_turbo_max
+0.0,/q/scav.03.fanbeat
+0.0,/q/scav.03.02.fanbeater
+0.0,/s/scav_beat_max
+0.0,/s/scav_beat_gydo
+0.0,/s/scav_beat_koen
 1.5,/cfg/scav_turbo_max/auto_alpha,f,0.0
 1.5,/cfg/scav_turbo_gydo/auto_alpha,f,0.0
 1.5,/cfg/scav_turbo_koen/auto_alpha,f,0.0
