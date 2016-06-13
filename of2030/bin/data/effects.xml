@@ -860,13 +860,16 @@
       <draw_size_y>2.0</draw_size_y>
       <reset>1</reset>
     </effect> -->
-<!--     <effect name="divide_chords">
-      <video>divide/3.2_WMND_AKKOORDEN_v01.mov</video>
+    <effect name="divide_chords">
+      <video>divide/3.2_WMND_AKKOORDEN_v02.mov</video>
       <is_tunnel>1</is_tunnel>
-      <video_mask>self</video_mask>
       <layer>5</layer>
       <reset>1</reset>
-    </effect> -->
+      <loop>1</loop>
+      <draw_size_y>0.4</draw_size_y>
+      <draw_size_x>10.0</draw_size_x>
+      <translate_x>3.25</translate_x>
+    </effect>
     <effect name="divide_chord1">
       <image>divide_chord1.png</image>
       <is_tunnel>1</is_tunnel>
@@ -933,12 +936,12 @@
     </effect>
     <effect name="divide_blinks">
       <video>divide/3.2_WMND_FLASHLIGHTS_v01-cropped-mask.mov</video>
-      <video_mask>self</video_mask>
       <is_pano>1</is_pano>
       <!-- <video_mask>self</video_mask> -->
       <layer>5</layer>
       <loop>1</loop>
       <reset>1</reset>
+      <unload>1</unload>
     </effect>
 
 
