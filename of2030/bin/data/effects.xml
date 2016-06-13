@@ -62,11 +62,13 @@
     </effect>
 
     <effect name="stellar_smoke">
-      <TODO>true</TODO>
-      <color_b>0.0</color_b>
-      <draw_size_y>0.3</draw_size_y>
-      <is_tunnel>1</is_tunnel>
-      <reset>1</reset>
+      <video>rings/2.2_RINGS_NON_EGAAL_BLACK_v02.mov</video>
+      <is_pano>1</is_pano>
+      <loop>1</loop>
+      <!-- <texcoord_multiply_x>0.25</texcoord_multiply_x> -->
+      <texcoord_multiply_y>0.5</texcoord_multiply_y>
+      <!-- <initial_alpha>0.5</initial_alpha> -->
+      <unload>1</unload>
     </effect>
     <effect name="stellar_map">
       <video>stellar/1.1_STELLAR_LAUNCH_v02.mov</video>
@@ -839,7 +841,7 @@
       <is_tunnel>1</is_tunnel>
       <layer>5</layer>
       <reset>1</reset>
-      <loop>1</loop>
+      <!-- <loop>1</loop> -->
       <draw_size_y>0.4</draw_size_y>
       <draw_size_x>10.0</draw_size_x>
       <translate_x>3.25</translate_x>

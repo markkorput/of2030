@@ -4,8 +4,8 @@
 0.0,/cfg/mud_wheel_gydo/auto_rotate_z,f,20.0
 0.0,/s/mud_machine
 0.0,/s/mud_machine_loop
-0.25,/cfg/mud_wheel_gydo/auto_rotate_z,f,0.0
+0.35,/cfg/mud_wheel_gydo/auto_rotate_z,f,0.0
 0.25,/cfg/mud_wheel_koen/auto_rotate_z,f,20.0
-0.50,/cfg/mud_wheel_koen/auto_rotate_z,f,0.0
+0.65,/cfg/mud_wheel_koen/auto_rotate_z,f,0.0
 0.50,/cfg/mud_wheel_max/auto_rotate_z,f,20.0
-0.75,/cfg/mud_wheel_max/auto_rotate_z,f,0.0
+0.90,/cfg/mud_wheel_max/auto_rotate_z,f,0.0
