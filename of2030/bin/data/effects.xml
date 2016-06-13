@@ -48,11 +48,11 @@
       <duration>3.5</duration>
     </effect>
     <effect name="stellar_worms">
-      <video_option1>stellar/1.1_STELLAR_WORMS_1_v01.mov</video_option1>
-      <video_option2>stellar/1.1_STELLAR_WORMS_2_v01.mov</video_option2>
-      <video_option3>stellar/1.1_STELLAR_WORMS_3_v01.mov</video_option3>
-      <video_option4>stellar/1.1_STELLAR_WORMS_4_v01.mov</video_option4>
-      <video_option5>stellar/1.1_STELLAR_WORMS_5_v01.mov</video_option5>
+      <video_option1>stellar/1.1_STELLAR_WORMS_1_v02.mov</video_option1>
+      <video_option2>stellar/1.1_STELLAR_WORMS_2_v02.mov</video_option2>
+      <video_option3>stellar/1.1_STELLAR_WORMS_3_v02.mov</video_option3>
+      <video_option4>stellar/1.1_STELLAR_WORMS_4_v02.mov</video_option4>
+      <video_option5>stellar/1.1_STELLAR_WORMS_5_v02.mov</video_option5>
       <is_pano>1</is_pano>
       <reset>1</reset>
       <translate_x>10.5</translate_x>
@@ -69,7 +69,7 @@
       <reset>1</reset>
     </effect>
     <effect name="stellar_map">
-      <video>stellar/1.1_STELLAR_LAUNCH_v01.mov</video>
+      <video>stellar/1.1_STELLAR_LAUNCH_v02.mov</video>
       <is_pano>1</is_pano>
       <reset>1</reset>
       <unload>1</unload>
@@ -116,17 +116,17 @@
     </effect>
     <effect name="stellar_sirene_max">
       <!-- <pattern>rect</pattern> -->
-      <!-- <video>stellar/1.1_STELLAR_SIRENE_GYDO_v01-150x150.mov</video> -->
+      <video>stellar/1.1_STELLAR_SIRENE_GYDO_v01-150x150.mov</video>
       <!-- <color_g>0</color_g> -->
-      <image>stellar_spot1_v02.jpg</image>
+      <!-- <image>stellar_spot1_v02.jpg</image> -->
       <spot>3</spot>
       <reset>1</reset>
     </effect>
     <effect name="stellar_sirene_gydo">
       <!-- <pattern>rect</pattern> -->
-      <!-- <video>stellar/1.1_STELLAR_SIRENE_GYDO_v01-150x150.mov</video> -->
+      <video>stellar/1.1_STELLAR_SIRENE_GYDO_v01-150x150.mov</video>
       <!-- <color_r>0</color_r> -->
-      <image>stellar_spot1_v02.jpg</image>
+      <!-- <image>stellar_spot1_v02.jpg</image> -->
       <spot>1</spot>
       <!-- <TODO>true</TODO> -->
       <reset>1</reset>
