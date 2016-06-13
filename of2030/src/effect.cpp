@@ -458,13 +458,14 @@ inline ofVideoPlayer* Effect::getVideoPlayer(Context &contxt){
 
     
     int i=1;
-    while(contxt.effect_setting.getValue("video_option"+ofToString(i), "") != "")
+    while(contxt.effect_setting.hasValue("video_option"+ofToString(i))){
         i++;
+    }
 
     if(i == 1)
         return NULL;
 
-    val = contxt.effect_setting.getValue("video_option"+ofToString(floor(ofRandom(i))), "");
+    val = contxt.effect_setting.getValue("video_option"+ofToString(floor(ofRandom(i)+0.9)), "");
     return VideoManager::instance()->get(val, contxt.effect_setting.getValue("video_alias", val), true);
 }
 
@@ -478,12 +479,13 @@ inline ofImage* Effect::loadImage(Context &contxt){
     }
 
     int i=1;
-    while(contxt.effect_setting.getValue("image_option"+ofToString(i), "") != "")
+    while(contxt.effect_setting.hasValue("image_option"+ofToString(i))){
         i++;
+    }
     
     if(i == 1)
         return NULL;
     
-    val = contxt.effect_setting.getValue("image_option"+ofToString(floor(ofRandom(i)+1)), "");
+    val = contxt.effect_setting.getValue("image_option"+ofToString(floor(ofRandom(i)+0.9)), "");
     return ImageManager::instance()->get(val, contxt.effect_setting.getValue("image_options_alias"+ofToString(floor(ofRandom(i))), val), true);
 }
