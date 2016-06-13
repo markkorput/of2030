@@ -19,6 +19,7 @@ namespace of2030{
         SINGLETON_INLINE_HEADER_CODE(OscPlaybackManager)
 
     public:
+        OscPlaybackManager();
         ~OscPlaybackManager(){ clear(); }
 
         bool start(const string &name);
@@ -37,6 +38,11 @@ namespace of2030{
 
     private:
         vector<OscPlayback*> playbacks;
+#ifdef __OSC_SENDER_ENABLED__
+        bool toOscSender;
+    public:
+        void setToOscSender(bool set){ toOscSender=set; }
+#endif
     };
 }
 #endif /* osc_playback_manager_hpp */
