@@ -710,7 +710,7 @@
       <is_panning>1</is_panning>
       <draw_size_x>1.5</draw_size_x>
       <!-- <auto_velocity_x>0.2</auto_velocity_x> -->
-      <duration>25.0</duration>
+      <!-- <duration>25.0</duration> -->
     </effect>
 
     <effect name="rain_noorderlicht_preload">
@@ -1148,7 +1148,7 @@
     <effect name="now_voice1">
       <video>now/3.4_WAN_VOICEOVER_3_v01.mov</video>
       <unload>1</unload>
-      <is_tunnel>1</is_tunnel>
+      <is_panning>1</is_panning>
       <draw_size_y>0.3</draw_size_y>
       <translate_y>0.2</translate_y>
     </effect>
@@ -1161,8 +1161,9 @@
     <effect name="now_voice2">
       <video>now/3.4_WAN_VOICEOVER_4_v01.mov</video>
       <unload>1</unload>
+      <is_tunnel>1</is_tunnel>
+      <translate_y>-0.2</translate_y>
       <draw_size_y>0.3</draw_size_y>
-      <translate_y>0.2</translate_y>
     </effect>
     <effect name="now_magnet_short">
       <video>now/3.4_WAN_MAGNET_SHORT_v01.mov</video>
