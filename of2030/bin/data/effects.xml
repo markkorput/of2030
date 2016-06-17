@@ -401,7 +401,7 @@
 
     <effect name="rings_beat_max">
       <video>rings/2.2_RINGS_RITME_v01.mov</video>
-      <spot>1</spot>
+      <spot>3</spot>
       <reset>1</reset>
       <freeze>1.0</freeze>
     </effect>
