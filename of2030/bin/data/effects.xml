@@ -75,6 +75,8 @@
       <is_pano>1</is_pano>
       <reset>1</reset>
       <unload>1</unload>
+      <draw_size_y>2.0</draw_size_y>
+      <translate_y>-0.7</translate_y>
     </effect>
     <effect name="stellar_voice1">
       <video>stellar/1.1_STELLAR_VOICEOVER_1_v02.mov</video>
@@ -380,7 +382,7 @@
       <image>rings_square.jpg</image>
       <is_tunnel>1</is_tunnel>
       <draw_size_y>1.0</draw_size_y>
-      <auto_pos_y>1.0</auto_pos_y>
+      <auto_pos_y>0.2</auto_pos_y>
       <auto_texcoord_offset_x>-0.8</auto_texcoord_offset_x>
       <texcoord_multiply_x>9.0</texcoord_multiply_x>
       <layer>2</layer>
