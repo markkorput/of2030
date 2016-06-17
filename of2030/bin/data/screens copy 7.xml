@@ -53,13 +53,13 @@
 
       <!-- roof -->
       <roof_coord1_x>0.0</roof_coord1_x>
-      <roof_coord1_y>1.0</roof_coord1_y>
+      <roof_coord1_y>0.0</roof_coord1_y>
       <roof_coord2_x>1.0</roof_coord2_x>
-      <roof_coord2_y>1.0</roof_coord2_y>
+      <roof_coord2_y>0.0</roof_coord2_y>
       <roof_coord3_x>1.0</roof_coord3_x>
-      <roof_coord3_y>0.24</roof_coord3_y>
+      <roof_coord3_y>0.38</roof_coord3_y>
       <roof_coord4_x>0.0</roof_coord4_x>
-      <roof_coord4_y>0.25</roof_coord4_y>
+      <roof_coord4_y>0.29</roof_coord4_y>
     </screen>
 
     <screen name="rpi3">
@@ -116,13 +116,13 @@
 
       <!-- roof -->
       <roof_coord1_x>0.0</roof_coord1_x>
-      <roof_coord1_y>1.0</roof_coord1_y>
+      <roof_coord1_y>0.0</roof_coord1_y>
       <roof_coord2_x>1.0</roof_coord2_x>
-      <roof_coord2_y>1.0</roof_coord2_y>
+      <roof_coord2_y>0.0</roof_coord2_y>
       <roof_coord3_x>1.0</roof_coord3_x>
-      <roof_coord3_y>0.13</roof_coord3_y>
+      <roof_coord3_y>0.38</roof_coord3_y>
       <roof_coord4_x>0.0</roof_coord4_x>
-      <roof_coord4_y>0.16</roof_coord4_y>
+      <roof_coord4_y>0.29</roof_coord4_y>
     </screen>
 
     <screen name="rpi9">
@@ -183,11 +183,11 @@
       <roof_coord1_x>0.0</roof_coord1_x>
       <roof_coord1_y>0.0</roof_coord1_y>
       <roof_coord2_x>1.0</roof_coord2_x>
-      <roof_coord2_y>1.0</roof_coord2_y>
+      <roof_coord2_y>0.0</roof_coord2_y>
       <roof_coord3_x>1.0</roof_coord3_x>
-      <roof_coord3_y>0.26</roof_coord3_y>
+      <roof_coord3_y>0.38</roof_coord3_y>
       <roof_coord4_x>0.0</roof_coord4_x>
-      <roof_coord4_y>0.77</roof_coord4_y>
+      <roof_coord4_y>0.29</roof_coord4_y>
     </screen>
 
     <screen name="rpi13">
@@ -244,11 +244,11 @@
       <roof_coord1_x>0.0</roof_coord1_x>
       <roof_coord1_y>0.0</roof_coord1_y>
       <roof_coord2_x>1.0</roof_coord2_x>
-      <roof_coord2_y>0.87</roof_coord2_y>
-      <roof_coord3_x>0.78</roof_coord3_x>
-      <roof_coord3_y>0.25</roof_coord3_y>
+      <roof_coord2_y>0.0</roof_coord2_y>
+      <roof_coord3_x>1.0</roof_coord3_x>
+      <roof_coord3_y>0.38</roof_coord3_y>
       <roof_coord4_x>0.0</roof_coord4_x>
-      <roof_coord4_y>0.25</roof_coord4_y>
+      <roof_coord4_y>0.29</roof_coord4_y>
     </screen>
 
     <screen name="rpi12">
@@ -306,11 +306,11 @@
       <roof_coord1_x>0.0</roof_coord1_x>
       <roof_coord1_y>0.0</roof_coord1_y>
       <roof_coord2_x>1.0</roof_coord2_x>
-      <roof_coord2_y>0.87</roof_coord2_y>
-      <roof_coord3_x>0.85</roof_coord3_x>
-      <roof_coord3_y>0.34</roof_coord3_y>
+      <roof_coord2_y>0.0</roof_coord2_y>
+      <roof_coord3_x>1.0</roof_coord3_x>
+      <roof_coord3_y>0.38</roof_coord3_y>
       <roof_coord4_x>0.0</roof_coord4_x>
-      <roof_coord4_y>0.35</roof_coord4_y>
+      <roof_coord4_y>0.29</roof_coord4_y>
     </screen>
 
     <!-- 720x480 -->
@@ -371,11 +371,11 @@
       <roof_coord1_x>0.0</roof_coord1_x>
       <roof_coord1_y>0.0</roof_coord1_y>
       <roof_coord2_x>1.0</roof_coord2_x>
-      <roof_coord2_y>0.87</roof_coord2_y>
-      <roof_coord3_x>0.85</roof_coord3_x>
-      <roof_coord3_y>0.34</roof_coord3_y>
+      <roof_coord2_y>0.0</roof_coord2_y>
+      <roof_coord3_x>1.0</roof_coord3_x>
+      <roof_coord3_y>0.38</roof_coord3_y>
       <roof_coord4_x>0.0</roof_coord4_x>
-      <roof_coord4_y>0.35</roof_coord4_y>
+      <roof_coord4_y>0.29</roof_coord4_y>
     </screen>
 
     <screen name="rpi7">
@@ -410,13 +410,13 @@
 
       <!-- roof -->
       <roof_coord1_x>0.0</roof_coord1_x>
-      <roof_coord1_y>0.85</roof_coord1_y>
+      <roof_coord1_y>0.0</roof_coord1_y>
       <roof_coord2_x>1.0</roof_coord2_x>
-      <roof_coord2_y>0.82</roof_coord2_y>
+      <roof_coord2_y>0.0</roof_coord2_y>
       <roof_coord3_x>1.0</roof_coord3_x>
-      <roof_coord3_y>0.12</roof_coord3_y>
+      <roof_coord3_y>0.38</roof_coord3_y>
       <roof_coord4_x>0.0</roof_coord4_x>
-      <roof_coord4_y>0.14</roof_coord4_y>
+      <roof_coord4_y>0.29</roof_coord4_y>
 
       <panning_translate_x>-8.02</panning_translate_x>
       <panning_translate_y>0.52</panning_translate_y>
@@ -457,13 +457,13 @@
 
       <!-- roof -->
       <roof_coord1_x>0.0</roof_coord1_x>
-      <roof_coord1_y>1.0</roof_coord1_y>
+      <roof_coord1_y>0.0</roof_coord1_y>
       <roof_coord2_x>1.0</roof_coord2_x>
-      <roof_coord2_y>1.0</roof_coord2_y>
+      <roof_coord2_y>0.0</roof_coord2_y>
       <roof_coord3_x>1.0</roof_coord3_x>
-      <roof_coord3_y>0.06</roof_coord3_y>
+      <roof_coord3_y>0.38</roof_coord3_y>
       <roof_coord4_x>0.0</roof_coord4_x>
-      <roof_coord4_y>0.07</roof_coord4_y>
+      <roof_coord4_y>0.29</roof_coord4_y>
 
       <panning_translate_x>3.2</panning_translate_x>
       <panning_translate_y>0.32</panning_translate_y>

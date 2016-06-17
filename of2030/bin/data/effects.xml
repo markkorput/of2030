@@ -621,15 +621,36 @@
     </effect>
     <effect name="lava_bed">
       <pattern>rect</pattern>
+      <draw_size_y>2.0</draw_size_y>
+      <!-- <spot>2</spot> -->
+      <is_pano>1</is_pano>
+      <translate_x>6.5</translate_x>
+      <translate_y>0.3</translate_y>
+      <draw_size_x>2.0</draw_size_x>
+     
+      <layer>8</layer>
+    </effect>
+    <effect name="lava_bed_PANO">
+      <pattern>rect</pattern>
       <is_pano>1</is_pano>
       <translate_x>7.25</translate_x>
       <translate_y>-0.6</translate_y>
       <draw_size_x>2.0</draw_size_x>
       <layer>8</layer>
     </effect>
+    <effect name="lava_pattern_preload">
+      <video>lava/2.4_LAVA_PATROON_v03.mov</video>
+      <!-- <reset>1</reset> -->
+      <loop>1</loop>
+      <is_tunnel>1</is_tunnel>
+      <translate_y>-100</translate_y>
+      <draw_size_x>0.0</draw_size_x>
+      <draw_size_y>0.0</draw_size_y>
+      <duration>0.5</duration>
+    </effect>
     <effect name="lava_pattern_grow">
       <video>lava/2.4_LAVA_PATROON_v03.mov</video>
-      <reset>1</reset>
+      <!-- <reset>1</reset> -->
       <loop>1</loop>
       <is_tunnel>1</is_tunnel>
       <video_mask>lava/2.4_LAVA_PATROON_GROW_v05.mov</video_mask>
@@ -652,29 +673,46 @@
       <draw_size_x>470.0</draw_size_x>
       <translate_y>0.5</translate_y>
       <auto_pos_x>-470.0</auto_pos_x>
-      <auto_velocity_x>50.0</auto_velocity_x>
+      <auto_velocity_x>35.0</auto_velocity_x>
       <duration>12.0</duration>
     </effect>
 
     <effect name="dead_spot">
       <pattern>rect</pattern>
       <is_panning>1</is_panning>
-      <draw_size_x>0.5</draw_size_x>
-      <auto_velocity_x>0.2</auto_velocity_x>
-      <duration>20.0</duration>
+      <draw_size_x>1.5</draw_size_x>
+      <!-- <auto_velocity_x>0.2</auto_velocity_x> -->
+      <duration>25.0</duration>
+    </effect>
+
+    <effect name="rain_noorderlicht_preload">
+      <video>rain/3.1_RAIN_NOORDERLICHT_B_LOOP_v02.mov</video>
+      <loop>1</loop>
+      <translate_y>-100</translate_y>
+      <draw_size_x>0.0</draw_size_x>
+      <draw_size_y>0.0</draw_size_y>
+      <duration>1.0</duration>
     </effect>
 
     <effect name="rain_noorderlicht_loop">
       <video>rain/3.1_RAIN_NOORDERLICHT_B_LOOP_v02.mov</video>
       <loop>1</loop>
       <layer>1</layer>
-      <draw_size_y>0.5</draw_size_y>
+      <draw_size_y>1.2</draw_size_y>
+      <translate_y>0.7</translate_y>
       <unload>1</unload>
     </effect>
     <effect name="rain_rain_start">
       <video>rain/3.1_RAIN_REGEN_A_START_v02.mov</video>
-      <reset>1</reset>
       <unload>1</unload>
+    </effect>
+    <effect name="rain_loop_preload">
+      <video>rain/3.1_RAIN_REGEN_B_LOOP_v02.mov</video>
+      <loop>1</loop>
+      <translate_y>-100</translate_y>
+      <draw_size_x>0.0</draw_size_x>
+      <draw_size_y>0.0</draw_size_y>
+      <duration>1.0</duration>
     </effect>
     <effect name="rain_rain_loop">
       <video>rain/3.1_RAIN_REGEN_B_LOOP_v02.mov</video>
@@ -784,28 +822,60 @@
       <!-- <reset>1</reset> -->
       <texcoord_multiply_x>20.0</texcoord_multiply_x>
     </effect>
+    <effect name="fusion_preload_spot_koen">
+      <video>fusion/3.3_FUSION_SPOT_KOEN_v01.mov</video>
+      <loop>1</loop>
+      <translate_y>-100</translate_y>
+      <draw_size_x>0.0</draw_size_x>
+      <draw_size_y>0.0</draw_size_y>
+      <duration>1.0</duration>
+    </effect>
+    <effect name="fusion_preload_spot_gydo">
+      <video>fusion/3.3_FUSION_SPOT_GYDO_v01.mov</video>
+      <loop>1</loop>
+      <translate_y>-100</translate_y>
+      <draw_size_x>0.0</draw_size_x>
+      <draw_size_y>0.0</draw_size_y>
+      <duration>1.0</duration>
+    </effect>
+    <effect name="fusion_preload_spot_max">
+      <video>fusion/3.3_FUSION_SPOT_MAX_v01.mov</video>
+      <loop>1</loop>
+      <translate_y>-100</translate_y>
+      <draw_size_x>0.0</draw_size_x>
+      <draw_size_y>0.0</draw_size_y>
+      <duration>1.0</duration>
+    </effect>
     <effect name="fusion_spot_koen1">
       <video>fusion/3.3_FUSION_SPOT_KOEN_v01.mov</video>
       <spot>2</spot>
       <loop>1</loop>
+      <scale_x>1.3</scale_x>
+      <scale_y>1.3</scale_y>
     </effect>
     <effect name="fusion_spot_max1">
       <video>fusion/3.3_FUSION_SPOT_MAX_v01.mov</video>
       <spot>3</spot>
       <loop>1</loop>
+      <scale_x>1.3</scale_x>
+      <scale_y>1.3</scale_y>
     </effect>
     <effect name="fusion_spot_gydo1">
       <video>fusion/3.3_FUSION_SPOT_GYDO_v01.mov</video>
       <spot>1</spot>
       <loop>1</loop>
+      <scale_x>1.3</scale_x>
+      <scale_y>1.3</scale_y>
     </effect>
     <effect name="fusion_spot_gydo_accent">
       <video>fusion/3.3_FUSION_SPOT_GYDO_v01.mov</video>
       <spot>1</spot>
       <loop>1</loop>
-      <duration>1.0</duration>
+      <duration>2.0</duration>
       <unique>0</unique>
       <reset>1</reset>
+      <scale_x>1.3</scale_x>
+      <scale_y>1.3</scale_y>
     </effect>
     <effect name="fusion_spring">
       <video>fusion/3.3_FUSION_SPRING_v02.mov</video>
@@ -844,8 +914,8 @@
       <freeze>1.0</freeze>
       <!-- <loop>1</loop> -->
       <draw_size_y>0.4</draw_size_y>
-      <draw_size_x>10.0</draw_size_x>
-      <translate_x>3.25</translate_x>
+      <!-- <draw_size_x>10.0</draw_size_x> -->
+      <!-- <translate_x>3.25</translate_x> -->
     </effect>
     <effect name="divide_chord1">
       <image>divide_chord1.png</image>
@@ -920,7 +990,16 @@
     </effect>
 
 
-
+    <effect name="now_noisylines_preloader">
+      <video>now/3.4_WAN_NOISYLINES_v01.mov</video>
+      <loop>1</loop>
+      <is_pano>1</is_pano>
+      <layer>-3</layer>
+      <translate_x>-100</translate_x>
+      <translate_y>-100</translate_y>
+      <draw_size_x>0.0</draw_size_x>
+      <draw_size_y>0.0</draw_size_y>
+    </effect>
     <effect name="now_noisylines">
       <video>now/3.4_WAN_NOISYLINES_v01.mov</video>
       <loop>1</loop>
@@ -1057,7 +1136,7 @@
       <!-- <pano_start>0.5</pano_start> -->
       <!-- <pano_end>0.75</pano_end> -->
       <!-- <texcoord_multiply_x>4.0</texcoord_multiply_x> -->
-      <texcoord_multiply_y>2.0</texcoord_multiply_y>
+      <!-- <texcoord_multiply_y>2.0</texcoord_multiply_y> -->
     </effect>
     <effect name="calib_tunnel">
       <image>calib_tunnel.jpg</image>
@@ -1065,7 +1144,12 @@
       <!-- <tunnel_start>0.25</tunnel_start> -->
       <!-- <tunnel_end>0.55</tunnel_end> -->
     </effect>
-
+    <effect name="calib_panning">
+      <image>calib_panning.jpg</image>
+      <is_panning>1</is_panning>
+      <!-- <tunnel_start>0.25</tunnel_start> -->
+      <!-- <tunnel_end>0.55</tunnel_end> -->
+    </effect>
     <effect name="cursor1">
       <pattern>rect</pattern>
       <is_pano>1</is_pano>

@@ -57,6 +57,19 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
+    if(key == 'i')
+        updateValue(current_value-0.1);
+    if(key == 'j')
+        updateValue(current_value-0.03);
+    if(key == 'b')
+        updateValue(current_value-0.01);
+    
+    if(key == 'p')
+        updateValue(current_value+0.1);
+    if(key == 'l')
+        updateValue(current_value+0.03);
+    if(key == 'm')
+        updateValue(current_value+0.01);
 
 }
 
