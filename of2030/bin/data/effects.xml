@@ -726,8 +726,10 @@
       <video>rain/3.1_RAIN_NOORDERLICHT_B_LOOP_v02.mov</video>
       <loop>1</loop>
       <layer>1</layer>
-      <draw_size_y>1.2</draw_size_y>
-      <translate_y>0.7</translate_y>
+      <is_pano>1</is_pano>
+      <texcoord_multiply_x>6.0</texcoord_multiply_x>
+      <draw_size_y>2.3</draw_size_y>
+      <translate_y>-0.1</translate_y>
       <unload>1</unload>
     </effect>
     <effect name="rain_rain_start">
