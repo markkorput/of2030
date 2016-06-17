@@ -343,7 +343,7 @@
       <is_pano>1</is_pano>
       <draw_size_x>51</draw_size_x>
       <auto_pos_x>-51</auto_pos_x>
-      <auto_velocity_x>80.0</auto_velocity_x>
+      <auto_velocity_x>60.0</auto_velocity_x>
       <unique>0</unique>
       <layer>9</layer>
     </effect>
@@ -395,6 +395,23 @@
       <texcoord_multiply_x>2.25</texcoord_multiply_x>
       <layer>2</layer>
       <unload>1</unload>
+    </effect>
+
+    <effect name="rings_beat_max">
+      <video>rings/2.2_RINGS_RITME_v01.mov</video>
+      <spot>1</spot>
+      <reset>1</reset>
+      <freeze>1.0</freeze>
+    </effect>
+    <effect name="rings_beat_koen">
+      <video>rings/2.2_RINGS_RITME_v01.mov</video>
+      <spot>2</spot>
+      <freeze>1.0</freeze>
+    </effect> 
+    <effect name="rings_beat_gydo">
+      <video>rings/2.2_RINGS_RITME_v01.mov</video>
+      <spot>1</spot>
+      <freeze>1.0</freeze>
     </effect>
 
     <effect name="rings_beat1_max">
@@ -554,12 +571,16 @@
       <freeze>1.0</freeze>
       <reset>1</reset>
       <unload>1</unload>
+      <translate_y>0.3</translate_y>
+      <draw_size_y>1.6</draw_size_y>
     </effect>
 
     <effect name="mud_machine">
       <image>mud_machine_v03.jpg</image>
       <is_tunnel>1</is_tunnel>
       <layer>1</layer>
+      <translate_y>0.3</translate_y>
+      <draw_size_y>1.6</draw_size_y>
     </effect>
 
     <effect name="mud_machine_loop">
@@ -570,6 +591,8 @@
       <freeze>1.0</freeze>
       <reset>1</reset>
       <layer>1</layer>
+      <translate_y>0.3</translate_y>
+      <draw_size_y>1.6</draw_size_y>
     </effect>
     <effect name="mud_machine_destruct">
       <video>mud/2.3_MUD_MACHINE_C_AFBOUW_v04.mov</video>
@@ -578,6 +601,8 @@
       <is_tunnel>1</is_tunnel>
       <duration>24.0</duration>
       <unload>1</unload>
+      <translate_y>0.3</translate_y>
+      <draw_size_y>1.6</draw_size_y>
     </effect>
     <effect name="mud_wheel_max">
       <image>mud_wheel_v01.jpg</image>
@@ -608,6 +633,7 @@
       <mask_coords_name>roof_coord</mask_coords_name>
       <layer>3</layer>
       <unload>1</unload>
+      <draw_size_y>1.0</draw_size_y>
     </effect>
 
 
@@ -976,9 +1002,10 @@
     </effect>
     <effect name="divide_particles3">
       <video>divide/3.2_WMND_KOEN_HANDMOVES_3_31123_ALLE_BEAMERS_v01.mov</video>
-      <is_tunnel>1</is_tunnel>
+      <is_pano>1</is_pano>
       <reset>1</reset>
       <unload>1</unload>
+      <texcoord_multiply_x>4.0</texcoord_multiply_x>
     </effect>
     <effect name="divide_blinks">
       <video>divide/3.2_WMND_FLASHLIGHTS_v01-cropped-mask.mov</video>

@@ -53,11 +53,11 @@
 
       <!-- roof -->
       <roof_coord1_x>0.0</roof_coord1_x>
-      <roof_coord1_y>1.0</roof_coord1_y>
+      <roof_coord1_y>0.0</roof_coord1_y>
       <roof_coord2_x>1.0</roof_coord2_x>
-      <roof_coord2_y>1.0</roof_coord2_y>
+      <roof_coord2_y>0.0</roof_coord2_y>
       <roof_coord3_x>1.0</roof_coord3_x>
-      <roof_coord3_y>0.24</roof_coord3_y>
+      <roof_coord3_y>0.26</roof_coord3_y>
       <roof_coord4_x>0.0</roof_coord4_x>
       <roof_coord4_y>0.25</roof_coord4_y>
     </screen>
@@ -116,13 +116,13 @@
 
       <!-- roof -->
       <roof_coord1_x>0.0</roof_coord1_x>
-      <roof_coord1_y>1.0</roof_coord1_y>
+      <roof_coord1_y>0.0</roof_coord1_y>
       <roof_coord2_x>1.0</roof_coord2_x>
-      <roof_coord2_y>1.0</roof_coord2_y>
+      <roof_coord2_y>0.0</roof_coord2_y>
       <roof_coord3_x>1.0</roof_coord3_x>
       <roof_coord3_y>0.13</roof_coord3_y>
       <roof_coord4_x>0.0</roof_coord4_x>
-      <roof_coord4_y>0.16</roof_coord4_y>
+      <roof_coord4_y>0.18</roof_coord4_y>
     </screen>
 
     <screen name="rpi9">
@@ -183,11 +183,11 @@
       <roof_coord1_x>0.0</roof_coord1_x>
       <roof_coord1_y>0.0</roof_coord1_y>
       <roof_coord2_x>1.0</roof_coord2_x>
-      <roof_coord2_y>1.0</roof_coord2_y>
+      <roof_coord2_y>0.0</roof_coord2_y>
       <roof_coord3_x>1.0</roof_coord3_x>
-      <roof_coord3_y>0.26</roof_coord3_y>
+      <roof_coord3_y>0.36</roof_coord3_y>
       <roof_coord4_x>0.0</roof_coord4_x>
-      <roof_coord4_y>0.77</roof_coord4_y>
+      <roof_coord4_y>0.4</roof_coord4_y>
     </screen>
 
     <screen name="rpi13">
@@ -244,9 +244,9 @@
       <roof_coord1_x>0.0</roof_coord1_x>
       <roof_coord1_y>0.0</roof_coord1_y>
       <roof_coord2_x>1.0</roof_coord2_x>
-      <roof_coord2_y>0.87</roof_coord2_y>
-      <roof_coord3_x>0.78</roof_coord3_x>
-      <roof_coord3_y>0.25</roof_coord3_y>
+      <roof_coord2_y>0.0</roof_coord2_y>
+      <roof_coord3_x>1.0</roof_coord3_x>
+      <roof_coord3_y>0.27</roof_coord3_y>
       <roof_coord4_x>0.0</roof_coord4_x>
       <roof_coord4_y>0.25</roof_coord4_y>
     </screen>
@@ -306,9 +306,9 @@
       <roof_coord1_x>0.0</roof_coord1_x>
       <roof_coord1_y>0.0</roof_coord1_y>
       <roof_coord2_x>1.0</roof_coord2_x>
-      <roof_coord2_y>0.87</roof_coord2_y>
-      <roof_coord3_x>0.85</roof_coord3_x>
-      <roof_coord3_y>0.34</roof_coord3_y>
+      <roof_coord2_y>0.0</roof_coord2_y>
+      <roof_coord3_x>1.0</roof_coord3_x>
+      <roof_coord3_y>0.33</roof_coord3_y>
       <roof_coord4_x>0.0</roof_coord4_x>
       <roof_coord4_y>0.35</roof_coord4_y>
     </screen>
@@ -371,11 +371,11 @@
       <roof_coord1_x>0.0</roof_coord1_x>
       <roof_coord1_y>0.0</roof_coord1_y>
       <roof_coord2_x>1.0</roof_coord2_x>
-      <roof_coord2_y>0.87</roof_coord2_y>
-      <roof_coord3_x>0.85</roof_coord3_x>
+      <roof_coord2_y>0.0</roof_coord2_y>
+      <roof_coord3_x>1.0</roof_coord3_x>
       <roof_coord3_y>0.34</roof_coord3_y>
       <roof_coord4_x>0.0</roof_coord4_x>
-      <roof_coord4_y>0.35</roof_coord4_y>
+      <roof_coord4_y>0.4</roof_coord4_y>
     </screen>
 
     <screen name="rpi7">
@@ -399,7 +399,8 @@
       <!-- <rot_y>0.0</rot_y> -->
 
       <!-- the area of the panoram that this screen shows -->
-      <pano_translate_x>-18.78</pano_translate_x>
+      
+      <pano_translate_x>-43.98</pano_translate_x>
       <pano_translate_y>0.34</pano_translate_y>
       <!-- <pano_translate_z></pano_translate_z> -->
       <!-- <pano_rotate_x>180.0</pano_rotate_x> -->
@@ -410,9 +411,9 @@
 
       <!-- roof -->
       <roof_coord1_x>0.0</roof_coord1_x>
-      <roof_coord1_y>0.85</roof_coord1_y>
+      <roof_coord1_y>0.0</roof_coord1_y>
       <roof_coord2_x>1.0</roof_coord2_x>
-      <roof_coord2_y>0.82</roof_coord2_y>
+      <roof_coord2_y>0.0</roof_coord2_y>
       <roof_coord3_x>1.0</roof_coord3_x>
       <roof_coord3_y>0.12</roof_coord3_y>
       <roof_coord4_x>0.0</roof_coord4_x>
@@ -457,13 +458,13 @@
 
       <!-- roof -->
       <roof_coord1_x>0.0</roof_coord1_x>
-      <roof_coord1_y>1.0</roof_coord1_y>
+      <roof_coord1_y>0.0</roof_coord1_y>
       <roof_coord2_x>1.0</roof_coord2_x>
-      <roof_coord2_y>1.0</roof_coord2_y>
+      <roof_coord2_y>0.0</roof_coord2_y>
       <roof_coord3_x>1.0</roof_coord3_x>
-      <roof_coord3_y>0.06</roof_coord3_y>
+      <roof_coord3_y>0.02</roof_coord3_y>
       <roof_coord4_x>0.0</roof_coord4_x>
-      <roof_coord4_y>0.07</roof_coord4_y>
+      <roof_coord4_y>0.05</roof_coord4_y>
 
       <panning_translate_x>3.2</panning_translate_x>
       <panning_translate_y>0.32</panning_translate_y>
