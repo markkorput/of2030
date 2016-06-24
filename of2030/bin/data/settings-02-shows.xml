@@ -1,0 +1,34 @@
+<of2030>
+  <app>
+    <log_level>notice</log_level>
+    <log_alive_interval>15.0</log_alive_interval>
+  </app>
+  <osc>
+    <port>2031</port><!-- 0 (zero) means disabled -->
+    <out>
+      <port>2030</port>
+      <host>localhost</host>
+      <key_check>0</key_check>
+    </out>
+  </osc>
+
+  <cache_screen_configs>0</cache_screen_configs>
+  <rgba_pixels>0</rgba_pixels>
+  <!-- <draw_to_fbo_first>1</draw_to_fbo_first> -->
+
+  <room_size_x>9.0</room_size_x>
+  <room_size_y>2.5</room_size_y>
+  <room_size_z>16.5</room_size_z>
+  <multi>
+    <id>rpi4</id>
+    <id>rpi3</id>
+    <id>rpi9</id>
+    <id>rpi7</id>
+    <id>wallR</id>
+    <id>rpi8</id>
+    <scale>100.0</scale>
+    <translate_x>0.0</translate_x>
+    <translate_y>0.0</translate_y>
+    <translate_z>0.0</translate_z>
+  </multi>
+</of2030>

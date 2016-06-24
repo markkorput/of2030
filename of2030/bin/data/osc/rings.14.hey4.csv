@@ -1,10 +1,8 @@
 0.0,/t/rings_hey
 0.0,/t/rings_random_max
-0.02,/s/rings_beat5_max
-0.03,/s/rings_beat4_max
-0.04,/s/rings_beat3_max
-0.05,/s/rings_beat2_max
-0.06,/s/rings_beat1_max
+0.02,/s/rings_beat_max
+0.02,/s/rings_beat_koen
+0.02,/s/rings_beat_gydo
 2.553,/t/rings_random_max
 5.106,/t/rings_random_max
 7.660,/t/rings_random_max

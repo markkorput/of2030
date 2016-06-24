@@ -185,6 +185,9 @@ void ofApp::keyPressed(int key){
 #endif
 
 #ifdef __MULTI_CLIENT_ENABLED__
+    if(key == 'v'){
+        
+    }
     if(key >= '0' && key <= '9'){
         of2030::MultiClient::instance()->setPreviewClient(key-'0');
         return;
