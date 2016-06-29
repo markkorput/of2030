@@ -8,7 +8,7 @@
     <out>
       <port>2030</port>
       <host>localhost</host>
-      <key_check>0</key_check>
+      <key_check>1</key_check>
     </out>
   </osc>
 

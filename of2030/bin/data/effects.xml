@@ -1269,7 +1269,7 @@
       <!-- <tunnel_start>0.25</tunnel_start> -->
       <!-- <tunnel_end>0.55</tunnel_end> -->
     </effect>
-    <effect name="cursor1">
+    <effect name="cursor_">
       <pattern>rect</pattern>
       <is_pano>1</is_pano>
       <draw_size_x>0.2</draw_size_x>
@@ -1277,6 +1277,51 @@
       <duration>2.0</duration>
       <!-- <auto_rotate_z>180.0</auto_rotate_x> -->
       <rotate_z>45.0</rotate_z>
+      <unique>0</unique>
+    </effect>
+    <effect name="cursor1">
+      <pattern>rect</pattern>
+      <is_pano>1</is_pano>
+      <draw_size_x>0.4</draw_size_x>
+      <auto_velocity_x>6.0</auto_velocity_x>
+      <duration>5.0</duration>
+      <color_g>0.0</color_g>
+      <!-- <auto_rotate_z>180.0</auto_rotate_x> -->
+      <!-- <rotate_z>45.0</rotate_z> -->
+      <unique>0</unique>
+    </effect>
+    <effect name="cursor2">
+      <pattern>rect</pattern>
+      <is_pano>1</is_pano>
+      <draw_size_x>0.4</draw_size_x>
+      <auto_velocity_x>6.0</auto_velocity_x>
+      <duration>5.0</duration>
+      <color_b>0.0</color_b>
+      <!-- <auto_rotate_z>180.0</auto_rotate_x> -->
+      <!-- <rotate_z>45.0</rotate_z> -->
+      <unique>0</unique>
+    </effect>
+    <effect name="cursor3">
+      <pattern>rect</pattern>
+      <is_pano>1</is_pano>
+      <draw_size_x>0.4</draw_size_x>
+      <auto_velocity_x>6.0</auto_velocity_x>
+      <duration>5.0</duration>
+      <color_r>0.0</color_r>
+      <!-- <auto_rotate_z>180.0</auto_rotate_x> -->
+      <!-- <rotate_z>45.0</rotate_z> -->
+      <unique>0</unique>
+    </effect>
+    <effect name="cursor4">
+      <pattern>rect</pattern>
+      <is_pano>1</is_pano>
+      <draw_size_x>0.4</draw_size_x>
+      <auto_velocity_x>6.0</auto_velocity_x>
+      <duration>5.0</duration>
+      <color_b>0.0</color_b>
+      <color_r>120.0</color_r>
+      <!-- <auto_rotate_z>180.0</auto_rotate_x> -->
+      <!-- <rotate_z>45.0</rotate_z> -->
       <unique>0</unique>
     </effect>
 
