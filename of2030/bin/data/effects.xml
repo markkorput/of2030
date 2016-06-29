@@ -1325,6 +1325,56 @@
       <unique>0</unique>
     </effect>
 
+
+    <effect name="riser1">
+      <pattern>rect</pattern>
+      <!-- <pattern>horiline</pattern> -->
+      <is_pano>1</is_pano>
+      <draw_size_y>0.1</draw_size_y>
+      <color_r>0.0</color_r>
+      <duration>6.0</duration>
+      <!-- negative value means down on OSX positive value means down on RASPI -->
+      <auto_velocity_y>-0.22</auto_velocity_y>
+      <auto_pos_y>2.0</auto_pos_y>
+      <unique>0</unique>
+    </effect>
+    <effect name="riser2">
+      <pattern>rect</pattern>
+      <!-- <pattern>horiline</pattern> -->
+      <is_pano>1</is_pano>
+      <draw_size_y>0.1</draw_size_y>
+      <color_g>0.0</color_g>
+      <duration>6.0</duration>
+      <!-- negative value means down on OSX positive value means down on RASPI -->
+      <auto_velocity_y>-0.22</auto_velocity_y>
+      <auto_pos_y>2.0</auto_pos_y>
+      <unique>0</unique>
+    </effect>
+    <effect name="riser3">
+      <pattern>rect</pattern>
+      <!-- <pattern>horiline</pattern> -->
+      <is_pano>1</is_pano>
+      <draw_size_y>0.1</draw_size_y>
+      <color_b>0.0</color_b>
+      <duration>6.0</duration>
+      <!-- negative value means down on OSX positive value means down on RASPI -->
+      <auto_velocity_y>-0.22</auto_velocity_y>
+      <auto_pos_y>2.0</auto_pos_y>
+      <unique>0</unique>
+    </effect>
+    <effect name="riser4">
+      <pattern>rect</pattern>
+      <!-- <pattern>horiline</pattern> -->
+      <is_pano>1</is_pano>
+      <draw_size_y>0.1</draw_size_y>
+      <color_b>0.0</color_b>
+      <color_g>120.0</color_g>
+      <duration>6.0</duration>
+      <!-- negative value means down on OSX positive value means down on RASPI -->
+      <auto_velocity_y>-0.22</auto_velocity_y>
+      <auto_pos_y>2.0</auto_pos_y>
+      <unique>0</unique>
+    </effect>
     <!-- roof -->
     <effect name="yellow_roof">
       <pattern>rect</pattern>
