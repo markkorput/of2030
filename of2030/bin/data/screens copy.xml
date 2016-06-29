@@ -1,0 +1,622 @@
+<of2030>
+  <screens>
+
+    <screen name="rpi7">
+      <index>0</index>
+      <total>8</total>
+      <!-- <screen_rotate_z>180</screen_rotate_z> -->
+      <!-- <screen_translate_x>768</screen_translate_x> -->
+      <!-- <screen_translate_y>576</screen_translate_y> -->
+
+      <!-- resolution -->
+      <resolution_x>768</resolution_x>
+      <resolution_y>576</resolution_y>
+      <!-- size of (projected) image in meters -->
+      <world_size_x>0.55</world_size_x>
+      <world_size_y>0.3</world_size_y>
+
+      <!-- real-world-position of the center of the screen in meters -->
+      <pos_x>0.975</pos_x>
+      <pos_y>1.8</pos_y>
+      <pos_z>1.175</pos_z>
+      <!-- orientation of the screen -->
+      <rot_y>180.0</rot_y>
+
+      <pano_translate_x>-0.7</pano_translate_x>
+      <pano_scale_x>1396.4</pano_scale_x>
+      <pano_scale_y>1920.0</pano_scale_y>
+
+<!--       <tunnel_translate_x>0.0</tunnel_translate_x>
+      <tunnel_translate_y>0.0</tunnel_translate_y>
+      <tunnel_scale_x>1396.4</tunnel_scale_x>
+      <tunnel_scale_y>1920.0</tunnel_scale_y>
+ -->
+      <panning_translate_x>-0.7</panning_translate_x>
+      <panning_scale_x>1396.4</panning_scale_x>
+      <panning_scale_y>1920.0</panning_scale_y>
+    </screen>
+
+
+    <screen name="rpi8">
+      <index>0</index>
+      <total>8</total>
+      <!-- <screen_rotate_z>180</screen_rotate_z> -->
+      <!-- <screen_translate_x>768</screen_translate_x> -->
+      <!-- <screen_translate_y>576</screen_translate_y> -->
+
+      <!-- resolution -->
+      <resolution_x>768</resolution_x>
+      <resolution_y>576</resolution_y>
+      <!-- size of (projected) image in meters -->
+      <world_size_x>0.55</world_size_x>
+      <world_size_y>0.3</world_size_y>
+
+      <!-- real-world-position of the center of the screen in meters -->
+      <pos_x>0.975</pos_x>
+      <pos_y>1.8</pos_y>
+      <pos_z>1.175</pos_z>
+      <!-- orientation of the screen -->
+      <rot_y>180.0</rot_y>
+
+      <pano_translate_x>-1.5</pano_translate_x>
+      <pano_scale_x>1396.4</pano_scale_x>
+      <pano_scale_y>1920.0</pano_scale_y>
+
+<!--       <tunnel_translate_x>0.0</tunnel_translate_x>
+      <tunnel_translate_y>0.0</tunnel_translate_y>
+      <tunnel_scale_x>1396.4</tunnel_scale_x>
+      <tunnel_scale_y>1920.0</tunnel_scale_y>
+ -->
+      <panning_translate_x>-1.5</panning_translate_x>
+      <panning_scale_x>1396.4</panning_scale_x>
+      <panning_scale_y>1920.0</panning_scale_y>
+    </screen>
+
+
+
+    <screen name="_rpi4">
+      <index>0</index>
+      <total>8</total>
+      <!-- <screen_rotate_z>180</screen_rotate_z> -->
+      <!-- <screen_translate_x>768</screen_translate_x> -->
+      <!-- <screen_translate_y>576</screen_translate_y> -->
+
+      <!-- resolution -->
+      <resolution_x>768</resolution_x>
+      <resolution_y>576</resolution_y>
+      <!-- size of (projected) image in meters -->
+      <world_size_x>16.5</world_size_x>
+      <world_size_y>2.5</world_size_y>
+
+      <!-- real-world-position of the center of the screen in meters -->
+      <pos_x>4.5</pos_x>
+      <pos_y>0.0</pos_y>
+      <pos_z>4.13</pos_z>
+      <!-- orientation of the screen -->
+      <!-- <rot_x>180.0</rot_x> -->
+      <rot_y>-90.0</rot_y>
+      <rot_z>0.0</rot_z>
+
+      <!-- spot (center position, width, height in screen factors) -->
+      <spot1_x>5.95</spot1_x>
+      <spot1_y>1.28</spot1_y>
+      <spot1rotate_x>62.7</spot1rotate_x>
+      <spot1rotate_y>180.0</spot1rotate_y>
+      <spot1size_x>5.08</spot1size_x>
+      <spot1size_y>4.88</spot1size_y>
+
+      <!-- tunnel -->
+      <tunnel_translate_x>-5.66</tunnel_translate_x>
+      <tunnel_translate_y>0.93</tunnel_translate_y>
+      <!-- <tunnel_translate_z></tunnel_translate_z> -->
+      <tunnel_rotate_x>0.64</tunnel_rotate_x>
+      <!-- <tunnel_rotate_y></tunnel_rotate_y> -->
+      <tunnel_rotate_z>-0.5</tunnel_rotate_z>
+      <tunnel_scale_x>-126.31</tunnel_scale_x>
+      <tunnel_scale_y>145.2</tunnel_scale_y>
+
+      <!-- the area of the panoram that this screen shows -->
+      <pano_translate_x>-35.1</pano_translate_x>
+      <pano_translate_y>1.0</pano_translate_y>
+      <!-- <pano_translate_z></pano_translate_z> -->
+      <!-- <pano_rotate_x>180.0</pano_rotate_x> -->
+      <!-- <pano_rotate_y></pano_rotate_y> -->
+      <!-- <pano_rotate_z>0.05</pano_rotate_z> -->
+      <pano_scale_x>111.955</pano_scale_x>
+      <pano_scale_y>129.64</pano_scale_y>
+
+      <!-- roof -->
+      <roof_coord1_x>0.0</roof_coord1_x>
+      <roof_coord1_y>0.0</roof_coord1_y>
+      <roof_coord2_x>1.0</roof_coord2_x>
+      <roof_coord2_y>0.0</roof_coord2_y>
+      <roof_coord3_x>1.0</roof_coord3_x>
+      <roof_coord3_y>0.26</roof_coord3_y>
+      <roof_coord4_x>0.0</roof_coord4_x>
+      <roof_coord4_y>0.25</roof_coord4_y>
+    </screen>
+
+    <screen name="_rpi3">
+      <index>1</index>
+      <total>8</total>
+      <!-- <screen_rotate_z>180</screen_rotate_z> -->
+      <!-- <screen_translate_x>768</screen_translate_x> -->
+      <!-- <screen_translate_y>576</screen_translate_y> -->
+
+      <!-- resolution -->
+      <resolution_x>768</resolution_x>
+      <resolution_y>576</resolution_y>
+      <!-- size of (projected) image in meters -->
+      <world_size_x>16.5</world_size_x>
+      <world_size_y>2.5</world_size_y>
+
+      <!-- real-world-position of the center of the screen in meters -->
+      <pos_x>-4.5</pos_x>
+      <pos_y>0.0</pos_y>
+      <pos_z>0</pos_z>
+      <!-- orientation of the screen -->
+      <!-- <rot_x>180.0</rot_x> -->
+      <rot_y>90.0</rot_y>
+      <rot_z>0.0</rot_z>
+
+      <!-- spot (center position, width, height in screen factors) -->
+      <spot2_x>7.49</spot2_x>
+      <spot2_y>0.81</spot2_y>
+      <spot2rotate_x>79.6</spot2rotate_x>
+      <spot2rotate_y>180.0</spot2rotate_y>
+      <spot2size_x>6.33</spot2size_x>
+      <spot2size_y>5.88</spot2size_y>
+
+      <!-- tunnel -->
+      <tunnel_translate_x>-12.31</tunnel_translate_x>
+      <tunnel_translate_y>0.5</tunnel_translate_y>
+      <!-- <tunnel_translate_z></tunnel_translate_z> -->
+      <!-- <tunnel_rotate_x>180.0</tunnel_rotate_x> -->
+      <!-- <tunnel_rotate_y></tunnel_rotate_y> -->
+      <tunnel_rotate_z>1.34</tunnel_rotate_z>
+      <tunnel_scale_x>-108.17</tunnel_scale_x>
+      <tunnel_scale_y>118.97</tunnel_scale_y>
+
+
+      <!-- the area of the panoram that this screen shows -->
+      <pano_translate_x>-29.49</pano_translate_x>
+      <pano_translate_y>1.33</pano_translate_y>
+      <!-- <pano_translate_z></pano_translate_z> -->
+      <!-- <pano_rotate_x>180.0</pano_rotate_x> -->
+      <!-- <pano_rotate_y></pano_rotate_y> -->
+      <pano_rotate_z>-1.22</pano_rotate_z>
+      <pano_scale_x>124.115</pano_scale_x>
+      <pano_scale_y>121.74</pano_scale_y>
+
+      <!-- roof -->
+      <roof_coord1_x>0.0</roof_coord1_x>
+      <roof_coord1_y>0.0</roof_coord1_y>
+      <roof_coord2_x>1.0</roof_coord2_x>
+      <roof_coord2_y>0.0</roof_coord2_y>
+      <roof_coord3_x>1.0</roof_coord3_x>
+      <roof_coord3_y>0.13</roof_coord3_y>
+      <roof_coord4_x>0.0</roof_coord4_x>
+      <roof_coord4_y>0.18</roof_coord4_y>
+    </screen>
+
+    <screen name="_rpi9">
+      <index>2</index>
+      <total>8</total>
+      <!-- <screen_rotate_z>180</screen_rotate_z> -->
+      <!-- <screen_translate_x>768</screen_translate_x> -->
+      <!-- <screen_translate_y>576</screen_translate_y> -->
+
+      <!-- resolution -->
+      <resolution_x>768</resolution_x>
+      <resolution_y>576</resolution_y>
+      <!-- size of (projected) image in meters -->
+      <world_size_x>16.5</world_size_x>
+      <world_size_y>2.5</world_size_y>
+
+      <!-- real-world-position of the center of the screen in meters -->
+      <pos_x>-4.5</pos_x>
+      <pos_y>0.0</pos_y>
+      <pos_z>-4.13</pos_z>
+      <!-- orientation of the screen -->
+      <!-- <rot_x>180.0</rot_x> -->
+      <rot_y>90.0</rot_y>
+      <rot_z>0.0</rot_z>
+
+      <!-- spot (center position, width, height in screen factors) -->
+      <spot3_x>12.31</spot3_x>
+      <spot3_y>1.24</spot3_y>
+      <spot3rotate_x>-67.97</spot3rotate_x>
+      <spot3rotate_y>180.0</spot3rotate_y>
+      <spot3size_x>4.62</spot3size_x>
+      <spot3size_y>4.64</spot3size_y>
+
+      <!-- tunnel -->
+      <tunnel_translate_x>-16.9</tunnel_translate_x>
+      <tunnel_translate_y>1.16</tunnel_translate_y>
+      <!-- <tunnel_translate_z></tunnel_translate_z> -->
+      <!-- <tunnel_rotate_x>-7.01</tunnel_rotate_x> -->
+      <!-- <tunnel_rotate_y></tunnel_rotate_y> -->
+      <tunnel_rotate_z>-0.63</tunnel_rotate_z>
+      <tunnel_scale_x>-159.11</tunnel_scale_x>
+      <tunnel_scale_y>161.04</tunnel_scale_y>
+
+
+
+      <!-- the area of the panoram that this screen shows -->
+      <pano_translate_x>-25.47</pano_translate_x>
+      <pano_translate_y>1.15</pano_translate_y>
+      <!-- <pano_translate_z></pano_translate_z> -->
+      <!-- <pano_rotate_x>-19.81</pano_rotate_x> -->
+      <!-- <pano_rotate_y></pano_rotate_y> -->
+      <pano_rotate_z>-0.22</pano_rotate_z>
+      <pano_scale_x>159.92</pano_scale_x>
+      <pano_scale_y>152.96</pano_scale_y>
+
+
+      <!-- roof -->
+      <roof_coord1_x>0.0</roof_coord1_x>
+      <roof_coord1_y>0.0</roof_coord1_y>
+      <roof_coord2_x>1.0</roof_coord2_x>
+      <roof_coord2_y>0.0</roof_coord2_y>
+      <roof_coord3_x>1.0</roof_coord3_x>
+      <roof_coord3_y>0.36</roof_coord3_y>
+      <roof_coord4_x>0.0</roof_coord4_x>
+      <roof_coord4_y>0.4</roof_coord4_y>
+    </screen>
+
+    <screen name="_rpi13">
+      <index>6</index>
+      <total>8</total>
+      <!-- <screen_rotate_z>180</screen_rotate_z> -->
+      <!-- <screen_translate_x>768</screen_translate_x> -->
+      <!-- <screen_translate_y>576</screen_translate_y> -->
+
+      <!-- resolution -->
+      <resolution_x>768</resolution_x>
+      <resolution_y>576</resolution_y>
+      <!-- size of (projected) image in meters -->
+      <world_size_x>16.5</world_size_x>
+      <world_size_y>2.5</world_size_y>
+
+      <!-- real-world-position of the center of the screen in meters -->
+      <pos_x>-4.5</pos_x>
+      <pos_y>0.0</pos_y>
+      <pos_z>4.13</pos_z>
+      <!-- orientation of the screen -->
+      <!-- <rot_x>180.0</rot_x> -->
+      <rot_y>90.0</rot_y>
+      <rot_z>0.0</rot_z>
+
+      <!-- spot (center position, width, height in screen factors) -->
+      <spot1_x>10.77</spot1_x>
+      <spot1_y>1.51</spot1_y>
+      <spot1rotate_x>62.7</spot1rotate_x>
+      <spot1size_x>3.8</spot1size_x>
+      <spot1size_y>3.8</spot1size_y>
+
+      <!-- tunnel -->
+      <tunnel_translate_x>0.55</tunnel_translate_x>
+      <tunnel_translate_y>0.94</tunnel_translate_y>
+      <!-- <tunnel_translate_z></tunnel_translate_z> -->
+      <!-- <tunnel_rotate_x>180.0</tunnel_rotate_x> -->
+      <!-- <tunnel_rotate_y></tunnel_rotate_y> -->
+      <tunnel_rotate_z>0.6</tunnel_rotate_z>
+      <tunnel_scale_x>118.62</tunnel_scale_x>
+      <tunnel_scale_y>140.63</tunnel_scale_y>
+
+      <!-- the area of the panoram that this screen shows -->
+      <pano_translate_x>0.57</pano_translate_x>
+      <pano_translate_y>0.91</pano_translate_y>
+      <!-- <pano_translate_z></pano_translate_z> -->
+      <!-- <pano_rotate_x>180.0</pano_rotate_x> -->
+      <!-- <pano_rotate_y></pano_rotate_y> -->
+      <pano_rotate_z>0.05</pano_rotate_z>
+      <pano_scale_x>111.955</pano_scale_x>
+      <pano_scale_y>141.29</pano_scale_y>
+
+      <!-- roof -->
+      <roof_coord1_x>0.0</roof_coord1_x>
+      <roof_coord1_y>0.0</roof_coord1_y>
+      <roof_coord2_x>1.0</roof_coord2_x>
+      <roof_coord2_y>0.0</roof_coord2_y>
+      <roof_coord3_x>1.0</roof_coord3_x>
+      <roof_coord3_y>0.27</roof_coord3_y>
+      <roof_coord4_x>0.0</roof_coord4_x>
+      <roof_coord4_y>0.25</roof_coord4_y>
+    </screen>
+
+    <screen name="_rpi12">
+      <index>5</index>
+      <total>8</total>
+      <!-- <screen_rotate_z>180</screen_rotate_z> -->
+      <!-- <screen_translate_x>768</screen_translate_x> -->
+      <!-- <screen_translate_y>576</screen_translate_y> -->
+
+      <!-- resolution -->
+      <resolution_x>768</resolution_x>
+      <resolution_y>576</resolution_y>
+      <!-- size of (projected) image in meters -->
+      <world_size_x>16.5</world_size_x>
+      <world_size_y>2.5</world_size_y>
+
+      <!-- real-world-position of the center of the screen in meters -->
+      <pos_x>-4.5</pos_x>
+      <pos_y>0.0</pos_y>
+      <pos_z>0</pos_z>
+      <!-- orientation of the screen -->
+      <!-- <rot_x>180.0</rot_x> -->
+      <rot_y>90.0</rot_y>
+      <rot_z>0.0</rot_z>
+
+      <!-- spot (center position, width, height in screen factors) -->
+      <spot2_x>6.09</spot2_x>
+      <spot2_y>1.37</spot2_y>
+      <!-- <spot2rotate_x></spot2rotate_x> -->
+      <spot2size_x>3.24</spot2size_x>
+      <spot2size_y>1.5</spot2size_y>
+
+      <!-- tunnel -->
+      <tunnel_translate_x>-6.86</tunnel_translate_x>
+      <tunnel_translate_y>1.8</tunnel_translate_y>
+      <!-- <tunnel_translate_z></tunnel_translate_z> -->
+      <!-- <tunnel_rotate_x>180.0</tunnel_rotate_x> -->
+      <!-- <tunnel_rotate_y></tunnel_rotate_y> -->
+      <tunnel_rotate_z>-1.09</tunnel_rotate_z>
+      <tunnel_scale_x>139.24</tunnel_scale_x>
+      <tunnel_scale_y>118.97</tunnel_scale_y>
+
+
+      <!-- the area of the panoram that this screen shows -->
+      <pano_translate_x>-5.01</pano_translate_x>
+      <pano_translate_y>1.65</pano_translate_y>
+      <!-- <pano_translate_z></pano_translate_z> -->
+      <!-- <pano_rotate_x>180.0</pano_rotate_x> -->
+      <!-- <pano_rotate_y></pano_rotate_y> -->
+      <pano_rotate_z>-1.22</pano_rotate_z>
+      <pano_scale_x>102.005</pano_scale_x>
+      <pano_scale_y>121.74</pano_scale_y>
+
+      <!-- roof -->
+      <roof_coord1_x>0.0</roof_coord1_x>
+      <roof_coord1_y>0.0</roof_coord1_y>
+      <roof_coord2_x>1.0</roof_coord2_x>
+      <roof_coord2_y>0.0</roof_coord2_y>
+      <roof_coord3_x>1.0</roof_coord3_x>
+      <roof_coord3_y>0.33</roof_coord3_y>
+      <roof_coord4_x>0.0</roof_coord4_x>
+      <roof_coord4_y>0.35</roof_coord4_y>
+    </screen>
+
+    <!-- 720x480 -->
+    <screen name="_rpi10">
+      <index>4</index>
+      <total>8</total>
+      <!-- <screen_rotate_z>180</screen_rotate_z> -->
+      <!-- <screen_translate_x>768</screen_translate_x> -->
+      <!-- <screen_translate_y>576</screen_translate_y> -->
+
+      <!-- resolution -->
+      <resolution_x>768</resolution_x>
+      <resolution_y>576</resolution_y>
+      <!-- size of (projected) image in meters -->
+      <world_size_x>16.5</world_size_x>
+      <world_size_y>2.5</world_size_y>
+
+      <!-- real-world-position of the center of the screen in meters -->
+      <pos_x>-4.5</pos_x>
+      <pos_y>0.0</pos_y>
+      <pos_z>-4.13</pos_z>
+      <!-- orientation of the screen -->
+      <!-- <rot_x>180.0</rot_x> -->
+      <rot_y>90.0</rot_y>
+      <rot_z>0.0</rot_z>
+
+      <!-- spot (center position, width, height in screen factors) -->
+      <spot3_x>2.99</spot3_x>
+      <spot3_y>1.44</spot3_y>
+      <spot3rotate_x>-67.97</spot3rotate_x>
+      <!-- <spot3rotate_y>0.0</spot3rotate_y> -->
+      <spot3size_x>4.85</spot3size_x>
+      <spot3size_y>3.96</spot3size_y>
+
+      <!-- tunnel -->
+      <tunnel_translate_x>-11.74</tunnel_translate_x>
+      <tunnel_translate_y>2.69</tunnel_translate_y>
+      <!-- <tunnel_translate_z></tunnel_translate_z> -->
+      <tunnel_rotate_x>-7.01</tunnel_rotate_x>
+      <!-- <tunnel_rotate_y></tunnel_rotate_y> -->
+      <tunnel_rotate_z>-5.07</tunnel_rotate_z>
+      <tunnel_scale_x>159.11</tunnel_scale_x>
+      <tunnel_scale_y>138.94</tunnel_scale_y>
+
+
+
+      <!-- the area of the panoram that this screen shows -->
+      <pano_translate_x>-9.33</pano_translate_x>
+      <pano_translate_y>1.82</pano_translate_y>
+      <!-- <pano_translate_z></pano_translate_z> -->
+      <pano_rotate_x>-19.81</pano_rotate_x>
+      <!-- <pano_rotate_y></pano_rotate_y> -->
+      <pano_rotate_z>-3.0</pano_rotate_z>
+      <pano_scale_x>105.245</pano_scale_x>
+      <pano_scale_y>153.97</pano_scale_y>
+
+      <!-- roof -->
+      <roof_coord1_x>0.0</roof_coord1_x>
+      <roof_coord1_y>0.0</roof_coord1_y>
+      <roof_coord2_x>1.0</roof_coord2_x>
+      <roof_coord2_y>0.0</roof_coord2_y>
+      <roof_coord3_x>1.0</roof_coord3_x>
+      <roof_coord3_y>0.34</roof_coord3_y>
+      <roof_coord4_x>0.0</roof_coord4_x>
+      <roof_coord4_y>0.4</roof_coord4_y>
+    </screen>
+
+    <screen name="_rpi7">
+      <index>3</index>
+      <total>8</total>
+      <!-- <screen_rotate_z>180</screen_rotate_z> -->
+      <!-- <screen_translate_x>765</screen_translate_x> -->
+      <!-- <screen_translate_y>576</screen_translate_y> -->
+
+      <!-- resolution -->
+      <resolution_x>768</resolution_x>
+      <resolution_y>576</resolution_y>
+      <!-- size of (projected) image in meters -->
+      <world_size_x>9.0</world_size_x>
+      <world_size_y>2.5</world_size_y>
+      <!-- real-world-position of the center of the screen in meters -->
+      <pos_x>0.0</pos_x>
+      <pos_y>0.0</pos_y>
+      <pos_z>-8.25</pos_z>
+      <!-- orientation of the screen -->
+      <!-- <rot_y>0.0</rot_y> -->
+
+      <!-- the area of the panoram that this screen shows -->
+
+      <pano_translate_x>-43.98</pano_translate_x>
+      <pano_translate_y>0.34</pano_translate_y>
+      <!-- <pano_translate_z></pano_translate_z> -->
+      <!-- <pano_rotate_x>180.0</pano_rotate_x> -->
+      <!-- <pano_rotate_y></pano_rotate_y> -->
+      <pano_rotate_z>-0.22</pano_rotate_z>
+      <pano_scale_x>126.575</pano_scale_x>
+      <pano_scale_y>108.69</pano_scale_y>
+
+      <!-- roof -->
+      <roof_coord1_x>0.0</roof_coord1_x>
+      <roof_coord1_y>0.0</roof_coord1_y>
+      <roof_coord2_x>1.0</roof_coord2_x>
+      <roof_coord2_y>0.0</roof_coord2_y>
+      <roof_coord3_x>1.0</roof_coord3_x>
+      <roof_coord3_y>0.12</roof_coord3_y>
+      <roof_coord4_x>0.0</roof_coord4_x>
+      <roof_coord4_y>0.14</roof_coord4_y>
+
+      <panning_translate_x>-8.02</panning_translate_x>
+      <panning_translate_y>0.52</panning_translate_y>
+      <!-- <panning_translate_z></panning_translate_z> -->
+      <!-- <panning_rotate_x>180.0</panning_rotate_x> -->
+      <!-- <panning_rotate_y></panning_rotate_y> -->
+      <!-- <panning_rotate_z></panning_rotate_z> -->
+      <panning_scale_x>-98.71</panning_scale_x>
+      <panning_scale_y>108.88</panning_scale_y>
+    </screen>
+
+    <screen name="_rpi8">
+      <index>7</index>
+      <total>8</total>
+
+      <!-- resolution -->
+      <resolution_x>768</resolution_x>
+      <resolution_y>576</resolution_y>
+      <!-- size of (projected) image in meters -->
+      <world_size_x>9.0</world_size_x>
+      <world_size_y>2.5</world_size_y>
+      <!-- real-world-position of the center of the screen in meters -->
+      <pos_x>0.0</pos_x>
+      <pos_y>0.0</pos_y>
+      <pos_z>8.25</pos_z>
+      <!-- orientation of the screen -->
+      <rot_y>180.0</rot_y>
+
+      <!-- the area of the panoram that this screen shows -->
+      <pano_translate_x>-13.53</pano_translate_x>
+      <pano_translate_y>0.32</pano_translate_y>
+      <!-- <pano_translate_z></pano_translate_z> -->
+      <!-- <pano_rotate_x>180.0</pano_rotate_x> -->
+      <!-- <pano_rotate_y></pano_rotate_y> -->
+      <pano_rotate_z>-0.28</pano_rotate_z>
+      <pano_scale_x>55.43</pano_scale_x>
+      <pano_scale_y>49.96</pano_scale_y>
+
+      <!-- roof -->
+      <roof_coord1_x>0.0</roof_coord1_x>
+      <roof_coord1_y>0.0</roof_coord1_y>
+      <roof_coord2_x>1.0</roof_coord2_x>
+      <roof_coord2_y>0.0</roof_coord2_y>
+      <roof_coord3_x>1.0</roof_coord3_x>
+      <roof_coord3_y>0.02</roof_coord3_y>
+      <roof_coord4_x>0.0</roof_coord4_x>
+      <roof_coord4_y>0.05</roof_coord4_y>
+
+      <panning_translate_x>3.2</panning_translate_x>
+      <panning_translate_y>0.32</panning_translate_y>
+      <!-- <panning_translate_z></panning_translate_z> -->
+      <!-- <panning_rotate_x>0.0</panning_rotate_x> -->
+      <!-- <panning_rotate_y></panning_rotate_y> -->
+      <!-- <panning_rotate_z></panning_rotate_z> -->
+      <panning_scale_x>52.28</panning_scale_x>
+      <panning_scale_y>48.93</panning_scale_y>
+    </screen>
+
+    <screen name="_wallR">
+      <index>2</index>
+      <total>8</total>
+      <!-- resolution -->
+      <resolution_x>768</resolution_x>
+      <resolution_y>576</resolution_y>
+      <!-- size of (projected) image in meters -->
+      <world_size_x>16.5</world_size_x>
+      <world_size_y>2.5</world_size_y>
+      <!-- real-world-position of the center of the screen in meters -->
+      <pos_x>4.5</pos_x>
+      <pos_y>0.0</pos_y>
+      <pos_z>0.0</pos_z>
+      <!-- orientation of the screen -->
+      <!-- <rot_x>180.0</rot_x> -->
+      <rot_y>-90.0</rot_y>
+      <rot_z>0.0</rot_z>
+
+      <!-- spot (center position, width, height in screen factors) -->
+      <spot1_x>13.5</spot1_x>
+      <spot1_y>0.5</spot1_y>
+      <spot1size_x>1.0</spot1size_x>
+      <spot1size_y>1.0</spot1size_y>
+      <spot1rotate_y>180.0</spot1rotate_y>
+
+      <spot2_x>8.0</spot2_x>
+      <spot2_y>0.5</spot2_y>
+      <spot2size_x>1.0</spot2size_x>
+      <spot2size_y>1.0</spot2size_y>
+      <spot2rotate_y>180.0</spot2rotate_y>
+
+      <spot3_x>2.5</spot3_x>
+      <spot3_y>0.5</spot3_y>
+      <spot3size_x>1.0</spot3size_x>
+      <spot3size_y>1.0</spot3size_y>
+      <spot3rotate_y>180.0</spot3rotate_y>
+
+      <!-- tunnel -->
+      <tunnel_translate_x>-17.5</tunnel_translate_x>
+      <tunnel_translate_y>0.0</tunnel_translate_y>
+      <!-- <tunnel_translate_z></tunnel_translate_z> -->
+      <!-- <tunnel_rotate_x>180.0</tunnel_rotate_x> -->
+      <!-- <tunnel_rotate_y></tunnel_rotate_y> -->
+      <!-- <tunnel_rotate_z></tunnel_rotate_z> -->
+      <tunnel_scale_x>-45.0</tunnel_scale_x>
+      <tunnel_scale_y>230.4</tunnel_scale_y>
+
+      <!-- the area of the panoram that this screen shows -->
+      <pano_translate_x>-25.5</pano_translate_x>
+      <pano_translate_y>0.0</pano_translate_y>
+      <!-- <pano_translate_z></pano_translate_z> -->
+      <!-- <pano_rotate_x>180.0</pano_rotate_x> -->
+      <!-- <pano_rotate_y></pano_rotate_y> -->
+      <!-- <pano_rotate_z></pano_rotate_z> -->
+      <pano_scale_x>46.5</pano_scale_x>
+      <pano_scale_y>230.4</pano_scale_y>
+
+      <!-- roof -->
+      <roof_coord1_x>0.0</roof_coord1_x>
+      <roof_coord1_y>0.0</roof_coord1_y>
+      <roof_coord2_x>1.0</roof_coord2_x>
+      <roof_coord2_y>0.0</roof_coord2_y>
+      <roof_coord3_x>1.0</roof_coord3_x>
+      <roof_coord3_y>0.38</roof_coord3_y>
+      <roof_coord4_x>0.0</roof_coord4_x>
+      <roof_coord4_y>0.29</roof_coord4_y>
+    </screen>
+
+  </screens>
+</of2030>

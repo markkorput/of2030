@@ -8,7 +8,7 @@
     <out>
       <port>2030</port>
       <host>localhost</host>
-      <key_check>1</key_check>
+      <key_check>0</key_check>
     </out>
   </osc>
 
@@ -16,16 +16,26 @@
   <rgba_pixels>0</rgba_pixels>
   <!-- <draw_to_fbo_first>1</draw_to_fbo_first> -->
 
-  <room_size_x>9.0</room_size_x>
-  <room_size_y>2.5</room_size_y>
-  <room_size_z>16.5</room_size_z>
+  <room_size_x>2.35</room_size_x>
+  <room_size_y>0.30</room_size_y>
+  <room_size_z>2.35</room_size_z>
   <multi>
-    <id>rpi4</id>
-    <id>rpi3</id>
-    <id>rpi9</id>
-    <id>rpi7</id>
-    <id>wallR</id>
-    <id>rpi8</id>
+    <id>expo1</id>
+    <id>expo2</id>
+    <id>expo3</id>
+    <id>expo4</id>
+    <id>expo5</id>
+    <id>expo6</id>
+    <id>expo7</id>
+    <id>expo8</id>
+    <!-- <id>expo2</id> -->
+<!--     <id>expo3</id>
+    <id>expo4</id>
+    <id>expo5</id>
+    <id>expo6</id>
+    <id>expo7</id>
+    <id>expo8</id>
+ -->
     <scale>100.0</scale>
     <translate_x>0.0</translate_x>
     <translate_y>0.0</translate_y>

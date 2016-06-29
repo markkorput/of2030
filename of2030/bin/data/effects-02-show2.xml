@@ -15,10 +15,10 @@
       <loop>1</loop>
       <is_pano>1</is_pano>
       <reset>1</reset>
-<!--       <translate_x>0.5</translate_x>
+      <translate_x>10.5</translate_x>
       <translate_y>0.4</translate_y>
       <draw_size_x>21</draw_size_x>
-      <draw_size_y>1.8</draw_size_y> -->
+      <draw_size_y>1.8</draw_size_y>
     </effect>
 
     <effect name="impro_worms_end">
@@ -27,10 +27,10 @@
       <loop>1</loop>
       <is_pano>1</is_pano>
       <video_mask_reset>1</video_mask_reset>
-<!--       <translate_x>10.5</translate_x>
+      <translate_x>10.5</translate_x>
       <draw_size_x>21</draw_size_x>
       <translate_y>0.4</translate_y>
-      <draw_size_y>1.8</draw_size_y> -->
+      <draw_size_y>1.8</draw_size_y>
       <unload>1</unload>
       <duration>10.0</duration>
     </effect>
@@ -85,8 +85,8 @@
       <is_pano>1</is_pano>
       <reset>1</reset>
       <unload>1</unload>
-      <!-- <draw_size_y>0.3</draw_size_y> -->
-      <translate_y>0.08</translate_y>
+      <draw_size_y>2.0</draw_size_y>
+      <translate_y>-0.7</translate_y>
     </effect>
     <effect name="stellar_voice1">
       <video>stellar/1.1_STELLAR_VOICEOVER_1_v02.mov</video>
@@ -737,10 +737,9 @@
       <loop>1</loop>
       <layer>1</layer>
       <is_pano>1</is_pano>
-      <texcoord_offset_x>0.1</texcoord_offset_x>
       <texcoord_multiply_x>6.0</texcoord_multiply_x>
-      <!-- <draw_size_y>2.3</draw_size_y> -->
-      <!-- <translate_y>-0.1</translate_y> -->
+      <draw_size_y>2.3</draw_size_y>
+      <translate_y>-0.1</translate_y>
       <unload>1</unload>
     </effect>
     <effect name="rain_noorderlicht_loop2">
@@ -748,11 +747,10 @@
       <loop>1</loop>
       <layer>1</layer>
       <is_pano>1</is_pano>
-      <texcoord_offset_x>0.1</texcoord_offset_x>
       <texcoord_multiply_x>6.0</texcoord_multiply_x>
-<!--       <draw_size_y>2.3</draw_size_y>
+      <draw_size_y>2.3</draw_size_y>
       <translate_y>-0.1</translate_y>
- -->      <!-- <unload>1</unload> -->
+      <!-- <unload>1</unload> -->
     </effect>
     <effect name="rain_rain_start">
       <video>rain/3.1_RAIN_REGEN_A_START_v02.mov</video>
@@ -770,11 +768,6 @@
       <video>rain/3.1_RAIN_REGEN_B_LOOP_v02.mov</video>
       <loop>1</loop>
       <unload>1</unload>
-    </effect>
-    <effect name="rain_rain_loop2">
-      <video>rain/3.1_RAIN_REGEN_B_LOOP_v02.mov</video>
-      <loop>1</loop>
-      <!-- <unload>1</unload> -->
     </effect>
     <effect name="rain_rain_end">
       <video>rain/3.1_RAIN_REGEN_C_EIND_v02.mov</video>
@@ -1257,7 +1250,7 @@
 
     <!--  MISC -->
     <effect name="calib_pano">
-      <image>calib_pano_expo.jpg</image>
+      <image>calib_pano_v02.jpg</image>
       <is_pano>1</is_pano>
       <!-- <pano_start>0.5</pano_start> -->
       <!-- <pano_end>0.75</pano_end> -->
@@ -1265,13 +1258,13 @@
       <!-- <texcoord_multiply_y>2.0</texcoord_multiply_y> -->
     </effect>
     <effect name="calib_tunnel">
-      <image>calib_tunnel_expo.jpg</image>
+      <image>calib_tunnel.jpg</image>
       <is_tunnel>1</is_tunnel>
       <!-- <tunnel_start>0.25</tunnel_start> -->
       <!-- <tunnel_end>0.55</tunnel_end> -->
     </effect>
     <effect name="calib_panning">
-      <image>calib_panning_expo.jpg</image>
+      <image>calib_panning.jpg</image>
       <is_panning>1</is_panning>
       <!-- <tunnel_start>0.25</tunnel_start> -->
       <!-- <tunnel_end>0.55</tunnel_end> -->
