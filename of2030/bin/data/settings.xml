@@ -20,14 +20,14 @@
   <room_size_y>0.30</room_size_y>
   <room_size_z>2.35</room_size_z>
   <multi>
-    <id>expo1</id>
-    <id>expo2</id>
-    <id>expo3</id>
-    <id>expo4</id>
-    <id>expo5</id>
-    <id>expo6</id>
-    <id>expo7</id>
-    <id>expo8</id>
+    <id>rpi3</id>
+    <id>rpi7</id>
+    <id>rpi8</id>
+    <id>rpi9</id>
+    <id>rpi10</id>
+    <id>rpi11</id>
+    <id>rpi12</id>
+    <id>rpi13</id>
     <!-- <id>expo2</id> -->
 <!--     <id>expo3</id>
     <id>expo4</id>

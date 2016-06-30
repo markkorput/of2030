@@ -1,7 +1,7 @@
 <of2030>
   <screens>
 
-    <screen name="expo1">
+    <screen name="rpi3">
       <index>0</index>
       <total>8</total>
 
@@ -33,7 +33,7 @@
     </screen>
 
 
-    <screen name="expo2">
+    <screen name="rpi7">
       <index>1</index>
       <total>8</total>
 
@@ -64,7 +64,7 @@
       <panning_scale_y>1920.0</panning_scale_y>
     </screen>
 
-    <screen name="expo3">
+    <screen name="rpi8">
       <index>2</index>
       <total>8</total>
 
@@ -96,7 +96,7 @@
     </screen>
 
 
-    <screen name="expo4">
+    <screen name="rpi9">
       <index>3</index>
       <total>8</total>
 
@@ -128,7 +128,7 @@
     </screen>
 
 
-    <screen name="expo5">
+    <screen name="rpi10">
       <index>4</index>
       <total>8</total>
 
@@ -160,7 +160,7 @@
     </screen>
 
 
-    <screen name="expo6">
+    <screen name="rpi11">
       <index>5</index>
       <total>8</total>
 
@@ -191,7 +191,7 @@
       <panning_scale_y>1920.0</panning_scale_y>
     </screen>
 
-    <screen name="expo7">
+    <screen name="rpi12">
       <index>6</index>
       <total>8</total>
 
@@ -223,7 +223,7 @@
     </screen>
 
 
-    <screen name="expo8">
+    <screen name="rpi13">
       <index>7</index>
       <total>8</total>
 

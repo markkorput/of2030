@@ -583,16 +583,16 @@
       <freeze>1.0</freeze>
       <reset>1</reset>
       <unload>1</unload>
-      <translate_y>0.3</translate_y>
-      <draw_size_y>1.6</draw_size_y>
+      <!-- <translate_y>0.3</translate_y> -->
+      <!-- <draw_size_y>1.6</draw_size_y> -->
     </effect>
 
     <effect name="mud_machine">
       <image>mud_machine_v03.jpg</image>
       <is_tunnel>1</is_tunnel>
       <layer>1</layer>
-      <translate_y>0.3</translate_y>
-      <draw_size_y>1.6</draw_size_y>
+      <!-- <translate_y>0.3</translate_y> -->
+      <!-- <draw_size_y>1.6</draw_size_y> -->
     </effect>
 
     <effect name="mud_machine_loop">
@@ -603,8 +603,8 @@
       <freeze>1.0</freeze>
       <reset>1</reset>
       <layer>1</layer>
-      <translate_y>0.3</translate_y>
-      <draw_size_y>1.6</draw_size_y>
+      <!-- <translate_y>0.3</translate_y> -->
+      <!-- <draw_size_y>1.6</draw_size_y> -->
     </effect>
     <effect name="mud_machine_destruct">
       <video>mud/2.3_MUD_MACHINE_C_AFBOUW_v04.mov</video>
@@ -613,8 +613,8 @@
       <is_tunnel>1</is_tunnel>
       <duration>24.0</duration>
       <unload>1</unload>
-      <translate_y>0.3</translate_y>
-      <draw_size_y>1.6</draw_size_y>
+      <!-- <translate_y>0.3</translate_y> -->
+      <!-- <draw_size_y>1.6</draw_size_y> -->
     </effect>
     <effect name="mud_wheel_max">
       <image>mud_wheel_v01.jpg</image>
@@ -1197,14 +1197,14 @@
       <video>now/3.4_WAN_VOICEOVER_3_v01.mov</video>
       <unload>1</unload>
       <is_panning>1</is_panning>
-      <draw_size_y>0.3</draw_size_y>
-      <translate_y>0.2</translate_y>
+      <!-- <draw_size_y>0.3</draw_size_y> -->
+      <!-- <translate_y>0.2</translate_y> -->
     </effect>
     <effect name="now_voice1panning">
       <video>now/3.4_WAN_VOICEOVER_3_v01.mov</video>
       <is_panning>1</is_panning>
-      <draw_size_y>0.3</draw_size_y>
-      <translate_y>0.2</translate_y>
+<!--       <draw_size_y>0.3</draw_size_y>
+      <translate_y>0.2</translate_y> -->
     </effect>
     <effect name="now_voice2">
       <video>now/3.4_WAN_VOICEOVER_4_v01.mov</video>
