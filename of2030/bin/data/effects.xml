@@ -10,6 +10,13 @@
 <of2030>
   <effects>
 
+    <effect name="expo_bars">
+      <pattern>rect</pattern>
+      <color_r>100</color_r>
+      <color_a>150</color_a>
+      <duration>1.5</duration>
+    </effect>
+
     <effect name="inloop_worms">
       <video>inloop/0.0_INLOOP_WOBBLINGLINES_v02.mov</video>
       <loop>1</loop>
