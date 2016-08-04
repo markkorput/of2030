@@ -1,4 +1,4 @@
-#include "xml_effect.hpp"
+#include "xml_effects.hpp"
 #include "ofxXmlSettings.h"
 
 using namespace of2030;

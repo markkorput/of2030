@@ -324,6 +324,12 @@
 		4D9E76D71D538085004A88D7 /* effects (video) */ = {
 			isa = PBXGroup;
 			children = (
+				4DB3EC6E1CFA0D3600C2BD99 /* context.cpp */,
+				4DB3EC6F1CFA0D3600C2BD99 /* context.hpp */,
+				4D5E5EB21CE8B97A00D5D33D /* effect_manager.cpp */,
+				4D5E5EB31CE8B97A00D5D33D /* effect_manager.hpp */,
+				4D3B38E21CC66A95004C8994 /* effect.cpp */,
+				4D3B38E31CC66A95004C8994 /* effect.hpp */,
 			);
 			name = "effects (video)";
 			sourceTree = "<group>";
@@ -377,8 +383,6 @@
 			isa = PBXGroup;
 			children = (
 				4D9E76D71D538085004A88D7 /* effects (video) */,
-				4D3B38E21CC66A95004C8994 /* effect.cpp */,
-				4D3B38E31CC66A95004C8994 /* effect.hpp */,
 				4DF6EBE41CDCA5B300D37FB7 /* shader_manager.cpp */,
 				4DF6EBE51CDCA5B300D37FB7 /* shader_manager.hpp */,
 				4DE490FF1CC69C55003E7958 /* player.cpp */,
@@ -387,10 +391,6 @@
 				4D7E55011CC6C71B00DF588E /* renderer.hpp */,
 				4D1BFD551CD8D9C000D5493C /* video_manager.cpp */,
 				4D1BFD561CD8D9C000D5493C /* video_manager.hpp */,
-				4D5E5EB21CE8B97A00D5D33D /* effect_manager.cpp */,
-				4D5E5EB31CE8B97A00D5D33D /* effect_manager.hpp */,
-				4DB3EC6E1CFA0D3600C2BD99 /* context.cpp */,
-				4DB3EC6F1CFA0D3600C2BD99 /* context.hpp */,
 				4DBFD1E71D04586F000A7DC6 /* image_manager.cpp */,
 				4DBFD1E81D04586F000A7DC6 /* image_manager.hpp */,
 			);
