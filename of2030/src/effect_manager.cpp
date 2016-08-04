@@ -7,73 +7,73 @@
 //
 
 #include "effect_manager.hpp"
+#include <regex>
 
 using namespace of2030;
 
 EffectManager::~EffectManager(){
-    for(auto effect: effects){
-        deleteEffect(effect);
+    for(int i=effects.size()-1; i>=0; i--){
+        deleteEffect(effects[i]);
     }
 
     effects.clear();
 }
 
-effects::Effect* EffectManager::get(string typ){
+Effect* EffectManager::get(const string &trigger){
     // create new instance
-    effects::Effect* pEffect = createEffect(typ);
+    Effect* pEffect = createEffect(trigger);
     // add to our internal list
     add(pEffect);
     // return it to caller
     return pEffect;
 }
 
-// returns a pointer (or NULL if not found) to an allocated effect instance
-// of the specified type in the internal idle_effects vector
-effects::Effect* EffectManager::findByType(effects::EffectType typ){
-    for(int i=effects.size()-1; i>=0; i--){
-        if(effects[i]->type == typ){
-            // found!
-            return effects[i];
+void EffectManager::add(Effect* effect){
+    bool added=false;
+
+    if(bSortByLayerAscending){
+        int count=effects.size();
+        int layer = effect->getLayer();
+
+        for(int i=0; i<count; i++){
+            if(effects[i]->getLayer() > layer){
+                effects.insert(effects.begin()+i, effect);
+                added=true;
+                break;
+            }
+
         }
     }
 
-    // not found
-    return NULL;
-}
+    // no effect found with a layer-value that's larger
+    // than the new effect's layer-value; simply add the new effect
+    // to the end of our list
+    if(!added)
+        effects.push_back(effect);
 
-void EffectManager::add(effects::Effect* effect){
-    effects.push_back(effect);
     ofNotifyEvent(effectAddedEvent, *effect, this);
 }
 
-effects::EffectType EffectManager::typeStringToType(string typ){
-    if(typ == "vid") return effects::EffectType::VID;
-    if(typ == "voice") return effects::EffectType::VOICE;
-    if(typ == "spot") return effects::EffectType::SPOT;
-    return effects::EffectType::DEFAULT;
-}
+Effect* EffectManager::createEffect(const string &trigger){
+    ofLogVerbose() << "EffectManager::createEffect with: " << trigger;
 
-effects::Effect* EffectManager::createEffect(string typ){
-    ofLogVerbose() << "EffectManager::createEffect with: " << typ;
+    Effect* pEffect;
 
-    effects::Effect* pEffect;
-
-    if(typ == "vid"){
-        pEffect = (effects::Effect*) new effects::Vid();
-    } else if(typ == "spot"){
-        pEffect = (effects::Effect*) new effects::Spot();
-    } else if(typ == "voice"){
-        pEffect = (effects::Effect*) new effects::Voice();
-    }else {
-        // default type, just set name to whatever was specified
-        pEffect = new effects::Effect();
-        pEffect->name = typ;
-    }
-
+    // default type, just set name to whatever was specified
+    pEffect = new Effect();
+    // pEffect->name = triggerToName(trigger);
+    pEffect->trigger = trigger;
     return pEffect;
 }
 
-bool EffectManager::remove(effects::Effect* effect){
+void EffectManager::deleteEffect(Effect* effect){
+    ofLogVerbose() << "EffectManager::deleteEffect";
+    
+    // default; simply Effect
+    delete effect;
+}
+
+bool EffectManager::remove(Effect* effect){
     // find effect in our list
     for(int i=effects.size()-1; i>=0; i--){
         // this one?
@@ -93,74 +93,88 @@ bool EffectManager::remove(effects::Effect* effect){
 }
 
 void EffectManager::clear(){
-    for(auto effect: effects){
-        remove(effect);
+// THIS CAUSES CRASHES
+//    for(auto effect: effects){
+//        remove(effect);
+//    }
+
+    for(int i=effects.size()-1; i>=0; i--){
+        remove(effects[i]);
     }
 }
 
-void EffectManager::deleteEffect(effects::Effect* effect){
-    ofLogVerbose() << "EffectManager::deleteEffect";
+//string EffectManager::triggerToName(const string &trigger){
+//    // matches on any digits at then end of the string
+//    std::regex expression("(\\d+)$");
+//    // return the trigger name without any trailing digits
+//    return std::regex_replace(trigger, expression, "");
+//}
 
-    // figure out effect type and delete from memory
-    if(effect->type == effects::EffectType::VID){
-        // turn into Vid effect pointer before deleting, to delete appropriate class type
-        delete (effects::Vid*) effect;
-        return;
+void EffectManager::sort(){
+    vector<Effect*> sorted_effects;
+    int lowest, tmp;
+
+    // we'll move effect pointers from our effects vector
+    // into the local sorted_effects vector and swap them at the end
+    // kee looping until all pointer are moved
+    while(!effects.empty()){
+
+        // we'll need an initial layer value; take the first effect's layer
+        lowest = effects[0]->getLayer();
+
+        // loop over all other effects, to find the (next) lowest layer value
+        for(int i=effects.size()-1; i>0; i--){
+            tmp = effects[i]->getLayer();
+            if(tmp < lowest)
+                lowest = tmp;
+        }
+
+        // lowest now contains the lowest layer value for the remaining effects
+        // loop over all remaining effects again and move the ones with this layer value
+        tmp = effects.size();
+        for(int i=0; i<tmp; i++){
+            Effect* effect = effects[i];
+            // does this effect has the lowest layer value?
+            if(effect->getLayer() == lowest){
+                // add this effect to the (back of) the sorted vector...
+                sorted_effects.push_back(effect);
+                // ... and remove it from our main vector
+                effects.erase(effects.begin()+i);
+            }
+        }
     }
 
-    if(effect->type == effects::EffectType::SPOT){
-        delete (effects::Spot*) effect;
-        return;
-    }
-    
-    if(effect->type == effects::EffectType::VOICE){
-        delete (effects::Voice*) effect;
-        return;
-    }
-
-    // default; simply effects::Effect
-    delete effect;
+    // swap the content of the -currently empty- effects vector
+    // with the temporary local sorted effects vector
+    effects.swap(sorted_effects);
 }
-
-int EffectManager::getCountByType(effects::EffectType typ){
-    int count = 0;
-    for(auto effect: effects)
-        if(effect->type == typ)
-            count++;
-    return count;
-}
-
-
 
 
 //
 // EfficientEffectManager
 //
 
-SINGLETON_CLASS_IMPLEMENTATION_CODE(EfficientEffectManager)
+SINGLETON_INLINE_IMPLEMENTATION_CODE(EfficientEffectManager)
 
-const int idle_cache_limit_per_type = 3;
+const int idle_cache_limit = 10;
 
-effects::Effect* EfficientEffectManager::get(string typ){
-    // convert string (typ) to EffectType (type)
-    effects::EffectType type = typeStringToType(typ);
+Effect* EfficientEffectManager::get(string trigger){
     // find already allocated effect in idle manager
-    effects::Effect* pEffect = idle_manager.findByType(type);
+    Effect* pEffect = idle_manager.getEffectByIndex(idle_manager.getCount() - 1);
 
     // no existing idle instance found, default to "normal behaviour" (allocate new instance)
     if(!pEffect){
         // no idle effect found; create new one like usual
-        return EffectManager::get(typ);
+        return EffectManager::get(trigger);
     }
-    
+
     // found one, remove it from idle manager
     idle_manager.remove(pEffect);
     // reset its time values (and some other attributes)
     pEffect->reset();
     // update name if necessary
-    if(pEffect->type == effects::EffectType::DEFAULT){
-        pEffect->name = typ;
-    }
+    //pEffect->name = triggerToName(trigger);
+    pEffect->trigger = trigger;
 
     // add to our own list
     add(pEffect);
@@ -169,7 +183,7 @@ effects::Effect* EfficientEffectManager::get(string typ){
     return pEffect;
 }
 
-void EfficientEffectManager::finish(effects::Effect* effect){
+void EfficientEffectManager::finish(Effect* effect){
     // ofLogVerbose() << "EfficientEffectManager::finish";
 
     // remove from our "active list"
@@ -179,7 +193,7 @@ void EfficientEffectManager::finish(effects::Effect* effect){
     }
 
     // check if cache of idle instance has reached its limits yet
-    if(idle_manager.getCountByType(effect->type) >= idle_cache_limit_per_type){
+    if(idle_manager.getCount() >= idle_cache_limit){
         // idle cache full, just delete this instance
         deleteEffect(effect);
         return;
@@ -190,4 +204,3 @@ void EfficientEffectManager::finish(effects::Effect* effect){
     idle_manager.add(effect);
     ofLogVerbose() << "[EfficientEffectManager] idle effects count: " << idle_manager.getCount();
 }
-

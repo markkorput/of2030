@@ -1,0 +1,16 @@
+<of2030>
+	<remote>
+		<osc>
+			<host>localhost</host>
+			<port>2030</port>
+			<message>/cfg/dead_spot/translate_x</message>
+		</osc>
+		<value>
+			<min>-0.75</min>
+			<max>9.5</max>
+		</value>
+		<preview_width>0.5</preview_width>
+		<guide1>0.0</guide1>
+		<guide2>9.0</guide2>
+	</remote>
+</of2030>

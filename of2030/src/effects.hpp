@@ -10,8 +10,7 @@
 #define effects_h
 
 #include "effect.hpp"
-#include "vid.hpp"
-#include "spot.hpp"
-#include "voice.hpp"
+//#include "spot.hpp"
+//#include "pos.hpp"
 
 #endif /* effects_h */

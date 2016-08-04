@@ -16,23 +16,25 @@
 namespace of2030{
 
     class XmlSettings{
-    public:
-        static XmlSettings* instance();
-    private:
-        static XmlSettings* singleton;
+        SINGLETON_INLINE_HEADER_CODE(XmlSettings)
 
-    public:
-        XmlSettings() : path("settings.xml"), log_level(OF_LOG_NOTICE){};
-        void load(bool reload=false);
-        // void save();
+    public: // methods
+        XmlSettings() : loaded(false), path("settings.xml"), client_id_path("client_id.xml"), log_level(OF_LOG_NOTICE){};
+        bool load(bool reload=false);
 
-        std::string path;
-        OscSetting osc_setting;
-
-        bool loaded;
+    public: // properties
         string client_id;
+        OscSetting osc_setting;
+        // logging
+        string log_level_name;
+        ofLogLevel log_level;
+        float log_alive_interval;
         ofVec3f room_size;
-        
+
+        bool cache_screen_configs;
+        bool rgbaVidPixels;
+        bool drawToFboFirst;
+
 #ifdef __MULTI_CLIENT_ENABLED__
         vector<string> multi_client_ids;
         bool multi_debug;
@@ -40,8 +42,15 @@ namespace of2030{
         ofVec3f multi_translate;
 #endif
 
-        string log_level_name;
-        ofLogLevel log_level;
+#ifdef __OSC_SENDER_ENABLED__
+        int osc_out_port;
+        string osc_out_host;
+        bool osc_out_keycheck;
+#endif
+
+    private: // attributes
+        bool loaded;
+        std::string path, client_id_path;
     };
 }
 

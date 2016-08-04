@@ -1,0 +1,13 @@
+0.0,/t/rain_thunder
+0.0,/s/rain_noorderlicht_loop
+0.0,/s/rain_noorderlicht_loop2
+1.0,/cfg/rain_rain_start/auto_alpha,f,0.0
+1.5,/t/rain_rain_start
+3.5,/cfg/rain_rain_loop/initial_alpha,f,0.0
+3.5,/cfg/rain_rain_loop/auto_alpha,f,0.3
+3.5,/cfg/rain_rain_loop2/initial_alpha,f,0.0
+3.5,/cfg/rain_rain_loop2/auto_alpha,f,0.3
+4.0,/t/rain_rain_loop
+4.0,/t/rain_rain_loop2
+4.0,/cfg/rain_rain_start/auto_alpha,f,-0.3
+6.0,/p/now.00.load

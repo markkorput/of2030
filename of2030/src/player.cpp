@@ -10,52 +10,62 @@
 
 using namespace of2030;
 
-Player* Player::singleton = NULL;
+SINGLETON_INLINE_IMPLEMENTATION_CODE(Player)
 
-Player* Player::instance(){
-    if (!singleton){   // Only allow one instance of class to be generated.
-        singleton = new Player();
-    }
-    return singleton;
+Player::Player() : m_time(0.0f)/*, m_lastUpdateTime(0.0f), m_bPlaying(false)*/{
 }
 
-Player::Player() : m_time(0.0f), m_bPlaying(false), song("default"), clip("default"){
-}
-
-void Player::update(){
-    if(m_bPlaying){
-        setPlaybackTime(ofGetElapsedTimef() - m_startTime);
-    }
+void Player::setup(){
+    active_effects_manager.setSortByLayerAscending(true);
 }
 
 void Player::update(float dt){
-    if(m_bPlaying){
-        setPlaybackTime(m_time + dt);
+    m_time += dt;
+
+    const vector<Effect*> *effects = &active_effects_manager.getEffects();
+    Effect* effect;
+    // First, remove active effects that have ended
+    for(int i=effects->size()-1; i>=0; i--){
+        effect= (*effects)[i];
+        
+        if(effectEnded(*effect)){
+            ofLog() << "[Player] effect ended: " << effect->trigger;
+            // remove from active list
+            active_effects_manager.remove(effect);
+            // remove altogether
+            effect_manager.remove(effect);
+        }
+    }
+
+    effects = &pending_effects_manager.getEffects();
+
+    // Second, activate pending effects that have started
+    for(int i=effects->size()-1; i>=0; i--){
+        effect= (*effects)[i];
+        
+        if(effectStarted(*effect)){
+            pending_effects_manager.remove(effect);
+            active_effects_manager.add(effect);
+        }
     }
 }
 
-void Player::start(){
-    m_startTime = ofGetElapsedTimef();
-    m_time = 0.0f;
-    m_bPlaying = true;
-}
-
-void Player::stop(){
-    m_bPlaying = false;
-}
-
-void Player::addEffect(effects::Effect &effect){
+void Player::addEffect(Effect &effect){
     // this triggers renderer to call setup on the effect (and providing
     // it with the necessary data)
     ofLog() << "Player::addEffect with trigger " << effect.trigger;
+
+    // Renderer monitors add events on this effect manager and runs effect->setup
+    // (prividing the necessary data through a Context instance)
     effect_manager.add(&effect);
 
-    // dead on arrival?
-    if(effectEnded(effect)){
-        // this triggers cleanups
-        effect_manager.remove(&effect);
-        return;
-    }
+//    // dead on arrival?
+//    if(effectEnded(effect)){
+//        ofLog() << "Dead-on-arrival: " << effect.trigger;
+//        // this triggers cleanups
+//        effect_manager.remove(&effect);
+//        return;
+//    }
 
     // put it in the right "folder"
     if(effectStarted(effect)){
@@ -65,28 +75,12 @@ void Player::addEffect(effects::Effect &effect){
     }
 }
 
-void Player::stopEffectByTrigger(string &trigger){
-    // ofLogVerbose() << "Player::stopEffectByTrigger";
-    ofLog() << "Player::stopEffectByTrigger with " << trigger;
-    const vector<effects::Effect*> *effects = &active_effects_manager.getEffects();
+inline bool Player::effectStarted(const Effect &effect) const {
+    return !effect.hasStartTime() || effect.getStartTime() <= m_time;
+}
 
-    // ofLogWarning() << "Player::stopEffectByTrigger active effects: " << effects->size();
-    for(auto effect: (*effects)){
-        if(effect->trigger == trigger){
-            // ofLogWarning() << "an active";
-            active_effects_manager.remove(effect);
-            effect_manager.remove(effect);
-        }
-    }
-
-    effects = &pending_effects_manager.getEffects();
-    for(auto effect: (*effects)){
-        if(effect->trigger == trigger){
-            //  ofLogWarning() << "a pending";
-            pending_effects_manager.remove(effect);
-            effect_manager.remove(effect);
-        }
-    }
+inline bool Player::effectEnded(const Effect &effect) const {
+    return effect.hasEndTime() && effect.getEndTime() <= m_time;
 }
 
 void Player::clearEffects(){
@@ -95,32 +89,90 @@ void Player::clearEffects(){
     active_effects_manager.clear();
 }
 
-void Player::setPlaybackTime(float time){
-    m_time = time;
+void Player::stopEffectByTrigger(string &trigger){
+    // ofLogVerbose() << "Player::stopEffectByTrigger with " << trigger;
 
-    // First, remove active effects that have ended
-    for(auto effect: active_effects_manager.getEffects()){
-        if(effectEnded(*effect)){
-            // remove from active list
+    const vector<Effect*> *effects = &active_effects_manager.getEffects();
+    Effect * effect;
+
+    // ofLogWarning() << "Player::stopEffectByTrigger active effects: " << effects->size();
+    for(int i=effects->size()-1; i>=0; i--){
+        effect = (*effects)[i];
+
+        // if the pecified trigger string is empty; stop all effects
+        if(effect->trigger == trigger || trigger == ""){
+            // ofLogWarning() << "an active";
+            ofLog() << "Stopped active (by trigger): " << effect->trigger;
             active_effects_manager.remove(effect);
-            // remove altogether
+            effect_manager.remove(effect);
+        }
+    }
+    
+    effects = &pending_effects_manager.getEffects();
+    for(int i=effects->size()-1; i>=0; i--){
+        effect = (*effects)[i];
+
+        if(effect->trigger == trigger){
+            //  ofLogWarning() << "a pending";
+            ofLog() << "Stopped pending (by trigger): " << effect->trigger;
+            pending_effects_manager.remove(effect);
+            effect_manager.remove(effect);
+        }
+    }
+}
+
+
+void Player::stopEffectsByVideoPlayer(ofVideoPlayer *player){
+    const vector<Effect*> *effects = &active_effects_manager.getEffects();
+    Effect *effect;
+
+    // ofLogWarning() << "Player::stopEffectByTrigger active effects: " << effects->size();
+    for(int i=effects->size()-1; i>=0; i--){
+        effect = (*effects)[i];
+
+        // if the pecified trigger string is empty; stop all effects
+        if(effect->getVideoPlayer() == player || effect->getMaskVideoPlayer() == player){
+            ofLog() << "Stopped active (by vid): " << effect->trigger;
+            active_effects_manager.remove(effect);
             effect_manager.remove(effect);
         }
     }
 
-    // Second, activate pending effects that have started
-    for(auto effect: pending_effects_manager.getEffects()){
-        if(effectStarted(*effect)){
+    effects = &pending_effects_manager.getEffects();
+    for(int i=effects->size()-1; i>=0; i--){
+        effect = (*effects)[i];
+
+        if(effect->getVideoPlayer() == player || effect->getMaskVideoPlayer() == player){
+            ofLog() << "Stopped pending (by vid): " << effect->trigger;
             pending_effects_manager.remove(effect);
-            active_effects_manager.add(effect);
+            effect_manager.remove(effect);
         }
     }
 }
 
-inline bool Player::effectStarted(const effects::Effect &effect){
-    return !effect.hasStartTime() || effect.startTime <= m_time;
-}
+void Player::stopEffectsByImage(ofImage &image){
+    const vector<Effect*>* effects = &active_effects_manager.getEffects();
+    Effect* effect;
 
-inline bool Player::effectEnded(const effects::Effect &effect){
-    return effect.hasEndTime() && effect.endTime <= m_time;
+    for(int i=effects->size()-1; i>=0; i--){
+        effect = (*effects)[i];
+
+        if(effect->getImage() == &image || effect->getMaskImage() == &image){
+            ofLog() << "Stopped active (by img): " << effect->trigger;
+            active_effects_manager.remove(effect);
+            effect_manager.remove(effect);
+        }
+    }
+
+    effects = &pending_effects_manager.getEffects();
+
+    for(int i=effects->size()-1; i>=0; i--){
+        effect = (*effects)[i];
+
+        if(effect->getImage() == &image || effect->getMaskImage() == &image){
+            ofLog() << "Stopped pending (by img): " << effect->trigger;
+            pending_effects_manager.remove(effect);
+            effect_manager.remove(effect);
+        }
+    }
 }

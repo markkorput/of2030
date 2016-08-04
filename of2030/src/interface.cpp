@@ -10,11 +10,4 @@
 
 using namespace of2030;
 
-Interface* Interface::singleton = NULL;
-
-Interface* Interface::instance(){
-    if (!singleton){   // Only allow one instance of class to be generated.
-        singleton = new Interface();
-    }
-    return singleton;
-}
+SINGLETON_INLINE_IMPLEMENTATION_CODE(Interface)

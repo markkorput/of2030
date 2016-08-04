@@ -1,0 +1,10 @@
+0.0,/cfg/divide_chord5/visible,s,0
+0.0,/cfg/divide_chord1/visible,s,1
+0.92,/cfg/divide_chord1/visible,s,0
+0.92,/cfg/divide_chord2/visible,s,1
+2.0,/cfg/divide_chord2/visible,s,0
+2.0,/cfg/divide_chord3/visible,s,1
+2.92,/cfg/divide_chord3/visible,s,0
+2.92,/cfg/divide_chord4/visible,s,1
+3.96,/cfg/divide_chord4/visible,s,0
+3.96,/cfg/divide_chord5/visible,s,1

@@ -1,0 +1,11 @@
+0.0,/cfg/fusion_spot_max1/auto_alpha,f,-0.2
+0.0,/cfg/fusion_spot_gydo1/auto_alpha,f,-0.2
+0.0,/cfg/fusion_spot_koen1/auto_alpha,f,-0.4
+1.5,/s/fusion_spot_koen1
+2.0,/s/fusion_spot_max1
+2.0,/s/fusion_spot_gydo1
+4.5,/cfg/fusion_spot_koen1/initial_alpha,f,0.0
+4.5,/cfg/fusion_spot_koen1/auto_alpha,f,0.5
+4.8,/t/fusion_spot_koen1
+8.0,/uvid/fusion/3.3_FUSION_SPOT_MAX_v01.mov
+9.0,/uvid/fusion/3.3_FUSION_SPOT_GYDO_v01.mov

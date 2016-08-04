@@ -19,38 +19,45 @@ namespace of2030{
     class EffectManager{
 
     public: // methods
+        EffectManager() : bSortByLayerAscending(false){}
         ~EffectManager();
 
-        void add(effects::Effect* effect);
-        bool remove(effects::Effect* effect);
+        void add(Effect* effect);
+        bool remove(Effect* effect);
         void clear();
 
-        effects::Effect* get(string typ);
-        effects::Effect* findByType(effects::EffectType typ);
+        Effect* get(const string &trigger);
         inline int getCount(){ return effects.size(); }
-        inline int getCountByType(effects::EffectType typ);
-        inline const vector<effects::Effect*> &getEffects(){ return effects; }
+        inline vector<Effect*> &getEffects(){ return effects; }
+        inline Effect* getEffectByIndex(int idx){ return idx >= 0 && effects.size() > idx ? effects[idx] : NULL; }
+
+        inline void setSortByLayerAscending(bool _sort){
+            bSortByLayerAscending = _sort;
+            if(_sort) sort();
+        }
 
     public: // events
-        ofEvent<effects::Effect> effectAddedEvent;
-        ofEvent<effects::Effect> effectRemovedEvent;
-        
+        ofEvent<Effect> effectAddedEvent;
+        ofEvent<Effect> effectRemovedEvent;
+
     protected: // methods
-        effects::EffectType typeStringToType(string typ);
-        effects::Effect* createEffect(string typ);
-        void deleteEffect(effects::Effect* effect);
+        static Effect* createEffect(const string &trigger);
+        static void deleteEffect(Effect* effect);
+        // static string triggerToName(const string &trigger);
+        void sort();
 
     protected: // attributes
-        vector<effects::Effect*> effects;
+        vector<Effect*> effects;
+        bool bSortByLayerAscending;
     };
 
 
     class EfficientEffectManager : public EffectManager{
-        SINGLETON_CLASS_HEADER_CODE(EfficientEffectManager)
+        SINGLETON_INLINE_HEADER_CODE(EfficientEffectManager)
 
     public: // methods
-        effects::Effect* get(string typ);
-        void finish(effects::Effect* effect);
+        Effect* get(string trigger);
+        void finish(Effect* effect);
     
     protected: // attributes
         EffectManager idle_manager;

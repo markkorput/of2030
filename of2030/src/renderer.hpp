@@ -12,16 +12,13 @@
 #include "shared2030.h"
 #include "player.hpp"
 #include "effects.hpp"
+#include "xml_configs.hpp"
 
 namespace of2030 {
     
     class Renderer{
-        SINGLETON_CLASS_HEADER_CODE(Renderer)
+        SINGLETON_INLINE_HEADER_CODE(Renderer)
 
-    public:
-        const static int WIDTH = 768;
-        const static int HEIGHT = 576;
-        
     public: // methods
         Renderer();
         ~Renderer();
@@ -33,23 +30,32 @@ namespace of2030 {
         
         inline void setClientId(const string &id){ client_id = id; }
         inline const string &clientId(){ return client_id; }
-            
+
+        inline ofVec2f getScreenSize(){ return ofVec2f(screenWidth, screenHeight); }
+
     private: // callbacks
         
         void registerRealtimeEffectCallback(bool reg=true);
-        void onEffectAdded(effects::Effect &effect);
-        void fillContext(effects::Context &context, effects::Effect &effect);
-        void fillContextClientInfo(effects::Context &context);
-        void fillEffectSetting(effects::Effect &effect, XmlItemSetting &fxsetting);
-        void fillScreenSetting(effects::Effect &effect, XmlItemSetting &setting);
+        void onEffectAdded(Effect &effect);
+
+        void fillContextClientInfo(Context &context);
+        void fillEffectSetting(Effect &effect, XmlItemSetting &fxsetting);
+        void fillScreenSetting(XmlItemSetting &setting);
 
     private: // properties
         
         Player *player;
         string client_id;
-        ofFbo *fbo, *fbo2;
-        ofFbo defaultFbo, defaultFbo2;
+        ofFbo *fbo, *fbo2, *fbo3;
+        ofFbo defaultFbo, defaultFbo2, defaultFbo3;
         bool bCallbacksRegistered;
+        float screenWidth, screenHeight;
+        //Effect *overlayEffect;
+        
+        float lastFrameTime;
+        XmlConfigs* effect_configs_instance;
+        Context cached_context;
+        bool bScreenConfigCached;
     };
 }
 

@@ -17,45 +17,41 @@
 namespace of2030{
 
     class Player {
-
-    public: // singleton accessor method
-
-        static Player* instance();
-
-    private: // singleton static attribute
-
-        static Player* singleton;
+        SINGLETON_INLINE_HEADER_CODE(Player)
 
     public: // main interface methods
 
         Player();
         // ~Player(){}
 
-        //void setup();
-        void update(); // realtime
+        void setup();
+        // void update(); // realtime
         void update(float dt); // custom time
         //void destroy();
 
-        void start();
-        void stop();
+        //void start();
+        // void stop();
 
-        void addEffect(effects::Effect &effect);
+        // add/stop/clear effects
+        void addEffect(Effect &effect);
         void stopEffectByTrigger(string &trigger);
+        void stopEffectsByVideoPlayer(ofVideoPlayer *player);
+        void stopEffectsByImage(ofImage &image);
         void clearEffects();
 
-        inline const vector<effects::Effect*> &getActiveEffects(){ return active_effects_manager.getEffects(); }
-        inline const string &getSong(){ return song; }
-        inline const string &getClip(){ return clip; }
-        inline void setSong(const string &newSong){ song = newSong; }
-        inline void setClip(const string &newClip){ clip = newClip; }
+        // get specific effects
+        inline vector<Effect*> &getActiveEffects(){ return active_effects_manager.getEffects(); }
+//        inline const string &getSong(){ return song; }
+//        inline const string &getClip(){ return clip; }
+//        inline void setSong(const string &newSong){ song = newSong; }
+//        inline void setClip(const string &newClip){ clip = newClip; }
 
-        float getTime(){ return m_time; }
+        inline float getTime(){ return m_time; }
 
     protected: // helper methods
 
-        void setPlaybackTime(float time);
-        inline bool effectStarted(const effects::Effect &effect);
-        inline bool effectEnded(const effects::Effect &effect);
+        inline bool effectStarted(const Effect &effect) const;
+        inline bool effectEnded(const Effect &effect) const;
 
     public: // properties
 
@@ -63,11 +59,11 @@ namespace of2030{
 
     private: // attributes
 
-        string song, clip;
+        // string song, clip;
         EffectManager active_effects_manager, pending_effects_manager;
 
-        bool m_bPlaying;
-        float m_time, m_startTime;
+        // bool m_bPlaying;
+        float m_time/*, m_lastUpdateTime*/;
     };
 }
 

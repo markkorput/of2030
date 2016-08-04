@@ -1,0 +1,10 @@
+0.0,/s/stellar_voice2
+0.0,/s/stellar_koen_spot
+0.0,/DISABLED/s/stellar_smoke
+0.0,/cfg/scav_search_max/auto_alpha,f,0.0
+0.0,/cfg/scav_search_gydo/auto_alpha,f,0.0
+0.0,/cfg/scav_search_koen/auto_alpha,f,0.0
+0.0,/t/scav_search_gydo
+0.0,/t/scav_search_koen
+0.0,/t/scav_search_max
+5.0,/limg/scav_fan1_v02.jpg

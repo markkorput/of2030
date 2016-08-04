@@ -15,11 +15,12 @@
 #include "player.hpp"
 #include "effects.hpp"
 #include "setting_types.h"
+#include "effect_manager.hpp"
 
 namespace of2030{
     
     class InterfacePlayerBridge{
-        SINGLETON_CLASS_HEADER_CODE(InterfacePlayerBridge)
+        SINGLETON_INLINE_HEADER_CODE(InterfacePlayerBridge)
     
     public: // methods
         
@@ -34,17 +35,16 @@ namespace of2030{
         void registerCallbacks(bool _register=true);
         void onTrigger(string &trigger);
         void onStopTrigger(string &trigger);
-        void onEffect(string &effect);
         void onEffectConfig(EffectConfig &cfg);
         void onScreenConfig(EffectConfig &cfg);
-        void onSong(string &name);
-        void onClip(string &name);
-        void onEffectEnded(effects::Effect &effect);
+        void onEffectEnded(Effect &effect);
+        void onPlayback(string &name);
 
     private: // attributes
 
         Interface* m_interface;
         Player* m_player;
+        vector<Effect*> *active_effects;
         bool m_bStarted;
     };
 }

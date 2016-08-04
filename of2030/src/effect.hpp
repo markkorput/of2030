@@ -12,34 +12,9 @@
 //#include <stdio.h>
 #include "ofMain.h"
 #include "setting_types.h"
+#include "context.hpp"
 
-namespace of2030{ namespace effects {
-
-    
-    typedef struct {
-        float time;
-        XmlItemSetting effect_setting;
-        XmlItemSetting screen_setting;
-        ofFbo* fbo;
-        ofFbo* fbo2;
-    } Context;
-
-    
-    enum EffectType{
-        DEFAULT = 0,
-        VID = 3,
-        TUNNEL = 4,
-        SPOT = 5,
-        VOICE = 6
-    };
-    
-    static map<EffectType, string> EFFECT_NAMES = {
-        {DEFAULT, "default"},
-        {VID, "vid"},
-        {TUNNEL, "tunnel"},
-        {SPOT, "spot"},
-        {VOICE, "voice"}
-    };
+namespace of2030{
 
     #define NO_TIME (-1.0f)
 
@@ -49,55 +24,86 @@ namespace of2030{ namespace effects {
 
         Effect();
         void reset();
-        // ~Effect(){}
+        // ~Effect(){ destroy(); }
 
-        virtual void setup(Context &context);
-        virtual void draw(Context &context);
+        virtual void setup(Context &_context);
+        virtual void draw(Context &_context, float dt);
+        // virtual void update(float dt);
+
+        inline void truncate(){
+            startTime = 0.0f;
+            endTime = 0.0f;
+        }
 
         inline bool hasStartTime() const { return startTime >= 0.0f; }
         inline bool hasEndTime() const { return endTime >= 0.0f; }
-        inline bool hasDuration() const { return duration >= 0.0f; }
 
-        float getDuration() const;
-        
+        inline float getStartTime() const { return startTime; }
+        inline float getEndTime() const { return endTime; }
+        inline float getDuration() const { return endTime-startTime; }
+        inline int getLayer() const { return layer; }
+        inline bool getUnique() const { return bUnique; }
+
+        inline void setDuration(float duration){
+            endTime = startTime + duration;
+        }
+
+        inline ofVideoPlayer* getVideoPlayer() const { return video_player; }
+        inline ofVideoPlayer* getMaskVideoPlayer() const { return mask_video_player; }
+        inline ofImage* getImage() const { return image; }
+        inline ofImage* getMaskImage() const { return mask_image; }
+        inline ofBlendMode getBlendMode() const { return blendMode; }
+        inline bool getUnload() const { return bUnload; }
+        inline bool unloadImages() const { return bUnload; }
+        inline bool unloadVideos() const { return bUnload; }
 
     protected: // methods
         
-        void setType(EffectType effect_type);
+        void drawContent();
+        void drawMask(const string &coordsName);
+        void drawPattern(const string &patternName);
+
+        inline float getEffectTime(){ return context->time - startTime; }
+        inline float getProgress(){ return getEffectTime() / getDuration(); }
+        static inline ofVideoPlayer* getVideoPlayer(Context &contxt);
+        inline ofImage* loadImage(Context &contxt);
 
     public: // properties
 
         // int cid;
-        float startTime, endTime, duration;
-        EffectType type;
-        string name;
+        // string name;
         string trigger;
-        ofShader *shader;
+        
         // static int cidCounter;
-    };
 
-    // === === === === === === === === ===
+    private: // attributes
 
-    class EffectLogic{
-    public:
-        EffectLogic(Effect *_effect, Context *_context) : effect(_effect), context(_context){}
-        inline float getGlobalTime(){ return context->time - effect->startTime; }
-        inline float getGlobalDuration(){ return effect->endTime - effect->startTime; }
-        inline float getGlobalProgress(){ return getGlobalTime() / getGlobalDuration(); }
+        int layer;
+        float startTime, endTime;
+        bool bUnique, bUnload; // if there can be only one effect with this trigger value at any given moment
+
+//        enum ofBlendMode{
+//            OF_BLENDMODE_DISABLED = 0,
+//            OF_BLENDMODE_ALPHA 	  = 1,
+//            OF_BLENDMODE_ADD 	  = 2,
+//            OF_BLENDMODE_SUBTRACT = 3,
+//            OF_BLENDMODE_MULTIPLY = 4,
+//            OF_BLENDMODE_SCREEN   = 5
+//        };
+        ofBlendMode blendMode;
+        
+        
+        ofImage *image, *mask_image;
+        ofVideoPlayer *video_player, *mask_video_player;
+        bool bVidStarted;
+        ofVec3f auto_pos, auto_rotation, auto_scale;
+        ofVec2f auto_texcoord_offset;
+        float auto_alpha;
 
         Context *context;
-        Effect *effect;
+        PreCalc *precalc;
     };
 
-    // === === === === === === === === ===
-    
-    class Tunnel : public Effect{
-    public: // methods
-        Tunnel();
-        // virtual void setup(Context &context);
-        virtual void draw(Context &context);
-    };
-
-}} // namespace of2030{ namespace effects {
+} // namespace of2030{
 
 #endif /* effect_hpp */

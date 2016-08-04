@@ -1,6 +1,8 @@
 #pragma once
 
 #include "ofMain.h"
+#include "shared2030.h"
+#include "osc_playback_manager.hpp"
 
 class ofApp : public ofBaseApp{
 	public:
@@ -10,17 +12,36 @@ class ofApp : public ofBaseApp{
         void exit(ofEventArgs &args);
     
 		void keyPressed(int key);
-		void keyReleased(int key);
-		void mouseMoved(int x, int y);
-		void mouseDragged(int x, int y, int button);
-		void mousePressed(int x, int y, int button);
-		void mouseReleased(int x, int y, int button);
-		void mouseEntered(int x, int y);
-		void mouseExited(int x, int y);
-		void windowResized(int w, int h);
-		void dragEvent(ofDragInfo dragInfo);
-		void gotMessage(ofMessage msg);
+        void dragEvent(ofDragInfo dragInfo);
+//		void keyReleased(int key);
+//		void mouseMoved(int x, int y);
+//		void mouseDragged(int x, int y, int button);
+//		void mousePressed(int x, int y, int button);
+//		void mouseReleased(int x, int y, int button);
+//		void mouseEntered(int x, int y);
+//		void mouseExited(int x, int y);
+//		void windowResized(int w, int h);
+//		void gotMessage(ofMessage msg);
     
-        // callbacks
+    private: // callbacks
         void onControl(string &type);
+        void onPlayback(string &type);
+        void onStopPlayback(string &type);
+    
+        void onLoadVideo(string &name);
+        void onUnloadVideo(string &name);
+        void onVideoPlayerUnload(ofVideoPlayer &player);
+    
+        void onLoadImage(string &name);
+        void onUnloadImage(string &name);
+        void onImageUnload(ofImage &image);
+
+    private: // attributes
+        float next_log_alive_time, log_alive_interval;
+        float last_update_time;
+
+#ifdef __OSC_SENDER_ENABLED__
+    of2030::OscPlaybackManager osc_out_playback_manager;
+#endif
 };
+

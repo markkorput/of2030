@@ -10,15 +10,36 @@
 #define shared2030_h
 
 #ifdef __APPLE__
-    #define __MULTI_CLIENT_ENABLED__ (true)
-    #define __BOOL_OSC_SETUP__ (true)
+    #define __MULTI_CLIENT_ENABLED__
+    #define __OSC_RECORDER_ENABLED__
+    #define __OSC_SENDER_ENABLED__
+    #define __BOOL_OSC_SETUP__
+    #define __DRAGNDROP__ 
+#else
+//    #define __SET_DATA_ROOT_PATH__
+    #define __HIDE_CURSOR__
 #endif
+
+// #define __AUTO_UNLOAD_VIDEOS_WHEN_EFFECTS_END__
+// #define __EXTENDED_EFFECT_CONFIG__
 
 #define CTRL_RELOAD_CLIENTS "reload_clients"
 #define CTRL_RELOAD_SCREENS "reload_screens"
 #define CTRL_RELOAD_SETTINGS "reload_settings"
 #define CTRL_RELOAD_EFFECTS "reload_effects"
 #define CTRL_RELOAD_SHADERS "reload_shaders"
+
+#define OSC_TRIGGER "/t"
+#define OSC_TRIGGERSTOP "/s"
+#define OSC_PLAY "/p"
+#define OSC_PLAYSTOP "/q"
+#define OSC_CONTROL "/ctrl"
+#define OSC_CONFIG_EFFECT "/cfg"
+#define OSC_CONFIG_SCREEN "/scr"
+#define OSC_VIDLOAD "/lvid"
+#define OSC_VIDUNLOAD "/uvid"
+#define OSC_IMGLOAD "/limg"
+#define OSC_IMGUNLOAD "/uimg"
 
 // singleton conveniece macros
 #define SINGLETON_CLASS_HEADER_CODE(x) \
@@ -44,5 +65,25 @@
         }\
     }
 
+#define SINGLETON_INLINE_HEADER_CODE(x) \
+    public: \
+        inline static x* instance(){\
+            if(!singleton){\
+                ofLogVerbose() << "Creating singleton of class " << #x;\
+                singleton = new x();\
+            }\
+            return singleton;\
+        }\
+        inline static void delete_instance(){ \
+            if(singleton){\
+                delete singleton;\
+                singleton = NULL;\
+            }\
+        }\
+    private:\
+        static x* singleton;
+
+#define SINGLETON_INLINE_IMPLEMENTATION_CODE(x) \
+    x* x::singleton = NULL;
 
 #endif /* shared2030_h */

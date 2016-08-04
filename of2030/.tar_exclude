@@ -1,0 +1,13 @@
+obj
+openFrameworks-Info.plist
+Project.xcconfig
+emptyExample.xcodeproj
+.DS_Store
+bin/*.app
+bin/data/log.txt
+bin/data/vids/_osx
+bin/data/vids/_benchmarkers
+bin/data/vids/_test
+bin/data/vids/_pano
+bin/data/vids/_raspi_archive
+.git

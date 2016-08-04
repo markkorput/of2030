@@ -1,0 +1,12 @@
+0.0,/cfg/scav_roof/auto_alpha,f,0.0
+0.0,/t/scav_roof
+0.0,/s/scav_turbo_gydo
+0.0,/s/scav_turbo_koen
+0.0,/s/scav_turbo_max
+0.0,/s/scav_fan_gydo
+0.0,/s/scav_fan_max
+0.0,/s/scav_fan_koen
+0.0,/cfg/scav_pano/auto_velocity_y,f,-1.5
+1.0,/uimg/scav_fan2_v03.jpg
+1.2,/uimg/scav_fan3_v01.jpg
+3.0,/s/scav_pano

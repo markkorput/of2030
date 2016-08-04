@@ -7,7 +7,7 @@
 int main(int argc, char** argv){
 
 #ifdef __APPLE__
-  ofSetupOpenGL(768,576, OF_WINDOW);      // <-------- setup the GL context
+  ofSetupOpenGL(400,300, OF_WINDOW);      // <-------- setup the GL context
 #else // raspbery pi
   // ofGLWindowSettings settings;
   // settings.setGLVersion(3,2);

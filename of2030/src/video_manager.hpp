@@ -15,23 +15,43 @@
 namespace of2030 {
     class VideoManager {
 
-        SINGLETON_CLASS_HEADER_CODE(VideoManager)
+        SINGLETON_INLINE_HEADER_CODE(VideoManager)
 
     public: // methods/interface
         VideoManager();
-        ~VideoManager();
+        ~VideoManager(){ destroy(); }
 
         //void setup();
         void update();
+        void destroy(){ unloadAll(); destroyIdlePlayers(); }
 
-        ofVideoPlayer* load(string video_name);
-        ofVideoPlayer* get(string video_name, bool load=true);
-    
+        ofVideoPlayer* get(const string &video_name, bool load=true);
+        ofVideoPlayer* get(const string &video_name, const string &alias, bool load=true);
+        
+        void unloadAll();
+        bool unload(string alias);
+        void unload(ofVideoPlayer *player);
+        void deprecateAll();
+        inline void deprecate(const string &alias){ deprecations.push_back(alias); }
+        void deprecate(ofVideoPlayer *player);
+
+    public: // events
+        
+        ofEvent<ofVideoPlayer> unloadEvent;
+
     protected: // helper methods
-        string video_name_to_path(string video_name);
+
+        inline string video_name_to_path(const string &video_name) const { return folder_path + video_name; }
+        ofVideoPlayer* createPlayer(const string &video_name);
+        void destroyIdlePlayers();
     
     private: // attributes
-        vector<ofVideoPlayer*> players;
+        map<string, ofVideoPlayer*> players;
+        vector<string> deprecations;
+        vector<ofVideoPlayer*> idle_players;
+
+        //        vector<ofVideoPlayer*> players;
+        string folder_path;
     };
 }
 
