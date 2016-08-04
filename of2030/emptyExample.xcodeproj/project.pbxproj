@@ -82,7 +82,6 @@
 		4D1BFD561CD8D9C000D5493C /* video_manager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = video_manager.hpp; sourceTree = "<group>"; };
 		4D3B38E21CC66A95004C8994 /* effect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = effect.cpp; sourceTree = "<group>"; };
 		4D3B38E31CC66A95004C8994 /* effect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = effect.hpp; sourceTree = "<group>"; };
-		4D3F90D01CED1B1B00E6C0E1 /* effects.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = effects.hpp; sourceTree = "<group>"; };
 		4D4A32B91CDFE8D100304FE9 /* xml_configs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = xml_configs.cpp; sourceTree = "<group>"; };
 		4D4A32BA1CDFE8D100304FE9 /* xml_configs.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = xml_configs.hpp; sourceTree = "<group>"; };
 		4D4C03A01CDCF45E009EEB63 /* xml_effects.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = xml_effects.cpp; sourceTree = "<group>"; };
@@ -322,6 +321,13 @@
 			path = ../../../addons/ofxXmlSettings/libs;
 			sourceTree = "<group>";
 		};
+		4D9E76D71D538085004A88D7 /* effects (video) */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "effects (video)";
+			sourceTree = "<group>";
+		};
 		4DE274CB1CCE23FE00F2D470 /* control */ = {
 			isa = PBXGroup;
 			children = (
@@ -370,7 +376,7 @@
 		4DF6EBEF1CDCB97200D37FB7 /* visual */ = {
 			isa = PBXGroup;
 			children = (
-				4D3F90D01CED1B1B00E6C0E1 /* effects.hpp */,
+				4D9E76D71D538085004A88D7 /* effects (video) */,
 				4D3B38E21CC66A95004C8994 /* effect.cpp */,
 				4D3B38E31CC66A95004C8994 /* effect.hpp */,
 				4DF6EBE41CDCA5B300D37FB7 /* shader_manager.cpp */,

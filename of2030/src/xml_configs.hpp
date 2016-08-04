@@ -10,7 +10,7 @@
 #define xml_configs_hpp
 
 // #include <stdio.h>
-#include "xml_effects.hpp"
+#include "xml_effect.hpp"
 
 
 namespace of2030{

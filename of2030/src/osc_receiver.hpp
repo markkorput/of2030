@@ -12,7 +12,7 @@
 #include "shared2030.h"
 #include "ofxOsc.h"
 #include "interface.hpp"
-#include "effects.hpp"
+#include "effect.hpp"
 
 namespace of2030 {
     

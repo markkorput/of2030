@@ -7,7 +7,7 @@
 //
 
 #include "interface_player_bridge.hpp"
-#include "effects.hpp"
+#include "effect.hpp"
 #include "xml_configs.hpp"
 #include "video_manager.hpp"
 #include "image_manager.hpp"
