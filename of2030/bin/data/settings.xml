@@ -8,7 +8,8 @@
     <out>
       <port>2030</port>
       <host>localhost</host>
-      <key_check>0</key_check>
+      <key_check>1</key_check> <!-- when enabled; this will only sendout OSC commands if the command key was pressed,
+      otherwise it'll just execute locally  -->
     </out>
   </osc>
 

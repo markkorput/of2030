@@ -7,8 +7,10 @@
 //
 
 #include "osc_playback_manager.hpp"
-#include "osc_receiver.hpp"
-#include "osc_sender.hpp"
+#ifdef __OSC_SENDER_ENABLED__
+    #include "osc_sender.hpp"
+#endif
+#include "osc_interface.hpp"
 
 using namespace of2030;
 
@@ -141,11 +143,11 @@ void OscPlaybackManager::onMessage(ofxOscMessage &message){
         OscSender::instance()->sender.sendMessage(message);
     } else {
         // deal with messages locally
-        OscReceiver::instance()->processMessage(message);
+        ofNotifyEvent(OscInterface::instance()->receiveEvent, message, this);
     }
 #else
     // the raspi version doesn't send osc out, deal with these locally
-    OscReceiver::instance()->processMessage(message);
+    ofNotifyEvent(OscInterface::instance()->receiveEvent, message, this);
 #endif
 }
 

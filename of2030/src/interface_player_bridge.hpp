@@ -16,6 +16,7 @@
 #include "effect.hpp"
 #include "setting_types.h"
 #include "effect_manager.hpp"
+#include "osc_interface.hpp"
 
 namespace of2030{
     
@@ -31,7 +32,8 @@ namespace of2030{
         void destroy();
 
     private: // callbacks
-
+        
+        void onOscMessage(ofxOscMessage &m);
         void registerCallbacks(bool _register=true);
         void onTrigger(string &trigger);
         void onStopTrigger(string &trigger);

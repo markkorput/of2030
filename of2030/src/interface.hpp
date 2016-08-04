@@ -17,8 +17,8 @@ namespace of2030 {
     
     class Interface {
         SINGLETON_INLINE_HEADER_CODE(Interface)
-    
-    public: // events
+
+    public: // VJ-events
         ofEvent<string> triggerEvent;
         ofEvent<string> stopTriggerEvent;
 //        ofEvent<string> effectEvent;

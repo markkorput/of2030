@@ -11,7 +11,7 @@
 
 #include "shared2030.h"
 #include "ofxOsc.h"
-#include "interface.hpp"
+#include "osc_interface.hpp"
 #include "effect.hpp"
 
 namespace of2030 {
@@ -29,17 +29,13 @@ namespace of2030 {
         void destroy();
 
         inline bool isConnected(){ return bConnected; }
-        void processMessage(ofxOscMessage &m);
-
-    public: //events
-        ofEvent<ofxOscMessage> newMessageEvent;
 
     private: // methods
         bool connect();
         void disconnect();
         
     private: // attributes
-        Interface* m_interface;
+        OscInterface *m_interface;
         ofxOscReceiver m_oscReceiver;
         OscSetting *osc_setting;
         OscSetting default_setting;
