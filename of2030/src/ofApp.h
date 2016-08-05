@@ -2,7 +2,6 @@
 
 #include "ofMain.h"
 #include "shared2030.h"
-#include "OscToolkit/playback_manager.hpp"
 
 class ofApp : public ofBaseApp{
 	public:
@@ -39,9 +38,5 @@ class ofApp : public ofBaseApp{
     private: // attributes
         float next_log_alive_time, log_alive_interval;
         float last_update_time;
-
-#ifdef __OSC_SENDER_ENABLED__
-    OscToolkit::PlaybackManager osc_out_playback_manager;
-#endif
 };
 

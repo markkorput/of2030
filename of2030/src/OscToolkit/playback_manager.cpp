@@ -7,10 +7,6 @@
 //
 
 #include "playback_manager.hpp"
-#ifdef __OSC_SENDER_ENABLED__
-    #include "osc_sender.hpp"
-#endif
-#include "osc_interface.hpp"
 #include "ascii_file_reader.hpp"
 
 using namespace OscToolkit;
@@ -47,7 +43,7 @@ Playback* PlaybackManager::start(const string &name){
     // save for continued use
     playbacks.push_back(playback);
 
-    // register callback
+    // register callback if we have a "default" interface to send to
     if(interface){
         ofAddListener(playback->messageEvent, interface, &of2030::OscInterface::process);
     }
@@ -133,20 +129,3 @@ void PlaybackManager::clear(){
         remove(playbacks[i]);
     }
 }
-
-//void PlaybackManager::onMessage(ofxOscMessage &message){
-//#ifdef __OSC_SENDER_ENABLED__
-//    if(toOscSender){
-//        // send out to specified address (used for debugging; the receiving end can
-//        // broadcast everything and so it might come right back to us)
-//        of2030::OscSender::instance()->sender.sendMessage(message);
-//    } else {
-//        // deal with messages locally
-//        of2030::OscInterface::instance()->process(message);
-//    }
-//#else
-//    // the raspi version doesn't send osc out, deal with these locally
-//    ofNotifyEvent(OscInterface::instance()->receiveEvent, message, this);
-//#endif
-//}
-

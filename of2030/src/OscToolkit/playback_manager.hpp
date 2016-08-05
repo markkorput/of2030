@@ -33,7 +33,6 @@ namespace OscToolkit{
         void clear();
 
         static string nameToPath(const string &name);
-        // void onMessage(ofxOscMessage &message);
         Playback* getPlayback(const string &name);
 
         
@@ -41,14 +40,7 @@ namespace OscToolkit{
         of2030::OscInterface* interface;
 
     private:
-        
         vector<Playback*> playbacks;
-//#ifdef __OSC_SENDER_ENABLED__
-//        bool toOscSender;
-//    public:
-//        void setToOscSender(bool set){ toOscSender=set; }
-//#endif
-
     };
 }
 #endif /* osc_playback_manager_hpp */

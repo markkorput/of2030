@@ -16,7 +16,8 @@
 #include "video_manager.hpp"
 #include "image_manager.hpp"
 #include "OscToolkit/recorder.hpp"
-#include "osc_sender.hpp"
+#include "OscToolkit/sender.hpp"
+#include "OscToolkit/playback_manager.hpp"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -86,10 +87,10 @@ void ofApp::setup(){
 #endif
 
 #ifdef __OSC_SENDER_ENABLED__
-    of2030::OscSender::instance()->setup(of2030::XmlSettings::instance()->osc_out_host,
+    OscToolkit::Sender::instance()->setup(of2030::XmlSettings::instance()->osc_out_host,
                                          of2030::XmlSettings::instance()->osc_out_port);
-    //osc_out_playback_manager.interface =  //.setToOscSender(true);
 #endif // __OSC_SENDER_ENABLED__
+
     ofAddListener(of2030::Interface::instance()->controlEvent, this, &ofApp::onControl);
     ofAddListener(of2030::Interface::instance()->playbackEvent, this, &ofApp::onPlayback);
     ofAddListener(of2030::Interface::instance()->stopPlaybackEvent, this, &ofApp::onStopPlayback);
@@ -120,9 +121,6 @@ void ofApp::update(){
     last_update_time=t;
 
     OscToolkit::PlaybackManager::instance()->update(dt);
-    #ifdef __OSC_SENDER_ENABLED__
-        osc_out_playback_manager.update(dt);
-    #endif
     of2030::OscReceiver::instance()->update();
     of2030::Player::instance()->update(dt);
     of2030::VideoManager::instance()->update();
@@ -218,16 +216,19 @@ void ofApp::keyPressed(int key){
 void ofApp::dragEvent(ofDragInfo dragInfo){
 #ifdef __DRAGNDROP__
     for(auto file: dragInfo.files){
-        // if sender is enabled; user must hold the control key to send out
-        #ifdef __OSC_SENDER_ENABLED__
-            if(of2030::OscSender::instance()->isEnabled() && (ofGetKeyPressed(OF_KEY_COMMAND) || !of2030::XmlSettings::instance()->osc_out_keycheck)){
-                osc_out_playback_manager.start(file);
-                return;
-            }
-        #endif
+        // start playback of file
+        OscToolkit::Playback *playback = OscToolkit::PlaybackManager::instance()->start(file);
 
-        // default behaviour; just execute locally
-        OscToolkit::PlaybackManager::instance()->start(file);
+        #ifdef __OSC_SENDER_ENABLED__
+        if(playback){
+            OscToolkit::Sender* sender = OscToolkit::Sender::instance();
+
+            // add osc sender's callback to playback's message event
+            if(sender->isEnabled() && (ofGetKeyPressed(OF_KEY_COMMAND) || !of2030::XmlSettings::instance()->osc_out_keycheck)){
+                ofAddListener(playback->messageEvent, sender, & OscToolkit::Sender::process);
+            }
+        }
+        #endif
     }
 #endif // __DRAGNDROP__
 }
