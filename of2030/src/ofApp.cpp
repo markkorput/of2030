@@ -5,7 +5,6 @@
 #endif
 
 #include "interface.hpp"
-#include "osc_receiver.hpp"
 #include "xml_configs.hpp"
 #include "shader_manager.hpp"
 #include "xml_settings.hpp"
@@ -15,6 +14,8 @@
 #include "effect_manager.hpp"
 #include "video_manager.hpp"
 #include "image_manager.hpp"
+
+#include "OscToolkit/receiver.hpp"
 #include "OscToolkit/recorder.hpp"
 #include "OscToolkit/sender.hpp"
 #include "OscToolkit/playback_manager.hpp"
@@ -68,7 +69,6 @@ void ofApp::setup(){
     ofLogVerbose() << "Setting up InterfacePlayerBridge";
     of2030::InterfacePlayerBridge::instance()->setup();
 
-
 #ifdef __MULTI_CLIENT_ENABLED__
     ofLogVerbose() << "Setting up MultiClient";
     of2030::MultiClient::instance()->setup();
@@ -86,11 +86,6 @@ void ofApp::setup(){
     of2030::Renderer::instance()->setup();
 #endif
 
-#ifdef __OSC_SENDER_ENABLED__
-    OscToolkit::Sender::instance()->setup(of2030::XmlSettings::instance()->osc_out_host,
-                                         of2030::XmlSettings::instance()->osc_out_port);
-#endif // __OSC_SENDER_ENABLED__
-
     ofAddListener(of2030::Interface::instance()->controlEvent, this, &ofApp::onControl);
     ofAddListener(of2030::Interface::instance()->playbackEvent, this, &ofApp::onPlayback);
     ofAddListener(of2030::Interface::instance()->stopPlaybackEvent, this, &ofApp::onStopPlayback);
@@ -101,11 +96,22 @@ void ofApp::setup(){
     ofAddListener(of2030::Interface::instance()->unloadImageEvent, this, &ofApp::onUnloadImage);
     ofAddListener(of2030::ImageManager::instance()->unloadEvent, this, &ofApp::onImageUnload);
 
+#ifdef __OSC_SENDER_ENABLED__
+    OscToolkit::Sender::instance()->setup(of2030::XmlSettings::instance()->osc_out_host,
+                                          of2030::XmlSettings::instance()->osc_out_port);
+#endif // __OSC_SENDER_ENABLED__
+
     // load & start OscReceiver; let the messages come!
     ofLogVerbose() << "Starting OscReceiver";
-    of2030::OscReceiver::instance()->configure(of2030::XmlSettings::instance()->osc_setting);
-    of2030::OscReceiver::instance()->setup();
-    
+    OscToolkit::Receiver::instance()->setPort(of2030::XmlSettings::instance()->osc_port);
+    OscToolkit::Receiver::instance()->setup();
+    ofAddListener(OscToolkit::Receiver::instance()->messageEvent, of2030::OscInterface::instance(), &of2030::OscInterface::process);
+
+    // recorder, when recording, reads from OscRecevier, not from default osc interface
+    // (otherwise it would also record any playbacks, which we don't want, we only want to record osc messages
+    // coming from the network).
+    OscToolkit::Recorder::instance()->setInterface(OscToolkit::Receiver::instance());
+
     // using the player's time as main timing mechanism
     ofClear(0);
     
@@ -121,7 +127,7 @@ void ofApp::update(){
     last_update_time=t;
 
     OscToolkit::PlaybackManager::instance()->update(dt);
-    of2030::OscReceiver::instance()->update();
+    OscToolkit::Receiver::instance()->update();
     of2030::Player::instance()->update(dt);
     of2030::VideoManager::instance()->update();
 
@@ -171,6 +177,8 @@ void ofApp::exit(ofEventArgs &args){
 #ifdef __OSC_RECORDER_ENABLED__
     OscToolkit::Recorder::delete_instance();
 #endif
+    OscToolkit::Receiver::delete_instance();
+    OscToolkit::PlaybackManager::delete_instance();
 }
 
 //--------------------------------------------------------------
@@ -262,7 +270,7 @@ void ofApp::onControl(string &type){
         ofLog() << "reloading settings";
         of2030::XmlSettings::instance()->load(true);
         ofSetLogLevel(of2030::XmlSettings::instance()->log_level);
-        of2030::OscReceiver::instance()->configure(of2030::XmlSettings::instance()->osc_setting);
+        OscToolkit::Receiver::instance()->setPort(of2030::XmlSettings::instance()->osc_port);
 #ifdef __MULTI_CLIENT_ENABLED__
         of2030::MultiClient::instance()->setup();
 #endif

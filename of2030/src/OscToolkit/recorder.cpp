@@ -10,8 +10,6 @@
 
 #ifdef __OSC_RECORDER_ENABLED__
 
-#include "osc_receiver.hpp"
-#include "ofxOsc.h"
 #include <time.h>
 
 using namespace OscToolkit;

@@ -10,24 +10,25 @@
 #define osc_receiver_hpp
 
 #include "shared2030.h"
+
 #include "ofxOsc.h"
 #include "osc_interface.hpp"
 #include "effect.hpp"
 
-namespace of2030 {
+namespace OscToolkit {
     
-    class OscReceiver {
-        SINGLETON_INLINE_HEADER_CODE(OscReceiver)
+    class Receiver : public of2030::OscInterface{
+        SINGLETON_INLINE_HEADER_CODE(Receiver)
 
     public: // methods
-        OscReceiver();
-        ~OscReceiver(){ destroy(); }
+        Receiver();
+        ~Receiver(){ destroy(); }
 
-        void configure(OscSetting &_osc_setting);
         void setup();
         void update();
         void destroy();
 
+        void setPort(int port);
         inline bool isConnected(){ return bConnected; }
 
     private: // methods
@@ -35,10 +36,8 @@ namespace of2030 {
         void disconnect();
         
     private: // attributes
-        OscInterface *m_interface;
         ofxOscReceiver m_oscReceiver;
-        OscSetting *osc_setting;
-        OscSetting default_setting;
+        int osc_port;
         bool bConnected;
         const static int MAX_MESSAGES_PER_CYCLE = 10;
     };

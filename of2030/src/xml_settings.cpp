@@ -15,36 +15,6 @@ using namespace of2030;
 SINGLETON_INLINE_IMPLEMENTATION_CODE(XmlSettings)
 
 
-//
-// local methods
-//
-
-//void loadOscAddresses(TiXmlDocument &doc, OscSetting &osc_setting){
-//    TiXmlElement *el = doc.FirstChildElement("of2030");
-//    if(!el) return;
-//
-//    el = el->FirstChildElement("osc");
-//    if(!el) return;
-//
-//    el = el->FirstChildElement("addresses");
-//    if(!el) return;
-//
-//    TiXmlElement* child = el->FirstChildElement();
-//    string name, val;
-//
-//    while(child){
-//        name = child->ValueStr();
-//        val = child->GetText();
-//        osc_setting.addresses[name] = val;
-//        // ofLogVerbose() << "XmlSettings::loadOsc found OSC-address: " << name << ":" << val;
-//        child = child->NextSiblingElement();
-//    }
-//}
-
-//
-// XmlSettings
-//
-
 bool XmlSettings::load(bool reload){
     ofLogVerbose() << "XmlSettings::load";
 
@@ -80,8 +50,8 @@ bool XmlSettings::load(bool reload){
     log_alive_interval = xml.getValue("of2030:app:log_alive_interval", 100.0f);
 
     // osc
-    osc_setting.port = xml.getValue("of2030:osc:port", 0);
-    ofLogVerbose() << "OSC port: " << osc_setting.port;
+    osc_port = xml.getValue("of2030:osc:port", 0);
+    ofLogVerbose() << "OSC port: " << osc_port;
 
 #ifdef __OSC_SENDER_ENABLED__
     osc_out_port = xml.getValue("of2030:osc:out:port", 0);
