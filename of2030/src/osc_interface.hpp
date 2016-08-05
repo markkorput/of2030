@@ -18,9 +18,7 @@ namespace of2030 {
         SINGLETON_INLINE_HEADER_CODE(OscInterface)
 
     public: // method: input
-        inline void process(ofxOscMessage &message){
-            ofNotifyEvent(messageEvent, message, this);
-        }
+        void process(ofxOscMessage &message);
 
     public: // event: output
         ofEvent<ofxOscMessage> messageEvent; // triggered by every possible source (also recording playback)

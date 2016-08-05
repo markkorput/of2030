@@ -6,54 +6,60 @@
 //
 //
 
-#include "osc_playback_manager.hpp"
+#include "playback_manager.hpp"
 #ifdef __OSC_SENDER_ENABLED__
     #include "osc_sender.hpp"
 #endif
 #include "osc_interface.hpp"
+#include "ascii_file_reader.hpp"
 
-using namespace of2030;
+using namespace OscToolkit;
 
-SINGLETON_INLINE_IMPLEMENTATION_CODE(OscPlaybackManager)
+SINGLETON_INLINE_IMPLEMENTATION_CODE(PlaybackManager)
 
-
-OscPlaybackManager::OscPlaybackManager(){
-#ifdef __OSC_SENDER_ENABLED__
-    toOscSender = false;
-#endif
+PlaybackManager::PlaybackManager(){
+    // by default all playbacks send their message the interface singleton
+    interface = of2030::OscInterface::instance();
 }
 
-bool OscPlaybackManager::start(const string &name){
+Playback* PlaybackManager::start(const string &name){
     // load file
-    OscAsciiFile* file = new OscAsciiFile();
+    AsciiFileReader* file = new AsciiFileReader();
     if(!file){
-        return false;
+        return NULL;
     }
 
     string path = nameToPath(name);
     if(!file->load(path)){
         ofLog() << "could not load osc file: " << path;
         delete file;
-        return false;
+        return NULL;
     }
 
     // start playback
-    OscPlayback* playback = new OscPlayback(*file);
+    Playback* playback = new Playback(*file);
 
     if(!playback){
         delete file;
-        return false;
+        return NULL;
     }
 
+    // save for continued use
+    playbacks.push_back(playback);
+
+    // register callback
+    if(interface){
+        ofAddListener(playback->messageEvent, interface, &of2030::OscInterface::process);
+    }
+
+    // start playback
     playback->start();
-    // save it
-    add(*playback);
 
     // ofLogVerbose() << "Started playback of: " << file->getReadPath();
-    return true;
+    return playback;
 }
 
-bool OscPlaybackManager::stop(const string &name){
+bool PlaybackManager::stop(const string &name){
     if(name == ""){ // stop all
         for(int i=playbacks.size()-1; i>=0; i--){
             remove(playbacks[i]);
@@ -63,13 +69,13 @@ bool OscPlaybackManager::stop(const string &name){
         return true;
     }
 
-    OscPlayback *playback = getPlayback(name);
+    Playback *playback = getPlayback(name);
     if(!playback) return false;
     remove(playback);
     return true;
 }
 
-OscPlayback* OscPlaybackManager::getPlayback(const string &name){
+Playback* PlaybackManager::getPlayback(const string &name){
     string p = nameToPath(name);
 
     for(int i=playbacks.size()-1; i>=0; i--){
@@ -80,7 +86,7 @@ OscPlayback* OscPlaybackManager::getPlayback(const string &name){
     return NULL;
 }
 
-string OscPlaybackManager::nameToPath(const string &name){
+string PlaybackManager::nameToPath(const string &name){
     string p = ofToDataPath("osc/"+name+".csv");
     if(ofFile::doesFileExist(p))
         return p;
@@ -93,8 +99,8 @@ string OscPlaybackManager::nameToPath(const string &name){
     return name;
 }
 
-void OscPlaybackManager::update(float dt){
-    OscPlayback *playback;
+void PlaybackManager::update(float dt){
+    Playback *playback;
 
     for(int i=playbacks.size()-1; i>=0; i--){
         playback = playbacks[i];
@@ -104,21 +110,14 @@ void OscPlaybackManager::update(float dt){
     }
 }
 
-void OscPlaybackManager::add(OscPlayback &playback){
-    // save for continued use
-    playbacks.push_back(&playback);
-    // register callback
-    ofAddListener(playback.messageEvent, this, &OscPlaybackManager::onMessage);
-}
-
-bool OscPlaybackManager::remove(OscPlayback *playback){
+bool PlaybackManager::remove(Playback *playback){
     // find specified playback
     for(int i=playbacks.size()-1; i>=0; i--){
         if(playbacks[i] == playback){
             // found it! remove from list
             playbacks.erase(playbacks.begin()+i);
             // unregister from event
-            ofRemoveListener(playback->messageEvent, this, &OscPlaybackManager::onMessage);
+            // ofRemoveListener(playback->messageEvent, this, &PlaybackManager::onMessage);
             // delete
             delete playback->getFile();
             delete playback;
@@ -129,25 +128,25 @@ bool OscPlaybackManager::remove(OscPlayback *playback){
     return false;
 }
 
-void OscPlaybackManager::clear(){
+void PlaybackManager::clear(){
     for(int i=playbacks.size()-1; i>=0; i--){
         remove(playbacks[i]);
     }
 }
 
-void OscPlaybackManager::onMessage(ofxOscMessage &message){
-#ifdef __OSC_SENDER_ENABLED__
-    if(toOscSender){
-        // send out to specified address (used for debugging; the receiving end can
-        // broadcast everything and so it might come right back to us)
-        OscSender::instance()->sender.sendMessage(message);
-    } else {
-        // deal with messages locally
-        OscInterface::instance()->process(message);
-    }
-#else
-    // the raspi version doesn't send osc out, deal with these locally
-    ofNotifyEvent(OscInterface::instance()->receiveEvent, message, this);
-#endif
-}
+//void PlaybackManager::onMessage(ofxOscMessage &message){
+//#ifdef __OSC_SENDER_ENABLED__
+//    if(toOscSender){
+//        // send out to specified address (used for debugging; the receiving end can
+//        // broadcast everything and so it might come right back to us)
+//        of2030::OscSender::instance()->sender.sendMessage(message);
+//    } else {
+//        // deal with messages locally
+//        of2030::OscInterface::instance()->process(message);
+//    }
+//#else
+//    // the raspi version doesn't send osc out, deal with these locally
+//    ofNotifyEvent(OscInterface::instance()->receiveEvent, message, this);
+//#endif
+//}
 

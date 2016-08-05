@@ -11,3 +11,7 @@
 using namespace of2030;
 
 SINGLETON_INLINE_IMPLEMENTATION_CODE(OscInterface);
+
+void OscInterface::process(ofxOscMessage &message){
+    ofNotifyEvent(messageEvent, message, this);
+}

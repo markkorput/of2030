@@ -2,7 +2,7 @@
 
 #include "ofMain.h"
 #include "shared2030.h"
-#include "osc_playback_manager.hpp"
+#include "OscToolkit/playback_manager.hpp"
 
 class ofApp : public ofBaseApp{
 	public:
@@ -41,7 +41,7 @@ class ofApp : public ofBaseApp{
         float last_update_time;
 
 #ifdef __OSC_SENDER_ENABLED__
-    of2030::OscPlaybackManager osc_out_playback_manager;
+    OscToolkit::PlaybackManager osc_out_playback_manager;
 #endif
 };
 

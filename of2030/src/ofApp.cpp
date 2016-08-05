@@ -15,7 +15,7 @@
 #include "effect_manager.hpp"
 #include "video_manager.hpp"
 #include "image_manager.hpp"
-#include "osc_recorder.hpp"
+#include "OscToolkit/recorder.hpp"
 #include "osc_sender.hpp"
 
 //--------------------------------------------------------------
@@ -88,9 +88,8 @@ void ofApp::setup(){
 #ifdef __OSC_SENDER_ENABLED__
     of2030::OscSender::instance()->setup(of2030::XmlSettings::instance()->osc_out_host,
                                          of2030::XmlSettings::instance()->osc_out_port);
-    osc_out_playback_manager.setToOscSender(true);
+    //osc_out_playback_manager.interface =  //.setToOscSender(true);
 #endif // __OSC_SENDER_ENABLED__
-
     ofAddListener(of2030::Interface::instance()->controlEvent, this, &ofApp::onControl);
     ofAddListener(of2030::Interface::instance()->playbackEvent, this, &ofApp::onPlayback);
     ofAddListener(of2030::Interface::instance()->stopPlaybackEvent, this, &ofApp::onStopPlayback);
@@ -120,7 +119,7 @@ void ofApp::update(){
     float dt = t-last_update_time;
     last_update_time=t;
 
-    of2030::OscPlaybackManager::instance()->update(dt);
+    OscToolkit::PlaybackManager::instance()->update(dt);
     #ifdef __OSC_SENDER_ENABLED__
         osc_out_playback_manager.update(dt);
     #endif
@@ -154,7 +153,7 @@ void ofApp::draw(){
 #endif
 
 #ifdef __OSC_RECORDER_ENABLED__
-    if(of2030::OscRecorder::instance()->is_recording()){
+    if(OscToolkit::Recorder::instance()->is_recording()){
         ofSetColor(255, 0, 0);
         ofDrawRectangle(0,0, 10, 10);
     }
@@ -172,7 +171,7 @@ void ofApp::exit(ofEventArgs &args){
     of2030::ImageManager::delete_instance();
 
 #ifdef __OSC_RECORDER_ENABLED__
-    of2030::OscRecorder::delete_instance();
+    OscToolkit::Recorder::delete_instance();
 #endif
 }
 
@@ -180,7 +179,7 @@ void ofApp::exit(ofEventArgs &args){
 void ofApp::keyPressed(int key){
 #ifdef __OSC_RECORDER_ENABLED__
     if(key == 'r'){
-        of2030::OscRecorder::instance()->toggle_record();
+        OscToolkit::Recorder::instance()->toggle();
     }
 #endif
 
@@ -228,7 +227,7 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
         #endif
 
         // default behaviour; just execute locally
-        of2030::OscPlaybackManager::instance()->start(file);
+        OscToolkit::PlaybackManager::instance()->start(file);
     }
 #endif // __DRAGNDROP__
 }
@@ -277,11 +276,11 @@ void ofApp::onControl(string &type){
 }
 
 void ofApp::onPlayback(string &name){
-    of2030::OscPlaybackManager::instance()->start(name);
+    OscToolkit::PlaybackManager::instance()->start(name);
 }
 
 void ofApp::onStopPlayback(string &name){
-    of2030::OscPlaybackManager::instance()->stop(name);
+    OscToolkit::PlaybackManager::instance()->stop(name);
 }
 
 void ofApp::onLoadVideo(string &name){

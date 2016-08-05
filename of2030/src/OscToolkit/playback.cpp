@@ -6,14 +6,16 @@
 //
 //
 
-#include "osc_playback.hpp"
+#include "playback.hpp"
 
-void OscPlayback::start(){
+using namespace OscToolkit;
+
+void Playback::start(){
     time = 0.0f;
     pending_line = NULL;
 }
 
-bool OscPlayback::update(float dt){
+bool Playback::update(float dt){
     time += dt;
 
     // this is the 'retry-loop' for when the end of the file is reach,
@@ -25,18 +27,18 @@ bool OscPlayback::update(float dt){
                 return true; // true means "there is more to come"
             }
 
-            ofNotifyEvent(messageEvent, pending_line->message, this);
+            process(pending_line->message);
             pending_line = NULL;
         }
 
         // keep reading an processing lines until
         // 1) there are no lines left
         // 2) we reach a line that has a timestamp that is bigger than our timer
-        OscAsciiLine *line;
+        AsciiFileLine *line;
         while((line = file->next_line())){
             if(time >= line->timestamp){
                 // process line
-                ofNotifyEvent(messageEvent, line->message, this);
+                process(line->message);
             } else {
                 // wait until it's this line's time
                 pending_line = line;
