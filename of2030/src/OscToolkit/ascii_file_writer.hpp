@@ -9,11 +9,11 @@
 #ifndef ascii_file_writer_hpp
 #define ascii_file_writer_hpp
 
-#include "osc_interface.hpp"
+#include "interface.hpp"
 
 namespace OscToolkit{
 
-    class AsciiFileWriter : public of2030::OscInterface {
+    class AsciiFileWriter : public Interface {
 
     public: // methods
         // AsciiFileWriter(){}

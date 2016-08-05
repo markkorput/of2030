@@ -15,7 +15,7 @@ SINGLETON_INLINE_IMPLEMENTATION_CODE(PlaybackManager)
 
 PlaybackManager::PlaybackManager(){
     // by default all playbacks send their message the interface singleton
-    interface = of2030::OscInterface::instance();
+    interface = Interface::instance();
 }
 
 Playback* PlaybackManager::start(const string &name){
@@ -45,7 +45,7 @@ Playback* PlaybackManager::start(const string &name){
 
     // register callback if we have a "default" interface to send to
     if(interface){
-        ofAddListener(playback->messageEvent, interface, &of2030::OscInterface::process);
+        ofAddListener(playback->messageEvent, interface, &Interface::process);
     }
 
     // start playback

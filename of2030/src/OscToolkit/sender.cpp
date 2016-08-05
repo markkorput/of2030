@@ -29,7 +29,7 @@ void Sender::setup(string host, int port){
 
 void Sender::process(ofxOscMessage &message){
     sender.sendMessage(message);
-    of2030::OscInterface::process(message);
+    Interface::process(message);
 }
 
 

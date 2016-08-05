@@ -9,12 +9,12 @@
 #ifndef osc_playback_hpp
 #define osc_playback_hpp
 
-#include "osc_interface.hpp"
+#include "interface.hpp"
 #include "ascii_file_reader.hpp"
 
 namespace OscToolkit {
 
-    class Playback : public of2030::OscInterface {
+    class Playback : public Interface {
 
     public:
         Playback(AsciiFileReader &_file){

@@ -13,11 +13,11 @@
 
 #ifdef __OSC_SENDER_ENABLED__ // to speed op raspi compile
 
-#include "osc_interface.hpp"
+#include "interface.hpp"
 
 namespace OscToolkit{
 
-    class Sender : public of2030::OscInterface{
+    class Sender : public Interface{
         
         SINGLETON_INLINE_HEADER_CODE(Sender)
 

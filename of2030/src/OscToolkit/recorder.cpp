@@ -48,7 +48,7 @@ void Recorder::stop(){
     ofLog() << "recording stopped";
 }
 
-void Recorder::setInterface(of2030::OscInterface* new_interface){
+void Recorder::setInterface(Interface* new_interface){
     bool restart = bRecording;
     
     if(restart){
@@ -64,7 +64,7 @@ void Recorder::setInterface(of2030::OscInterface* new_interface){
 
 void Recorder::registerCallbacks(bool _register){
     if(!interface){
-        interface = of2030::OscInterface::instance();
+        interface = Interface::instance();
     }
 
     if(_register){

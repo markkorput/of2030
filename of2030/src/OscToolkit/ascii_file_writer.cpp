@@ -43,5 +43,5 @@ void AsciiFileWriter::process(ofxOscMessage &message){
     AsciiFileLine::write(message, t, outfile);
     
     // call parent class' implementation
-    of2030::OscInterface::process(message);
+    Interface::process(message);
 }

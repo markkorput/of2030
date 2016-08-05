@@ -13,9 +13,9 @@
 
 #include "ofxOsc.h"
 
-namespace of2030 {
-    class OscInterface {
-        SINGLETON_INLINE_HEADER_CODE(OscInterface)
+namespace OscToolkit {
+    class Interface {
+        SINGLETON_INLINE_HEADER_CODE(Interface)
 
     public: // method: input
         void process(ofxOscMessage &message);

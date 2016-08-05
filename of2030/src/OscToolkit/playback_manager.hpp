@@ -12,7 +12,7 @@
 #include "shared2030.h"
 
 #include "playback.hpp"
-#include "osc_interface.hpp"
+#include "interface.hpp"
 
 namespace OscToolkit{
 
@@ -37,7 +37,7 @@ namespace OscToolkit{
 
         
     public: // attributes
-        of2030::OscInterface* interface;
+        Interface* interface;
 
     private:
         vector<Playback*> playbacks;

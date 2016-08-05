@@ -13,7 +13,7 @@
 #ifndef osc_recorder_hpp
 #define osc_recorder_hpp
 
-#include "osc_interface.hpp"
+#include "interface.hpp"
 #include "ascii_file_writer.hpp"
 
 
@@ -33,14 +33,14 @@ namespace OscToolkit{
 
         inline bool is_recording(){ return bRecording; }
 
-        inline of2030::OscInterface* getInterface(){ return interface; }
-        void setInterface(of2030::OscInterface* new_interface);
+        inline Interface* getInterface(){ return interface; }
+        void setInterface(Interface* new_interface);
 
     private:
         void registerCallbacks(bool _register=true);
 
     private:
-        of2030::OscInterface *interface;
+        Interface *interface;
         bool bRecording;
         AsciiFileWriter file_writer;
     };

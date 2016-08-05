@@ -19,6 +19,7 @@
 #include "OscToolkit/recorder.hpp"
 #include "OscToolkit/sender.hpp"
 #include "OscToolkit/playback_manager.hpp"
+#include "osc_parser.hpp"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -86,6 +87,7 @@ void ofApp::setup(){
     of2030::Renderer::instance()->setup();
 #endif
 
+    of2030::OscParser::instance()->setup();
     ofAddListener(of2030::Interface::instance()->controlEvent, this, &ofApp::onControl);
     ofAddListener(of2030::Interface::instance()->playbackEvent, this, &ofApp::onPlayback);
     ofAddListener(of2030::Interface::instance()->stopPlaybackEvent, this, &ofApp::onStopPlayback);
@@ -105,7 +107,7 @@ void ofApp::setup(){
     ofLogVerbose() << "Starting OscReceiver";
     OscToolkit::Receiver::instance()->setPort(of2030::XmlSettings::instance()->osc_port);
     OscToolkit::Receiver::instance()->setup();
-    ofAddListener(OscToolkit::Receiver::instance()->messageEvent, of2030::OscInterface::instance(), &of2030::OscInterface::process);
+    ofAddListener(OscToolkit::Receiver::instance()->messageEvent, OscToolkit::Interface::instance(), &OscToolkit::Interface::process);
 
     // recorder, when recording, reads from OscRecevier, not from default osc interface
     // (otherwise it would also record any playbacks, which we don't want, we only want to record osc messages

@@ -12,12 +12,12 @@
 #include "shared2030.h"
 
 #include "ofxOsc.h"
-#include "osc_interface.hpp"
+#include "interface.hpp"
 #include "effect.hpp"
 
 namespace OscToolkit {
     
-    class Receiver : public of2030::OscInterface{
+    class Receiver : public Interface{
         SINGLETON_INLINE_HEADER_CODE(Receiver)
 
     public: // methods
