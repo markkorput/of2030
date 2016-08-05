@@ -14,14 +14,6 @@
 namespace of2030{
 
     //
-    // Osc
-    //
-    typedef struct {
-        int port;
-        // map<string, string> addresses;
-    } OscSetting;
-
-    //
     // EffectConfig
     //
     typedef struct {

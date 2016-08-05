@@ -6,7 +6,7 @@
 //
 //
 
-#include "effects.hpp"
+#include "effect.hpp"
 #include "shader_manager.hpp"
 #include "video_manager.hpp"
 #include "image_manager.hpp"

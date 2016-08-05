@@ -11,7 +11,7 @@
 
 #include "shared2030.h"
 #include "player.hpp"
-#include "effects.hpp"
+#include "effect.hpp"
 #include "xml_configs.hpp"
 
 namespace of2030 {

@@ -9,26 +9,24 @@
 #ifndef osc_sender_hpp
 #define osc_sender_hpp
 
-#include "shared2030.h"
+#include "shared.h"
+#include "interface.hpp"
 
-#ifdef __OSC_SENDER_ENABLED__ // to speed op raspi compile
+namespace OscToolkit{
 
-#include "ofxOsc.h"
-
-namespace of2030{
-    class OscSender{
+    class Sender : public Interface{
         
-        SINGLETON_INLINE_HEADER_CODE(OscSender)
+        OSC_TOOLKIT_SINGLETON_INLINE_HEADER_CODE(Sender)
 
     public: // methods
 
-        OscSender() : bEnabled(false){}
+        Sender() : bEnabled(false){}
         // ~OscSender(){}
         void setup(string host, int port);
-        // void update();
-        // void destroy();
+        // void destroy(){}
         
         inline bool isEnabled() const { return bEnabled; }
+        void process(ofxOscMessage &message);
 
     public: // properties
 
@@ -41,5 +39,4 @@ namespace of2030{
     };
 }
 
-#endif // __OSC_SENDER_ENABLED__
 #endif // osc_sender_hpp

@@ -11,7 +11,7 @@
 
 //#include <stdio.h>
 #include "ofMain.h"
-#include "effects.hpp"
+#include "effect.hpp"
 #include "effect_manager.hpp"
 
 namespace of2030{

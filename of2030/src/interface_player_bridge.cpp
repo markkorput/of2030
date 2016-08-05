@@ -7,10 +7,11 @@
 //
 
 #include "interface_player_bridge.hpp"
-#include "effects.hpp"
+#include "effect.hpp"
 #include "xml_configs.hpp"
 #include "video_manager.hpp"
 #include "image_manager.hpp"
+#include "OscToolkit/interface.hpp"
 
 using namespace of2030;
 
@@ -51,6 +52,7 @@ void InterfacePlayerBridge::destroy(){
         registerCallbacks(false);
     m_bStarted = false;
 }
+
 
 void InterfacePlayerBridge::registerCallbacks(bool _register){
     ofLogVerbose() << "InterfacePlayerBridge::registerCallbacks with: " << _register;

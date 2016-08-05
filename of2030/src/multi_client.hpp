@@ -42,7 +42,7 @@ namespace of2030{
         void drawScreens();
     
     public: // attributes
-        
+
         bool enabled;
         int previewClient;
         vector<Renderer*> m_renderers;

@@ -10,7 +10,7 @@
 #define effect_manager_hpp
 
 #include "shared2030.h"
-#include "effects.hpp"
+#include "effect.hpp"
 
 #include "ofMain.h"
 

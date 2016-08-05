@@ -24,7 +24,7 @@ namespace of2030{
 
     public: // properties
         string client_id;
-        OscSetting osc_setting;
+        int osc_port;
         // logging
         string log_level_name;
         ofLogLevel log_level;

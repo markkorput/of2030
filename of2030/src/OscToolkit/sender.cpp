@@ -6,17 +6,13 @@
 //
 //
 
-#include "osc_sender.hpp"
+#include "sender.hpp"
 
-#ifdef __OSC_SENDER_ENABLED__ // to speed op raspi compile
+using namespace OscToolkit;
 
-#include "xml_settings.hpp"
+OSC_TOOLKIT_SINGLETON_INLINE_IMPLEMENTATION_CODE(Sender)
 
-using namespace of2030;
-
-SINGLETON_INLINE_IMPLEMENTATION_CODE(OscSender)
-
-void OscSender::setup(string host, int port){
+void Sender::setup(string host, int port){
     // make sure it has loaded it content from the settings file
     // (won't reload when already loaded)
     if(host == "" || port < 1){
@@ -29,7 +25,7 @@ void OscSender::setup(string host, int port){
     bEnabled = true;
 }
 
-//void OscSender::destroy(){
-//}
-
-#endif // __OSC_SENDER_ENABLED__
+void Sender::process(ofxOscMessage &message){
+    sender.sendMessage(message);
+    Interface::process(message);
+}

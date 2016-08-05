@@ -13,7 +13,7 @@
 #include "shared2030.h"
 #include "interface.hpp"
 #include "player.hpp"
-#include "effects.hpp"
+#include "effect.hpp"
 #include "setting_types.h"
 #include "effect_manager.hpp"
 
