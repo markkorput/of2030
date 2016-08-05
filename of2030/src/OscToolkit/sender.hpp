@@ -9,17 +9,14 @@
 #ifndef osc_sender_hpp
 #define osc_sender_hpp
 
-#include "shared2030.h"
-
-#ifdef __OSC_SENDER_ENABLED__ // to speed op raspi compile
-
+#include "shared.h"
 #include "interface.hpp"
 
 namespace OscToolkit{
 
     class Sender : public Interface{
         
-        SINGLETON_INLINE_HEADER_CODE(Sender)
+        OSC_TOOLKIT_SINGLETON_INLINE_HEADER_CODE(Sender)
 
     public: // methods
 
@@ -42,5 +39,4 @@ namespace OscToolkit{
     };
 }
 
-#endif // __OSC_SENDER_ENABLED__
 #endif // osc_sender_hpp

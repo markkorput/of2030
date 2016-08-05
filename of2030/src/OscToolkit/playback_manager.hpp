@@ -9,15 +9,14 @@
 #ifndef osc_playback_manager_hpp
 #define osc_playback_manager_hpp
 
-#include "shared2030.h"
-
+#include "shared.h"
 #include "playback.hpp"
 #include "interface.hpp"
 
 namespace OscToolkit{
 
     class PlaybackManager{
-        SINGLETON_INLINE_HEADER_CODE(PlaybackManager)
+        OSC_TOOLKIT_SINGLETON_INLINE_HEADER_CODE(PlaybackManager)
 
     public:
         PlaybackManager();

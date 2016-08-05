@@ -7,15 +7,12 @@
 //
 
 #include "recorder.hpp"
-
-#ifdef __OSC_RECORDER_ENABLED__
-
 #include <time.h>
 
 using namespace OscToolkit;
 
 
-SINGLETON_INLINE_IMPLEMENTATION_CODE(Recorder)
+OSC_TOOLKIT_SINGLETON_INLINE_IMPLEMENTATION_CODE(Recorder)
 
 Recorder::~Recorder(){
     if(bRecording){
@@ -73,5 +70,3 @@ void Recorder::registerCallbacks(bool _register){
         ofRemoveListener(interface->messageEvent, &file_writer, &AsciiFileWriter::process);
     }
 }
-
-#endif // __OSC_RECORDER_ENABLED__

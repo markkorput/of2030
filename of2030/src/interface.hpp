@@ -21,16 +21,18 @@ namespace of2030 {
     public: // VJ-events
         ofEvent<string> triggerEvent;
         ofEvent<string> stopTriggerEvent;
-//        ofEvent<string> effectEvent;
+
         ofEvent<EffectConfig> effectConfigEvent;
         ofEvent<EffectConfig> screenConfigEvent;
+        
         ofEvent<string> controlEvent;
-//        ofEvent<string> songEvent;
-//        ofEvent<string> clipEvent;
+
         ofEvent<string> playbackEvent;
         ofEvent<string> stopPlaybackEvent;
+
         ofEvent<string> loadVideoEvent;
         ofEvent<string> unloadVideoEvent;
+
         ofEvent<string> loadImageEvent;
         ofEvent<string> unloadImageEvent;
     };

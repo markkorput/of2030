@@ -10,7 +10,7 @@
 
 using namespace OscToolkit;
 
-SINGLETON_INLINE_IMPLEMENTATION_CODE(Interface);
+OSC_TOOLKIT_SINGLETON_INLINE_IMPLEMENTATION_CODE(Interface);
 
 void Interface::process(ofxOscMessage &message){
     ofNotifyEvent(messageEvent, message, this);

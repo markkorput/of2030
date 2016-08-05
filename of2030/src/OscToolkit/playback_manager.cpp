@@ -11,7 +11,7 @@
 
 using namespace OscToolkit;
 
-SINGLETON_INLINE_IMPLEMENTATION_CODE(PlaybackManager)
+OSC_TOOLKIT_SINGLETON_INLINE_IMPLEMENTATION_CODE(PlaybackManager)
 
 PlaybackManager::PlaybackManager(){
     // by default all playbacks send their message the interface singleton

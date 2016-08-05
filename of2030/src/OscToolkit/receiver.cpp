@@ -10,7 +10,7 @@
 
 using namespace OscToolkit;
 
-SINGLETON_INLINE_IMPLEMENTATION_CODE(Receiver)
+OSC_TOOLKIT_SINGLETON_INLINE_IMPLEMENTATION_CODE(Receiver)
 
 Receiver::Receiver() : bConnected(false){
     osc_port = 2030;
@@ -72,7 +72,7 @@ bool Receiver::connect(){
 #else
     m_oscReceiver.setup(osc_port);
     bConnected = true;
-    ofLog() << "of2030::OscReceiver listening to port: " << osc_setting->port;
+    ofLog() << "of2030::OscReceiver listening to port: " << osc_port;
     return true;
 #endif // __BOOL_OSC_SETUP__
 

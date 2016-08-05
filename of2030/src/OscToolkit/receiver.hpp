@@ -9,16 +9,16 @@
 #ifndef osc_receiver_hpp
 #define osc_receiver_hpp
 
-#include "shared2030.h"
-
-#include "ofxOsc.h"
+#include "shared.h"
 #include "interface.hpp"
 #include "effect.hpp"
+
+#include "ofxOsc.h"
 
 namespace OscToolkit {
     
     class Receiver : public Interface{
-        SINGLETON_INLINE_HEADER_CODE(Receiver)
+        OSC_TOOLKIT_SINGLETON_INLINE_HEADER_CODE(Receiver)
 
     public: // methods
         Receiver();
