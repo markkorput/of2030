@@ -10,7 +10,7 @@
 
 #ifdef __OSC_RECORDER_ENABLED__
 
-#include "osc_interface.hpp"
+#include "osc_receiver.hpp"
 #include "ofxOsc.h"
 #include <time.h>
 
@@ -51,10 +51,14 @@ void OscRecorder::stop_recording(){
 }
 
 void OscRecorder::registerCallbacks(bool _register){
+    if(!osc_interface){
+        osc_interface = OscInterface::instance();
+    }
+
     if(_register){
-        ofAddListener(OscInterface::instance()->receiveEvent, &file, &OscAsciiFile::write_line);
+        ofAddListener(osc_interface->messageEvent, &file, &OscAsciiFile::write_line);
     } else {
-        ofRemoveListener(OscInterface::instance()->receiveEvent, &file, &OscAsciiFile::write_line);
+        ofRemoveListener(osc_interface->messageEvent, &file, &OscAsciiFile::write_line);
     }
 }
 

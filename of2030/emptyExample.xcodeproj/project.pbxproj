@@ -340,6 +340,8 @@
 		4D9E76D81D538B7E004A88D7 /* OSC */ = {
 			isa = PBXGroup;
 			children = (
+				4D7CFBE31CEFD0A2006E706C /* osc_ascii_file.cpp */,
+				4D7CFBE41CEFD0A2006E706C /* osc_ascii_file.hpp */,
 				4D9B298F1CC65268005D65E9 /* osc_receiver.cpp */,
 				4D9B29901CC65268005D65E9 /* osc_receiver.hpp */,
 				4D7CFBE61CEFDB3F006E706C /* osc_playback_manager.cpp */,
@@ -386,8 +388,6 @@
 				4DE274C91CCE1D9300F2D470 /* xml_settings.hpp */,
 				4D4A32B91CDFE8D100304FE9 /* xml_configs.cpp */,
 				4D4A32BA1CDFE8D100304FE9 /* xml_configs.hpp */,
-				4D7CFBE31CEFD0A2006E706C /* osc_ascii_file.cpp */,
-				4D7CFBE41CEFD0A2006E706C /* osc_ascii_file.hpp */,
 			);
 			name = io;
 			sourceTree = "<group>";

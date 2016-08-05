@@ -49,9 +49,9 @@ void OscReceiver::update(){
     while(m_oscReceiver.hasWaitingMessages() && message_count < MAX_MESSAGES_PER_CYCLE){
         // get the next message
         m_oscReceiver.getNextMessage(m);
-        ofNotifyEvent(m_interface->messageEvent, m, m_interface);
+        m_interface->process(m);
         message_count++;
-        ofNotifyEvent(m_interface->receiveEvent, m, m_interface);
+        // ofNotifyEvent(m_interface->receiveEvent, m, m_interface);
         // processMessage(m);
     }
 }

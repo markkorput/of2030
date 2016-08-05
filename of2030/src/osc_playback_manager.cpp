@@ -143,7 +143,7 @@ void OscPlaybackManager::onMessage(ofxOscMessage &message){
         OscSender::instance()->sender.sendMessage(message);
     } else {
         // deal with messages locally
-        ofNotifyEvent(OscInterface::instance()->receiveEvent, message, this);
+        OscInterface::instance()->process(message);
     }
 #else
     // the raspi version doesn't send osc out, deal with these locally

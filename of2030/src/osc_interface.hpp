@@ -17,8 +17,12 @@ namespace of2030 {
     class OscInterface {
         SINGLETON_INLINE_HEADER_CODE(OscInterface)
 
-    public: // events
-        ofEvent<ofxOscMessage> receiveEvent; // triggered when received over network
+    public: // method: input
+        inline void process(ofxOscMessage &message){
+            ofNotifyEvent(messageEvent, message, this);
+        }
+
+    public: // event: output
         ofEvent<ofxOscMessage> messageEvent; // triggered by every possible source (also recording playback)
     };
 };

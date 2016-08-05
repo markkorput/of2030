@@ -13,7 +13,9 @@
 #ifndef osc_recorder_hpp
 #define osc_recorder_hpp
 
+#include "osc_interface.hpp"
 #include "osc_ascii_file.hpp"
+
 
 namespace of2030{
     class OscRecorder{
@@ -21,7 +23,7 @@ namespace of2030{
     SINGLETON_INLINE_HEADER_CODE(OscRecorder)
 
     public:
-        OscRecorder() : bRecording(false){}
+        OscRecorder() : bRecording(false), osc_interface(NULL){}
         ~OscRecorder();
 
         inline void toggle_record(){ if(bRecording) stop_recording(); else start_recording(); }
@@ -34,6 +36,7 @@ namespace of2030{
         void registerCallbacks(bool _register=true);
 
     private:
+        OscInterface *osc_interface;
         bool bRecording;
         OscAsciiFile file;
     };
